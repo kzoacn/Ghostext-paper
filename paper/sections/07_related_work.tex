@@ -1,0 +1,15 @@
+\section{Related Work}
+\subsection{Classical and Provable Steganography}
+Classical formulations include the prisoners' problem and later provable steganography constructions~\cite{DBLP:conf/crypto/Simmons83,DBLP:journals/jsac/AndersonP98,DBLP:conf/crypto/HopperLA02}.
+
+\subsection{Neural and LLM-based Text Steganography}
+Generation-based linguistic steganography evolved from recurrent-language-model methods~\cite{DBLP:conf/acl/FangJA17} to arithmetic-coded neural generation~\cite{ziegler-etal-2019-neural} and later LLM-era variants with stronger formal or algorithmic components~\cite{DBLP:conf/acl/ZhangYYH21,DBLP:conf/naacl/LinLZL24,DBLP:journals/tdsc/QiCZZY25}. Recent work also highlights tokenization inconsistency as a concrete source of reliability/security risk in LLM-based steganographic pipelines~\cite{DBLP:conf/emnlp/YanM25}.
+
+\subsection{Security-Systems Perspective and Covert Messaging}
+Security-oriented system work includes Meteor (CCS 2021) and Discop (IEEE S\&P 2023), which emphasize stronger security constructions and deployment-oriented perspectives for realistic distributions~\cite{DBLP:conf/ccs/KaptchukJ0R21,DBLP:conf/sp/DingCWZZY23}. Later work studies operational tradeoffs in covert messaging deployments and extends secure steganographic design into diffusion-model settings~\cite{DBLP:conf/codaspy/BauerHMBS24,DBLP:conf/ccs/JoisBK24}.
+
+\subsection{Steganalysis}
+Linguistic steganalysis has progressed from feature-engineered and language-model-assisted pipelines to hybrid frameworks with external knowledge, and more recent LLM-assisted detector studies~\cite{DBLP:conf/icassp/YiWFZ22,DBLP:journals/spl/GuoLYYZ22,DBLP:conf/icassp/YangYGZGH23,DBLP:journals/corr/abs-2405-09090}. These works motivate conservative claims: practical systems should avoid asserting broad undetectability without detector-specific evaluation.
+
+\subsection{Positioning}
+Ghostext is positioned as a security-engineering system with explicit synchronization assumptions and fail-closed semantics. Relative to prior work, our focus is narrower than broad formal-security or deployment claims: we prioritize deterministic recoverability, explicit mismatch failure behavior, and reproducibility discipline for local LLM pipelines. This makes Ghostext complementary to work that emphasizes stronger proofs, larger deployment studies, or detector-centric evaluations.

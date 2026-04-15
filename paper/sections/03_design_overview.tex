@@ -1,0 +1,22 @@
+\section{Design Overview}
+Ghostext follows an encrypt-then-steganography architecture. Plaintext is first transformed into an authenticated encrypted packet, then embedded by mapping packet bits into token choices over next-token distributions.
+
+The design is driven by four system-level objectives:
+\begin{itemize}
+\item \textbf{O1: Confidential packet semantics.} Plaintext confidentiality and integrity are handled before embedding.
+\item \textbf{O2: Deterministic recoverability.} Under matched runtime assumptions, decoding should reconstruct the exact packet.
+\item \textbf{O3: Fail-closed mismatch behavior.} Runtime or channel mismatches should raise explicit errors, not approximate plaintext.
+\item \textbf{O4: Reproducibility.} Core protocol behavior should be rerunnable from explicit configuration.
+\end{itemize}
+
+Ghostext is organized into six modules:
+\begin{itemize}
+\item \textbf{Crypto/packet framing}: builds opaque packet headers and body ciphertext.
+\item \textbf{Model backend}: provides per-step next-token distributions and tokenization functions.
+\item \textbf{Candidate policy}: constrains token choices and enforces tokenization-path safety.
+\item \textbf{Quantization}: converts floating probabilities into deterministic integer CDFs.
+\item \textbf{Interval codec}: performs embedding/recovery over finite integer intervals.
+\item \textbf{Encode/decode pipelines}: orchestrate segmentation, retries, termination, and error handling.
+\end{itemize}
+
+To couple runtime assumptions to packet semantics, Ghostext computes a configuration fingerprint from runtime protocol settings, backend metadata, and prompt hash, then binds that value to encrypted packet header metadata. This prevents silent decode drift from being interpreted as successful recovery.

@@ -1,0 +1,58 @@
+\section{Evaluation}
+\subsection{Evaluation Questions}
+We evaluate three questions:
+\begin{itemize}
+\item Q1: Does Ghostext recover payloads under matched runtime configuration?
+\item Q2: Does Ghostext fail closed under mismatch or mutation?
+\item Q3: What practical overhead does Ghostext incur?
+\end{itemize}
+
+\subsection{Setup}
+We use two backends:
+\begin{itemize}
+\item \textbf{Toy backend} for deterministic protocol-regression checks.
+\item \textbf{Real backend} (`llama.cpp` + local Qwen3.5-2B GGUF) for practical execution behavior.
+\end{itemize}
+The evaluation scripts are rerunnable and emit structured JSON + markdown tables.
+
+\subsection{Results}
+\textbf{Toy backend baseline.}
+Across four test cases, matched-configuration round-trip success is 4/4 (100\%), and fail-closed mismatch tests (wrong seed, wrong prompt, wrong passphrase, mutated text) fail as expected 4/4 (100\%).
+\textbf{Real backend results.}
+On two short real-model cases (one Chinese, one English), matched-configuration round-trip success is 2/2 (100\%). Mean embedding efficiency is 2.269 bits/token, and mean encode throughput is 13.73 tokens/s on the current CPU-only setup. A wrong-prompt sanity check fails closed with \texttt{SynchronizationError}.
+
+\begin{table}[t]
+\caption{Toy backend baseline (protocol-regression).}
+\label{tab:toy-baseline}
+\centering
+\begin{tabular}{lrrrr}
+\toprule
+Case & Success & Packet Bytes & Total Tok & Bits/Tok \\
+\midrule
+zh\_short & Y & 118 & 1190 & 0.793 \\
+en\_short & Y & 122 & 2523 & 0.387 \\
+zh\_medium & Y & 157 & 1763 & 0.712 \\
+en\_medium & Y & 154 & 3104 & 0.397 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\caption{Real backend results (\texttt{llama.cpp} + Qwen3.5-2B GGUF).}
+\label{tab:real-backend}
+\centering
+\begin{tabular}{lrrrr}
+\toprule
+Case & Success & Packet Bytes & Total Tok & Bits/Tok \\
+\midrule
+zh\_real\_short & Y & 115 & 458 & 2.009 \\
+en\_real\_short & Y & 117 & 370 & 2.530 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Artifacts.}
+Primary outputs are exported to \texttt{results/minimal\_eval\_results.json}, \texttt{results/real\_backend\_eval\_results.json}, and \texttt{results/consolidated\_eval\_tables.md}.
+
+\subsection{Interpretation Scope}
+Results support recoverability and fail-closed claims within the stated passive-observer threat model and strict synchronization assumptions. These experiments do not establish detector resistance, active-channel robustness, or cross-model portability guarantees.

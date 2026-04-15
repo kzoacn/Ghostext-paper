@@ -1,0 +1,78 @@
+\documentclass[sigconf]{acmart}
+
+% CCS 2026 submission skeleton (anonymous)
+% Keep required ACM metadata blocks; replace placeholders before final submission.
+
+\AtBeginDocument{%
+  \providecommand\BibTeX{{%
+    Bib\TeX}}
+}
+
+\setcopyright{acmlicensed}
+\copyrightyear{2018}
+\acmYear{2018}
+\acmDOI{XXXXXXX.XXXXXXX}
+\acmConference[Conference acronym 'XX]{Make sure to enter the correct
+  conference title from your rights confirmation email}{June 03--05,
+  2018}{Woodstock, NY}
+\acmISBN{978-1-4503-XXXX-X/2018/06}
+
+\title{Ghostext: Deterministic and Fail-Closed Text Steganography over Local LLM Token Distributions}
+
+% Anonymous submission: do not include authors in this version.
+
+\renewcommand{\shortauthors}{Anonymous Submission}
+
+\begin{abstract}
+We present Ghostext, a security-oriented text steganography system that embeds encrypted payloads into local language-model generation while prioritizing deterministic recoverability and fail-closed behavior under configuration mismatch. The system uses encrypt-then-steganography packet construction, candidate-set policy constraints, retokenization-stability checks, integer quantization, and interval decoding with explicit configuration fingerprint validation. We formalize Ghostext's deployment assumptions and evaluate (i) matched-configuration correctness, (ii) fail-closed behavior under prompt/seed/key/text mismatches, and (iii) practical overhead. We discuss limits including robustness to active text edits and steganalysis resistance, which remain outside the current guarantee scope.
+\end{abstract}
+
+\begin{CCSXML}
+<ccs2012>
+ <concept>
+  <concept_id>10002978.10003006.10003008</concept_id>
+  <concept_desc>Security and privacy~Cryptography</concept_desc>
+  <concept_significance>500</concept_significance>
+ </concept>
+ <concept>
+  <concept_id>10002978.10003006.10003013</concept_id>
+  <concept_desc>Security and privacy~Information-theoretic techniques</concept_desc>
+  <concept_significance>300</concept_significance>
+ </concept>
+ <concept>
+  <concept_id>10002978.10002979.10002982</concept_id>
+  <concept_desc>Security and privacy~Privacy protections</concept_desc>
+  <concept_significance>100</concept_significance>
+ </concept>
+</ccs2012>
+\end{CCSXML}
+
+\ccsdesc[500]{Security and privacy~Cryptography}
+\ccsdesc[300]{Security and privacy~Information-theoretic techniques}
+\ccsdesc[100]{Security and privacy~Privacy protections}
+
+\keywords{text steganography, covert communication, language models, fail-closed design, reproducibility}
+
+\begin{document}
+
+\maketitle
+
+\input{sections/01_intro}
+\input{sections/02_problem_and_threat_model}
+\input{sections/03_design_overview}
+\input{sections/04_protocol_and_implementation}
+\input{sections/05_evaluation}
+\input{sections/06_limitations_and_discussion}
+\input{sections/07_related_work}
+\input{sections/08_conclusion}
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{references}
+
+\appendix
+\input{sections/A_open_science}
+\input{sections/B_ethical_considerations}
+% Include this section only if required by actual AI-assisted drafting usage.
+% \input{sections/C_generative_ai_usage}
+
+\end{document}

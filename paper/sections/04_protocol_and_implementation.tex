@@ -1,0 +1,42 @@
+\section{Protocol and Implementation Details}
+\subsection{Packet and Cryptography}
+Ghostext packetization uses an opaque bootstrap/header and encrypted body with authenticated decryption. The implementation follows a two-stage key schedule: (i) derive a master key from passphrase and salt, and (ii) derive disjoint subkeys for header and body protection. Header and body are independently authenticated, so malformed or mismatched packets fail closed at decrypt time.
+
+At a high level, the packet consists of:
+\begin{itemize}
+\item random salt,
+\item header nonce and sealed internal header,
+\item body nonce and ciphertext+tag.
+\end{itemize}
+The internal header carries protocol-sensitive metadata including ciphertext length and configuration fingerprint.
+
+\subsection{Candidate Policy and Tokenization Stability}
+For each generation step, Ghostext obtains the next-token distribution and applies deterministic filtering:
+\begin{itemize}
+\item top-$p$ truncation and max-candidate cap,
+\item minimum-entropy gating for whether embedding is allowed at the step,
+\item optional retokenization-stability guard.
+\end{itemize}
+
+The retokenization-stability guard is central for decode consistency: a candidate token is retained only if appending it, rendering text, and re-tokenizing yields the same token path. This directly addresses tokenization inconsistency risk highlighted in recent LLM steganography/watermarking work~\cite{DBLP:conf/emnlp/YanM25}.
+
+\subsection{Quantization and Interval Coding}
+Selected probabilities are converted into integer frequencies that sum to a fixed total frequency. The quantization is deterministic under ties (token-id order), providing stable encoder/decoder CDF alignment.
+
+Encoding and decoding then operate on finite integer intervals:
+\begin{itemize}
+\item \textbf{Encode:} choose the candidate subinterval containing the payload target integer.
+\item \textbf{Decode:} absorb observed token indices to narrow the same interval until resolved.
+\end{itemize}
+The current implementation encodes packet segments (bootstrap/header then body) with explicit token budgets.
+
+\subsection{Fail-Closed Synchronization Checks}
+Fail-closed behavior is enforced at multiple layers:
+\begin{itemize}
+\item configuration fingerprint mismatch,
+\item authentication/tag failure in header or body,
+\item observed token not present in expected candidate set,
+\item interval collapse or token-budget exhaustion.
+\end{itemize}
+
+These checks intentionally reject ambiguous states. Ghostext does not attempt approximate decode under mismatch, because silent partial recovery is security-unsafe for covert messaging settings.
