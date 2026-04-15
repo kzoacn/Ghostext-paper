@@ -1,4 +1,6 @@
 \section{Limitations and Discussion}
-Current guarantees are conditional on strict sender/receiver synchronization. The system does not currently provide robust recovery under active text edits, channel noise, or model/version drift. Detection resistance against dedicated steganalysis remains an open evaluation direction.
+Ghostext is intentionally scoped. Its strongest claims hold only when Alice and Bob are fully synchronized on model/backend, tokenizer behavior, prompt and prompt template, seed, and protocol-sensitive runtime settings. Outside this envelope, the system is designed to fail closed rather than recover approximately.
 
-These limitations are deliberate in this version: the design prioritizes deterministic reproducibility and explicit boundary behavior over broad deployment claims.
+The passive-censor model is also a deliberate boundary. We do not currently claim robustness under active channel edits such as insertion, deletion, rewrite, or reordering. We also do not claim broad resistance against dedicated steganalysis detectors or robust interoperability across model/version drift. These gaps are not hidden limitations; they are explicit non-goals in this version.
+
+The ``almost perfect'' wording should therefore be read as a constrained engineering claim. It refers to the design objective of preserving model distributional behavior while embedding encrypted random-looking payload bits through arithmetic-coding-style mapping. It is not a claim of unconditional undetectability across all channels, detectors, and deployment conditions.

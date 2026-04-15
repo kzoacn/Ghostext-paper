@@ -17,14 +17,14 @@
   2018}{Woodstock, NY}
 \acmISBN{978-1-4503-XXXX-X/2018/06}
 
-\title{Ghostext: Deterministic and Fail-Closed Text Steganography over Local LLM Token Distributions}
+\title{Ghostext: an almost perfect stenography via large language model and arithmetic coding}
 
 % Anonymous submission: do not include authors in this version.
 
 \renewcommand{\shortauthors}{Anonymous Submission}
 
 \begin{abstract}
-We present Ghostext, a security-oriented text steganography system that embeds encrypted payloads into local language-model generation while prioritizing deterministic recoverability and fail-closed behavior under configuration mismatch. The system uses encrypt-then-steganography packet construction, candidate-set policy constraints, retokenization-stability checks, integer quantization, and interval decoding with explicit configuration fingerprint validation. We formalize Ghostext's deployment assumptions and evaluate (i) matched-configuration correctness, (ii) fail-closed behavior under prompt/seed/key/text mismatches, and (iii) practical overhead. We discuss limits including robustness to active text edits and steganalysis resistance, which remain outside the current guarantee scope.
+We present Ghostext, a security-first text steganography system for a passive-censor setting with three roles: Alice, Bob, and Censor. Alice combines a shared prompt, a shared password, and a secret message, then Ghostext emits a cover text. The passive Censor only inspects the transmitted text and should not observe obvious anomalies; Bob uses the same prompt and password to recover the message. Technically, Ghostext couples encrypt-then-steganography packet construction with arithmetic-coding-style embedding over next-token distributions, plus deterministic synchronization controls (candidate policy, retokenization-stability filtering, integer quantization, finite-interval codec, and configuration fingerprint checks). The ``almost perfect'' wording in our title is a scoped design intent: under explicit assumptions, encrypted payload bits are computationally indistinguishable from random bits, and embedding is engineered to preserve model distributional behavior while consuming available entropy. We evaluate matched-configuration recoverability, fail-closed behavior under mismatch, and practical overhead with rerunnable scripts on toy and real local backends.
 \end{abstract}
 
 \begin{CCSXML}
@@ -55,6 +55,7 @@ We present Ghostext, a security-oriented text steganography system that embeds e
 
 \begin{document}
 
+\input{sections/_eval_autogen}
 \maketitle
 
 \input{sections/01_intro}

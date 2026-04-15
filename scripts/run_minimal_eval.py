@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 import statistics
 import sys
+from hashlib import sha256
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -27,6 +28,16 @@ def _stats(values: list[float]) -> dict[str, float]:
         "min": float(min(values)),
         "max": float(max(values)),
     }
+
+
+def _deterministic_bytes(label: str, n: int) -> bytes:
+    out = b""
+    counter = 0
+    while len(out) < n:
+        block = sha256(f"{label}:{counter}".encode("utf-8")).digest()
+        out += block
+        counter += 1
+    return out[:n]
 
 
 def evaluate_correctness_and_overhead() -> dict[str, Any]:
@@ -69,10 +80,20 @@ def evaluate_correctness_and_overhead() -> dict[str, Any]:
         config = RuntimeConfig(seed=case["seed"])
         encoder = StegoEncoder(backend, config)
         decoder = StegoDecoder(backend, config)
+        salt = _deterministic_bytes(
+            f"minimal-eval-salt:{case['id']}:{case['seed']}",
+            config.crypto.salt_len,
+        )
+        nonce = _deterministic_bytes(
+            f"minimal-eval-nonce:{case['id']}:{case['seed']}",
+            config.crypto.nonce_len,
+        )
         encoded = encoder.encode(
             case["message"],
             passphrase=passphrase,
             prompt=case["prompt"],
+            salt=salt,
+            nonce=nonce,
         )
         decoded = decoder.decode(
             encoded.text,
@@ -123,6 +144,14 @@ def evaluate_fail_closed() -> dict[str, Any]:
         message,
         passphrase=passphrase,
         prompt=prompt,
+        salt=_deterministic_bytes(
+            f"minimal-fail-closed-salt:{good_config.seed}",
+            good_config.crypto.salt_len,
+        ),
+        nonce=_deterministic_bytes(
+            f"minimal-fail-closed-nonce:{good_config.seed}",
+            good_config.crypto.nonce_len,
+        ),
     )
 
     scenarios = []

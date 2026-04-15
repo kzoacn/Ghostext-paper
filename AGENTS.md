@@ -223,3 +223,19 @@ Default execution entrypoint:
 ```bash
 ./scripts/run_all.sh
 ```
+
+## 14. Codex Writing Preferences (User-Specified)
+
+For this paper, use English throughout and prefer natural, friendly prose in full paragraphs. Avoid overusing bullet lists unless a list is strictly necessary for clarity. Keep wording simple and readable, and avoid unnecessarily complicated vocabulary.
+
+Use the working title: "Ghostext: an almost perfect stenography via large language model and arithmetic coding". In the main narrative, describe the communication setting with three roles: Alice, Bob, and Censor. Alice uses a shared prompt and password together with her secret message as input to Ghostext, and Ghostext outputs a cover text. The passive Censor only inspects the text and should see nothing suspicious, so the message is allowed to pass. Bob, using the same prompt and password, recovers the original secret message.
+
+When describing security, use a passive-censor threat model: the censor observes only the transmitted text and does not know the prompt or password. The target claim is indistinguishability between stego text and natural text under this passive setting. Keep the claim conservative and scoped to this model.
+
+When explaining the technical intuition, highlight two linked points. First, modern language models provide next-token distributions that approximate natural-language generation behavior. Second, the embedding process should preserve that distributional behavior as much as possible. Connect this to the system design: encryption makes the payload computationally indistinguishable from randomness, and arithmetic coding maps that randomized payload into token choices by fully using the available entropy in the next-token distribution.
+
+The paper may use "almost perfect" to describe this design intent: the scheme is designed to preserve the model distribution while efficiently consuming available entropy for embedding. This wording should be presented as a scoped claim tied to explicit assumptions, implementation constraints, and available evidence, not as an unconditional universality claim.
+
+For related work, include both LLM steganography and LLM watermarking literature, because they share technical overlap in token-distribution shaping, coding over token probabilities, and detectability/recoverability tradeoffs. Position Ghostext relative to both lines of work.
+
+For experiments, include a minimal but concrete demonstration that the system works in practice, and report basic metrics and parameters (for example success rate, fail-closed behavior under mismatch, bits per token, throughput, and key runtime settings).

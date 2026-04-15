@@ -1,22 +1,8 @@
 \section{Design Overview}
-Ghostext follows an encrypt-then-steganography architecture. Plaintext is first transformed into an authenticated encrypted packet, then embedded by mapping packet bits into token choices over next-token distributions.
+Ghostext is an encrypt-then-steganography pipeline over next-token distributions. Alice first transforms plaintext into an authenticated encrypted packet. Ghostext then maps packet bits to token choices by finite-interval coding constrained by model probabilities. Bob mirrors the same process in reverse. The system is built for deterministic synchronized decoding, not for approximate decoding under drift.
 
-The design is driven by four system-level objectives:
-\begin{itemize}
-\item \textbf{O1: Confidential packet semantics.} Plaintext confidentiality and integrity are handled before embedding.
-\item \textbf{O2: Deterministic recoverability.} Under matched runtime assumptions, decoding should reconstruct the exact packet.
-\item \textbf{O3: Fail-closed mismatch behavior.} Runtime or channel mismatches should raise explicit errors, not approximate plaintext.
-\item \textbf{O4: Reproducibility.} Core protocol behavior should be rerunnable from explicit configuration.
-\end{itemize}
+Our design balances four goals. The first goal is confidentiality and integrity before embedding: payload semantics are protected cryptographically before any token-level mapping begins. The second goal is deterministic recoverability under matched configuration. The third goal is explicit fail-closed behavior under mismatch. The fourth goal is reproducibility through explicit, auditable configuration surfaces.
 
-Ghostext is organized into six modules:
-\begin{itemize}
-\item \textbf{Crypto/packet framing}: builds opaque packet headers and body ciphertext.
-\item \textbf{Model backend}: provides per-step next-token distributions and tokenization functions.
-\item \textbf{Candidate policy}: constrains token choices and enforces tokenization-path safety.
-\item \textbf{Quantization}: converts floating probabilities into deterministic integer CDFs.
-\item \textbf{Interval codec}: performs embedding/recovery over finite integer intervals.
-\item \textbf{Encode/decode pipelines}: orchestrate segmentation, retries, termination, and error handling.
-\end{itemize}
+Concretely, Ghostext has six components. The packet/crypto component constructs an opaque bootstrap and encrypted body. The backend component provides tokenization, rendering, and next-token distributions. The candidate policy component applies top-$p$, max-candidate, and entropy gates, then enforces retokenization stability when enabled. The quantization component turns floating probabilities into deterministic integer frequencies and CDF ranges. The interval codec component performs encoding and decoding over finite integer intervals. Finally, the pipeline orchestrates header/body segmentation, token budgets, retries, and error propagation.
 
-To couple runtime assumptions to packet semantics, Ghostext computes a configuration fingerprint from runtime protocol settings, backend metadata, and prompt hash, then binds that value to encrypted packet header metadata. This prevents silent decode drift from being interpreted as successful recovery.
+The key synchronization mechanism is configuration fingerprinting. Ghostext hashes protocol-relevant runtime configuration, backend metadata, and prompt hash into a compact fingerprint and binds it to encrypted header metadata. This coupling prevents silent decode drift from being interpreted as a successful decryption.

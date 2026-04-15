@@ -1,46 +1,15 @@
 \section{Problem Setting and Threat Model}
-\subsection{Communication Goal}
-Two parties (sender and receiver) share secret material and protocol-sensitive runtime configuration. The sender transforms a plaintext message into an encrypted packet and embeds it into generated text. The receiver observes the text and attempts to recover the original plaintext.
+\subsection{Communication Setting}
+We consider a sender-receiver pair and a passive observer. Alice (sender) and Bob (receiver) share a prompt and a password. Alice encrypts a secret message into a packet and embeds that packet into generated text. Bob receives only the text and attempts recovery using the same prompt and password. Censor observes the transmitted text but does not participate in key exchange or protocol synchronization.
 
-We distinguish two outcomes:
-\begin{itemize}
-\item \textbf{Matched configuration:} successful plaintext recovery.
-\item \textbf{Mismatched configuration/channel:} explicit decoding failure (fail-closed), rather than silent approximate output.
-\end{itemize}
+\subsection{Adversary Scope}
+Our baseline adversary is a passive Censor who can read the transmitted text but does not know the shared prompt or password and does not actively modify the text in transit. We do not assume token insertions, deletions, rewrites, or reordering by the channel in this baseline model. Under this scope, the target security statement is conservative: stego text should be indistinguishable from natural text to the passive observer to the extent supported by our assumptions and evidence.
 
-\subsection{Adversary Model}
-Our baseline adversary is a \emph{passive observer}:
-\begin{itemize}
-\item can read the transmitted cover text,
-\item does not know sender/receiver secret material,
-\item does not actively edit, reorder, or truncate the token sequence in transit.
-\end{itemize}
-
-This model follows a pragmatic first-step security scope for covert communication engineering: correctness and explicit boundary behavior under passive observation.
-
-\subsection{System Assumptions}
-Ghostext requires strict synchronization between sender and receiver for all protocol-sensitive factors, including:
-\begin{itemize}
-\item model/backend identity and tokenizer behavior,
-\item prompt and prompt-template behavior,
-\item seed and runtime generation controls relevant to distribution reconstruction,
-\item candidate policy, quantization policy, and interval codec settings.
-\end{itemize}
-
-If these assumptions are violated, Ghostext is designed to fail explicitly.
-
-\subsection{Non-Goals in This Version}
-The current system does not claim:
-\begin{itemize}
-\item robustness to active text modifications (insert/delete/replace/rewrite),
-\item guaranteed resistance against dedicated steganalysis models,
-\item interoperability across model families or version drift.
-\end{itemize}
+\subsection{Operational Assumptions}
+Deterministic recovery in Ghostext requires strict runtime synchronization between Alice and Bob. In particular, model/backend identity, tokenizer behavior, prompt content, prompt-template behavior, seed, candidate policy parameters, quantization settings, and interval-code parameters must match. These assumptions are explicit and are part of the protocol surface.
 
 \subsection{Security Objectives}
-Within the stated model and assumptions, Ghostext targets:
-\begin{itemize}
-\item \textbf{Recoverability:} deterministic decode under matched conditions.
-\item \textbf{Fail-closed behavior:} explicit failure under mismatch, instead of ambiguous outputs.
-\item \textbf{Reproducibility:} rerunnable behavior and auditable configuration coupling.
-\end{itemize}
+Within this model, Ghostext targets three objectives. First, recoverability: when configuration is matched, Bob should recover the exact plaintext. Second, fail-closed behavior: when synchronization breaks, decoding should return an explicit error instead of an approximate plaintext. Third, reproducibility: protocol behavior and reported metrics should be rerunnable from recorded configuration and scripts.
+
+\subsection{Non-Goals in This Version}
+This version does not claim robustness under active text edits, resistance against dedicated steganalysis detectors, or cross-model and cross-version decode compatibility. These are important directions but currently outside the supported guarantee boundary.

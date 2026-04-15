@@ -6,6 +6,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 RESULTS = ROOT / "results"
+REAL_STATUS_FILE = RESULTS / "real_backend_eval_status.txt"
 
 
 def _fmt(x: float, n: int = 3) -> str:
@@ -18,9 +19,16 @@ def _load_json(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def _load_real_status() -> str:
+    if not REAL_STATUS_FILE.exists():
+        return "unknown"
+    return REAL_STATUS_FILE.read_text(encoding="utf-8").strip() or "unknown"
+
+
 def main() -> None:
     toy = _load_json(RESULTS / "minimal_eval_results.json")
     real = _load_json(RESULTS / "real_backend_eval_results.json")
+    real_status = _load_real_status()
 
     lines: list[str] = []
     lines.append("# Consolidated Evaluation Tables")
@@ -58,7 +66,7 @@ def main() -> None:
         )
         lines.append("")
 
-    if real:
+    if real and real_status == "ok":
         lines.append("## B. Real Backend (llama.cpp + Qwen3.5-2B GGUF)")
         lines.append("")
         lines.append("| Case | Success | Packet Bytes | Total Tok | Bits/Tok | Enc Tok/s | Dec Tok/s |")
@@ -87,6 +95,21 @@ def main() -> None:
                 real["fail_closed_sanity"]["error"] or "-",
             )
         )
+        lines.append("")
+    elif real_status == "failed":
+        lines.append("## B. Real Backend (llama.cpp + Qwen3.5-2B GGUF)")
+        lines.append("")
+        lines.append("Real backend evaluation failed in this run; real-backend table is intentionally omitted.")
+        lines.append("")
+    elif real_status == "skipped_no_model":
+        lines.append("## B. Real Backend (llama.cpp + Qwen3.5-2B GGUF)")
+        lines.append("")
+        lines.append("Real backend evaluation was skipped in this run because no local GGUF model was found.")
+        lines.append("")
+    elif real:
+        lines.append("## B. Real Backend (llama.cpp + Qwen3.5-2B GGUF)")
+        lines.append("")
+        lines.append("Real backend artifact exists, but run status is unknown; table is omitted for safety.")
         lines.append("")
 
     out = RESULTS / "consolidated_eval_tables.md"

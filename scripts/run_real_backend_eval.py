@@ -16,7 +16,7 @@ if str(GHOSTEXT_SRC) not in sys.path:
 from ghostext.config import CandidatePolicyConfig, CodecConfig, RuntimeConfig
 from ghostext.decoder import StegoDecoder
 from ghostext.encoder import StegoEncoder
-from ghostext.errors import GhostextError
+from ghostext.errors import EncodingExhaustedError, GhostextError
 from ghostext.llama_cpp_backend import LlamaCppBackendConfig, QwenLlamaCppBackend
 from ghostext.model_assets import DEFAULT_BATCH_SIZE, DEFAULT_CTX_SIZE, DEFAULT_SEED
 
@@ -50,7 +50,8 @@ def _stats(values: list[float]) -> dict[str, float]:
 
 def _build_backend(seed: int) -> QwenLlamaCppBackend:
     model_path = _resolve_model_path()
-    threads = int(os.environ.get("GHOSTEXT_LLAMA_THREADS", "8"))
+    # Keep evaluation deterministic/stable by default; callers can override.
+    threads = int(os.environ.get("GHOSTEXT_LLAMA_THREADS", "1"))
     ctx = int(os.environ.get("GHOSTEXT_LLAMA_CTX", str(DEFAULT_CTX_SIZE)))
     batch = int(os.environ.get("GHOSTEXT_LLAMA_BATCH", str(DEFAULT_BATCH_SIZE)))
     return QwenLlamaCppBackend(
@@ -113,14 +114,30 @@ def evaluate_real_backend() -> dict[str, Any]:
     encoder = StegoEncoder(backend, config)
     decoder = StegoDecoder(backend, config)
 
+    max_case_retries = int(os.environ.get("GHOSTEXT_REAL_EVAL_MAX_RETRIES", "3"))
+
     for case in cases:
-        encoded = encoder.encode(
-            case["message"],
-            passphrase=passphrase,
-            prompt=case["prompt"],
-            salt=b"s" * config.crypto.salt_len,
-            nonce=b"n" * config.crypto.nonce_len,
-        )
+        encoded = None
+        encode_error = None
+        for attempt in range(1, max_case_retries + 1):
+            try:
+                encoded = encoder.encode(
+                    case["message"],
+                    passphrase=passphrase,
+                    prompt=case["prompt"],
+                    salt=b"s" * config.crypto.salt_len,
+                    nonce=b"n" * config.crypto.nonce_len,
+                )
+                break
+            except EncodingExhaustedError as exc:
+                encode_error = exc
+                if attempt == max_case_retries:
+                    raise
+
+        if encoded is None:
+            assert encode_error is not None
+            raise encode_error
+
         decoded = decoder.decode(
             encoded.text,
             passphrase=passphrase,
@@ -141,6 +158,7 @@ def evaluate_real_backend() -> dict[str, Any]:
                 "bits_per_token": encoded.bits_per_token,
                 "encode_tokens_per_second": encoded.tokens_per_second,
                 "decode_tokens_per_second": decoded.tokens_per_second,
+                "encode_attempts": attempt,
             }
         )
         bpt_values.append(float(encoded.bits_per_token))

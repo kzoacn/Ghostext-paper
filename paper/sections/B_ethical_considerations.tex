@@ -1,8 +1,4 @@
 \section{Ethical Considerations}
-This work studies covert communication mechanisms and therefore has dual-use potential. Benefits include understanding design boundaries for secure and reproducible steganographic systems; risks include misuse for evasion. We mitigate risk by:
-\begin{itemize}
-\item clearly scoping threat model and non-goals,
-\item avoiding unsupported claims of undetectability,
-\item emphasizing fail-closed behavior and explicit boundary conditions,
-\item releasing artifacts in line with responsible disclosure and conference policy.
-\end{itemize}
+This paper studies covert communication and therefore has clear dual-use risk. The same techniques that help privacy-preserving communication under surveillance pressure may also be misused for policy evasion. We manage this risk by keeping claims conservative, specifying a narrow passive-censor scope, and avoiding unsupported statements about universal undetectability or censorship resistance.
+
+Our experimental protocol also avoids unnecessary escalation: we use local controlled environments, toy backends for protocol checks, and limited real-backend demonstrations targeted at recoverability and fail-closed behavior. We do not release any claim as ``secure in general'' without evidence for that exact threat model. This boundary-first reporting style is intended to reduce overclaiming and to support responsible security research practice.
