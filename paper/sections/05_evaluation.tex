@@ -3,28 +3,10 @@
 Our evaluation asks three security-relevant questions. First, does Ghostext recover payloads under fully matched runtime configuration? Second, does Ghostext fail closed under representative mismatch and mutation cases? Third, what practical overhead does the system impose in bits per token and throughput?
 
 \subsection{Setup}
-We run two backends. The toy backend is used as a deterministic protocol-regression baseline. The real backend uses \texttt{llama.cpp} with a local Qwen3.5-2B GGUF model. All reported numbers come from rerunnable scripts that emit structured artifacts in \texttt{results/}.
+We run Ghostext on a real local backend based on \texttt{llama.cpp} with a Qwen3.5-2B GGUF model. All reported numbers come from rerunnable scripts that emit structured artifacts in \texttt{results/}.
 
 \subsection{Results}
-On the toy backend, matched-configuration round-trip succeeds on 4/4 cases (100\%). Fail-closed scenarios for wrong seed, wrong prompt, wrong passphrase, and mutated packet text all fail as expected (4/4, 100\%). In this run, mean embedding efficiency is 0.572 bits/token, and mean encode throughput is 556.75 tokens/s.
-
 On the real backend, matched-configuration round-trip succeeds on 2/2 cases (100\%). In this run, mean embedding efficiency is 2.199 bits/token, and mean encode throughput is 9.64 tokens/s on the current CPU-only setup. A wrong-prompt sanity check also fails closed with an explicit synchronization error (\texttt{SynchronizationError} in this run).
-
-\begin{table}[t]
-\caption{Toy backend baseline (protocol regression).}
-\label{tab:toy-baseline}
-\centering
-\begin{tabular}{lrrrr}
-\toprule
-Case & Success & Packet Bytes & Total Tok & Bits/Tok \\
-\midrule
-zh\_short & Y & 118 & 1394 & 0.677 \\
-en\_short & Y & 122 & 2525 & 0.387 \\
-zh\_medium & Y & 157 & 1699 & 0.739 \\
-en\_medium & Y & 154 & 3207 & 0.384 \\
-\bottomrule
-\end{tabular}
-\end{table}
 
 \begin{table}[t]
 \caption{Real backend results (\texttt{llama.cpp} + Qwen3.5-2B GGUF).}
@@ -41,7 +23,7 @@ en\_real\_short & Y & 117 & 405 & 2.311 \\
 \end{table}
 
 \textbf{Artifacts.}
-Primary outputs are \texttt{results/minimal\_eval\_results.json}, \texttt{results/real\_backend\_eval\_results.json}, and \texttt{results/consolidated\_eval\_tables.md}.
+Primary outputs are \texttt{results/real\_backend\_eval\_results.json} and \texttt{results/consolidated\_eval\_tables.md}.
 
 \subsection{Interpretation Scope}
 These results support recoverability and fail-closed claims under the passive-censor threat model and strict synchronization assumptions. They do not establish robustness under active edits, broad detector resistance, or cross-model/version compatibility.

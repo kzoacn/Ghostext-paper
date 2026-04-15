@@ -239,3 +239,5 @@ The paper may use "almost perfect" to describe this design intent: the scheme is
 For related work, include both LLM steganography and LLM watermarking literature, because they share technical overlap in token-distribution shaping, coding over token probabilities, and detectability/recoverability tradeoffs. Position Ghostext relative to both lines of work.
 
 For experiments, include a minimal but concrete demonstration that the system works in practice, and report basic metrics and parameters (for example success rate, fail-closed behavior under mismatch, bits per token, throughput, and key runtime settings).
+
+In the paper narrative (Abstract, main sections, appendices), do not mention the toy backend. Treat the toy backend strictly as an internal protocol-testing utility, not as paper-facing experimental evidence or positioning.
