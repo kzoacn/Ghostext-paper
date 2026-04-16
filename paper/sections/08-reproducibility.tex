@@ -1,0 +1,41 @@
+\section{Reproducibility and Claim-Evidence Workflow}
+
+\subsection{Why Reproducibility Is Part of Security Writing}
+
+In linguistic steganography, small implementation differences can produce large behavioral changes. For this reason, Ghostext treats reproducibility as part of the security argument, not as an afterthought. If a claim cannot be tied to fixed configuration and artifact identity, it is not considered stable enough for final security interpretation.
+
+\subsection{Configuration Capture Strategy}
+
+Ghostext's runtime already serializes protocol-sensitive settings through structured configuration objects. For experiment reporting (after pause lift), each run should record at least:
+
+\begin{enumerate}
+\item model identifier and model-file identity,
+\item backend identity and tokenizer-hash identity,
+\item prompt policy and prompt hash policy,
+\item seed and candidate/codec/crypto parameter snapshots,
+\item hardware/runtime environment metadata.
+\end{enumerate}
+
+The design already includes many of these fields in configuration fingerprint computation, which reduces accidental omission.
+
+\subsection{Claim-Evidence Mapping Process}
+
+This repository includes a maintained claim-evidence map under \texttt{notes/literature/claim-evidence-map.md}. The map links each paper claim to concrete code locations and tests, and labels each claim as implemented fact, inference, or future work.
+
+During drafting, section edits should be reflected in that map. During evaluation, result figures and tables should be linked back to scripts and raw outputs. The goal is to preserve a short trace path from narrative sentence to executable evidence.
+
+\subsection{Versioning Discipline}
+
+Ghostext paper development depends on two repositories: this paper repository and the implementation source-of-truth repository \texttt{../Ghostext}. For post-pause experiments, each reported result should include the exact implementation commit hash and paper commit hash used to generate the artifact.
+
+This practice is essential when runtime defaults evolve, because the same command line may represent different behavior across versions.
+
+\subsection{Reporting Templates Planned for Post-Pause Use}
+
+After the experiment pause is lifted, each main result table should include a compact metadata footer containing model/version, backend path, seed policy, prompt policy, core hyperparameters, and hardware context. Each figure should have a reproducibility key linking to raw JSON and script path.
+
+This approach keeps the manuscript readable while preserving complete traceability in artifact form.
+
+\subsection{Negative Results Policy}
+
+Ghostext adopts an explicit negative-results policy for this project stage. Failed settings, unstable parameter regions, and detector regressions should be reported, not filtered out. This is particularly important for steganography, where omitted failure regimes can otherwise create misleading security impressions.

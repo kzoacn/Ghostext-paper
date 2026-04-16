@@ -1,0 +1,39 @@
+\section{System Overview}
+
+\subsection{High-Level Data Path}
+
+Ghostext has two coupled paths: a cryptographic packet path and a language-generation path.
+
+In the packet path, plaintext is converted to UTF-8 bytes, encrypted into an authenticated opaque packet, and split into bootstrap and body segments.
+
+In the generation path, each segment is embedded by repeatedly reading next-token distributions, selecting a candidate set, quantizing probabilities, and narrowing an integer interval. The resulting token sequence forms the cover text prefix that carries the packet.
+
+On decode, Bob tokenizes the received text, reproduces the same per-step distributions, inverts interval updates to recover packet bytes, authenticates the packet, and decrypts plaintext.
+
+\subsection{Determinism as a First-Class Requirement}
+
+A key design choice is to treat determinism as a protocol property, not a convenience. Ghostext binds decoding to a configuration fingerprint that commits to runtime parameters, backend metadata, and prompt hash. If any component drifts, decode fails explicitly.
+
+This choice trades permissiveness for correctness. In censorship-relevant deployment, silently returning wrong plaintext is typically worse than a visible decode failure.
+
+\subsection{Segmented Embedding Lifecycle}
+
+Ghostext embeds in two stages.
+
+The bootstrap/header stage encodes enough bytes to authenticate and parse internal packet metadata, especially expected body ciphertext length and configuration fingerprint.
+
+The body stage then embeds exactly the remaining payload.
+
+This staged process reduces ambiguity at decode time and allows early rejection on integrity mismatch before full payload reconstruction.
+
+\subsection{Natural Tail Policy}
+
+After packet bits are fully embedded, the encoder may append a short ``natural tail'' sampled from the same candidate mechanism. This does not carry payload bits; it is purely for better text ending quality.
+
+The decoder consumes only the packet-resolving prefix and reports trailing tokens separately.
+
+\subsection{Fail-Closed Semantics}
+
+Ghostext's failure policy is strict across the stack. Candidate instability, interval collapse, token budget exhaustion, or integrity mismatch all raise explicit exceptions. No partial plaintext is returned after authentication failure.
+
+This policy is central to our reliability claims and is directly exercised by existing tests.

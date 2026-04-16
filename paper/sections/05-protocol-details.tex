@@ -1,0 +1,88 @@
+\section{Protocol Details}
+
+\subsection{Opaque Packet Structure}
+
+Ghostext packetization is implemented in \texttt{../Ghostext/src/ghostext/packet.py} and \texttt{../Ghostext/src/ghostext/crypto.py}. The outer structure is:
+\begin{quote}
+\texttt{salt || header\_nonce || sealed\_header || body\_nonce || body\_ciphertext\_and\_tag}
+\end{quote}
+
+The internal header is authenticated and encrypted, not plaintext-exposed. It includes protocol version, crypto identifiers, body ciphertext length, and configuration fingerprint.
+
+\subsection{Key Derivation and Separation}
+
+Given passphrase $K$ and random salt $s$, Ghostext derives a 256-bit master key via scrypt. It then applies HKDF-SHA256 to produce two subkeys $(k_h, k_b)$ for header and body respectively. This key separation avoids cross-component misuse and supports separate associated-data bindings for header and body encryption.
+
+Both components currently use ChaCha20-Poly1305 with distinct nonces. Authentication failure in either component terminates decode.
+
+\subsection{Configuration Fingerprint Commitment}
+
+Ghostext computes a 64-bit fingerprint from a canonical JSON payload:
+\begin{equation}
+F = \mathrm{Trunc}_{64}(\mathrm{SHA256}(\text{runtime},\text{backend},\mathrm{SHA256}(\text{prompt}))).
+\end{equation}
+
+The runtime part includes seed and protocol-sensitive parameters. The backend part includes model ID, tokenizer hash, and backend ID. Prompt commitment uses hash form to avoid storing full prompt text in packet metadata.
+
+Fingerprint mismatch at decode is treated as integrity/configuration failure.
+
+\subsection{Candidate Distribution Construction}
+
+At generation step $t$, backend output gives logits over $\mathcal{V}$. Ghostext then constructs a candidate set $C_t$ with deterministic policy:
+
+\begin{enumerate}
+\item sort by probability descending and token-id tie-break,
+\item retain up to top-$p$ cumulative mass and max-$k$ tokens,
+\item renormalize probabilities on retained set,
+\item mark step as encodable only if $|C_t|\geq 2$ and entropy threshold is met.
+\end{enumerate}
+
+If not encodable, the top candidate is chosen deterministically.
+
+\subsection{Retokenization-Stability Guard}
+
+Ghostext optionally enforces a strong stability constraint. For each candidate token $v$, it checks whether appending $v$, rendering text, and retokenizing under the same prompt/history returns the same token path. Unstable candidates are removed.
+
+If all candidates are unstable, encoding fails closed (or retries with fresh packet randomness when allowed). This choice directly addresses a practical mismatch class emphasized by OD-Stega~\cite{huang2026odstega}.
+
+\subsection{Deterministic Integer Quantization}
+
+Let normalized candidate probabilities be $q_t(v)$ for $v \in C_t$, and let fixed total frequency be $F_{\text{tot}}$. Ghostext allocates integer frequencies as:
+\begin{equation}
+ f_t(v) = 1 + \left\lfloor q_t(v)\cdot (F_{\text{tot}}-|C_t|)\right\rfloor,
+\end{equation}
+then distributes leftover units by descending fractional remainder and token-id tie-break.
+
+This ensures all frequencies are positive and sum exactly to $F_{\text{tot}}$.
+
+\subsection{Interval Update Rule}
+
+For interval $[L_t,H_t)$ and candidate cumulative boundaries $[c^-_t(v), c^+_t(v))$ in frequency units, selecting token $v$ updates:
+\begin{align}
+L_{t+1} &= L_t + \left\lfloor (H_t-L_t)\cdot c^-_t(v)/F_{\text{tot}} \right\rfloor,\\
+H_{t+1} &= L_t + \left\lfloor (H_t-L_t)\cdot c^+_t(v)/F_{\text{tot}} \right\rfloor.
+\end{align}
+
+A segment resolves when $H_t-L_t=1$. Decoder applies the same update with observed tokens and reconstructs bytes from resolved interval value.
+
+\subsection{Two-Segment Encoding Control}
+
+Ghostext encodes packet bootstrap first, then packet body. Each segment has an explicit token budget. Exceeding budget is a hard failure. This makes worst-case runtime bounded and prevents unbounded generation loops.
+
+\subsection{Protocol-Sensitive Fields Summary}
+
+\begin{table}[t]
+\caption{Protocol-sensitive synchronization fields in Ghostext.}
+\label{tab:sync-fields}
+\begin{tabular}{p{0.29\linewidth}p{0.65\linewidth}}
+\toprule
+Field group & Purpose in decode correctness \\
+\midrule
+Seed and codec parameters & Force deterministic interval path under shared configuration \\
+Candidate policy parameters & Ensure both sides see the same candidate set and entropy gate behavior \\
+Backend metadata & Bind model family, tokenizer hash, and backend identity to prevent silent drift \\
+Prompt hash & Commit to exact shared prompt without exposing full prompt string in packet metadata \\
+Crypto parameters & Ensure packet parse/decrypt compatibility and algorithm consistency \\
+\bottomrule
+\end{tabular}
+\end{table}

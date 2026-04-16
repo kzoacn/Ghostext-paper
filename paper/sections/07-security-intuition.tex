@@ -1,0 +1,52 @@
+\section{Security Intuition and Failure Analysis}
+
+\subsection{Security Intuition Under Passive Observation}
+
+Ghostext follows a standard intuition chain used in modern generative steganography~\cite{ziegler2019neural,shen2020near}. First, authenticated encryption transforms plaintext into pseudorandom-looking bits under key secrecy assumptions. Second, arithmetic-style interval mapping uses those bits as a selector over model-driven token alternatives. Third, if sender and receiver share the same conditional distributions and deterministic codec rules, decoding is exact.
+
+Under passive observation, the censor only sees text. If token choices remain consistent with model behavior and no synchronization artifact is externally visible, detection becomes a statistical distinguishability problem rather than a direct protocol-marker problem.
+
+\subsection{Where Practical Leakage Can Appear}
+
+Finite implementations can leak structure in ways idealized analyses omit.
+
+One source is candidate truncation and quantization. If truncation is too aggressive or quantization too coarse, effective token distribution may drift from base model behavior in detectable ways.
+
+A second source is low-entropy contexts. When the model is near-deterministic, payload embedding opportunities shrink and repeated deterministic choices can create pattern concentration.
+
+A third source is tokenization ambiguity. If sender and receiver disagree on token boundaries after detokenization, recoverability can break or retries may cluster around specific contexts.
+
+A fourth source is operational drift in model files, prompt templates, or backend internals. Even small drift can break invertibility.
+
+Ghostext's current design primarily mitigates these risks through deterministic checks and fail-closed exits, not through adaptive optimization.
+
+\subsection{Why Fail-Closed Behavior Is Security-Relevant}
+
+Fail-closed behavior is usually presented as a reliability feature, but in this context it is also security-relevant. Silent decode corruption can induce user workarounds, repeated retransmissions, or ad hoc parameter changes that may increase detectability. Explicit failure with clear mismatch reasons supports disciplined operation and reduces unsafe fallback behavior.
+
+In Ghostext, integrity/authentication checks, fingerprint mismatch checks, and synchronization checks all terminate before plaintext release.
+
+\subsection{Interpreting ``Almost Perfect'' in Finite Systems}
+
+In this draft, ``almost perfect'' should be interpreted as an engineering trajectory:
+
+\begin{enumerate}
+\item use cryptographic preprocessing to approach uniform source bits,
+\item use interval coding to consume available next-token entropy efficiently,
+\item keep token decisions as distribution-consistent as practical,
+\item reject unsynchronized states rather than guessing.
+\end{enumerate}
+
+This does not imply zero KL divergence in finite runs, and it does not imply detector-optimality against all adversaries. The phrase is useful only when tied to explicit assumptions and measurable conditions.
+
+\subsection{Gap to OD-Style Controlled Relaxation}
+
+OD-Stega shows that explicit divergence budgets can improve utilization in controlled settings~\cite{huang2026odstega}. Ghostext currently leaves this degree of freedom unused. The expected future integration path is conceptually simple: insert a distribution-adjustment layer before candidate quantization, while keeping all synchronization and integrity machinery unchanged.
+
+The practical challenge is not only optimization quality but also preserving deterministic replay and robust failure semantics after adjustment. This is why Ghostext currently prioritizes stable protocol substrate over immediate optimization extensions.
+
+\subsection{Failure Modes Tracked by Current Implementation}
+
+Ghostext currently tracks and surfaces at least the following failure classes: packet integrity failure, configuration fingerprint mismatch, token-path synchronization mismatch, candidate instability exhaustion, low-entropy retry exhaustion, and segment token-budget exhaustion.
+
+Tracking explicit failure classes helps later evaluation because failure rates can be reported per category rather than as a single aggregate decode-failure number.

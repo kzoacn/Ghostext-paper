@@ -1,0 +1,39 @@
+\section{Background and Design Motivation}
+
+\subsection{Setting and Notation}
+
+We follow the standard generative steganography setting~\cite{cox2005information,ziegler2019neural}. Let $m$ denote a bitstring to be hidden, and let $y_{1:T}$ denote generated text tokens. At each step $t$, a language model defines a next-token distribution $P_t(\cdot) = P(Y_t \mid y_{<t}, \text{prompt})$ over a vocabulary $\mathcal{V}$. The encoder maps message bits to a token path $y_{1:T}$, and the decoder recovers bits by replaying the same conditional distributions and inverse interval updates.
+
+Ghostext treats $m$ as ciphertext bits, not plaintext bits. This is operationally important because authenticated encryption makes payload bits computationally indistinguishable from random under the shared key assumption. In practical terms, this matches the arithmetic-coding view that expects an almost-uniform source bitstream for efficient mapping.
+
+\subsection{Arithmetic Coding as a Reverse Sampler}
+
+Arithmetic coding is classically introduced as compression~\cite{rissanen1979arithmetic,witten1987arithmetic}. In compression mode, symbol sequences are mapped to compact intervals. In steganography mode, this direction is reversed: a secret bitstream selects a point in an interval domain, and each generation step narrows the interval according to token probabilities until the hidden payload is resolved~\cite{sallee2004model,ziegler2019neural}.
+
+The idealized intuition is straightforward. High-probability tokens occupy larger subintervals and consume fewer bits of uncertainty, while low-probability tokens occupy narrower subintervals and consume more. If encoder and decoder share exactly the same conditional distributions and interval arithmetic, the mapping is invertible.
+
+\subsection{From Ideal Theory to Engineering Reality}
+
+The ideal argument assumes exact distributions, unlimited precision, and perfect tokenization synchronization. Real systems violate all three assumptions.
+
+First, finite precision requires probability quantization and integer interval arithmetic. This introduces approximation error and implementation corner cases that can silently break invertibility if not handled deterministically.
+
+Second, practical candidate policies truncate vocabulary tails for runtime reasons. This alters the effective distribution and can shift the security-capacity tradeoff.
+
+Third, real tokenizer behavior may not guarantee that a detokenized string maps back to one unique token path. OD-Stega~\cite{huang2026odstega} highlights this issue explicitly and treats it as a first-class engineering concern.
+
+These realities motivate Ghostext's design philosophy: prioritize deterministic synchronization and explicit failure over optimistic decoding.
+
+\subsection{Why ``Almost Perfect'' Is a Useful but Bounded Phrase}
+
+NLS~\cite{ziegler2019neural} and OD-Stega~\cite{huang2026odstega} both frame the core tension between payload efficiency and statistical detectability. Ghostext adopts the same framing but with conservative wording.
+
+In this draft, ``almost perfect'' means the following engineering objective under the passive-censor model: preserve model-consistent token behavior as closely as finite quantization and candidate filtering allow, while embedding close to available entropy and preserving deterministic recoverability.
+
+It does \emph{not} mean perfect indistinguishability against all detectors, nor robustness under active editing, nor a proof that finite implementation details cannot leak structure. Those stronger claims require dedicated experiments and, in some cases, separate formal analysis.
+
+\subsection{Positioning Against OD-Style Optimization}
+
+OD-Stega shows that under explicit divergence constraints, temperature-like distribution adjustment can increase utilization in controlled ways~\cite{huang2026odstega}. Ghostext currently does not implement this optimization layer. Instead, it focuses on protocol correctness and reproducibility foundations that are prerequisites for meaningful optimization studies.
+
+This separation is intentional: we first stabilize the encode/decode substrate and its claim-evidence traceability, then add divergence-aware optimization as an incremental extension.

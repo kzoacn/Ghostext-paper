@@ -1,0 +1,98 @@
+\section{Post-Pause Experiment Blueprint}
+
+This section turns the evaluation plan into a concrete, execution-ready blueprint. It is still a plan, not a reported result set, because the experiment pause remains active.
+
+\subsection{Measurement Goals}
+
+The first goal is to establish a reliable recoverability baseline. Under synchronized settings, we need to know not only overall decode success rate but also how success changes with message length, prompt class, and language.
+
+The second goal is to characterize runtime cost. Encode and decode latency, token throughput, and token consumption are needed for practical deployment decisions.
+
+The third goal is to measure embedding utilization in a way that can be compared with prior work, while remaining faithful to Ghostext's packetized protocol.
+
+The fourth goal is to collect security-facing indicators under the passive-censor model, including distributional deviation and preliminary detector outcomes.
+
+\subsection{Prompt and Message Regimes}
+
+We will evaluate multiple prompt regimes instead of a single template family. At minimum, prompts should cover narrative prose, informational style, and conversational style. Since Ghostext targets bilingual usability, both English and Chinese prompts should be included.
+
+Message regimes should include short, medium, and long payload bands. Because Ghostext uses authenticated packetization, payload size impacts both packet bytes and required token budget; reporting should therefore separate plaintext size, packet size, and consumed token length.
+
+\subsection{Configuration Grid}
+
+The grid should vary only a small number of parameters at once to keep attribution clear. A practical initial grid is:
+
+\begin{itemize}
+\item candidate truncation parameters (top-$p$, max-$k$),
+\item quantization total frequency,
+\item segment token budgets,
+\item retry and entropy guard parameters.
+\end{itemize}
+
+All other settings should remain fixed within each sweep, including model file identity and backend build.
+
+\subsection{Recoverability Reporting}
+
+Recoverability should be reported with two complementary views.
+
+The first view is aggregate success percentage over trials.
+
+The second view is failure decomposition by explicit error class. Because Ghostext exposes class-specific failures (integrity mismatch, synchronization mismatch, low-entropy retry exhaustion, token-budget exhaustion, and others), decomposition is both feasible and informative.
+
+This decomposition is critical for engineering actionability: different failure classes imply different mitigations.
+
+\subsection{Runtime and Cost Reporting}
+
+Runtime should include at least wall-clock encode latency, decode latency, and tokens-per-second metrics. Cost should include packet-carrying token count and total output token count, because optional natural tails affect total transmission length without increasing payload.
+
+For fair comparison across settings, report median and dispersion statistics rather than single-point means only.
+
+\subsection{Utilization Definitions}
+
+Ghostext should report two utilization metrics:
+
+\textbf{Packet efficiency}: embedded packet bits per packet-resolving token.
+
+\textbf{Transmission efficiency}: embedded packet bits per total transmitted token.
+
+Both are useful. Packet efficiency reflects core embedding mechanics, while transmission efficiency captures user-visible communication cost.
+
+\subsection{Distribution-Facing Security Indicators}
+
+Following NLS-style framing~\cite{ziegler2019neural}, we will compare stego outputs with baseline model outputs under matched prompt families and report divergence-oriented indicators. Because finite truncation and quantization are part of Ghostext, the interpretation should explicitly mention parameter settings for each reported number.
+
+The goal of this block is not to claim perfect indistinguishability but to map where divergence remains small enough to support the passive-censor narrative.
+
+\subsection{Detector-Facing Preliminary Block}
+
+Detector experiments will be labeled preliminary until robustly replicated. The planned block includes representative classical/neural steganalysis baselines and one LLM-based evaluator as a human-like proxy, consistent with recent practice discussed in OD-Stega~\cite{huang2026odstega}.
+
+For this block, reproducibility metadata is especially important because detector performance is sensitive to training data composition and prompt distribution shift.
+
+\subsection{Artifact Packaging}
+
+Each result bundle should include:
+
+\begin{itemize}
+\item raw JSON summaries,
+\item scripts and command lines,
+\item exact implementation commit hash,
+\item paper commit hash,
+\item environment manifest (hardware, OS, dependency versions).
+\end{itemize}
+
+This package should be sufficient for a teammate to regenerate tables and plots from scratch.
+
+\subsection{Decision Criteria for Next Iteration}
+
+After first post-pause runs, we should decide whether to prioritize optimization integration or robustness extensions. A practical decision rule is:
+
+If recoverability and reproducibility are strong but utilization is low, prioritize OD-style distribution optimization integration.
+
+If recoverability failures cluster in mismatch classes, prioritize synchronization hardening and tooling.
+
+If detector results degrade quickly with payload pressure, prioritize adaptive policy tuning and stronger security-focused evaluation before adding new features.
+
+\subsection{Expected Outcome of This Blueprint}
+
+The intended outcome is a measured, traceable transition from design-intent claims to evidence-backed claims. Once this blueprint is executed, the manuscript can replace conservative placeholders with concrete quantitative statements while keeping the same claim-discipline structure.

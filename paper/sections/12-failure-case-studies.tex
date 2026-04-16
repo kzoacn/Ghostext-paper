@@ -1,0 +1,61 @@
+\section{Failure Case Analysis From Existing Tests}
+
+Ghostext's current test suite does more than check happy-path round trips. It also encodes an explicit failure philosophy: if synchronization or integrity assumptions break, the system should fail early, classify the failure, and avoid partial plaintext output. This section summarizes that philosophy in case-study form using only evidence already present in repository tests.
+
+\subsection{Case 1: Wrong Passphrase}
+
+When Bob uses the wrong passphrase, authenticated decryption fails. In Ghostext this is not a soft mismatch. Header or body authentication failure terminates decode immediately.
+
+Operationally, this behavior is desirable because it avoids producing plausible-looking garbage plaintext that could be mistaken for success. In security-sensitive channels, explicit failure is usually safer than silent corruption.
+
+\subsection{Case 2: Configuration Fingerprint Mismatch}
+
+A common practical risk is hidden configuration drift: same prompt text but different backend metadata, or same backend family but different seed/policy parameters. Ghostext encodes a configuration fingerprint in the sealed internal header and checks it during decode.
+
+Tests verify that mismatch triggers explicit failure. This converts a hard-to-debug latent mismatch into a deterministic error signal.
+
+\subsection{Case 3: Prompt or Text Mutation}
+
+Prompt drift and channel text mutation are both represented in existing failure tests. If observed token stream diverges from decoder-expected candidate path, decode stops with synchronization error.
+
+This behavior does not provide robustness against active editing, but it does provide robust detection of incompatibility. That distinction is important. Ghostext currently claims fail-closed detection, not edit-tolerant recovery.
+
+\subsection{Case 4: Retokenization Instability}
+
+Retokenization mismatch is a subtle failure class in LLM steganography. A token path that appears valid at generation time may not be uniquely recovered from detokenized text. Ghostext's stability guard removes unstable candidates and can fail if no stable candidate path exists.
+
+Tests cover both branches: successful filtering and fail-closed behavior when stability cannot be guaranteed. This reflects a conservative design posture aligned with protocol correctness priorities.
+
+\subsection{Case 5: Low-Entropy Stagnation}
+
+In low-entropy regions, embedding progress can stall because token choices become near-deterministic. Ghostext monitors rolling entropy and resolved-bit progress to detect this condition. It can retry with fresh packet randomness up to a bounded attempt limit; after limit exhaustion it fails with a classified error.
+
+This mechanism improves practical success rate without hiding hard cases. The important property is explicit classification: later evaluations can report how often this class appears under different prompt families.
+
+\subsection{Case 6: Segment Budget Exhaustion}
+
+Ghostext uses explicit token budgets for header and body segments. If interval resolution cannot complete within budget, encoding or decoding fails.
+
+This choice prevents unbounded loops and keeps runtime behavior predictable. It also forces parameter tuning to be explicit: if message length and prompt entropy are mismatched, the failure appears as budget exhaustion rather than hidden latency explosion.
+
+\subsection{Case 7: Trailing Natural Tokens}
+
+Ghostext allows optional post-payload natural tail generation. Existing tests verify that decode succeeds even when trailing tokens are present, because decoder stops at packet resolution boundary and reports remaining tokens as trailing data.
+
+This policy cleanly separates payload correctness from stylistic surface finishing.
+
+\subsection{Lessons for Post-Pause Evaluation}
+
+These case studies suggest a concrete reporting strategy for future experiments. Instead of a single success/failure scalar, Ghostext should report a failure taxonomy with rates per class. This will make system behavior interpretable and actionable.
+
+For example, a high share of low-entropy failures points to prompt-policy and candidate-policy tuning needs; a high share of synchronization failures points to deployment hygiene and configuration control issues; integrity failures may indicate passphrase or packet handling mistakes.
+
+\subsection{Why Case-Based Analysis Helps Paper Quality}
+
+Case-based analysis narrows the gap between code and claims. It keeps writing honest during the experiment pause and reduces the risk of over-generalization from anecdotal success runs.
+
+For a CCS-oriented systems paper, this style also makes the work easier to review: reviewers can map each claim to specific failure behaviors and tests rather than relying on broad narrative statements.
+
+\subsection{Current Boundary}
+
+These cases support strong claims about fail-closed behavior and synchronization sensitivity. They do not yet support claims about detector resistance, active-edit robustness, or optimal capacity-security frontiers. Those remain intentionally outside current evidence scope.

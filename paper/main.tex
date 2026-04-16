@@ -1,0 +1,48 @@
+\documentclass[sigconf,nonacm]{acmart}
+
+\settopmatter{printacmref=false,printfolios=true}
+\renewcommand\footnotetextcopyrightpermission[1]{}
+\pagestyle{plain}
+
+\title{Ghostext: an almost perfect stenography via large language model and arithmetic coding}
+
+\author{Anonymous Author(s)}
+\affiliation{
+  \institution{Anonymous Institution(s)}
+  \city{Anonymous City}
+  \country{Anonymous Country}
+}
+\email{anonymous@example.com}
+
+\begin{document}
+
+\begin{abstract}
+Ghostext is a practical linguistic steganography system that combines authenticated encryption and arithmetic-coding-style interval narrowing over large language model next-token distributions. The working target is an \emph{almost perfect} setting for a passive censor that only observes text: the embedding process should stay close to natural model behavior while preserving deterministic recovery for synchronized parties. This paper is intentionally evidence-grounded to the current implementation in \texttt{../Ghostext}. We separate implemented facts, engineering inferences, and future-work claims, and we provide a reproducible protocol-and-claims workflow designed for a CCS submission process under an explicit temporary experiment pause.
+\end{abstract}
+
+\maketitle
+
+\input{sections/01-introduction}
+\input{sections/02-background}
+\input{sections/03-threat-model}
+\input{sections/04-system-overview}
+\input{sections/05-protocol-details}
+\input{sections/06-implementation}
+\input{sections/07-security-intuition}
+\input{sections/08-reproducibility}
+\input{sections/07-evaluation-plan}
+\input{sections/08-related-work}
+\input{sections/09-design-tradeoffs}
+\input{sections/10-experiment-blueprint}
+\input{sections/11-protocol-walkthrough}
+\input{sections/12-failure-case-studies}
+\input{sections/09-limitations}
+\input{sections/10-conclusion}
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{refs}
+
+\appendix
+\input{sections/appendix-a-claim-evidence}
+
+\end{document}
