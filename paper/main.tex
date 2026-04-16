@@ -17,7 +17,7 @@
 \begin{document}
 
 \begin{abstract}
-Ghostext is a practical linguistic steganography system that combines authenticated encryption with arithmetic-coding-style interval narrowing over large language model next-token distributions. The design goal is operational reliability under a passive-censor setting: deterministic sender-receiver synchronization, explicit failure semantics, and reproducible configuration binding. This paper contributes an implementation-backed protocol description, formalized bounds for key approximation effects in the current pipeline, and a concrete post-pause evaluation blueprint. We intentionally separate implemented facts from planned claims and report conservative conclusions consistent with available evidence.
+Ghostext is a practical linguistic steganography system that combines authenticated encryption with arithmetic-coding-style interval narrowing over large language model next-token distributions. The design goal is operational reliability under a passive-censor setting: deterministic sender-receiver synchronization, explicit failure semantics, and reproducible configuration binding. This paper contributes an implementation-backed protocol description, formalized bounds for key approximation effects in the current pipeline, and initial real-backend baseline results with released artifacts. We intentionally separate measured evidence from still-open questions and report conservative conclusions consistent with available data.
 \end{abstract}
 
 \maketitle
@@ -30,9 +30,6 @@ Ghostext is a practical linguistic steganography system that combines authentica
 \input{sections/06-implementation}
 \input{sections/07-analysis-and-discussion}
 \input{sections/08-evaluation-plan}
-\input{sections/09-operational-walkthrough}
-\input{sections/10-design-tradeoffs}
-\input{sections/11-experiment-blueprint}
 \input{sections/12-related-work}
 \input{sections/13-limitations-and-conclusion}
 

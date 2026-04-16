@@ -16,13 +16,13 @@ To avoid overclaiming during later revisions, we define explicit promotion rules
 
 First, any claim about recoverability must be supported by condition-stratified success rates and failure-class histograms, not only aggregate success numbers. Second, any claim about practical efficiency must include both packet-token and end-to-end transmission-token metrics with latency distributions. Third, any claim touching undetectability must include detector-facing and traffic-side results, together with approximation-term diagnostics, under clearly specified threat regimes.
 
-If a statement cannot be tied to a released artifact entry (raw logs, aggregation scripts, and commit hashes), it should remain phrased as future work or engineering intuition. This rule keeps narrative pressure from outrunning evidence.
+If a statement cannot be tied to a released artifact entry (raw logs, aggregation scripts, and commit hashes), it should remain phrased as an open item or engineering intuition. This rule keeps narrative pressure from outrunning evidence.
 
 \subsection{Open Technical Questions}
 
 Several technical questions remain central for the next iteration.
 
-How strong is the empirical coupling between approximation diagnostics (for example, large $\\alpha_t$ or $\\beta_t$ regions) and detector performance under sample accumulation?
+How strong is the empirical coupling between approximation diagnostics (for example, large $\alpha_t$ or $\beta_t$ regions) and detector performance under sample accumulation?
 
 How should retry policy be tuned when recoverability improves but traffic-side distinguishability worsens?
 
@@ -36,11 +36,11 @@ These are empirical questions. The current draft intentionally does not answer t
 
 Before claim upgrades for a conference submission, three exit conditions should be satisfied.
 
-(1) Main evaluation blocks from the blueprint are complete with released artifacts.
+(1) Main evaluation blocks from the staged protocol are complete with released artifacts.
 
 (2) Failure and negative-result reporting is as complete as positive-result reporting.
 
-(3) Claim language in each section is synchronized to measured evidence, with unresolved items explicitly downgraded to limitations or future work.
+(3) Claim language in each section is synchronized to measured evidence, with unresolved items explicitly downgraded to limitations or open items.
 
 These conditions are process constraints, but they are also security-relevant: they reduce the risk that operationally fragile behavior is hidden by selective reporting.
 
@@ -48,6 +48,6 @@ These conditions are process constraints, but they are also security-relevant: t
 
 Ghostext contributes a deterministic, fail-closed, implementation-auditable LLM steganography protocol with authenticated packetization, synchronization binding, and explicit approximation analysis.
 
-This revision addresses key review concerns by correcting title scope, consolidating structure, adding formal gap bounds, adding concrete encode/decode examples, and broadening literature grounding.
+This revision addresses key review concerns by consolidating structure, clarifying approximation-bound interpretation, expanding deployment caveats, and broadening literature grounding.
 
-The next milestone is to execute the post-pause blueprint and replace planned claims with measured results and complete artifact release.
+The next milestone is to complete the remaining detector, traffic-side, and approximation-instrumentation stages with the same artifact discipline used for the baseline results.

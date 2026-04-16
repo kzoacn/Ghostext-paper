@@ -1,10 +1,10 @@
-\section{Evaluation Plan and Measurement Protocol}
+\section{Evaluation and Staged Execution Protocol}
 
-The repository remains under an experiment pause, so this section defines the execution protocol rather than reporting outcomes. The objective is to ensure that once experiments run, each claim in the main text can be matched to a concrete measurement unit, script path, and artifact record.
+This section reports completed real-backend baseline outcomes for Q1--Q3 and keeps the same staged protocol for the remaining questions. The objective is still claim-to-evidence traceability: each statement should map to a concrete metric definition, script path, and released artifact.
 
-\subsection{Research Questions and Target Outputs}
+\subsection{Research Questions and Current Coverage}
 
-The post-pause campaign is organized around five questions.
+The campaign is organized around five questions.
 
 Q1 asks whether deterministic decoding is reliable under realistic prompt and message diversity.
 Q2 asks what runtime overhead is introduced by deterministic safety controls.
@@ -12,13 +12,7 @@ Q3 asks how much payload efficiency is achieved in packet-carrying tokens and in
 Q4 asks how large each approximation term is in practice and which term dominates in different operating regions.
 Q5 asks how text-only and traffic-aware detectors behave under single-sample and multi-sample observation.
 
-Each question maps to at least one primary table and one released raw-data file.
-
-\subsection{Evaluation Axes and Factorized Grid}
-
-Measurements should follow a fully factorized grid across message length, prompt family, language, and policy settings. Message length should be stratified by plaintext bytes and by packet bytes because cryptographic framing changes effective payload size. Prompt families should include at least narrative, informational, and dialog style prompts in both English and Chinese.
-
-To address the reviewer concern about predictable prompts, every prompt family should include two regimes: a private-prompt regime and a template-known regime where the prompt template is fixed and visible to the evaluator.
+In this revision, Q1--Q3 have initial real-backend evidence from 18 end-to-end trials (two runs merged), while Q4--Q5 remain open and are kept as staged execution targets.
 
 \subsection{Metrics with Explicit Definitions}
 
@@ -36,67 +30,98 @@ Packet-token efficiency and transmission-token efficiency are
 \eta_{\mathrm{all}}=\frac{\sum_i 8B_i}{\sum_i T_i^{\mathrm{all}}}.
 \end{equation}
 
-Runtime should be reported as median, p90, and p99 for encode latency, decode latency, and tokens-per-second throughput.
+Runtime is reported as median, p90, and p99 for encode and decode latency.
 
-For approximation analysis, report per-step and per-message summaries of
+For approximation analysis, planned reporting remains per-step and per-message summaries of
 $\alpha_t$, $N_t/(2F_{\mathrm{tot}})$, and $\beta_t$, together with empirical distribution of
 \begin{equation}
 \widehat{B}_{\mathrm{TV}}=\sum_t\left(\alpha_t+\frac{N_t}{2F_{\mathrm{tot}}}+\beta_t\right).
 \end{equation}
 
-\subsection{Ablation Design}
+\subsection{Completed Real-Backend Baseline (Q1--Q3)}
 
-Ablations should isolate each engineering choice while keeping the other knobs fixed. At minimum, evaluate variants with stability filtering disabled, fingerprint checks disabled, bounded retry policy changed, quantization budget reduced, truncation policy widened or narrowed, and natural-tail policy switched between constrained and alternative modes.
-
-The intended output is not only mean performance differences but also changed failure composition. For example, if disabling stability filtering increases efficiency, the report should still show whether synchronization failures rise enough to negate operational gains.
-
-\subsection{Failure Decomposition Protocol}
-
-All failures must be mapped to explicit classes already exposed by the implementation: authentication failure, configuration mismatch, synchronization mismatch, unstable-tokenization exhaustion, low-entropy retry exhaustion, and token-budget exhaustion.
-
-For each condition, report both failure rate and class histogram. This makes negative outcomes actionable and prevents a single aggregate success rate from hiding important failure-mode shifts.
-
-\subsection{Traffic-Side Measurement Protocol}
-
-Because retries may leak side-channel information through timing and length, each run should log attempt count, wall-clock latency, packet-carrying token count, and total token count. Distributions must be reported both unconditionally and conditioned on retry count.
-
-The baseline for comparison should be non-stego model outputs generated under matching prompt families and runtime infrastructure, so observed differences can be attributed to the stego pipeline rather than unrelated serving effects.
-
-\subsection{Detector Evaluation Blocks}
-
-Detector-facing evaluation should include a feature-based classical baseline, a neural text detector, and an LLM-judge-style scorer used only as a perceptual proxy. The same sample sets should be evaluated in two modes: single-message classification and multi-message aggregation per sender.
-
-For multi-message mode, report performance as a function of aggregation size $m$ (for example, $m\in\{1,4,8,16,32\}$) to expose accumulation effects rather than reporting a single pooled number.
-
-\subsection{Statistical Reporting Rules}
-
-Each reported metric should include uncertainty information: confidence intervals for rates, bootstrap intervals for medians when appropriate, and full sample counts. When comparing two configurations, provide effect size with interval estimates instead of significance-only statements.
-
-Negative or null findings should be reported with the same prominence as positive findings.
-
-\subsection{Reproducibility and Artifact Schema}
-
-Every table and figure should have a matching artifact bundle containing raw JSON lines, aggregation scripts, plotting scripts, and exact commit hashes for implementation and paper repositories. Runtime metadata should include model identity, tokenizer hash, backend metadata, prompt-policy ID, seed policy, hardware context, and software versions.
+Table~\ref{tab:real-baseline-overall} summarizes merged outcomes from 18 real-backend trials (9 English, 9 Chinese), executed with pinned model/backend/runtime configuration and released raw JSONL logs.
 
 \begin{table}[t]
-\caption{Minimum per-run metadata fields required for reproducible post-pause evaluation.}
-\label{tab:metadata-schema}
-\begin{tabular}{p{0.28\linewidth}p{0.66\linewidth}}
+\caption{Merged real-backend baseline results (r1+r2, $n=18$).}
+\label{tab:real-baseline-overall}
+\begin{tabular}{p{0.52\linewidth}p{0.39\linewidth}}
 \toprule
-Field & Description \\
+Metric & Value \\
 \midrule
-Run ID & Unique run identifier linked to raw logs and derived tables. \\
-Model metadata & Model family/version and tokenizer hash used in generation. \\
-Policy config & top-$p$, max-$k$, min-entropy threshold, total frequency budget, retry limits. \\
-Prompt regime & Prompt family label and whether template-known or private-prompt setting. \\
-Message profile & Plaintext length bucket, packet length, language tag. \\
-Runtime context & Hardware class, thread count, backend build info, software versions. \\
-Outcome fields & Success/failure class, retries, latency, packet tokens, total tokens. \\
-Diagnostics & Logged approximation terms ($\alpha_t$, $N_t$, $F_{\mathrm{tot}}$, $\beta_t$) summaries. \\
+Decode success rate ($\mathrm{SR}$) & $18/18=1.000$ \\
+Failure histogram & none observed \\
+Encode latency (s) & median 50.56, p90 88.75, p99 215.40 \\
+Decode latency (s) & median 34.87, p90 54.13, p99 63.92 \\
+Encode bits/token & mean 2.478 (median 2.586, min 1.894, max 3.071) \\
+Attempts used & mean 1.944, max 5 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
+\begin{table}[t]
+\caption{Language-stratified baseline summary from the same merged runs.}
+\label{tab:real-baseline-language}
+\begin{tabular}{p{0.10\linewidth}p{0.10\linewidth}p{0.22\linewidth}p{0.22\linewidth}p{0.22\linewidth}}
+\toprule
+Lang & Trials & Encode median (s) & Decode median (s) & Mean bits/token \\
+\midrule
+en & 9 & 38.62 & 27.27 & 2.586 \\
+zh & 9 & 55.57 & 36.96 & 2.370 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+These results support the narrow claims that deterministic decoding is operationally reliable in the tested regime and that payload efficiency is in the reported range under conservative policy. They do not yet establish detector resistance or traffic-side indistinguishability.
+
+Artifacts are released in this repository under `results/real-backend-baseline-r1/`, `results/real-backend-baseline-r2/`, and merged summaries in `results/real-backend-baseline-summary-merged.{json,md}`. Reproduction commands are provided in `results/real-backend-baseline-reproduce.sh`.
+
+\subsection{Evaluation Axes for Remaining Stages}
+
+For broader coverage beyond the baseline, measurements should follow a factorized grid across message length, prompt family, language, and policy settings. Message length should be stratified by plaintext bytes and packet bytes because cryptographic framing changes effective payload size. Prompt families should include at least narrative, informational, and dialog styles in both English and Chinese.
+
+To address predictable-prompt concerns, each prompt family should include two regimes: private-prompt and template-known.
+
+\subsection{Staged Execution Order (Status-Tagged)}
+
+\textbf{Stage 0 (environment freeze) -- completed:} implementation commit, model artifact identity, backend metadata, and runtime settings were pinned and logged.
+
+\textbf{Stage 1 (recoverability baseline) -- completed (initial):} decode success rate, failure histogram, and retry distribution were collected for the merged 18-trial baseline.
+
+\textbf{Stage 2 (runtime and efficiency) -- completed (initial):} encode/decode latency summaries and bits/token efficiency were collected in the same baseline runs.
+
+\textbf{Stage 3 (approximation instrumentation) -- pending:} enable step-level logging for $\alpha_t$, $N_t$, $F_{\mathrm{tot}}$, and $\beta_t$; report term dominance by operating region.
+
+\textbf{Stage 4 (ablation campaign) -- pending:} run one-factor-at-a-time ablations for stability filter, fingerprint check, retry policy, quantization budget, truncation policy, and tail policy.
+
+\textbf{Stage 5 (detector-facing evaluation) -- pending:} evaluate detector suite in single-message and multi-message accumulation modes.
+
+\textbf{Stage 6 (traffic-side analysis) -- pending:} compare stego and non-stego baselines on output-length and latency distributions with retry-conditioned views.
+
+\textbf{Stage 7 (artifact packaging) -- in progress:} baseline raw logs and merged summaries are released; remaining stages will follow the same artifact standard.
+
+\subsection{Ablation and Failure Decomposition Protocol}
+
+Ablations should isolate each engineering choice while keeping other knobs fixed. For each ablation, report deltas in recoverability, efficiency, failure composition, and approximation-term summaries.
+
+All failures should be mapped to explicit classes already exposed by the implementation: authentication failure, configuration mismatch, synchronization mismatch, unstable-tokenization exhaustion, low-entropy retry exhaustion, and token-budget exhaustion.
+
+\subsection{Traffic-Side and Detector Blocks}
+
+Because retries may leak side-channel information through timing and length, each run should log attempt count, wall-clock latency, packet-carrying token count, and total token count. Distributions should be reported both unconditionally and conditioned on retry count.
+
+Detector-facing evaluation should include at least one feature-based classical baseline, one neural text detector, and one LLM-judge-style scorer used only as a perceptual proxy. The same sample sets should be evaluated in single-message and multi-message modes.
+
+For multi-message mode, performance should be reported as a function of aggregation size $m$ (for example, $m\in\{1,4,8,16,32\}$), not a single pooled number.
+
+\subsection{Statistical Reporting and Artifact Rules}
+
+Each reported metric should include uncertainty information: confidence intervals for rates, bootstrap intervals for medians when appropriate, and full sample counts. When comparing configurations, report effect sizes with interval estimates rather than significance-only statements.
+
+Negative or null findings should be reported with the same prominence as positive findings.
+
+Each table/figure should have a matching artifact bundle containing raw JSON lines, aggregation scripts, plotting scripts, exact commands, and commit hashes for implementation and paper repositories.
+
 \subsection{Readiness Criteria}
 
-The post-pause evaluation phase should be considered complete only when all five research questions have both summary tables and released raw artifacts, including conditions where results are weak or negative. This criterion prevents selective reporting and keeps claim updates evidence-driven.
+The evaluation campaign should be considered complete only when all five research questions have both summary tables and released raw artifacts, including weak or negative conditions. This criterion prevents selective reporting and keeps claim updates evidence-driven.

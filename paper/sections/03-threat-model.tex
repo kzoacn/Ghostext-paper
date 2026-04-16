@@ -10,7 +10,7 @@ The primary adversary is a passive Censor that observes text but does not modify
 
 \subsection{Additional Realistic Attack Surfaces}
 
-Beyond pure text inspection, we consider three practical surfaces that must be measured post-pause.
+Beyond pure text inspection, we consider three practical surfaces that require explicit measurement beyond the current baseline.
 
 \textbf{Multi-message accumulation}: detector sees many samples from one sender.
 
@@ -22,7 +22,7 @@ Ghostext currently provides defensive engineering hooks for these surfaces (fail
 
 \subsection{Capability Matrix}
 
-For clarity, Table~\ref{tab:threat-capabilities} summarizes which adversary capabilities are in scope for implemented defenses and which are currently only measured/planned dimensions.
+For clarity, Table~\ref{tab:threat-capabilities} summarizes which adversary capabilities are in scope for implemented defenses and which are either covered in baseline measurements or kept as pending measured dimensions.
 
 \begin{table}[t]
 \caption{Threat-capability matrix for current Ghostext scope.}
@@ -33,10 +33,10 @@ Adversary capability & Scope status & Current handling \\
 \midrule
 Passive text observation & in scope & deterministic protocol + fail-closed checks \\
 Prompt-template knowledge & measured axis & separate unknown/template-known regimes in evaluation plan \\
-Multi-message accumulation & measured axis & explicit detector-aggregation block in blueprint \\
-Traffic timing/length observation & measured axis & retry and latency/length logging plan \\
-Active text modification in transit & out of scope (this draft) & no robustness claim; reserved for future extension \\
-Runtime compromise of sender/receiver endpoint & out of scope (this draft) & no claim; orthogonal endpoint-security problem \\
+Multi-message accumulation & measured axis & explicit detector-aggregation block in staged protocol \\
+Traffic timing/length observation & measured axis & retry and latency/length logging with baseline summaries and pending condition expansion \\
+Active text modification in transit & out of scope (current version) & no robustness claim; reserved for future extension \\
+Runtime compromise of sender/receiver endpoint & out of scope (current version) & no claim; orthogonal endpoint-security problem \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -49,4 +49,4 @@ These boundaries are not unique to Ghostext, but making them explicit is importa
 
 \subsection{Security Objective in This Paper}
 
-The objective of this paper is modest and explicit: provide a deterministic, fail-closed, implementation-auditable steganographic protocol with bounded approximation analysis and a reproducible evaluation framework. Strong detector-evasion claims are deferred to post-pause experiments.
+The objective of this paper is modest and explicit: provide a deterministic, fail-closed, implementation-auditable steganographic protocol with bounded approximation analysis and a reproducible evaluation framework. Strong detector-evasion claims remain pending until dedicated detector and traffic-side stages are completed.

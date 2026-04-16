@@ -20,29 +20,18 @@ Earlier neural approaches generally assume that sender and receiver can replay e
 
 Another practical gap is failure semantics. Many prior papers report aggregate performance but provide less structured runtime failure taxonomy for deployment troubleshooting. Ghostext emphasizes class-labeled failures because operational debugging and security interpretation often depend on distinguishing integrity failure, configuration mismatch, synchronization drift, and low-entropy stalls.
 
+Kaptchuk et al.~\cite{kaptchuk2021language} also emphasize that language channels can leak secret-dependent structure beyond the intended communication path, reinforcing the need for explicit protocol boundaries and conservative claim wording.
+
+A closely related neighboring line is LLM watermarking, which also manipulates generation distributions under detectability constraints~\cite{kirchenbauer2023watermark}. Although watermarking and steganography have different goals, both depend on distribution-level control and detector assumptions, so cross-citation is useful for threat interpretation.
+
+On the detector side, practical evaluation commonly combines lightweight text classifiers and stronger model-based detectors; examples include fastText-style baselines~\cite{joulin2017fasttext} and curvature-based zero-shot detectors such as DetectGPT~\cite{mitchell2023detectgpt}. These references motivate our detector-block design in the evaluation protocol.
+
 \subsection{Relation to Formal Frameworks}
 
 Cachin's information-theoretic model~\cite{cachin1998information} and Hopper et al.'s provable framework~\cite{hopper2002provably} remain the conceptual baseline for strong security claims. Recent generative-text works with formal guarantees~\cite{zhang2021provably,ding2023discop,dewitt2024perfect} move closer to these standards under specific model-access assumptions.
 
-Ghostext does not claim to replace those frameworks. Instead, it contributes implementation-level decomposition terms and an auditable evaluation blueprint intended to bridge engineering practice and stronger future claims. The design choice is to make approximation sources observable first, then upgrade claims only after corresponding measurements are available.
-
-\subsection{Comparison of Contribution Focus}
-
-\begin{table}[t]
-\caption{Qualitative positioning of representative text-steganography lines (based on published descriptions).}
-\label{tab:rw-positioning}
-\begin{tabular}{p{0.24\linewidth}p{0.33\linewidth}p{0.36\linewidth}}
-\toprule
-Work line & Primary focus & Typical evidence emphasis \\
-\midrule
-NLS / adaptive arithmetic coding~\cite{ziegler2019neural,shen2020near,dai2019towards} & Practical neural embedding with distribution-guided token choice & Imperceptibility/quality and embedding performance trends \\
-Provable generative constructions~\cite{zhang2021provably,ding2023discop,dewitt2024perfect} & Formal security guarantees under explicit assumptions & Theoretical guarantees with supporting experiments \\
-OD-Stega~\cite{huang2026odstega} & Distribution optimization with explicit tokenization concerns & Empirical evaluation plus mechanism refinements \\
-Ghostext (this work) & Deterministic protocol engineering, fail-closed semantics, reproducible measurement blueprint & Implementation-backed behavior, approximation decomposition, and post-pause experiment protocol \\
-\bottomrule
-\end{tabular}
-\end{table}
+Ghostext does not claim to replace those frameworks. Instead, it contributes implementation-level decomposition terms and an auditable evidence pipeline with initial baseline results, intended to bridge engineering practice and stronger claims. The design choice is to make approximation sources observable first, then upgrade claims only after corresponding measurements are available.
 
 \subsection{Scope-Constrained Novelty Statement}
 
-Given this landscape, Ghostext claims novelty at the systems-integration level: combining authenticated packet framing, runtime configuration binding, retokenization-aware candidate control, and explicit failure observability in one deterministic pipeline. Whether this combination yields significant detector-facing gains remains an empirical question and is explicitly deferred to post-pause evaluation.
+Given this landscape, Ghostext claims novelty at the systems-integration level: combining authenticated packet framing, runtime configuration binding, retokenization-aware candidate control, and explicit failure observability in one deterministic pipeline. Whether this combination yields significant detector-facing gains remains an open empirical question for the remaining detector-focused stages.

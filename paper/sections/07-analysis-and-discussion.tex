@@ -2,7 +2,7 @@
 
 \subsection{Scope and Goal}
 
-This section analyzes the parts of Ghostext that are already implemented and directly measurable. It is not a complete indistinguishability proof against adaptive steganalysis. The goal is narrower: isolate each approximation source in the current pipeline, express its effect with explicit quantities, and define what should be measured once experiments resume.
+This section analyzes the parts of Ghostext that are already implemented and directly measurable. It is not a complete indistinguishability proof against adaptive steganalysis. The goal is narrower: isolate each approximation source in the current pipeline, express its effect with explicit quantities, and define what remains to be measured beyond the completed baseline experiments.
 
 \subsection{Distribution Pipeline Decomposition}
 
@@ -33,7 +33,7 @@ where $N_t=|C_t|$.
 The three addends have clear meanings.
 $\alpha_t$ is policy truncation mass,
 $N_t/(2F_{\mathrm{tot}})$ is finite-frequency quantization distortion,
-and $\beta_t$ is additional mass removed by tokenization-stability filtering.
+and $\beta_t$ is additional mass removed by tokenization-stability filtering, including the normalization effect after filtering.
 
 \subsection{Quantization Bias and a Conservative KL Upper Bound}
 
@@ -82,6 +82,12 @@ In Ghostext, contexts depend on prior stego choices, so a tight analytic bound i
 
 $\widehat{B}_{\mathrm{TV}}$ is an audit signal rather than a direct detector-risk guarantee.
 
+\subsection{Relation to Provable-Security Limits}
+
+A useful limit case is $\alpha_t\to0$ (no truncation), $\beta_t\to0$ (no stability filtering loss), and $F_{\mathrm{tot}}\to\infty$ (no quantization loss), under exact sender-receiver replay of the same next-token distribution. In this limit, the implementation approaches ideal arithmetic-coding steganography over the model distribution at each step.
+
+This limit clarifies where Ghostext sits relative to Cachin-style distribution matching and Hopper-style stego security formulations: our current system is an approximation to that ideal regime, with approximation terms made explicit by $\alpha_t$, $N_t/(2F_{\mathrm{tot}})$, and $\beta_t$. The present paper does not claim that current finite-precision, truncated, stability-filtered operation already satisfies a full provable-security theorem.
+
 \subsection{Fingerprint Collision and Misbinding}
 
 The synchronization fingerprint is a truncated 64-bit hash over runtime configuration, backend metadata, and prompt hash. For $n$ honest sessions,
@@ -104,7 +110,7 @@ Observed marginals become mixtures:
 \Pr[T_{\mathrm{lat}}\le t]=\sum_r \Pr[R=r]\Pr[T_{\mathrm{lat}}\le t\mid R=r].
 \end{equation}
 
-Even when text-only quality is strong, these mixture shifts may be detectable by a traffic observer. Post-pause evaluation should therefore report retry-conditioned and unconditional length/latency distributions.
+Even when text-only quality is strong, these mixture shifts may be detectable by a traffic observer. Evaluation should therefore report retry-conditioned and unconditional length/latency distributions, and we keep this as a pending detector/traffic block beyond the current baseline.
 
 \subsection{Prompt-Knowledge and Multi-Message Regimes}
 
@@ -118,6 +124,18 @@ $\bar{s}_m = \frac{1}{m}\sum_{i=1}^{m}s(x_i)$,
 small per-message effects can become detectable as $m$ grows.
 This is why single-message and multi-message tests should both be first-class reporting targets.
 
+\subsection{Synchronization Assumptions in Deployment}
+
+Current evidence is strongest for local, pinned deployments where both parties control model files, tokenizer behavior, backend build, and runtime policy. The implementation binds backend metadata and tokenizer hash into the configuration fingerprint, which is effective for detecting drift in this deployment mode.
+
+When using third-party hosted APIs, exact backend-version observability may be limited. In that environment, strict deterministic replay can be unavailable by construction, and Ghostext should be treated as out-of-scope unless an API provider exposes stable and verifiable model/tokenizer/version identifiers sufficient for replay.
+
+\subsection{Cross-Hardware and Numeric Determinism Caveat}
+
+The current fingerprint includes backend metadata exposed by the backend implementation, but it does not include a full hardware fingerprint (for example, GPU model and driver stack). In local llama.cpp CPU mode this is less exposed to GPU-kernel nondeterminism than many hosted GPU pipelines, but floating-point and platform differences can still perturb logits near candidate cut boundaries.
+
+The practical implication is conservative: cross-hardware deployment should be validated empirically before operational use, and hardware/runtime context should be logged as a reproducibility field in evaluation artifacts.
+
 \subsection{Natural Tail Policy Clarification}
 
 Current natural-tail tokens are sampled from the same constrained candidate mechanism used by packet-carrying tokens, then excluded from decode once packet recovery is complete. This avoids a second sampling pathway but may preserve policy artifacts in tail regions.
@@ -128,11 +146,11 @@ natural tails can improve surface completeness of outputs, but they should be me
 \subsection{Logging Schema for Measurable Analysis}
 
 \begin{table}[t]
-\caption{Per-step and per-message diagnostics to log for analysis and ablation.}
+\caption{Per-step and per-message diagnostics and metadata to log for analysis, ablation, and reproducibility.}
 \label{tab:analysis-logs}
-\begin{tabular}{p{0.21\linewidth}p{0.73\linewidth}}
+\begin{tabular}{p{0.25\linewidth}p{0.68\linewidth}}
 \toprule
-Quantity & Role in analysis \\
+Field & Role in analysis \\
 \midrule
 $\alpha_t$ & Truncation mass removed from base model distribution at step $t$. \\
 $N_t$ & Candidate count after truncation and before quantization. \\
@@ -142,6 +160,10 @@ $H_t$ & Candidate entropy used for min-entropy gating and low-entropy window che
 $I_t$ & Embedding-enabled indicator at step $t$ (1 if payload bits may be consumed). \\
 $R$ & Retry count per message; needed for latency/length mixture analysis. \\
 Failure class & One of explicit fail-closed classes (integrity, mismatch, stall, budget, etc.). \\
+Model metadata & Model family/version and tokenizer hash used in generation. \\
+Policy config & top-$p$, max-$k$, min-entropy threshold, total frequency budget, retry limits. \\
+Prompt regime & Prompt family label and whether template-known or private-prompt setting. \\
+Runtime context & Hardware class, backend build info, and software versions. \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -150,4 +172,4 @@ Failure class & One of explicit fail-closed classes (integrity, mismatch, stall,
 
 At this stage, supported claims are restricted to deterministic decode under matched runtime state, explicit mismatch detection, fail-closed behavior, and measurable decomposition of approximation sources.
 
-Claims about broad detector resistance, active-edit robustness, and cross-family generalization remain pending post-pause experiments.
+Claims about broad detector resistance, active-edit robustness, and cross-family generalization remain pending dedicated detector and cross-family experiments.

@@ -1,4 +1,4 @@
-\section{System Overview}
+\section{System Overview and Operational Semantics}
 
 \begin{figure}[t]
 \centering
@@ -24,10 +24,22 @@ Synchronization is a protocol invariant. Ghostext commits runtime settings, back
 
 Embedding is split into bootstrap and body stages. The bootstrap stage carries enough metadata for Bob to authenticate header information and determine expected body length before body decoding. This supports early rejection on mismatch and cleaner failure diagnosis.
 
+\subsection{Operational Encode and Decode Semantics}
+
+Alice starts with plaintext, passphrase, and shared prompt. Plaintext bytes are wrapped into an authenticated packet, then split into bootstrap and body segments. Each segment is mapped to token choices through deterministic candidate selection, quantization, and interval narrowing. Bob tokenizes the received text under the same prompt and replays the same deterministic distributions. Bootstrap bytes are reconstructed first, then header authentication and fingerprint checks are applied before body decoding. Plaintext is released only after full packet authentication.
+
+Retries are enabled only when packet salt or nonce can be refreshed. If both are fixed, automatic retry is disabled by design. Low-entropy retry triggering uses a rolling entropy window:
+\begin{equation}
+\frac{1}{w}\sum_{j=t-w+1}^{t} H_j < \tau,
+\end{equation}
+where $H_j$ is candidate entropy at step $j$. In the current implementation defaults, $w=32$ and $\tau=0.1$ bits. These retry parameters are sender-side controls that affect whether a run is restarted, not decode replay math itself.
+
 \subsection{Natural Tail Handling}
 
 After packet resolution, the encoder may append a short natural tail. Tail tokens do not carry payload and are ignored by the decoder after packet recovery. This isolates surface fluency adjustments from correctness-critical embedding.
 
-\subsection{Fail-Closed Principle}
+\subsection{Fail-Closed Principle and Failure Classes}
 
 Mismatch, integrity failure, interval collapse, unstable tokenization paths, and token-budget exhaustion all trigger explicit failure. The decoder never emits partial plaintext after authentication failure.
+
+Ghostext exposes a class-labeled failure taxonomy rather than a generic exception stream: authentication failures, configuration mismatch, synchronization mismatch, unstable-tokenization exhaustion, low-entropy retry exhaustion, and token-budget exhaustion. This makes deployment debugging and later evaluation analysis auditable.
