@@ -1,0 +1,98 @@
+\section{Operational Walkthrough and Failure Modes}
+
+This section gives an auditable runtime walkthrough that maps design choices to concrete operational behavior. The focus is execution semantics, not detector-resistance claims.
+
+\subsection{Encode Procedure}
+
+Alice starts with plaintext, passphrase, and shared prompt. The plaintext is converted to UTF-8 bytes and wrapped into an authenticated packet. The packet is split into bootstrap and body segments. Each segment is then mapped to token choices through deterministic candidate selection, quantization, and interval narrowing.
+
+\begin{figure}[t]
+\small
+\fbox{\parbox{0.95\linewidth}{
+\textbf{Encode procedure (high-level).}
+(1) Compute configuration fingerprint from runtime state and prompt.
+(2) Encrypt plaintext into authenticated packet bytes.
+(3) Split packet into bootstrap and body segments.
+(4) For each segment, iteratively build candidates, quantize, and update interval.
+(5) If embedding is allowed at a step, consume payload bits through interval narrowing; otherwise emit deterministic top token.
+(6) Trigger bounded retry logic only under configured low-entropy or unstable-tokenization conditions.
+(7) After packet resolution, optionally append non-payload natural-tail tokens.
+}}
+\caption{Ghostext encode flow in implementation order.}
+\Description{A boxed seven-step encode workflow from fingerprint and packet creation to segment encoding and optional natural tail.}
+\label{fig:encode-walkthrough}
+\end{figure}
+
+\subsection{Decode Procedure}
+
+Bob tokenizes the received text under the same prompt and replays the same deterministic distributions. Bootstrap bytes are reconstructed first, then header authentication and configuration checks are applied before body decoding. Only after full packet authentication does plaintext release occur.
+
+\begin{figure}[t]
+\small
+\fbox{\parbox{0.95\linewidth}{
+\textbf{Decode procedure (high-level).}
+(1) Tokenize observed cover text under shared prompt.
+(2) Reconstruct bootstrap bytes by deterministic interval inversion.
+(3) Decrypt and authenticate bootstrap header.
+(4) Verify configuration fingerprint against local runtime state.
+(5) Reconstruct body bytes using authenticated length metadata.
+(6) Decrypt and authenticate full packet.
+(7) Release plaintext only if all checks pass; otherwise fail closed with explicit class.
+}}
+\caption{Ghostext decode flow in implementation order.}
+\Description{A boxed seven-step decode workflow from tokenization and bootstrap inversion to authenticated packet recovery and fail-closed release.}
+\label{fig:decode-walkthrough}
+\end{figure}
+
+\subsection{Why the Two-Stage Layout Matters}
+
+Separating bootstrap from body has two practical effects. First, protocol mismatches are detected early, so decode can fail fast before processing a long body segment. Second, error reporting is cleaner because header-stage and body-stage failures are naturally separated.
+
+\subsection{Deterministic Replay Invariants}
+
+Decode correctness depends on strict replay invariants: identical model/tokenizer state, prompt-conditioned tokenization behavior, candidate-policy parameters, quantization budget, and seed-dependent runtime configuration. The configuration fingerprint is used as an explicit guard for these invariants.
+
+\subsection{Failure Classes and Their Operational Meaning}
+
+Ghostext exposes failure classes rather than a generic exception stream. This enables targeted mitigation:
+
+\begin{itemize}
+\item authentication failures suggest wrong passphrase, packet corruption, or malformed transport;
+\item configuration mismatch indicates runtime drift between sender and receiver;
+\item synchronization mismatch indicates token-path divergence;
+\item unstable-tokenization exhaustion indicates no safe candidate path under current settings;
+\item low-entropy retry exhaustion indicates repeated low-information contexts;
+\item token-budget exhaustion indicates insufficient budget for current payload-policy pair.
+\end{itemize}
+
+These classes are also the unit of analysis in planned evaluation tables.
+
+\subsection{Retry Control Semantics}
+
+Retries are enabled only when packet salt or nonce can be refreshed. If both are fixed, automatic retry is disabled by design. This prevents hidden nondeterminism in constrained operating modes and keeps retry behavior explicit in deployment policy.
+
+Low-entropy retry triggering uses a rolling entropy window. Let window size be $w$ and threshold be $\tau$. A retry trigger occurs when
+\begin{equation}
+\frac{1}{w}\sum_{j=t-w+1}^{t} H_j < \tau,
+\end{equation}
+where $H_j$ is candidate entropy at step $j$.
+
+\subsection{Natural Tail Behavior}
+
+Natural-tail generation is optional and decode-agnostic after packet recovery. In current implementation, tail tokens are sampled from the same constrained candidate machinery rather than from unconstrained model sampling.
+
+This means natural tails are an output-surface tool, not a guarantee of full distribution matching. They should be evaluated as a separate component.
+
+\subsection{Operational Example Trace (Condensed)}
+
+A typical successful run follows this pattern: bootstrap resolves within header token budget, header authentication passes, configuration fingerprint matches local runtime, body resolves within body token budget, packet decryption passes, and trailing tokens are ignored by decoder after packet completion.
+
+A typical controlled-failure run differs at a specific gate, for example configuration mismatch immediately after header parse. In that case, body decode is intentionally not trusted for plaintext release.
+
+\subsection{Deployment Guidance Under Conservative Policy}
+
+For conservative deployments, start with stability filtering enabled, moderate candidate width, bounded retries, and explicit monitoring of failure-class histograms. Throughput tuning should proceed one knob at a time with rollback criteria based on recoverability and failure composition.
+
+\subsection{What This Walkthrough Establishes}
+
+This walkthrough establishes that Ghostext execution is deterministic, classifiable, and auditable at runtime. It does not by itself establish low detectability; detector-facing outcomes remain an empirical question for post-pause experiments.

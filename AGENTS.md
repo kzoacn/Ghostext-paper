@@ -13,7 +13,7 @@ The implementation source of truth is `../Ghostext`.
 - Follow ACM CCS CFP requirements.
 - Keep ACM `sigconf` style unaltered.
 - Keep main-content page length compliant.
-- Keep main-content length at **at least 10 pages** (excluding references and appendices), while still complying with ACM CCS limits.
+- Keep main-content length at **at least 7 pages** (excluding references and appendices), while still complying with ACM CCS limits.
 - Until this pause is explicitly lifted by the user, do **not** run experiment pipelines in this repository.
 - Read `../Ghostext` before making technical claims.
 - Do **not** modify `../Ghostext` unless the user explicitly asks for it.

@@ -1,88 +1,91 @@
-\section{Protocol Details}
+\section{Protocol and Approximation Model}
 
-\subsection{Opaque Packet Structure}
+\subsection{Authenticated Packet Layer}
 
-Ghostext packetization is implemented in \texttt{../Ghostext/src/ghostext/packet.py} and \texttt{../Ghostext/src/ghostext/crypto.py}. The outer structure is:
-\begin{quote}
-\texttt{salt || header\_nonce || sealed\_header || body\_nonce || body\_ciphertext\_and\_tag}
-\end{quote}
-
-The internal header is authenticated and encrypted, not plaintext-exposed. It includes protocol version, crypto identifiers, body ciphertext length, and configuration fingerprint.
-
-\subsection{Key Derivation and Separation}
-
-Given passphrase $K$ and random salt $s$, Ghostext derives a 256-bit master key via scrypt. It then applies HKDF-SHA256 to produce two subkeys $(k_h, k_b)$ for header and body respectively. This key separation avoids cross-component misuse and supports separate associated-data bindings for header and body encryption.
-
-Both components currently use ChaCha20-Poly1305 with distinct nonces. Authentication failure in either component terminates decode.
-
-\subsection{Configuration Fingerprint Commitment}
-
-Ghostext computes a 64-bit fingerprint from a canonical JSON payload:
+Ghostext packet format is
 \begin{equation}
-F = \mathrm{Trunc}_{64}(\mathrm{SHA256}(\text{runtime},\text{backend},\mathrm{SHA256}(\text{prompt}))).
+\texttt{salt} \parallel \texttt{header\_nonce} \parallel \texttt{sealed\_header} \parallel \texttt{body\_nonce} \parallel \texttt{body\_ciphertext}.
+\end{equation}
+The internal header stores protocol version, crypto IDs, body length, and configuration fingerprint. Current implementation uses scrypt for key derivation, HKDF-SHA256 for key separation, and ChaCha20-Poly1305 for authenticated encryption.
+
+\subsection{Candidate Policy}
+
+At step $t$, raw logits define base distribution $P_t$ over vocabulary $\mathcal{V}$. Ghostext constructs candidate set $C_t$ via deterministic top-$p$ and max-$k$ truncation, then renormalizes to $\widetilde{P}_t$. If $|C_t|<2$ or step entropy is below threshold, no payload bit is consumed and the top token is emitted.
+
+Retokenization-stability filtering then removes candidates that fail render/re-tokenize path consistency.
+
+\subsection{Integer Quantization}
+
+Let $N_t=|C_t|$ and total frequency budget be $F_{\mathrm{tot}}$. For each candidate $v\in C_t$:
+\begin{equation}
+ f_t(v)=1+\left\lfloor \widetilde{P}_t(v)(F_{\mathrm{tot}}-N_t)\right\rfloor,
+\end{equation}
+with leftover units distributed by fractional remainder and token-id tie-break.
+
+The induced quantized distribution is
+\begin{equation}
+Q_t(v)=\frac{f_t(v)}{F_{\mathrm{tot}}}.
 \end{equation}
 
-The runtime part includes seed and protocol-sensitive parameters. The backend part includes model ID, tokenizer hash, and backend ID. Prompt commitment uses hash form to avoid storing full prompt text in packet metadata.
+\subsection{Interval Update}
 
-Fingerprint mismatch at decode is treated as integrity/configuration failure.
-
-\subsection{Candidate Distribution Construction}
-
-At generation step $t$, backend output gives logits over $\mathcal{V}$. Ghostext then constructs a candidate set $C_t$ with deterministic policy:
-
-\begin{enumerate}
-\item sort by probability descending and token-id tie-break,
-\item retain up to top-$p$ cumulative mass and max-$k$ tokens,
-\item renormalize probabilities on retained set,
-\item mark step as encodable only if $|C_t|\geq 2$ and entropy threshold is met.
-\end{enumerate}
-
-If not encodable, the top candidate is chosen deterministically.
-
-\subsection{Retokenization-Stability Guard}
-
-Ghostext optionally enforces a strong stability constraint. For each candidate token $v$, it checks whether appending $v$, rendering text, and retokenizing under the same prompt/history returns the same token path. Unstable candidates are removed.
-
-If all candidates are unstable, encoding fails closed (or retries with fresh packet randomness when allowed). This choice directly addresses a practical mismatch class emphasized by OD-Stega~\cite{huang2026odstega}.
-
-\subsection{Deterministic Integer Quantization}
-
-Let normalized candidate probabilities be $q_t(v)$ for $v \in C_t$, and let fixed total frequency be $F_{\text{tot}}$. Ghostext allocates integer frequencies as:
-\begin{equation}
- f_t(v) = 1 + \left\lfloor q_t(v)\cdot (F_{\text{tot}}-|C_t|)\right\rfloor,
-\end{equation}
-then distributes leftover units by descending fractional remainder and token-id tie-break.
-
-This ensures all frequencies are positive and sum exactly to $F_{\text{tot}}$.
-
-\subsection{Interval Update Rule}
-
-For interval $[L_t,H_t)$ and candidate cumulative boundaries $[c^-_t(v), c^+_t(v))$ in frequency units, selecting token $v$ updates:
+Given interval $[L_t,H_t)$ and cumulative boundaries from $Q_t$, selecting token $v$ updates
 \begin{align}
-L_{t+1} &= L_t + \left\lfloor (H_t-L_t)\cdot c^-_t(v)/F_{\text{tot}} \right\rfloor,\\
-H_{t+1} &= L_t + \left\lfloor (H_t-L_t)\cdot c^+_t(v)/F_{\text{tot}} \right\rfloor.
+L_{t+1}&=L_t+\left\lfloor(H_t-L_t)\,\mathrm{cdf}^-_t(v)\right\rfloor,\\
+H_{t+1}&=L_t+\left\lfloor(H_t-L_t)\,\mathrm{cdf}^+_t(v)\right\rfloor.
 \end{align}
+A segment resolves when $H_t-L_t=1$.
 
-A segment resolves when $H_t-L_t=1$. Decoder applies the same update with observed tokens and reconstructs bytes from resolved interval value.
+\subsection{Bound for Quantization Error}
 
-\subsection{Two-Segment Encoding Control}
+For each candidate, deterministic rounding implies
+\begin{equation}
+\left|Q_t(v)-\widetilde{P}_t(v)\right|\le\frac{1}{F_{\mathrm{tot}}}.
+\end{equation}
+Hence
+\begin{equation}
+\|Q_t-\widetilde{P}_t\|_1\le\frac{N_t}{F_{\mathrm{tot}}}, \quad
+\mathrm{TV}(Q_t,\widetilde{P}_t)\le\frac{N_t}{2F_{\mathrm{tot}}}.
+\end{equation}
 
-Ghostext encodes packet bootstrap first, then packet body. Each segment has an explicit token budget. Exceeding budget is a hard failure. This makes worst-case runtime bounded and prevents unbounded generation loops.
+\subsection{Bound for Truncation + Quantization + Stability Filtering}
 
-\subsection{Protocol-Sensitive Fields Summary}
+Define truncated tail mass
+\begin{equation}
+\alpha_t = 1-\sum_{v\in C_t}P_t(v),
+\end{equation}
+and filtered-out mass under $Q_t$
+\begin{equation}
+\beta_t = \sum_{v\in C_t\setminus S_t}Q_t(v),
+\end{equation}
+where $S_t$ is the stability-surviving subset.
 
-\begin{table}[t]
-\caption{Protocol-sensitive synchronization fields in Ghostext.}
-\label{tab:sync-fields}
-\begin{tabular}{p{0.29\linewidth}p{0.65\linewidth}}
+Then the per-step total-variation gap to base distribution satisfies
+\begin{equation}
+\mathrm{TV}(Q'_t,P_t)\le\alpha_t + \frac{N_t}{2F_{\mathrm{tot}}} + \beta_t.
+\label{eq:tv_total_bound}
+\end{equation}
+This bound is implementation-aligned and directly measurable from runtime statistics.
+
+\subsection{Fingerprint Collision Discussion}
+
+Configuration fingerprint uses 64-bit truncation for synchronization mismatch detection. For $n$ independent sessions,
+\begin{equation}
+\Pr[\mathrm{collision}]\approx\frac{n(n-1)}{2^{65}}.
+\end{equation}
+For $n=10^6$, this is approximately $2.7\times10^{-8}$. Packet authenticity still depends on AEAD tags; fingerprint collisions do not replace cryptographic integrity checks.
+
+\subsection{Concrete Encode/Decode Examples}
+
+\begin{table*}[t]
+\caption{Two concrete end-to-end examples from current toy-backend implementation.}
+\label{tab:examples}
+\begin{tabular}{p{0.17\linewidth}p{0.20\linewidth}p{0.40\linewidth}p{0.18\linewidth}}
 \toprule
-Field group & Purpose in decode correctness \\
+Prompt type & Secret message & Cover text (prefix) & Outcome / token stats \\
 \midrule
-Seed and codec parameters & Force deterministic interval path under shared configuration \\
-Candidate policy parameters & Ensure both sides see the same candidate set and entropy gate behavior \\
-Backend metadata & Bind model family, tokenizer hash, and backend identity to prevent silent drift \\
-Prompt hash & Commit to exact shared prompt without exposing full prompt string in packet metadata \\
-Crypto parameters & Ensure packet parse/decrypt compatibility and algorithm consistency \\
+English walk prompt & \texttt{Meet at 7 PM by the old bridge.} & \texttt{The afternoon feels calm ... people talk softly along the street ...} & decode success; total 455; packet 428; tail 27; bits/token 2.092 \\
+Chinese walk prompt (romanized message) & \texttt{Jin wan qi dian zai lao di fang jian.} & \texttt{A mixed-script fluent-like sequence generated by toy backend ...} & decode success; total 424; packet 415; tail 9; bits/token 2.226 \\
 \bottomrule
 \end{tabular}
-\end{table}
+\end{table*}

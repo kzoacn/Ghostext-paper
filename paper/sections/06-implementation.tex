@@ -1,47 +1,17 @@
-\section{Implementation Snapshot (Evidence-Backed)}
+\section{Implementation Evidence}
 
-\subsection{Codebase Modules}
+Ghostext is implemented in a companion code artifact (anonymized for review). Core modules map directly to protocol stages: packet security (crypto + packet framing), candidate construction and stability checks, integer quantization, interval encode/decode, and end-to-end encode/decode orchestration.
 
-Ghostext is organized as a small, explicit module set under \texttt{../Ghostext/src/ghostext}.
+\subsection{Backends}
 
-The cryptographic packet path is centered in \texttt{crypto.py} and \texttt{packet.py}. Runtime protocol structures and fingerprint logic are defined in \texttt{config.py}. Candidate construction and stability checks are in \texttt{candidate\_policy.py}. Deterministic integer quantization is in \texttt{quantization.py}. Interval encoder/decoder primitives are in \texttt{codec.py}. End-to-end orchestration lives in \texttt{encoder.py}, \texttt{decoder.py}, and \texttt{pipeline.py}. Backend abstraction is in \texttt{model\_backend.py}, with real llama.cpp support in \texttt{llama\_cpp\_backend.py}.
+Current implementation provides a deterministic toy backend and a real llama.cpp Qwen backend. The toy backend is primarily for protocol-level testing and deterministic regression. The real backend is intended for operational use and post-pause experiments.
 
-\subsection{Backend Paths and Default Runtime}
+\subsection{Observed Failure Classes}
 
-The CLI supports two backend paths.
+The code distinguishes failure classes relevant for later security and reliability analysis: integrity mismatch, configuration mismatch, synchronization mismatch, unstable-tokenization exhaustion, low-entropy retry exhaustion, and token-budget exhaustion.
 
-The default path is a real local llama.cpp backend using GGUF models. Current defaults point to Qwen3.5-2B GGUF and include fixed seed, context size, batch size, top-$p$, candidate cap, and total frequency.
+\subsection{Test Coverage (Implemented Facts)}
 
-The second path is a deterministic toy character backend intended for protocol and regression tests. It provides fast, deterministic round-trip checks in both English and Chinese contexts.
+Existing tests cover: packet crypto round-trip and mismatch failures; deterministic quantization behavior; interval invertibility in toy settings; wrong-prompt/wrong-seed/text-mutation fail-closed behavior; retokenization stability guard behavior; bilingual toy round trips; and optional real-model smoke tests.
 
-\subsection{Model Asset and Prompt Template Handling}
-
-Model-path resolution follows a deterministic fallback chain: explicit CLI path, environment variable path, local cache, then optional automatic download of the default model. Prompt template selection is model-family aware (for example, Qwen3 vs. Qwen3.5 variants). Template identity is included in tokenizer-hash derivation.
-
-As a consequence, template drift changes backend metadata and therefore changes packet fingerprint validation behavior.
-
-\subsection{Encoder Operational Safeguards}
-
-The encoder includes several guard mechanisms to avoid silent failure modes.
-
-It enforces bounded token budgets for header and body segments.
-
-It tracks interval progress and raises a stall error if resolved bits stop increasing for too many steps.
-
-It monitors rolling entropy and can trigger controlled retries with fresh packet randomness when low-entropy regimes persist.
-
-It can enforce retokenization stability and fail closed if no stable candidate path exists.
-
-\subsection{Decoder Integrity and Synchronization Checks}
-
-The decoder first reconstructs the bootstrap segment, decrypts and authenticates internal header, checks fingerprint match, then decodes the body with exact expected length. Observed tokens that do not belong to the predicted candidate set trigger synchronization errors. Any authentication failure aborts output.
-
-This ordering ensures that plaintext is never returned before integrity and synchronization checks are satisfied.
-
-\subsection{Test Evidence Coverage}
-
-Current tests in \texttt{../Ghostext/tests} provide direct evidence for the draft's reliability claims.
-
-They cover crypto round-trip behavior and mismatch failures, deterministic quantization, codec invertibility in toy settings, failure handling under wrong prompt/seed or text mutation, retokenization-stability guard behavior, round-trip checks in English and Chinese toy modes, and optional real-model smoke integration when environment support exists.
-
-The test suite is intentionally stronger on correctness and fail-closed behavior than on large-scale detectability claims. This is aligned with current project phase and claim discipline.
+These tests support correctness and fail-closed claims. They do not substitute for full detector-resistance evaluation.

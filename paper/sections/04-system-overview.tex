@@ -1,39 +1,33 @@
 \section{System Overview}
 
-\subsection{High-Level Data Path}
+\begin{figure}[t]
+\centering
+\fbox{\parbox{0.96\linewidth}{
+\textbf{Encode path:}
+plaintext $\rightarrow$ UTF-8 bytes $\rightarrow$ authenticated packet $\rightarrow$ split (bootstrap/body) $\rightarrow$ candidate policy + quantization + interval narrowing $\rightarrow$ cover text prefix (+ optional natural tail).
 
-Ghostext has two coupled paths: a cryptographic packet path and a language-generation path.
+\textbf{Decode path:}
+cover text $\rightarrow$ tokenize $\rightarrow$ interval inversion (bootstrap) $\rightarrow$ header authentication + configuration check $\rightarrow$ interval inversion (body) $\rightarrow$ packet authentication $\rightarrow$ plaintext.
+}}
+\caption{Ghostext end-to-end pipeline. The packet-carrying prefix is deterministic under matched configuration; optional tail does not carry payload.}
+\Description{A two-path flow chart showing encode from plaintext to packet to token embedding, and decode from cover text to token inversion to plaintext, with configuration checks and fail-closed gates.}
+\label{fig:pipeline}
+\end{figure}
 
-In the packet path, plaintext is converted to UTF-8 bytes, encrypted into an authenticated opaque packet, and split into bootstrap and body segments.
+Ghostext combines a cryptographic packet layer and an LLM token-selection layer (Figure~\ref{fig:pipeline}). The first protects message confidentiality and integrity. The second provides reversible embedding into generated cover text.
 
-In the generation path, each segment is embedded by repeatedly reading next-token distributions, selecting a candidate set, quantizing probabilities, and narrowing an integer interval. The resulting token sequence forms the cover text prefix that carries the packet.
+\subsection{Deterministic Synchronization}
 
-On decode, Bob tokenizes the received text, reproduces the same per-step distributions, inverts interval updates to recover packet bytes, authenticates the packet, and decrypts plaintext.
+Synchronization is a protocol invariant. Ghostext commits runtime settings, backend metadata, and prompt hash into a configuration fingerprint embedded in an authenticated internal header. Decoding proceeds only when this fingerprint matches local runtime state.
 
-\subsection{Determinism as a First-Class Requirement}
+\subsection{Two-Stage Embedding Lifecycle}
 
-A key design choice is to treat determinism as a protocol property, not a convenience. Ghostext binds decoding to a configuration fingerprint that commits to runtime parameters, backend metadata, and prompt hash. If any component drifts, decode fails explicitly.
+Embedding is split into bootstrap and body stages. The bootstrap stage carries enough metadata for Bob to authenticate header information and determine expected body length before body decoding. This supports early rejection on mismatch and cleaner failure diagnosis.
 
-This choice trades permissiveness for correctness. In censorship-relevant deployment, silently returning wrong plaintext is typically worse than a visible decode failure.
+\subsection{Natural Tail Handling}
 
-\subsection{Segmented Embedding Lifecycle}
+After packet resolution, the encoder may append a short natural tail. Tail tokens do not carry payload and are ignored by the decoder after packet recovery. This isolates surface fluency adjustments from correctness-critical embedding.
 
-Ghostext embeds in two stages.
+\subsection{Fail-Closed Principle}
 
-The bootstrap/header stage encodes enough bytes to authenticate and parse internal packet metadata, especially expected body ciphertext length and configuration fingerprint.
-
-The body stage then embeds exactly the remaining payload.
-
-This staged process reduces ambiguity at decode time and allows early rejection on integrity mismatch before full payload reconstruction.
-
-\subsection{Natural Tail Policy}
-
-After packet bits are fully embedded, the encoder may append a short ``natural tail'' sampled from the same candidate mechanism. This does not carry payload bits; it is purely for better text ending quality.
-
-The decoder consumes only the packet-resolving prefix and reports trailing tokens separately.
-
-\subsection{Fail-Closed Semantics}
-
-Ghostext's failure policy is strict across the stack. Candidate instability, interval collapse, token budget exhaustion, or integrity mismatch all raise explicit exceptions. No partial plaintext is returned after authentication failure.
-
-This policy is central to our reliability claims and is directly exercised by existing tests.
+Mismatch, integrity failure, interval collapse, unstable tokenization paths, and token-budget exhaustion all trigger explicit failure. The decoder never emits partial plaintext after authentication failure.

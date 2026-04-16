@@ -4,7 +4,7 @@
 \renewcommand\footnotetextcopyrightpermission[1]{}
 \pagestyle{plain}
 
-\title{Ghostext: an almost perfect stenography via large language model and arithmetic coding}
+\title{Ghostext: Practical LLM-Based Linguistic Steganography with Deterministic Decoding}
 
 \author{Anonymous Author(s)}
 \affiliation{
@@ -17,7 +17,7 @@
 \begin{document}
 
 \begin{abstract}
-Ghostext is a practical linguistic steganography system that combines authenticated encryption and arithmetic-coding-style interval narrowing over large language model next-token distributions. The working target is an \emph{almost perfect} setting for a passive censor that only observes text: the embedding process should stay close to natural model behavior while preserving deterministic recovery for synchronized parties. This paper is intentionally evidence-grounded to the current implementation in \texttt{../Ghostext}. We separate implemented facts, engineering inferences, and future-work claims, and we provide a reproducible protocol-and-claims workflow designed for a CCS submission process under an explicit temporary experiment pause.
+Ghostext is a practical linguistic steganography system that combines authenticated encryption with arithmetic-coding-style interval narrowing over large language model next-token distributions. The design goal is operational reliability under a passive-censor setting: deterministic sender-receiver synchronization, explicit failure semantics, and reproducible configuration binding. This paper contributes an implementation-backed protocol description, formalized bounds for key approximation effects in the current pipeline, and a concrete post-pause evaluation blueprint. We intentionally separate implemented facts from planned claims and report conservative conclusions consistent with available evidence.
 \end{abstract}
 
 \maketitle
@@ -28,16 +28,13 @@ Ghostext is a practical linguistic steganography system that combines authentica
 \input{sections/04-system-overview}
 \input{sections/05-protocol-details}
 \input{sections/06-implementation}
-\input{sections/07-security-intuition}
-\input{sections/08-reproducibility}
-\input{sections/07-evaluation-plan}
-\input{sections/08-related-work}
-\input{sections/09-design-tradeoffs}
-\input{sections/10-experiment-blueprint}
-\input{sections/11-protocol-walkthrough}
-\input{sections/12-failure-case-studies}
-\input{sections/09-limitations}
-\input{sections/10-conclusion}
+\input{sections/07-analysis-and-discussion}
+\input{sections/08-evaluation-plan}
+\input{sections/09-operational-walkthrough}
+\input{sections/10-design-tradeoffs}
+\input{sections/11-experiment-blueprint}
+\input{sections/12-related-work}
+\input{sections/13-limitations-and-conclusion}
 
 \bibliographystyle{ACM-Reference-Format}
 \bibliography{refs}

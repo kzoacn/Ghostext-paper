@@ -1,0 +1,86 @@
+\section{Post-Pause Experiment Blueprint}
+
+This blueprint specifies the concrete execution order for the first post-pause campaign. It turns the evaluation plan into a staged workflow with stop/go criteria, required outputs, and artifact expectations.
+
+\subsection{Stage 0: Environment Freeze and Sanity Checks}
+
+Before any measurement run, freeze implementation commit, paper commit, model artifact identity, backend build metadata, and runtime configuration templates. Run a small deterministic sanity suite to confirm that encode/decode behavior matches expected fail-closed semantics under known-good and known-bad inputs.
+
+Stage 0 exits only when sanity checks pass and metadata capture is validated.
+
+\subsection{Stage 1: Recoverability Baseline}
+
+Run the core condition grid with default conservative policy. Primary outputs are decode success rate, failure-class histogram, and retry distribution by condition.
+
+A practical stop criterion for this stage is that every condition has enough samples to estimate success rate with stable confidence intervals and no missing failure taxonomy fields.
+
+\subsection{Stage 2: Runtime and Efficiency Profiling}
+
+Using the same sample grid, measure encode/decode latency distributions, throughput, packet-token efficiency, and total-token efficiency. Report median, p90, and p99 summaries with raw distributions in released artifacts.
+
+This stage should also break down overhead by segment type (bootstrap vs body) to identify where deterministic safeguards have the largest runtime cost.
+
+\subsection{Stage 3: Approximation-Term Instrumentation}
+
+Enable step-level logging for $\alpha_t$, $N_t$, $F_{\mathrm{tot}}$, and $\beta_t$.
+Compute per-message summaries and empirical diagnostics based on
+\begin{equation}
+\widehat{B}_{\mathrm{TV}}=\sum_t\left(\alpha_t+\frac{N_t}{2F_{\mathrm{tot}}}+\beta_t\right).
+\end{equation}
+
+The main output is a decomposition of which term dominates in which operating regions, not a single aggregate score.
+
+\subsection{Stage 4: Ablation Campaign}
+
+Execute the ablation matrix one component at a time:
+\begin{itemize}
+\item stability filter,
+\item fingerprint check,
+\item retry policy,
+\item quantization budget,
+\item truncation policy,
+\item tail policy.
+\end{itemize}
+
+For each ablation, report deltas in recoverability, efficiency, failure composition, and approximation-term summaries. This stage is the main evidence path for novelty-through-outcome arguments.
+
+\subsection{Stage 5: Detector-Facing Evaluation}
+
+Evaluate a detector suite under single-message and multi-message accumulation settings. Detector outputs should be paired with approximation and traffic metrics from previous stages so shifts can be interpreted rather than only reported.
+
+Multi-message results must be shown as curves over aggregation size rather than a single pooled point.
+
+\subsection{Stage 6: Traffic-Side Analysis}
+
+Using retry and timing logs, compare stego and non-stego baselines on output-length and latency distributions. Report unconditional and retry-conditioned distributions to separate intrinsic pipeline effects from retry-mix effects.
+
+If this stage reveals strong side-channel separation, mitigation tuning should be prioritized before any detectability claims are strengthened.
+
+\subsection{Stage 7: Artifact Packaging and Internal Reproduction}
+
+For each figure/table, package raw data, aggregation scripts, plotting scripts, and a README with exact commands. A second local reproduction pass should rebuild all tables and figures from raw logs to validate artifact completeness.
+
+Only after this stage should claim language in the main text be upgraded.
+
+\subsection{Result Templates for Reporting}
+
+To keep reporting consistent, each result block should include:
+\begin{itemize}
+\item condition definition,
+\item sample size,
+\item primary metrics with uncertainty,
+\item failure-class decomposition,
+\item relevant approximation/traffic diagnostics,
+\item artifact path and commit hashes.
+\end{itemize}
+
+\subsection{Escalation Rules for Weak Outcomes}
+
+The blueprint should treat weak outcomes as first-class results.
+If recoverability is unstable, prioritize policy hardening before detector experiments.
+If efficiency is low but recoverability is strong, prioritize quantization and truncation tuning with failure safeguards unchanged.
+If detector or traffic risks rise quickly with payload pressure, prioritize conservative operating envelopes and explicit caveats.
+
+\subsection{Expected Deliverable of the First Post-Pause Cycle}
+
+The first cycle should produce a fully auditable evidence package: measured recoverability, runtime and efficiency profiles, approximation-term decomposition, ablation deltas, detector-facing results, traffic-side analysis, and reproducible artifacts. This package is the minimum basis for replacing design-time statements with evidence-backed claims.

@@ -1,0 +1,102 @@
+\section{Evaluation Plan and Measurement Protocol}
+
+The repository remains under an experiment pause, so this section defines the execution protocol rather than reporting outcomes. The objective is to ensure that once experiments run, each claim in the main text can be matched to a concrete measurement unit, script path, and artifact record.
+
+\subsection{Research Questions and Target Outputs}
+
+The post-pause campaign is organized around five questions.
+
+Q1 asks whether deterministic decoding is reliable under realistic prompt and message diversity.
+Q2 asks what runtime overhead is introduced by deterministic safety controls.
+Q3 asks how much payload efficiency is achieved in packet-carrying tokens and in total transmitted tokens.
+Q4 asks how large each approximation term is in practice and which term dominates in different operating regions.
+Q5 asks how text-only and traffic-aware detectors behave under single-sample and multi-sample observation.
+
+Each question maps to at least one primary table and one released raw-data file.
+
+\subsection{Evaluation Axes and Factorized Grid}
+
+Measurements should follow a fully factorized grid across message length, prompt family, language, and policy settings. Message length should be stratified by plaintext bytes and by packet bytes because cryptographic framing changes effective payload size. Prompt families should include at least narrative, informational, and dialog style prompts in both English and Chinese.
+
+To address the reviewer concern about predictable prompts, every prompt family should include two regimes: a private-prompt regime and a template-known regime where the prompt template is fixed and visible to the evaluator.
+
+\subsection{Metrics with Explicit Definitions}
+
+Let $M$ be message count in a condition, $S$ successful decodes, and $B_i$ packet bytes for sample $i$. Let $T_i^{\mathrm{pkt}}$ be packet-carrying tokens and $T_i^{\mathrm{all}}$ be total transmitted tokens.
+
+Recoverability is
+\begin{equation}
+\mathrm{SR}=\frac{S}{M}.
+\end{equation}
+
+Packet-token efficiency and transmission-token efficiency are
+\begin{equation}
+\eta_{\mathrm{pkt}}=\frac{\sum_i 8B_i}{\sum_i T_i^{\mathrm{pkt}}},
+\qquad
+\eta_{\mathrm{all}}=\frac{\sum_i 8B_i}{\sum_i T_i^{\mathrm{all}}}.
+\end{equation}
+
+Runtime should be reported as median, p90, and p99 for encode latency, decode latency, and tokens-per-second throughput.
+
+For approximation analysis, report per-step and per-message summaries of
+$\alpha_t$, $N_t/(2F_{\mathrm{tot}})$, and $\beta_t$, together with empirical distribution of
+\begin{equation}
+\widehat{B}_{\mathrm{TV}}=\sum_t\left(\alpha_t+\frac{N_t}{2F_{\mathrm{tot}}}+\beta_t\right).
+\end{equation}
+
+\subsection{Ablation Design}
+
+Ablations should isolate each engineering choice while keeping the other knobs fixed. At minimum, evaluate variants with stability filtering disabled, fingerprint checks disabled, bounded retry policy changed, quantization budget reduced, truncation policy widened or narrowed, and natural-tail policy switched between constrained and alternative modes.
+
+The intended output is not only mean performance differences but also changed failure composition. For example, if disabling stability filtering increases efficiency, the report should still show whether synchronization failures rise enough to negate operational gains.
+
+\subsection{Failure Decomposition Protocol}
+
+All failures must be mapped to explicit classes already exposed by the implementation: authentication failure, configuration mismatch, synchronization mismatch, unstable-tokenization exhaustion, low-entropy retry exhaustion, and token-budget exhaustion.
+
+For each condition, report both failure rate and class histogram. This makes negative outcomes actionable and prevents a single aggregate success rate from hiding important failure-mode shifts.
+
+\subsection{Traffic-Side Measurement Protocol}
+
+Because retries may leak side-channel information through timing and length, each run should log attempt count, wall-clock latency, packet-carrying token count, and total token count. Distributions must be reported both unconditionally and conditioned on retry count.
+
+The baseline for comparison should be non-stego model outputs generated under matching prompt families and runtime infrastructure, so observed differences can be attributed to the stego pipeline rather than unrelated serving effects.
+
+\subsection{Detector Evaluation Blocks}
+
+Detector-facing evaluation should include a feature-based classical baseline, a neural text detector, and an LLM-judge-style scorer used only as a perceptual proxy. The same sample sets should be evaluated in two modes: single-message classification and multi-message aggregation per sender.
+
+For multi-message mode, report performance as a function of aggregation size $m$ (for example, $m\in\{1,4,8,16,32\}$) to expose accumulation effects rather than reporting a single pooled number.
+
+\subsection{Statistical Reporting Rules}
+
+Each reported metric should include uncertainty information: confidence intervals for rates, bootstrap intervals for medians when appropriate, and full sample counts. When comparing two configurations, provide effect size with interval estimates instead of significance-only statements.
+
+Negative or null findings should be reported with the same prominence as positive findings.
+
+\subsection{Reproducibility and Artifact Schema}
+
+Every table and figure should have a matching artifact bundle containing raw JSON lines, aggregation scripts, plotting scripts, and exact commit hashes for implementation and paper repositories. Runtime metadata should include model identity, tokenizer hash, backend metadata, prompt-policy ID, seed policy, hardware context, and software versions.
+
+\begin{table}[t]
+\caption{Minimum per-run metadata fields required for reproducible post-pause evaluation.}
+\label{tab:metadata-schema}
+\begin{tabular}{p{0.28\linewidth}p{0.66\linewidth}}
+\toprule
+Field & Description \\
+\midrule
+Run ID & Unique run identifier linked to raw logs and derived tables. \\
+Model metadata & Model family/version and tokenizer hash used in generation. \\
+Policy config & top-$p$, max-$k$, min-entropy threshold, total frequency budget, retry limits. \\
+Prompt regime & Prompt family label and whether template-known or private-prompt setting. \\
+Message profile & Plaintext length bucket, packet length, language tag. \\
+Runtime context & Hardware class, thread count, backend build info, software versions. \\
+Outcome fields & Success/failure class, retries, latency, packet tokens, total tokens. \\
+Diagnostics & Logged approximation terms ($\alpha_t$, $N_t$, $F_{\mathrm{tot}}$, $\beta_t$) summaries. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Readiness Criteria}
+
+The post-pause evaluation phase should be considered complete only when all five research questions have both summary tables and released raw artifacts, including conditions where results are weak or negative. This criterion prevents selective reporting and keeps claim updates evidence-driven.

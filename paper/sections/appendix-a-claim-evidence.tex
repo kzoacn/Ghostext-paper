@@ -1,13 +1,13 @@
 \section{Claim-to-Evidence Mapping (Condensed)}
 
-This appendix is a compact in-paper mirror of the full traceability note in \texttt{notes/literature/claim-evidence-map.md}. Each claim is scoped to implementation and tests available at draft time.
+This appendix is a compact in-paper mirror of the full traceability note in the artifact package. Each claim is scoped to implementation and tests available at draft time. File paths are presented in anonymized module form for double-blind review.
 
 \begin{itemize}
-\item Packet encryption uses scrypt + HKDF key separation + ChaCha20-Poly1305 for header/body (\texttt{src/ghostext/crypto.py} in \texttt{../Ghostext}).
-\item Decode checks configuration fingerprint consistency before body decryption output (\texttt{src/ghostext/decoder.py}).
-\item Candidate policy enforces top-$p$/max-$k$ selection with optional retokenization stability guard (\texttt{src/ghostext/candidate\_policy.py}).
-\item Quantization is integer-based and deterministic with stable tie-break rules (\texttt{src/ghostext/quantization.py}; \texttt{tests/test\_quantization.py}).
-\item Interval codec invertibility is verified in toy tests (\texttt{tests/test\_codec\_toy.py}).
-\item Wrong seed/prompt/text mutation fail closed in tests (\texttt{tests/test\_failures.py}).
-\item English and Chinese round-trip behavior exists in toy tests, with optional real-model smoke test (\texttt{tests/test\_roundtrip\_*.py}; \texttt{tests/test\_llama\_cpp\_integration.py}).
+\item Packet encryption uses scrypt + HKDF key separation + ChaCha20-Poly1305 for header/body (module: \texttt{crypto}).
+\item Decode checks configuration fingerprint consistency before body decryption output (module: \texttt{decoder}).
+\item Candidate policy enforces top-$p$/max-$k$ selection with optional retokenization stability guard (module: \texttt{candidate\_policy}).
+\item Quantization is integer-based and deterministic with stable tie-break rules (module: \texttt{quantization}; test group: quantization tests).
+\item Interval codec invertibility is verified in deterministic toy tests (module: \texttt{codec}; test group: toy codec tests).
+\item Wrong seed/prompt/text mutation fail closed in failure-behavior tests (test group: failure tests).
+\item English and Chinese round-trip behavior exists in toy tests, with optional real-model smoke coverage (test groups: round-trip tests and integration smoke tests).
 \end{itemize}
