@@ -1,50 +1,94 @@
-# Ghostext-paper Agent Guide (Short)
+# AGENTS.md
 
 This file is the compact execution guide for agents in this repository. Detailed policies, rationale, and extended checklists are moved to `SPEC.md`.
 
-## 1. Mission
+## 1) Mission
 
-This repository is for drafting the Ghostext paper (target: ACM CCS 2026), orchestrating evidence-focused experiments, and maintaining claim-to-evidence traceability. The implementation source of truth is `../Ghostext`.
+This repository is for drafting the Ghostext paper (target venue: ACM CCS 2026), organizing evidence-focused experiments, and keeping clear claim-to-evidence traceability.
 
-## 2. Source Of Truth Priority
+The implementation source of truth is `../Ghostext`.
 
-When technical statements are written, prioritize evidence in this order: `../Ghostext/src/ghostext/*.py`, `../Ghostext/tests/*.py`, `../Ghostext/spec.md`, then `../Ghostext/README.md`. If spec text and implementation differ, treat code plus tests as ground truth and record the discrepancy in notes.
+## 2) Hard Boundaries
 
-## 3. Core Framing
+- Follow ACM CCS CFP requirements.
+- Keep ACM `sigconf` style unaltered.
+- Keep main-content page length compliant.
+- Keep main-content length at **at least 10 pages** (excluding references and appendices), while still complying with ACM CCS limits.
+- Until this pause is explicitly lifted by the user, do **not** run experiment pipelines in this repository.
+- Read `../Ghostext` before making technical claims.
+- Do **not** modify `../Ghostext` unless the user explicitly asks for it.
 
-Use security-first framing rather than AI benchmark framing. Focus on threat model, assumptions, failure modes, and reproducibility. Do not present unsupported novelty or broad model-SOTA narratives.
+## 3) Writing Style
 
-## 4. Claim Boundaries
+Use English for the full paper and all notes, and keep the tone friendly, clear, and direct with simple wording instead of complex phrasing. If possible, avoid turning every idea into bullet points and prefer natural paragraph-style academic writing. The writing style should imitate the two key papers under `literature/`, while still matching our own technical content and evidence level. Keep edits small and reviewable, clearly separate facts from inferences and future work, and use explicit caveats whenever uncertainty exists.
 
-Safe claims are deterministic decode under fully matched runtime configuration behavior under tested mismatch classes, encrypt-before-hide authenticated packetization, and protocol-oriented configuration fingerprint checks. Unsafe claims unless new evidence is added include active-edit robustness, dedicated steganalysis resistance, cross-model/version compatibility, and production-grade censorship resistance.
+## 4) Working Title And Core Story
 
-## 5. Required Writing Discipline
+Use this as the working title:
 
-For every nontrivial technical paragraph, explicitly scope the claim, attach at least one evidence pointer, and apply maturity labels (`implemented + tested`, `implemented only`, `planned`) in internal notes. If a statement is not `implemented + tested`, add explicit caveat text. Never present planned experiments as completed.
+**Ghostext: an almost perfect stenography via large language model and arithmetic coding**
 
-Writing style hard requirement for paper text: do not use bullet lists or numbered lists for narrative exposition; write complete natural-language paragraphs instead. In explicit shorthand: **不要分条，写完整的自然段**.
+Core setting:
 
-## 6. Format And Evaluation Constraints
+- Three roles: `Alice`, `Bob`, and `Censor`.
+- Alice uses a prompt, a password, and a secret message with Ghostext.
+- Ghostext outputs a fluent `cover text`.
+- Censor (passive observer) only sees the text and lets it pass as normal language.
+- Bob uses the same prompt and password to recover the secret message.
 
-Follow ACM CCS CFP requirements with unaltered ACM `sigconf` style and page-limit compliance for main content. Keep evaluation security-relevant and centered on recoverability, fail-closed behavior, practical overhead, and reproducibility. Detector resistance or active-edit robustness must be labeled preliminary unless directly implemented and tested.
+## 5) Security Model And Claim Discipline
 
-## 6.1 Temporary Experiment Pause
+Assumed censor:
 
-Until this pause is explicitly lifted by the user, do not run experiment pipelines in this repository, including `./scripts/run_all.sh`, `scripts/run_minimal_eval.py`, and similar long-running evaluation commands. Experiment execution is temporarily paused because runtime cost is too high at this stage. Keep Evaluation-related paper sections as clear placeholders and mark missing measurements/tables as pending.
+- Passive censor only (observes text only).
+- No knowledge of the prompt or password.
 
-## 7. Collaboration Rules
+Security goal:
 
-Read `../Ghostext` before making technical claims. Do not modify `../Ghostext` unless explicitly requested. Prefer small reviewable changes, separate facts from inferences and future work, and choose explicit caveats when uncertain.
+- Censor should not distinguish stego text from natural text.
 
-## 8. Execution Pointers
+Technical basis:
 
-Default pipeline entrypoint is `./scripts/run_all.sh`, but it is currently under the temporary experiment pause above and must not be executed unless the user explicitly asks to resume experiments. Repository detail, literature workflow, CCS policy cache, structure baseline, and expanded checklists are in `SPEC.md`.
+- LLM supplies next-token distributions close to natural language.
+- The encoding process must not distort that next-token distribution.
+- Encryption makes message bits computationally indistinguishable from randomness.
+- Arithmetic coding uses nearly all available entropy from the next-token distribution.
+- The scheme aims to preserve model output distribution while maximizing embedded information.
 
-## 9. Key Literature Requirement
+Claim wording:
 
-The two key papers under `literature/key-paper/` are mandatory full-text reading before writing core technical positioning:
+- Emphasize **almost perfect** as a distribution-preserving, entropy-efficient steganographic goal.
+- Do not overclaim beyond implemented and tested evidence.
 
-- `literature/key-paper/D19-1115.pdf`
-- `literature/key-paper/2026-eacl-long-36-od-stega.pdf`
+## 6) Evaluation Priorities
 
-Abstract-only or summary-only reading is not sufficient for claims that depend on these papers.
+Keep evaluation security-relevant and practical:
+
+- Recoverability / decoding success. 
+- Practical overhead (runtime, token cost, throughput).
+- Reproducibility (configs, seeds, models, prompts, scripts, versions).
+
+For detector resistance and active-edit robustness:
+
+- Label as **preliminary** unless directly implemented and tested in this project.
+
+## 7) Literature Requirements
+
+Before writing core technical positioning:
+
+- Mandatory full-text reading of the two key papers under `literature/`.
+
+Related-work scope must include:
+
+- Core citations and citation chains that appear in the papers under `literature/`.
+
+## 8) Reporting Expectations
+
+When experiment pause is lifted, report basic but complete experimental data and parameters, including at least:
+
+- model/version,
+- decoding/encoding settings,
+- prompt/password setup policy (without leaking secrets),
+- dataset or text source,
+- metrics and units,
+- hardware/runtime context.
