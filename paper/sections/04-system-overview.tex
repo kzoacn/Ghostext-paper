@@ -32,11 +32,11 @@ Retries are enabled only when packet salt or nonce can be refreshed. If both are
 \begin{equation}
 \frac{1}{w}\sum_{j=t-w+1}^{t} H_j < \tau,
 \end{equation}
-where $H_j$ is candidate entropy at step $j$. In the current implementation defaults, $w=32$ and $\tau=0.1$ bits. These retry parameters are sender-side controls that affect whether a run is restarted, not decode replay math itself.
+where $H_j$ is candidate entropy at step $j$. In the current implementation defaults, $w=32$ and $\tau=0.1$ bits. These retry parameters are sender-side controls: failed attempts are discarded before transmission, Bob only receives the final successful cover, and decode replay never depends on hidden retry count $r$. When both salt and nonce are fixed, $r>1$ is disallowed by construction.
 
 \subsection{Natural Tail Handling}
 
-After packet resolution, the encoder may append a short natural tail. Tail tokens do not carry payload and are ignored by the decoder after packet recovery. This isolates surface fluency adjustments from correctness-critical embedding.
+After packet resolution, the encoder may append a short natural tail. Tail tokens do not carry payload and are ignored by the decoder after packet recovery. In this version, tail generation reuses the same constrained candidate mechanism as the payload-carrying prefix, so its role is limited to output completion rather than a separate distribution-matching defense.
 
 \subsection{Fail-Closed Principle and Failure Classes}
 

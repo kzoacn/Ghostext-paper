@@ -11,11 +11,11 @@ This paper contributes four concrete elements.
 
 First, it provides an implementation-backed protocol description that maps directly to a companion implementation artifact (anonymized for review).
 
-Second, it introduces a concise formal treatment of the main approximation sources in the current pipeline: candidate truncation, integer quantization, and 64-bit configuration fingerprinting.
+Second, it introduces a concise formal treatment of approximation sources in the current pipeline: candidate truncation, integer quantization, and retokenization-stability filtering, plus a separate discussion of configuration-fingerprint misbinding risk.
 
-Third, it reports concrete, reproducible end-to-end examples from the existing implementation, including complete encode/decode triples and token statistics.
+Third, it reports concrete, reproducible end-to-end examples from the existing implementation, including CJK examples in the toy backend and language-stratified real-backend metrics.
 
-Fourth, it reports initial real-backend baseline results for recoverability, runtime, and efficiency, and preserves a staged protocol for remaining detector- and approximation-focused evaluation blocks.
+Fourth, it reports initial real-backend baseline results for recoverability, runtime, and efficiency, and preserves a staged protocol for the remaining approximation-instrumentation and detector-facing blocks.
 
 \paragraph{Scope boundary.}
-This paper reports completed baseline experiments for recoverability/runtime/efficiency, while detector-resistance and active-edit robustness claims remain intentionally conservative until corresponding measurements are completed.
+This paper reports completed baseline experiments for recoverability/runtime/efficiency, while detector-resistance claims remain intentionally conservative until corresponding measurements are completed. Active text modification in transit remains out of scope in this revision.

@@ -14,6 +14,8 @@ Q5 asks how text-only and traffic-aware detectors behave under single-sample and
 
 In this revision, Q1--Q3 have initial real-backend evidence from 18 end-to-end trials (two runs merged), while Q4--Q5 remain open and are kept as staged execution targets.
 
+The real-backend baseline configuration in these 18 trials is explicitly: \texttt{top\_p=0.995}, \texttt{max\_candidates=64}, \texttt{min\_entropy\_bits=0.0}, and \texttt{total\_frequency=4096}.
+
 \subsection{Metrics with Explicit Definitions}
 
 Let $M$ be message count in a condition, $S$ successful decodes, and $B_i$ packet bytes for sample $i$. Let $T_i^{\mathrm{pkt}}$ be packet-carrying tokens and $T_i^{\mathrm{all}}$ be total transmitted tokens.
@@ -31,6 +33,8 @@ Packet-token efficiency and transmission-token efficiency are
 \end{equation}
 
 Runtime is reported as median, p90, and p99 for encode and decode latency.
+
+Because retries are sender-side and failed attempts are discarded before transmission, baseline runtime should be interpreted as \emph{total time to final successful cover}, not single-attempt latency.
 
 For approximation analysis, planned reporting remains per-step and per-message summaries of
 $\alpha_t$, $N_t/(2F_{\mathrm{tot}})$, and $\beta_t$, together with empirical distribution of
@@ -55,6 +59,7 @@ Encode latency (s) & median 50.56, p90 88.75, p99 215.40 \\
 Decode latency (s) & median 34.87, p90 54.13, p99 63.92 \\
 Encode bits/token & mean 2.478 (median 2.586, min 1.894, max 3.071) \\
 Attempts used & mean 1.944, max 5 \\
+Approx. single-attempt encode time (derived) & mean 30.57 s (total encode mean 59.44 s over 35 attempts) \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -72,7 +77,9 @@ zh & 9 & 55.57 & 36.96 & 2.370 \\
 \end{tabular}
 \end{table}
 
-These results support the narrow claims that deterministic decoding is operationally reliable in the tested regime and that payload efficiency is in the reported range under conservative policy. They do not yet establish detector resistance or traffic-side indistinguishability.
+These results support the narrow claims that deterministic decoding is operationally reliable in the tested regime and that payload efficiency is in the reported range under the stated baseline policy. They do not yet establish detector resistance or traffic-side indistinguishability.
+
+For language interpretation, the zh condition in this baseline uses CJK prompts and CJK secret messages (see released JSON summaries). The current release does not yet expose full real-backend cover strings in JSONL.
 
 Artifacts are released in this repository under `results/real-backend-baseline-r1/`, `results/real-backend-baseline-r2/`, and merged summaries in `results/real-backend-baseline-summary-merged.{json,md}`. Reproduction commands are provided in `results/real-backend-baseline-reproduce.sh`.
 
@@ -105,6 +112,12 @@ To address predictable-prompt concerns, each prompt family should include two re
 Ablations should isolate each engineering choice while keeping other knobs fixed. For each ablation, report deltas in recoverability, efficiency, failure composition, and approximation-term summaries.
 
 All failures should be mapped to explicit classes already exposed by the implementation: authentication failure, configuration mismatch, synchronization mismatch, unstable-tokenization exhaustion, low-entropy retry exhaustion, and token-budget exhaustion.
+
+\subsection{Baseline Comparison Block (NLS / OD-Stega)}
+
+Direct Ghostext-vs-NLS/OD-Stega numeric comparison on the same model, prompt family, and message set is not included in the current release and is therefore an explicit gap.
+
+Post-pause, the first comparison table should report at least: decode success, bits/token, encode/decode latency, and detector AUC under $m\in\{1,8,32\}$ aggregation, with aligned token-budget and truncation settings.
 
 \subsection{Traffic-Side and Detector Blocks}
 

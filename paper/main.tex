@@ -4,7 +4,7 @@
 \renewcommand\footnotetextcopyrightpermission[1]{}
 \pagestyle{plain}
 
-\title{Ghostext: Practical LLM-Based Linguistic Steganography with Deterministic Decoding}
+\title{Ghostext: an almost perfect stenography via large language model and arithmetic coding}
 
 \author{Anonymous Author(s)}
 \affiliation{
@@ -17,7 +17,7 @@
 \begin{document}
 
 \begin{abstract}
-Ghostext is a practical linguistic steganography system that combines authenticated encryption with arithmetic-coding-style interval narrowing over large language model next-token distributions. The design goal is operational reliability under a passive-censor setting: deterministic sender-receiver synchronization, explicit failure semantics, and reproducible configuration binding. This paper contributes an implementation-backed protocol description, formalized bounds for key approximation effects in the current pipeline, and initial real-backend baseline results with released artifacts. We intentionally separate measured evidence from still-open questions and report conservative conclusions consistent with available data.
+Ghostext is a linguistic steganography system that combines authenticated encryption with arithmetic-coding-style interval narrowing over large language model next-token distributions. The design goal in this revision is operational reliability under a passive-censor setting: deterministic sender-receiver synchronization, explicit failure semantics, and reproducible configuration binding. We provide an implementation-backed protocol description, configuration-consistent approximation bounds, and initial real-backend baseline results with released artifacts. We explicitly separate measured evidence from open items: approximation diagnostics such as $\widehat{B}_{\mathrm{TV}}$ are defined but not yet fully measured at scale, detector-facing claims remain pending, and active text modification in transit is out of scope in this revision.
 \end{abstract}
 
 \maketitle

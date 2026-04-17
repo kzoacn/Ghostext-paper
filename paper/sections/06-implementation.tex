@@ -6,6 +6,8 @@ Ghostext is implemented in a companion code artifact (anonymized for review). Co
 
 Current implementation provides a deterministic toy backend and a real llama.cpp Qwen backend. The toy backend is primarily for protocol-level testing and deterministic regression. The real backend is used for operational baseline experiments in this paper and for the remaining staged evaluation blocks.
 
+For naming consistency, this paper follows the artifact label \texttt{Qwen/Qwen3.5-2B} as recorded in the released summaries. We do not claim model-family comparisons in this revision.
+
 \subsection{Observed Failure Classes}
 
 The code distinguishes failure classes relevant for later security and reliability analysis: integrity mismatch, configuration mismatch, synchronization mismatch, unstable-tokenization exhaustion, low-entropy retry exhaustion, and token-budget exhaustion.
