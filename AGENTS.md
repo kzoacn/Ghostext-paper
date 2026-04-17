@@ -24,9 +24,9 @@ Use English for the full paper and all notes, and keep the tone friendly, clear,
 
 ## 4) Working Title And Core Story
 
-Use this as the working title:
+Use this as the working title (can be modified):
 
-**Ghostext: an almost perfect stenography via large language model and arithmetic coding**
+**Ghostext: an almost perfect steganography via large language model and arithmetic coding**
 
 Core setting:
 
