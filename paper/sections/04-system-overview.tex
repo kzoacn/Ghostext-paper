@@ -32,7 +32,7 @@ Retries are enabled only when packet salt or nonce can be refreshed. If both are
 \begin{equation}
 \frac{1}{w}\sum_{j=t-w+1}^{t} H_j < \tau,
 \end{equation}
-where $H_j$ is candidate entropy at step $j$. In the current implementation defaults, $w=32$ and $\tau=0.1$ bits. These retry parameters are sender-side controls: failed attempts are discarded before transmission, Bob only receives the final successful cover, and decode replay never depends on hidden retry count $r$. When both salt and nonce are fixed, $r>1$ is disallowed by construction.
+where $H_j$ is candidate entropy at step $j$. In the current implementation defaults, $w=32$ and $\tau=0.1$ bits. These retry parameters are sender-side controls: failed attempts are discarded before transmission, Bob only receives the final successful cover, and decode replay never depends on hidden retry count $r$. When both salt and nonce are fixed, $r>1$ is disallowed by construction. This isolates correctness from retry count, but it does not hide retry-induced latency or energy variation from a traffic observer.
 
 \subsection{Natural Tail Handling}
 

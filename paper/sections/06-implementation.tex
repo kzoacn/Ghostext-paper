@@ -6,7 +6,9 @@ Ghostext is implemented in a companion code artifact (anonymized for review). Co
 
 Current implementation provides a deterministic toy backend and a real llama.cpp Qwen backend. The toy backend is primarily for protocol-level testing and deterministic regression. The real backend is used for operational baseline experiments in this paper and for the remaining staged evaluation blocks.
 
-For naming consistency, this paper follows the artifact label \texttt{Qwen/Qwen3.5-2B} as recorded in the released summaries. We do not claim model-family comparisons in this revision.
+For naming consistency, this paper follows the artifact identifier \texttt{Qwen/Qwen3.5-2B} as recorded in the released summaries. The companion implementation documentation points to the third-party GGUF repository \nolinkurl{bartowski/Qwen_Qwen3.5-2B-GGUF} and the file \texttt{Qwen\_Qwen3.5-2B-Q4\_K\_S.gguf}. We therefore treat \texttt{Qwen/Qwen3.5-2B} as a reproduction label for the released artifact, not as evidence that this string is the canonical upstream model-family tag.
+
+The released per-run summaries already pin Ghostext git head and runtime provenance. They also record tokenizer hash, backend identifier, and runtime settings, and the merged summary now surfaces those fields in one place. Two reproducibility improvements are still open: exposing the exact llama.cpp commit SHA in the same released summary bundle and surfacing the canonical upstream model provenance behind the third-party GGUF label.
 
 \subsection{Observed Failure Classes}
 
@@ -16,4 +18,4 @@ The code distinguishes failure classes relevant for later security and reliabili
 
 Existing tests cover: packet crypto round-trip and mismatch failures; deterministic quantization behavior; interval invertibility in toy settings; wrong-prompt/wrong-seed/text-mutation fail-closed behavior; retokenization stability guard behavior; bilingual toy round trips; and optional real-model smoke tests.
 
-These tests support correctness and fail-closed claims. They do not substitute for full detector-resistance evaluation.
+These tests support correctness and fail-closed claims. They do not substitute for full detector-resistance evaluation, and they should not be read as evidence of cross-hardware determinism beyond the pinned local environment used in the released artifact.

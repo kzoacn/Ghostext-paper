@@ -2,20 +2,18 @@
 
 Steganography and cryptography solve different problems. Cryptography protects message content, while steganography aims to hide that communication is taking place at all. In text channels, this objective is difficult because both lexical quality and token-level statistics can reveal generation artifacts.
 
-Neural Linguistic Steganography (NLS)~\cite{ziegler2019neural} established a practical baseline for arithmetic-coding-based LLM steganography, and OD-Stega~\cite{huang2026odstega} extended this line with constrained-distribution optimization and explicit discussion of tokenization mismatch. Ghostext follows the same generation-based family but focuses on protocol engineering questions that strongly affect deployment: deterministic synchronization, authenticated packet framing, explicit mismatch detection, and fail-closed decode behavior.
+Neural Linguistic Steganography (NLS)~\cite{ziegler2019neural} established a practical baseline for arithmetic-coding-based LLM steganography, and OD-Stega~\cite{huang2026odstega} extended this line with constrained-distribution optimization and explicit discussion of tokenization mismatch. Ghostext follows the same generation-based family but focuses on protocol engineering questions that strongly affect deployment: deterministic synchronization, authenticated packet framing, explicit mismatch detection, and fail-closed decode behavior. The long-term aspiration is distribution-preserving steganography, but this draft is intentionally written as a protocol-engineering paper rather than an almost-perfect-security claim.
 
 Ghostext uses the standard three-role setting. Alice takes a prompt, a passphrase, and a secret message. The message is encrypted and then embedded through interval narrowing over model next-token distributions. Bob uses the same protocol-sensitive configuration to decode and decrypt. A passive Censor observes only cover text.
 
 \paragraph{What this paper contributes.}
-This paper contributes four concrete elements.
+This paper contributes three concrete elements.
 
-First, it provides an implementation-backed protocol description that maps directly to a companion implementation artifact (anonymized for review).
+First, it provides an implementation-backed protocol description that maps directly to a companion implementation artifact (anonymized for review), with authenticated packet framing, runtime binding, and fail-closed decode semantics treated as first-class protocol features rather than incidental implementation details.
 
-Second, it introduces a concise formal treatment of approximation sources in the current pipeline: candidate truncation, integer quantization, and retokenization-stability filtering, plus a separate discussion of configuration-fingerprint misbinding risk.
+Second, it introduces a concise formal treatment of approximation sources in the current pipeline: candidate truncation, integer quantization, and retokenization-stability filtering, plus separate discussion of configuration-fingerprint misbinding risk and detector-facing calibration limits for implementation-side diagnostics.
 
-Third, it reports concrete, reproducible end-to-end examples from the existing implementation, including CJK examples in the toy backend and language-stratified real-backend metrics.
-
-Fourth, it reports initial real-backend baseline results for recoverability, runtime, and efficiency, and preserves a staged protocol for the remaining approximation-instrumentation and detector-facing blocks.
+Third, it reports concrete, reproducible end-to-end evidence from the existing implementation: toy-backend bilingual round trips together with a language-stratified real-backend pilot baseline for recoverability, runtime, and efficiency in a template-known regime, while preserving a staged protocol for the remaining approximation-instrumentation, baseline-comparison, prompt-regime, and detector-facing blocks.
 
 \paragraph{Scope boundary.}
-This paper reports completed baseline experiments for recoverability/runtime/efficiency, while detector-resistance claims remain intentionally conservative until corresponding measurements are completed. Active text modification in transit remains out of scope in this revision.
+This paper reports a pilot operational floor for recoverability/runtime/efficiency, while detector-resistance claims remain intentionally conservative until corresponding measurements are completed. The released 18-trial baseline is therefore evidence of feasibility in a pinned template-known regime, not a settled reliability estimate. Unknown-prompt conditions, larger-sample statistical characterization, aligned NLS/OD-Stega comparison, and active text modification in transit remain outside the measured core of this revision.

@@ -4,21 +4,29 @@
 
 Ghostext currently targets passive-text observation and does not yet provide full empirical detector-resistance evidence.
 
-Real-model evidence remains narrower than toy-backend protocol coverage.
+Real-model evidence remains narrower than toy-backend protocol coverage, and the current real-backend sample is only a pilot 18-trial template-known baseline.
 
 Cross-family model generalization is not yet established.
 
 The current paper provides implementation-aligned bounds, not a full end-to-end indistinguishability proof.
 
+The reported $2.478$ bits/token figure comes from an ungated baseline with $h_{\min}=0.0$ and should not be interpreted as a recommended deployment point.
+
+The diagnostic $\widehat{B}_{\mathrm{TV}}$ is not yet calibrated against detector scores and should currently be read only as an implementation-side audit signal.
+
+Deterministic replay is evidenced only within a pinned local environment; cross-hardware determinism is not yet established.
+
 Active text modification in transit is out of scope in this revision.
 
-Direct aligned numeric comparison against NLS/OD-Stega is not yet included.
+Direct aligned numeric comparison against NLS/OD-Stega is not yet included and is now tracked as an explicit pending stage before stronger positioning claims.
+
+The released summaries still need two reproducibility upgrades: adding the exact llama.cpp commit SHA alongside the now-surfaced Ghostext commit and backend metadata, and surfacing the canonical upstream provenance behind the current third-party GGUF label.
 
 \subsection{Evidence Upgrade Criteria}
 
 To avoid overclaiming during later revisions, we define explicit promotion rules from design-time statements to evidence-backed claims.
 
-First, any claim about recoverability must be supported by condition-stratified success rates and failure-class histograms, not only aggregate success numbers. Second, any claim about practical efficiency must include both packet-token and end-to-end transmission-token metrics with latency distributions. Third, any claim touching undetectability must include detector-facing and traffic-side results, together with approximation-term diagnostics, under clearly specified threat regimes.
+First, any claim about recoverability must be supported by condition-stratified success rates and failure-class histograms, not only aggregate success numbers. Second, any claim about practical efficiency must include both packet-token and end-to-end transmission-token metrics with latency distributions. Third, any claim touching undetectability must include detector-facing and traffic-side results, together with approximation-term diagnostics, under clearly specified threat regimes. In particular, any argument that cites $\widehat{B}_{\mathrm{TV}}$ in a detector-facing context must calibrate it against detector outputs rather than treating it as self-validating.
 
 If a statement cannot be tied to a released artifact entry (raw logs, aggregation scripts, and commit hashes), it should remain phrased as an open item or engineering intuition. This rule keeps narrative pressure from outrunning evidence.
 
@@ -52,6 +60,6 @@ These conditions are process constraints, but they are also security-relevant: t
 
 Ghostext contributes a deterministic, fail-closed, implementation-auditable LLM steganography protocol with authenticated packetization, synchronization binding, and explicit approximation analysis.
 
-This revision addresses key review concerns by consolidating structure, clarifying approximation-bound interpretation, expanding deployment caveats, and broadening literature grounding.
+This revision aligns title, threat model, baseline description, and approximation analysis more closely with the evidence that is actually released in the artifact bundle, and it treats the 18-trial real-backend results explicitly as a pilot operational floor rather than a completed security evaluation.
 
 The next milestone is to complete the remaining detector, traffic-side, and approximation-instrumentation stages with the same artifact discipline used for the baseline results.

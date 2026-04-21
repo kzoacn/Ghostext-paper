@@ -1,13 +1,21 @@
 \section{Claim-to-Evidence Mapping (Condensed)}
 
-This appendix is a compact in-paper mirror of the full traceability note in the artifact package. Each claim is scoped to implementation and tests available at draft time. File paths are presented in anonymized module form for double-blind review.
+This appendix is a compact in-paper mirror of the full traceability note in the artifact package. Each claim is scoped to implementation and tests available at draft time. Relative paths refer to the anonymized companion artifact layout.
 
-\begin{itemize}
-\item Packet encryption uses scrypt + HKDF key separation + ChaCha20-Poly1305 for header/body (module: \texttt{crypto}).
-\item Decode checks configuration fingerprint consistency before body decryption output (module: \texttt{decoder}).
-\item Candidate policy enforces top-$p$/max-$k$ selection with optional retokenization stability guard (module: \texttt{candidate\_policy}).
-\item Quantization is integer-based and deterministic with stable tie-break rules (module: \texttt{quantization}; test group: quantization tests).
-\item Interval codec invertibility is verified in deterministic toy tests (module: \texttt{codec}; test group: toy codec tests).
-\item Wrong seed/prompt/text mutation fail closed in failure-behavior tests (test group: failure tests).
-\item English and Chinese round-trip behavior exists in toy tests, with optional real-model smoke coverage (test groups: round-trip tests and integration smoke tests).
-\end{itemize}
+\begin{table}[h]
+\caption{Condensed module-to-evidence traceability map; see Section~\ref{sec:related-positioning} for the matching scope-constrained novelty statement.}
+\label{tab:appendix-claim-evidence}
+\begin{tabular}{p{0.28\linewidth}p{0.24\linewidth}p{0.39\linewidth}}
+\toprule
+Claim area & Test / artifact group & Released evidence path or anchor \\
+\midrule
+Packet crypto and framing (\texttt{crypto.py}, \texttt{packet.py}) & \texttt{test\_crypto.py}, \texttt{test\_packet.py} & companion artifact modules + toy round-trip checks \\
+Configuration fingerprint fail-closed behavior (\texttt{decoder.py}) & \texttt{test\_failures.py} & mismatch/fail-closed cases \\
+Candidate policy and retokenization stability (\texttt{candidate\_policy.py}) & \texttt{test\_tokenization\_stability.py}, \texttt{test\_failures.py} & candidate/stability cases \\
+Deterministic integer quantization (\texttt{quantization.py}) & \texttt{test\_quantization.py} & quantization regression cases \\
+Interval codec invertibility (\texttt{codec.py}) & \texttt{test\_codec\_toy.py} & deterministic toy round-trip cases \\
+Retry/failure taxonomy in real runs & released baseline logs & \texttt{results/real-backend-baseline-r1/} and \texttt{r2/} \\
+Bilingual operational floor and merged metrics & released summaries + smoke coverage & \texttt{results/real-backend-baseline-summary-merged.\{json,md\}} and \texttt{test\_llama\_cpp\_integration.py} \\
+\bottomrule
+\end{tabular}
+\end{table}

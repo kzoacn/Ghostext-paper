@@ -1,6 +1,6 @@
 \section{Evaluation and Staged Execution Protocol}
 
-This section reports completed real-backend baseline outcomes for Q1--Q3 and keeps the same staged protocol for the remaining questions. The objective is still claim-to-evidence traceability: each statement should map to a concrete metric definition, script path, and released artifact.
+This section reports released pilot real-backend outcomes for Q1--Q3 as a template-known operational floor and keeps the same staged protocol for the remaining questions. The objective is still claim-to-evidence traceability: each statement should map to a concrete metric definition, script path, and released artifact.
 
 \subsection{Research Questions and Current Coverage}
 
@@ -12,7 +12,7 @@ Q3 asks how much payload efficiency is achieved in packet-carrying tokens and in
 Q4 asks how large each approximation term is in practice and which term dominates in different operating regions.
 Q5 asks how text-only and traffic-aware detectors behave under single-sample and multi-sample observation.
 
-In this revision, Q1--Q3 have initial real-backend evidence from 18 end-to-end trials (two runs merged), while Q4--Q5 remain open and are kept as staged execution targets.
+In this revision, Q1--Q3 have pilot real-backend evidence from 18 end-to-end template-known trials (two runs merged), while Q4--Q5 remain open and are kept as staged execution targets.
 
 The real-backend baseline configuration in these 18 trials is explicitly: \texttt{top\_p=0.995}, \texttt{max\_candidates=64}, \texttt{min\_entropy\_bits=0.0}, and \texttt{total\_frequency=4096}.
 
@@ -32,32 +32,33 @@ Packet-token efficiency and transmission-token efficiency are
 \eta_{\mathrm{all}}=\frac{\sum_i 8B_i}{\sum_i T_i^{\mathrm{all}}}.
 \end{equation}
 
-Runtime is reported as median, p90, and p99 for encode and decode latency.
+Runtime is reported as median and p90 in the main paper tables, while the released artifacts also retain descriptive p99 values. With $n=18$, the p90/p99 values should be read as order statistics rather than stable tail estimates.
 
 Because retries are sender-side and failed attempts are discarded before transmission, baseline runtime should be interpreted as \emph{total time to final successful cover}, not single-attempt latency.
 
 For approximation analysis, planned reporting remains per-step and per-message summaries of
 $\alpha_t$, $N_t/(2F_{\mathrm{tot}})$, and $\beta_t$, together with empirical distribution of
 \begin{equation}
-\widehat{B}_{\mathrm{TV}}=\sum_t\left(\alpha_t+\frac{N_t}{2F_{\mathrm{tot}}}+\beta_t\right).
+\widehat{B}_{\mathrm{TV}}=\sum_t\left(\alpha_t+\frac{N_t}{2F_{\mathrm{tot}}}+\beta_t\right)
 \end{equation}
+as defined in Equation~\ref{eq:bhat-tv}.
 
-\subsection{Completed Real-Backend Baseline (Q1--Q3)}
+\subsection{Released Pilot Real-Backend Baseline (Q1--Q3)}
 
-Table~\ref{tab:real-baseline-overall} summarizes merged outcomes from 18 real-backend trials (9 English, 9 Chinese), executed with pinned model/backend/runtime configuration and released raw JSONL logs.
+Table~\ref{tab:real-baseline-overall} summarizes merged outcomes from 18 real-backend trials (9 English, 9 Chinese) in the template-known regime, executed with pinned model/backend/runtime configuration and released raw JSONL logs.
 
 \begin{table}[t]
-\caption{Merged real-backend baseline results (r1+r2, $n=18$).}
+\caption{Merged real-backend pilot results (r1+r2, template-known baseline, $n=18$; policy \texttt{top\_p=0.995}, \texttt{max\_candidates=64}, \texttt{min\_entropy\_bits=0.0}, \texttt{total\_frequency=4096}).}
 \label{tab:real-baseline-overall}
 \begin{tabular}{p{0.52\linewidth}p{0.39\linewidth}}
 \toprule
 Metric & Value \\
 \midrule
-Decode success rate ($\mathrm{SR}$) & $18/18=1.000$ \\
+Decode success rate ($\mathrm{SR}$) & $18/18=1.000$ (Wilson 95\% CI: $[0.824,1.000]$) \\
 Failure histogram & none observed \\
-Encode latency (s) & median 50.56, p90 88.75, p99 215.40 \\
-Decode latency (s) & median 34.87, p90 54.13, p99 63.92 \\
-Encode bits/token & mean 2.478 (median 2.586, min 1.894, max 3.071) \\
+Encode latency (s) & median 50.56, p90 88.75 \\
+Decode latency (s) & median 34.87, p90 54.13 \\
+Encode bits/token at \texttt{min\_entropy\_bits=0.0} & mean 2.478 (median 2.586, min 1.894, max 3.071) \\
 Attempts used & mean 1.944, max 5 \\
 Approx. single-attempt encode time (derived) & mean 30.57 s (total encode mean 59.44 s over 35 attempts) \\
 \bottomrule
@@ -65,19 +66,26 @@ Approx. single-attempt encode time (derived) & mean 30.57 s (total encode mean 5
 \end{table}
 
 \begin{table}[t]
-\caption{Language-stratified baseline summary from the same merged runs.}
+\caption{Language-stratified pilot summary from the same template-known baseline, with per-cell uncertainty computed from the released JSONL logs.}
 \label{tab:real-baseline-language}
-\begin{tabular}{p{0.10\linewidth}p{0.10\linewidth}p{0.22\linewidth}p{0.22\linewidth}p{0.22\linewidth}}
+\begin{tabular}{p{0.25\linewidth}p{0.31\linewidth}p{0.31\linewidth}}
 \toprule
-Lang & Trials & Encode median (s) & Decode median (s) & Mean bits/token \\
+Metric & en ($n=9$) & zh ($n=9$) \\
 \midrule
-en & 9 & 38.62 & 27.27 & 2.586 \\
-zh & 9 & 55.57 & 36.96 & 2.370 \\
+Decode success rate & $9/9$ (Wilson 95\% CI: $[0.701,1.000]$) & $9/9$ (Wilson 95\% CI: $[0.701,1.000]$) \\
+Encode median (s) & 38.62 (bootstrap 95\% CI: $[26.11,56.85]$) & 55.57 (bootstrap 95\% CI: $[38.40,80.73]$) \\
+Decode median (s) & 27.27 (bootstrap 95\% CI: $[24.28,54.99]$) & 36.96 (bootstrap 95\% CI: $[25.54,51.40]$) \\
+Mean encode bits/token & 2.586 (bootstrap 95\% CI: $[2.39,2.75]$) & 2.370 (bootstrap 95\% CI: $[2.17,2.60]$) \\
+\texttt{attempts\_used} histogram & \texttt{1:7, 2:1, 5:1} & \texttt{1:3, 2:2, 3:3, 5:1} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-These results support the narrow claims that deterministic decoding is operationally reliable in the tested regime and that payload efficiency is in the reported range under the stated baseline policy. They do not yet establish detector resistance or traffic-side indistinguishability.
+These results support only a narrow pilot claim: all 18 released trials decoded successfully under the tested regime, but the aggregate Wilson 95\% interval $[0.824,1.000]$ should be read literally, so the current evidence is an operational floor rather than a settled reliability estimate. The released artifact still records descriptive p99 encode/decode latencies (215.40 s and 63.92 s), but at $n=18$ these are dominated by a few high-retry cases rather than stable tail behavior and are therefore not headlined in the main paper table. The reported payload-efficiency numbers are therefore best read as pilot measurements under the stated baseline policy, not as general claims about detector resistance, traffic-side indistinguishability, or stability across prompt-regime changes.
+
+For transparency, the aggregate 95\% bootstrap intervals from the released 18-trial sample are $[34.43,57.76]$ seconds for encode median, $[26.17,48.13]$ seconds for decode median, and $[2.33,2.63]$ for mean encode bits/token. Table~\ref{tab:real-baseline-language} now mirrors that reporting style per language cell, but these intervals remain descriptive pilot statistics rather than a substitute for a larger condition-stratified campaign. At $n=9$ per language, the Wilson intervals are mainly reminders of uncertainty; the more informative signal in Table~\ref{tab:real-baseline-language} is the different \texttt{attempts\_used} profile between the two language cells.
+
+Because the released baseline uses \texttt{min\_entropy\_bits=0.0}, the reported 2.478 bits/token should be interpreted as an ungated initial operating point, not as a recommended deployment default. The gap between aggregate mean 2.478 and median 2.586 already indicates non-negligible per-message heterogeneity inside this small pilot, which is another reason not to over-read a single headline figure before the planned $h_{\min}$ sweep.
 
 For language interpretation, the zh condition in this baseline uses CJK prompts and CJK secret messages (see released JSON summaries). The current release does not yet expose full real-backend cover strings in JSONL.
 
@@ -87,23 +95,25 @@ Artifacts are released in this repository under `results/real-backend-baseline-r
 
 For broader coverage beyond the baseline, measurements should follow a factorized grid across message length, prompt family, language, and policy settings. Message length should be stratified by plaintext bytes and packet bytes because cryptographic framing changes effective payload size. Prompt families should include at least narrative, informational, and dialog styles in both English and Chinese.
 
-To address predictable-prompt concerns, each prompt family should include two regimes: private-prompt and template-known.
+To address predictable-prompt concerns, each prompt family should include two regimes: private-prompt and template-known. The released baseline covers only the latter regime.
 
 \subsection{Staged Execution Order (Status-Tagged)}
 
-\textbf{Stage 0 (environment freeze) -- completed:} implementation commit, model artifact identity, backend metadata, and runtime settings were pinned and logged.
+\textbf{Stage 0 (environment freeze) -- completed for the released runs; one provenance field still pending:} implementation commit, model artifact identity, backend metadata, and runtime settings were pinned and logged, and the merged summary now surfaces Ghostext git head together with runtime provenance; the remaining missing field is the exact llama.cpp commit SHA.
 
-\textbf{Stage 1 (recoverability baseline) -- completed (initial):} decode success rate, failure histogram, and retry distribution were collected for the merged 18-trial baseline.
+\textbf{Stage 1 (recoverability pilot) -- pilot released:} decode success rate, failure histogram, retry distribution, and language-stratified confidence intervals were collected for the merged 18-trial template-known baseline.
 
-\textbf{Stage 2 (runtime and efficiency) -- completed (initial):} encode/decode latency summaries and bits/token efficiency were collected in the same baseline runs.
+\textbf{Stage 2 (runtime and efficiency pilot) -- pilot released:} encode/decode latency summaries, bits/token efficiency, and per-language bootstrap intervals were collected in the same baseline runs.
 
 \textbf{Stage 3 (approximation instrumentation) -- pending:} enable step-level logging for $\alpha_t$, $N_t$, $F_{\mathrm{tot}}$, and $\beta_t$; report term dominance by operating region.
 
 \textbf{Stage 4 (ablation campaign) -- pending:} run one-factor-at-a-time ablations for stability filter, fingerprint check, retry policy, quantization budget, truncation policy, and tail policy.
 
-\textbf{Stage 5 (detector-facing evaluation) -- pending:} evaluate detector suite in single-message and multi-message accumulation modes.
+\textbf{Stage 4.5 (aligned external baselines) -- pending:} run at least one single-condition Ghostext-vs-NLS/OD-Stega comparison on the same model, prompt family, and message set; report decode success, bits/token, and encode/decode latency before any superiority claim.
 
-\textbf{Stage 6 (traffic-side analysis) -- pending:} compare stego and non-stego baselines on output-length and latency distributions with retry-conditioned views.
+\textbf{Stage 5 (detector-facing evaluation) -- pending:} start with a single-message proxy slice and then extend to multi-message accumulation; correlation analysis between $\widehat{B}_{\mathrm{TV}}$ and detector scores is a required output rather than an optional appendix.
+
+\textbf{Stage 6 (traffic-side analysis) -- pending:} compare stego and non-stego baselines on output-length and latency distributions with retry-conditioned views, including a natural-cover baseline whose retry count is degenerate unless deliberately equalized.
 
 \textbf{Stage 7 (artifact packaging) -- in progress:} baseline raw logs and merged summaries are released; remaining stages will follow the same artifact standard.
 
@@ -117,19 +127,19 @@ All failures should be mapped to explicit classes already exposed by the impleme
 
 Direct Ghostext-vs-NLS/OD-Stega numeric comparison on the same model, prompt family, and message set is not included in the current release and is therefore an explicit gap.
 
-Post-pause, the first comparison table should report at least: decode success, bits/token, encode/decode latency, and detector AUC under $m\in\{1,8,32\}$ aggregation, with aligned token-budget and truncation settings.
+Post-pause, the first comparison table should report at least: decode success, bits/token, encode/decode latency, and detector AUC under $m\in\{1,8,32\}$ aggregation, with aligned token-budget and truncation settings. Until that table exists, Ghostext's positioning relative to NLS/OD-Stega should be read as a systems-integration claim rather than a measured performance comparison.
 
 \subsection{Traffic-Side and Detector Blocks}
 
 Because retries may leak side-channel information through timing and length, each run should log attempt count, wall-clock latency, packet-carrying token count, and total token count. Distributions should be reported both unconditionally and conditioned on retry count.
 
-Detector-facing evaluation should include at least one feature-based classical baseline, one neural text detector, and one LLM-judge-style scorer used only as a perceptual proxy. The same sample sets should be evaluated in single-message and multi-message modes.
+Detector-facing evaluation should include at least one feature-based classical baseline, one neural text detector, and one LLM-judge-style scorer used only as a perceptual proxy. The same sample sets should be evaluated in single-message and multi-message modes, and the single-message slice is the minimum first release because it is much cheaper than the full accumulation study.
 
 For multi-message mode, performance should be reported as a function of aggregation size $m$ (for example, $m\in\{1,4,8,16,32\}$), not a single pooled number.
 
 \subsection{Statistical Reporting and Artifact Rules}
 
-Each reported metric should include uncertainty information: confidence intervals for rates, bootstrap intervals for medians when appropriate, and full sample counts. When comparing configurations, report effect sizes with interval estimates rather than significance-only statements.
+Each reported metric should include uncertainty information: confidence intervals for rates, bootstrap intervals for medians when appropriate, and full sample counts. The current 18-trial pilot now reports aggregate Wilson/bootstrap intervals together with per-language pilot intervals, but expanded condition grids should report interval estimates per cell. When comparing configurations, report effect sizes with interval estimates rather than significance-only statements.
 
 Negative or null findings should be reported with the same prominence as positive findings.
 

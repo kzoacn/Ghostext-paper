@@ -6,7 +6,7 @@ Ghostext has three roles: Alice (sender), Bob (receiver), and Censor (observer).
 
 \subsection{Primary Adversary}
 
-The primary adversary is a passive Censor that observes text but does not modify transport content. The Censor does not know the passphrase. Prompt knowledge is treated as an adversarial capability axis: we report our baseline analysis under unknown-prompt assumption and explicitly discuss risks when prompt templates are predictable.
+The primary adversary is a passive Censor that observes text but does not modify transport content. The Censor does not know the passphrase. Prompt knowledge is treated as an adversarial capability axis rather than a fixed assumption. The released 18-trial baseline uses fixed public templates and should therefore be read as a \emph{template-known operational floor}; unknown-prompt or private-prompt conditions remain planned evaluation regimes rather than completed evidence blocks in this revision.
 
 \subsection{Additional Realistic Attack Surfaces}
 
@@ -49,4 +49,4 @@ These boundaries are not unique to Ghostext, but making them explicit is importa
 
 \subsection{Security Objective in This Paper}
 
-The objective of this paper is modest and explicit: provide a deterministic, fail-closed, implementation-auditable steganographic protocol with bounded approximation analysis and a reproducible evaluation framework. Strong detector-evasion claims remain pending until dedicated detector and traffic-side stages are completed.
+The objective of this paper is modest and explicit: provide a deterministic, fail-closed, implementation-auditable steganographic protocol with bounded approximation analysis and a reproducible evaluation framework. Strong detector-evasion claims remain pending until dedicated detector and traffic-side stages are completed, and the current real-backend evidence should be read as an initial template-known baseline rather than a full threat-regime sweep.

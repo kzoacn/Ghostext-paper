@@ -4,7 +4,7 @@
 \renewcommand\footnotetextcopyrightpermission[1]{}
 \pagestyle{plain}
 
-\title{Ghostext: an almost perfect stenography via large language model and arithmetic coding}
+\title{Ghostext: A Deterministic, Fail-Closed LLM Steganography Protocol with Implementation-Aligned Approximation Bounds}
 
 \author{Anonymous Author(s)}
 \affiliation{
@@ -17,7 +17,7 @@
 \begin{document}
 
 \begin{abstract}
-Ghostext is a linguistic steganography system that combines authenticated encryption with arithmetic-coding-style interval narrowing over large language model next-token distributions. The design goal in this revision is operational reliability under a passive-censor setting: deterministic sender-receiver synchronization, explicit failure semantics, and reproducible configuration binding. We provide an implementation-backed protocol description, configuration-consistent approximation bounds, and initial real-backend baseline results with released artifacts. We explicitly separate measured evidence from open items: approximation diagnostics such as $\widehat{B}_{\mathrm{TV}}$ are defined but not yet fully measured at scale, detector-facing claims remain pending, and active text modification in transit is out of scope in this revision.
+Ghostext is a deterministic, fail-closed linguistic steganography protocol for large language models with authenticated packet framing and implementation-aligned approximation bounds. It uses arithmetic-coding-style interval narrowing over next-token distributions, but the present paper is positioned as a protocol-engineering contribution rather than a near-perfect-security claim. In this revision, the real-backend evidence is limited to a pilot 18-trial template-known baseline under a passive-censor setting; all 18 trials decoded successfully, but the corresponding Wilson 95\% interval $[0.824,1.000]$ makes this only an operational floor for recoverability, runtime, and payload efficiency rather than a settled reliability or detector-evasion result. We explicitly separate measured evidence from open items: the implementation-side TV-style audit diagnostic is uncalibrated against detector scores, natural-tail completion is not claimed as an independent evasion mechanism, detector-facing claims remain pending, and active text modification in transit is out of scope.
 \end{abstract}
 
 \maketitle
