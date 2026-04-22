@@ -18,7 +18,7 @@ Deterministic replay is evidenced only within a pinned local environment; cross-
 
 Active text modification in transit is out of scope in this revision.
 
-Direct aligned numeric comparison against NLS/OD-Stega is not yet included and is now tracked as an explicit pending stage before stronger positioning claims.
+Only an initial same-backend NLS-style comparison slice is included. A historical reproduction of official NLS/OD-Stega settings, larger-sample aligned baseline tables, and detector-side comparison remain pending before stronger positioning claims.
 
 The released summaries still need two reproducibility upgrades: adding the exact llama.cpp commit SHA alongside the now-surfaced Ghostext commit and backend metadata, and surfacing the canonical upstream provenance behind the current third-party GGUF label.
 
@@ -60,6 +60,6 @@ These conditions are process constraints, but they are also security-relevant: t
 
 Ghostext contributes a deterministic, fail-closed, implementation-auditable LLM steganography protocol with authenticated packetization, synchronization binding, and explicit approximation analysis.
 
-This revision aligns title, threat model, baseline description, and approximation analysis more closely with the evidence that is actually released in the artifact bundle, and it treats the 18-trial real-backend results explicitly as a pilot operational floor rather than a completed security evaluation.
+This revision aligns title, threat model, baseline description, and approximation analysis more closely with the evidence that is actually released in the artifact bundle, treats the 18-trial real-backend results explicitly as a pilot operational floor rather than a completed security evaluation, and adds a first same-backend NLS-style comparison slice to separate payload normalization effects from broader detector claims.
 
 The next milestone is to complete the remaining detector, traffic-side, and approximation-instrumentation stages with the same artifact discipline used for the baseline results.

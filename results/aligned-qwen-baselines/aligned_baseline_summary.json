@@ -1,0 +1,213 @@
+{
+  "generated_at_utc": "2026-04-21T13:48:52Z",
+  "runtime": {
+    "timestamp_utc": "2026-04-21T13:48:52Z",
+    "host": "kzoacn-PC",
+    "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.12.12",
+    "ghostext_version": "Name: ghostext\nVersion: 0.1.1\nSummary: Text steganography demo driven by next-token distributions\nHome-page: \nAuthor: \nAuthor-email: \nLicense: \nLocation: /home/kzoacn/miniforge3/lib/python3.12/site-packages\nEditable project location: /mnt/d/work/Ghostext\nRequires: cryptography, numpy\nRequired-by:",
+    "ghostext_git_head": "b1eb84c74b6dcf2cfccf7909883d1bc05911b41d",
+    "paper_git_head": "cba0a60753a191b708d961ee867c6f8e4f058432"
+  },
+  "model": {
+    "resolved_model_path": "/home/kzoacn/.cache/ghostext/models/qwen35-2b-q4ks/Qwen_Qwen3.5-2B-Q4_K_S.gguf",
+    "backend_metadata": {
+      "model_id": "Qwen/Qwen3.5-2B",
+      "tokenizer_hash": "0fa174fde298ae08d4f75613b3d06c9c027f382133c93e41b3bcf8e134dd8b75",
+      "backend_id": "llama-cpp-qwen3"
+    },
+    "ctx_size": 4096,
+    "batch_size": 128,
+    "threads": 4
+  },
+  "dataset": {
+    "name": "real-backend aligned baseline cases",
+    "cases": [
+      {
+        "case_id": "en_short_01",
+        "language": "en",
+        "prompt_family": "narrative-walk",
+        "prompt_regime": "template-known",
+        "prompt": "Write a short, natural paragraph about a quiet evening walk in the city.",
+        "message": "Meet at 7 PM by the old bridge."
+      },
+      {
+        "case_id": "en_short_02",
+        "language": "en",
+        "prompt_family": "narrative-walk",
+        "prompt_regime": "template-known",
+        "prompt": "Write a short, natural paragraph about a quiet evening walk in the city.",
+        "message": "Bring the blue notebook and wait near the station entrance."
+      },
+      {
+        "case_id": "en_mid_01",
+        "language": "en",
+        "prompt_family": "narrative-walk",
+        "prompt_regime": "template-known",
+        "prompt": "Write a short, natural paragraph about a quiet evening walk in the city.",
+        "message": "The package has been moved to locker 14 on the east side. Use the same route as last time and send confirmation afterward."
+      },
+      {
+        "case_id": "zh_short_01",
+        "language": "zh",
+        "prompt_family": "narrative-walk-zh",
+        "prompt_regime": "template-known",
+        "prompt": "请写一段自然、连贯、简短的中文段落，描写傍晚在城市里散步时看到的街景。",
+        "message": "今晚七点在河边老地方见。"
+      },
+      {
+        "case_id": "zh_short_02",
+        "language": "zh",
+        "prompt_family": "narrative-walk-zh",
+        "prompt_regime": "template-known",
+        "prompt": "请写一段自然、连贯、简短的中文段落，描写傍晚在城市里散步时看到的街景。",
+        "message": "带上那本蓝色笔记本，在地铁口等我。"
+      },
+      {
+        "case_id": "zh_mid_01",
+        "language": "zh",
+        "prompt_family": "narrative-walk-zh",
+        "prompt_regime": "template-known",
+        "prompt": "请写一段自然、连贯、简短的中文段落，描写傍晚在城市里散步时看到的街景。",
+        "message": "包裹已经转移到东侧十四号柜，请按原路线行动并在结束后回执。"
+      }
+    ],
+    "methods": [
+      "ghostext_full",
+      "nls_style_aead_packet_single_segment",
+      "nls_style_utf8_single_segment"
+    ]
+  },
+  "config": {
+    "seed": 7,
+    "passphrase_policy": "fixed local demo passphrase for aligned baseline comparison",
+    "candidate": {
+      "top_p": 0.995,
+      "max_candidates": 64,
+      "min_entropy_bits": 0.0,
+      "retokenization_stability": true
+    },
+    "codec": {
+      "total_frequency": 4096,
+      "header_token_budget": 2048,
+      "body_token_budget": 4096,
+      "natural_tail_max_tokens": 64,
+      "stall_patience_tokens": 256,
+      "low_entropy_window_tokens": 32,
+      "low_entropy_threshold_bits": 0.1,
+      "max_encode_attempts": 10,
+      "single_segment_token_budget": 6144
+    }
+  },
+  "method_summaries": {
+    "ghostext_full": {
+      "trials": 6,
+      "success_count": 6,
+      "failure_count": 0,
+      "decode_success_rate": 1.0,
+      "failure_histogram": {},
+      "encode_latency_seconds": {
+        "median": 31.852196217514575,
+        "p90": 52.40160038450267
+      },
+      "decode_latency_seconds": {
+        "median": 31.243561231007334,
+        "p90": 48.47457205198589
+      },
+      "plaintext_bits_per_token_encode": {
+        "mean": 0.9747972828125194,
+        "median": 0.9321259059472329
+      },
+      "payload_bits_per_token_encode": {
+        "mean": 2.4518091632288184,
+        "median": 2.43474567271955
+      },
+      "payload_bit_entropy": {
+        "mean": 0.9997726914018134,
+        "median": 0.9998708528463445
+      },
+      "payload_bit_one_fraction": {
+        "mean": 0.49884765709099455,
+        "median": 0.49657416923603975
+      },
+      "attempts_used": {
+        "mean": 1.0,
+        "max": 1
+      }
+    },
+    "nls_style_aead_packet_single_segment": {
+      "trials": 6,
+      "success_count": 4,
+      "failure_count": 2,
+      "decode_success_rate": 0.6666666666666666,
+      "failure_histogram": {
+        "stall_detected": 2
+      },
+      "encode_latency_seconds": {
+        "median": 46.205598111468134,
+        "p90": 63.63169680899591
+      },
+      "decode_latency_seconds": {
+        "median": 46.23751471249852,
+        "p90": 63.577196590095994
+      },
+      "plaintext_bits_per_token_encode": {
+        "mean": 0.6550070227982046,
+        "median": 0.6958562735439003
+      },
+      "payload_bits_per_token_encode": {
+        "mean": 1.7468835388660306,
+        "median": 1.6240735528661225
+      },
+      "payload_bit_entropy": {
+        "mean": 0.9997179985466683,
+        "median": 0.9999017734617812
+      },
+      "payload_bit_one_fraction": {
+        "mean": 0.4914501382764756,
+        "median": 0.49416666666666664
+      },
+      "attempts_used": {
+        "mean": 1.0,
+        "max": 1
+      }
+    },
+    "nls_style_utf8_single_segment": {
+      "trials": 6,
+      "success_count": 5,
+      "failure_count": 1,
+      "decode_success_rate": 0.8333333333333334,
+      "failure_histogram": {
+        "stall_detected": 1
+      },
+      "encode_latency_seconds": {
+        "median": 8.499940751004033,
+        "p90": 12.455318966577762
+      },
+      "decode_latency_seconds": {
+        "median": 8.532338865974452,
+        "p90": 12.44129727698164
+      },
+      "plaintext_bits_per_token_encode": {
+        "mean": 2.4866922962751703,
+        "median": 2.5714285714285716
+      },
+      "payload_bits_per_token_encode": {
+        "mean": 2.4866922962751703,
+        "median": 2.5714285714285716
+      },
+      "payload_bit_entropy": {
+        "mean": 0.9905906434723353,
+        "median": 0.9957996314773072
+      },
+      "payload_bit_one_fraction": {
+        "mean": 0.4879591627724662,
+        "median": 0.4965277777777778
+      },
+      "attempts_used": {
+        "mean": 1.0,
+        "max": 1
+      }
+    }
+  }
+}

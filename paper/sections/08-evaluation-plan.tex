@@ -87,9 +87,43 @@ For transparency, the aggregate 95\% bootstrap intervals from the released 18-tr
 
 Because the released baseline uses \texttt{min\_entropy\_bits=0.0}, the reported 2.478 bits/token should be interpreted as an ungated initial operating point, not as a recommended deployment default. The gap between aggregate mean 2.478 and median 2.586 already indicates non-negligible per-message heterogeneity inside this small pilot, which is another reason not to over-read a single headline figure before the planned $h_{\min}$ sweep.
 
-For language interpretation, the zh condition in this baseline uses CJK prompts and CJK secret messages (see released JSON summaries). The current release does not yet expose full real-backend cover strings in JSONL.
+For language interpretation, the zh condition in this baseline uses CJK prompts and CJK secret messages (see released JSON summaries). The merged baseline summary now also exposes \texttt{seed=7} and an explicit \texttt{passphrase\_policy} field. Neither the baseline release nor the aligned slice release currently exposes full real-backend cover strings; instead, the aligned slice JSONL adds method-labeled per-run case IDs, timings, token counts, and failure classes on top of the same pinned configuration metadata.
 
 Artifacts are released in this repository under `results/real-backend-baseline-r1/`, `results/real-backend-baseline-r2/`, and merged summaries in `results/real-backend-baseline-summary-merged.{json,md}`. Reproduction commands are provided in `results/real-backend-baseline-reproduce.sh`.
+
+\subsection{Same-Backend NLS-Style Comparison Slice}
+\label{sec:aligned-slice}
+
+To isolate payload formation from model-family confounders, we additionally ran a same-backend comparison on the six released Qwen cases using three methods:
+\begin{enumerate}
+\item Ghostext full,
+\item an implementation-aligned NLS-style single-segment baseline carrying raw UTF-8 plaintext bytes, and
+\item the same single-segment arithmetic-coding baseline carrying Ghostext's AEAD packet bytes directly.
+\end{enumerate}
+All three use the same Qwen/\texttt{llama.cpp} backend and the same candidate policy
+\texttt{top\_p=0.995}, \texttt{max\_candidates=64}, \texttt{min\_entropy\_bits=0.0}, and \texttt{total\_frequency=4096}. To avoid cross-tokenizer confounding, the single-segment baselines also reuse the same retokenization-stability filter as Ghostext. This is therefore not a historical reproduction of Ziegler et al.'s GPT-2 setting; it is an implementation-aligned isolation of what payload bitstream is fed into the arithmetic-coding-style cover generator.
+
+\begin{table*}[t]
+\caption{Same-backend comparison on the six released Qwen cases. ``Plaintext bits/token'' reports $8|m_i|/T_i^{\mathrm{all}}$, while ``Carried bits/token'' reports $8|p_i|/T_i^{\mathrm{all}}$. For the two single-segment baselines, $T_i^{\mathrm{all}}=T_i^{\mathrm{pkt}}$; Ghostext uses the full transmitted-token denominator, so both columns include natural-tail completion. Confidence intervals are omitted here because $n=6$ per method and are better read through the sample-size caveat in the surrounding text.}
+\label{tab:aligned-nls-slice}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{p{0.14\linewidth}p{0.13\linewidth}p{0.07\linewidth}p{0.08\linewidth}p{0.08\linewidth}p{0.08\linewidth}p{0.11\linewidth}p{0.11\linewidth}p{0.06\linewidth}}
+\toprule
+Method & Payload & $n$/SR & Enc. med. (s) & Dec. med. (s) & Att. & Plain bits/tok. & Carried bits/tok. & Ent. \\
+\midrule
+Ghostext full & AEAD packet, 2 seg. + tail & $6$, $6/6$ & 31.85 & 31.24 & 1.0 / 1 & 0.975 & 2.452 & 1.000 \\
+NLS-style single segment & raw UTF-8 bytes & $6$, $5/6$ & 8.50 & 8.53 & 1.0 / 1 & 2.487 & 2.487 & 0.991 \\
+NLS-style single segment & AEAD packet, 1 seg. & $6$, $4/6$ & 46.21 & 46.24 & 1.0 / 1 & 0.655 & 1.747 & 1.000 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+Table~\ref{tab:aligned-nls-slice} supports two narrow conclusions. First, feeding the cover generator with AEAD packet bytes is best read as a cryptographic payload-normalization step rather than as a claim that a simple one-bit entropy statistic will sharply separate all payload sources. In this six-case slice, raw UTF-8 payload already has mean one-bit entropy $0.991$, while the AEAD-based rows are essentially $1.000$; the reason to prefer packet bytes is therefore computational secret-independence under AEAD assumptions, not merely a marginal gain in naive bit balance.
+
+Second, payload normalization alone is not sufficient to make a real-backend single-segment system operationally robust. The raw UTF-8 single-segment baseline stalls on the longest English case (\texttt{en\_mid\_01}), and the AEAD-packet single-segment baseline stalls on two of the three English cases (\texttt{en\_short\_01} and \texttt{en\_mid\_01}). Ghostext full, which carries the same AEAD packet but resolves it through bootstrap/body segmentation and fail-closed runtime control, succeeds on all six cases in the same slice. Appendix Table~\ref{tab:aligned-nls-per-case} expands those six cases directly from the released JSONL. The slice also reuses the six distinct prompt/message cases from the main baseline before the merged 18-trial release repeats them. Because every successful run in this slice reports \texttt{attempts\_used=1}, the lower Ghostext median encode time here relative to the merged 18-trial pilot (31.85 s versus 50.56 s) reflects the short/mid six-case composition and the absence of retry-heavy runs in the slice, not a policy change. The current evidence therefore supports a split claim: cryptographic payload normalization removes direct plaintext structure at the carried-bitstream layer, but segmentation and runtime controls are still needed to make that randomized payload usable on this backend.
+
+Artifacts for this slice are released under \texttt{results/aligned-qwen-baselines/}; exact rerun commands are listed in \texttt{results/aligned-qwen-baselines-reproduce.sh}. Because the slice remains only $n=6$ per method and detector-side rows are still absent, it should be read as a descriptive payload-source isolation rather than a statistical superiority result or a complete OD-Stega comparison.
 
 \subsection{Evaluation Axes for Remaining Stages}
 
@@ -109,7 +143,7 @@ To address predictable-prompt concerns, each prompt family should include two re
 
 \textbf{Stage 4 (ablation campaign) -- pending:} run one-factor-at-a-time ablations for stability filter, fingerprint check, retry policy, quantization budget, truncation policy, and tail policy.
 
-\textbf{Stage 4.5 (aligned external baselines) -- pending:} run at least one single-condition Ghostext-vs-NLS/OD-Stega comparison on the same model, prompt family, and message set; report decode success, bits/token, and encode/decode latency before any superiority claim.
+\textbf{Stage 4.5 (aligned external baselines) -- initial slice released:} a same-backend Ghostext-vs-NLS-style single-segment comparison is now released on the six Qwen cases; detector-side rows, larger sample sizes, and direct OD-Stega comparison remain pending before any stronger cross-paper claim.
 
 \textbf{Stage 5 (detector-facing evaluation) -- pending:} start with a single-message proxy slice and then extend to multi-message accumulation; correlation analysis between $\widehat{B}_{\mathrm{TV}}$ and detector scores is a required output rather than an optional appendix.
 
@@ -127,7 +161,9 @@ All failures should be mapped to explicit classes already exposed by the impleme
 
 Direct Ghostext-vs-NLS/OD-Stega numeric comparison on the same model, prompt family, and message set is not included in the current release and is therefore an explicit gap.
 
-Post-pause, the first comparison table should report at least: decode success, bits/token, encode/decode latency, and detector AUC under $m\in\{1,8,32\}$ aggregation, with aligned token-budget and truncation settings. Until that table exists, Ghostext's positioning relative to NLS/OD-Stega should be read as a systems-integration claim rather than a measured performance comparison.
+This revision now includes an initial same-backend slice against implementation-aligned NLS-style single-segment baselines (Table~\ref{tab:aligned-nls-slice}). The slice is deliberately narrow: it shares Ghostext's backend and candidate policy so that payload-source effects can be isolated, but it does not replace a historical reproduction of NLS/OD-Stega under their original model families or a detector-facing comparison.
+
+The next comparison table should therefore add at least detector AUC under $m\in\{1,8,32\}$ aggregation, larger sample counts, and a direct OD-Stega row under aligned token-budget and truncation settings. Until those rows exist, Ghostext's positioning relative to the broader NLS/OD-Stega literature should still be read as a measured but scope-constrained systems comparison rather than a broad superiority claim.
 
 \subsection{Traffic-Side and Detector Blocks}
 

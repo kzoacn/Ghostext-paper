@@ -6,6 +6,8 @@ In generation-based linguistic steganography~\cite{cox2005information,ziegler201
 
 Arithmetic coding is natural for this role because it provides a reversible mapping between probability-partitioned intervals and bitstrings~\cite{rissanen1979arithmetic,witten1987arithmetic,sallee2004model}. In idealized form, if both parties use identical distributions and exact arithmetic, encode/decode are perfectly synchronized.
 
+NLS also notes that natural-language plaintext can first be converted into a bitstream by replaying the same arithmetic-coding machinery under an empty or fixed context~\cite{ziegler2019neural}. Ghostext instead feeds the cover generator with \texttt{salt} and AEAD-protected packet bytes. The distinction matters because the goal is not only reversible transport of bits, but also a carried bitstream that is computationally independent of plaintext semantics given the hidden passphrase and disclosed packet length.
+
 \subsection{From Idealized to Implemented Systems}
 
 Practical LLM systems depart from the idealized setting in at least three ways.
@@ -20,4 +22,4 @@ OD-Stega~\cite{huang2026odstega} highlights these issues explicitly. Ghostext ad
 
 \subsection{Positioning}
 
-Ghostext does not claim a new steganographic primitive. The core embedding mechanism remains arithmetic-coding style, consistent with prior work~\cite{ziegler2019neural,shen2020near}. The novelty target is systems-security engineering: authenticated packetization, synchronization binding, retokenization-safety filtering, and failure-class observability under realistic implementation constraints.
+Ghostext does not claim a new steganographic primitive. The core embedding mechanism remains arithmetic-coding style, consistent with prior work~\cite{ziegler2019neural,shen2020near}. The novelty target is systems-security engineering: cryptographic payload normalization, authenticated packetization, synchronization binding, retokenization-safety filtering, and failure-class observability under realistic implementation constraints.
