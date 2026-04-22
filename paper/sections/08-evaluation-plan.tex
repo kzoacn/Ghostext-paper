@@ -1,52 +1,27 @@
 \section{Evaluation}
 
-Our evaluation targets three questions: (Q1) decode reliability under realistic prompt/message diversity; (Q2) runtime overhead of deterministic safety controls; (Q3) payload efficiency in packet-carrying tokens and in total transmitted tokens. Detector-facing and approximation-instrumentation questions are pending and out of the measured core. The baseline configuration is \texttt{top\_p=0.995}, \texttt{max\_candidates=64}, \texttt{min\_entropy\_bits=0.0}, \texttt{total\_frequency=4096}.
+We keep the current evaluation narrow and tied to the released implementation. The CLI already exposes a minimal end-to-end benchmark through \texttt{ghostext benchmark}, so this section reports that benchmark directly instead of adding extra aggregate metrics beyond the shipped interface. The benchmark runs a full encode/decode round trip and returns average encode latency, average decode latency, average encode bits/token, and average perplexity over repeated runs.
 
-Let $M$ be message count, $S$ successful decodes, $B_i$ packet bytes for sample $i$, $T_i^{\mathrm{pkt}}$ packet-carrying tokens, $T_i^{\mathrm{all}}$ total transmitted tokens. We report $\mathrm{SR}=S/M$, packet-token efficiency $\eta_{\mathrm{pkt}}=\sum_i 8B_i/\sum_i T_i^{\mathrm{pkt}}$, transmission-token efficiency $\eta_{\mathrm{all}}=\sum_i 8B_i/\sum_i T_i^{\mathrm{all}}$, and median/p90 runtime.
+\subsection{Simple End-to-End Benchmark}
 
-\subsection{Template-Known Baseline ($n=18$)}
-
-Table~\ref{tab:real-baseline-overall} summarizes merged outcomes from 18 LLM-backend trials (9 English, 9 Chinese) in the template-known regime, with pinned configuration and released raw JSONL. Encode bits/token is $2.448$ under the ungated baseline ($h_{\min}=0.0$) and should not be interpreted as a recommended deployment default. The current evidence is a pilot measurement. Per language, encode medians are 35.80\,s (en) and 65.87\,s (zh); mean encode bits/token are 2.662 (en) and 2.234 (zh).
+Table~\ref{tab:simple-benchmark} reports the structured JSON output of running \texttt{ghostext benchmark} with the local \texttt{llama-cpp} backend, the README quiet-evening-walk prompt, passphrase \texttt{demo-pass}, message \texttt{Attack at Dawn!}, \texttt{--runs 3}, and \texttt{--json}. Because the benchmark aborts if any round trip fails, successful completion already implies correct recovery for all three runs; we therefore do not add a separate success-rate row. All other CLI settings stay at their released defaults, so the table is best read as a reproducible snapshot of the default local path rather than a tuned best-case configuration.
 
 \begin{table}[t]
-\caption{Merged LLM-backend pilot (r1+r2, template-known, $n=18$).}
-\label{tab:real-baseline-overall}
+\caption{Output of \texttt{ghostext benchmark} on the local \texttt{llama-cpp} backend with \texttt{--runs 3}.}
+\label{tab:simple-benchmark}
 \footnotesize
 \begin{tabular}{p{0.50\linewidth}p{0.41\linewidth}}
 \toprule
 Metric & Value \\
 \midrule
-Decode success rate & $18/18=1.000$ \\
-Encode latency (s) & median 58.18, p90 108.16 \\
-Decode latency (s) & median 35.73, p90 65.94 \\
-Encode bits/token ($h_{\min}=0.0$) & mean 2.448 (med.\ 2.405) \\
+Encode latency (s) & 26.937245 \\
+Decode latency (s) & 27.583455 \\
+Encode bits/token & 2.721829 \\
+Perplexity & 7.535385 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\subsection{Same-Backend NLS-Style Comparison Slice}
-\label{sec:aligned-slice}
+Two points matter when interpreting Table~\ref{tab:simple-benchmark}. First, the reported latencies are arithmetic means across three complete runs, so they describe the current default path but do not characterize tail behavior. Second, the perplexity value is computed against the same backend distribution over the generated continuation and should be read only as a rough fluency check. It is not a detector result and does not by itself establish indistinguishability from natural text.
 
-To isolate payload formation from model-family confounders, we compare three methods on the six released Qwen cases using the same backend and candidate policy: (i) Ghostext full; (ii) an implementation-aligned NLS-style single-segment baseline carrying raw UTF-8 plaintext bytes; (iii) the same single-segment baseline carrying Ghostext's AEAD packet bytes. To avoid cross-tokenizer confounding, the single-segment baselines reuse the retokenization-stability filter. This is an implementation-aligned isolation of what payload bitstream is fed into the cover coder, not a historical reproduction of Ziegler et al.
-
-\begin{table*}[t]
-\caption{Same-backend comparison on six Qwen cases. ``Plaintext bits/tok.'' is $8|m_i|/T_i^{\mathrm{all}}$; ``Carried bits/tok.''\ is $8|p_i|/T_i^{\mathrm{all}}$.}
-\label{tab:aligned-nls-slice}
-\footnotesize
-\setlength{\tabcolsep}{3pt}
-\begin{tabular}{p{0.14\linewidth}p{0.17\linewidth}p{0.06\linewidth}p{0.07\linewidth}p{0.07\linewidth}p{0.11\linewidth}p{0.11\linewidth}p{0.06\linewidth}}
-\toprule
-Method & Payload & $n$/SR & Enc.\ med.\ (s) & Dec.\ med.\ (s) & Plain bits/tok. & Carried bits/tok. & Ent. \\
-\midrule
-Ghostext full & AEAD, 2 seg.\ + tail & $6$, $6/6$ & 31.85 & 31.24 & 0.975 & 2.452 & 1.000 \\
-NLS-style 1 seg. & raw UTF-8 bytes & $6$, $5/6$ & 8.50 & 8.53 & 2.487 & 2.487 & 0.991 \\
-NLS-style 1 seg. & AEAD packet & $6$, $4/6$ & 46.21 & 46.24 & 0.655 & 1.747 & 1.000 \\
-\bottomrule
-\end{tabular}
-\end{table*}
-
-Table~\ref{tab:aligned-nls-slice} supports two narrow conclusions. First, feeding the cover generator with AEAD packet bytes is best read as \emph{cryptographic payload normalization} rather than a claim that a one-bit entropy statistic sharply separates payload sources: raw UTF-8 already has one-bit entropy $0.991$ in this slice, and the AEAD rows are $1.000$. The reason to prefer packet bytes is computational secret-independence under AEAD assumptions, not marginal bit-balance gains. Second, payload normalization alone is not operationally sufficient: the raw-UTF-8 single-segment baseline stalls on the longest English case, and the AEAD single-segment baseline stalls on two of the three English cases. Ghostext full, which carries the same AEAD packet but resolves it through bootstrap/body segmentation, succeeds on all six. At $n=6$ per method the slice is descriptive rather than statistical; a larger-sample aligned table and a direct OD-Stega row remain pending.
-
-\subsection{Artifacts}
-
-Baseline artifacts are released under \texttt{results/real-backend-baseline-r\{1,2\}/} with merged summaries in \texttt{results/real-backend-baseline-summary-merged.\{json,md\}} and reproduction in \texttt{results/real-backend-baseline-reproduce.sh}. Aligned-slice artifacts are under \texttt{results/aligned-qwen-baselines/}. Per-run JSONL releases include full cover strings with hashes so detector slices can be reproduced from released texts rather than regenerated.
+Within that limited scope, the benchmark supports one modest claim: the released Ghostext CLI completes stable end-to-end round trips on the default local \texttt{llama-cpp} path while exposing transparent runtime and payload-density numbers through a single reproducible command. Broader claims about detector resistance, robustness under editing, or comparison against prior systems remain future work unless measured directly in this project.

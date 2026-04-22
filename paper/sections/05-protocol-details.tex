@@ -13,7 +13,10 @@ Synchronization is a protocol invariant: sender and receiver must share the same
 
 The packet format is
 \begin{equation}
-\texttt{salt} \parallel \texttt{header\_nonce} \parallel \texttt{sealed\_header} \parallel \texttt{body\_nonce} \parallel \texttt{body\_ciphertext}.
+\begin{aligned}
+\texttt{salt} \parallel \texttt{header\_nonce} \parallel \texttt{sealed\_header} \\
+\parallel\ \texttt{body\_nonce} \parallel \texttt{body\_ciphertext}.
+\end{aligned}
 \end{equation}
 The internal header stores protocol version, crypto IDs, and body length. The implementation uses scrypt for key derivation, HKDF-SHA256 for key separation, and ChaCha20-Poly1305 for authenticated encryption. Under standard AEAD assumptions and unknown passphrase, packet bytes are intended to be computationally indistinguishable from random given fixed field lengths; the arithmetic-coding layer is thus driven by a bitstream that is secret-independent at the byte level.
 
@@ -21,17 +24,56 @@ The internal header stores protocol version, crypto IDs, and body length. The im
 
 At step $t$, raw logits define base distribution $P_t$ over vocabulary $\mathcal{V}$. Ghostext forms candidate set $C_t$ via deterministic top-$p$/max-$k$ truncation and renormalizes to $\widetilde{P}_t$. If $|C_t|<2$ or step entropy is below threshold $h_{\min}$, no payload bit is consumed. Retokenization-stability filtering then removes candidates that fail render/re-tokenize consistency.
 
-Let $N_t=|C_t|$ and total frequency budget $F_{\mathrm{tot}}$. Each candidate $v\in C_t$ receives $f_t(v)=1+\lfloor \widetilde{P}_t(v)(F_{\mathrm{tot}}-N_t)\rfloor$, with leftover units distributed by fractional remainder and token-id tie-break; $Q_t(v)=f_t(v)/F_{\mathrm{tot}}$. Given interval $[L_t,H_t)$, selecting token $v$ updates
+Let $N_t=|C_t|$ and total frequency budget $F_{\mathrm{tot}}$. Each candidate $v\in C_t$ receives $f_t(v)=1+\lfloor \widetilde{P}_t(v)(F_{\mathrm{tot}}-N_t)\rfloor$, with leftover units distributed by fractional remainder and token-id tie-break; $Q_t(v)=f_t(v)/F_{\mathrm{tot}}$. Writing $\mathrm{cdf}^-_t(v)$ and $\mathrm{cdf}^+_t(v)$ for the lower and upper cumulative \emph{integer} frequencies of $v$, selecting token $v$ updates
 \begin{align}
-L_{t+1}&=L_t+\lfloor(H_t-L_t)\,\mathrm{cdf}^-_t(v)\rfloor,\\
-H_{t+1}&=L_t+\lfloor(H_t-L_t)\,\mathrm{cdf}^+_t(v)\rfloor.
+L_{t+1}&=L_t+\left\lfloor(H_t-L_t)\,\mathrm{cdf}^-_t(v)/F_{\mathrm{tot}}\right\rfloor,\\
+H_{t+1}&=L_t+\left\lfloor(H_t-L_t)\,\mathrm{cdf}^+_t(v)/F_{\mathrm{tot}}\right\rfloor.
 \end{align}
 A segment resolves when $H_t-L_t=1$. Implementation defaults are $F_{\mathrm{tot}}=65536$ and $h_{\min}=1.0$ bit; the released baseline uses $F_{\mathrm{tot}}=4096$ and $h_{\min}=0.0$.
+
+\subsection{Finite-Message Interval Coding}
+
+Ghostext uses a finite-message integer interval codec at the segment level. For a segment $s$ of $n$ bytes, the encoder interprets the whole segment as a target integer $z=\mathrm{Int}(s)\in[0,2^{8n})$ and initializes $[L_0,H_0)=[0,2^{8n})$. At each payload-bearing step, the current quantized distribution partitions $[L_t,H_t)$ into candidate-specific subintervals. The encoder emits the unique token whose subinterval contains $z$; the decoder observes that token and mirrors the same interval update. Once the interval width becomes $1$, the segment is uniquely determined. This design stays fully integer based but avoids the extra renormalization machinery of a streaming range coder.
+
+Algorithm~\ref{alg:segment-ac} makes this inner loop explicit. To keep the presentation short, it takes the quantized distributions $Q_t$ as already prepared inputs; deterministic candidate truncation, retokenization filtering, retry logic, and the post-packet natural tail are omitted here.
+
+\begin{algorithm}[t]
+\caption{Segment Arithmetic Coding (Simplified)}
+\label{alg:segment-ac}
+\begin{algorithmic}[1]
+\REQUIRE segment bytes $s$, quantized distributions $\{Q_t\}_{t\ge 0}$
+\ENSURE payload-bearing token sequence $y$
+\STATE $z \leftarrow \mathrm{Int}(s)$
+\STATE $L \leftarrow 0$; $H \leftarrow 2^{8|s|}$; $y \leftarrow [\ ]$
+\FOR{$t=0,1,2,\dots$}
+  \IF{$H-L=1$}
+    \STATE \textbf{break}
+  \ENDIF
+  \STATE $Q \leftarrow Q_t$
+  \IF{$Q$ forbids encoding}
+    \STATE append $\mathrm{top}(Q)$ to $y$
+    \STATE \textbf{continue}
+  \ENDIF
+  \FORALL{$v \in Q$}
+    \STATE $L_v \leftarrow L + \lfloor (H-L)\,\mathrm{cdf}^-_Q(v)/F_{\mathrm{tot}} \rfloor$
+    \STATE $H_v \leftarrow L + \lfloor (H-L)\,\mathrm{cdf}^+_Q(v)/F_{\mathrm{tot}} \rfloor$
+    \IF{$L_v \le z < H_v$}
+      \STATE append $v$ to $y$
+      \STATE $L \leftarrow L_v$; $H \leftarrow H_v$
+      \STATE \textbf{break}
+    \ENDIF
+  \ENDFOR
+\ENDFOR
+\RETURN $y$
+\end{algorithmic}
+\end{algorithm}
+
+The decoder is the exact mirror image. For each observed payload-bearing token, it finds the token's index in the same quantized distribution $Q_t$, shrinks $[L_t,H_t)$ to that token's subinterval, and stops when $H_t-L_t=1$. The remaining integer point is then converted back to the unique $n$-byte segment. Deterministic no-payload steps must also match: when encoding is disabled, the receiver expects the top candidate and leaves the interval unchanged.
 
 \subsection{Reference Pseudocode}
 \label{sec:protocol-pseudocode}
 
-Algorithm~1 and Algorithm~2 follow the protocol-level data flow: \emph{packet $\rightarrow$ bitstream $\rightarrow$ per-token arithmetic-coding selection}.
+Algorithm~\ref{alg:ghostext-encode} and Algorithm~\ref{alg:ghostext-decode} show the outer protocol-level data flow: \emph{packet $\rightarrow$ bitstream $\rightarrow$ per-token arithmetic-coding selection}. Algorithm~\ref{alg:segment-ac} makes the inner segment-level arithmetic step explicit.
 
 \begin{algorithm}[t]
 \caption{Ghostext Encode (Simplified)}

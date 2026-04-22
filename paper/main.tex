@@ -1,25 +1,25 @@
 \documentclass[sigconf,nonacm]{acmart}
 
+\makeatletter
+\@ACM@balancefalse
+\makeatother
+
 \settopmatter{printacmref=false,printfolios=true}
 \renewcommand\footnotetextcopyrightpermission[1]{}
 \pagestyle{plain}
+\raggedbottom
+\vfuzz=2pt
 \usepackage{algorithm}
 \usepackage{algorithmic}
 
 \title{Ghostext: Near-Distribution-Preserving LLM Steganography with Authenticated Packet Framing}
 
 \author{Anonymous Author(s)}
-\affiliation{
-  \institution{Anonymous Institution(s)}
-  \city{Anonymous City}
-  \country{Anonymous Country}
-}
-\email{anonymous@example.com}
 
 \begin{document}
 
 \begin{abstract}
-We present Ghostext, a generation-based linguistic steganography protocol for large language models that lets a sender (Alice) deliver a secret message to a receiver (Bob) as natural-language cover text in the presence of a passive censor. Alice wraps her plaintext into an authenticated packet keyed by a passphrase shared with Bob, and then generates cover text token by token from a shared prompt: at each next-token step she picks one token from the model's candidate set via an arithmetic-coding-style mapping driven by the packet bits. The censor sees only this text; because the packet bitstream is pseudorandom under authenticated encryption, the resulting cover text is statistically indistinguishable from ordinary LLM-generated content. Bob re-feeds the shared prompt to the same model, replays the same candidate construction at each step, and inverts the arithmetic coding to recover the packet---and from it, the secret message. We implement Ghostext end-to-end and evaluate its performance.
+We present Ghostext, a generation-based linguistic steganography protocol for large language models that lets a sender (Alice) deliver a secret message to a receiver (Bob) as natural-language cover text in the presence of a passive censor. Alice wraps her plaintext into an authenticated packet keyed by a passphrase shared with Bob, and then generates cover text token by token from a shared prompt: at each next-token step she picks one token from the model's candidate set via an arithmetic-coding-style mapping driven by the packet bits. The censor sees only this text; because the packet bitstream is pseudorandom under authenticated encryption, the resulting cover text is computationally indistinguishable from ordinary LLM-generated content. Bob re-feeds the shared prompt to the same model, replays the same candidate construction at each step, and inverts the arithmetic coding to recover the packet---and from it, the secret message. We implement Ghostext end-to-end and evaluate its performance.
 \end{abstract}
 
 \maketitle
