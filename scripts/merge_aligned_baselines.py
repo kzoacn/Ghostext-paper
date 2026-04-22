@@ -29,11 +29,12 @@ def render_markdown(summary: dict) -> str:
     lines.append("")
     lines.append(
         f"Generated at `{summary['generated_at_utc']}` with backend "
-        f"`{summary['model']['backend_metadata']['model_id']}`."
+        f"`{summary['model']['backend_metadata']['model_id']}` "
+        f"(GGUF name `{summary['model']['upstream_provenance']['canonical_model_label']}`)."
     )
     lines.append("")
-    lines.append("| Method | n | Success | Encode median (s) | Decode median (s) | Plaintext bits/token | Payload bits/token | Payload bit entropy | One fraction |")
-    lines.append("|---|---:|---:|---:|---:|---:|---:|---:|---:|")
+    lines.append("| Method | n | Success | Encode median (s) | Decode median (s) | Attempts | Plaintext bits/token | Payload bits/token | Payload bit entropy | One fraction |")
+    lines.append("|---|---:|---:|---:|---:|---|---:|---:|---:|---:|")
     for method in summary["dataset"]["methods"]:
         item = summary["method_summaries"][method]
         lines.append(
@@ -45,6 +46,7 @@ def render_markdown(summary: dict) -> str:
                     f"{item['success_count']}/{item['trials']}",
                     f"{item['encode_latency_seconds']['median']:.2f}",
                     f"{item['decode_latency_seconds']['median']:.2f}",
+                    f"{item['attempts_used']['mean']:.1f} / {item['attempts_used']['max']}",
                     f"{item['plaintext_bits_per_token_encode']['mean']:.3f}",
                     f"{item['payload_bits_per_token_encode']['mean']:.3f}",
                     f"{item['payload_bit_entropy']['mean']:.3f}",

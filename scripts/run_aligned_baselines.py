@@ -4,9 +4,7 @@ from __future__ import annotations
 import argparse
 import json
 import math
-import platform
 import statistics
-import subprocess
 import sys
 import time
 from collections import Counter
@@ -14,6 +12,19 @@ from dataclasses import asdict
 from pathlib import Path
 from typing import Any
 
+SCRIPT_DIR = Path(__file__).resolve().parent
+if str(SCRIPT_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPT_DIR))
+
+from artifact_utils import (
+    FIXED_DEMO_PASSPHRASE_POLICY,
+    FULL_COVER_TEXT_POLICY,
+    build_runtime_info,
+    extract_model_provenance,
+    quantile,
+    sha256_hex,
+    utc_timestamp,
+)
 from ghostext.codec import MessageSegmentDecoder, MessageSegmentEncoder
 from ghostext.config import CandidatePolicyConfig, CodecConfig, RuntimeConfig
 from ghostext.crypto import build_packet, decrypt_packet
@@ -34,11 +45,7 @@ from ghostext.llama_cpp_backend import LlamaCppBackendConfig, QwenLlamaCppBacken
 from ghostext.model_assets import DEFAULT_MODEL_ID, resolve_default_model_path
 from ghostext.pipeline import prepare_quantized_distribution
 
-SCRIPT_DIR = Path(__file__).resolve().parent
-if str(SCRIPT_DIR) not in sys.path:
-    sys.path.insert(0, str(SCRIPT_DIR))
-
-from run_real_backend_baseline import build_cases, quantile, sh, utc_timestamp
+from run_real_backend_baseline import build_cases
 
 
 METHOD_GHOSTEXT = "ghostext_full"
@@ -89,18 +96,6 @@ def classify_failure(exc: Exception) -> str:
     if isinstance(exc, GhostextError):
         return "ghostext_error"
     return "unexpected_error"
-
-
-def build_runtime_info() -> dict[str, Any]:
-    return {
-        "timestamp_utc": utc_timestamp(),
-        "host": platform.node(),
-        "platform": platform.platform(),
-        "python": platform.python_version(),
-        "ghostext_version": sh(["python3", "-m", "pip", "show", "ghostext"]),
-        "ghostext_git_head": sh(["git", "-C", "/mnt/d/work/Ghostext", "rev-parse", "HEAD"]),
-        "paper_git_head": sh(["git", "-C", "/mnt/d/work/Ghostext-paper", "rev-parse", "HEAD"]),
-    }
 
 
 class SingleSegmentCoder:
@@ -244,6 +239,7 @@ def run_method(
                 "encode_wall_seconds": encode_wall_seconds,
                 "decode_wall_seconds": decode_wall_seconds,
                 "attempts_used": enc.attempts_used,
+                "cover_text": enc.text,
                 "total_tokens": enc.total_tokens,
                 "payload_tokens": enc.packet_tokens,
                 "tail_tokens": enc.tail_tokens,
@@ -267,6 +263,8 @@ def run_method(
                 "config_fingerprint_hex": f"{enc.config_fingerprint:016x}",
                 "payload_bit_one_fraction": payload_stats["one_fraction"],
                 "payload_bit_entropy": payload_stats["bit_entropy"],
+                "cover_text_sha256": sha256_hex(enc.text),
+                "payload_sha256": sha256_hex(payload),
             }
         )
         if not item["decode_match"]:
@@ -324,6 +322,7 @@ def run_method(
             "encode_wall_seconds": encode_wall_seconds,
             "decode_wall_seconds": decode_wall_seconds,
             "attempts_used": 1,
+            "cover_text": enc["text"],
             "total_tokens": total_tokens,
             "payload_tokens": total_tokens,
             "tail_tokens": 0,
@@ -346,6 +345,8 @@ def run_method(
             "config_fingerprint_hex": config_fingerprint_hex,
             "payload_bit_one_fraction": payload_stats["one_fraction"],
             "payload_bit_entropy": payload_stats["bit_entropy"],
+            "cover_text_sha256": sha256_hex(enc["text"]),
+            "payload_sha256": sha256_hex(payload),
         }
     )
     if not item["decode_match"]:
@@ -359,6 +360,7 @@ def summarize_runs(
     args: argparse.Namespace,
     runs: list[dict[str, Any]],
     backend: QwenLlamaCppBackend,
+    resolved_model_source: str,
 ) -> dict[str, Any]:
     methods = sorted({run["method"] for run in runs})
     method_summaries: dict[str, Any] = {}
@@ -413,8 +415,12 @@ def summarize_runs(
         "generated_at_utc": utc_timestamp(),
         "runtime": build_runtime_info(),
         "model": {
-            "resolved_model_path": backend.config.model_path,
-            "backend_metadata": backend.metadata.as_dict(),
+            **extract_model_provenance(
+                model_path=Path(backend.config.model_path),
+                resolved_model_source=resolved_model_source,
+                backend_metadata=backend.metadata.as_dict(),
+                llama_metadata=getattr(getattr(backend, "_llm", None), "metadata", {}),
+            ),
             "ctx_size": backend.config.n_ctx,
             "batch_size": backend.config.n_batch,
             "threads": backend.config.n_threads,
@@ -426,7 +432,8 @@ def summarize_runs(
         },
         "config": {
             "seed": args.seed,
-            "passphrase_policy": "fixed local demo passphrase for aligned baseline comparison",
+            "passphrase_policy": FIXED_DEMO_PASSPHRASE_POLICY,
+            "cover_text_policy": FULL_COVER_TEXT_POLICY,
             "candidate": {
                 "top_p": args.top_p,
                 "max_candidates": args.max_candidates,
@@ -593,7 +600,12 @@ def main() -> int:
         for run in runs:
             f.write(json.dumps(run, ensure_ascii=False) + "\n")
 
-    summary = summarize_runs(args=args, runs=runs, backend=backend)
+    summary = summarize_runs(
+        args=args,
+        runs=runs,
+        backend=backend,
+        resolved_model_source=model.source,
+    )
     summary_path.write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
     print(
         json.dumps(

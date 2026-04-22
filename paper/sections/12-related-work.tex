@@ -1,40 +1,6 @@
 \section{Related Work}
-
-NLS~\cite{ziegler2019neural} established arithmetic-coding neural steganography as a practical baseline. Later work explored adaptive and near-imperceptible variants~\cite{shen2020near,dai2019towards} and stronger formal constructions~\cite{zhang2021provably,ding2023discop,dewitt2024perfect}.
-
-OD-Stega~\cite{huang2026odstega} is most directly related to Ghostext in terms of constrained-distribution perspective and tokenization mismatch emphasis.
-
-Foundational information-theoretic and provable-security frameworks~\cite{cachin1998information,hopper2002provably} clarify what a complete steganographic security claim requires.
-
-Ghostext is positioned as a systems-security implementation contribution: deterministic protocol behavior, synchronization binding, explicit failure semantics, and measurable approximation decomposition in an end-to-end codebase.
-
-\subsection{Method Lineage and Security-Claim Styles}
-
-The modern language-steganography line can be read along two axes. One axis is embedding mechanism, where arithmetic-coding-style approaches dominate practical neural systems~\cite{ziegler2019neural,shen2020near}. The second axis is claim style: some works primarily report empirical imperceptibility and utility trends, while others aim for formal indistinguishability guarantees under explicit assumptions~\cite{zhang2021provably,ding2023discop,dewitt2024perfect}.
-
-Ghostext sits closer to the engineering side of this map. It keeps the arithmetic-coding family mechanism, but focuses on deterministic replay, fail-closed runtime semantics, and configuration binding under real implementation constraints. This is a narrower contribution than a new steganographic primitive, and the paper intentionally describes it in that scope.
-
-\subsection{Practical Friction Points in Prior Systems}
-
-Earlier neural approaches generally assume that sender and receiver can replay equivalent model distributions. In deployed systems, this assumption is stressed by tokenizer behavior, backend version drift, and finite-precision codec choices. OD-Stega explicitly discusses tokenizer mismatch risks~\cite{huang2026odstega}, which directly motivates Ghostext's retokenization-stability filtering and explicit mismatch checks.
-
-Another practical gap is failure semantics. Many prior papers report aggregate performance but provide less structured runtime failure taxonomy for deployment troubleshooting. Ghostext emphasizes class-labeled failures because operational debugging and security interpretation often depend on distinguishing integrity failure, configuration mismatch, synchronization drift, and low-entropy stalls.
-
-Kaptchuk et al.~\cite{kaptchuk2021language} also emphasize that language channels can leak secret-dependent structure beyond the intended communication path, reinforcing the need for explicit protocol boundaries and conservative claim wording.
-
-\subsection{Detector and Watermark Context}
-
-A closely related neighboring line is LLM watermarking, which also manipulates generation distributions under detectability constraints~\cite{kirchenbauer2023watermark}. Although watermarking and steganography have different goals, both depend on distribution-level control and detector assumptions, so cross-citation is useful for threat interpretation.
-
-On the detector side, practical evaluation commonly combines lightweight text classifiers and stronger model-based detectors; examples include fastText-style baselines~\cite{joulin2017fasttext} and curvature-based zero-shot detectors such as DetectGPT~\cite{mitchell2023detectgpt}. These references motivate our detector-block design in the evaluation protocol.
-
-\subsection{Relation to Formal Frameworks}
-
-Cachin's information-theoretic model~\cite{cachin1998information} and Hopper et al.'s provable framework~\cite{hopper2002provably} remain the conceptual baseline for strong security claims. Recent generative-text works with formal guarantees~\cite{zhang2021provably,ding2023discop,dewitt2024perfect} move closer to these standards under specific model-access assumptions.
-
-Ghostext does not claim to replace those frameworks. Instead, it contributes implementation-level decomposition terms and an auditable evidence pipeline with initial baseline results, intended to bridge engineering practice and stronger claims. The design choice is to make approximation sources observable first, then upgrade claims only after corresponding measurements are available.
-
-\subsection{Scope-Constrained Novelty Statement}
 \label{sec:related-positioning}
 
-Given this landscape, Ghostext claims novelty at the systems-integration level: combining cryptographic payload normalization, authenticated packet framing, runtime configuration binding, retokenization-aware candidate control, and explicit failure observability in one deterministic pipeline. This revision now includes an initial same-backend NLS-style comparison slice, but it remains intentionally narrow and implementation-aligned rather than a historical reproduction of NLS/OD-Stega under their original GPT-2/LLAMA settings. We therefore do not make broad superiority claims over those baselines here, and whether this systems combination yields significant detector-facing gains remains an open empirical question for the remaining detector-focused stages.
+NLS~\cite{ziegler2019neural} established arithmetic-coding neural steganography. Later work explored adaptive and near-imperceptible variants~\cite{shen2020near,dai2019towards,yang2019rnnstega,fang2017generating} and stronger formal constructions~\cite{zhang2021provably,ding2023discop,dewitt2024perfect}. OD-Stega~\cite{huang2026odstega} is most directly related in its constrained-distribution perspective and explicit tokenization-mismatch emphasis, which motivates our retokenization-stability filtering. Foundational information-theoretic and provable-security frameworks~\cite{cachin1998information,hopper2002provably} remain the conceptual baseline for strong security claims; Ghostext does not claim to replace them. LLM watermarking manipulates generation distributions under detectability constraints~\cite{kirchenbauer2023watermark}, and practical detector evaluation combines lightweight baselines with stronger detectors~\cite{joulin2017fasttext,mitchell2023detectgpt}. Kaptchuk et al.~\cite{kaptchuk2021language} emphasize that language channels can leak secret-dependent structure, reinforcing the need for explicit protocol boundaries.
+
+Ghostext's novelty is at the systems-integration level: combining cryptographic payload normalization, authenticated packet framing, runtime configuration binding, and retokenization-aware candidate control in one deterministic pipeline. Relative to the formal distribution-preserving line~\cite{zhang2021provably,ding2023discop,dewitt2024perfect}, we use ``near-distribution-preserving'' in a weaker, implementation-aligned sense: against the same-policy natural-cover baseline, the only residual per-step deviations are integer quantization and the retokenization-stability filter. The same-backend slice (Section~\ref{sec:aligned-slice}) is an implementation-aligned isolation rather than a historical reproduction of NLS/OD-Stega under their original settings; we do not make broad superiority claims here, and whether this systems combination yields significant detector-facing gains remains an open empirical question.

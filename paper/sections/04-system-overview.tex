@@ -1,18 +1,49 @@
 \section{System Overview and Operational Semantics}
 
-\begin{figure}[t]
+\begin{figure*}[t]
 \centering
-\fbox{\parbox{0.96\linewidth}{
-\textbf{Encode path:}
-plaintext $\rightarrow$ UTF-8 bytes $\rightarrow$ authenticated packet $\rightarrow$ split (bootstrap/body) $\rightarrow$ candidate policy + quantization + interval narrowing $\rightarrow$ cover text prefix (+ optional natural tail).
+\begin{tikzpicture}[
+    node distance=6mm and 6mm,
+    stage/.style={draw, rounded corners, align=center, minimum height=8mm, minimum width=18mm, font=\small},
+    gate/.style={draw, diamond, aspect=2, align=center, inner xsep=1mm, font=\small},
+    flow/.style={-{Latex[length=2mm]}, thick}
+  ]
+  \node[stage] (plain) {Plaintext};
+  \node[stage, right=of plain] (packet) {UTF-8\\ + AEAD packet};
+  \node[stage, right=of packet] (split) {Bootstrap / body\\ segmentation};
+  \node[stage, right=of split] (encode) {Candidate policy\\ + quantization\\ + interval narrowing};
+  \node[stage, right=of encode] (cover) {Cover prefix};
+  \node[stage, right=of cover] (tail) {Optional\\ natural tail};
 
-\textbf{Decode path:}
-cover text $\rightarrow$ tokenize $\rightarrow$ interval inversion (bootstrap) $\rightarrow$ header authentication + configuration check $\rightarrow$ interval inversion (body) $\rightarrow$ packet authentication $\rightarrow$ plaintext.
-}}
+  \node[stage, below=14mm of plain] (stego) {Received text};
+  \node[stage, right=of stego] (tokenize) {Tokenize\\ under prompt};
+  \node[stage, right=of tokenize] (header) {Interval inversion\\ (bootstrap)};
+  \node[gate, right=of header] (check) {Header auth\\ + config\\ check};
+  \node[stage, right=of check] (body) {Interval inversion\\ (body)};
+  \node[gate, right=of body] (auth) {Packet auth};
+  \node[stage, right=of auth] (recover) {Recovered\\ plaintext};
+
+  \draw[flow] (plain) -- (packet);
+  \draw[flow] (packet) -- (split);
+  \draw[flow] (split) -- (encode);
+  \draw[flow] (encode) -- (cover);
+  \draw[flow] (cover) -- (tail);
+
+  \draw[flow] (stego) -- (tokenize);
+  \draw[flow] (tokenize) -- (header);
+  \draw[flow] (header) -- (check);
+  \draw[flow] (check) -- node[above, font=\small] {match} (body);
+  \draw[flow] (body) -- (auth);
+  \draw[flow] (auth) -- node[above, font=\small] {valid} (recover);
+
+  \draw[flow] (cover.south) -- ++(0,-3mm) -| (stego.north);
+  \node[font=\small, below=1mm of check] {fail closed on mismatch};
+  \node[font=\small, below=1mm of auth] {fail closed on integrity failure};
+\end{tikzpicture}
 \caption{Ghostext end-to-end pipeline. The packet-carrying prefix is deterministic under matched configuration; optional tail does not carry payload.}
 \Description{A two-path flow chart showing encode from plaintext to packet to token embedding, and decode from cover text to token inversion to plaintext, with configuration checks and fail-closed gates.}
 \label{fig:pipeline}
-\end{figure}
+\end{figure*}
 
 Ghostext combines a cryptographic packet layer and an LLM token-selection layer (Figure~\ref{fig:pipeline}). The first protects message confidentiality and integrity. The second provides reversible embedding into generated cover text.
 

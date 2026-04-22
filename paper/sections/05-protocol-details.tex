@@ -1,107 +1,33 @@
-\section{Protocol and Approximation Model}
+\section{Protocol}
 \label{sec:protocol-details}
+
+Ghostext combines a cryptographic packet layer and an LLM token-selection layer. The first protects confidentiality and integrity; the second provides reversible embedding into generated cover text.
+
+\subsection{Operational Semantics}
+
+Alice takes plaintext, passphrase, and shared prompt. Plaintext is wrapped into an authenticated packet, split into \emph{bootstrap} and \emph{body} segments, and mapped to token choices through deterministic candidate selection, quantization, and interval narrowing. Bob tokenizes the received text under the same prompt, replays the same distributions, reconstructs the bootstrap segment first, checks the header, and then decodes the body. Plaintext is released only after full packet authentication. After packet resolution the encoder may append a short natural tail that carries no payload and is ignored by the decoder.
+
+Synchronization is a protocol invariant: runtime settings, backend metadata, and prompt hash are committed into a configuration fingerprint embedded in the authenticated header. Decoding proceeds only when the fingerprint matches local runtime state. The decoder aborts on authentication mismatch, configuration mismatch, synchronization mismatch, unstable tokenization, or token-budget exhaustion, and never emits partial plaintext after authentication failure.
 
 \subsection{Authenticated Packet Layer}
 
-Ghostext packet format is
+The packet format is
 \begin{equation}
 \texttt{salt} \parallel \texttt{header\_nonce} \parallel \texttt{sealed\_header} \parallel \texttt{body\_nonce} \parallel \texttt{body\_ciphertext}.
 \end{equation}
-The internal header stores protocol version, crypto IDs, body length, and configuration fingerprint. Current implementation uses scrypt for key derivation, HKDF-SHA256 for key separation, and ChaCha20-Poly1305 for authenticated encryption.
+The internal header stores protocol version, crypto IDs, body length, and configuration fingerprint. The implementation uses scrypt for key derivation, HKDF-SHA256 for key separation, and ChaCha20-Poly1305 for authenticated encryption. Under standard AEAD assumptions and unknown passphrase, packet bytes are intended to be computationally indistinguishable from random given fixed field lengths; the arithmetic-coding layer is thus driven by a bitstream that is secret-independent at the byte level.
 
-For the passive-censor model in this paper, the important role of this layer is not only authenticity. Conditioned on fixed field lengths and an unknown passphrase, the carried bytes are intended to be computationally indistinguishable from random under standard AEAD assumptions. This means the arithmetic-coding layer is driven by a bitstream that is intended to be secret-independent at the byte level rather than by raw plaintext structure. That statement is about payload normalization, not a complete text-distribution theorem: truncation, quantization, segmentation, and retry behavior still affect the final output distribution.
+\subsection{Candidate Policy and Quantization}
 
-\subsection{Candidate Policy}
+At step $t$, raw logits define base distribution $P_t$ over vocabulary $\mathcal{V}$. Ghostext forms candidate set $C_t$ via deterministic top-$p$/max-$k$ truncation and renormalizes to $\widetilde{P}_t$. If $|C_t|<2$ or step entropy is below threshold $h_{\min}$, no payload bit is consumed. Retokenization-stability filtering then removes candidates that fail render/re-tokenize consistency.
 
-At step $t$, raw logits define base distribution $P_t$ over vocabulary $\mathcal{V}$. Ghostext constructs candidate set $C_t$ via deterministic top-$p$ and max-$k$ truncation, then renormalizes to $\widetilde{P}_t$. If $|C_t|<2$ or step entropy is below threshold, no payload bit is consumed and the top token is emitted.
-
-Retokenization-stability filtering then removes candidates that fail render/re-tokenize path consistency.
-
-\subsection{Integer Quantization}
-
-Let $N_t=|C_t|$ and total frequency budget be $F_{\mathrm{tot}}$. The implementation default is $F_{\mathrm{tot}}=65536$, while the released real-backend baseline in this paper uses $F_{\mathrm{tot}}=4096$. For each candidate $v\in C_t$:
-\begin{equation}
- f_t(v)=1+\left\lfloor \widetilde{P}_t(v)(F_{\mathrm{tot}}-N_t)\right\rfloor,
-\end{equation}
-with leftover units distributed by fractional remainder and token-id tie-break.
-
-The induced quantized distribution is
-\begin{equation}
-Q_t(v)=\frac{f_t(v)}{F_{\mathrm{tot}}}.
-\end{equation}
-
-\subsection{Interval Update}
-
-Given interval $[L_t,H_t)$ and cumulative boundaries from $Q_t$, selecting token $v$ updates
+Let $N_t=|C_t|$ and total frequency budget $F_{\mathrm{tot}}$. Each candidate $v\in C_t$ receives $f_t(v)=1+\lfloor \widetilde{P}_t(v)(F_{\mathrm{tot}}-N_t)\rfloor$, with leftover units distributed by fractional remainder and token-id tie-break; $Q_t(v)=f_t(v)/F_{\mathrm{tot}}$. Given interval $[L_t,H_t)$, selecting token $v$ updates
 \begin{align}
-L_{t+1}&=L_t+\left\lfloor(H_t-L_t)\,\mathrm{cdf}^-_t(v)\right\rfloor,\\
-H_{t+1}&=L_t+\left\lfloor(H_t-L_t)\,\mathrm{cdf}^+_t(v)\right\rfloor.
+L_{t+1}&=L_t+\lfloor(H_t-L_t)\,\mathrm{cdf}^-_t(v)\rfloor,\\
+H_{t+1}&=L_t+\lfloor(H_t-L_t)\,\mathrm{cdf}^+_t(v)\rfloor.
 \end{align}
-A segment resolves when $H_t-L_t=1$.
+A segment resolves when $H_t-L_t=1$. Implementation defaults are $F_{\mathrm{tot}}=65536$ and $h_{\min}=1.0$ bit; the released baseline uses $F_{\mathrm{tot}}=4096$ and $h_{\min}=0.0$.
 
-\subsection{Bound for Quantization Error}
+\subsection{Fingerprint Collision}
 
-For each candidate, deterministic rounding implies
-\begin{equation}
-\left|Q_t(v)-\widetilde{P}_t(v)\right|\le\frac{1}{F_{\mathrm{tot}}}.
-\end{equation}
-Hence
-\begin{equation}
-\|Q_t-\widetilde{P}_t\|_1\le\frac{N_t}{F_{\mathrm{tot}}}, \quad
-\mathrm{TV}(Q_t,\widetilde{P}_t)\le\frac{N_t}{2F_{\mathrm{tot}}}.
-\end{equation}
-
-\subsection{Bound for Truncation + Quantization + Stability Filtering}
-
-Define truncated tail mass
-\begin{equation}
-\alpha_t = 1-\sum_{v\in C_t}P_t(v),
-\end{equation}
-and filtered-out mass under $Q_t$
-\begin{equation}
-\beta_t = \sum_{v\in C_t\setminus S_t}Q_t(v),
-\end{equation}
-where $S_t$ is the stability-surviving subset.
-
-Let $R_t$ be $Q_t$ restricted to $S_t$ before renormalization. Then
-$\|R_t-Q_t\|_1=\beta_t$ and, because $Q'_t=R_t/(1-\beta_t)$,
-$\|Q'_t-R_t\|_1=\beta_t$. Therefore
-\begin{equation}
-\mathrm{TV}(Q'_t,Q_t)\le\beta_t,
-\end{equation}
-so the normalization effect after filtering is already covered by the same $\beta_t$ term.
-
-Combining truncation, quantization, and filtering gives
-\begin{equation}
-\mathrm{TV}(Q'_t,P_t)\le\alpha_t + \frac{N_t}{2F_{\mathrm{tot}}} + \beta_t.
-\label{eq:tv_total_bound}
-\end{equation}
-This bound is implementation-aligned and directly measurable from runtime statistics.
-
-\subsection{Fingerprint Collision Discussion}
-
-The implementation computes
-\texttt{SHA256(JSON(runtime, backend, prompt\_sha256))} and stores the first 64 bits as the configuration fingerprint for synchronization mismatch detection. For $n$ independent sessions,
-\begin{equation}
-\Pr[\mathrm{collision}]\approx\frac{n(n-1)}{2^{65}}.
-\end{equation}
-For $n=10^6$, this is approximately $2.7\times10^{-8}$. Packet authenticity still depends on AEAD tags; fingerprint collisions do not replace cryptographic integrity checks.
-
-In adversarial settings, an adversary might search configuration variants that collide in 64 bits. This does not produce valid plaintext release without passphrase-bound AEAD success, but it can degrade diagnostic clarity by making a mismatch appear superficially aligned at the fingerprint layer. Under an idealized uniform-target approximation, even $2^{40}$ adaptive trials against a fixed 64-bit target would still give only about $2^{-24}$ success probability, which is small but no longer a margin we would present as future-proof when 128-bit widening is cheap. In the present paper's passive-censor setting, the fingerprint is carried inside the authenticated encrypted header rather than exposed as a clear on-wire field, so it should be interpreted as a Bob-local synchronization guard while authenticity remains cryptographic. Section~\ref{sec:analysis} revisits the deployment tradeoff around retaining the current 64-bit artifact layout versus widening future releases.
-
-\subsection{Concrete Encode/Decode Examples}
-
-\begin{table*}[t]
-\caption{Two concrete end-to-end toy-backend examples from the current implementation.}
-\label{tab:examples}
-\begin{tabular}{p{0.17\linewidth}p{0.20\linewidth}p{0.40\linewidth}p{0.18\linewidth}}
-\toprule
-Prompt type & Secret message & Cover text (prefix) & Outcome \\
-\midrule
-English walk prompt & \texttt{Meet at 7 PM by the old bridge.} & \texttt{The afternoon feels calm, and the corner cafe keeps a warm light on ...} & decode success (toy round trip) \\
-Chinese walk prompt (toy backend, Unicode-escaped in table) & \texttt{\textbackslash u4eca\textbackslash u665a ... \textbackslash u3002} & \texttt{\textbackslash u4eca\textbackslash u5929 ... \textbackslash uff0c ...} & decode success (toy round trip) \\
-\bottomrule
-\end{tabular}
-\end{table*}
-
-For the real-backend baseline, the released artifacts already use CJK prompts and CJK secret messages in the zh condition. Table~\ref{tab:examples} keeps the toy CJK row Unicode-escaped in the anonymous draft to avoid font/rendering dependence across review environments; a later public version should show a rendered CJK example directly. The current real-backend releases do not include full cover strings. The aligned comparison JSONL is richer at the per-run level, with method labels, case IDs, timings, token counts, and failure classes, while the merged 18-trial baseline bundle emphasizes repeated-run summaries together with seed and passphrase-policy metadata. Adding full-text release is still tracked as a post-pause artifact task.
+The fingerprint is the first 64 bits of \texttt{SHA256(JSON(runtime, backend, prompt\_sha256))}. For $n$ honest sessions, $\Pr[\mathrm{collision}]\approx n(n-1)/2^{65}$; for $n=10^6$ this is $\approx 2.7\times10^{-8}$. Fingerprint collisions do not yield valid plaintext without AEAD success. In this paper's passive-censor setting the fingerprint is carried inside the encrypted header rather than exposed on-wire, so it acts as a Bob-local synchronization guard while authenticity remains cryptographic. Widening to 128 bits is the conservative future direction.

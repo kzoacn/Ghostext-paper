@@ -1,20 +1,51 @@
 {
-  "generated_at_utc": "2026-04-16T15:56:09Z",
+  "generated_at_utc": "2026-04-22T06:42:10Z",
   "runtime": {
-    "timestamp_utc": "2026-04-16T15:56:09Z",
-    "host": "kzoacn-PC",
+    "timestamp_utc": "2026-04-22T06:42:10Z",
+    "host": "KZ-ThinkBook",
     "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
-    "python": "3.12.12",
-    "ghostext_version": "WARNING: The directory '/home/kzoacn/.cache/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.\nName: ghostext\nVersion: 0.1.1\nSummary: Text steganography demo driven by next-token distributions\nHome-page: \nAuthor: \nAuthor-email: \nLicense: \nLocation: /home/kzoacn/miniforge3/lib/python3.12/site-packages\nEditable project location: /mnt/d/work/Ghostext\nRequires: cryptography, numpy\nRequired-by:",
-    "git_head": "b1eb84c74b6dcf2cfccf7909883d1bc05911b41d"
+    "python": "3.12.3",
+    "cpu_model": "AMD Ryzen 7 8845H w/ Radeon 780M Graphics",
+    "cpu_count_logical": 16,
+    "ram_total_gib": 13.55,
+    "ghostext_git_head": "b1eb84c74b6dcf2cfccf7909883d1bc05911b41d",
+    "paper_git_head": "ac8a422dd76df4409d8488241447e040a75f564b",
+    "llama_cpp_python_version": "0.3.20",
+    "llama_cpp_commit_sha": "f49e917",
+    "llama_cpp_build_number": "1",
+    "ggml_build_commit": "f49e917-dirty",
+    "ggml_build_number": "1",
+    "ggml_version": "0.9.11",
+    "llama_system_info": "CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | AVX512 = 1 | AVX512_VBMI = 1 | AVX512_VNNI = 1 | AVX512_BF16 = 1 | LLAMAFILE = 1 | OPENMP = 1 | REPACK = 1 |"
   },
   "model": {
     "resolved_model_path": "/home/kzoacn/.cache/ghostext/models/qwen35-2b-q4ks/Qwen_Qwen3.5-2B-Q4_K_S.gguf",
     "resolved_model_source": "cache",
+    "file_size_bytes": 1261854880,
     "backend_metadata": {
       "model_id": "Qwen/Qwen3.5-2B",
       "tokenizer_hash": "0fa174fde298ae08d4f75613b3d06c9c027f382133c93e41b3bcf8e134dd8b75",
       "backend_id": "llama-cpp-qwen3"
+    },
+    "gguf_metadata": {
+      "general.architecture": "qwen35",
+      "general.name": "Qwen3.5 2B",
+      "general.basename": "Qwen3.5",
+      "general.size_label": "2B",
+      "general.license": "apache-2.0",
+      "general.file_type": "14",
+      "tokenizer.ggml.model": "gpt2",
+      "tokenizer.ggml.pre": "qwen35"
+    },
+    "upstream_provenance": {
+      "canonical_model_label": "Qwen3.5 2B",
+      "base_models": [
+        {
+          "name": "Qwen3.5 2B Base",
+          "organization": "Qwen",
+          "repo_url": "https://huggingface.co/Qwen/Qwen3.5-2B-Base"
+        }
+      ]
     },
     "ctx_size": 4096,
     "batch_size": 128,
@@ -22,7 +53,8 @@
   },
   "config": {
     "seed": 7,
-    "passphrase_policy": "fixed local demo passphrase for reproducible baseline",
+    "passphrase_policy": "fixed local demo passphrase reused across released baseline and aligned comparison for reproducibility",
+    "cover_text_policy": "per-run JSONL releases full cover text; summary bundles retain hashes and aggregate metrics",
     "candidate": {
       "top_p": 0.995,
       "max_candidates": 64,
@@ -95,30 +127,45 @@
     "repeats": 2,
     "total_trials": 12
   },
+  "artifacts": {
+    "runs_jsonl": "real_backend_runs.jsonl",
+    "step_audit_jsonl": "real_backend_step_audit.jsonl"
+  },
   "metrics": {
     "decode_success_rate": 1.0,
     "success_count": 12,
     "failure_count": 0,
     "failure_histogram": {},
     "encode_latency_seconds": {
-      "median": 45.753104866002104,
-      "p90": 58.351284948501416,
-      "p99": 217.83073877500445
+      "median": 46.34518643149204,
+      "p90": 117.34543602579944,
+      "p99": 155.66310512380429
     },
     "decode_latency_seconds": {
-      "median": 39.62079862850078,
-      "p90": 53.30688831840307,
-      "p99": 64.43573525194654
+      "median": 34.59634125300363,
+      "p90": 61.671392300096336,
+      "p99": 68.95664955840563
     },
     "bits_per_token_encode": {
-      "mean": 2.4525458729742153,
-      "median": 2.480283883756327,
-      "min": 1.8943781942078364,
-      "max": 3.071207430340557
+      "mean": 2.4358633580651463,
+      "median": 2.4054879742265176,
+      "min": 2.0561555075593954,
+      "max": 2.984771573604061
     },
     "encode_tokens_per_second": {
-      "mean": 10.989926070738955,
-      "median": 11.490158480794157
+      "mean": 9.933824913222919,
+      "median": 11.267280355547243
+    },
+    "attempts_used": {
+      "mean": 1.6666666666666667,
+      "max": 4,
+      "total_attempts": 20
+    },
+    "approximation_audit": {
+      "bhat_tv_total_mean": 24.745861807691615,
+      "bhat_tv_total_median": 24.718154810035834,
+      "bhat_tv_packet_prefix_mean": 24.373055340433297,
+      "bhat_tv_packet_prefix_median": 24.478739120102247
     }
   }
 }

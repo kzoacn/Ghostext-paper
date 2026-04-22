@@ -17,4 +17,6 @@ python3 "$ROOT/scripts/merge_real_backend_baseline.py" \
   --input-dir "$ROOT/results/real-backend-baseline-r1" \
   --input-dir "$ROOT/results/real-backend-baseline-r2" \
   --output-json "$ROOT/results/real-backend-baseline-summary-merged.json" \
-  --output-md "$ROOT/results/real-backend-baseline-summary-merged.md"
+  --output-md "$ROOT/results/real-backend-baseline-summary-merged.md" \
+  --output-runs-jsonl "$ROOT/results/real-backend-baseline-runs-merged.jsonl" \
+  --output-step-jsonl "$ROOT/results/real-backend-baseline-step-audit-merged.jsonl"

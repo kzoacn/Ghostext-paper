@@ -1,0 +1,54 @@
+{
+  "generated_at_utc": "2026-04-22T08:25:48Z",
+  "runtime": {
+    "timestamp_utc": "2026-04-22T08:25:48Z",
+    "host": "KZ-ThinkBook",
+    "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "cpu_model": "AMD Ryzen 7 8845H w/ Radeon 780M Graphics",
+    "cpu_count_logical": 16,
+    "ram_total_gib": 13.55,
+    "ghostext_git_head": "b1eb84c74b6dcf2cfccf7909883d1bc05911b41d",
+    "paper_git_head": "ac8a422dd76df4409d8488241447e040a75f564b",
+    "llama_cpp_python_version": "0.3.20",
+    "llama_cpp_commit_sha": "f49e917",
+    "llama_cpp_build_number": "1",
+    "ggml_build_commit": "f49e917-dirty",
+    "ggml_build_number": "1",
+    "ggml_version": "0.9.11",
+    "llama_system_info": "CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | AVX512 = 1 | AVX512_VBMI = 1 | AVX512_VNNI = 1 | AVX512_BF16 = 1 | LLAMAFILE = 1 | OPENMP = 1 | REPACK = 1 |"
+  },
+  "input_artifacts": {
+    "baseline_summary": "/mnt/d/work/Ghostext-paper/results/real-backend-baseline-summary-merged.json",
+    "baseline_runs": "/mnt/d/work/Ghostext-paper/results/real-backend-baseline-runs-merged.jsonl"
+  },
+  "dataset": {
+    "stego_samples": 18,
+    "natural_samples": 18,
+    "matching_policy": "same prompt and matched total token count per released stego sample",
+    "text_detector_cv": "leave-one-out within language"
+  },
+  "retry_feature_detector": {
+    "overall_auc": 0.6944444444444444,
+    "by_language_auc": {
+      "en": 0.6111111111111112,
+      "zh": 0.7777777777777778
+    }
+  },
+  "char_trigram_naive_bayes_detector": {
+    "overall_auc": 0.5895061728395061,
+    "by_language_auc": {
+      "en": 0.48148148148148145,
+      "zh": 0.7407407407407407
+    }
+  },
+  "llm_judge_detector": {
+    "status": "disabled_by_flag",
+    "model": "gpt-5.4"
+  },
+  "bhat_tv_vs_char_trigram_stego_correlation": {
+    "pearson": -0.17246508220619122,
+    "spearman": -0.12693498452012383
+  },
+  "bhat_tv_vs_llm_judge_stego_correlation": null
+}

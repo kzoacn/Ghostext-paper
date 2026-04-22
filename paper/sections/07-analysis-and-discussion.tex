@@ -48,12 +48,14 @@ Because every quantized candidate gets at least frequency one, $Q_t(v)\ge 1/F_{\
 Using $\widetilde{P}_t(v)=Q_t(v)-\delta_t(v)$:
 \begin{align}
 D_{\mathrm{KL}}(\widetilde{P}_t\|Q_t)
-&=\sum_{v:\widetilde{P}_t(v)>0} \widetilde{P}_t(v)\log\!\left(1-\frac{\delta_t(v)}{Q_t(v)}\right).
+&=\sum_{v:\widetilde{P}_t(v)>0} \widetilde{P}_t(v)\log\!\left(\frac{\widetilde{P}_t(v)}{Q_t(v)}\right).
 \end{align}
-For terms with $\widetilde{P}_t(v)>0$, we have $u=\delta_t(v)/Q_t(v)<1$ and may use $-\log(1-u)\le \frac{u^2}{1-u}$, so with $Q_t(v)-\delta_t(v)=\widetilde{P}_t(v)\ge0$ we get
+Applying the standard $D_{\mathrm{KL}}(P\|Q)\le \chi^2(P,Q)$ upper bound~\cite{tsybakov2009introduction} gives
 \begin{align}
 D_{\mathrm{KL}}(\widetilde{P}_t\|Q_t)
-&\le \sum_{v:\widetilde{P}_t(v)>0} \frac{\delta_t(v)^2}{Q_t(v)}.
+&\le \chi^2(\widetilde{P}_t,Q_t)
+= \sum_{v:\widetilde{P}_t(v)>0} \frac{(\widetilde{P}_t(v)-Q_t(v))^2}{Q_t(v)}
+= \sum_{v:\widetilde{P}_t(v)>0} \frac{\delta_t(v)^2}{Q_t(v)}.
 \end{align}
 Then, using $Q_t(v)\ge 1/F_{\mathrm{tot}}$ and $|\delta_t(v)|\le 1/F_{\mathrm{tot}}$,
 \begin{align}
@@ -62,7 +64,7 @@ D_{\mathrm{KL}}(\widetilde{P}_t\|Q_t)
 \le \frac{N_t}{F_{\mathrm{tot}}}\quad\text{(nats)}.
 \end{align}
 
-The resulting bound is loose but explicit. Under implementation defaults ($N_t\le16$, $F_{\mathrm{tot}}=65536$), it is at most $2.44\times10^{-4}$ nats for quantization alone. Under the released baseline setting ($N_t\le64$, $F_{\mathrm{tot}}=4096$), the corresponding worst-case ceiling is $1.56\times10^{-2}$ nats. Truncation and stability filtering can dominate this term in practice, so all terms should be logged together.
+The resulting bound is loose but explicit. Under implementation defaults ($N_t\le16$, $F_{\mathrm{tot}}=65536$), it is at most $16/65536 \approx 2.44\times10^{-4}$ nats for quantization alone. Under the released baseline setting ($N_t\le64$, $F_{\mathrm{tot}}=4096$), the corresponding worst-case ceiling is $64/4096 = 1.56\times10^{-2}$ nats. Truncation and stability filtering can dominate this term in practice, so all terms should be logged together.
 
 \subsection{Entropy-Threshold Gating and Capacity}
 
@@ -97,7 +99,7 @@ If $P_{1:T}$ denotes the matched-distribution natural-cover process, then sequen
 \begin{equation}
 \mathrm{Adv}_{\mathrm{censor}}\le \mathrm{TV}(Q_{1:T},P_{1:T}) \le \sqrt{\tfrac{1}{2}D_{\mathrm{KL}}(Q_{1:T}\|P_{1:T})},
 \end{equation}
-where the first inequality is the standard testing bound and the second is Pinsker's inequality~\cite{cover2006elements}. The steganographic meaning of that bridge is then interpreted through frameworks such as Cachin~\cite{cachin1998information} and Hopper et al.~\cite{hopper2002provably}. That sequence-level bridge is the quantity a censor-facing claim would ultimately need.
+where the first inequality is the standard testing bound and the second is Pinsker's inequality~\cite{tsybakov2009introduction}. The steganographic meaning of that bridge is then interpreted through frameworks such as Cachin~\cite{cachin1998information} and Hopper et al.~\cite{hopper2002provably}. That sequence-level bridge is the quantity a censor-facing claim would ultimately need.
 
 $\widehat{B}_{\mathrm{TV}}$ is therefore an audit signal rather than a direct detector-risk guarantee. In this revision we use it conservatively in two ways: a large value is direct evidence that approximation terms are not negligible, while a small value is only suggestive and still requires detector-side validation. Its practical usefulness is therefore calibration-dependent: if a later regime shows small $\widehat{B}_{\mathrm{TV}}$ but high detector AUC, the metric should be downgraded to a local implementation-health diagnostic rather than treated as a censor-risk proxy. For that reason, the staged detector block treats correlation analysis between $\widehat{B}_{\mathrm{TV}}$ and detector scores as a required output, not an optional add-on. The full real-backend measurement block remains pending (Stage 3).
 
@@ -132,7 +134,7 @@ Observed marginals become mixtures:
 
 Importantly, $R$ is sender-local: failed attempts are discarded and Bob only decodes the final transmitted cover. So $R$ does not alter decode replay correctness, but it can affect sender-side timing/energy and external traffic observables.
 
-Even when text-only quality is strong, these mixture shifts may be detectable by a traffic observer. In the released 18-trial pilot, \texttt{attempts\_used} has mean $1.944$ and maximum $5$: 10 runs finished in one attempt, 3 in two attempts, 3 in three attempts, and 2 in five attempts. The English subset is mostly single-attempt (7 of 9), while the Chinese subset spreads across one, two, three, and five attempts with counts 3, 2, 3, and 1. By contrast, a natural-cover generator without a retry loop has degenerate $R=1$ unless dummy retries are added deliberately. Under the current policy, retry count alone is therefore a trivially separating feature against any zero-retry natural-cover baseline; no learned detector is required to exploit that difference. This already makes the side-channel concern concrete in the released pilot, and it also explains why the released p99 encode latency is driven by a few high-retry cases rather than a stabilized tail law. Evaluation should therefore report retry-conditioned and unconditional length/latency distributions, and we keep this as a pending detector/traffic block beyond the current baseline.
+Even when text-only quality is strong, these mixture shifts may be detectable by a traffic observer. In the released 18-trial pilot, \texttt{attempts\_used} has mean $1.778$ and maximum $4$: 11 runs finished in one attempt, 2 in two attempts, 3 in three attempts, and 2 in four attempts. The English subset is mostly single-attempt (7 of 9), while the Chinese subset spreads across one, two, three, and four attempts with counts 4, 1, 2, and 2. By contrast, a natural-cover generator without a retry loop has degenerate $R=1$ unless dummy retries are added deliberately. Under the current policy, retry count alone is therefore a trivially separating feature against any zero-retry natural-cover baseline; no learned detector is required to exploit that difference. This already makes the side-channel concern concrete in the released pilot, and it also explains why the released p99 encode latency is driven by a few high-retry cases rather than a stabilized tail law. Evaluation should therefore report retry-conditioned and unconditional length/latency distributions, and we keep this as a pending detector/traffic block beyond the current baseline.
 
 \subsection{Prompt-Knowledge and Multi-Message Regimes}
 

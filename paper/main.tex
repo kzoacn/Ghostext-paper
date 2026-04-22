@@ -4,7 +4,7 @@
 \renewcommand\footnotetextcopyrightpermission[1]{}
 \pagestyle{plain}
 
-\title{Ghostext: A Deterministic, Fail-Closed LLM Steganography Protocol with Implementation-Aligned Approximation Bounds}
+\title{Ghostext: Near-Distribution-Preserving LLM Steganography with Authenticated Packet Framing}
 
 \author{Anonymous Author(s)}
 \affiliation{
@@ -17,26 +17,20 @@
 \begin{document}
 
 \begin{abstract}
-Ghostext is a deterministic, fail-closed linguistic steganography protocol for large language models with authenticated packet framing and implementation-aligned approximation bounds. It uses arithmetic-coding-style interval narrowing over next-token distributions, but the present paper is positioned as a protocol-engineering contribution rather than a near-perfect-security claim. In this revision, the real-backend evidence includes a pilot 18-trial template-known baseline under a passive-censor setting; all 18 trials decoded successfully, but the corresponding Wilson 95\% interval $[0.824,1.000]$ makes this only an operational floor for recoverability, runtime, and payload efficiency rather than a settled reliability or detector-evasion result. We also add a six-case same-backend comparison slice against implementation-aligned NLS-style single-segment baselines: carrying raw UTF-8 payload is faster but less reliable, while carrying AEAD packet bytes directly yields payload-bit entropy essentially at 1.0 yet the corresponding single-segment baseline still stalls on $2/6$ cases without Ghostext's segment structure. We explicitly separate measured evidence from open items: the implementation-side TV-style audit diagnostic is uncalibrated against detector scores, detector-facing claims remain pending, and active text modification in transit is out of scope.
+We present Ghostext, a near-distribution-preserving linguistic steganography protocol for large language models. Relative to the model's same-policy sampling distribution, the only residual deviations are deterministic integer quantization (bounded by $1/F_{\mathrm{tot}}$ per candidate) and retokenization-stability filtering; top-$p$/max-$k$ truncation is shared with the natural-cover baseline and does not count as a Ghostext-induced deformation. The protocol uses arithmetic-coding-style interval narrowing, feeds the cover generator with an AEAD-protected packet, and binds sender and receiver through a configuration fingerprint over model, tokenizer, prompt, and codec settings. We report LLM-backend evidence on Qwen/llama.cpp: an 18-trial bilingual template-known baseline and a six-case same-backend slice against implementation-aligned NLS-style single-segment baselines that isolates what payload bitstream is fed into the cover coder.
 \end{abstract}
 
 \maketitle
 
 \input{sections/01-introduction}
 \input{sections/02-background}
-\input{sections/03-threat-model}
-\input{sections/04-system-overview}
 \input{sections/05-protocol-details}
 \input{sections/06-implementation}
-\input{sections/07-analysis-and-discussion}
 \input{sections/08-evaluation-plan}
 \input{sections/12-related-work}
 \input{sections/13-limitations-and-conclusion}
 
 \bibliographystyle{ACM-Reference-Format}
 \bibliography{refs}
-
-\appendix
-\input{sections/appendix-a-claim-evidence}
 
 \end{document}

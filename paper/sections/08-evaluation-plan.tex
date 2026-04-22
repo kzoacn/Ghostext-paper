@@ -1,186 +1,52 @@
-\section{Evaluation and Staged Execution Protocol}
+\section{Evaluation}
 
-This section reports released pilot real-backend outcomes for Q1--Q3 as a template-known operational floor and keeps the same staged protocol for the remaining questions. The objective is still claim-to-evidence traceability: each statement should map to a concrete metric definition, script path, and released artifact.
+Our evaluation targets three questions: (Q1) decode reliability under realistic prompt/message diversity; (Q2) runtime overhead of deterministic safety controls; (Q3) payload efficiency in packet-carrying tokens and in total transmitted tokens. Detector-facing and approximation-instrumentation questions are pending and out of the measured core. The baseline configuration is \texttt{top\_p=0.995}, \texttt{max\_candidates=64}, \texttt{min\_entropy\_bits=0.0}, \texttt{total\_frequency=4096}.
 
-\subsection{Research Questions and Current Coverage}
+Let $M$ be message count, $S$ successful decodes, $B_i$ packet bytes for sample $i$, $T_i^{\mathrm{pkt}}$ packet-carrying tokens, $T_i^{\mathrm{all}}$ total transmitted tokens. We report $\mathrm{SR}=S/M$, packet-token efficiency $\eta_{\mathrm{pkt}}=\sum_i 8B_i/\sum_i T_i^{\mathrm{pkt}}$, transmission-token efficiency $\eta_{\mathrm{all}}=\sum_i 8B_i/\sum_i T_i^{\mathrm{all}}$, and median/p90 runtime.
 
-The campaign is organized around five questions.
+\subsection{Template-Known Baseline ($n=18$)}
 
-Q1 asks whether deterministic decoding is reliable under realistic prompt and message diversity.
-Q2 asks what runtime overhead is introduced by deterministic safety controls.
-Q3 asks how much payload efficiency is achieved in packet-carrying tokens and in total transmitted tokens.
-Q4 asks how large each approximation term is in practice and which term dominates in different operating regions.
-Q5 asks how text-only and traffic-aware detectors behave under single-sample and multi-sample observation.
-
-In this revision, Q1--Q3 have pilot real-backend evidence from 18 end-to-end template-known trials (two runs merged), while Q4--Q5 remain open and are kept as staged execution targets.
-
-The real-backend baseline configuration in these 18 trials is explicitly: \texttt{top\_p=0.995}, \texttt{max\_candidates=64}, \texttt{min\_entropy\_bits=0.0}, and \texttt{total\_frequency=4096}.
-
-\subsection{Metrics with Explicit Definitions}
-
-Let $M$ be message count in a condition, $S$ successful decodes, and $B_i$ packet bytes for sample $i$. Let $T_i^{\mathrm{pkt}}$ be packet-carrying tokens and $T_i^{\mathrm{all}}$ be total transmitted tokens.
-
-Recoverability is
-\begin{equation}
-\mathrm{SR}=\frac{S}{M}.
-\end{equation}
-
-Packet-token efficiency and transmission-token efficiency are
-\begin{equation}
-\eta_{\mathrm{pkt}}=\frac{\sum_i 8B_i}{\sum_i T_i^{\mathrm{pkt}}},
-\qquad
-\eta_{\mathrm{all}}=\frac{\sum_i 8B_i}{\sum_i T_i^{\mathrm{all}}}.
-\end{equation}
-
-Runtime is reported as median and p90 in the main paper tables, while the released artifacts also retain descriptive p99 values. With $n=18$, the p90/p99 values should be read as order statistics rather than stable tail estimates.
-
-Because retries are sender-side and failed attempts are discarded before transmission, baseline runtime should be interpreted as \emph{total time to final successful cover}, not single-attempt latency.
-
-For approximation analysis, planned reporting remains per-step and per-message summaries of
-$\alpha_t$, $N_t/(2F_{\mathrm{tot}})$, and $\beta_t$, together with empirical distribution of
-\begin{equation}
-\widehat{B}_{\mathrm{TV}}=\sum_t\left(\alpha_t+\frac{N_t}{2F_{\mathrm{tot}}}+\beta_t\right)
-\end{equation}
-as defined in Equation~\ref{eq:bhat-tv}.
-
-\subsection{Released Pilot Real-Backend Baseline (Q1--Q3)}
-
-Table~\ref{tab:real-baseline-overall} summarizes merged outcomes from 18 real-backend trials (9 English, 9 Chinese) in the template-known regime, executed with pinned model/backend/runtime configuration and released raw JSONL logs.
+Table~\ref{tab:real-baseline-overall} summarizes merged outcomes from 18 LLM-backend trials (9 English, 9 Chinese) in the template-known regime, with pinned configuration and released raw JSONL. Encode bits/token is $2.448$ under the ungated baseline ($h_{\min}=0.0$) and should not be interpreted as a recommended deployment default. The current evidence is a pilot measurement. Per language, encode medians are 35.80\,s (en) and 65.87\,s (zh); mean encode bits/token are 2.662 (en) and 2.234 (zh).
 
 \begin{table}[t]
-\caption{Merged real-backend pilot results (r1+r2, template-known baseline, $n=18$; policy \texttt{top\_p=0.995}, \texttt{max\_candidates=64}, \texttt{min\_entropy\_bits=0.0}, \texttt{total\_frequency=4096}).}
+\caption{Merged LLM-backend pilot (r1+r2, template-known, $n=18$).}
 \label{tab:real-baseline-overall}
-\begin{tabular}{p{0.52\linewidth}p{0.39\linewidth}}
+\footnotesize
+\begin{tabular}{p{0.50\linewidth}p{0.41\linewidth}}
 \toprule
 Metric & Value \\
 \midrule
-Decode success rate ($\mathrm{SR}$) & $18/18=1.000$ (Wilson 95\% CI: $[0.824,1.000]$) \\
-Failure histogram & none observed \\
-Encode latency (s) & median 50.56, p90 88.75 \\
-Decode latency (s) & median 34.87, p90 54.13 \\
-Encode bits/token at \texttt{min\_entropy\_bits=0.0} & mean 2.478 (median 2.586, min 1.894, max 3.071) \\
-Attempts used & mean 1.944, max 5 \\
-Approx. single-attempt encode time (derived) & mean 30.57 s (total encode mean 59.44 s over 35 attempts) \\
+Decode success rate & $18/18=1.000$ \\
+Encode latency (s) & median 58.18, p90 108.16 \\
+Decode latency (s) & median 35.73, p90 65.94 \\
+Encode bits/token ($h_{\min}=0.0$) & mean 2.448 (med.\ 2.405) \\
 \bottomrule
 \end{tabular}
 \end{table}
-
-\begin{table}[t]
-\caption{Language-stratified pilot summary from the same template-known baseline, with per-cell uncertainty computed from the released JSONL logs.}
-\label{tab:real-baseline-language}
-\begin{tabular}{p{0.25\linewidth}p{0.31\linewidth}p{0.31\linewidth}}
-\toprule
-Metric & en ($n=9$) & zh ($n=9$) \\
-\midrule
-Decode success rate & $9/9$ (Wilson 95\% CI: $[0.701,1.000]$) & $9/9$ (Wilson 95\% CI: $[0.701,1.000]$) \\
-Encode median (s) & 38.62 (bootstrap 95\% CI: $[26.11,56.85]$) & 55.57 (bootstrap 95\% CI: $[38.40,80.73]$) \\
-Decode median (s) & 27.27 (bootstrap 95\% CI: $[24.28,54.99]$) & 36.96 (bootstrap 95\% CI: $[25.54,51.40]$) \\
-Mean encode bits/token & 2.586 (bootstrap 95\% CI: $[2.39,2.75]$) & 2.370 (bootstrap 95\% CI: $[2.17,2.60]$) \\
-\texttt{attempts\_used} histogram & \texttt{1:7, 2:1, 5:1} & \texttt{1:3, 2:2, 3:3, 5:1} \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-These results support only a narrow pilot claim: all 18 released trials decoded successfully under the tested regime, but the aggregate Wilson 95\% interval $[0.824,1.000]$ should be read literally, so the current evidence is an operational floor rather than a settled reliability estimate. The released artifact still records descriptive p99 encode/decode latencies (215.40 s and 63.92 s), but at $n=18$ these are dominated by a few high-retry cases rather than stable tail behavior and are therefore not headlined in the main paper table. The reported payload-efficiency numbers are therefore best read as pilot measurements under the stated baseline policy, not as general claims about detector resistance, traffic-side indistinguishability, or stability across prompt-regime changes.
-
-For transparency, the aggregate 95\% bootstrap intervals from the released 18-trial sample are $[34.43,57.76]$ seconds for encode median, $[26.17,48.13]$ seconds for decode median, and $[2.33,2.63]$ for mean encode bits/token. Table~\ref{tab:real-baseline-language} now mirrors that reporting style per language cell, but these intervals remain descriptive pilot statistics rather than a substitute for a larger condition-stratified campaign. At $n=9$ per language, the Wilson intervals are mainly reminders of uncertainty; the more informative signal in Table~\ref{tab:real-baseline-language} is the different \texttt{attempts\_used} profile between the two language cells.
-
-Because the released baseline uses \texttt{min\_entropy\_bits=0.0}, the reported 2.478 bits/token should be interpreted as an ungated initial operating point, not as a recommended deployment default. The gap between aggregate mean 2.478 and median 2.586 already indicates non-negligible per-message heterogeneity inside this small pilot, which is another reason not to over-read a single headline figure before the planned $h_{\min}$ sweep.
-
-For language interpretation, the zh condition in this baseline uses CJK prompts and CJK secret messages (see released JSON summaries). The merged baseline summary now also exposes \texttt{seed=7} and an explicit \texttt{passphrase\_policy} field. Neither the baseline release nor the aligned slice release currently exposes full real-backend cover strings; instead, the aligned slice JSONL adds method-labeled per-run case IDs, timings, token counts, and failure classes on top of the same pinned configuration metadata.
-
-Artifacts are released in this repository under `results/real-backend-baseline-r1/`, `results/real-backend-baseline-r2/`, and merged summaries in `results/real-backend-baseline-summary-merged.{json,md}`. Reproduction commands are provided in `results/real-backend-baseline-reproduce.sh`.
 
 \subsection{Same-Backend NLS-Style Comparison Slice}
 \label{sec:aligned-slice}
 
-To isolate payload formation from model-family confounders, we additionally ran a same-backend comparison on the six released Qwen cases using three methods:
-\begin{enumerate}
-\item Ghostext full,
-\item an implementation-aligned NLS-style single-segment baseline carrying raw UTF-8 plaintext bytes, and
-\item the same single-segment arithmetic-coding baseline carrying Ghostext's AEAD packet bytes directly.
-\end{enumerate}
-All three use the same Qwen/\texttt{llama.cpp} backend and the same candidate policy
-\texttt{top\_p=0.995}, \texttt{max\_candidates=64}, \texttt{min\_entropy\_bits=0.0}, and \texttt{total\_frequency=4096}. To avoid cross-tokenizer confounding, the single-segment baselines also reuse the same retokenization-stability filter as Ghostext. This is therefore not a historical reproduction of Ziegler et al.'s GPT-2 setting; it is an implementation-aligned isolation of what payload bitstream is fed into the arithmetic-coding-style cover generator.
+To isolate payload formation from model-family confounders, we compare three methods on the six released Qwen cases using the same backend and candidate policy: (i) Ghostext full; (ii) an implementation-aligned NLS-style single-segment baseline carrying raw UTF-8 plaintext bytes; (iii) the same single-segment baseline carrying Ghostext's AEAD packet bytes. To avoid cross-tokenizer confounding, the single-segment baselines reuse the retokenization-stability filter. This is an implementation-aligned isolation of what payload bitstream is fed into the cover coder, not a historical reproduction of Ziegler et al.
 
 \begin{table*}[t]
-\caption{Same-backend comparison on the six released Qwen cases. ``Plaintext bits/token'' reports $8|m_i|/T_i^{\mathrm{all}}$, while ``Carried bits/token'' reports $8|p_i|/T_i^{\mathrm{all}}$. For the two single-segment baselines, $T_i^{\mathrm{all}}=T_i^{\mathrm{pkt}}$; Ghostext uses the full transmitted-token denominator, so both columns include natural-tail completion. Confidence intervals are omitted here because $n=6$ per method and are better read through the sample-size caveat in the surrounding text.}
+\caption{Same-backend comparison on six Qwen cases. ``Plaintext bits/tok.'' is $8|m_i|/T_i^{\mathrm{all}}$; ``Carried bits/tok.''\ is $8|p_i|/T_i^{\mathrm{all}}$.}
 \label{tab:aligned-nls-slice}
 \footnotesize
 \setlength{\tabcolsep}{3pt}
-\begin{tabular}{p{0.14\linewidth}p{0.13\linewidth}p{0.07\linewidth}p{0.08\linewidth}p{0.08\linewidth}p{0.08\linewidth}p{0.11\linewidth}p{0.11\linewidth}p{0.06\linewidth}}
+\begin{tabular}{p{0.14\linewidth}p{0.17\linewidth}p{0.06\linewidth}p{0.07\linewidth}p{0.07\linewidth}p{0.11\linewidth}p{0.11\linewidth}p{0.06\linewidth}}
 \toprule
-Method & Payload & $n$/SR & Enc. med. (s) & Dec. med. (s) & Att. & Plain bits/tok. & Carried bits/tok. & Ent. \\
+Method & Payload & $n$/SR & Enc.\ med.\ (s) & Dec.\ med.\ (s) & Plain bits/tok. & Carried bits/tok. & Ent. \\
 \midrule
-Ghostext full & AEAD packet, 2 seg. + tail & $6$, $6/6$ & 31.85 & 31.24 & 1.0 / 1 & 0.975 & 2.452 & 1.000 \\
-NLS-style single segment & raw UTF-8 bytes & $6$, $5/6$ & 8.50 & 8.53 & 1.0 / 1 & 2.487 & 2.487 & 0.991 \\
-NLS-style single segment & AEAD packet, 1 seg. & $6$, $4/6$ & 46.21 & 46.24 & 1.0 / 1 & 0.655 & 1.747 & 1.000 \\
+Ghostext full & AEAD, 2 seg.\ + tail & $6$, $6/6$ & 31.85 & 31.24 & 0.975 & 2.452 & 1.000 \\
+NLS-style 1 seg. & raw UTF-8 bytes & $6$, $5/6$ & 8.50 & 8.53 & 2.487 & 2.487 & 0.991 \\
+NLS-style 1 seg. & AEAD packet & $6$, $4/6$ & 46.21 & 46.24 & 0.655 & 1.747 & 1.000 \\
 \bottomrule
 \end{tabular}
 \end{table*}
 
-Table~\ref{tab:aligned-nls-slice} supports two narrow conclusions. First, feeding the cover generator with AEAD packet bytes is best read as a cryptographic payload-normalization step rather than as a claim that a simple one-bit entropy statistic will sharply separate all payload sources. In this six-case slice, raw UTF-8 payload already has mean one-bit entropy $0.991$, while the AEAD-based rows are essentially $1.000$; the reason to prefer packet bytes is therefore computational secret-independence under AEAD assumptions, not merely a marginal gain in naive bit balance.
+Table~\ref{tab:aligned-nls-slice} supports two narrow conclusions. First, feeding the cover generator with AEAD packet bytes is best read as \emph{cryptographic payload normalization} rather than a claim that a one-bit entropy statistic sharply separates payload sources: raw UTF-8 already has one-bit entropy $0.991$ in this slice, and the AEAD rows are $1.000$. The reason to prefer packet bytes is computational secret-independence under AEAD assumptions, not marginal bit-balance gains. Second, payload normalization alone is not operationally sufficient: the raw-UTF-8 single-segment baseline stalls on the longest English case, and the AEAD single-segment baseline stalls on two of the three English cases. Ghostext full, which carries the same AEAD packet but resolves it through bootstrap/body segmentation, succeeds on all six. At $n=6$ per method the slice is descriptive rather than statistical; a larger-sample aligned table and a direct OD-Stega row remain pending.
 
-Second, payload normalization alone is not sufficient to make a real-backend single-segment system operationally robust. The raw UTF-8 single-segment baseline stalls on the longest English case (\texttt{en\_mid\_01}), and the AEAD-packet single-segment baseline stalls on two of the three English cases (\texttt{en\_short\_01} and \texttt{en\_mid\_01}). Ghostext full, which carries the same AEAD packet but resolves it through bootstrap/body segmentation and fail-closed runtime control, succeeds on all six cases in the same slice. Appendix Table~\ref{tab:aligned-nls-per-case} expands those six cases directly from the released JSONL. The slice also reuses the six distinct prompt/message cases from the main baseline before the merged 18-trial release repeats them. Because every successful run in this slice reports \texttt{attempts\_used=1}, the lower Ghostext median encode time here relative to the merged 18-trial pilot (31.85 s versus 50.56 s) reflects the short/mid six-case composition and the absence of retry-heavy runs in the slice, not a policy change. The current evidence therefore supports a split claim: cryptographic payload normalization removes direct plaintext structure at the carried-bitstream layer, but segmentation and runtime controls are still needed to make that randomized payload usable on this backend.
+\subsection{Artifacts}
 
-Artifacts for this slice are released under \texttt{results/aligned-qwen-baselines/}; exact rerun commands are listed in \texttt{results/aligned-qwen-baselines-reproduce.sh}. Because the slice remains only $n=6$ per method and detector-side rows are still absent, it should be read as a descriptive payload-source isolation rather than a statistical superiority result or a complete OD-Stega comparison.
-
-\subsection{Evaluation Axes for Remaining Stages}
-
-For broader coverage beyond the baseline, measurements should follow a factorized grid across message length, prompt family, language, and policy settings. Message length should be stratified by plaintext bytes and packet bytes because cryptographic framing changes effective payload size. Prompt families should include at least narrative, informational, and dialog styles in both English and Chinese.
-
-To address predictable-prompt concerns, each prompt family should include two regimes: private-prompt and template-known. The released baseline covers only the latter regime.
-
-\subsection{Staged Execution Order (Status-Tagged)}
-
-\textbf{Stage 0 (environment freeze) -- completed for the released runs; one provenance field still pending:} implementation commit, model artifact identity, backend metadata, and runtime settings were pinned and logged, and the merged summary now surfaces Ghostext git head together with runtime provenance; the remaining missing field is the exact llama.cpp commit SHA.
-
-\textbf{Stage 1 (recoverability pilot) -- pilot released:} decode success rate, failure histogram, retry distribution, and language-stratified confidence intervals were collected for the merged 18-trial template-known baseline.
-
-\textbf{Stage 2 (runtime and efficiency pilot) -- pilot released:} encode/decode latency summaries, bits/token efficiency, and per-language bootstrap intervals were collected in the same baseline runs.
-
-\textbf{Stage 3 (approximation instrumentation) -- pending:} enable step-level logging for $\alpha_t$, $N_t$, $F_{\mathrm{tot}}$, and $\beta_t$; report term dominance by operating region.
-
-\textbf{Stage 4 (ablation campaign) -- pending:} run one-factor-at-a-time ablations for stability filter, fingerprint check, retry policy, quantization budget, truncation policy, and tail policy.
-
-\textbf{Stage 4.5 (aligned external baselines) -- initial slice released:} a same-backend Ghostext-vs-NLS-style single-segment comparison is now released on the six Qwen cases; detector-side rows, larger sample sizes, and direct OD-Stega comparison remain pending before any stronger cross-paper claim.
-
-\textbf{Stage 5 (detector-facing evaluation) -- pending:} start with a single-message proxy slice and then extend to multi-message accumulation; correlation analysis between $\widehat{B}_{\mathrm{TV}}$ and detector scores is a required output rather than an optional appendix.
-
-\textbf{Stage 6 (traffic-side analysis) -- pending:} compare stego and non-stego baselines on output-length and latency distributions with retry-conditioned views, including a natural-cover baseline whose retry count is degenerate unless deliberately equalized.
-
-\textbf{Stage 7 (artifact packaging) -- in progress:} baseline raw logs and merged summaries are released; remaining stages will follow the same artifact standard.
-
-\subsection{Ablation and Failure Decomposition Protocol}
-
-Ablations should isolate each engineering choice while keeping other knobs fixed. For each ablation, report deltas in recoverability, efficiency, failure composition, and approximation-term summaries.
-
-All failures should be mapped to explicit classes already exposed by the implementation: authentication failure, configuration mismatch, synchronization mismatch, unstable-tokenization exhaustion, low-entropy retry exhaustion, and token-budget exhaustion.
-
-\subsection{Baseline Comparison Block (NLS / OD-Stega)}
-
-Direct Ghostext-vs-NLS/OD-Stega numeric comparison on the same model, prompt family, and message set is not included in the current release and is therefore an explicit gap.
-
-This revision now includes an initial same-backend slice against implementation-aligned NLS-style single-segment baselines (Table~\ref{tab:aligned-nls-slice}). The slice is deliberately narrow: it shares Ghostext's backend and candidate policy so that payload-source effects can be isolated, but it does not replace a historical reproduction of NLS/OD-Stega under their original model families or a detector-facing comparison.
-
-The next comparison table should therefore add at least detector AUC under $m\in\{1,8,32\}$ aggregation, larger sample counts, and a direct OD-Stega row under aligned token-budget and truncation settings. Until those rows exist, Ghostext's positioning relative to the broader NLS/OD-Stega literature should still be read as a measured but scope-constrained systems comparison rather than a broad superiority claim.
-
-\subsection{Traffic-Side and Detector Blocks}
-
-Because retries may leak side-channel information through timing and length, each run should log attempt count, wall-clock latency, packet-carrying token count, and total token count. Distributions should be reported both unconditionally and conditioned on retry count.
-
-Detector-facing evaluation should include at least one feature-based classical baseline, one neural text detector, and one LLM-judge-style scorer used only as a perceptual proxy. The same sample sets should be evaluated in single-message and multi-message modes, and the single-message slice is the minimum first release because it is much cheaper than the full accumulation study.
-
-For multi-message mode, performance should be reported as a function of aggregation size $m$ (for example, $m\in\{1,4,8,16,32\}$), not a single pooled number.
-
-\subsection{Statistical Reporting and Artifact Rules}
-
-Each reported metric should include uncertainty information: confidence intervals for rates, bootstrap intervals for medians when appropriate, and full sample counts. The current 18-trial pilot now reports aggregate Wilson/bootstrap intervals together with per-language pilot intervals, but expanded condition grids should report interval estimates per cell. When comparing configurations, report effect sizes with interval estimates rather than significance-only statements.
-
-Negative or null findings should be reported with the same prominence as positive findings.
-
-Each table/figure should have a matching artifact bundle containing raw JSON lines, aggregation scripts, plotting scripts, exact commands, and commit hashes for implementation and paper repositories.
-
-\subsection{Readiness Criteria}
-
-The evaluation campaign should be considered complete only when all five research questions have both summary tables and released raw artifacts, including weak or negative conditions. This criterion prevents selective reporting and keeps claim updates evidence-driven.
+Baseline artifacts are released under \texttt{results/real-backend-baseline-r\{1,2\}/} with merged summaries in \texttt{results/real-backend-baseline-summary-merged.\{json,md\}} and reproduction in \texttt{results/real-backend-baseline-reproduce.sh}. Aligned-slice artifacts are under \texttt{results/aligned-qwen-baselines/}. Per-run JSONL releases include full cover strings with hashes so detector slices can be reproduced from released texts rather than regenerated.

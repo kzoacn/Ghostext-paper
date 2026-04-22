@@ -1,0 +1,61 @@
+{
+  "generated_at_utc": "2026-04-22T07:49:54Z",
+  "conditions": [
+    {
+      "min_entropy_bits": 0.0,
+      "source": "/mnt/d/work/Ghostext-paper/results/real-backend-baseline-summary-merged.json",
+      "trials": 18,
+      "success_count": 18,
+      "decode_success_rate": 1.0,
+      "decode_success_rate_wilson_95": {
+        "low": 0.8241154494176252,
+        "high": 1.0
+      },
+      "encode_latency_median_seconds": 58.17576104398904,
+      "decode_latency_median_seconds": 35.733237897504296,
+      "bits_per_token_mean": 2.447709683816593,
+      "attempts_mean": 1.7777777777777777,
+      "attempts_max": 4,
+      "attempts_histogram": {
+        "1": 11,
+        "2": 2,
+        "3": 3,
+        "4": 2
+      },
+      "bhat_tv_total_mean": 24.498847428035585,
+      "bhat_tv_packet_prefix_mean": 24.093521342938338
+    },
+    {
+      "min_entropy_bits": 0.5,
+      "source": "/mnt/d/work/Ghostext-paper/results/hmin-sweep/hmin-0.5/real_backend_summary.json",
+      "trials": 6,
+      "success_count": 6,
+      "decode_success_rate": 1.0,
+      "decode_success_rate_wilson_95": null,
+      "encode_latency_median_seconds": 70.090202940999,
+      "decode_latency_median_seconds": 40.33035714399011,
+      "bits_per_token_mean": 2.479640792772947,
+      "attempts_mean": 3.3333333333333335,
+      "attempts_max": 7,
+      "attempts_histogram": null,
+      "bhat_tv_total_mean": 23.13004841950817,
+      "bhat_tv_packet_prefix_mean": 22.633377137859075
+    },
+    {
+      "min_entropy_bits": 1.0,
+      "source": "/mnt/d/work/Ghostext-paper/results/hmin-sweep/hmin-1.0/real_backend_summary.json",
+      "trials": 6,
+      "success_count": 6,
+      "decode_success_rate": 1.0,
+      "decode_success_rate_wilson_95": null,
+      "encode_latency_median_seconds": 47.734089607001806,
+      "decode_latency_median_seconds": 43.51619843899971,
+      "bits_per_token_mean": 2.369159869291432,
+      "attempts_mean": 1.1666666666666667,
+      "attempts_max": 2,
+      "attempts_histogram": null,
+      "bhat_tv_total_mean": 24.958040637599996,
+      "bhat_tv_packet_prefix_mean": 24.13815224580044
+    }
+  ]
+}
