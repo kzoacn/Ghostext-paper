@@ -1,0 +1,8 @@
+\section{Ethical Considerations}
+\label{sec:ethical-considerations}
+
+Ghostext studies linguistic steganography, which is a dual-use capability. The same mechanisms that can support privacy-preserving communication under surveillance risk can also be misused to conceal harmful coordination or policy violations. We therefore scope our claims and evaluation narrowly, report implementation caveats explicitly, and avoid framing the current system as detector-proof or abuse-resistant.
+
+Our threat model is a passive text-only observer, and our measured evidence is limited to recoverability and practical overhead in a pinned environment. We do not present claims of robustness against active moderation, endpoint compromise, or large-scale forensic analysis. These boundaries are intentional: overstating security could create unsafe deployment expectations.
+
+For release practice, we provide an anonymous research artifact with reproducibility metadata and clear failure modes, while withholding any claim that the method bypasses real-world safety systems. Future work should include stronger abuse-oriented evaluation and red-team style analysis under controlled governance before any operational use is considered.

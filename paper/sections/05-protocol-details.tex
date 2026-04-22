@@ -7,7 +7,7 @@ Ghostext combines a cryptographic packet layer and an LLM token-selection layer.
 
 Alice takes plaintext, passphrase, and shared prompt. Plaintext is wrapped into an authenticated packet, split into \emph{bootstrap} and \emph{body} segments, and mapped to token choices through deterministic candidate selection, quantization, and interval narrowing. Bob tokenizes the received text under the same prompt, replays the same distributions, reconstructs the bootstrap segment first, checks the header, and then decodes the body. Plaintext is released only after full packet authentication. After packet resolution the encoder may append a short natural tail that carries no payload and is ignored by the decoder.
 
-Synchronization is a protocol invariant: runtime settings, backend metadata, and prompt hash are committed into a configuration fingerprint embedded in the authenticated header. Decoding proceeds only when the fingerprint matches local runtime state. The decoder aborts on authentication mismatch, configuration mismatch, synchronization mismatch, unstable tokenization, or token-budget exhaustion, and never emits partial plaintext after authentication failure.
+Synchronization is a protocol invariant: sender and receiver must share the same prompt and decoding policy so that per-step distributions can be replayed deterministically. The decoder aborts on authentication mismatch, synchronization mismatch, unstable tokenization, or token-budget exhaustion, and never emits partial plaintext after authentication failure.
 
 \subsection{Authenticated Packet Layer}
 
@@ -15,7 +15,7 @@ The packet format is
 \begin{equation}
 \texttt{salt} \parallel \texttt{header\_nonce} \parallel \texttt{sealed\_header} \parallel \texttt{body\_nonce} \parallel \texttt{body\_ciphertext}.
 \end{equation}
-The internal header stores protocol version, crypto IDs, body length, and configuration fingerprint. The implementation uses scrypt for key derivation, HKDF-SHA256 for key separation, and ChaCha20-Poly1305 for authenticated encryption. Under standard AEAD assumptions and unknown passphrase, packet bytes are intended to be computationally indistinguishable from random given fixed field lengths; the arithmetic-coding layer is thus driven by a bitstream that is secret-independent at the byte level.
+The internal header stores protocol version, crypto IDs, and body length. The implementation uses scrypt for key derivation, HKDF-SHA256 for key separation, and ChaCha20-Poly1305 for authenticated encryption. Under standard AEAD assumptions and unknown passphrase, packet bytes are intended to be computationally indistinguishable from random given fixed field lengths; the arithmetic-coding layer is thus driven by a bitstream that is secret-independent at the byte level.
 
 \subsection{Candidate Policy and Quantization}
 
@@ -28,6 +28,43 @@ H_{t+1}&=L_t+\lfloor(H_t-L_t)\,\mathrm{cdf}^+_t(v)\rfloor.
 \end{align}
 A segment resolves when $H_t-L_t=1$. Implementation defaults are $F_{\mathrm{tot}}=65536$ and $h_{\min}=1.0$ bit; the released baseline uses $F_{\mathrm{tot}}=4096$ and $h_{\min}=0.0$.
 
-\subsection{Fingerprint Collision}
+\subsection{Reference Pseudocode}
+\label{sec:protocol-pseudocode}
 
-The fingerprint is the first 64 bits of \texttt{SHA256(JSON(runtime, backend, prompt\_sha256))}. For $n$ honest sessions, $\Pr[\mathrm{collision}]\approx n(n-1)/2^{65}$; for $n=10^6$ this is $\approx 2.7\times10^{-8}$. Fingerprint collisions do not yield valid plaintext without AEAD success. In this paper's passive-censor setting the fingerprint is carried inside the encrypted header rather than exposed on-wire, so it acts as a Bob-local synchronization guard while authenticity remains cryptographic. Widening to 128 bits is the conservative future direction.
+Algorithm~1 and Algorithm~2 follow the protocol-level data flow: \emph{packet $\rightarrow$ bitstream $\rightarrow$ per-token arithmetic-coding selection}.
+
+\begin{algorithm}[t]
+\caption{Ghostext Encode (Simplified)}
+\label{alg:ghostext-encode}
+\begin{algorithmic}[1]
+\REQUIRE plaintext $m$, passphrase $pw$, prompt $\pi$
+\ENSURE stego text $x$
+\STATE $\mathrm{LLM.init}(\pi)$
+\STATE $stream \leftarrow \mathrm{Packet}(m, pw)$
+\STATE $AC \leftarrow \mathrm{ACEncoder.init}(stream)$
+\WHILE{$\NOT \mathrm{ACEncoder.finished}(AC)$}
+  \STATE $dist \leftarrow \mathrm{LLM.next\_token}()$
+  \STATE $tok \leftarrow \mathrm{ACEncoder.select}(AC, dist)$
+  \STATE $\mathrm{LLM.context.push}(tok)$
+\ENDWHILE
+\STATE \textit{// optional natural tail, no payload bits}
+\RETURN $\mathrm{LLM.outputs}()$
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[t]
+\caption{Ghostext Decode (Simplified)}
+\label{alg:ghostext-decode}
+\begin{algorithmic}[1]
+\REQUIRE stego text $x$, passphrase $pw$, prompt $\pi$
+\ENSURE plaintext $m$
+\STATE $\mathrm{LLM.init}(\pi)$
+\STATE $AC \leftarrow \mathrm{ACDecoder.init}(pw)$
+\FORALL{$tok \in x$}
+  \STATE $dist \leftarrow \mathrm{LLM.next\_token}()$
+  \STATE $\mathrm{ACDecoder.update}(AC, tok, dist)$
+  \STATE $\mathrm{LLM.context.push}(tok)$
+\ENDFOR
+\RETURN $\mathrm{ACDecoder.decode}(AC)$
+\end{algorithmic}
+\end{algorithm}

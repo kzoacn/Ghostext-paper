@@ -1,0 +1,18 @@
+\section{Open Science}
+\label{sec:open-science}
+
+This submission follows the ACM CCS 2026 call-for-papers requirement to provide an Open Science statement.
+
+\paragraph{Anonymous artifact for review.}
+We release an anonymous code artifact for the review phase at:
+\begin{center}
+\texttt{https://anonymous.4open.science/r/Ghostext-335F}
+\end{center}
+
+The artifact includes the protocol implementation and scripts that generate the released summaries and tables used in this paper. During review, the artifact is provided in anonymous form and does not contain author-identifying metadata by design.
+
+\paragraph{Reproducibility metadata.}
+To support repeatability, each released run summary records protocol-sensitive settings and runtime metadata, including model/backend identifiers, tokenizer hash, candidate policy parameters, entropy and quantization settings, and software/runtime versions. The paper repository additionally keeps claim-to-evidence notes and result files so that readers can trace each reported number back to a concrete artifact.
+
+\paragraph{Scope of reproducibility claim.}
+We do not claim cross-hardware bit-level determinism from this release. Our reproducibility claim is limited to the pinned local software stack and configuration recorded in the artifact.

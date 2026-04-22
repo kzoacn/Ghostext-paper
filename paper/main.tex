@@ -3,6 +3,8 @@
 \settopmatter{printacmref=false,printfolios=true}
 \renewcommand\footnotetextcopyrightpermission[1]{}
 \pagestyle{plain}
+\usepackage{algorithm}
+\usepackage{algorithmic}
 
 \title{Ghostext: Near-Distribution-Preserving LLM Steganography with Authenticated Packet Framing}
 
@@ -17,7 +19,7 @@
 \begin{document}
 
 \begin{abstract}
-We present Ghostext, a near-distribution-preserving linguistic steganography protocol for large language models. Relative to the model's same-policy sampling distribution, the only residual deviations are deterministic integer quantization (bounded by $1/F_{\mathrm{tot}}$ per candidate) and retokenization-stability filtering; top-$p$/max-$k$ truncation is shared with the natural-cover baseline and does not count as a Ghostext-induced deformation. The protocol uses arithmetic-coding-style interval narrowing, feeds the cover generator with an AEAD-protected packet, and binds sender and receiver through a configuration fingerprint over model, tokenizer, prompt, and codec settings. We report LLM-backend evidence on Qwen/llama.cpp: an 18-trial bilingual template-known baseline and a six-case same-backend slice against implementation-aligned NLS-style single-segment baselines that isolates what payload bitstream is fed into the cover coder.
+We present Ghostext, a generation-based linguistic steganography protocol for large language models that lets a sender (Alice) deliver a secret message to a receiver (Bob) as natural-language cover text in the presence of a passive censor. Alice wraps her plaintext into an authenticated packet keyed by a passphrase shared with Bob, and then generates cover text token by token from a shared prompt: at each next-token step she picks one token from the model's candidate set via an arithmetic-coding-style mapping driven by the packet bits. The censor sees only this text; because the packet bitstream is pseudorandom under authenticated encryption, the resulting cover text is statistically indistinguishable from ordinary LLM-generated content. Bob re-feeds the shared prompt to the same model, replays the same candidate construction at each step, and inverts the arithmetic coding to recover the packet---and from it, the secret message. We implement Ghostext end-to-end and evaluate its performance.
 \end{abstract}
 
 \maketitle
@@ -32,5 +34,10 @@ We present Ghostext, a near-distribution-preserving linguistic steganography pro
 
 \bibliographystyle{ACM-Reference-Format}
 \bibliography{refs}
+
+\appendix
+\input{sections/14-open-science}
+\input{sections/15-ethical-considerations}
+\input{sections/16-generative-ai-usage}
 
 \end{document}

@@ -26,7 +26,7 @@ Use English for the full paper and all notes, and keep the tone friendly, clear,
 
 Use this as the working title (can be modified):
 
-**Ghostext: an almost perfect steganography via large language model and arithmetic coding**
+**Ghostext: A Distribution-Preserving LLM Steganography with Authenticated Packet Framing**
 
 Core setting:
 
@@ -57,7 +57,6 @@ Technical basis:
 
 Claim wording:
 
-- Emphasize **almost perfect** as a distribution-preserving, entropy-efficient steganographic goal.
 - Do not overclaim beyond implemented and tested evidence.
 
 ## 6) Evaluation Priorities
