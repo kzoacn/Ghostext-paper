@@ -1,0 +1,52 @@
+\begin{figure*}[t]
+    \centering
+    \begin{minipage}[t]{0.32\textwidth}
+        \centering
+        \begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\small,scale=0.84,transform shape]
+            \node[draw,rounded corners,fill=blue!8,minimum width=1.2cm,minimum height=0.6cm] (alice) at (0.8,1.1) {Alice};
+            \node[draw,rounded corners,fill=blue!8,minimum width=1.2cm,minimum height=0.6cm] (bob) at (6.0,1.1) {Bob};
+            \draw[thick,->] (alice.east) -- (5.1,1.1);
+            \node[align=center,text width=3.6cm,font=\footnotesize] at (3.0,0.55) {\texttt{Attack at Dawn!}};
+            \node[draw,rounded corners,fill=gray!12,align=center,minimum width=2.5cm,minimum height=0.9cm] (censor) at (3.0,2.25) {Censor\\blocks plaintext};
+            \draw[thick,->] (censor.south) -- (3.0,1.35);
+            \draw[red!80!black,very thick] (2.73,1.37) -- (3.27,0.83);
+            \draw[red!80!black,very thick] (2.73,0.83) -- (3.27,1.37);
+        \end{tikzpicture}
+
+        {\footnotesize \textbf{(a)} Plaintext transmission}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.32\textwidth}
+        \centering
+        \begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\small,scale=0.84,transform shape]
+            \node[draw,rounded corners,fill=blue!8,minimum width=1.2cm,minimum height=0.6cm] (alice) at (0.8,1.1) {Alice};
+            \node[draw,rounded corners,fill=blue!8,minimum width=1.2cm,minimum height=0.6cm] (bob) at (6.0,1.1) {Bob};
+            \draw[thick,->] (alice.east) -- (5.1,1.1);
+            \node[align=center,text width=3.9cm,font=\footnotesize] at (3.0,0.55) {\texttt{3f7a9c12e84b5d91a4...}};
+            \node[draw,rounded corners,fill=gray!12,align=center,minimum width=2.5cm,minimum height=0.9cm] (censor) at (3.0,2.25) {Censor\\blocks ciphertext};
+            \draw[thick,->] (censor.south) -- (3.0,1.35);
+            \draw[red!80!black,very thick] (2.73,1.37) -- (3.27,0.83);
+            \draw[red!80!black,very thick] (2.73,0.83) -- (3.27,1.37);
+        \end{tikzpicture}
+
+        {\footnotesize \textbf{(b)} Encrypted transmission}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.32\textwidth}
+        \centering
+        \begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\small,scale=0.84,transform shape]
+            \node[draw,rounded corners,fill=blue!8,minimum width=1.2cm,minimum height=0.6cm] (alice) at (0.8,1.1) {Alice};
+            \node[draw,rounded corners,fill=blue!8,minimum width=1.2cm,minimum height=0.6cm] (bob) at (6.0,1.1) {Bob};
+            \draw[thick,->] (alice.east) -- (bob.west);
+            \node[align=center,text width=4.1cm,font=\footnotesize] at (3.4,0.52) {``I like to walk around\\in the evening...''};
+            \node[draw,rounded corners,fill=gray!12,align=center,minimum width=2.8cm,minimum height=0.9cm] (censor) at (3.0,2.25) {Censor\\looks like ordinary text};
+            \draw[thick,->] (censor.south) -- (3.0,1.35);
+            \draw[green!50!black,very thick] (2.76,0.98) -- (2.96,0.78) -- (3.36,1.28);
+        \end{tikzpicture}
+
+        {\footnotesize \textbf{(c)} Steganographic transmission}
+    \end{minipage}
+    \caption{Steganography hides the existence of communication. A censor can trivially block visible plaintext or ciphertext, but natural-looking cover text is more likely to pass as ordinary traffic.}
+    \Description{Three side-by-side channel diagrams. Panel (a) shows Alice sending the plaintext message ``Attack at Dawn!'' toward Bob, while a censor inspects the channel and blocks it with a red X. Panel (b) shows Alice sending a random-looking hexadecimal string toward Bob, and the censor again blocks it with a red X. Panel (c) shows Alice sending the natural-language sentence ``I like to walk around in the evening...'' toward Bob; the censor labels it ordinary text and allows it through with a green check.}
+    \label{fig:steganography-channel}
+\end{figure*}

@@ -1,0 +1,28 @@
+\begin{table*}[t]
+    \centering
+    \small
+    \setlength{\tabcolsep}{4pt}
+    \renewcommand{\arraystretch}{1.1}
+    \begin{tabularx}{\textwidth}{
+        >{\raggedright\arraybackslash}p{0.24\textwidth}
+        >{\raggedright\arraybackslash}p{0.17\textwidth}
+        >{\raggedright\arraybackslash}p{0.10\textwidth}
+        >{\raggedright\arraybackslash}X
+    }
+        \toprule
+        Prompt & Message & Passphrase & Cover text \\
+        \midrule
+        Write a short paragraph about a quiet evening walk. &
+        Attack at Dawn! &
+        \texttt{demo-pass} &
+        A quiet evening walk unfolds like a gentle melody against the night sky. The air is cool and fragrant with the faint hum of a distant streetlamp casting a soft amber glow over the pavement. The path is silent save for the occasional rustle of leaves or the distant chirp of a cricket waiting for dawn to return\ldots{} \\
+        Write a short paragraph about sitting in a small corner cafe. &
+        Locker 14 contains the key. &
+        \texttt{demo-pass} &
+        Stepping into the small corner cafe feels like shedding the weight of the outside world as you slide beneath its rounded roof. The morning steam swirls lazily from the kettle on the small table outside the glass window while I flip a cup slowly at the counter inside\ldots{} \\
+        \bottomrule
+    \end{tabularx}
+    \caption{Illustrative Ghostext examples. Each row shows a shared prompt, hidden message, and passphrase together with an ordinary-looking cover text.}
+    \Description{A four-column table with two Ghostext examples. The columns are Prompt, Message, Passphrase, and Cover text. The first row uses the prompt about a quiet evening walk, the message Attack at Dawn!, the passphrase demo-pass, and a calm paragraph about an evening walk. The second row uses the prompt about sitting in a small corner cafe, the message Locker 14 contains the key, the passphrase demo-pass, and a calm paragraph about a corner cafe.}
+    \label{tab:ghostext-examples}
+\end{table*}
