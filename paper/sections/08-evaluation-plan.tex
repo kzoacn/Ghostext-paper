@@ -26,52 +26,6 @@ Long msgs & 20 & 20/20 & 60.22 & 58.11 & 2.615 & 1.90 \\
 
 Table~\ref{tab:grid-benchmark} shows exact round-trip recovery for all 100 trials, with decode success rate $1.000$ and Wilson 95\% confidence interval $[0.963, 1.000]$. No decode mismatch or fail-open behavior appears in the released run log. Overall median encode latency is $37.74$\,s and median decode latency is $34.47$\,s. Mean encode payload density is $2.619$ bits/token (median $2.677$), while mean packet length is $167.1$ bytes.
 
-The main performance caveat is not correctness but tail latency. Encode latency has mean $50.56$\,s, $p90=74.69$\,s, $p99=196.55$\,s, and maximum $291.69$\,s, whereas decode latency is tighter with mean $38.02$\,s, $p90=58.07$\,s, and $p99=72.22$\,s. Retry counts explain much of that spread: 81/100 trials finish on the first encode attempt, 11/100 on the second, and the remaining eight trials require three to six attempts because local contexts trigger low-entropy or no-stable-candidate retries. English-prompt cases are modestly faster and denser than Chinese-prompt cases, while message length mainly affects latency rather than mean bits/token.
+The main performance caveat is not correctness but tail latency. Encode latency has mean $50.56$\,s, $p90=74.69$\,s, $p99=196.55$\,s, and maximum $291.69$\,s, whereas decode latency is tighter with mean $38.02$\,s, $p90=58.07$\,s, and $p99=72.22$\,s. Retry behavior explains much of that spread, because some local contexts trigger low-entropy or no-stable-candidate retries. English-prompt cases are modestly faster and denser than Chinese-prompt cases, while message length mainly affects latency rather than mean bits/token.
 
 These results support one narrow claim: within one pinned local environment and one fixed prompt-message grid, Ghostext provides deterministic, fail-closed end-to-end recoverability with transparent overhead measurements. They also give a more realistic view of runtime than the earlier smoke benchmark, because they expose retry-driven tail behavior across multiple prompt and payload regimes. They do not establish detector resistance, direct distribution-distance bounds, cross-hardware determinism, or robustness to active text modification.
-
-\subsection{Aligned Same-Backend Pilot Comparison}
-
-To separate Ghostext's packet framing and fail-closed replay semantics from simpler payload mappings, we also keep a small aligned pilot on six template-known cases under the same Qwen/\texttt{llama-cpp} backend. Table~\ref{tab:aligned-pilot} compares the full Ghostext pipeline against two single-segment NLS-style baselines: one that still embeds an AEAD packet and one that embeds raw UTF-8 plaintext bits directly.
-
-\begin{table}[t]
-\caption{Small same-backend aligned pilot on six template-known cases.}
-\label{tab:aligned-pilot}
-\footnotesize
-\centering
-\setlength{\tabcolsep}{3pt}
-\begin{tabular}{@{}lrrrrrr@{}}
-\toprule
-Method & $n$ & Success & Enc med (s) & Dec med (s) & Plain bpt & Payload bpt \\
-\midrule
-Ghostext full & 6 & 6/6 & 31.85 & 31.24 & 0.975 & 2.452 \\
-NLS-style AEAD & 6 & 4/6 & 46.21 & 46.24 & 0.655 & 1.747 \\
-NLS-style UTF-8 & 6 & 5/6 & 8.50 & 8.53 & 2.487 & 2.487 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-The comparison is intentionally narrow, but it is still useful. Under this matched backend and prompt regime, Ghostext is the only method that recovers all six cases without stalls. The UTF-8 baseline is much faster and carries more plaintext bits per token because it omits packet framing, while the single-segment AEAD baseline preserves payload normalization but is less stable than the full segmented Ghostext design. Because the sample size is only six and the prompt family is fixed, we treat Table~\ref{tab:aligned-pilot} as a systems-alignment pilot rather than as a broad superiority claim over prior work.
-
-\subsection{Pilot Sweep Over Minimum Entropy}
-
-The entropy gate $h_{\min}$ is one of the few protocol parameters that directly changes whether a local step is allowed to carry payload bits. We therefore retain a small pilot sweep from the released baseline artifacts, shown in Table~\ref{tab:hmin-pilot}. These runs are much smaller than the 10x10 grid and should be read only as early calibration data.
-
-\begin{table}[t]
-\caption{Pilot entropy-threshold sweep on released real-backend baseline cases.}
-\label{tab:hmin-pilot}
-\footnotesize
-\centering
-\setlength{\tabcolsep}{3pt}
-\begin{tabular}{@{}rrrrrrr@{}}
-\toprule
-$h_{\min}$ & Trials & Success & Enc med (s) & Dec med (s) & Mean bpt & Att mean/max \\
-\midrule
-0.0 & 18 & 18/18 & 58.18 & 35.73 & 2.448 & 1.78 / 4 \\
-0.5 & 6 & 6/6 & 70.09 & 40.33 & 2.480 & 3.33 / 7 \\
-1.0 & 6 & 6/6 & 47.73 & 43.52 & 2.369 & 1.17 / 2 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-Even at this small scale, the sweep shows that $h_{\min}$ is not a cosmetic tuning knob. The $h_{\min}=0.5$ pilot yields the highest mean bits/token in the available runs, but it also pushes retry burden sharply upward. The $h_{\min}=1.0$ pilot lowers mean bits/token relative to $h_{\min}=0.5$ while keeping attempts near one per trial. These samples are too small for a deployment recommendation, but they support the paper's claim that entropy gating materially changes throughput and retry behavior and therefore belongs in the protocol-facing discussion.
