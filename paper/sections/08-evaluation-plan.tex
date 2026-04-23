@@ -1,6 +1,6 @@
 \section{Evaluation}
 
-We keep the evaluation narrow and tied to the released implementation. Instead of relying on a single smoke-style benchmark, we report a fixed-grid experiment driven by the released script \nolinkurl{../Ghostext/scripts/run_prompt_message_grid.py}. The grid crosses ten public prompts with ten public messages for 100 end-to-end encode/decode trials under the same pinned local backend from \S\ref{sec:open-science}. The prompt set contains five English and five Chinese templates. The message set contains four short, four medium, and two long plaintexts spanning both languages. All trials use the released defaults. In particular, we keep seed $7$, \texttt{top\_p}=0.995, \texttt{max\_candidates}=64, \texttt{min\_entropy\_bits}=0.0, and \texttt{total\_frequency}=4096. The built-in low-entropy retry logic stays enabled throughout. A fixed local passphrase is reused across the grid for reproducibility, but only the policy and not the secret itself is released.
+We keep the evaluation narrow and tied to the released implementation. Instead of relying on a single smoke-style benchmark, we report a fixed-grid experiment driven by the released Ghostext evaluation script \nolinkurl{run_prompt_message_grid.py}. The grid crosses ten public prompts with ten public messages for 100 end-to-end encode/decode trials under the same pinned local backend from \S\ref{sec:open-science}. The prompt set contains five English and five Chinese templates. The message set contains four short, four medium, and two long plaintexts spanning both languages. All trials use the released defaults. We keep seed $7$ throughout. The decoding settings remain \texttt{top\_p}=0.995, \texttt{max\_candidates}=64, \texttt{min\_entropy\_bits}=0.0, and \texttt{total\_frequency}=4096. The built-in low-entropy retry logic stays enabled throughout. A fixed local passphrase is reused across the grid for reproducibility, but only the policy and not the secret itself is released.
 
 \subsection{Fixed 10x10 Prompt-Message Grid}
 
@@ -9,7 +9,8 @@ We keep the evaluation narrow and tied to the released implementation. Instead o
 \label{tab:grid-benchmark}
 \footnotesize
 \centering
-\begin{tabular}{lrrrrrr}
+\setlength{\tabcolsep}{2pt}
+\begin{tabular}{@{}lrrrrrr@{}}
 \toprule
 Slice & Trials & Success & Enc med (s) & Dec med (s) & Mean bpt & Attempts mean \\
 \midrule
@@ -38,7 +39,8 @@ To separate Ghostext's packet framing and fail-closed replay semantics from simp
 \label{tab:aligned-pilot}
 \footnotesize
 \centering
-\begin{tabular}{lrrrrrr}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lrrrrrr@{}}
 \toprule
 Method & $n$ & Success & Enc med (s) & Dec med (s) & Plain bpt & Payload bpt \\
 \midrule
@@ -51,7 +53,7 @@ NLS-style UTF-8 & 6 & 5/6 & 8.50 & 8.53 & 2.487 & 2.487 \\
 
 The comparison is intentionally narrow, but it is still useful. Under this matched backend and prompt regime, Ghostext is the only method that recovers all six cases without stalls. The UTF-8 baseline is much faster and carries more plaintext bits per token because it omits packet framing, while the single-segment AEAD baseline preserves payload normalization but is less stable than the full segmented Ghostext design. Because the sample size is only six and the prompt family is fixed, we treat Table~\ref{tab:aligned-pilot} as a systems-alignment pilot rather than as a broad superiority claim over prior work.
 
-\subsection{Pilot Sweep Over $h_{\min}$}
+\subsection{Pilot Sweep Over Minimum Entropy}
 
 The entropy gate $h_{\min}$ is one of the few protocol parameters that directly changes whether a local step is allowed to carry payload bits. We therefore retain a small pilot sweep from the released baseline artifacts, shown in Table~\ref{tab:hmin-pilot}. These runs are much smaller than the 10x10 grid and should be read only as early calibration data.
 
@@ -60,7 +62,8 @@ The entropy gate $h_{\min}$ is one of the few protocol parameters that directly 
 \label{tab:hmin-pilot}
 \footnotesize
 \centering
-\begin{tabular}{rrrrrrr}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}rrrrrrr@{}}
 \toprule
 $h_{\min}$ & Trials & Success & Enc med (s) & Dec med (s) & Mean bpt & Att mean/max \\
 \midrule
