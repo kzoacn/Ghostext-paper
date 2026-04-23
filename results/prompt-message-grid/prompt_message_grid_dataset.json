@@ -1,0 +1,130 @@
+{
+  "name": "prompt-message-grid-v1",
+  "prompt_count": 10,
+  "message_count": 10,
+  "expected_trials": 100,
+  "prompts": [
+    {
+      "prompt_id": "p01_en_evening_walk",
+      "language": "en",
+      "family": "quiet-city",
+      "prompt": "Write one short, natural English paragraph about a quiet evening walk in a city neighborhood. Keep it fluent, ordinary, and free of dialogue or bullet points."
+    },
+    {
+      "prompt_id": "p02_en_rainy_commute",
+      "language": "en",
+      "family": "rainy-commute",
+      "prompt": "Write one short, natural English paragraph describing a rainy trip home after work. Use simple everyday details and keep the tone calm."
+    },
+    {
+      "prompt_id": "p03_en_corner_cafe",
+      "language": "en",
+      "family": "corner-cafe",
+      "prompt": "Write one short, natural English paragraph about sitting in a small corner cafe in the early evening. Avoid dramatic language and keep it realistic."
+    },
+    {
+      "prompt_id": "p04_en_market_street",
+      "language": "en",
+      "family": "street-market",
+      "prompt": "Write one short, natural English paragraph about walking past a neighborhood market street near closing time. Keep it plain and observational."
+    },
+    {
+      "prompt_id": "p05_en_campus_library",
+      "language": "en",
+      "family": "campus-evening",
+      "prompt": "Write one short, natural English paragraph about leaving a campus library at dusk. Focus on small concrete details instead of abstract reflection."
+    },
+    {
+      "prompt_id": "p06_zh_evening_subway",
+      "language": "zh",
+      "family": "subway-evening",
+      "prompt": "请写一段自然、连贯、简短的中文段落，描写傍晚下班后乘地铁回家的普通见闻。不要用列表，不要写成对话，语气平实。"
+    },
+    {
+      "prompt_id": "p07_zh_weekend_market",
+      "language": "zh",
+      "family": "weekend-market",
+      "prompt": "请写一段自然、连贯、简短的中文段落，描写周末傍晚逛社区菜市场时看到的景象。用日常口吻，不要夸张。"
+    },
+    {
+      "prompt_id": "p08_zh_convenience_store",
+      "language": "zh",
+      "family": "convenience-store",
+      "prompt": "请写一段自然、连贯、简短的中文段落，描写夜里走进社区便利店时的普通观察。保持平实自然，不要分点。"
+    },
+    {
+      "prompt_id": "p09_zh_campus_track",
+      "language": "zh",
+      "family": "campus-track",
+      "prompt": "请写一段自然、连贯、简短的中文段落，描写傍晚校园操场边的日常场景。语言简单，像普通人随手写下的观察。"
+    },
+    {
+      "prompt_id": "p10_zh_rainy_alley",
+      "language": "zh",
+      "family": "rainy-alley",
+      "prompt": "请写一段自然、连贯、简短的中文段落，描写雨后穿过居民区小巷时看到的街景。不要写成诗歌，保持自然叙述。"
+    }
+  ],
+  "messages": [
+    {
+      "message_id": "m01_en_short_bridge",
+      "language": "en",
+      "length_class": "short",
+      "message": "Meet at 7 PM by the old bridge."
+    },
+    {
+      "message_id": "m02_en_short_notebook",
+      "language": "en",
+      "length_class": "short",
+      "message": "Bring the blue notebook and wait near the station entrance."
+    },
+    {
+      "message_id": "m03_en_mid_locker",
+      "language": "en",
+      "length_class": "medium",
+      "message": "Locker 14 on the east side contains the spare key for tomorrow morning."
+    },
+    {
+      "message_id": "m04_en_mid_route",
+      "language": "en",
+      "length_class": "medium",
+      "message": "Use route B tonight and send a confirmation only after you are indoors."
+    },
+    {
+      "message_id": "m05_en_long_backup",
+      "language": "en",
+      "length_class": "long",
+      "message": "If the cafe is crowded, switch to the bookstore across the street, wait near the back shelf, and leave after ten minutes if nobody arrives."
+    },
+    {
+      "message_id": "m06_zh_short_river",
+      "language": "zh",
+      "length_class": "short",
+      "message": "今晚七点在河边老地方见。"
+    },
+    {
+      "message_id": "m07_zh_short_station",
+      "language": "zh",
+      "length_class": "short",
+      "message": "带上那本蓝色笔记本，在地铁口等我。"
+    },
+    {
+      "message_id": "m08_zh_mid_package",
+      "language": "zh",
+      "length_class": "medium",
+      "message": "包裹已经转移到东侧十四号柜，请按原路线行动并在结束后回执。"
+    },
+    {
+      "message_id": "m09_zh_mid_schedule",
+      "language": "zh",
+      "length_class": "medium",
+      "message": "如果现场人多，就改到街对面的书店门口，十分钟后再决定是否继续等待。"
+    },
+    {
+      "message_id": "m10_zh_long_backup",
+      "language": "zh",
+      "length_class": "long",
+      "message": "明早的备用钥匙已经放进前台左侧第二个抽屉，拿到后不要停留，沿着上次那条路离开，到安全位置再发确认。"
+    }
+  ]
+}

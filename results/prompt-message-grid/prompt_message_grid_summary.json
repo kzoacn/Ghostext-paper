@@ -1,0 +1,929 @@
+{
+  "generated_at_utc": "2026-04-22T19:24:02Z",
+  "runtime": {
+    "timestamp_utc": "2026-04-22T19:24:02Z",
+    "host": "kzoacn-PC",
+    "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.12.12",
+    "cpu_model": "AMD Ryzen 7 7800X3D 8-Core Processor",
+    "cpu_count_logical": 16,
+    "ram_total_gib": 30.92,
+    "ghostext_git_head": "42321c805caf10dac232650dab7de84826bfa51e",
+    "paper_git_head": "222c331bb4df76b6894ed8b13cb01805689ff896",
+    "llama_cpp_python_version": "0.3.20",
+    "llama_cpp_commit_sha": "f49e917",
+    "llama_cpp_build_number": "1",
+    "ggml_build_commit": "f49e917-dirty",
+    "ggml_build_number": "1",
+    "ggml_version": "0.9.11",
+    "llama_system_info": "CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | AVX512 = 1 | AVX512_VBMI = 1 | AVX512_VNNI = 1 | AVX512_BF16 = 1 | LLAMAFILE = 1 | OPENMP = 1 | REPACK = 1 |"
+  },
+  "model": {
+    "resolved_model_path": "/home/kzoacn/.cache/ghostext/models/qwen35-2b-q4ks/Qwen_Qwen3.5-2B-Q4_K_S.gguf",
+    "resolved_model_source": "cache",
+    "file_size_bytes": 1261854880,
+    "backend_metadata": {
+      "model_id": "Qwen/Qwen3.5-2B",
+      "tokenizer_hash": "0fa174fde298ae08d4f75613b3d06c9c027f382133c93e41b3bcf8e134dd8b75",
+      "backend_id": "llama-cpp-qwen3"
+    },
+    "gguf_metadata": {
+      "general.architecture": "qwen35",
+      "general.name": "Qwen3.5 2B",
+      "general.basename": "Qwen3.5",
+      "general.size_label": "2B",
+      "general.license": "apache-2.0",
+      "general.file_type": "14",
+      "tokenizer.ggml.model": "gpt2",
+      "tokenizer.ggml.pre": "qwen35"
+    },
+    "upstream_provenance": {
+      "canonical_model_label": "Qwen3.5 2B",
+      "base_models": [
+        {
+          "name": "Qwen3.5 2B Base",
+          "organization": "Qwen",
+          "repo_url": "https://huggingface.co/Qwen/Qwen3.5-2B-Base"
+        }
+      ]
+    },
+    "ctx_size": 4096,
+    "batch_size": 128,
+    "threads": 4
+  },
+  "config": {
+    "seed": 7,
+    "passphrase_policy": "fixed local evaluation passphrase reused across all 100 prompt-message trials for reproducibility",
+    "cover_text_policy": "per-run JSONL releases full cover text; summary bundles retain hashes and aggregate metrics",
+    "candidate": {
+      "top_p": 0.995,
+      "max_candidates": 64,
+      "min_entropy_bits": 0.0,
+      "retokenization_stability": true
+    },
+    "codec": {
+      "total_frequency": 4096,
+      "header_token_budget": 2048,
+      "body_token_budget": 4096,
+      "natural_tail_max_tokens": 64,
+      "stall_patience_tokens": 256,
+      "low_entropy_window_tokens": 32,
+      "low_entropy_threshold_bits": 0.1,
+      "max_encode_attempts": 10
+    }
+  },
+  "dataset": {
+    "name": "prompt-message-grid-v1",
+    "prompt_count": 10,
+    "message_count": 10,
+    "expected_trials": 100,
+    "prompts": [
+      {
+        "prompt_id": "p01_en_evening_walk",
+        "language": "en",
+        "family": "quiet-city",
+        "prompt": "Write one short, natural English paragraph about a quiet evening walk in a city neighborhood. Keep it fluent, ordinary, and free of dialogue or bullet points."
+      },
+      {
+        "prompt_id": "p02_en_rainy_commute",
+        "language": "en",
+        "family": "rainy-commute",
+        "prompt": "Write one short, natural English paragraph describing a rainy trip home after work. Use simple everyday details and keep the tone calm."
+      },
+      {
+        "prompt_id": "p03_en_corner_cafe",
+        "language": "en",
+        "family": "corner-cafe",
+        "prompt": "Write one short, natural English paragraph about sitting in a small corner cafe in the early evening. Avoid dramatic language and keep it realistic."
+      },
+      {
+        "prompt_id": "p04_en_market_street",
+        "language": "en",
+        "family": "street-market",
+        "prompt": "Write one short, natural English paragraph about walking past a neighborhood market street near closing time. Keep it plain and observational."
+      },
+      {
+        "prompt_id": "p05_en_campus_library",
+        "language": "en",
+        "family": "campus-evening",
+        "prompt": "Write one short, natural English paragraph about leaving a campus library at dusk. Focus on small concrete details instead of abstract reflection."
+      },
+      {
+        "prompt_id": "p06_zh_evening_subway",
+        "language": "zh",
+        "family": "subway-evening",
+        "prompt": "请写一段自然、连贯、简短的中文段落，描写傍晚下班后乘地铁回家的普通见闻。不要用列表，不要写成对话，语气平实。"
+      },
+      {
+        "prompt_id": "p07_zh_weekend_market",
+        "language": "zh",
+        "family": "weekend-market",
+        "prompt": "请写一段自然、连贯、简短的中文段落，描写周末傍晚逛社区菜市场时看到的景象。用日常口吻，不要夸张。"
+      },
+      {
+        "prompt_id": "p08_zh_convenience_store",
+        "language": "zh",
+        "family": "convenience-store",
+        "prompt": "请写一段自然、连贯、简短的中文段落，描写夜里走进社区便利店时的普通观察。保持平实自然，不要分点。"
+      },
+      {
+        "prompt_id": "p09_zh_campus_track",
+        "language": "zh",
+        "family": "campus-track",
+        "prompt": "请写一段自然、连贯、简短的中文段落，描写傍晚校园操场边的日常场景。语言简单，像普通人随手写下的观察。"
+      },
+      {
+        "prompt_id": "p10_zh_rainy_alley",
+        "language": "zh",
+        "family": "rainy-alley",
+        "prompt": "请写一段自然、连贯、简短的中文段落，描写雨后穿过居民区小巷时看到的街景。不要写成诗歌，保持自然叙述。"
+      }
+    ],
+    "messages": [
+      {
+        "message_id": "m01_en_short_bridge",
+        "language": "en",
+        "length_class": "short",
+        "message": "Meet at 7 PM by the old bridge."
+      },
+      {
+        "message_id": "m02_en_short_notebook",
+        "language": "en",
+        "length_class": "short",
+        "message": "Bring the blue notebook and wait near the station entrance."
+      },
+      {
+        "message_id": "m03_en_mid_locker",
+        "language": "en",
+        "length_class": "medium",
+        "message": "Locker 14 on the east side contains the spare key for tomorrow morning."
+      },
+      {
+        "message_id": "m04_en_mid_route",
+        "language": "en",
+        "length_class": "medium",
+        "message": "Use route B tonight and send a confirmation only after you are indoors."
+      },
+      {
+        "message_id": "m05_en_long_backup",
+        "language": "en",
+        "length_class": "long",
+        "message": "If the cafe is crowded, switch to the bookstore across the street, wait near the back shelf, and leave after ten minutes if nobody arrives."
+      },
+      {
+        "message_id": "m06_zh_short_river",
+        "language": "zh",
+        "length_class": "short",
+        "message": "今晚七点在河边老地方见。"
+      },
+      {
+        "message_id": "m07_zh_short_station",
+        "language": "zh",
+        "length_class": "short",
+        "message": "带上那本蓝色笔记本，在地铁口等我。"
+      },
+      {
+        "message_id": "m08_zh_mid_package",
+        "language": "zh",
+        "length_class": "medium",
+        "message": "包裹已经转移到东侧十四号柜，请按原路线行动并在结束后回执。"
+      },
+      {
+        "message_id": "m09_zh_mid_schedule",
+        "language": "zh",
+        "length_class": "medium",
+        "message": "如果现场人多，就改到街对面的书店门口，十分钟后再决定是否继续等待。"
+      },
+      {
+        "message_id": "m10_zh_long_backup",
+        "language": "zh",
+        "length_class": "long",
+        "message": "明早的备用钥匙已经放进前台左侧第二个抽屉，拿到后不要停留，沿着上次那条路离开，到安全位置再发确认。"
+      }
+    ],
+    "completed_trials": 100,
+    "artifacts": {
+      "dataset_json": "results/prompt-message-grid/prompt_message_grid_dataset.json",
+      "runs_jsonl": "results/prompt-message-grid/prompt_message_grid_runs.jsonl",
+      "summary_json": "results/prompt-message-grid/prompt_message_grid_summary.json",
+      "summary_md": "results/prompt-message-grid/prompt_message_grid_summary.md"
+    }
+  },
+  "metrics": {
+    "trials": 100,
+    "success_count": 100,
+    "failure_count": 0,
+    "decode_success_rate": 1.0,
+    "decode_success_rate_wilson_95": [
+      0.9630051925239981,
+      0.9999999999999999
+    ],
+    "failure_histogram": {},
+    "encode_latency_seconds": {
+      "mean": 50.56037735392003,
+      "median": 37.73816939350036,
+      "min": 20.735391248999804,
+      "max": 291.69104953699934,
+      "p90": 74.69367740229987,
+      "p99": 196.54793537419928,
+      "bootstrap_ci_95": [
+        43.357604027530094,
+        59.10801968583999
+      ]
+    },
+    "decode_latency_seconds": {
+      "mean": 38.01671718736997,
+      "median": 34.47431752850025,
+      "min": 20.23698432600031,
+      "max": 84.35542934399928,
+      "p90": 58.07491329400072,
+      "p99": 72.21700481280034,
+      "bootstrap_ci_95": [
+        35.5004132256701,
+        40.64153003647009
+      ]
+    },
+    "end_to_end_latency_seconds": {
+      "mean": 88.57709454129,
+      "median": 74.94575544749932,
+      "min": 41.18924377500116,
+      "max": 363.78544400099963,
+      "p90": 129.20314462510015,
+      "p99": 257.04164294370037,
+      "bootstrap_ci_95": [
+        79.31940177979999,
+        98.94380215549005
+      ]
+    },
+    "bits_per_token_encode": {
+      "mean": 2.6186761900607496,
+      "median": 2.677467764260217,
+      "min": 1.0993949870354365,
+      "max": 3.2131147540983607,
+      "p90": 2.9699671878015828,
+      "p99": 3.146737889114018,
+      "bootstrap_ci_95": [
+        2.54638379496937,
+        2.6855943466835814
+      ]
+    },
+    "packet_len_bytes": {
+      "mean": 167.1,
+      "median": 159.0,
+      "min": 119,
+      "max": 235,
+      "p90": 227.80000000000007,
+      "p99": 235.0,
+      "bootstrap_ci_95": [
+        159.88,
+        174.46
+      ]
+    },
+    "total_tokens": {
+      "mean": 523.09,
+      "median": 480.5,
+      "min": 319,
+      "max": 1157,
+      "p90": 686.1,
+      "p99": 1086.7100000000003,
+      "bootstrap_ci_95": [
+        493.79,
+        554.72
+      ]
+    },
+    "encode_tokens_per_second": {
+      "mean": 12.509071383528584,
+      "median": 13.377064972166934,
+      "min": 3.130024268266453,
+      "max": 25.301410900350678,
+      "p90": 15.324118161497937,
+      "p99": 16.800097869438503,
+      "bootstrap_ci_95": [
+        11.841358071412602,
+        13.149513247199513
+      ]
+    },
+    "decode_tokens_per_second": {
+      "mean": 13.805590365911373,
+      "median": 13.76708380694997,
+      "min": 11.029335728383607,
+      "max": 25.22594610216088,
+      "p90": 15.38691340265113,
+      "p99": 16.997019675762505,
+      "bootstrap_ci_95": [
+        13.494758323677857,
+        14.162370868743876
+      ]
+    },
+    "attempts_used": {
+      "mean": 1.4,
+      "median": 1.0,
+      "max": 6,
+      "histogram": {
+        "1": 81,
+        "2": 11,
+        "5": 2,
+        "4": 3,
+        "6": 2,
+        "3": 1
+      }
+    }
+  },
+  "breakdowns": {
+    "by_prompt_language": {
+      "en": {
+        "trials": 50,
+        "success_count": 50,
+        "failure_count": 0,
+        "decode_success_rate": 1.0,
+        "decode_success_rate_wilson_95": [
+          0.9286499658256813,
+          1.0
+        ],
+        "failure_histogram": {},
+        "encode_latency_seconds": {
+          "mean": 43.090360583020086,
+          "median": 35.036727003000124,
+          "min": 21.478684113999407,
+          "max": 195.58689381699878,
+          "p90": 62.079154840501545,
+          "p99": 135.54362604859898,
+          "bootstrap_ci_95": [
+            37.02508965300009,
+            51.10946693015989
+          ]
+        },
+        "decode_latency_seconds": {
+          "mean": 37.152009458739975,
+          "median": 34.20818172000054,
+          "min": 20.598124795998956,
+          "max": 62.221078763999685,
+          "p90": 57.55101755380001,
+          "p99": 61.36553591317948,
+          "bootstrap_ci_95": [
+            33.78089181135994,
+            40.55491354803984
+          ]
+        },
+        "end_to_end_latency_seconds": {
+          "mean": 80.24237004176005,
+          "median": 69.43853729400053,
+          "min": 42.36305845099923,
+          "max": 250.6208719649985,
+          "p90": 115.95366383250021,
+          "p99": 188.82257004068924,
+          "bootstrap_ci_95": [
+            71.35933125958012,
+            90.42857889064
+          ]
+        },
+        "bits_per_token_encode": {
+          "mean": 2.6857614237875156,
+          "median": 2.7285705974230563,
+          "min": 1.0993949870354365,
+          "max": 3.146067415730337,
+          "p90": 2.925217009119877,
+          "p99": 3.0900369529740574,
+          "bootstrap_ci_95": [
+            2.593241235825971,
+            2.7628035986788375
+          ]
+        },
+        "packet_len_bytes": {
+          "mean": 167.1,
+          "median": 159.0,
+          "min": 119,
+          "max": 235,
+          "p90": 227.8,
+          "p99": 235.0,
+          "bootstrap_ci_95": [
+            156.82,
+            177.68
+          ]
+        },
+        "total_tokens": {
+          "mean": 508.66,
+          "median": 463.5,
+          "min": 323,
+          "max": 1157,
+          "p90": 668.2,
+          "p99": 989.9099999999993,
+          "bootstrap_ci_95": [
+            468.8,
+            552.14
+          ]
+        },
+        "encode_tokens_per_second": {
+          "mean": 13.001110439155532,
+          "median": 13.40904112699568,
+          "min": 3.318218637439326,
+          "max": 25.301410900350678,
+          "p90": 14.799797726614038,
+          "p99": 20.447241786605048,
+          "bootstrap_ci_95": [
+            12.200002929097407,
+            13.83012903063547
+          ]
+        },
+        "decode_tokens_per_second": {
+          "mean": 13.744565884435453,
+          "median": 13.609895453169223,
+          "min": 11.029335728383607,
+          "max": 25.22594610216088,
+          "p90": 14.867554386379577,
+          "p99": 20.548948102903257,
+          "bootstrap_ci_95": [
+            13.257950907085956,
+            14.355651696964845
+          ]
+        },
+        "attempts_used": {
+          "mean": 1.18,
+          "median": 1.0,
+          "max": 5,
+          "histogram": {
+            "1": 44,
+            "2": 5,
+            "5": 1
+          }
+        }
+      },
+      "zh": {
+        "trials": 50,
+        "success_count": 50,
+        "failure_count": 0,
+        "decode_success_rate": 1.0,
+        "decode_success_rate_wilson_95": [
+          0.9286499658256813,
+          1.0
+        ],
+        "failure_histogram": {},
+        "encode_latency_seconds": {
+          "mean": 58.03039412481998,
+          "median": 38.90221291750004,
+          "min": 20.735391248999804,
+          "max": 291.69104953699934,
+          "p90": 114.49165664570012,
+          "p99": 243.50810771627945,
+          "bootstrap_ci_95": [
+            45.45702738889995,
+            72.97263746437987
+          ]
+        },
+        "decode_latency_seconds": {
+          "mean": 38.88142491599996,
+          "median": 37.08564901599948,
+          "min": 20.23698432600031,
+          "max": 84.35542934399928,
+          "p90": 59.25305199320046,
+          "p99": 78.34752225279975,
+          "bootstrap_ci_95": [
+            35.1118091683001,
+            42.879510922160115
+          ]
+        },
+        "end_to_end_latency_seconds": {
+          "mean": 96.91181904081994,
+          "median": 75.38196324450018,
+          "min": 41.18924377500116,
+          "max": 363.78544400099963,
+          "p90": 151.2547553794004,
+          "p99": 310.9526535786995,
+          "bootstrap_ci_95": [
+            81.5112318574997,
+            114.78516326626003
+          ]
+        },
+        "bits_per_token_encode": {
+          "mean": 2.5515909563339836,
+          "median": 2.57998920791798,
+          "min": 1.6103896103896105,
+          "max": 3.2131147540983607,
+          "p90": 2.984370574288306,
+          "p99": 3.1343192938209326,
+          "bootstrap_ci_95": [
+            2.442700763809926,
+            2.655962123741322
+          ]
+        },
+        "packet_len_bytes": {
+          "mean": 167.1,
+          "median": 159.0,
+          "min": 119,
+          "max": 235,
+          "p90": 227.8,
+          "p99": 235.0,
+          "bootstrap_ci_95": [
+            156.82,
+            177.68
+          ]
+        },
+        "total_tokens": {
+          "mean": 537.52,
+          "median": 500.5,
+          "min": 319,
+          "max": 1086,
+          "p90": 717.0,
+          "p99": 1001.2299999999997,
+          "bootstrap_ci_95": [
+            496.3,
+            581.34
+          ]
+        },
+        "encode_tokens_per_second": {
+          "mean": 12.017032327901633,
+          "median": 13.287807757225123,
+          "min": 3.130024268266453,
+          "max": 16.714226020641366,
+          "p90": 15.479943781835448,
+          "p99": 16.513258047820173,
+          "bootstrap_ci_95": [
+            10.950400693860471,
+            13.01241831419745
+          ]
+        },
+        "decode_tokens_per_second": {
+          "mean": 13.866614847387293,
+          "median": 14.02510105207554,
+          "min": 11.50386135739507,
+          "max": 16.913899206808946,
+          "p90": 15.621078348969917,
+          "p99": 16.64868632755877,
+          "bootstrap_ci_95": [
+            13.498701623932932,
+            14.24262552827212
+          ]
+        },
+        "attempts_used": {
+          "mean": 1.62,
+          "median": 1.0,
+          "max": 6,
+          "histogram": {
+            "1": 37,
+            "2": 6,
+            "4": 3,
+            "6": 2,
+            "5": 1,
+            "3": 1
+          }
+        }
+      }
+    },
+    "by_message_length": {
+      "long": {
+        "trials": 20,
+        "success_count": 20,
+        "failure_count": 0,
+        "decode_success_rate": 1.0,
+        "decode_success_rate_wilson_95": [
+          0.8388698745050667,
+          1.0
+        ],
+        "failure_histogram": {},
+        "encode_latency_seconds": {
+          "mean": 95.03622237150003,
+          "median": 60.22198122650025,
+          "min": 50.95842626800004,
+          "max": 291.69104953699934,
+          "p90": 193.58135306979986,
+          "p99": 273.43125995019915,
+          "bootstrap_ci_95": [
+            68.93465755505039,
+            126.0037297915499
+          ]
+        },
+        "decode_latency_seconds": {
+          "mean": 59.60446972909999,
+          "median": 58.11024525399989,
+          "min": 50.867998420999356,
+          "max": 84.35542934399928,
+          "p90": 63.553856216199904,
+          "p99": 82.02583271679946,
+          "bootstrap_ci_95": [
+            56.874617623549874,
+            63.08192389315004
+          ]
+        },
+        "end_to_end_latency_seconds": {
+          "mean": 154.6406921006,
+          "median": 120.04106899850012,
+          "min": 101.8264246889994,
+          "max": 363.78544400099963,
+          "p90": 251.15512704159863,
+          "p99": 343.29925995969955,
+          "bootstrap_ci_95": [
+            127.4247446343998,
+            186.84645934824957
+          ]
+        },
+        "bits_per_token_encode": {
+          "mean": 2.615220202184814,
+          "median": 2.6668104266220434,
+          "min": 1.6721915285451197,
+          "max": 3.0418760469011725,
+          "p90": 2.9510592771990876,
+          "p99": 3.0399463091752583,
+          "bootstrap_ci_95": [
+            2.4603311072986243,
+            2.7532306694821744
+          ]
+        },
+        "packet_len_bytes": {
+          "mean": 231.0,
+          "median": 231.0,
+          "min": 227,
+          "max": 235,
+          "p90": 235.0,
+          "p99": 235.0,
+          "bootstrap_ci_95": [
+            229.4,
+            232.6
+          ]
+        },
+        "total_tokens": {
+          "mean": 721.05,
+          "median": 682.5,
+          "min": 597,
+          "max": 1086,
+          "p90": 827.5000000000001,
+          "p99": 1053.1299999999997,
+          "bootstrap_ci_95": [
+            676.5,
+            774.65
+          ]
+        },
+        "encode_tokens_per_second": {
+          "mean": 9.73866027163242,
+          "median": 11.399522611610283,
+          "min": 3.130024268266453,
+          "max": 13.389277449333733,
+          "p90": 12.129305652983938,
+          "p99": 13.334685602242912,
+          "bootstrap_ci_95": [
+            8.171345119492415,
+            11.136353593123136
+          ]
+        },
+        "decode_tokens_per_second": {
+          "mean": 11.891338600154729,
+          "median": 11.744918448169575,
+          "min": 11.029335728383607,
+          "max": 13.405060732586948,
+          "p90": 12.843189793557821,
+          "p99": 13.346806214946032,
+          "bootstrap_ci_95": [
+            11.63408132675215,
+            12.177011141410864
+          ]
+        },
+        "attempts_used": {
+          "mean": 1.9,
+          "median": 1.0,
+          "max": 6,
+          "histogram": {
+            "1": 14,
+            "5": 2,
+            "6": 1,
+            "2": 2,
+            "4": 1
+          }
+        }
+      },
+      "medium": {
+        "trials": 40,
+        "success_count": 40,
+        "failure_count": 0,
+        "decode_success_rate": 1.0,
+        "decode_success_rate_wilson_95": [
+          0.9123754607496077,
+          1.0
+        ],
+        "failure_histogram": {},
+        "encode_latency_seconds": {
+          "mean": 49.76111446850011,
+          "median": 42.31312831500054,
+          "min": 31.77343414799907,
+          "max": 124.65878020699893,
+          "p90": 75.05920219209969,
+          "p99": 120.25302666376943,
+          "bootstrap_ci_95": [
+            43.63811052414999,
+            57.038628512049925
+          ]
+        },
+        "decode_latency_seconds": {
+          "mean": 38.57059605307491,
+          "median": 37.42513656449955,
+          "min": 31.607745905999764,
+          "max": 51.28539859199918,
+          "p90": 45.37965737920094,
+          "p99": 49.90565340218902,
+          "bootstrap_ci_95": [
+            37.0013621794252,
+            40.191545030774954
+          ]
+        },
+        "end_to_end_latency_seconds": {
+          "mean": 88.33171052157502,
+          "median": 83.60593572849984,
+          "min": 63.45365735199994,
+          "max": 166.57184385399887,
+          "p90": 116.67150139810057,
+          "p99": 158.76918237543939,
+          "bootstrap_ci_95": [
+            81.5477860414999,
+            95.9307017435249
+          ]
+        },
+        "bits_per_token_encode": {
+          "mean": 2.5943107030912356,
+          "median": 2.6701263458386935,
+          "min": 1.0993949870354365,
+          "max": 3.146067415730337,
+          "p90": 2.963378528935696,
+          "p99": 3.083280228073118,
+          "bootstrap_ci_95": [
+            2.471117441667393,
+            2.700722164716757
+          ]
+        },
+        "packet_len_bytes": {
+          "mean": 170.0,
+          "median": 167.0,
+          "min": 159,
+          "max": 187,
+          "p90": 187.0,
+          "p99": 187.0,
+          "bootstrap_ci_95": [
+            166.4,
+            173.7
+          ]
+        },
+        "total_tokens": {
+          "mean": 539.175,
+          "median": 503.5,
+          "min": 436,
+          "max": 1157,
+          "p90": 617.2,
+          "p99": 964.3399999999997,
+          "bootstrap_ci_95": [
+            507.85,
+            580.45
+          ]
+        },
+        "encode_tokens_per_second": {
+          "mean": 12.037974257607118,
+          "median": 13.062435661023706,
+          "min": 4.137190303632689,
+          "max": 25.301410900350678,
+          "p90": 14.011736513722065,
+          "p99": 21.093132210049347,
+          "bootstrap_ci_95": [
+            10.954284538723142,
+            13.166310995191514
+          ]
+        },
+        "decode_tokens_per_second": {
+          "mean": 13.717336038307494,
+          "median": 13.398201074712503,
+          "min": 12.228704014016692,
+          "max": 25.22594610216088,
+          "p90": 14.213456718698625,
+          "p99": 21.082474082734432,
+          "bootstrap_ci_95": [
+            13.283740087351608,
+            14.398956407237076
+          ]
+        },
+        "attempts_used": {
+          "mean": 1.475,
+          "median": 1.0,
+          "max": 6,
+          "histogram": {
+            "1": 30,
+            "2": 6,
+            "4": 2,
+            "6": 1,
+            "3": 1
+          }
+        }
+      },
+      "short": {
+        "trials": 40,
+        "success_count": 40,
+        "failure_count": 0,
+        "decode_success_rate": 1.0,
+        "decode_success_rate_wilson_95": [
+          0.9123754607496077,
+          1.0
+        ],
+        "failure_histogram": {},
+        "encode_latency_seconds": {
+          "mean": 29.12171773054995,
+          "median": 27.902844771500895,
+          "min": 20.735391248999804,
+          "max": 56.15231743700133,
+          "p90": 35.130552722600626,
+          "p99": 56.05740366155087,
+          "bootstrap_ci_95": [
+            26.80695163270004,
+            31.782587055349996
+          ]
+        },
+        "decode_latency_seconds": {
+          "mean": 26.66896205080002,
+          "median": 26.447331299499638,
+          "min": 20.23698432600031,
+          "max": 40.923849627999516,
+          "p90": 31.445636207498687,
+          "p99": 39.446244681129734,
+          "bootstrap_ci_95": [
+            25.319571079950038,
+            28.116845874925048
+          ]
+        },
+        "end_to_end_latency_seconds": {
+          "mean": 55.790679781349965,
+          "median": 54.46652430999984,
+          "min": 41.18924377500116,
+          "max": 96.83279840999967,
+          "p90": 68.79008425890025,
+          "p99": 91.82878403724004,
+          "bootstrap_ci_95": [
+            52.300102958049955,
+            59.653669834499986
+          ]
+        },
+        "bits_per_token_encode": {
+          "mean": 2.6447696709682313,
+          "median": 2.677467764260217,
+          "min": 1.6103896103896105,
+          "max": 3.2131147540983607,
+          "p90": 2.9711598746081505,
+          "p99": 3.1504,
+          "bootstrap_ci_95": [
+            2.5331047726740765,
+            2.744673040589654
+          ]
+        },
+        "packet_len_bytes": {
+          "mean": 132.25,
+          "median": 131.5,
+          "min": 119,
+          "max": 147,
+          "p90": 147.0,
+          "p99": 147.0,
+          "bootstrap_ci_95": [
+            128.8,
+            135.775
+          ]
+        },
+        "total_tokens": {
+          "mean": 408.025,
+          "median": 393.5,
+          "min": 319,
+          "max": 673,
+          "p90": 478.4,
+          "p99": 650.77,
+          "bootstrap_ci_95": [
+            386.85,
+            432.0
+          ]
+        },
+        "encode_tokens_per_second": {
+          "mean": 14.365374065398125,
+          "median": 14.589113393647251,
+          "min": 7.016631166085561,
+          "max": 16.714226020641366,
+          "p90": 15.516188109521785,
+          "p99": 16.554271919824497,
+          "bootstrap_ci_95": [
+            13.803374534392635,
+            14.817045867581303
+          ]
+        },
+        "decode_tokens_per_second": {
+          "mean": 14.850970576393575,
+          "median": 14.746399696897083,
+          "min": 13.66305522937215,
+          "max": 16.913899206808946,
+          "p90": 15.730658581207324,
+          "p99": 16.70281140495677,
+          "bootstrap_ci_95": [
+            14.645379529959968,
+            15.074291544939461
+          ]
+        },
+        "attempts_used": {
+          "mean": 1.075,
+          "median": 1.0,
+          "max": 2,
+          "histogram": {
+            "1": 37,
+            "2": 3
+          }
+        }
+      }
+    }
+  }
+}

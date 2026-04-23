@@ -1,27 +1,74 @@
 \section{Evaluation}
 
-We keep the current evaluation narrow and tied to the released implementation. The CLI already exposes a minimal end-to-end benchmark through \texttt{ghostext benchmark}, so this section reports that benchmark directly instead of adding extra aggregate metrics beyond the shipped interface. The benchmark runs a full encode/decode round trip and returns average encode latency, average decode latency, average encode bits/token, and average perplexity over repeated runs.
+We keep the evaluation narrow and tied to the released implementation. Instead of relying on a single smoke-style benchmark, we report a fixed-grid experiment driven by the released script \nolinkurl{../Ghostext/scripts/run_prompt_message_grid.py}. The grid crosses ten public prompts with ten public messages for 100 end-to-end encode/decode trials under the same pinned local backend from \S\ref{sec:open-science}. The prompt set contains five English and five Chinese templates. The message set contains four short, four medium, and two long plaintexts spanning both languages. All trials use the released defaults. In particular, we keep seed $7$, \texttt{top\_p}=0.995, \texttt{max\_candidates}=64, \texttt{min\_entropy\_bits}=0.0, and \texttt{total\_frequency}=4096. The built-in low-entropy retry logic stays enabled throughout. A fixed local passphrase is reused across the grid for reproducibility, but only the policy and not the secret itself is released.
 
-\subsection{Simple End-to-End Benchmark}
-
-Table~\ref{tab:simple-benchmark} reports the structured JSON output of running \texttt{ghostext benchmark} with the local \texttt{llama-cpp} backend, the README quiet-evening-walk prompt, passphrase \texttt{demo-pass}, message \texttt{Attack at Dawn!}, \texttt{--runs 3}, and \texttt{--json}. Because the benchmark aborts if any round trip fails, successful completion already implies correct recovery for all three runs; we therefore do not add a separate success-rate row. All other CLI settings stay at their released defaults, so the table is best read as a reproducible snapshot of the default local path rather than a tuned best-case configuration.
+\subsection{Fixed 10x10 Prompt-Message Grid}
 
 \begin{table}[t]
-\caption{Output of \texttt{ghostext benchmark} on the local \texttt{llama-cpp} backend with \texttt{--runs 3}.}
-\label{tab:simple-benchmark}
+\caption{Fixed 10x10 prompt-message grid on the pinned local \texttt{llama-cpp} backend.}
+\label{tab:grid-benchmark}
 \footnotesize
-\begin{tabular}{p{0.50\linewidth}p{0.41\linewidth}}
+\centering
+\begin{tabular}{lrrrrrr}
 \toprule
-Metric & Value \\
+Slice & Trials & Success & Enc med (s) & Dec med (s) & Mean bpt & Attempts mean \\
 \midrule
-Encode latency (s) & 26.937245 \\
-Decode latency (s) & 27.583455 \\
-Encode bits/token & 2.721829 \\
-Perplexity & 7.535385 \\
+Overall & 100 & 100/100 & 37.74 & 34.47 & 2.619 & 1.40 \\
+EN prompts & 50 & 50/50 & 35.04 & 34.21 & 2.686 & 1.18 \\
+ZH prompts & 50 & 50/50 & 38.90 & 37.09 & 2.552 & 1.62 \\
+Short msgs & 40 & 40/40 & 27.90 & 26.45 & 2.645 & 1.08 \\
+Medium msgs & 40 & 40/40 & 42.31 & 37.43 & 2.594 & 1.48 \\
+Long msgs & 20 & 20/20 & 60.22 & 58.11 & 2.615 & 1.90 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Two points matter when interpreting Table~\ref{tab:simple-benchmark}. First, the reported latencies are arithmetic means across three complete runs, so they describe the current default path but do not characterize tail behavior. Second, the perplexity value is computed against the same backend distribution over the generated continuation and should be read only as a rough fluency check. It is not a detector result and does not by itself establish indistinguishability from natural text.
+Table~\ref{tab:grid-benchmark} shows exact round-trip recovery for all 100 trials, with decode success rate $1.000$ and Wilson 95\% confidence interval $[0.963, 1.000]$. No decode mismatch or fail-open behavior appears in the released run log. Overall median encode latency is $37.74$\,s and median decode latency is $34.47$\,s. Mean encode payload density is $2.619$ bits/token (median $2.677$), while mean packet length is $167.1$ bytes.
 
-Within that limited scope, the benchmark supports one modest claim: the released Ghostext CLI completes stable end-to-end round trips on the default local \texttt{llama-cpp} path while exposing transparent runtime and payload-density numbers through a single reproducible command. Broader claims about detector resistance, robustness under editing, or comparison against prior systems remain future work unless measured directly in this project.
+The main performance caveat is not correctness but tail latency. Encode latency has mean $50.56$\,s, $p90=74.69$\,s, $p99=196.55$\,s, and maximum $291.69$\,s, whereas decode latency is tighter with mean $38.02$\,s, $p90=58.07$\,s, and $p99=72.22$\,s. Retry counts explain much of that spread: 81/100 trials finish on the first encode attempt, 11/100 on the second, and the remaining eight trials require three to six attempts because local contexts trigger low-entropy or no-stable-candidate retries. English-prompt cases are modestly faster and denser than Chinese-prompt cases, while message length mainly affects latency rather than mean bits/token.
+
+These results support one narrow claim: within one pinned local environment and one fixed prompt-message grid, Ghostext provides deterministic, fail-closed end-to-end recoverability with transparent overhead measurements. They also give a more realistic view of runtime than the earlier smoke benchmark, because they expose retry-driven tail behavior across multiple prompt and payload regimes. They do not establish detector resistance, direct distribution-distance bounds, cross-hardware determinism, or robustness to active text modification.
+
+\subsection{Aligned Same-Backend Pilot Comparison}
+
+To separate Ghostext's packet framing and fail-closed replay semantics from simpler payload mappings, we also keep a small aligned pilot on six template-known cases under the same Qwen/\texttt{llama-cpp} backend. Table~\ref{tab:aligned-pilot} compares the full Ghostext pipeline against two single-segment NLS-style baselines: one that still embeds an AEAD packet and one that embeds raw UTF-8 plaintext bits directly.
+
+\begin{table}[t]
+\caption{Small same-backend aligned pilot on six template-known cases.}
+\label{tab:aligned-pilot}
+\footnotesize
+\centering
+\begin{tabular}{lrrrrrr}
+\toprule
+Method & $n$ & Success & Enc med (s) & Dec med (s) & Plain bpt & Payload bpt \\
+\midrule
+Ghostext full & 6 & 6/6 & 31.85 & 31.24 & 0.975 & 2.452 \\
+NLS-style AEAD & 6 & 4/6 & 46.21 & 46.24 & 0.655 & 1.747 \\
+NLS-style UTF-8 & 6 & 5/6 & 8.50 & 8.53 & 2.487 & 2.487 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The comparison is intentionally narrow, but it is still useful. Under this matched backend and prompt regime, Ghostext is the only method that recovers all six cases without stalls. The UTF-8 baseline is much faster and carries more plaintext bits per token because it omits packet framing, while the single-segment AEAD baseline preserves payload normalization but is less stable than the full segmented Ghostext design. Because the sample size is only six and the prompt family is fixed, we treat Table~\ref{tab:aligned-pilot} as a systems-alignment pilot rather than as a broad superiority claim over prior work.
+
+\subsection{Pilot Sweep Over $h_{\min}$}
+
+The entropy gate $h_{\min}$ is one of the few protocol parameters that directly changes whether a local step is allowed to carry payload bits. We therefore retain a small pilot sweep from the released baseline artifacts, shown in Table~\ref{tab:hmin-pilot}. These runs are much smaller than the 10x10 grid and should be read only as early calibration data.
+
+\begin{table}[t]
+\caption{Pilot entropy-threshold sweep on released real-backend baseline cases.}
+\label{tab:hmin-pilot}
+\footnotesize
+\centering
+\begin{tabular}{rrrrrrr}
+\toprule
+$h_{\min}$ & Trials & Success & Enc med (s) & Dec med (s) & Mean bpt & Att mean/max \\
+\midrule
+0.0 & 18 & 18/18 & 58.18 & 35.73 & 2.448 & 1.78 / 4 \\
+0.5 & 6 & 6/6 & 70.09 & 40.33 & 2.480 & 3.33 / 7 \\
+1.0 & 6 & 6/6 & 47.73 & 43.52 & 2.369 & 1.17 / 2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Even at this small scale, the sweep shows that $h_{\min}$ is not a cosmetic tuning knob. The $h_{\min}=0.5$ pilot yields the highest mean bits/token in the available runs, but it also pushes retry burden sharply upward. The $h_{\min}=1.0$ pilot lowers mean bits/token relative to $h_{\min}=0.5$ while keeping attempts near one per trial. These samples are too small for a deployment recommendation, but they support the paper's claim that entropy gating materially changes throughput and retry behavior and therefore belongs in the protocol-facing discussion.

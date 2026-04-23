@@ -19,16 +19,21 @@
 \begin{document}
 
 \begin{abstract}
-We present Ghostext, a generation-based linguistic steganography protocol for large language models that lets a sender (Alice) deliver a secret message to a receiver (Bob) as natural-language cover text in the presence of a passive censor. Alice wraps her plaintext into an authenticated packet keyed by a passphrase shared with Bob, and then generates cover text token by token from a shared prompt: at each next-token step she picks one token from the model's candidate set via an arithmetic-coding-style mapping driven by the packet bits. The censor sees only this text; because the packet bitstream is pseudorandom under authenticated encryption, the resulting cover text is computationally indistinguishable from ordinary LLM-generated content. Bob re-feeds the shared prompt to the same model, replays the same candidate construction at each step, and inverts the arithmetic coding to recover the packet---and from it, the secret message. We implement Ghostext end-to-end and evaluate its performance.
+We present Ghostext, a generation-based linguistic steganography protocol for large language models that lets a sender (Alice) deliver a secret message to a receiver (Bob) as natural-language cover text in the presence of a passive censor. Alice wraps her plaintext into an authenticated packet keyed by a passphrase shared with Bob, and then generates cover text token by token from a shared prompt: at each next-token step she picks one token from the model's candidate set via an arithmetic-coding-style mapping driven by the packet bits. The censor sees only this text; Ghostext is designed to preserve the model-side truncated next-token distribution up to deterministic implementation effects while the carried packet bits remain pseudorandom under authenticated encryption. Bob re-feeds the shared prompt to the same model, replays the same candidate construction at each step, and inverts the arithmetic coding to recover the packet---and from it, the secret message. We implement Ghostext end to end and report a fixed $10 \times 10$ prompt-message grid evaluation on a pinned local backend.
 \end{abstract}
 
 \maketitle
 
 \input{sections/01-introduction}
 \input{sections/02-background}
+\input{sections/03-design-overview}
+\input{sections/04-security-goal}
 \input{sections/05-protocol-details}
 \input{sections/06-implementation}
+\input{sections/07-operational-discussion}
 \input{sections/08-evaluation-plan}
+\input{sections/09-security-discussion}
+\input{sections/10-operational-implications}
 \input{sections/12-related-work}
 \input{sections/13-limitations-and-conclusion}
 

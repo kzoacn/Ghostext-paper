@@ -1,0 +1,30 @@
+\section{Operational Discussion}
+
+The released implementation has several operational properties that matter for interpreting the evaluation numbers. These properties are not detector results, but they explain why Ghostext behaves the way it does on a pinned local backend.
+
+\paragraph{Fail-closed recovery.} Ghostext does not try to produce a ``best effort'' plaintext when replay diverges. Wrong prompts, wrong backend metadata, wrong seeds, text mutation in transit, or packet-integrity failure all lead to explicit aborts before plaintext release. This behavior follows from the packet binding and fingerprint checks in the implementation, and it is visible in the test suite as well as in the released scripts. For a steganography system, fail-closed behavior is operationally important because silent corruption would be much harder to detect than an explicit decode failure.
+
+\paragraph{Retry is part of normal operation.} Some local next-token contexts are poor carriers even when the overall prompt is benign. After truncation and retokenization-stability filtering, the surviving candidate set may have too little entropy or no safe replay path. The encoder therefore retries with a fresh packet when these conditions appear, up to a fixed budget. Table~\ref{tab:attempt-histogram} shows that retries are not rare enough to ignore in runtime reporting: 81 trials finish on the first attempt, but the remaining 19 need at least one retry and a small tail reaches six attempts. This is why encode latency in \S8 has a much longer tail than decode latency even when all runs recover successfully.
+
+\begin{table}[t]
+\caption{Encode-attempt histogram on the fixed $10 \times 10$ grid.}
+\label{tab:attempt-histogram}
+\footnotesize
+\centering
+\begin{tabular}{rr}
+\toprule
+Attempts used & Trials \\
+\midrule
+1 & 81 \\
+2 & 11 \\
+3 & 1 \\
+4 & 3 \\
+5 & 2 \\
+6 & 2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Length sensitivity is mostly a runtime story.} The fixed grid shows a clear slope by payload size: short, medium, and long messages have median encode latencies of 27.90\,s, 42.31\,s, and 60.22\,s, and median decode latencies of 26.45\,s, 37.43\,s, and 58.11\,s, respectively. By contrast, mean encode bits/token stays within a narrower band at 2.645, 2.594, and 2.615. This suggests that under the current implementation, message length mainly affects total work and packet size, while payload density is driven more by local next-token entropy and retry behavior than by plaintext length alone.
+
+\paragraph{What these measurements do not say.} None of the operational observations above prove that Ghostext text is indistinguishable from natural text or resistant to dedicated steganalysis. They show that the pinned implementation can recover authenticated payloads reliably and report its overhead transparently. Direct distribution-distance measurement, detector evaluation, and robustness under active editing remain separate empirical tasks.
