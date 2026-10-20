@@ -1,0 +1,141 @@
+{
+  "schema": "upstream-rrc-analysis-v1",
+  "pilot": true,
+  "planned_secret_instances": 4,
+  "observed_secret_instances": 4,
+  "manifest_sha256": "5300f79a35cf91aa1ef9952d1cc2b3fce5f2c14e1e2a89e5c7dccc9403e731e7",
+  "case_sha256": {
+    "c4_0196_b128_r0.json": "580ed20cf065e4d256afa179b00326c641c3c962efd87fdabee47d3fae51e576",
+    "c4_0196_b512_r0.json": "a2e6f57e48486a80a922d3f6244099423f036d4139dac31a16c03eaaa127ca0d",
+    "c4_0338_b128_r0.json": "2c214c2aba772deeee035294ff0d76548c2b1a88cd2d41802e70e4d966cee532",
+    "c4_0338_b512_r0.json": "dba43396209634a013f459168b10a4b0a7c8f92a673d59b39a49ef76d113697d"
+  },
+  "score": "-abs(public Decimal-boundary-source surprisal - known B)",
+  "threshold": "higher 95th percentile of development natural scores; strict greater",
+  "bootstrap_repetitions": 5000,
+  "bootstrap_seed": 20261026,
+  "scope": "Unchanged upstream embed/extract functions for stopping variants; separate fixed-endpoint and rational natural samplers. Known B/model/prompt. All stage outputs and failures retained; no cryptographic PRNG claim.",
+  "selection_caveat": "Primary text-channel analyses condition on complete canonical matched pairs. Recovered sensitivity is a further selection. Fixed-endpoint primary retains failed recovery.",
+  "variants": {
+    "unverified": {
+      "generation_statuses": {
+        "complete": 4
+      },
+      "natural_statuses": {
+        "complete": 4
+      },
+      "canonical_generated": 3,
+      "id_receiver_successes": 4,
+      "text_receiver_successes": 3,
+      "vetoed_candidate_stops": 0,
+      "instances_with_vetoes": 0,
+      "complete_canonical_matched_pairs": 3,
+      "by_message_bits": {
+        "128": {
+          "primary": {
+            "development_pairs": 0,
+            "test_pairs": 0,
+            "estimable": false
+          },
+          "recovered_only_sensitivity": {
+            "development_pairs": 0,
+            "test_pairs": 0,
+            "estimable": false
+          }
+        },
+        "512": {
+          "primary": {
+            "development_pairs": 0,
+            "test_pairs": 0,
+            "estimable": false
+          },
+          "recovered_only_sensitivity": {
+            "development_pairs": 0,
+            "test_pairs": 0,
+            "estimable": false
+          }
+        }
+      }
+    },
+    "verified": {
+      "generation_statuses": {
+        "complete": 4
+      },
+      "natural_statuses": {
+        "complete": 4
+      },
+      "canonical_generated": 3,
+      "id_receiver_successes": 4,
+      "text_receiver_successes": 3,
+      "vetoed_candidate_stops": 0,
+      "instances_with_vetoes": 0,
+      "complete_canonical_matched_pairs": 3,
+      "by_message_bits": {
+        "128": {
+          "primary": {
+            "development_pairs": 0,
+            "test_pairs": 0,
+            "estimable": false
+          },
+          "recovered_only_sensitivity": {
+            "development_pairs": 0,
+            "test_pairs": 0,
+            "estimable": false
+          }
+        },
+        "512": {
+          "primary": {
+            "development_pairs": 0,
+            "test_pairs": 0,
+            "estimable": false
+          },
+          "recovered_only_sensitivity": {
+            "development_pairs": 0,
+            "test_pairs": 0,
+            "estimable": false
+          }
+        }
+      }
+    },
+    "fixed_endpoint": {
+      "generation_statuses": {
+        "complete": 4
+      },
+      "natural_statuses": {
+        "complete": 4
+      },
+      "canonical_generated": 3,
+      "id_receiver_successes": 2,
+      "text_receiver_successes": 2,
+      "vetoed_candidate_stops": 0,
+      "instances_with_vetoes": 0,
+      "complete_canonical_matched_pairs": 3,
+      "by_message_bits": {
+        "128": {
+          "primary": {
+            "development_pairs": 0,
+            "test_pairs": 0,
+            "estimable": false
+          },
+          "recovered_only_sensitivity": {
+            "development_pairs": 0,
+            "test_pairs": 0,
+            "estimable": false
+          }
+        },
+        "512": {
+          "primary": {
+            "development_pairs": 0,
+            "test_pairs": 0,
+            "estimable": false
+          },
+          "recovered_only_sensitivity": {
+            "development_pairs": 0,
+            "test_pairs": 0,
+            "estimable": false
+          }
+        }
+      }
+    }
+  }
+}
