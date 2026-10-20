@@ -1,0 +1,66 @@
+{
+  "scope": "Unchanged pinned upstream functions with a synthetic binary model; no real-model claim.",
+  "upstream": {
+    "repository": "https://github.com/ryehr/RRC_steganography",
+    "commit": "dae326259e4fca8bc4fcf460dafdbc0e88a0a71a",
+    "commit_date": "2026-09-04T11:58:49Z",
+    "files": {
+      "rrc_core.py": {
+        "sha256": "e45a4df5eebc86881d606f2fd6c3cbab5729252dce96e5ae1a7ba424be02ec4a",
+        "bytes": 18165,
+        "url": "https://raw.githubusercontent.com/ryehr/RRC_steganography/dae326259e4fca8bc4fcf460dafdbc0e88a0a71a/rrc_core.py"
+      },
+      "0.Prompts.tsv": {
+        "sha256": "bb703742046ce990ad9d717e5edac77d2e8255cbacff42a349a8fd3e0041d9b7",
+        "bytes": 61086,
+        "url": "https://raw.githubusercontent.com/ryehr/RRC_steganography/dae326259e4fca8bc4fcf460dafdbc0e88a0a71a/0.Prompts.tsv"
+      },
+      "RRC_embed.py": {
+        "sha256": "ebe7950eb6a89f659c163b67c5be7fb1ffc6afc850c0553afcbe633d068527d0",
+        "bytes": 7396,
+        "url": "https://raw.githubusercontent.com/ryehr/RRC_steganography/dae326259e4fca8bc4fcf460dafdbc0e88a0a71a/RRC_embed.py"
+      },
+      "RRC_extract.py": {
+        "sha256": "1477225e71a78b03a66d6b3b89a690810d2e52c61111bf75fb6a4a4fc55c82fc",
+        "bytes": 5640,
+        "url": "https://raw.githubusercontent.com/ryehr/RRC_steganography/dae326259e4fca8bc4fcf460dafdbc0e88a0a71a/RRC_extract.py"
+      },
+      "CHANGELOG.md": {
+        "sha256": "82467e1949d72ba388e2a421b77a1a4838a19a31bc1cab67788e44026c3776e5",
+        "bytes": 4922,
+        "url": "https://raw.githubusercontent.com/ryehr/RRC_steganography/dae326259e4fca8bc4fcf460dafdbc0e88a0a71a/CHANGELOG.md"
+      }
+    }
+  },
+  "verification_fixture": {
+    "False": {
+      "token_ids": [
+        0
+      ],
+      "rejected_stop_count": 0,
+      "receiver_status": "RRCError",
+      "recovery_match": false
+    },
+    "True": {
+      "token_ids": [
+        0,
+        0
+      ],
+      "rejected_stop_count": 1,
+      "receiver_status": "complete",
+      "recovery_match": true
+    }
+  },
+  "lazy_rational_sampler": {
+    "boundary": "0.3333333333333333",
+    "lower_branch": 0,
+    "upper_branch": 1,
+    "lower_bits": 96,
+    "upper_bits": 96
+  },
+  "source_sha256": {
+    "audit_upstream_rrc.py": "a7bdd3db03edad63d07d3f1f371eeebe55b36dd68eda2c25c13163779168defd",
+    "upstream_rrc_experiment.py": "6425f45bc9035769546016d490435e7a4fd60a3ac7fdb0ee300671bc973482d2",
+    "fetch_upstream_rrc.py": "980c231137094eea69a343456ca24d81619aa6641c7f15302d636261513159f2"
+  }
+}
