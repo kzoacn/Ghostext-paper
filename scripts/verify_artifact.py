@@ -2,6 +2,7 @@
 """Verify exported bytes, source profiles, cohort membership, and input links."""
 from __future__ import annotations
 import argparse
+from fractions import Fraction
 import hashlib
 import json
 from pathlib import Path
@@ -14,7 +15,8 @@ def digest(path):
 def verify_new_profile(paper, manifest_path, manifest, allow_draft):
     schema = manifest["schema"]
     directory = manifest_path.parent
-    if schema in {"upstream-rrc-v1", "public-endpoint-replay-v1"}:
+    if schema in {"upstream-rrc-v1", "public-endpoint-replay-v1",
+                  "upstream-observable-replay-v1", "upstream-budget-curve-v1"}:
         paths = sorted((directory / "cases").glob("*.json"))
         rows = [json.loads(p.read_text()) for p in paths]
         ids = [r["case_id"] for r in rows]
@@ -24,17 +26,22 @@ def verify_new_profile(paper, manifest_path, manifest, allow_draft):
             assert set(ids) == expected
         for row in rows:
             assert row["manifest_sha256"] == digest(manifest_path)
+        for interruption_path in (directory / "interruptions").glob("*.json"):
+            interruption = json.loads(interruption_path.read_text())
+            assert interruption["manifest_sha256"] == digest(manifest_path)
+            for relative, expected_hash in interruption["preserved_files_sha256"].items():
+                assert digest(directory / relative) == expected_hash, relative
         path = directory / "analysis.json"
         if path.exists():
             analysis = json.loads(path.read_text())
-            key = "case_sha256" if schema == "upstream-rrc-v1" else "cases_sha256"
+            key = "cases_sha256" if schema == "public-endpoint-replay-v1" else "case_sha256"
             assert analysis["manifest_sha256"] == digest(manifest_path)
             assert analysis[key] == {p.name: digest(p) for p in paths}
         elif not allow_draft:
             raise AssertionError(f"Missing analysis: {directory.name}")
         if schema == "upstream-rrc-v1":
-            plan = paper / "results/sp2027-accept-protocol" / (
-                manifest["study_plan_sha256"] + ".md")
+            plan = (paper / manifest["study_plan_path"] if "study_plan_path" in manifest else
+                    paper / "results/sp2027-accept-protocol" / (manifest["study_plan_sha256"] + ".md"))
             assert digest(plan) == manifest["study_plan_sha256"]
             for row in rows:
                 stage = directory / "stages" / row["case_id"]
@@ -48,6 +55,36 @@ def verify_new_profile(paper, manifest_path, manifest, allow_draft):
                     n = control["tokens"]
                     assert control["token_ids"] == natural["token_ids"][:n]
                     assert control["interval_observations"] == natural["interval_observations"][:n]
+        elif schema == "upstream-observable-replay-v1":
+            tasks = {task["case_id"]: task for task in manifest["tasks"]}
+            for identity, task in tasks.items():
+                public = {key: task[key] for key in ["prompt", "message_bits", "text"]}
+                encoded = json.dumps(public, sort_keys=True, ensure_ascii=False, separators=(",", ":"))
+                assert hashlib.sha256(encoded.encode()).hexdigest() == identity
+            seen = set()
+            for binding in manifest["bindings"]:
+                key = (binding["case_id"], binding["variant"])
+                assert key not in seen
+                seen.add(key)
+                for label in ["positive", "negative"]:
+                    assert binding[label]["public_input_id"] in tasks
+            for row in rows:
+                task = tasks[row["case_id"]]
+                assert row["text_sha256"] == (
+                    None if task["text"] is None else hashlib.sha256(task["text"].encode()).hexdigest())
+                assert row["score_is_negative_infinity"] == (row["score"] is None)
+                if task["text"] is None:
+                    assert row["status"] == "no_output"
+        elif schema == "upstream-budget-curve-v1":
+            for row in rows:
+                for block in row["budgets"].values():
+                    n = block["requested_tokens"]
+                    prefix = directory / "prefixes" / row["case_id"] / f"n{n}.json"
+                    assert json.loads(prefix.read_text()) == block["generation"]
+                    if block["generation"]["status"] == "complete":
+                        assert block["generation"]["tokens"] == n
+                        receiver = directory / "stages" / row["case_id"] / f"receiver_n{n}.json"
+                        assert json.loads(receiver.read_text()) == block["receiver"]
     elif schema == "upstream-public-replay-v1":
         path = directory / "summary.json"
         if not path.exists() and allow_draft:
@@ -93,7 +130,8 @@ def main():
             assert digest(root / entry["source"]) == entry["sha256"]
         manifest = json.loads(manifest_path.read_text())
         if manifest.get("schema") in {
-                "upstream-rrc-v1", "public-endpoint-replay-v1", "upstream-public-replay-v1"}:
+                "upstream-rrc-v1", "public-endpoint-replay-v1", "upstream-public-replay-v1",
+                "upstream-observable-replay-v1", "upstream-budget-curve-v1"}:
             verify_new_profile(paper, manifest_path, manifest, args.allow_draft)
             continue
         if manifest.get("schema") not in {"stopping-llm-v1", "repair-matrix-v1"}:
@@ -112,7 +150,8 @@ def main():
             analysis = json.loads(analysis_path.read_text())
             assert analysis["manifest_sha256"] == digest(manifest_path)
             assert analysis["runs_sha256"] == digest(data_path)
-    for name in ["sp2027-figures", "sp2027-tables", "sp2027-accept-figures", "sp2027-accept-tables"]:
+    for name in ["sp2027-figures", "sp2027-tables", "sp2027-accept-figures", "sp2027-accept-tables",
+                 "sp2027-followup-materials"]:
         if args.allow_draft and not (paper / "results" / name / "manifest.json").exists():
             continue
         manifest = json.loads((paper / "results" / name / "manifest.json").read_text())
@@ -126,6 +165,40 @@ def main():
         assert digest(root / relative) == expected
     theory = json.loads((paper / "results/sp2027-termination-theory/summary.json").read_text())
     assert digest(paper / "scripts/audit_termination_theory.py") == theory["source_sha256"]
+    observable_audit = json.loads((paper / "results/sp2027-observable-audit/summary.json").read_text())
+    assert observable_audit["all_passed"] and all(observable_audit["checks"].values())
+    for relative, expected in observable_audit["source_sha256"].items():
+        assert digest(root / relative) == expected
+    for model in ["gpt2", "qwen25"]:
+        fidelity_path = paper / "results/sp2027-observable-fidelity" / (model + ".json")
+        if args.allow_draft and not fidelity_path.exists():
+            continue
+        fidelity = json.loads(fidelity_path.read_text())
+        assert fidelity["schema"] == "observable-fidelity-audit-v1"
+        assert digest(paper / "scripts/audit_observable_fidelity.py") == fidelity["source_sha256"]
+        for relative, expected in fidelity["inputs"].items():
+            assert digest(paper / relative) == expected, relative
+        assert fidelity["all_checked_paths_match"]
+        assert fidelity["counts"]["all_output_bindings"] == len(fidelity["records"]) == 960
+        assert len({(r["case_id"], r["variant"], r["label"])
+                    for r in fidelity["records"]}) == 960
+        for row in fidelity["records"]:
+            if row["original_status"] == "complete" and row["original_canonical"]:
+                assert row["exact_original_path_match"] and row["public_score_status"] == "complete"
+    certificate_path = paper / "results/sp2027-verified-certificate/summary.json"
+    if certificate_path.exists():
+        certificate = json.loads(certificate_path.read_text())
+        assert digest(paper / "scripts/certify_verified_stopping.py") == certificate["source_sha256"]
+        for row in certificate["certificates"]:
+            scan_path = certificate_path.parent / row["scan_file"]
+            assert digest(scan_path) == row["scan_sha256"]
+            scan = json.loads(scan_path.read_text())
+            assert [r["length"] for r in scan["scan"]] == list(range(row["cutoff"] + 1))
+            assert Fraction(row["tv_lower"]) == max(
+                Fraction(0), 1 - Fraction(row["early_stop_upper"])
+                - Fraction(row["verified_survival_upper"]) - Fraction(row["natural_band_upper"]))
+    elif not args.allow_draft:
+        raise AssertionError("Missing finite verified-rule certificate")
     if not args.allow_draft:
         validation = json.loads((paper / "results/sp2027-format/validation.json").read_text())
         assert digest(paper / "paper/main.pdf") == validation["pdf_sha256"]

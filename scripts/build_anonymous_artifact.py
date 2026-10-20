@@ -22,6 +22,13 @@ FULL_COHORTS = [
 CASE_COHORTS = [
     "sp2027-upstream-gpt2", "sp2027-upstream-gpt2-pilot", "sp2027-upstream-gpt2-pilot-v2",
     "sp2027-endpoint-gpt2", "sp2027-endpoint-gpt2-corrected", "sp2027-endpoint-qwen",
+    "sp2027-upstream-qwen25-pilot", "sp2027-upstream-qwen25",
+    "sp2027-observable-gpt2", "sp2027-observable-qwen25",
+    "sp2027-budget-gpt2", "sp2027-budget-qwen25",
+]
+RENDER_PROFILES = [
+    "sp2027-figures", "sp2027-tables", "sp2027-accept-figures", "sp2027-accept-tables",
+    "sp2027-followup-materials",
 ]
 EXCLUDED_SCRIPTS = {"merge_aligned_baselines.py", "merge_real_backend_baseline.py",
                     "run_aligned_baselines.py", "run_hmin_sweep.py"}
@@ -53,7 +60,7 @@ def sanitize(value, tokens, key=""):
         return [sanitize(v, tokens, key) for v in value]
     if isinstance(value, str):
         # Observations are immutable. Identity checks below still inspect them.
-        if key in {"cover_text", "prefix_text", "prompt", "message"}:
+        if key in {"cover_text", "prefix_text", "prompt", "message", "text"}:
             return value
         value = re.sub(r"/home/[^/\s]+", "<HOME>", value)
         value = re.sub(r"[A-Za-z]:[/\\]Users[/\\][^/\\\s]+", "<HOME>", value)
@@ -85,12 +92,15 @@ def replace_hashes(value, replacements):
 
 def scientific_fields(value):
     """Extract observation fields whose values must survive the export exactly."""
-    keys = {"cover_text", "prefix_text", "prompt", "message", "token_ids",
+    keys = {"cover_text", "prefix_text", "prompt", "message", "text", "token_ids",
             "chosen_probabilities", "surprisal_bits", "status", "recovery_match",
             "attempts_used", "elapsed_seconds", "net_bpt", "gross_bpt",
             "interval_observations", "cdf_low", "cdf_high", "probability_decimal",
             "visible_token_ids", "visible_continuation_token_ids", "context_token_ids",
-            "trace", "segment_endpoints", "packet_sha256", "text_sha256"}
+            "trace", "segment_endpoints", "packet_sha256", "text_sha256",
+            "score", "natural_band_upper", "verified_survival_upper", "early_stop_upper",
+            "tv_lower", "unclipped_tv_lower", "event_lower_numerator",
+            "missing_mass_numerator", "event_upper_numerator"}
     if isinstance(value, dict):
         return {k: v if k in keys or isinstance(v, (int, float, bool)) else scientific_fields(v)
                 for k, v in value.items()
@@ -114,6 +124,8 @@ def main():
             raise ValueError(f"Incomplete/unanalysed cohort: {name}")
     for name in CASE_COHORTS:
         directory = ROOT / "results" / name
+        if args.draft and not (directory / "manifest.json").exists():
+            continue
         manifest = json.loads((directory / "manifest.json").read_text())
         rows = [json.loads(p.read_text()) for p in (directory / "cases").glob("*.json")]
         complete = (len(rows) == len(manifest["tasks"]) and
@@ -124,6 +136,17 @@ def main():
         public_replay = json.loads(
             (ROOT / "results/sp2027-upstream-public-features/summary.json").read_text())
         assert public_replay["all_public_features_match"] and public_replay["pairs"] == 6
+        observable_audit = json.loads(
+            (ROOT / "results/sp2027-observable-audit/summary.json").read_text())
+        assert observable_audit["all_passed"] and all(observable_audit["checks"].values())
+        certificate = json.loads(
+            (ROOT / "results/sp2027-verified-certificate/summary.json").read_text())
+        assert {row["bits"] for row in certificate["certificates"]} == {128, 512, 2048}
+        for model in ["gpt2", "qwen25"]:
+            fidelity = json.loads(
+                (ROOT / "results/sp2027-observable-fidelity" / (model + ".json")).read_text())
+            assert fidelity["all_checked_paths_match"]
+            assert fidelity["counts"]["all_output_bindings"] == len(fidelity["records"]) == 960
     tokens = identity_tokens()
     source_files = {}
     paper_files = {ROOT / "paper/main.tex", ROOT / "paper/refs.bib", ROOT / "paper/main.pdf"}
@@ -145,7 +168,7 @@ def main():
         source_files["Ghostext-paper/" + str(path.relative_to(ROOT))] = path
     # Retain generated supporting figures even when a shorter manuscript
     # no longer includes them; their provenance manifests still reference them.
-    for name in ["sp2027-figures", "sp2027-tables", "sp2027-accept-figures", "sp2027-accept-tables"]:
+    for name in RENDER_PROFILES:
         manifest_path = ROOT / "results" / name / "manifest.json"
         if not manifest_path.exists():
             continue

@@ -1,0 +1,217 @@
+{
+  "status": "complete",
+  "error": null,
+  "token_ids": [
+    262,
+    1855,
+    320,
+    453,
+    36931,
+    276,
+    49598,
+    357,
+    5653,
+    45,
+    8,
+    284,
+    6431,
+    8198,
+    510,
+    284
+  ],
+  "tokens": 16,
+  "cover_text": "The results of the NOMAD crowd-sourced data analytics competition with the Minimally Affected Newspaper (MSN) to gather scores up to",
+  "text_sha256": "25ef89319f895a4652365f68d3846c18100fbbb37ff58bbd322275500ea82a79",
+  "context_token_ids": [
+    464,
+    2482,
+    286,
+    262,
+    399,
+    2662,
+    2885,
+    4315,
+    12,
+    82,
+    30555,
+    1366,
+    23696,
+    5449,
+    351
+  ],
+  "visible_token_ids": [
+    464,
+    2482,
+    286,
+    262,
+    399,
+    2662,
+    2885,
+    4315,
+    12,
+    82,
+    30555,
+    1366,
+    23696,
+    5449,
+    351,
+    262,
+    1855,
+    320,
+    453,
+    36931,
+    276,
+    49598,
+    357,
+    30295,
+    8,
+    284,
+    6431,
+    8198,
+    510,
+    284
+  ],
+  "visible_continuation_token_ids": [
+    262,
+    1855,
+    320,
+    453,
+    36931,
+    276,
+    49598,
+    357,
+    30295,
+    8,
+    284,
+    6431,
+    8198,
+    510,
+    284
+  ],
+  "prompt_prefix_matches": true,
+  "canonical_text_roundtrip": false,
+  "chosen_probabilities": [
+    0.1682026019986904,
+    8.18249450898e-05,
+    0.03560504947175391,
+    0.30950722344254,
+    0.0334171835239977,
+    0.9915747175293528,
+    3.3086378333e-05,
+    0.17122637487406778,
+    0.0585834754738941,
+    0.4909404057593698,
+    0.7894584000354066,
+    0.0052203396888593,
+    0.008012133985977,
+    0.0004871408353254,
+    0.0002612538719993,
+    0.7389987469031574
+  ],
+  "interval_observations": [
+    {
+      "token_id": 262,
+      "cdf_low": "0.0",
+      "cdf_high": "0.1682026019986904",
+      "probability_decimal": "0.1682026019986904"
+    },
+    {
+      "token_id": 1855,
+      "cdf_low": "0.7709549004879722",
+      "cdf_high": "0.771036725433062",
+      "probability_decimal": "0.0000818249450898"
+    },
+    {
+      "token_id": 320,
+      "cdf_low": "0.33141451314209414",
+      "cdf_high": "0.36701956261384805",
+      "probability_decimal": "0.03560504947175391"
+    },
+    {
+      "token_id": 453,
+      "cdf_low": "0.0",
+      "cdf_high": "0.30950722344254",
+      "probability_decimal": "0.30950722344254"
+    },
+    {
+      "token_id": 36931,
+      "cdf_low": "0.3189578225632679",
+      "cdf_high": "0.3523750060872656",
+      "probability_decimal": "0.0334171835239977"
+    },
+    {
+      "token_id": 276,
+      "cdf_low": "0.0",
+      "cdf_high": "0.9915747175293528",
+      "probability_decimal": "0.9915747175293528"
+    },
+    {
+      "token_id": 49598,
+      "cdf_low": "0.9183828771406632",
+      "cdf_high": "0.9184159635189962",
+      "probability_decimal": "0.0000330863783330"
+    },
+    {
+      "token_id": 357,
+      "cdf_low": "0.0",
+      "cdf_high": "0.17122637487406778",
+      "probability_decimal": "0.17122637487406778"
+    },
+    {
+      "token_id": 5653,
+      "cdf_low": "0.7560691504818381",
+      "cdf_high": "0.8146526259557322",
+      "probability_decimal": "0.0585834754738941"
+    },
+    {
+      "token_id": 45,
+      "cdf_low": "0.0",
+      "cdf_high": "0.4909404057593698",
+      "probability_decimal": "0.4909404057593698"
+    },
+    {
+      "token_id": 8,
+      "cdf_low": "0.0",
+      "cdf_high": "0.7894584000354066",
+      "probability_decimal": "0.7894584000354066"
+    },
+    {
+      "token_id": 284,
+      "cdf_low": "0.5234765525828574",
+      "cdf_high": "0.5286968922717167",
+      "probability_decimal": "0.0052203396888593"
+    },
+    {
+      "token_id": 6431,
+      "cdf_low": "0.5824223560141176",
+      "cdf_high": "0.5904344900000946",
+      "probability_decimal": "0.0080121339859770"
+    },
+    {
+      "token_id": 8198,
+      "cdf_low": "0.8051033176243917",
+      "cdf_high": "0.8055904584597171",
+      "probability_decimal": "0.0004871408353254"
+    },
+    {
+      "token_id": 510,
+      "cdf_low": "0.9538883554979332",
+      "cdf_high": "0.9541496093699325",
+      "probability_decimal": "0.0002612538719993"
+    },
+    {
+      "token_id": 284,
+      "cdf_low": "0.0",
+      "cdf_high": "0.7389987469031574",
+      "probability_decimal": "0.7389987469031574"
+    }
+  ],
+  "surprisal_bits": 88.34549142779046,
+  "elapsed_seconds": 0.6384284659288824,
+  "context_trim_calls": 0,
+  "rejected_stop_count": 0,
+  "decimal_precision": 812,
+  "requested_tokens": 16,
+  "maximum_stream_tokens": 32,
+  "elapsed_scope": "Cumulative stream time through this endpoint or failure"
+}

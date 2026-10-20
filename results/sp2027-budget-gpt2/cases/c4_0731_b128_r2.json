@@ -1,0 +1,1067 @@
+{
+  "prompt_id": "c4_0731",
+  "source_row": 731,
+  "prompt": "This class includes 10 hours of instruction: three weeknight",
+  "selection_sha256": "02013d322f71a2d76c73998724e42fcb518d99b019ffd81750a8daedf37370b2",
+  "split": "development",
+  "message_bits": 128,
+  "repeat": 2,
+  "case_id": "c4_0731_b128_r2",
+  "reference_N": 13,
+  "reference_generation_status": "complete",
+  "manifest_sha256": "bc0a6d42d5cec27d8119722d86ae6527bf4a42b104d0d6366eb738ee6ca04a88",
+  "origin_comparison": {
+    "origin_status": "complete",
+    "new_status": "complete",
+    "token_ids_match": true,
+    "selected_cdfs_match": true
+  },
+  "budgets": {
+    "1.00": {
+      "requested_tokens": 13,
+      "generation": {
+        "status": "complete",
+        "error": null,
+        "token_ids": [
+          2250,
+          583,
+          1285,
+          5556,
+          642,
+          2250,
+          583,
+          5041,
+          355,
+          583,
+          2581,
+          422,
+          584
+        ],
+        "tokens": 13,
+        "cover_text": "This class includes 10 hours of instruction: three weeknight hours per week plus 5 hours per weekend as per request from other",
+        "text_sha256": "d830df6281aad0ec05fed97833c69188e0b80f6c210f0b46532b2a3ac0249ceb",
+        "context_token_ids": [
+          1212,
+          1398,
+          3407,
+          838,
+          2250,
+          286,
+          12064,
+          25,
+          1115,
+          1285,
+          3847
+        ],
+        "visible_token_ids": [
+          1212,
+          1398,
+          3407,
+          838,
+          2250,
+          286,
+          12064,
+          25,
+          1115,
+          1285,
+          3847,
+          2250,
+          583,
+          1285,
+          5556,
+          642,
+          2250,
+          583,
+          5041,
+          355,
+          583,
+          2581,
+          422,
+          584
+        ],
+        "visible_continuation_token_ids": [
+          2250,
+          583,
+          1285,
+          5556,
+          642,
+          2250,
+          583,
+          5041,
+          355,
+          583,
+          2581,
+          422,
+          584
+        ],
+        "prompt_prefix_matches": true,
+        "canonical_text_roundtrip": true,
+        "chosen_probabilities": [
+          0.0128181950787744,
+          0.033997787667636,
+          0.6352423197024295,
+          0.011589970288208,
+          0.0095019485883073,
+          0.3863062911907577,
+          0.0817069976573612,
+          0.0323049795496905,
+          0.0032155351739267,
+          0.0200928219443349,
+          0.0034042680121472,
+          0.0710647355579097,
+          0.0037350514943456
+        ],
+        "interval_observations": [
+          {
+            "token_id": 2250,
+            "cdf_low": "0.5616077717679347",
+            "cdf_high": "0.5744259668467091",
+            "probability_decimal": "0.0128181950787744"
+          },
+          {
+            "token_id": 583,
+            "cdf_low": "0.6292711748185916",
+            "cdf_high": "0.6632689624862276",
+            "probability_decimal": "0.0339977876676360"
+          },
+          {
+            "token_id": 1285,
+            "cdf_low": "0.0",
+            "cdf_high": "0.6352423197024295",
+            "probability_decimal": "0.6352423197024295"
+          },
+          {
+            "token_id": 5556,
+            "cdf_low": "0.8026714590510066",
+            "cdf_high": "0.8142614293392146",
+            "probability_decimal": "0.0115899702882080"
+          },
+          {
+            "token_id": 642,
+            "cdf_low": "0.4319756774956908",
+            "cdf_high": "0.4414776260839981",
+            "probability_decimal": "0.0095019485883073"
+          },
+          {
+            "token_id": 2250,
+            "cdf_low": "0.0",
+            "cdf_high": "0.3863062911907577",
+            "probability_decimal": "0.3863062911907577"
+          },
+          {
+            "token_id": 583,
+            "cdf_low": "0.698384305121261",
+            "cdf_high": "0.7800913027786222",
+            "probability_decimal": "0.0817069976573612"
+          },
+          {
+            "token_id": 5041,
+            "cdf_low": "0.8282079349266699",
+            "cdf_high": "0.8605129144763604",
+            "probability_decimal": "0.0323049795496905"
+          },
+          {
+            "token_id": 355,
+            "cdf_low": "0.788216451328334",
+            "cdf_high": "0.7914319865022607",
+            "probability_decimal": "0.0032155351739267"
+          },
+          {
+            "token_id": 583,
+            "cdf_low": "0.7398666329863417",
+            "cdf_high": "0.7599594549306766",
+            "probability_decimal": "0.0200928219443349"
+          },
+          {
+            "token_id": 2581,
+            "cdf_low": "0.5680996030765437",
+            "cdf_high": "0.5715038710886909",
+            "probability_decimal": "0.0034042680121472"
+          },
+          {
+            "token_id": 422,
+            "cdf_low": "0.6363264153207493",
+            "cdf_high": "0.707391150878659",
+            "probability_decimal": "0.0710647355579097"
+          },
+          {
+            "token_id": 584,
+            "cdf_low": "0.5780896117589911",
+            "cdf_high": "0.5818246632533367",
+            "probability_decimal": "0.0037350514943456"
+          }
+        ],
+        "surprisal_bits": 68.90063833073825,
+        "elapsed_seconds": 1.0405117829795927,
+        "context_trim_calls": 0,
+        "rejected_stop_count": 0,
+        "decimal_precision": 680,
+        "requested_tokens": 13,
+        "maximum_stream_tokens": 26,
+        "elapsed_scope": "Cumulative stream time through this endpoint or failure"
+      },
+      "receiver": {
+        "ids": {
+          "status": "complete",
+          "recovery_match": false,
+          "public_probabilities_match_sender": true,
+          "public_surprisal_bits": 68.90063833073825,
+          "elapsed_seconds": 0.9985820909496397,
+          "execution": "fresh upstream receiver and model stepper"
+        },
+        "text": {
+          "status": "complete",
+          "recovery_match": false,
+          "public_probabilities_match_sender": true,
+          "public_surprisal_bits": 68.90063833073825,
+          "elapsed_seconds": 0.9985820909496397,
+          "execution": "same verified receiver input as ids"
+        }
+      }
+    },
+    "1.25": {
+      "requested_tokens": 17,
+      "generation": {
+        "status": "complete",
+        "error": null,
+        "token_ids": [
+          2250,
+          583,
+          1285,
+          5556,
+          642,
+          2250,
+          583,
+          5041,
+          355,
+          583,
+          2581,
+          422,
+          584,
+          1866,
+          13,
+          198,
+          198
+        ],
+        "tokens": 17,
+        "cover_text": "This class includes 10 hours of instruction: three weeknight hours per week plus 5 hours per weekend as per request from other members.\n\n",
+        "text_sha256": "3db71b025eb058af1d4336e15ec16454d89545feffa8f3505c00c7b80ec52534",
+        "context_token_ids": [
+          1212,
+          1398,
+          3407,
+          838,
+          2250,
+          286,
+          12064,
+          25,
+          1115,
+          1285,
+          3847
+        ],
+        "visible_token_ids": [
+          1212,
+          1398,
+          3407,
+          838,
+          2250,
+          286,
+          12064,
+          25,
+          1115,
+          1285,
+          3847,
+          2250,
+          583,
+          1285,
+          5556,
+          642,
+          2250,
+          583,
+          5041,
+          355,
+          583,
+          2581,
+          422,
+          584,
+          1866,
+          13,
+          628
+        ],
+        "visible_continuation_token_ids": [
+          2250,
+          583,
+          1285,
+          5556,
+          642,
+          2250,
+          583,
+          5041,
+          355,
+          583,
+          2581,
+          422,
+          584,
+          1866,
+          13,
+          628
+        ],
+        "prompt_prefix_matches": true,
+        "canonical_text_roundtrip": false,
+        "chosen_probabilities": [
+          0.0128181950787744,
+          0.033997787667636,
+          0.6352423197024295,
+          0.011589970288208,
+          0.0095019485883073,
+          0.3863062911907577,
+          0.0817069976573612,
+          0.0323049795496905,
+          0.0032155351739267,
+          0.0200928219443349,
+          0.0034042680121472,
+          0.0710647355579097,
+          0.0037350514943456,
+          0.07535969525843787,
+          0.4136352042873509,
+          0.2576937878086351,
+          0.9987823281008372
+        ],
+        "interval_observations": [
+          {
+            "token_id": 2250,
+            "cdf_low": "0.5616077717679347",
+            "cdf_high": "0.5744259668467091",
+            "probability_decimal": "0.0128181950787744"
+          },
+          {
+            "token_id": 583,
+            "cdf_low": "0.6292711748185916",
+            "cdf_high": "0.6632689624862276",
+            "probability_decimal": "0.0339977876676360"
+          },
+          {
+            "token_id": 1285,
+            "cdf_low": "0.0",
+            "cdf_high": "0.6352423197024295",
+            "probability_decimal": "0.6352423197024295"
+          },
+          {
+            "token_id": 5556,
+            "cdf_low": "0.8026714590510066",
+            "cdf_high": "0.8142614293392146",
+            "probability_decimal": "0.0115899702882080"
+          },
+          {
+            "token_id": 642,
+            "cdf_low": "0.4319756774956908",
+            "cdf_high": "0.4414776260839981",
+            "probability_decimal": "0.0095019485883073"
+          },
+          {
+            "token_id": 2250,
+            "cdf_low": "0.0",
+            "cdf_high": "0.3863062911907577",
+            "probability_decimal": "0.3863062911907577"
+          },
+          {
+            "token_id": 583,
+            "cdf_low": "0.698384305121261",
+            "cdf_high": "0.7800913027786222",
+            "probability_decimal": "0.0817069976573612"
+          },
+          {
+            "token_id": 5041,
+            "cdf_low": "0.8282079349266699",
+            "cdf_high": "0.8605129144763604",
+            "probability_decimal": "0.0323049795496905"
+          },
+          {
+            "token_id": 355,
+            "cdf_low": "0.788216451328334",
+            "cdf_high": "0.7914319865022607",
+            "probability_decimal": "0.0032155351739267"
+          },
+          {
+            "token_id": 583,
+            "cdf_low": "0.7398666329863417",
+            "cdf_high": "0.7599594549306766",
+            "probability_decimal": "0.0200928219443349"
+          },
+          {
+            "token_id": 2581,
+            "cdf_low": "0.5680996030765437",
+            "cdf_high": "0.5715038710886909",
+            "probability_decimal": "0.0034042680121472"
+          },
+          {
+            "token_id": 422,
+            "cdf_low": "0.6363264153207493",
+            "cdf_high": "0.707391150878659",
+            "probability_decimal": "0.0710647355579097"
+          },
+          {
+            "token_id": 584,
+            "cdf_low": "0.5780896117589911",
+            "cdf_high": "0.5818246632533367",
+            "probability_decimal": "0.0037350514943456"
+          },
+          {
+            "token_id": 1866,
+            "cdf_low": "0.34398335919496453",
+            "cdf_high": "0.4193430544534024",
+            "probability_decimal": "0.07535969525843787"
+          },
+          {
+            "token_id": 13,
+            "cdf_low": "0.0",
+            "cdf_high": "0.4136352042873509",
+            "probability_decimal": "0.4136352042873509"
+          },
+          {
+            "token_id": 198,
+            "cdf_low": "0.0",
+            "cdf_high": "0.2576937878086351",
+            "probability_decimal": "0.2576937878086351"
+          },
+          {
+            "token_id": 198,
+            "cdf_low": "0.0",
+            "cdf_high": "0.9987823281008372",
+            "probability_decimal": "0.9987823281008372"
+          }
+        ],
+        "surprisal_bits": 75.86229864228397,
+        "elapsed_seconds": 1.3698697770014405,
+        "context_trim_calls": 0,
+        "rejected_stop_count": 0,
+        "decimal_precision": 680,
+        "requested_tokens": 17,
+        "maximum_stream_tokens": 26,
+        "elapsed_scope": "Cumulative stream time through this endpoint or failure"
+      },
+      "receiver": {
+        "ids": {
+          "status": "complete",
+          "recovery_match": false,
+          "public_probabilities_match_sender": true,
+          "public_surprisal_bits": 75.86229864228397,
+          "elapsed_seconds": 1.3136997090186924,
+          "execution": "fresh upstream receiver and model stepper"
+        },
+        "text": {
+          "status": "complete",
+          "recovery_match": false,
+          "public_probabilities_match_sender": false,
+          "public_surprisal_bits": 79.05728281209981,
+          "elapsed_seconds": 1.1835965069476515,
+          "execution": "fresh upstream receiver and model stepper"
+        }
+      }
+    },
+    "1.50": {
+      "requested_tokens": 20,
+      "generation": {
+        "status": "complete",
+        "error": null,
+        "token_ids": [
+          2250,
+          583,
+          1285,
+          5556,
+          642,
+          2250,
+          583,
+          5041,
+          355,
+          583,
+          2581,
+          422,
+          584,
+          1866,
+          13,
+          198,
+          198,
+          41910,
+          48248,
+          10422
+        ],
+        "tokens": 20,
+        "cover_text": "This class includes 10 hours of instruction: three weeknight hours per week plus 5 hours per weekend as per request from other members.\n\nSpirit Smile Studies",
+        "text_sha256": "ee4836b14482989dd71b54658573d248c63b10b040f7c715fe0ebd3c194a3296",
+        "context_token_ids": [
+          1212,
+          1398,
+          3407,
+          838,
+          2250,
+          286,
+          12064,
+          25,
+          1115,
+          1285,
+          3847
+        ],
+        "visible_token_ids": [
+          1212,
+          1398,
+          3407,
+          838,
+          2250,
+          286,
+          12064,
+          25,
+          1115,
+          1285,
+          3847,
+          2250,
+          583,
+          1285,
+          5556,
+          642,
+          2250,
+          583,
+          5041,
+          355,
+          583,
+          2581,
+          422,
+          584,
+          1866,
+          13,
+          198,
+          198,
+          41910,
+          48248,
+          10422
+        ],
+        "visible_continuation_token_ids": [
+          2250,
+          583,
+          1285,
+          5556,
+          642,
+          2250,
+          583,
+          5041,
+          355,
+          583,
+          2581,
+          422,
+          584,
+          1866,
+          13,
+          198,
+          198,
+          41910,
+          48248,
+          10422
+        ],
+        "prompt_prefix_matches": true,
+        "canonical_text_roundtrip": true,
+        "chosen_probabilities": [
+          0.0128181950787744,
+          0.033997787667636,
+          0.6352423197024295,
+          0.011589970288208,
+          0.0095019485883073,
+          0.3863062911907577,
+          0.0817069976573612,
+          0.0323049795496905,
+          0.0032155351739267,
+          0.0200928219443349,
+          0.0034042680121472,
+          0.0710647355579097,
+          0.0037350514943456,
+          0.07535969525843787,
+          0.4136352042873509,
+          0.2576937878086351,
+          0.9987823281008372,
+          0.000139508592017,
+          4.356070819e-07,
+          0.0001200360494884
+        ],
+        "interval_observations": [
+          {
+            "token_id": 2250,
+            "cdf_low": "0.5616077717679347",
+            "cdf_high": "0.5744259668467091",
+            "probability_decimal": "0.0128181950787744"
+          },
+          {
+            "token_id": 583,
+            "cdf_low": "0.6292711748185916",
+            "cdf_high": "0.6632689624862276",
+            "probability_decimal": "0.0339977876676360"
+          },
+          {
+            "token_id": 1285,
+            "cdf_low": "0.0",
+            "cdf_high": "0.6352423197024295",
+            "probability_decimal": "0.6352423197024295"
+          },
+          {
+            "token_id": 5556,
+            "cdf_low": "0.8026714590510066",
+            "cdf_high": "0.8142614293392146",
+            "probability_decimal": "0.0115899702882080"
+          },
+          {
+            "token_id": 642,
+            "cdf_low": "0.4319756774956908",
+            "cdf_high": "0.4414776260839981",
+            "probability_decimal": "0.0095019485883073"
+          },
+          {
+            "token_id": 2250,
+            "cdf_low": "0.0",
+            "cdf_high": "0.3863062911907577",
+            "probability_decimal": "0.3863062911907577"
+          },
+          {
+            "token_id": 583,
+            "cdf_low": "0.698384305121261",
+            "cdf_high": "0.7800913027786222",
+            "probability_decimal": "0.0817069976573612"
+          },
+          {
+            "token_id": 5041,
+            "cdf_low": "0.8282079349266699",
+            "cdf_high": "0.8605129144763604",
+            "probability_decimal": "0.0323049795496905"
+          },
+          {
+            "token_id": 355,
+            "cdf_low": "0.788216451328334",
+            "cdf_high": "0.7914319865022607",
+            "probability_decimal": "0.0032155351739267"
+          },
+          {
+            "token_id": 583,
+            "cdf_low": "0.7398666329863417",
+            "cdf_high": "0.7599594549306766",
+            "probability_decimal": "0.0200928219443349"
+          },
+          {
+            "token_id": 2581,
+            "cdf_low": "0.5680996030765437",
+            "cdf_high": "0.5715038710886909",
+            "probability_decimal": "0.0034042680121472"
+          },
+          {
+            "token_id": 422,
+            "cdf_low": "0.6363264153207493",
+            "cdf_high": "0.707391150878659",
+            "probability_decimal": "0.0710647355579097"
+          },
+          {
+            "token_id": 584,
+            "cdf_low": "0.5780896117589911",
+            "cdf_high": "0.5818246632533367",
+            "probability_decimal": "0.0037350514943456"
+          },
+          {
+            "token_id": 1866,
+            "cdf_low": "0.34398335919496453",
+            "cdf_high": "0.4193430544534024",
+            "probability_decimal": "0.07535969525843787"
+          },
+          {
+            "token_id": 13,
+            "cdf_low": "0.0",
+            "cdf_high": "0.4136352042873509",
+            "probability_decimal": "0.4136352042873509"
+          },
+          {
+            "token_id": 198,
+            "cdf_low": "0.0",
+            "cdf_high": "0.2576937878086351",
+            "probability_decimal": "0.2576937878086351"
+          },
+          {
+            "token_id": 198,
+            "cdf_low": "0.0",
+            "cdf_high": "0.9987823281008372",
+            "probability_decimal": "0.9987823281008372"
+          },
+          {
+            "token_id": 41910,
+            "cdf_low": "0.8640833281406877",
+            "cdf_high": "0.8642228367327047",
+            "probability_decimal": "0.0001395085920170"
+          },
+          {
+            "token_id": 48248,
+            "cdf_low": "0.9966591238665806",
+            "cdf_high": "0.9966595594736625",
+            "probability_decimal": "4.356070819E-7"
+          },
+          {
+            "token_id": 10422,
+            "cdf_low": "0.790962205252",
+            "cdf_high": "0.7910822413014884",
+            "probability_decimal": "0.0001200360494884"
+          }
+        ],
+        "surprisal_bits": 122.8243709353455,
+        "elapsed_seconds": 1.6426920359954238,
+        "context_trim_calls": 0,
+        "rejected_stop_count": 0,
+        "decimal_precision": 680,
+        "requested_tokens": 20,
+        "maximum_stream_tokens": 26,
+        "elapsed_scope": "Cumulative stream time through this endpoint or failure"
+      },
+      "receiver": {
+        "ids": {
+          "status": "complete",
+          "recovery_match": false,
+          "public_probabilities_match_sender": true,
+          "public_surprisal_bits": 122.8243709353455,
+          "elapsed_seconds": 1.5382938040420413,
+          "execution": "fresh upstream receiver and model stepper"
+        },
+        "text": {
+          "status": "complete",
+          "recovery_match": false,
+          "public_probabilities_match_sender": true,
+          "public_surprisal_bits": 122.8243709353455,
+          "elapsed_seconds": 1.5382938040420413,
+          "execution": "same verified receiver input as ids"
+        }
+      }
+    },
+    "2.00": {
+      "requested_tokens": 26,
+      "generation": {
+        "status": "complete",
+        "error": null,
+        "token_ids": [
+          2250,
+          583,
+          1285,
+          5556,
+          642,
+          2250,
+          583,
+          5041,
+          355,
+          583,
+          2581,
+          422,
+          584,
+          1866,
+          13,
+          198,
+          198,
+          41910,
+          48248,
+          10422,
+          318,
+          257,
+          8018,
+          18006,
+          7162,
+          3883
+        ],
+        "tokens": 26,
+        "cover_text": "This class includes 10 hours of instruction: three weeknight hours per week plus 5 hours per weekend as per request from other members.\n\nSpirit Smile Studies is a recognized Wildlife Conservancy",
+        "text_sha256": "7c15039b992ec63902afff822af072dee5cf6bed3ebc08ff3c0b75a710a9d71d",
+        "context_token_ids": [
+          1212,
+          1398,
+          3407,
+          838,
+          2250,
+          286,
+          12064,
+          25,
+          1115,
+          1285,
+          3847
+        ],
+        "visible_token_ids": [
+          1212,
+          1398,
+          3407,
+          838,
+          2250,
+          286,
+          12064,
+          25,
+          1115,
+          1285,
+          3847,
+          2250,
+          583,
+          1285,
+          5556,
+          642,
+          2250,
+          583,
+          5041,
+          355,
+          583,
+          2581,
+          422,
+          584,
+          1866,
+          13,
+          198,
+          198,
+          41910,
+          48248,
+          10422,
+          318,
+          257,
+          8018,
+          18006,
+          7162,
+          3883
+        ],
+        "visible_continuation_token_ids": [
+          2250,
+          583,
+          1285,
+          5556,
+          642,
+          2250,
+          583,
+          5041,
+          355,
+          583,
+          2581,
+          422,
+          584,
+          1866,
+          13,
+          198,
+          198,
+          41910,
+          48248,
+          10422,
+          318,
+          257,
+          8018,
+          18006,
+          7162,
+          3883
+        ],
+        "prompt_prefix_matches": true,
+        "canonical_text_roundtrip": true,
+        "chosen_probabilities": [
+          0.0128181950787744,
+          0.033997787667636,
+          0.6352423197024295,
+          0.011589970288208,
+          0.0095019485883073,
+          0.3863062911907577,
+          0.0817069976573612,
+          0.0323049795496905,
+          0.0032155351739267,
+          0.0200928219443349,
+          0.0034042680121472,
+          0.0710647355579097,
+          0.0037350514943456,
+          0.07535969525843787,
+          0.4136352042873509,
+          0.2576937878086351,
+          0.9987823281008372,
+          0.000139508592017,
+          4.356070819e-07,
+          0.0001200360494884,
+          0.076579219198156,
+          0.2949549057120298,
+          0.001253599158454,
+          3.0232628144e-06,
+          0.01457697500692683,
+          0.9990066326771588
+        ],
+        "interval_observations": [
+          {
+            "token_id": 2250,
+            "cdf_low": "0.5616077717679347",
+            "cdf_high": "0.5744259668467091",
+            "probability_decimal": "0.0128181950787744"
+          },
+          {
+            "token_id": 583,
+            "cdf_low": "0.6292711748185916",
+            "cdf_high": "0.6632689624862276",
+            "probability_decimal": "0.0339977876676360"
+          },
+          {
+            "token_id": 1285,
+            "cdf_low": "0.0",
+            "cdf_high": "0.6352423197024295",
+            "probability_decimal": "0.6352423197024295"
+          },
+          {
+            "token_id": 5556,
+            "cdf_low": "0.8026714590510066",
+            "cdf_high": "0.8142614293392146",
+            "probability_decimal": "0.0115899702882080"
+          },
+          {
+            "token_id": 642,
+            "cdf_low": "0.4319756774956908",
+            "cdf_high": "0.4414776260839981",
+            "probability_decimal": "0.0095019485883073"
+          },
+          {
+            "token_id": 2250,
+            "cdf_low": "0.0",
+            "cdf_high": "0.3863062911907577",
+            "probability_decimal": "0.3863062911907577"
+          },
+          {
+            "token_id": 583,
+            "cdf_low": "0.698384305121261",
+            "cdf_high": "0.7800913027786222",
+            "probability_decimal": "0.0817069976573612"
+          },
+          {
+            "token_id": 5041,
+            "cdf_low": "0.8282079349266699",
+            "cdf_high": "0.8605129144763604",
+            "probability_decimal": "0.0323049795496905"
+          },
+          {
+            "token_id": 355,
+            "cdf_low": "0.788216451328334",
+            "cdf_high": "0.7914319865022607",
+            "probability_decimal": "0.0032155351739267"
+          },
+          {
+            "token_id": 583,
+            "cdf_low": "0.7398666329863417",
+            "cdf_high": "0.7599594549306766",
+            "probability_decimal": "0.0200928219443349"
+          },
+          {
+            "token_id": 2581,
+            "cdf_low": "0.5680996030765437",
+            "cdf_high": "0.5715038710886909",
+            "probability_decimal": "0.0034042680121472"
+          },
+          {
+            "token_id": 422,
+            "cdf_low": "0.6363264153207493",
+            "cdf_high": "0.707391150878659",
+            "probability_decimal": "0.0710647355579097"
+          },
+          {
+            "token_id": 584,
+            "cdf_low": "0.5780896117589911",
+            "cdf_high": "0.5818246632533367",
+            "probability_decimal": "0.0037350514943456"
+          },
+          {
+            "token_id": 1866,
+            "cdf_low": "0.34398335919496453",
+            "cdf_high": "0.4193430544534024",
+            "probability_decimal": "0.07535969525843787"
+          },
+          {
+            "token_id": 13,
+            "cdf_low": "0.0",
+            "cdf_high": "0.4136352042873509",
+            "probability_decimal": "0.4136352042873509"
+          },
+          {
+            "token_id": 198,
+            "cdf_low": "0.0",
+            "cdf_high": "0.2576937878086351",
+            "probability_decimal": "0.2576937878086351"
+          },
+          {
+            "token_id": 198,
+            "cdf_low": "0.0",
+            "cdf_high": "0.9987823281008372",
+            "probability_decimal": "0.9987823281008372"
+          },
+          {
+            "token_id": 41910,
+            "cdf_low": "0.8640833281406877",
+            "cdf_high": "0.8642228367327047",
+            "probability_decimal": "0.0001395085920170"
+          },
+          {
+            "token_id": 48248,
+            "cdf_low": "0.9966591238665806",
+            "cdf_high": "0.9966595594736625",
+            "probability_decimal": "4.356070819E-7"
+          },
+          {
+            "token_id": 10422,
+            "cdf_low": "0.790962205252",
+            "cdf_high": "0.7910822413014884",
+            "probability_decimal": "0.0001200360494884"
+          },
+          {
+            "token_id": 318,
+            "cdf_low": "0.15891343573278616",
+            "cdf_high": "0.23549265493094215",
+            "probability_decimal": "0.07657921919815599"
+          },
+          {
+            "token_id": 257,
+            "cdf_low": "0.0",
+            "cdf_high": "0.2949549057120298",
+            "probability_decimal": "0.2949549057120298"
+          },
+          {
+            "token_id": 8018,
+            "cdf_low": "0.5613382673288697",
+            "cdf_high": "0.5625918664873237",
+            "probability_decimal": "0.0012535991584540"
+          },
+          {
+            "token_id": 18006,
+            "cdf_low": "0.9875605530237416",
+            "cdf_high": "0.987563576286556",
+            "probability_decimal": "0.0000030232628144"
+          },
+          {
+            "token_id": 7162,
+            "cdf_low": "0.41403263863609197",
+            "cdf_high": "0.4286096136430188",
+            "probability_decimal": "0.01457697500692683"
+          },
+          {
+            "token_id": 3883,
+            "cdf_low": "0.0",
+            "cdf_high": "0.9990066326771588",
+            "probability_decimal": "0.9990066326771588"
+          }
+        ],
+        "surprisal_bits": 162.36947686716874,
+        "elapsed_seconds": 2.1462279460392892,
+        "context_trim_calls": 0,
+        "rejected_stop_count": 0,
+        "decimal_precision": 680,
+        "requested_tokens": 26,
+        "maximum_stream_tokens": 26,
+        "elapsed_scope": "Cumulative stream time through this endpoint or failure"
+      },
+      "receiver": {
+        "ids": {
+          "status": "complete",
+          "recovery_match": true,
+          "public_probabilities_match_sender": true,
+          "public_surprisal_bits": 162.36947686716874,
+          "elapsed_seconds": 1.9573050709441304,
+          "execution": "fresh upstream receiver and model stepper"
+        },
+        "text": {
+          "status": "complete",
+          "recovery_match": true,
+          "public_probabilities_match_sender": true,
+          "public_surprisal_bits": 162.36947686716874,
+          "elapsed_seconds": 1.9573050709441304,
+          "execution": "same verified receiver input as ids"
+        }
+      }
+    }
+  }
+}

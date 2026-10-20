@@ -30,6 +30,8 @@ python scripts/run_codec_security_audit.py
 python scripts/audit_stopping_adapter.py
 python scripts/audit_rotation_grid.py
 python scripts/audit_termination_theory.py
+python scripts/certify_verified_stopping.py
+python scripts/audit_observable_followup.py
 python scripts/run_stopping_dp.py
 python scripts/audit_existing_evidence.py
 python scripts/audit_legacy_controls.py
@@ -42,14 +44,27 @@ python scripts/analyze_stopping_ablation.py \
   results/sp2027-stopping-gpt2 results/sp2027-stopping-gpt2-verified
 python scripts/analyze_upstream_rrc.py \
   results/sp2027-upstream-gpt2 \
-  results/sp2027-upstream-gpt2-pilot results/sp2027-upstream-gpt2-pilot-v2
+  results/sp2027-upstream-gpt2-pilot results/sp2027-upstream-gpt2-pilot-v2 \
+  results/sp2027-upstream-qwen25-pilot results/sp2027-upstream-qwen25
 python scripts/analyze_upstream_tokens.py
+python scripts/analyze_upstream_tokens.py --cohort results/sp2027-upstream-qwen25
+python scripts/analyze_upstream_observable.py \
+  results/sp2027-observable-gpt2 results/sp2027-observable-qwen25
+python scripts/analyze_upstream_budget.py \
+  results/sp2027-budget-gpt2 results/sp2027-budget-qwen25
+python scripts/audit_observable_fidelity.py \
+  --cohort results/sp2027-upstream-gpt2 --replay results/sp2027-observable-gpt2 \
+  --out results/sp2027-observable-fidelity/gpt2.json
+python scripts/audit_observable_fidelity.py \
+  --cohort results/sp2027-upstream-qwen25 --replay results/sp2027-observable-qwen25 \
+  --out results/sp2027-observable-fidelity/qwen25.json
 python scripts/analyze_public_endpoint.py \
   results/sp2027-endpoint-gpt2 results/sp2027-endpoint-gpt2-corrected \
   results/sp2027-endpoint-qwen
 python scripts/generate_evaluation_tables.py --require-all
 python scripts/generate_revision_figures.py
 python scripts/generate_accept_materials.py
+python scripts/generate_followup_materials.py
 ```
 
 The model integration test is skipped unless explicitly configured. It is
@@ -80,6 +95,24 @@ public endpoint identities. Its six prefix-tree identity checks use a public
 cap of eight tokens and include unresolved cap outcomes. They must not be
 read as laws conditioned on successful payload resolution. Numerical kernel
 quadrature supplements, rather than replaces, the analytic proof.
+
+`certify_verified_stopping.py` uses exact rational killed-kernel integrals and
+integer lower-mass dynamic programming for the specified two-state Markov
+source. Its missing mass remains an explicit error budget. Integer-power
+tests define closed information bands; a squared-transition moment covers
+every length beyond the finite scan. A separate run-composition formula
+computes the candidate maximum exactly and certifies it against the other
+lengths' upper bounds. The JSON stores exact fractions and downward-rounded
+decimal lower bounds, including the vacuous 128-bit result. This is a
+certificate for continuous, exact-real, uncapped reverse verification, not
+for finite rotations, Decimal software, an LLM, or its rendered strings.
+
+`audit_observable_followup.py` checks the all-text score's defined failure
+states and infinity ties, retains unmatched emitted strings in its separate
+class-wise analysis, and injects later failure/interruption into the budget
+stream. Earlier reached endpoints must remain complete and byte-preserved.
+The all-text analyses themselves consume every planned output binding;
+deduplicating an identical public input does not remove its repeated binding.
 
 The historical 18-control pilot used filtered floating probabilities and
 three raw-argmax fallbacks. The old JSON label `historical_stable_sampler`
@@ -112,6 +145,24 @@ python scripts/fetch_revision_models.py --verify-only \
   --qwen-path ../models/qwen/Qwen_Qwen3.5-2B-Q4_K_S.gguf \
   --gpt2-path ../models/gpt2
 ```
+
+The additional unchanged-upstream replication uses the official base model
+`Qwen/Qwen2.5-0.5B`, revision
+`060db6499f32faf8b98477b0a26969ef7d8b9987`. It is distinct from the Qwen3.5-2B
+GGUF source above. Its 988,097,824-byte weight file has SHA-256
+`88c142557820ccad55bb59756bfcfcf891de9cc6202816bd346445188a0ed342`.
+The tokenizer has 151,665 supported entries, used by the upstream source out
+of 151,936 model output slots. CPU inference explicitly loads float32 weights
+and uses one PyTorch thread per worker.
+
+```bash
+python scripts/fetch_qwen25_model.py
+python scripts/fetch_qwen25_model.py --verify-only
+```
+
+The fetcher verifies the pinned weight digest and official Git object IDs
+for tokenizer/configuration files. All local SHA-256 values are recorded in
+`results/sp2027-environment/qwen25-download.json`.
 
 ## Frozen source profiles and generation
 
@@ -150,6 +201,12 @@ milestone.
 | `sp2027-endpoint-qwen` | 37 existing pairs | Original frozen delivery source | Same replay and previous interruption exclusion |
 | `sp2027-endpoint-gpt2` | 13 existing pairs | Mismatched runtime | Retained one-thread diagnostic; not a same-source result |
 | `sp2027-upstream-public-features` | 6 existing arm/control pairs | Upstream full vocabulary | Public score replay; nine distinct text inputs |
+| `sp2027-upstream-qwen25-pilot` | 4 excluded instances | New Qwen2.5 upstream source | API/numerical pilot; all raw and receiver outcomes retained |
+| `sp2027-upstream-qwen25` | 160 secret instances | New Qwen2.5 upstream source | Same prompts/tapes and three arms as the GPT-2 study |
+| `sp2027-observable-gpt2` | 160 instances across three arms | Original upstream source | Public score on every published string; no canonical/recovery selection |
+| `sp2027-observable-qwen25` | 160 instances across three arms | New Qwen2.5 upstream source | Same frozen public score and every-output accounting |
+| `sp2027-budget-gpt2` | 160 trajectories, four budgets each | Original upstream source | Independent endpoints N, ceiling(1.25N), ceiling(1.5N), 2N |
+| `sp2027-budget-qwen25` | 160 trajectories, four budgets each | New Qwen2.5 upstream source | Same endpoint assignment and failure-preserving prefix persistence |
 
 The expanded-source study was introduced after diagnosing development-case
 filter failures. It uses seed `20261023`, retains the original topic split and
@@ -229,8 +286,63 @@ It has 20 prompt clusters, ten development and ten test, four tapes and two
 payload sizes. The fixed-endpoint arm's extra Decimal reserve was fixed
 after an excluded pilot failure, before the main cohort. It retains receiver
 failures. All raw variants, stage files and execution journals are included.
+Upstream worker interruptions are recorded separately, with hashes of completed
+stages and cases. Resuming reuses the frozen tasks and random tapes, preserves
+those completed records, and repeats only unfinished stages. It does not
+allocate a fresh secret or sample. The verifier checks the preserved-file hashes;
+unpersisted interrupted work is not included in runtime totals.
 The exact model-probability source is defined by differences of upstream
 Decimal-converted CDF boundaries, not by separately reported softmax values.
+
+The observable follow-up is fixed in
+`notes/sp2027-observable-followup-plan.md`. GPT-2's all-text replay is
+retrospective; Qwen2.5 is a separate prospective model replication. They
+reuse the same 20 prompts and experimental tapes, so the second model does
+not double the number of independent prompt clusters.
+
+```bash
+python scripts/replay_upstream_observable.py \
+  --cohort results/sp2027-upstream-gpt2 --model-path ../models/gpt2 \
+  --out-dir local-results/observable-gpt2
+python scripts/run_upstream_budget_curve.py \
+  --cohort results/sp2027-upstream-gpt2 --model-path ../models/gpt2 \
+  --out-dir local-results/budget-gpt2
+python scripts/audit_observable_fidelity.py \
+  --cohort results/sp2027-upstream-gpt2 --replay results/sp2027-observable-gpt2 \
+  --out local-results/observable-fidelity-gpt2.json
+```
+
+The Qwen2.5 equivalents use `sp2027-upstream-qwen25` and
+`../models/qwen25-0.5b`. For bit-exact generation/replay provenance, use the
+corresponding materialized source profile and its command index.
+
+The public score retokenizes the full published string, removes the public
+prompt's token prefix when present, and replays that continuation. Its
+negative log probability is not a sum over alternative tokenizations of the
+same string. Public prefix mismatch, empty continuation, unsupported token,
+and zero source mass receive negative infinity. Infrastructure exceptions
+remain unfinished work rather than successful classifications.
+No generation/recovery label enters scoring. A failed generation is represented
+by no output, not its private failed prefix. If such failures occur, the
+augmented all-attempt experiment, emitted-pair sensitivity, and class-wise
+all-emitted-string summaries have separate denominators. Passive observers
+are not assumed to see unsent attempts. The length baselines use full-string
+token and Unicode code-point counts; raw token-length pairing need not survive
+serialization as an equal observable-length histogram.
+
+Budget runs use each verified endpoint only to assign the separate stream's
+budgets. The extra stream and each distinct ID/text receiver input use the
+unchanged upstream primitives. Identical ID/text inputs reuse their checked
+receiver result. Reached prefixes are saved before continuing, so a later
+failure cannot invalidate an earlier completed endpoint. The N-token comparison
+with the original fixed-endpoint stream is a post-generation diagnostic.
+It cannot select trajectories. Larger-budget measurements concern recovery
+and prescribed-token cost, without a detector-resistance claim.
+Budget records retain sender CDF traces and receiver outcomes. Those traces
+support an offline inverse check for the original token path; the observable
+replay supplies additional retokenized traces at N. Larger-budget noncanonical
+text receivers retain their execution summaries but require model inference
+to reconstruct their different CDF paths.
 
 Endpoint replay is post-hoc and knows the 16-byte application-message length,
 giving two public segment sizes of 60 and 44 bytes. Classification only uses

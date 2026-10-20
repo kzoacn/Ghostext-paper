@@ -1,0 +1,1270 @@
+{
+  "schema": "upstream-budget-analysis-v1",
+  "backend": "gpt2",
+  "manifest_sha256": "bc0a6d42d5cec27d8119722d86ae6527bf4a42b104d0d6366eb738ee6ca04a88",
+  "case_sha256": {
+    "c4_0052_b128_r0.json": "e07b33f1f158298fc045bf3586cd49396d739b14b7da2ba1eaf52f6a5ffa1dd1",
+    "c4_0052_b128_r1.json": "ab185bff4499587885a1c243dc0c3788dfc49c945283d6b9f8176edf25a8ae2b",
+    "c4_0052_b128_r2.json": "4bfd52984b830b7ca68751747128b9c65fb29e2a17651efd69c3fef925c2b47d",
+    "c4_0052_b128_r3.json": "25a2abbe1acd73a086476e9bdeba1e05b9a5d81eb36a95b04ced48f5402ceefc",
+    "c4_0052_b512_r0.json": "123f646acffbb30ca9eac00a6a145c1bcd2c01e30784362bbf8fa3f01569d410",
+    "c4_0052_b512_r1.json": "ee6c97d3c054dafe1de75dc2ecd84e16304a0a1c2d91a5a2752bab43a4f51006",
+    "c4_0052_b512_r2.json": "9273afd4c97d8334c1bfbfe259d2bd51cdc321e03d3670498e5f5ffabcf6e4b7",
+    "c4_0052_b512_r3.json": "d10f46a5280c0a5f14713ac2b4c79677c2500ae75728a450ce58d3b9db19ed55",
+    "c4_0081_b128_r0.json": "39471741397adb0c2e1217689cf7e2941b1592f43bcc7c3afea9da9b6df4efdc",
+    "c4_0081_b128_r1.json": "9ef31c81d0db0c9b2057c017abdf6d17f2482d90384e836d0111d218b5c57ad4",
+    "c4_0081_b128_r2.json": "36a3bf2da996d4a2877477bc84fb5858b15dea150630c3b0120ba18d82e0bb4d",
+    "c4_0081_b128_r3.json": "88ffc05d342dc0ebcb901f7b6d2e715aea2342f8f634bd9d61e7c20eadd376c2",
+    "c4_0081_b512_r0.json": "ffdb08940906b339b3915bd60e49298e5f280c0bcc919f834ef4ba7542dab146",
+    "c4_0081_b512_r1.json": "3729b6e4ecb071d01838993073612cfb53932831a75a06a804dc210cbd85fa79",
+    "c4_0081_b512_r2.json": "a8f2724afb9345ff24baf97d212d0d1b6f316bffcaeec40f22b53c11f75e9739",
+    "c4_0081_b512_r3.json": "27dabad4bc388294be9360fbec28be4c1db3326afd7df72da37e2f0824255772",
+    "c4_0092_b128_r0.json": "4fceeae87346b66f33c475f36b56126f3459ccd54db76904450ab04bfb51b8d4",
+    "c4_0092_b128_r1.json": "016a3816817114ecb0ccff35e160ba97647dfbc2e70ebc17eb271bfb424d6351",
+    "c4_0092_b128_r2.json": "34ff1a3bb2eedc872be8cccbf9823304330558a2866a18ba9f78a7a1e128705b",
+    "c4_0092_b128_r3.json": "ad21aadd2acef2552923fc484ae17bd2209ec06b34d9a3c2b88cdae8da181777",
+    "c4_0092_b512_r0.json": "6bb19c3f3c936bb95bb1066227e2f9670f04e48629b3508badc46c28346476ce",
+    "c4_0092_b512_r1.json": "636947a7acd475e52d8a49e036390be6fb80cab2074ca904bdef2db04a524f42",
+    "c4_0092_b512_r2.json": "98666a962a7611e3136c977b9207171f74b1566a88619b3b006e4d1a33f8a7d0",
+    "c4_0092_b512_r3.json": "7a0797e40af140d55fbf8e3f61ab5423aa98c291677ef9962a247c02f55ab9f6",
+    "c4_0114_b128_r0.json": "4a3770a652e5d11c4df302d0644a3a547c6cb6ca62a06b2317f71ead4671010f",
+    "c4_0114_b128_r1.json": "9c1125e72ae4d33dccad96c69fc8606101976d1e7c29abeebb7f258b2c5eb260",
+    "c4_0114_b128_r2.json": "7adcec5db5293daf3c98e3f3ac4dc2f2f93ed614ee49402252ec90d9d3773d55",
+    "c4_0114_b128_r3.json": "a6f91c11d0c9ca1d729004e99bbe48e95055d6ed58e2d3d67e0f3c3506cd143f",
+    "c4_0114_b512_r0.json": "1b4e3dcedd723f5b2a036feda119054c300c465b08e735d5fb32929094c41b43",
+    "c4_0114_b512_r1.json": "e99ec8bdae3583f42b9c3dffdb02877d27140c681fab4bbc98d307b0172dc07a",
+    "c4_0114_b512_r2.json": "e0fff24a7c556eb5a193b01669e1c821bc54b47fa8a64444d1ddf9157cc48c12",
+    "c4_0114_b512_r3.json": "521a09b48aed7575889c03a2b73d17af50b263fa4bfec4cc1d9b25ae8d252a22",
+    "c4_0203_b128_r0.json": "b9f36ce63583393375d818e0a10950dbbebfb8c99cb6b3230fbbd9a5dfd03999",
+    "c4_0203_b128_r1.json": "df1f5114d2a3feefbbcee853fa6ce61c74f7b6bf5c3b0115be2643d5b4c9b77b",
+    "c4_0203_b128_r2.json": "9fa3d90fcdcc7d55340a7e1b663f1a27af7854b15e29762aae022321d6ff776a",
+    "c4_0203_b128_r3.json": "6f43076ed0bd1e86e217a2fc41091ce71ee450959d6eb9461b1ae9091a142b7a",
+    "c4_0203_b512_r0.json": "82f11bc7fc0f9212582a0721485ba60b92a07d9117f79a80cd7aafb02ba4cb6f",
+    "c4_0203_b512_r1.json": "ced7163296a5365c147bcaed619e3d858fbf492867694ff7df50395d99a62c5b",
+    "c4_0203_b512_r2.json": "0f1a5931e4a617e038913182912001589cf3d9af3388e6ff9af13ae6293f2f86",
+    "c4_0203_b512_r3.json": "0bbd9a83b8fd804170d1261269d89dadda394ef098764dc823edde96a833ffcf",
+    "c4_0295_b128_r0.json": "bf32a5f9667fa22000233ae65af2525495c3a394417d12a86c5351ffa1b6127e",
+    "c4_0295_b128_r1.json": "93f4760a4239c060969b36f5901155c9d0f8863378ef7fd1dd6b1207bce75540",
+    "c4_0295_b128_r2.json": "56453d8b204de306cec2b866a4350321098efefcd10994fbf34c31f316adefc4",
+    "c4_0295_b128_r3.json": "b97197656434cdab60ff7bdf6d4ea9e43cde30c2afcc9efbe571a114ba1bf5b0",
+    "c4_0295_b512_r0.json": "ee6e991a941d761bde4556012ca07fe77080fedc36be7ad6da008315bfe4f0cb",
+    "c4_0295_b512_r1.json": "4a73fca79c9c99541ea6df4750474bea3e29712a84c59e2fb9ca8d9183900af3",
+    "c4_0295_b512_r2.json": "bc6f62ed2f2a796f7e2bd5f514c181893e3d7dfeff643b822e06f3cd6c8ca411",
+    "c4_0295_b512_r3.json": "27e5818e0abe342a8fa8825a6bd9972b6502aa71120a0052c561bd2afb9444a9",
+    "c4_0305_b128_r0.json": "2856e41bb47b2ece71e6b38e5f83fc7b52e6bbe2d6c9aca33195b6edae86634f",
+    "c4_0305_b128_r1.json": "067f71de24663e3b72a2c0bd3da33b6246efee8e25370434bd006f6b50086470",
+    "c4_0305_b128_r2.json": "d3ad875cc6c1a5327fbe8413331356aed858f5cff0fb87538aa9c77b07598191",
+    "c4_0305_b128_r3.json": "4c08d3b348ab4a230fcd6d9184f75e52dc50aa1a48ea52c751552efac1c43cf5",
+    "c4_0305_b512_r0.json": "5f60d36476eae25085604732f5a7c35ee1721cfcaff159dad1f638b7ea903c67",
+    "c4_0305_b512_r1.json": "1b796775e0a18238b97e7dacf185a5dcf4763e6dbd8e83b6ab7f184e08f648e8",
+    "c4_0305_b512_r2.json": "f35f6faa7276c686dc31281fad09b29908eecef466f55a937cdf5151737cd6e5",
+    "c4_0305_b512_r3.json": "b8102415149dcd19d34acc63ee6340e8a56a07eec9f17431ed10f25e3f02f059",
+    "c4_0401_b128_r0.json": "12d613ae3e0af23971d5ffc4d78ff9b76dc97a2e2d4ba14deb6b59300443d58e",
+    "c4_0401_b128_r1.json": "ee60001d458d97b315379b03ad413fd0a1cf7358aeedbd2aff579f4fa2ed63cb",
+    "c4_0401_b128_r2.json": "6428fa7ea995a065c4675d3fc89d8517994482e6ea8aa3c0251e44d910633c75",
+    "c4_0401_b128_r3.json": "739142b22c5257607d7f3cd41808bbd248e7984f506013a1eb66db0d0df0694f",
+    "c4_0401_b512_r0.json": "3435b99021ff515749f3b5655f58b761236164653194e395919dab80eefbff23",
+    "c4_0401_b512_r1.json": "69122a4c632621ef76492adb5d044cbc95bb299e987f47f52569b247526ac07a",
+    "c4_0401_b512_r2.json": "5214732abeda2b5859f135ae8b5cd730766766dc1ebb5b7a59c58a50c459af16",
+    "c4_0401_b512_r3.json": "28edbc9fadf2959f1360b51abdf066a247a789b8352825d432bc210e70072e8d",
+    "c4_0455_b128_r0.json": "e3de801b23ebd8e0a2b8553977e9aa93ce45665f206add68c5e1125f96332542",
+    "c4_0455_b128_r1.json": "3337b83bc0a7fbd1a31778a745cff451f698fa89980c4162abf4cbe2389e7127",
+    "c4_0455_b128_r2.json": "9393e040a4b698c2effc0b5901133dd0deeacfd66d6d61760219f3d89af4d8c8",
+    "c4_0455_b128_r3.json": "df35d40f1d2f31bbc32de7dfbbd139e81a585d8487945faa5bd934ff71908fc2",
+    "c4_0455_b512_r0.json": "b32d04f03abf4e0c14232ee86c51ca4512f5da0f11ea86b4dc5d711b97e6a768",
+    "c4_0455_b512_r1.json": "dc31f3286e3c9532b50510b50caa399fd0743f92f06d5be4076151015145776c",
+    "c4_0455_b512_r2.json": "ea2c8b5086260e9c314536671250c2b229b02c73836ceb7a6b8cc4dc0786c3f9",
+    "c4_0455_b512_r3.json": "fa977970cdab0662024531ab9b8a8a9ba94bfab50f668fc96900115f15b3ca6f",
+    "c4_0471_b128_r0.json": "a8518a2454e2d2835bb5b44ee1138ac3cc770e6515d59636f5e088feec4865b2",
+    "c4_0471_b128_r1.json": "6dba44e470958c04fc4292cc4767d39f8a168f5bd924038b870af5de3d0632ce",
+    "c4_0471_b128_r2.json": "110392a4c58e3d00a9d9389406b6f80c2d75cca8ad164c7bfaff7b8c8ff7d2ee",
+    "c4_0471_b128_r3.json": "8b3621fcf133f224fedd832e108c772852fd43686f555bf9bd8722bfbf92adca",
+    "c4_0471_b512_r0.json": "d24739522266c8f3858c7d2824c9f96d9287e843ce69966bf4eab3ae26bf629f",
+    "c4_0471_b512_r1.json": "6821ad3287a2698bed0af4752a39607fe316f3c6a207c723eafafca7128337a0",
+    "c4_0471_b512_r2.json": "3c427931eab33f992e39d42b92d5db06e473ebf30ddfccdbcbc836037ffb578d",
+    "c4_0471_b512_r3.json": "9e9539205da95be99c4fe50ad2685a5ba93fbbf2e3326cb0ae4e37f34bc717f5",
+    "c4_0553_b128_r0.json": "3557096d777ea102b7bf61770911c678986268889726ba309d42d054bc2efd34",
+    "c4_0553_b128_r1.json": "473d8d3b8ee86811f6f175c808cb14a2095361ef21f7b46b8301bba6cf7274ce",
+    "c4_0553_b128_r2.json": "302a0e67a8af832681ebbe1d4ef9f60cce6aedf206d32f850825c2d02e066b9f",
+    "c4_0553_b128_r3.json": "259f7aedab2298dc03d8cf35204b901cc7c01ba400c37c99b69b48296fd9ead7",
+    "c4_0553_b512_r0.json": "29bea9eeda7217a1048f07c80ef9cf98e9f2e9e36520190bfd79c42c7e25620e",
+    "c4_0553_b512_r1.json": "21bd53bf9f9ddd5beeb84acb1f7e73cb8dff5609a8a42a945c4f555546bfba84",
+    "c4_0553_b512_r2.json": "388afcbe60d12e766e9e4f608de2f7e998c29ecf6856dd95c03826bf16087782",
+    "c4_0553_b512_r3.json": "cbc8ce030b26c5b7fe2611c46db35906d8187f81bd008a3335de75f33bdd5534",
+    "c4_0603_b128_r0.json": "ed0cd2282df53ac4eac5c5f2e901469160d459a3b893f0072fd24acc648bb778",
+    "c4_0603_b128_r1.json": "5746cf3a7d549b1b5316cd9b34635e4ab28364036417c351d75babb92a7af21f",
+    "c4_0603_b128_r2.json": "13b61c43cd44dcf65c4364757b56e358f3c8932b562628f8d3f7d8ab0caf6ca2",
+    "c4_0603_b128_r3.json": "e5ed81689d10c7354cb3fee9a63cb27e6ccdd0834f5475e418b758ff187f09c3",
+    "c4_0603_b512_r0.json": "4757cc9cb4a4a6de0a941c4095ec23931dcae6836aa205689ca4b518569ffc6a",
+    "c4_0603_b512_r1.json": "a03701b3e9c79684a5207205623412291743cbf87e9d955c6113c38da55bd75d",
+    "c4_0603_b512_r2.json": "313ff89fc6d4823fa07cdcc3ea87b05a56c6eb7edd52d97bba7765bca4ee4c6c",
+    "c4_0603_b512_r3.json": "55c3551d0ffa24a9752867392421a942c5735bdb20140bc9b243edc19c7372a3",
+    "c4_0612_b128_r0.json": "680ac9deabce877d96bc98d65df8e71f2f546fa421962aea1622b0da7d00e200",
+    "c4_0612_b128_r1.json": "9426342a16a6c33f7093534d62920f4ad4ba558f5c43e24f6f3ee5573f6db1fc",
+    "c4_0612_b128_r2.json": "93f1e0105f388b5f551ecc19ad4c7d8200d2ff4a965a2505cc355f19c696b70f",
+    "c4_0612_b128_r3.json": "7e32c6c91e28073a64e838dbfe85cc3b8848b3d056e135b1a5fcdfca3230bae4",
+    "c4_0612_b512_r0.json": "b9441b123c788091d85c5a70f8bba24c0231600a31bec3ad56bf35641684d2b1",
+    "c4_0612_b512_r1.json": "c040900c47a7d963ecfdf17dda72d237896263fa7fa27bb3c3c3f61a2573abf8",
+    "c4_0612_b512_r2.json": "0a7b6bf4382e97ba474995f58f40364a6bf2207b595c678b58240ae32d70b37e",
+    "c4_0612_b512_r3.json": "0f690132ff9e16ecce6ab36a6d255f57d37bf6d5c4ad1e5b13520a2a7af72c27",
+    "c4_0629_b128_r0.json": "dfb61e6f93b65d8569b80e08e7c8c935f3232e3035853196995684c63dc6c34a",
+    "c4_0629_b128_r1.json": "fa8665d154ee848eb4aed1757f61e09f330efcffd7492f2775914d749ed9adf5",
+    "c4_0629_b128_r2.json": "e8bfc524c2da403d26d10259f84a387a35f124ef4166dcf57153498a50cc2b0d",
+    "c4_0629_b128_r3.json": "2049361ebd2c9f0d9962b377c2da4c2db5f1f2f07de144bc537dd12c3442e6ef",
+    "c4_0629_b512_r0.json": "addd4494d63dc2970019e19714d29d50f7b13f3645c919152c0d357f69be952f",
+    "c4_0629_b512_r1.json": "cb9b44020a3f329234f10a158d7f2c731e02c186f5225abe7170c53bae049342",
+    "c4_0629_b512_r2.json": "9b851f820839a2481bea8cb60a4ad37302d99c863151bdc780019d0ed1b4549f",
+    "c4_0629_b512_r3.json": "d32ddfe5c980c0eccebf34d799aa6b9548ad3d6d0e0cc11bd485854d0459aaa9",
+    "c4_0672_b128_r0.json": "8d4c69c636d0d1f6f2da70922ff3af4737f1bd618a90465b2781a93e0e92371a",
+    "c4_0672_b128_r1.json": "5554e8ee1ff8028688ccbbfb3a7a4461ac801bf71efcf10174051cdb6a630014",
+    "c4_0672_b128_r2.json": "0a77668f1ae3c3009191e021c883fc21a29ba869d574373d791a15460db95034",
+    "c4_0672_b128_r3.json": "8fa9975dfbbbb2ed1ff74a9ff51d6533c11ef8a7187a23b4ce7dcb0c0cc04504",
+    "c4_0672_b512_r0.json": "cf81823e0717bbce84406f4eac401b7280886bc022f8994022c0caf1e6ffc13d",
+    "c4_0672_b512_r1.json": "f8a94c1b3fe24bde7b8bd26c21235cf448ddbe9cce8e5790f6a2795e944f8699",
+    "c4_0672_b512_r2.json": "33b0b96a0c3f95ccba7a8371a334b79299a0613f8825e91cb714ae5bc850ebaf",
+    "c4_0672_b512_r3.json": "c08e1e138dd29875d59546b221f52bd21961de4a595b1a81d736da0ba15c8ed4",
+    "c4_0723_b128_r0.json": "d85fbb471547f10319cddfcaf9dfffa2604da417266fff7cb183fd4cd69ed505",
+    "c4_0723_b128_r1.json": "8434278d07b422f3ebf7896baf3fdb8f4d3d696c38ba86bd63f0444579d30517",
+    "c4_0723_b128_r2.json": "56003b5c909ab0bcdeebc23ecb58002599b7d7fbd22b7b0a78dd15fdebd39dd4",
+    "c4_0723_b128_r3.json": "43578c3c3f589d0a8124daff9f92b3659889e46072f4792f1cd8d39ea5b6a863",
+    "c4_0723_b512_r0.json": "a5b501b727db91dfcd24d9fe2884e9ce4725fde03437d66fdf3b0d950675c631",
+    "c4_0723_b512_r1.json": "c324e9de1470b5cdae32caded44aa421aba01f137c8a6f9d045a613923e707aa",
+    "c4_0723_b512_r2.json": "6993ad36e09eae88a08e4ab336fdbb8ef6f0b0e93f232b7c297fb2941f922151",
+    "c4_0723_b512_r3.json": "94f6002bfd35c10f5a996b77cdf310fcdf586294967ab23e7a1d75a449eaca4e",
+    "c4_0725_b128_r0.json": "88272311ad68edca00b8b6f1f9c4d83d944824c4281893804a27599bc6717069",
+    "c4_0725_b128_r1.json": "96e8ef7e2c278d057916aa93e096dcc5597bb66ed212805201d04204b547647d",
+    "c4_0725_b128_r2.json": "a9c1fa16effb82e0294b8fe5feb3adf07a097ad20a4d5e2f5c8c46995a0b8151",
+    "c4_0725_b128_r3.json": "5b1459f26fd4ab67acd1c2ebd157f0a51252f86dc04c7f438719ec84e7a61d8c",
+    "c4_0725_b512_r0.json": "35261aaf85360a1ee3091143f7b21a11cbbdedb6f6090b43008bcabd3cdd052b",
+    "c4_0725_b512_r1.json": "4b6a78b49c08c9aaa7e7b52fa8a812161ce95880094610d5e8855115e5d5b17c",
+    "c4_0725_b512_r2.json": "29b497b3621d0a70f2ea34507c31a127910c53834ef6b2bd3be84f5fdada626f",
+    "c4_0725_b512_r3.json": "0cd8a4c0ebae229bb6c96342e2fbb54b469256ded2f0bf2f0a1a01ba214dd6fa",
+    "c4_0731_b128_r0.json": "8d947082856a745b70c518f53f6461660689e3873764d87a29e2955ad96d7b6e",
+    "c4_0731_b128_r1.json": "5f99621519a22afbd7d358b5b8f9368c676a30ad43a908643910f92c476b1d30",
+    "c4_0731_b128_r2.json": "216667059e8bcbd8390d0415a653fd7d8f1d169d9f27814e45ddece70b4689df",
+    "c4_0731_b128_r3.json": "5fd0f22bb0096ee3191fef72a0a292c66e33397f5d3f8956586116a79eede09b",
+    "c4_0731_b512_r0.json": "e1032c91c2da30fac2c41a420d03786ab70c74908011fb1031534f6ade58db52",
+    "c4_0731_b512_r1.json": "2cb17fbd209762b65bf588bd4d112838c541fb9ddbf5e7aae1471c718cd8be95",
+    "c4_0731_b512_r2.json": "101ec1c59cb5603d3713be1f6a0f999aa25e3436c7a044d59c6c30c284e571ac",
+    "c4_0731_b512_r3.json": "e51b7e01f538259703f52fa8725a61a77c76ad5354e415cbcb7da0c92714448d",
+    "c4_0798_b128_r0.json": "bf4e023b0b033635e4b9a91bfccb1f3a3eaed2c2bd4f6661536d5e6568aaeb08",
+    "c4_0798_b128_r1.json": "7b48bb2b78e900d89bed2d233f1e3e205088f3e53f75c2e5f399d35450cbf334",
+    "c4_0798_b128_r2.json": "e63053d3271a4098d73d1c0bf5a32f15b641ea14d2d222c6256ab27a119780fd",
+    "c4_0798_b128_r3.json": "b3b4ec2cae0bb39a3016e1bcc8e7ec7b7cc7884a7b138f61ddfe3c5afadc2e76",
+    "c4_0798_b512_r0.json": "9b15513ca351181b5a1f87292d2827dda810efc81f775b6a9146d294808337ab",
+    "c4_0798_b512_r1.json": "e70642086f14b8d4f12e0e03a4d5d01747de037f3077de7820a0888a93e5e19f",
+    "c4_0798_b512_r2.json": "3c0ada598ed4c3de907cf17b8ba5ceba264f6a18a88b8bd4c3e38890f5435cf8",
+    "c4_0798_b512_r3.json": "99101ab2344bdb0b4178b183a6012f52f6a44340cc7798e8102b68dd36c72f30",
+    "c4_0857_b128_r0.json": "2584c39af9b8d1a72722253c676e693b5264f602a66c5875a8a5928ab6c6376d",
+    "c4_0857_b128_r1.json": "f875dfd3f61225d6291c9468ee2fcea18033c3fd386721520d67dab03c430a7b",
+    "c4_0857_b128_r2.json": "2017384396dca76cfaa06b2bf8fba477fed6c10d484d54cd1493f6c415f26817",
+    "c4_0857_b128_r3.json": "33c2db89c6823bffa0f8857a04d28f8306c60353e7787491cc11580f67cb98b2",
+    "c4_0857_b512_r0.json": "9c71aae65926dc9d637b1530e741a33378438f984796f0619fd393f9c12fadb8",
+    "c4_0857_b512_r1.json": "e56e3048e52889472259df19e3c00e974d4bd6bdf889da9f12ba2634c3bc2759",
+    "c4_0857_b512_r2.json": "37dcd0d095cfc81dcf660cda87b689012b16d040421b3cd96be7ddd3a2e8015a",
+    "c4_0857_b512_r3.json": "c5a039afd7a61634d9dc1856391bab240efcf07553dba2648768c58f0ea06265"
+  },
+  "planned_instances": 160,
+  "observed_instances": 160,
+  "bootstrap_repetitions": 5000,
+  "bootstrap_seed": 20261028,
+  "origin_prefix_matches": {
+    "token_ids_match": 160,
+    "selected_cdfs_match": 160
+  },
+  "scope": "Recovery/rate diagnostic on independent fixed-endpoint streams. All planned instances retained; each reached endpoint persists before continuation; later failures affect only unreached endpoints. No detector-resistance inference from these larger budgets.",
+  "by_message_bits": {
+    "128": {
+      "1.00": {
+        "planned_instances": 80,
+        "prompt_clusters": 20,
+        "generation_statuses": {
+          "complete": 80
+        },
+        "id_recovery_successes": 39,
+        "text_recovery_successes": 35,
+        "canonical_complete_outputs": 70,
+        "id_recovery_fraction": 0.4875,
+        "text_recovery_fraction": 0.4375,
+        "id_recovery_prompt_cluster_95": [
+          0.375,
+          0.6
+        ],
+        "text_recovery_prompt_cluster_95": [
+          0.3375,
+          0.5375
+        ],
+        "id_recovery_wilson_95": [
+          0.38107879540381073,
+          0.5950666578345774
+        ],
+        "text_recovery_wilson_95": [
+          0.33413860916143806,
+          0.5465886570305026
+        ],
+        "mean_prescribed_tokens": 22.6,
+        "median_prescribed_tokens": 23.0,
+        "total_prescribed_tokens": 1808,
+        "mean_bits_per_prescribed_token": 5.9387514260999605,
+        "aggregate_bits_per_prescribed_token": 5.663716814159292,
+        "rate_scope": "Payload bits per prescribed budget, retaining decoding and generation failures",
+        "by_prompt": {
+          "c4_0052": {
+            "instances": 4,
+            "id_recovery_successes": 1,
+            "text_recovery_successes": 1
+          },
+          "c4_0081": {
+            "instances": 4,
+            "id_recovery_successes": 3,
+            "text_recovery_successes": 3
+          },
+          "c4_0092": {
+            "instances": 4,
+            "id_recovery_successes": 3,
+            "text_recovery_successes": 2
+          },
+          "c4_0114": {
+            "instances": 4,
+            "id_recovery_successes": 2,
+            "text_recovery_successes": 1
+          },
+          "c4_0203": {
+            "instances": 4,
+            "id_recovery_successes": 2,
+            "text_recovery_successes": 2
+          },
+          "c4_0295": {
+            "instances": 4,
+            "id_recovery_successes": 3,
+            "text_recovery_successes": 3
+          },
+          "c4_0305": {
+            "instances": 4,
+            "id_recovery_successes": 3,
+            "text_recovery_successes": 3
+          },
+          "c4_0401": {
+            "instances": 4,
+            "id_recovery_successes": 2,
+            "text_recovery_successes": 2
+          },
+          "c4_0455": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 3
+          },
+          "c4_0471": {
+            "instances": 4,
+            "id_recovery_successes": 0,
+            "text_recovery_successes": 0
+          },
+          "c4_0553": {
+            "instances": 4,
+            "id_recovery_successes": 0,
+            "text_recovery_successes": 0
+          },
+          "c4_0603": {
+            "instances": 4,
+            "id_recovery_successes": 2,
+            "text_recovery_successes": 2
+          },
+          "c4_0612": {
+            "instances": 4,
+            "id_recovery_successes": 1,
+            "text_recovery_successes": 1
+          },
+          "c4_0629": {
+            "instances": 4,
+            "id_recovery_successes": 2,
+            "text_recovery_successes": 1
+          },
+          "c4_0672": {
+            "instances": 4,
+            "id_recovery_successes": 3,
+            "text_recovery_successes": 3
+          },
+          "c4_0723": {
+            "instances": 4,
+            "id_recovery_successes": 2,
+            "text_recovery_successes": 2
+          },
+          "c4_0725": {
+            "instances": 4,
+            "id_recovery_successes": 2,
+            "text_recovery_successes": 2
+          },
+          "c4_0731": {
+            "instances": 4,
+            "id_recovery_successes": 1,
+            "text_recovery_successes": 1
+          },
+          "c4_0798": {
+            "instances": 4,
+            "id_recovery_successes": 2,
+            "text_recovery_successes": 2
+          },
+          "c4_0857": {
+            "instances": 4,
+            "id_recovery_successes": 1,
+            "text_recovery_successes": 1
+          }
+        }
+      },
+      "1.25": {
+        "planned_instances": 80,
+        "prompt_clusters": 20,
+        "generation_statuses": {
+          "complete": 80
+        },
+        "id_recovery_successes": 59,
+        "text_recovery_successes": 53,
+        "canonical_complete_outputs": 67,
+        "id_recovery_fraction": 0.7375,
+        "text_recovery_fraction": 0.6625,
+        "id_recovery_prompt_cluster_95": [
+          0.625,
+          0.85
+        ],
+        "text_recovery_prompt_cluster_95": [
+          0.55,
+          0.775
+        ],
+        "id_recovery_wilson_95": [
+          0.6318104033557184,
+          0.8214259851149064
+        ],
+        "text_recovery_wilson_95": [
+          0.5535652339817697,
+          0.756543873919184
+        ],
+        "mean_prescribed_tokens": 28.575,
+        "median_prescribed_tokens": 29.0,
+        "total_prescribed_tokens": 2286,
+        "mean_bits_per_prescribed_token": 4.68880520411424,
+        "aggregate_bits_per_prescribed_token": 4.479440069991251,
+        "rate_scope": "Payload bits per prescribed budget, retaining decoding and generation failures",
+        "by_prompt": {
+          "c4_0052": {
+            "instances": 4,
+            "id_recovery_successes": 2,
+            "text_recovery_successes": 2
+          },
+          "c4_0081": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 4
+          },
+          "c4_0092": {
+            "instances": 4,
+            "id_recovery_successes": 3,
+            "text_recovery_successes": 2
+          },
+          "c4_0114": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 3
+          },
+          "c4_0203": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 4
+          },
+          "c4_0295": {
+            "instances": 4,
+            "id_recovery_successes": 3,
+            "text_recovery_successes": 3
+          },
+          "c4_0305": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 4
+          },
+          "c4_0401": {
+            "instances": 4,
+            "id_recovery_successes": 3,
+            "text_recovery_successes": 3
+          },
+          "c4_0455": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 3
+          },
+          "c4_0471": {
+            "instances": 4,
+            "id_recovery_successes": 1,
+            "text_recovery_successes": 1
+          },
+          "c4_0553": {
+            "instances": 4,
+            "id_recovery_successes": 2,
+            "text_recovery_successes": 2
+          },
+          "c4_0603": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 4
+          },
+          "c4_0612": {
+            "instances": 4,
+            "id_recovery_successes": 2,
+            "text_recovery_successes": 2
+          },
+          "c4_0629": {
+            "instances": 4,
+            "id_recovery_successes": 3,
+            "text_recovery_successes": 2
+          },
+          "c4_0672": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 3
+          },
+          "c4_0723": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 4
+          },
+          "c4_0725": {
+            "instances": 4,
+            "id_recovery_successes": 2,
+            "text_recovery_successes": 2
+          },
+          "c4_0731": {
+            "instances": 4,
+            "id_recovery_successes": 1,
+            "text_recovery_successes": 1
+          },
+          "c4_0798": {
+            "instances": 4,
+            "id_recovery_successes": 3,
+            "text_recovery_successes": 3
+          },
+          "c4_0857": {
+            "instances": 4,
+            "id_recovery_successes": 2,
+            "text_recovery_successes": 1
+          }
+        }
+      },
+      "1.50": {
+        "planned_instances": 80,
+        "prompt_clusters": 20,
+        "generation_statuses": {
+          "complete": 80
+        },
+        "id_recovery_successes": 72,
+        "text_recovery_successes": 63,
+        "canonical_complete_outputs": 66,
+        "id_recovery_fraction": 0.9,
+        "text_recovery_fraction": 0.7875,
+        "id_recovery_prompt_cluster_95": [
+          0.8375,
+          0.9625
+        ],
+        "text_recovery_prompt_cluster_95": [
+          0.7125,
+          0.8625
+        ],
+        "id_recovery_wilson_95": [
+          0.8148931119389591,
+          0.9484523844326191
+        ],
+        "text_recovery_wilson_95": [
+          0.6857784426940333,
+          0.8628761328230384
+        ],
+        "mean_prescribed_tokens": 34.125,
+        "median_prescribed_tokens": 35.0,
+        "total_prescribed_tokens": 2730,
+        "mean_bits_per_prescribed_token": 3.9308345011486296,
+        "aggregate_bits_per_prescribed_token": 3.750915750915751,
+        "rate_scope": "Payload bits per prescribed budget, retaining decoding and generation failures",
+        "by_prompt": {
+          "c4_0052": {
+            "instances": 4,
+            "id_recovery_successes": 3,
+            "text_recovery_successes": 3
+          },
+          "c4_0081": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 4
+          },
+          "c4_0092": {
+            "instances": 4,
+            "id_recovery_successes": 3,
+            "text_recovery_successes": 2
+          },
+          "c4_0114": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 3
+          },
+          "c4_0203": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 4
+          },
+          "c4_0295": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 4
+          },
+          "c4_0305": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 4
+          },
+          "c4_0401": {
+            "instances": 4,
+            "id_recovery_successes": 3,
+            "text_recovery_successes": 3
+          },
+          "c4_0455": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 3
+          },
+          "c4_0471": {
+            "instances": 4,
+            "id_recovery_successes": 3,
+            "text_recovery_successes": 2
+          },
+          "c4_0553": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 4
+          },
+          "c4_0603": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 4
+          },
+          "c4_0612": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 3
+          },
+          "c4_0629": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 3
+          },
+          "c4_0672": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 3
+          },
+          "c4_0723": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 4
+          },
+          "c4_0725": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 3
+          },
+          "c4_0731": {
+            "instances": 4,
+            "id_recovery_successes": 2,
+            "text_recovery_successes": 2
+          },
+          "c4_0798": {
+            "instances": 4,
+            "id_recovery_successes": 3,
+            "text_recovery_successes": 3
+          },
+          "c4_0857": {
+            "instances": 4,
+            "id_recovery_successes": 3,
+            "text_recovery_successes": 2
+          }
+        }
+      },
+      "2.00": {
+        "planned_instances": 80,
+        "prompt_clusters": 20,
+        "generation_statuses": {
+          "complete": 80
+        },
+        "id_recovery_successes": 79,
+        "text_recovery_successes": 70,
+        "canonical_complete_outputs": 66,
+        "id_recovery_fraction": 0.9875,
+        "text_recovery_fraction": 0.875,
+        "id_recovery_prompt_cluster_95": [
+          0.9625,
+          1.0
+        ],
+        "text_recovery_prompt_cluster_95": [
+          0.8125,
+          0.9375
+        ],
+        "id_recovery_wilson_95": [
+          0.9325372992233133,
+          0.9977900244795476
+        ],
+        "text_recovery_wilson_95": [
+          0.7849719790084033,
+          0.9306644238399513
+        ],
+        "mean_prescribed_tokens": 45.2,
+        "median_prescribed_tokens": 46.0,
+        "total_prescribed_tokens": 3616,
+        "mean_bits_per_prescribed_token": 2.9693757130499803,
+        "aggregate_bits_per_prescribed_token": 2.831858407079646,
+        "rate_scope": "Payload bits per prescribed budget, retaining decoding and generation failures",
+        "by_prompt": {
+          "c4_0052": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 4
+          },
+          "c4_0081": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 4
+          },
+          "c4_0092": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 3
+          },
+          "c4_0114": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 3
+          },
+          "c4_0203": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 4
+          },
+          "c4_0295": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 4
+          },
+          "c4_0305": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 4
+          },
+          "c4_0401": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 4
+          },
+          "c4_0455": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 3
+          },
+          "c4_0471": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 3
+          },
+          "c4_0553": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 4
+          },
+          "c4_0603": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 4
+          },
+          "c4_0612": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 3
+          },
+          "c4_0629": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 3
+          },
+          "c4_0672": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 3
+          },
+          "c4_0723": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 4
+          },
+          "c4_0725": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 3
+          },
+          "c4_0731": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 4
+          },
+          "c4_0798": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 4
+          },
+          "c4_0857": {
+            "instances": 4,
+            "id_recovery_successes": 3,
+            "text_recovery_successes": 2
+          }
+        }
+      }
+    },
+    "512": {
+      "1.00": {
+        "planned_instances": 80,
+        "prompt_clusters": 20,
+        "generation_statuses": {
+          "complete": 80
+        },
+        "id_recovery_successes": 35,
+        "text_recovery_successes": 26,
+        "canonical_complete_outputs": 60,
+        "id_recovery_fraction": 0.4375,
+        "text_recovery_fraction": 0.325,
+        "id_recovery_prompt_cluster_95": [
+          0.3125,
+          0.5625
+        ],
+        "text_recovery_prompt_cluster_95": [
+          0.2125,
+          0.4375
+        ],
+        "id_recovery_wilson_95": [
+          0.33413860916143806,
+          0.5465886570305026
+        ],
+        "text_recovery_wilson_95": [
+          0.2324416184435817,
+          0.4335947268938527
+        ],
+        "mean_prescribed_tokens": 90.0625,
+        "median_prescribed_tokens": 88.0,
+        "total_prescribed_tokens": 7205,
+        "mean_bits_per_prescribed_token": 5.814630092794812,
+        "aggregate_bits_per_prescribed_token": 5.684941013185288,
+        "rate_scope": "Payload bits per prescribed budget, retaining decoding and generation failures",
+        "by_prompt": {
+          "c4_0052": {
+            "instances": 4,
+            "id_recovery_successes": 3,
+            "text_recovery_successes": 3
+          },
+          "c4_0081": {
+            "instances": 4,
+            "id_recovery_successes": 3,
+            "text_recovery_successes": 2
+          },
+          "c4_0092": {
+            "instances": 4,
+            "id_recovery_successes": 3,
+            "text_recovery_successes": 1
+          },
+          "c4_0114": {
+            "instances": 4,
+            "id_recovery_successes": 1,
+            "text_recovery_successes": 1
+          },
+          "c4_0203": {
+            "instances": 4,
+            "id_recovery_successes": 0,
+            "text_recovery_successes": 0
+          },
+          "c4_0295": {
+            "instances": 4,
+            "id_recovery_successes": 3,
+            "text_recovery_successes": 3
+          },
+          "c4_0305": {
+            "instances": 4,
+            "id_recovery_successes": 2,
+            "text_recovery_successes": 2
+          },
+          "c4_0401": {
+            "instances": 4,
+            "id_recovery_successes": 3,
+            "text_recovery_successes": 2
+          },
+          "c4_0455": {
+            "instances": 4,
+            "id_recovery_successes": 0,
+            "text_recovery_successes": 0
+          },
+          "c4_0471": {
+            "instances": 4,
+            "id_recovery_successes": 2,
+            "text_recovery_successes": 2
+          },
+          "c4_0553": {
+            "instances": 4,
+            "id_recovery_successes": 1,
+            "text_recovery_successes": 0
+          },
+          "c4_0603": {
+            "instances": 4,
+            "id_recovery_successes": 1,
+            "text_recovery_successes": 1
+          },
+          "c4_0612": {
+            "instances": 4,
+            "id_recovery_successes": 3,
+            "text_recovery_successes": 2
+          },
+          "c4_0629": {
+            "instances": 4,
+            "id_recovery_successes": 2,
+            "text_recovery_successes": 2
+          },
+          "c4_0672": {
+            "instances": 4,
+            "id_recovery_successes": 1,
+            "text_recovery_successes": 1
+          },
+          "c4_0723": {
+            "instances": 4,
+            "id_recovery_successes": 2,
+            "text_recovery_successes": 1
+          },
+          "c4_0725": {
+            "instances": 4,
+            "id_recovery_successes": 1,
+            "text_recovery_successes": 0
+          },
+          "c4_0731": {
+            "instances": 4,
+            "id_recovery_successes": 0,
+            "text_recovery_successes": 0
+          },
+          "c4_0798": {
+            "instances": 4,
+            "id_recovery_successes": 3,
+            "text_recovery_successes": 3
+          },
+          "c4_0857": {
+            "instances": 4,
+            "id_recovery_successes": 1,
+            "text_recovery_successes": 0
+          }
+        }
+      },
+      "1.25": {
+        "planned_instances": 80,
+        "prompt_clusters": 20,
+        "generation_statuses": {
+          "complete": 80
+        },
+        "id_recovery_successes": 64,
+        "text_recovery_successes": 48,
+        "canonical_complete_outputs": 54,
+        "id_recovery_fraction": 0.8,
+        "text_recovery_fraction": 0.6,
+        "id_recovery_prompt_cluster_95": [
+          0.7125,
+          0.8875
+        ],
+        "text_recovery_prompt_cluster_95": [
+          0.5,
+          0.6878124999999955
+        ],
+        "id_recovery_wilson_95": [
+          0.6995375627182917,
+          0.8729715595603921
+        ],
+        "text_recovery_wilson_95": [
+          0.4904546500516039,
+          0.7003817240412906
+        ],
+        "mean_prescribed_tokens": 113.0125,
+        "median_prescribed_tokens": 110.0,
+        "total_prescribed_tokens": 9041,
+        "mean_bits_per_prescribed_token": 4.633269396176724,
+        "aggregate_bits_per_prescribed_token": 4.530472292887955,
+        "rate_scope": "Payload bits per prescribed budget, retaining decoding and generation failures",
+        "by_prompt": {
+          "c4_0052": {
+            "instances": 4,
+            "id_recovery_successes": 3,
+            "text_recovery_successes": 3
+          },
+          "c4_0081": {
+            "instances": 4,
+            "id_recovery_successes": 3,
+            "text_recovery_successes": 2
+          },
+          "c4_0092": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 2
+          },
+          "c4_0114": {
+            "instances": 4,
+            "id_recovery_successes": 3,
+            "text_recovery_successes": 3
+          },
+          "c4_0203": {
+            "instances": 4,
+            "id_recovery_successes": 3,
+            "text_recovery_successes": 3
+          },
+          "c4_0295": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 3
+          },
+          "c4_0305": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 2
+          },
+          "c4_0401": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 3
+          },
+          "c4_0455": {
+            "instances": 4,
+            "id_recovery_successes": 2,
+            "text_recovery_successes": 1
+          },
+          "c4_0471": {
+            "instances": 4,
+            "id_recovery_successes": 3,
+            "text_recovery_successes": 3
+          },
+          "c4_0553": {
+            "instances": 4,
+            "id_recovery_successes": 3,
+            "text_recovery_successes": 2
+          },
+          "c4_0603": {
+            "instances": 4,
+            "id_recovery_successes": 2,
+            "text_recovery_successes": 2
+          },
+          "c4_0612": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 2
+          },
+          "c4_0629": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 4
+          },
+          "c4_0672": {
+            "instances": 4,
+            "id_recovery_successes": 2,
+            "text_recovery_successes": 1
+          },
+          "c4_0723": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 3
+          },
+          "c4_0725": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 2
+          },
+          "c4_0731": {
+            "instances": 4,
+            "id_recovery_successes": 2,
+            "text_recovery_successes": 2
+          },
+          "c4_0798": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 4
+          },
+          "c4_0857": {
+            "instances": 4,
+            "id_recovery_successes": 2,
+            "text_recovery_successes": 1
+          }
+        }
+      },
+      "1.50": {
+        "planned_instances": 80,
+        "prompt_clusters": 20,
+        "generation_statuses": {
+          "complete": 80
+        },
+        "id_recovery_successes": 75,
+        "text_recovery_successes": 56,
+        "canonical_complete_outputs": 51,
+        "id_recovery_fraction": 0.9375,
+        "text_recovery_fraction": 0.7,
+        "id_recovery_prompt_cluster_95": [
+          0.875,
+          0.9875
+        ],
+        "text_recovery_prompt_cluster_95": [
+          0.6125,
+          0.7875
+        ],
+        "id_recovery_wilson_95": [
+          0.8618985123272557,
+          0.973010624329158
+        ],
+        "text_recovery_wilson_95": [
+          0.5923184607866026,
+          0.7893542873991866
+        ],
+        "mean_prescribed_tokens": 135.35,
+        "median_prescribed_tokens": 132.0,
+        "total_prescribed_tokens": 10828,
+        "mean_bits_per_prescribed_token": 3.8688721737075484,
+        "aggregate_bits_per_prescribed_token": 3.7827853712596973,
+        "rate_scope": "Payload bits per prescribed budget, retaining decoding and generation failures",
+        "by_prompt": {
+          "c4_0052": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 4
+          },
+          "c4_0081": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 3
+          },
+          "c4_0092": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 2
+          },
+          "c4_0114": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 3
+          },
+          "c4_0203": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 4
+          },
+          "c4_0295": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 3
+          },
+          "c4_0305": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 2
+          },
+          "c4_0401": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 3
+          },
+          "c4_0455": {
+            "instances": 4,
+            "id_recovery_successes": 3,
+            "text_recovery_successes": 1
+          },
+          "c4_0471": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 3
+          },
+          "c4_0553": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 3
+          },
+          "c4_0603": {
+            "instances": 4,
+            "id_recovery_successes": 2,
+            "text_recovery_successes": 2
+          },
+          "c4_0612": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 2
+          },
+          "c4_0629": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 4
+          },
+          "c4_0672": {
+            "instances": 4,
+            "id_recovery_successes": 3,
+            "text_recovery_successes": 2
+          },
+          "c4_0723": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 3
+          },
+          "c4_0725": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 2
+          },
+          "c4_0731": {
+            "instances": 4,
+            "id_recovery_successes": 3,
+            "text_recovery_successes": 3
+          },
+          "c4_0798": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 4
+          },
+          "c4_0857": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 3
+          }
+        }
+      },
+      "2.00": {
+        "planned_instances": 80,
+        "prompt_clusters": 20,
+        "generation_statuses": {
+          "complete": 80
+        },
+        "id_recovery_successes": 79,
+        "text_recovery_successes": 59,
+        "canonical_complete_outputs": 42,
+        "id_recovery_fraction": 0.9875,
+        "text_recovery_fraction": 0.7375,
+        "id_recovery_prompt_cluster_95": [
+          0.9625,
+          1.0
+        ],
+        "text_recovery_prompt_cluster_95": [
+          0.65,
+          0.8125
+        ],
+        "id_recovery_wilson_95": [
+          0.9325372992233133,
+          0.9977900244795476
+        ],
+        "text_recovery_wilson_95": [
+          0.6318104033557184,
+          0.8214259851149064
+        ],
+        "mean_prescribed_tokens": 180.125,
+        "median_prescribed_tokens": 176.0,
+        "total_prescribed_tokens": 14410,
+        "mean_bits_per_prescribed_token": 2.907315046397406,
+        "aggregate_bits_per_prescribed_token": 2.842470506592644,
+        "rate_scope": "Payload bits per prescribed budget, retaining decoding and generation failures",
+        "by_prompt": {
+          "c4_0052": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 4
+          },
+          "c4_0081": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 3
+          },
+          "c4_0092": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 2
+          },
+          "c4_0114": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 3
+          },
+          "c4_0203": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 4
+          },
+          "c4_0295": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 3
+          },
+          "c4_0305": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 2
+          },
+          "c4_0401": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 3
+          },
+          "c4_0455": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 2
+          },
+          "c4_0471": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 3
+          },
+          "c4_0553": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 3
+          },
+          "c4_0603": {
+            "instances": 4,
+            "id_recovery_successes": 3,
+            "text_recovery_successes": 2
+          },
+          "c4_0612": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 2
+          },
+          "c4_0629": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 4
+          },
+          "c4_0672": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 3
+          },
+          "c4_0723": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 3
+          },
+          "c4_0725": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 2
+          },
+          "c4_0731": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 4
+          },
+          "c4_0798": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 4
+          },
+          "c4_0857": {
+            "instances": 4,
+            "id_recovery_successes": 4,
+            "text_recovery_successes": 3
+          }
+        }
+      }
+    }
+  }
+}

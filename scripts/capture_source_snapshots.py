@@ -90,11 +90,18 @@ def main():
             data_inputs["Ghostext-paper/" + name] = expected
         if "study_plan_sha256" in manifest:
             expected = manifest["study_plan_sha256"]
-            name = f"Ghostext-paper/results/sp2027-accept-protocol/{expected}.md"
-            assert hashlib.sha256((ROOT.parent / name).read_bytes()).hexdigest() == expected
-            data_inputs[name] = expected
-            input_aliases["Ghostext-paper/notes/sp2027-accept-study-plan.md"] = {
-                "source": name, "sha256": expected}
+            if "study_plan_path" in manifest:
+                plan_path = ROOT / manifest["study_plan_path"]
+                assert plan_path.resolve().is_relative_to(ROOT.resolve())
+                assert hashlib.sha256(plan_path.read_bytes()).hexdigest() == expected
+                data_inputs["Ghostext-paper/" + manifest["study_plan_path"]] = expected
+            else:
+                # The first two pilot versions precede an explicit plan path.
+                name = f"Ghostext-paper/results/sp2027-accept-protocol/{expected}.md"
+                assert hashlib.sha256((ROOT.parent / name).read_bytes()).hexdigest() == expected
+                data_inputs[name] = expected
+                input_aliases["Ghostext-paper/notes/sp2027-accept-study-plan.md"] = {
+                    "source": name, "sha256": expected}
         if "selected_case_ids" in manifest and "input_sha256" in manifest:
             matches = [
                 p for p in (ROOT / "results").glob("sp2027-*/pairs.jsonl")

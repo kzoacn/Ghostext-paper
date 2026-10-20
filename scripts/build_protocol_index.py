@@ -16,7 +16,8 @@ def main():
         manifest = json.loads(path.read_text())
         assert hashlib.sha256(path.read_bytes()).hexdigest() == profile["manifest_sha256"]
         backend = manifest.get("backend", "qwen")
-        model = "<QWEN_GGUF>" if backend == "qwen" else "<GPT2_DIRECTORY>"
+        model = {"qwen": "<QWEN_GGUF>", "qwen25": "<QWEN25_DIRECTORY>",
+                 "gpt2": "<GPT2_DIRECTORY>"}[backend]
         schema = manifest.get("schema")
         entry, arguments = None, []
         details = {}
@@ -70,6 +71,9 @@ def main():
         elif schema == "upstream-rrc-v1":
             entry = "run_upstream_rrc.py"
             arguments = ["--model-path", model, "--out-dir", "<NEW_OUTPUT_DIRECTORY>"]
+            if "study_plan_path" in manifest:
+                arguments += ["--backend", backend, "--study-plan",
+                              "Ghostext-paper/" + manifest["study_plan_path"]]
             if manifest["pilot"]:
                 arguments.append("--pilot")
             details = {
@@ -78,6 +82,24 @@ def main():
                 "scope": "Excluded harness pilot" if manifest["pilot"]
                          else "Frozen current-upstream confirmatory cohort",
                 "external_fetch": "Immutable RRC inputs are fetched and hash checked by the entry point.",
+            }
+        elif schema in {"upstream-observable-replay-v1", "upstream-budget-curve-v1"}:
+            entry = ("replay_upstream_observable.py" if schema == "upstream-observable-replay-v1"
+                     else "run_upstream_budget_curve.py")
+            original_manifests = [
+                name for name in manifest["inputs"]
+                if name.endswith("/manifest.json")
+                and json.loads((ROOT / name).read_text()).get("schema") == "upstream-rrc-v1"
+            ]
+            if len(original_manifests) != 1:
+                raise ValueError(f"Cannot identify unique upstream cohort input for {name}")
+            cohort = "Ghostext-paper/" + str(Path(original_manifests[0]).parent)
+            arguments = ["--cohort", cohort, "--model-path", model,
+                         "--out-dir", "<NEW_OUTPUT_DIRECTORY>"]
+            details = {
+                **manifest["parameters"], "scope": manifest["scope"],
+                "upstream": manifest["upstream"],
+                "execution_affinity": "Measured in each persisted worker event",
             }
         elif schema == "public-endpoint-replay-v1":
             entry = "run_public_endpoint_replay.py"

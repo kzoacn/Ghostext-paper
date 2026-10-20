@@ -1,0 +1,283 @@
+{
+  "status": "complete",
+  "error": null,
+  "token_ids": [
+    7328,
+    11,
+    290,
+    15465,
+    2539,
+    481,
+    1277,
+    13,
+    3819,
+    7328,
+    14943,
+    22473,
+    925,
+    2291,
+    4493,
+    588,
+    705,
+    464,
+    14728,
+    684,
+    6,
+    290,
+    705
+  ],
+  "tokens": 23,
+  "cover_text": "John Cohen will be the producer of Rovios self financed films, and Sharkey will direct. Other films Harvey Weinstein made include projects like 'The Jetsons' and '",
+  "text_sha256": "df2dc1195e9df0602caa59489e86c1cda166a736a6bdd64b8e6bc741f9954698",
+  "context_token_ids": [
+    7554,
+    17154,
+    481,
+    307,
+    262,
+    9920,
+    286,
+    371,
+    709,
+    4267,
+    2116,
+    29768
+  ],
+  "visible_token_ids": [
+    7554,
+    17154,
+    481,
+    307,
+    262,
+    9920,
+    286,
+    371,
+    709,
+    4267,
+    2116,
+    29768,
+    7328,
+    11,
+    290,
+    15465,
+    2539,
+    481,
+    1277,
+    13,
+    3819,
+    7328,
+    14943,
+    22473,
+    925,
+    2291,
+    4493,
+    588,
+    705,
+    464,
+    14728,
+    684,
+    6,
+    290,
+    705
+  ],
+  "visible_continuation_token_ids": [
+    7328,
+    11,
+    290,
+    15465,
+    2539,
+    481,
+    1277,
+    13,
+    3819,
+    7328,
+    14943,
+    22473,
+    925,
+    2291,
+    4493,
+    588,
+    705,
+    464,
+    14728,
+    684,
+    6,
+    290,
+    705
+  ],
+  "prompt_prefix_matches": true,
+  "canonical_text_roundtrip": true,
+  "chosen_probabilities": [
+    0.0241690890898678,
+    0.13835502631087854,
+    0.059572818898247754,
+    3.14367615499e-05,
+    0.0466459005908316,
+    0.29560423750646925,
+    0.0364614602529695,
+    0.23081420382903556,
+    0.0020877642172472,
+    0.0235834990095134,
+    1.51651197523e-05,
+    0.28511765397882577,
+    0.0228826682027718,
+    0.7421112513500295,
+    0.00021542115251,
+    0.3324490582170936,
+    0.02243415571465614,
+    0.16874940110045444,
+    0.0002632277267672,
+    0.928415946342199,
+    0.39003026583498596,
+    0.5893513225173533,
+    0.6357217310068954
+  ],
+  "interval_observations": [
+    {
+      "token_id": 7328,
+      "cdf_low": "0.2564065322724547",
+      "cdf_high": "0.2805756213623225",
+      "probability_decimal": "0.0241690890898678"
+    },
+    {
+      "token_id": 11,
+      "cdf_low": "0.185962677950521",
+      "cdf_high": "0.32431770426139955",
+      "probability_decimal": "0.13835502631087855"
+    },
+    {
+      "token_id": 290,
+      "cdf_low": "0.0",
+      "cdf_high": "0.059572818898247754",
+      "probability_decimal": "0.059572818898247754"
+    },
+    {
+      "token_id": 15465,
+      "cdf_low": "0.9071875165614477",
+      "cdf_high": "0.9072189533229976",
+      "probability_decimal": "0.0000314367615499"
+    },
+    {
+      "token_id": 2539,
+      "cdf_low": "0.3419327031900925",
+      "cdf_high": "0.3885786037809241",
+      "probability_decimal": "0.0466459005908316"
+    },
+    {
+      "token_id": 481,
+      "cdf_low": "0.0",
+      "cdf_high": "0.29560423750646925",
+      "probability_decimal": "0.29560423750646925"
+    },
+    {
+      "token_id": 1277,
+      "cdf_low": "0.5853380475563329",
+      "cdf_high": "0.6217995078093024",
+      "probability_decimal": "0.0364614602529695"
+    },
+    {
+      "token_id": 13,
+      "cdf_low": "0.0",
+      "cdf_high": "0.23081420382903556",
+      "probability_decimal": "0.23081420382903556"
+    },
+    {
+      "token_id": 3819,
+      "cdf_low": "0.6434235803264419",
+      "cdf_high": "0.6455113445436891",
+      "probability_decimal": "0.0020877642172472"
+    },
+    {
+      "token_id": 7328,
+      "cdf_low": "0.27030935949234447",
+      "cdf_high": "0.29389285850185787",
+      "probability_decimal": "0.02358349900951340"
+    },
+    {
+      "token_id": 14943,
+      "cdf_low": "0.9760166795941502",
+      "cdf_high": "0.9760318447139025",
+      "probability_decimal": "0.0000151651197523"
+    },
+    {
+      "token_id": 22473,
+      "cdf_low": "0.0",
+      "cdf_high": "0.28511765397882577",
+      "probability_decimal": "0.28511765397882577"
+    },
+    {
+      "token_id": 925,
+      "cdf_low": "0.7235629160459812",
+      "cdf_high": "0.746445584248753",
+      "probability_decimal": "0.0228826682027718"
+    },
+    {
+      "token_id": 2291,
+      "cdf_low": "0.0",
+      "cdf_high": "0.7421112513500295",
+      "probability_decimal": "0.7421112513500295"
+    },
+    {
+      "token_id": 4493,
+      "cdf_low": "0.6913098821140289",
+      "cdf_high": "0.6915253032665389",
+      "probability_decimal": "0.0002154211525100"
+    },
+    {
+      "token_id": 588,
+      "cdf_low": "0.0",
+      "cdf_high": "0.3324490582170936",
+      "probability_decimal": "0.3324490582170936"
+    },
+    {
+      "token_id": 705,
+      "cdf_low": "0.2113650929122708",
+      "cdf_high": "0.23379924862692694",
+      "probability_decimal": "0.02243415571465614"
+    },
+    {
+      "token_id": 464,
+      "cdf_low": "0.0",
+      "cdf_high": "0.16874940110045444",
+      "probability_decimal": "0.16874940110045444"
+    },
+    {
+      "token_id": 14728,
+      "cdf_low": "0.749217461214515",
+      "cdf_high": "0.7494806889412822",
+      "probability_decimal": "0.0002632277267672"
+    },
+    {
+      "token_id": 684,
+      "cdf_low": "0.0",
+      "cdf_high": "0.928415946342199",
+      "probability_decimal": "0.928415946342199"
+    },
+    {
+      "token_id": 6,
+      "cdf_low": "0.0",
+      "cdf_high": "0.39003026583498596",
+      "probability_decimal": "0.39003026583498596"
+    },
+    {
+      "token_id": 290,
+      "cdf_low": "0.0",
+      "cdf_high": "0.5893513225173533",
+      "probability_decimal": "0.5893513225173533"
+    },
+    {
+      "token_id": 705,
+      "cdf_low": "0.0",
+      "cdf_high": "0.6357217310068954",
+      "probability_decimal": "0.6357217310068954"
+    }
+  ],
+  "surprisal_bits": 114.92051954336415,
+  "elapsed_seconds": 0.8782423981465399,
+  "context_trim_calls": 0,
+  "rejected_stop_count": 0,
+  "decimal_precision": 900,
+  "requested_tokens": 23,
+  "maximum_stream_tokens": 36,
+  "elapsed_scope": "Cumulative stream time through this endpoint or failure"
+}

@@ -1,0 +1,285 @@
+{
+  "scope": "Source/input materialization from a separate anonymous extraction; actual command-index entry points additionally regenerate matching upstream/follow-up manifests without model inference.",
+  "profiles": [
+    {
+      "profile": "sp2027-budget-gpt2",
+      "source_objects": 9,
+      "input_files": 162,
+      "aliases": 0,
+      "all_hashes_match": true,
+      "prepare_only": {
+        "matching_fields": [
+          "schema",
+          "backend",
+          "upstream",
+          "source_sha256",
+          "model_sha256",
+          "inputs",
+          "parameters",
+          "tasks"
+        ],
+        "planned_tasks": 160,
+        "model_generation_performed": false
+      }
+    },
+    {
+      "profile": "sp2027-endpoint-gpt2",
+      "source_objects": 19,
+      "input_files": 4,
+      "aliases": 0,
+      "all_hashes_match": true
+    },
+    {
+      "profile": "sp2027-endpoint-gpt2-corrected",
+      "source_objects": 19,
+      "input_files": 5,
+      "aliases": 0,
+      "all_hashes_match": true
+    },
+    {
+      "profile": "sp2027-endpoint-qwen",
+      "source_objects": 19,
+      "input_files": 5,
+      "aliases": 0,
+      "all_hashes_match": true
+    },
+    {
+      "profile": "sp2027-expanded-gpt2-pilot",
+      "source_objects": 23,
+      "input_files": 0,
+      "aliases": 0,
+      "all_hashes_match": true
+    },
+    {
+      "profile": "sp2027-expanded-qwen-pilot",
+      "source_objects": 23,
+      "input_files": 0,
+      "aliases": 0,
+      "all_hashes_match": true
+    },
+    {
+      "profile": "sp2027-keyless-legacy",
+      "source_objects": 21,
+      "input_files": 3,
+      "aliases": 0,
+      "all_hashes_match": true
+    },
+    {
+      "profile": "sp2027-observable-gpt2",
+      "source_objects": 9,
+      "input_files": 162,
+      "aliases": 0,
+      "all_hashes_match": true,
+      "prepare_only": {
+        "matching_fields": [
+          "schema",
+          "backend",
+          "upstream",
+          "source_sha256",
+          "model_sha256",
+          "inputs",
+          "parameters",
+          "tasks",
+          "bindings"
+        ],
+        "planned_tasks": 482,
+        "model_generation_performed": false
+      }
+    },
+    {
+      "profile": "sp2027-repair-gpt2",
+      "source_objects": 24,
+      "input_files": 0,
+      "aliases": 0,
+      "all_hashes_match": true
+    },
+    {
+      "profile": "sp2027-repair-qwen",
+      "source_objects": 24,
+      "input_files": 0,
+      "aliases": 0,
+      "all_hashes_match": true
+    },
+    {
+      "profile": "sp2027-repair-qwen-pilot",
+      "source_objects": 24,
+      "input_files": 0,
+      "aliases": 0,
+      "all_hashes_match": true
+    },
+    {
+      "profile": "sp2027-reverse-failure-gpt2",
+      "source_objects": 23,
+      "input_files": 2,
+      "aliases": 0,
+      "all_hashes_match": true
+    },
+    {
+      "profile": "sp2027-stopping-gpt2",
+      "source_objects": 22,
+      "input_files": 0,
+      "aliases": 0,
+      "all_hashes_match": true
+    },
+    {
+      "profile": "sp2027-stopping-gpt2-expanded",
+      "source_objects": 22,
+      "input_files": 0,
+      "aliases": 0,
+      "all_hashes_match": true
+    },
+    {
+      "profile": "sp2027-stopping-gpt2-pilot",
+      "source_objects": 22,
+      "input_files": 0,
+      "aliases": 0,
+      "all_hashes_match": true
+    },
+    {
+      "profile": "sp2027-stopping-gpt2-verified",
+      "source_objects": 22,
+      "input_files": 0,
+      "aliases": 0,
+      "all_hashes_match": true
+    },
+    {
+      "profile": "sp2027-stopping-qwen",
+      "source_objects": 22,
+      "input_files": 0,
+      "aliases": 0,
+      "all_hashes_match": true
+    },
+    {
+      "profile": "sp2027-stopping-qwen-expanded",
+      "source_objects": 22,
+      "input_files": 0,
+      "aliases": 0,
+      "all_hashes_match": true
+    },
+    {
+      "profile": "sp2027-upstream-gpt2",
+      "source_objects": 7,
+      "input_files": 1,
+      "aliases": 1,
+      "all_hashes_match": true,
+      "prepare_only": {
+        "matching_fields": [
+          "schema",
+          "pilot",
+          "backend",
+          "upstream",
+          "source_sha256",
+          "model_sha256",
+          "study_plan_sha256",
+          "parameters",
+          "prompts",
+          "tasks"
+        ],
+        "planned_tasks": 160,
+        "model_generation_performed": false
+      }
+    },
+    {
+      "profile": "sp2027-upstream-gpt2-pilot",
+      "source_objects": 7,
+      "input_files": 1,
+      "aliases": 1,
+      "all_hashes_match": true,
+      "prepare_only": {
+        "matching_fields": [
+          "schema",
+          "pilot",
+          "backend",
+          "upstream",
+          "source_sha256",
+          "model_sha256",
+          "study_plan_sha256",
+          "parameters",
+          "prompts",
+          "tasks"
+        ],
+        "planned_tasks": 4,
+        "model_generation_performed": false
+      }
+    },
+    {
+      "profile": "sp2027-upstream-gpt2-pilot-v2",
+      "source_objects": 7,
+      "input_files": 1,
+      "aliases": 1,
+      "all_hashes_match": true,
+      "prepare_only": {
+        "matching_fields": [
+          "schema",
+          "pilot",
+          "backend",
+          "upstream",
+          "source_sha256",
+          "model_sha256",
+          "study_plan_sha256",
+          "parameters",
+          "prompts",
+          "tasks"
+        ],
+        "planned_tasks": 4,
+        "model_generation_performed": false
+      }
+    },
+    {
+      "profile": "sp2027-upstream-public-features",
+      "source_objects": 7,
+      "input_files": 162,
+      "aliases": 0,
+      "all_hashes_match": true
+    },
+    {
+      "profile": "sp2027-upstream-qwen25",
+      "source_objects": 7,
+      "input_files": 2,
+      "aliases": 0,
+      "all_hashes_match": true,
+      "prepare_only": {
+        "matching_fields": [
+          "schema",
+          "pilot",
+          "backend",
+          "upstream",
+          "source_sha256",
+          "model_sha256",
+          "study_plan_sha256",
+          "parameters",
+          "prompts",
+          "tasks",
+          "study_plan_path"
+        ],
+        "planned_tasks": 160,
+        "model_generation_performed": false
+      }
+    },
+    {
+      "profile": "sp2027-upstream-qwen25-pilot",
+      "source_objects": 7,
+      "input_files": 2,
+      "aliases": 0,
+      "all_hashes_match": true,
+      "prepare_only": {
+        "matching_fields": [
+          "schema",
+          "pilot",
+          "backend",
+          "upstream",
+          "source_sha256",
+          "model_sha256",
+          "study_plan_sha256",
+          "parameters",
+          "prompts",
+          "tasks",
+          "study_plan_path"
+        ],
+        "planned_tasks": 4,
+        "model_generation_performed": false
+      }
+    }
+  ],
+  "all_passed": true
+}
