@@ -2,10 +2,14 @@
 
 This ledger supersedes the distribution-preservation positioning in the older
 CCS notes. The baseline independent review was **strong reject**. A fresh
-independent review on 2026-10-20 recommends **weak accept** for the narrow
-stopping-law analysis and implementation audit. Its explicit artifact checks
-are being closed before the final addendum; the recommendation does not imply
-conference acceptance.
+independent review on 2026-10-20 recommended **weak accept** for the narrow
+stopping-law analysis and implementation audit. The
+[final independent addendum](reviews/2026-10-21-final-independent-addendum.md),
+dated 2026-10-21 in Asia/Shanghai, maintains that recommendation with moderate
+confidence and finds no remaining blocking defect for those claims.
+The artifact checks are complete and recorded in the
+[release validation](sp2027-release-validation.json); the recommendation does
+not imply conference acceptance.
 
 | Claim | Evidence | Scope and limitation |
 |---|---|---|
@@ -40,5 +44,11 @@ versions. Core regression validation now records 59 passed and one optional
 model test skipped, with five subtests passed.
 
 All planned cohorts and public replays are complete, including explicit
-interruption accounting. Remaining release gates are final page inspection,
-anonymous-artifact verification, and the independent review addendum.
+interruption accounting. The final manuscript has 13 pages, with main content
+ending on page 11; all pages passed individual visual inspection. The anonymous
+artifact passed its verifier. From a separate extraction, all six primary
+analyses and six exact or saved-data audits reproduced their measurements.
+The generated tables and figures were byte-identical, and all 13 source
+profiles materialized with matching hashes. The final independent addendum
+records separate successful checks of the same frozen PDF and archive,
+including the full core test suite and all 13 rendered pages.
