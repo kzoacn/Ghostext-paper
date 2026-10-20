@@ -11,7 +11,7 @@ failure on impossible token paths. Exhaustive tests additionally verify the
 uniform-64 support counterexample and recovery for every byte under
 context-dependent candidate tables.
 
-\paragraph{Observation without changing the wire format.}
+\paragraph{Observation without changing the wire format}
 An optional attempt callback records success or failure, elapsed time, packet
 hash and length, and the generated prefix for every encoding attempt. Normal
 library use emits none of this telemetry. Research scripts preserve failed
@@ -20,7 +20,7 @@ accepts text, public configuration, and bootstrap length; its interface does not
 accept a passphrase. It records distinct rejection reasons and can be replayed
 on natural controls.
 
-\paragraph{Model environments.}
+\paragraph{Model environments}
 The archived measurements use Qwen3.5-2B, a third-party Q4\_K\_S GGUF, and
 \texttt{llama-cpp-python} 0.3.20 with packaged llama.cpp build
 \texttt{f49e917}. The fresh experiments also use a local GPT-2 adapter through
@@ -28,8 +28,14 @@ Transformers, with raw continuation prompts rather than Qwen's chat template.
 Weight files, tokenizer files, source modules, and execution parameters are
 hashed in each fresh run manifest. These are CPU experiments; cross-hardware
 bitwise replay is not claimed.
+The host has an AMD Ryzen 7 7800X3D CPU and 31\,GiB of available RAM.
+Stopping experiments use four inference threads for Qwen and two for GPT-2;
+delivery comparisons use two.
+Concurrent jobs have separate recorded CPU affinities. Instrumented delivery
+replay repeats candidate auditing, so its latency is not a production benchmark
+and is not directly compared with historical four-thread timings.
 
-\paragraph{Independent checks.}
+\paragraph{Independent checks}
 The exact codec experiment enumerates both complete coded paths and invalid
 reference branches using rational arithmetic. Its reference law is recomputed
 from token frequencies rather than inferred from the encoder's reported KL.
@@ -39,18 +45,25 @@ model stub. The RRC one-bit example independently enumerates its stopped law
 and every string in the length-matched control. These checks address different
 assumptions from ordinary round-trip tests.
 
-\paragraph{Stopping experiments.}
+\paragraph{Stopping experiments}
 Our real-model RRC adapter implements the published rotation and midpoint rule
 with rational arithmetic and 192-bit pseudorandom rotation draws. It operates
 over the same explicitly masked, truncated, stable, quantized source $Q$ used
 by its natural control. This is a controlled algorithm study, not a reproduction
 of the publication's original model setup. Later verification-before-stop code
-is not silently substituted for the published rule. Each record retains the
-visible text, token IDs, selected probabilities, stopping status, canonical
-retokenization check, and reverse-recovery result. Public seeds are for
+is not silently substituted for the published rule. Real-model runs have a
+$2B$-token cap, following the pinned April implementation's harness; the ideal
+law and asymptotic theorem are uncapped. Budget exhaustion is a separate outcome
+and is never silently replaced. Each record retains the visible text, token IDs,
+selected probabilities, stopping status, canonical
+retokenization check, and sender-side reverse-recovery result. This latter
+check reuses the recorded intervals and offsets; it is not an independent
+receiver run. Public seeds are for
 repeatability; the evaluation does not claim cryptographic secrecy of test data.
+Appendix~\ref{app:rotation-grid} bounds the finite-grid approximation under
+independent uniform draws and states which logged quantities that bound excludes.
 
-\paragraph{Failure and resume discipline.}
+\paragraph{Failure and resume discipline}
 Experiments save each completed record before starting the next case. Resuming
 requires matching source and model hashes and the complete configuration.
 Source or parameter changes require a new result directory. An interrupted run,

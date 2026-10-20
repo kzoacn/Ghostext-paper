@@ -1,0 +1,117 @@
+{
+  "scope": "Exact finite-tape checks of our rational adapter; not continuous rotations or upstream numerical code.",
+  "uniform_negative_control": {
+    "bits": 2,
+    "p_A": 0.5,
+    "offset_grid_denominator": 4,
+    "tapes": 1024,
+    "prefix_checks": 1024,
+    "already_recoverable_unchanged_checks": 1024,
+    "laws": [
+      {
+        "complete:A": "1/4",
+        "complete:AA": "1/8",
+        "complete:AB": "1/8",
+        "complete:B": "1/4",
+        "complete:BA": "1/8",
+        "complete:BB": "1/8"
+      },
+      {
+        "complete:A": "1/4",
+        "complete:AA": "1/8",
+        "complete:AB": "1/8",
+        "complete:B": "1/4",
+        "complete:BA": "1/8",
+        "complete:BB": "1/8"
+      }
+    ],
+    "outcomes": [
+      {
+        "complete/recovery=True": 1024
+      },
+      {
+        "complete/recovery=True": 1024
+      }
+    ]
+  },
+  "finer_uniform_budget_control": {
+    "bits": 1,
+    "p_A": 0.5,
+    "offset_grid_denominator": 8,
+    "tapes": 128,
+    "prefix_checks": 128,
+    "already_recoverable_unchanged_checks": 112,
+    "laws": [
+      {
+        "complete:A": "1/2",
+        "complete:B": "1/2"
+      },
+      {
+        "complete:A": "7/16",
+        "complete:AA": "1/64",
+        "complete:AB": "1/64",
+        "complete:B": "7/16",
+        "complete:BA": "1/64",
+        "complete:BB": "1/64",
+        "token_budget:AA": "1/64",
+        "token_budget:AB": "1/64",
+        "token_budget:BA": "1/64",
+        "token_budget:BB": "1/64"
+      }
+    ],
+    "outcomes": [
+      {
+        "complete/recovery=True": 112,
+        "complete/recovery=False": 16
+      },
+      {
+        "complete/recovery=True": 120,
+        "token_budget/recovery=None": 8
+      }
+    ]
+  },
+  "reverse_failure_fixture": {
+    "published_rule": {
+      "cover_text": "A",
+      "tokens": 1,
+      "status": "complete",
+      "recovery_match": false,
+      "mode": "rrc_paper",
+      "first_candidate_stop_tokens": 1,
+      "rejected_stop_count": 0
+    },
+    "verified_rule": {
+      "cover_text": "AA",
+      "tokens": 2,
+      "status": "complete",
+      "recovery_match": true,
+      "mode": "rrc_verified_adapter",
+      "first_candidate_stop_tokens": 1,
+      "rejected_stop_count": 1
+    }
+  },
+  "half_unit_ties": {
+    "positive_half_accepted": {
+      "cover_text": "A",
+      "tokens": 1,
+      "status": "complete",
+      "recovery_match": true,
+      "mode": "rrc_paper",
+      "first_candidate_stop_tokens": 1,
+      "rejected_stop_count": 0
+    },
+    "negative_half_rejected": {
+      "cover_text": "AA",
+      "tokens": 2,
+      "status": "complete",
+      "recovery_match": true,
+      "mode": "rrc_paper",
+      "first_candidate_stop_tokens": 2,
+      "rejected_stop_count": 0
+    }
+  },
+  "source_sha256": {
+    "audit_stopping_adapter.py": "8126cef256cbb64a68b918d6ddbfca57772c199dddf88a0a261ceba987119175",
+    "stopping_experiment.py": "cba8f568ff755225e1c228523f0374236269091c623d628a317271ca97114184"
+  }
+}

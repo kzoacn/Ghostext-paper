@@ -82,14 +82,16 @@ the configuration digest; incompatible endpoints must not silently mix variants.
 For a uniform $B$-bit segment and independent uniform $g$-bit guard, consider at
 most $T$ steps and at most $N$ candidates per step. Compare the guarded codec
 with a $Q$ sampler using the same integer state transitions, prefix stopping
-rule, horizon, and absorbing invalid states. Their transcript TV is at most
+rule, horizon, and absorbing invalid states. At no-payload steps both processes
+make the same deterministic emission.
+Their transcript TV is at most
 \begin{equation}
  \min\{1,TN/2^{g+1}\}.
  \label{eq:guard-bound}
 \end{equation}
 \end{theorem}
 
-\paragraph{Proof.}
+\paragraph{Proof}
 At any depth, the active intervals are disjoint subsets of the initial integer
 domain. Every unresolved interval crosses a strict interior boundary between
 two $B$-bit payload blocks, hence there are at most $2^B-1$ active intervals.
@@ -97,7 +99,8 @@ An interval of width $W$ has probability $W/2^{B+g}$ under the uniform target.
 Multiplying this by the local bound $N/(2W)$ from
 Eq.~\eqref{eq:local-rounding} and summing over active intervals bounds the
 expected one-step TV by $N/2^{g+1}$. Sequential TV composition over $T$ steps
-proves the result. Both laws include invalid and horizon-exhaustion outcomes;
+proves the result; identical deterministic no-payload steps contribute zero.
+Both laws include invalid and horizon-exhaustion outcomes;
 none are conditioned away.
 
 For two independent fixed-length uniform segments, their horizon contributions

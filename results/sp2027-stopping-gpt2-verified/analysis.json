@@ -1,0 +1,322 @@
+{
+  "backend": "gpt2",
+  "planned_pairs": 40,
+  "observed_pairs": 40,
+  "manifest_sha256": "b534f11cf8343e8e141815422fd33d38d46732a74cc6474fb527523b74007153",
+  "runs_sha256": "d86bde2b9e5ef25659880e74d0e0392654334a244160ab1d083c905c3d77c76b",
+  "scope": "Rational adapter of RRC paper Algorithm 3 to Ghostext's masked, truncated, stable, quantized source Q. Optional reverse verification is separately labelled. No claim of reproducing the paper's full model setup or current source.",
+  "stego_statuses": {
+    "complete": 30,
+    "UnsafeTokenizationError": 10
+  },
+  "natural_statuses": {
+    "complete": 31,
+    "UnsafeTokenizationError": 9
+  },
+  "completed_but_reverse_recovery_failed": 0,
+  "complete_canonical_matched_pairs": 22,
+  "recovered_matched_pairs": 22,
+  "selection_caveat": "Primary AUC is conditional on complete canonical length-matched pairs. This is not the unconditional law of attempts or ordinary EOS generation. All excluded attempts remain in raw data and status counts.",
+  "by_message_bits": {
+    "128": {
+      "planned_pairs": 20,
+      "complete_pairs": 13,
+      "algorithm_completion_analysis": {
+        "estimable": true,
+        "development_pairs": 7,
+        "test_pairs": 6,
+        "development_families": [
+          "corner_cafe",
+          "evening_walk",
+          "garden",
+          "library"
+        ],
+        "test_families": [
+          "mountain",
+          "science",
+          "train",
+          "workshop"
+        ],
+        "auc": 0.75,
+        "auc_topic_cluster_95": [
+          0.5714285714285714,
+          1.0
+        ],
+        "length_only_auc": 0.5,
+        "score": "-abs(public Q-source surprisal - known message bits)",
+        "threshold": -1.7167047838338192,
+        "positive_rule": "score strictly greater than threshold",
+        "calibration": "95th percentile (higher) of development natural scores; no test tuning",
+        "development_natural_fpr": 0.0,
+        "test_tpr": 0.5,
+        "test_fpr": 0.3333333333333333,
+        "test_tpr_wilson_95": [
+          0.1876163064826506,
+          0.8123836935173494
+        ],
+        "test_fpr_wilson_95": [
+          0.09677141110578041,
+          0.700006684861608
+        ],
+        "test_tpr_topic_cluster_95": [
+          0.2,
+          0.8
+        ],
+        "test_fpr_topic_cluster_95": [
+          0.0,
+          0.5
+        ],
+        "interval_scope": "Topic bootstrap over 4 eligible held-out families, conditional on the fitted threshold and eligibility rule.",
+        "by_test_family": {
+          "mountain": {
+            "pairs": 2,
+            "auc": 0.75,
+            "tpr": 0.5,
+            "fpr": 0.5
+          },
+          "science": {
+            "pairs": 1,
+            "auc": 1.0,
+            "tpr": 0.0,
+            "fpr": 0.0
+          },
+          "train": {
+            "pairs": 1,
+            "auc": 1.0,
+            "tpr": 1.0,
+            "fpr": 0.0
+          },
+          "workshop": {
+            "pairs": 2,
+            "auc": 0.5,
+            "tpr": 0.5,
+            "fpr": 0.5
+          }
+        }
+      },
+      "recovered_only_sensitivity": {
+        "estimable": true,
+        "development_pairs": 7,
+        "test_pairs": 6,
+        "development_families": [
+          "corner_cafe",
+          "evening_walk",
+          "garden",
+          "library"
+        ],
+        "test_families": [
+          "mountain",
+          "science",
+          "train",
+          "workshop"
+        ],
+        "auc": 0.75,
+        "auc_topic_cluster_95": [
+          0.5714285714285714,
+          1.0
+        ],
+        "length_only_auc": 0.5,
+        "score": "-abs(public Q-source surprisal - known message bits)",
+        "threshold": -1.7167047838338192,
+        "positive_rule": "score strictly greater than threshold",
+        "calibration": "95th percentile (higher) of development natural scores; no test tuning",
+        "development_natural_fpr": 0.0,
+        "test_tpr": 0.5,
+        "test_fpr": 0.3333333333333333,
+        "test_tpr_wilson_95": [
+          0.1876163064826506,
+          0.8123836935173494
+        ],
+        "test_fpr_wilson_95": [
+          0.09677141110578041,
+          0.700006684861608
+        ],
+        "test_tpr_topic_cluster_95": [
+          0.2,
+          0.8
+        ],
+        "test_fpr_topic_cluster_95": [
+          0.0,
+          0.5
+        ],
+        "interval_scope": "Topic bootstrap over 4 eligible held-out families, conditional on the fitted threshold and eligibility rule.",
+        "by_test_family": {
+          "mountain": {
+            "pairs": 2,
+            "auc": 0.75,
+            "tpr": 0.5,
+            "fpr": 0.5
+          },
+          "science": {
+            "pairs": 1,
+            "auc": 1.0,
+            "tpr": 0.0,
+            "fpr": 0.0
+          },
+          "train": {
+            "pairs": 1,
+            "auc": 1.0,
+            "tpr": 1.0,
+            "fpr": 0.0
+          },
+          "workshop": {
+            "pairs": 2,
+            "auc": 0.5,
+            "tpr": 0.5,
+            "fpr": 0.5
+          }
+        }
+      },
+      "all_attempts_gap_auc": 0.7475
+    },
+    "512": {
+      "planned_pairs": 20,
+      "complete_pairs": 9,
+      "algorithm_completion_analysis": {
+        "estimable": true,
+        "development_pairs": 4,
+        "test_pairs": 5,
+        "development_families": [
+          "corner_cafe",
+          "garden",
+          "library"
+        ],
+        "test_families": [
+          "mountain",
+          "science",
+          "train",
+          "workshop"
+        ],
+        "auc": 0.96,
+        "auc_topic_cluster_95": [
+          0.8888888888888888,
+          1.0
+        ],
+        "length_only_auc": 0.5,
+        "score": "-abs(public Q-source surprisal - known message bits)",
+        "threshold": -1.77336532889899,
+        "positive_rule": "score strictly greater than threshold",
+        "calibration": "95th percentile (higher) of development natural scores; no test tuning",
+        "development_natural_fpr": 0.0,
+        "test_tpr": 0.6,
+        "test_fpr": 0.0,
+        "test_tpr_wilson_95": [
+          0.2307242812760128,
+          0.882379225767352
+        ],
+        "test_fpr_wilson_95": [
+          0,
+          0.43448246478317476
+        ],
+        "test_tpr_topic_cluster_95": [
+          0.25,
+          1.0
+        ],
+        "test_fpr_topic_cluster_95": [
+          0.0,
+          0.0
+        ],
+        "interval_scope": "Topic bootstrap over 4 eligible held-out families, conditional on the fitted threshold and eligibility rule.",
+        "by_test_family": {
+          "mountain": {
+            "pairs": 2,
+            "auc": 1.0,
+            "tpr": 0.5,
+            "fpr": 0.0
+          },
+          "science": {
+            "pairs": 1,
+            "auc": 1.0,
+            "tpr": 0.0,
+            "fpr": 0.0
+          },
+          "train": {
+            "pairs": 1,
+            "auc": 1.0,
+            "tpr": 1.0,
+            "fpr": 0.0
+          },
+          "workshop": {
+            "pairs": 1,
+            "auc": 1.0,
+            "tpr": 1.0,
+            "fpr": 0.0
+          }
+        }
+      },
+      "recovered_only_sensitivity": {
+        "estimable": true,
+        "development_pairs": 4,
+        "test_pairs": 5,
+        "development_families": [
+          "corner_cafe",
+          "garden",
+          "library"
+        ],
+        "test_families": [
+          "mountain",
+          "science",
+          "train",
+          "workshop"
+        ],
+        "auc": 0.96,
+        "auc_topic_cluster_95": [
+          0.8888888888888888,
+          1.0
+        ],
+        "length_only_auc": 0.5,
+        "score": "-abs(public Q-source surprisal - known message bits)",
+        "threshold": -1.77336532889899,
+        "positive_rule": "score strictly greater than threshold",
+        "calibration": "95th percentile (higher) of development natural scores; no test tuning",
+        "development_natural_fpr": 0.0,
+        "test_tpr": 0.6,
+        "test_fpr": 0.0,
+        "test_tpr_wilson_95": [
+          0.2307242812760128,
+          0.882379225767352
+        ],
+        "test_fpr_wilson_95": [
+          0,
+          0.43448246478317476
+        ],
+        "test_tpr_topic_cluster_95": [
+          0.25,
+          1.0
+        ],
+        "test_fpr_topic_cluster_95": [
+          0.0,
+          0.0
+        ],
+        "interval_scope": "Topic bootstrap over 4 eligible held-out families, conditional on the fitted threshold and eligibility rule.",
+        "by_test_family": {
+          "mountain": {
+            "pairs": 2,
+            "auc": 1.0,
+            "tpr": 0.5,
+            "fpr": 0.0
+          },
+          "science": {
+            "pairs": 1,
+            "auc": 1.0,
+            "tpr": 0.0,
+            "fpr": 0.0
+          },
+          "train": {
+            "pairs": 1,
+            "auc": 1.0,
+            "tpr": 1.0,
+            "fpr": 0.0
+          },
+          "workshop": {
+            "pairs": 1,
+            "auc": 1.0,
+            "tpr": 1.0,
+            "fpr": 0.0
+          }
+        }
+      },
+      "all_attempts_gap_auc": 0.77
+    }
+  }
+}

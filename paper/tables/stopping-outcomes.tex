@@ -1,0 +1,14 @@
+\begin{table*}[t]
+\centering
+\caption{All attempted stopping-study pairs. Failure counts are stego/control; failed prefixes remain in the artifact. Reverse mismatches count completed stego outputs and are sender-side checks, not independent receiver trials.}
+\label{tab:stopping-outcomes}
+\begin{tabular}{llrrrrr}
+\toprule
+Source & Model & Planned pairs & Stego complete & Control complete & Failures (S/C) & Reverse mismatches \\
+\midrule
+Strict & GPT-2 & 160 & 121 & 123 & 39/37 & 3 \\
+Strict & Qwen & 320 & 301 & 315 & 19/5 & 16 \\
+Expanded & GPT-2 & 160 & 160 & 160 & 0/0 & 4 \\
+\bottomrule
+\end{tabular}
+\end{table*}

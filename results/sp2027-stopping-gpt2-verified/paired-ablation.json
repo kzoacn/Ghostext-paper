@@ -1,0 +1,378 @@
+{
+  "scope": "Mechanical adapter ablation on the same experimental random tapes; not upstream-code security.",
+  "cases": 40,
+  "paired_prefix_and_probability_checks": 40,
+  "rejected_stops": 0,
+  "records_with_rejected_stops": 0,
+  "verified_statuses": {
+    "complete": 30,
+    "UnsafeTokenizationError": 10
+  },
+  "interpretation": "If no stops are rejected, this cohort does not exercise the verification branch and does not demonstrate a recovery repair.",
+  "records": [
+    {
+      "case_id": "02_en_library:b128:r1",
+      "original_status": "complete",
+      "original_reverse_match": true,
+      "verified_status": "complete",
+      "verified_reverse_match": true,
+      "additional_tokens": 0,
+      "rejected_stop_count": 0
+    },
+    {
+      "case_id": "04_en_market:b128:r0",
+      "original_status": "UnsafeTokenizationError",
+      "original_reverse_match": null,
+      "verified_status": "UnsafeTokenizationError",
+      "verified_reverse_match": null,
+      "additional_tokens": 0,
+      "rejected_stop_count": 0
+    },
+    {
+      "case_id": "07_en_museum:b128:r0",
+      "original_status": "complete",
+      "original_reverse_match": true,
+      "verified_status": "complete",
+      "verified_reverse_match": true,
+      "additional_tokens": 0,
+      "rejected_stop_count": 0
+    },
+    {
+      "case_id": "00_en_evening_walk:b128:r0",
+      "original_status": "complete",
+      "original_reverse_match": true,
+      "verified_status": "complete",
+      "verified_reverse_match": true,
+      "additional_tokens": 0,
+      "rejected_stop_count": 0
+    },
+    {
+      "case_id": "08_en_mountain:b128:r1",
+      "original_status": "complete",
+      "original_reverse_match": true,
+      "verified_status": "complete",
+      "verified_reverse_match": true,
+      "additional_tokens": 0,
+      "rejected_stop_count": 0
+    },
+    {
+      "case_id": "07_en_museum:b512:r0",
+      "original_status": "UnsafeTokenizationError",
+      "original_reverse_match": null,
+      "verified_status": "UnsafeTokenizationError",
+      "verified_reverse_match": null,
+      "additional_tokens": 0,
+      "rejected_stop_count": 0
+    },
+    {
+      "case_id": "06_en_science:b128:r1",
+      "original_status": "complete",
+      "original_reverse_match": true,
+      "verified_status": "complete",
+      "verified_reverse_match": true,
+      "additional_tokens": 0,
+      "rejected_stop_count": 0
+    },
+    {
+      "case_id": "07_en_museum:b512:r1",
+      "original_status": "UnsafeTokenizationError",
+      "original_reverse_match": null,
+      "verified_status": "UnsafeTokenizationError",
+      "verified_reverse_match": null,
+      "additional_tokens": 0,
+      "rejected_stop_count": 0
+    },
+    {
+      "case_id": "06_en_science:b128:r0",
+      "original_status": "complete",
+      "original_reverse_match": true,
+      "verified_status": "complete",
+      "verified_reverse_match": true,
+      "additional_tokens": 0,
+      "rejected_stop_count": 0
+    },
+    {
+      "case_id": "09_en_workshop:b512:r0",
+      "original_status": "UnsafeTokenizationError",
+      "original_reverse_match": null,
+      "verified_status": "UnsafeTokenizationError",
+      "verified_reverse_match": null,
+      "additional_tokens": 0,
+      "rejected_stop_count": 0
+    },
+    {
+      "case_id": "01_en_corner_cafe:b128:r1",
+      "original_status": "complete",
+      "original_reverse_match": true,
+      "verified_status": "complete",
+      "verified_reverse_match": true,
+      "additional_tokens": 0,
+      "rejected_stop_count": 0
+    },
+    {
+      "case_id": "09_en_workshop:b128:r0",
+      "original_status": "complete",
+      "original_reverse_match": true,
+      "verified_status": "complete",
+      "verified_reverse_match": true,
+      "additional_tokens": 0,
+      "rejected_stop_count": 0
+    },
+    {
+      "case_id": "02_en_library:b512:r1",
+      "original_status": "complete",
+      "original_reverse_match": true,
+      "verified_status": "complete",
+      "verified_reverse_match": true,
+      "additional_tokens": 0,
+      "rejected_stop_count": 0
+    },
+    {
+      "case_id": "05_en_train:b512:r0",
+      "original_status": "complete",
+      "original_reverse_match": true,
+      "verified_status": "complete",
+      "verified_reverse_match": true,
+      "additional_tokens": 0,
+      "rejected_stop_count": 0
+    },
+    {
+      "case_id": "00_en_evening_walk:b512:r1",
+      "original_status": "complete",
+      "original_reverse_match": true,
+      "verified_status": "complete",
+      "verified_reverse_match": true,
+      "additional_tokens": 0,
+      "rejected_stop_count": 0
+    },
+    {
+      "case_id": "06_en_science:b512:r1",
+      "original_status": "UnsafeTokenizationError",
+      "original_reverse_match": null,
+      "verified_status": "UnsafeTokenizationError",
+      "verified_reverse_match": null,
+      "additional_tokens": 0,
+      "rejected_stop_count": 0
+    },
+    {
+      "case_id": "01_en_corner_cafe:b512:r1",
+      "original_status": "complete",
+      "original_reverse_match": true,
+      "verified_status": "complete",
+      "verified_reverse_match": true,
+      "additional_tokens": 0,
+      "rejected_stop_count": 0
+    },
+    {
+      "case_id": "00_en_evening_walk:b512:r0",
+      "original_status": "complete",
+      "original_reverse_match": true,
+      "verified_status": "complete",
+      "verified_reverse_match": true,
+      "additional_tokens": 0,
+      "rejected_stop_count": 0
+    },
+    {
+      "case_id": "02_en_library:b128:r0",
+      "original_status": "complete",
+      "original_reverse_match": true,
+      "verified_status": "complete",
+      "verified_reverse_match": true,
+      "additional_tokens": 0,
+      "rejected_stop_count": 0
+    },
+    {
+      "case_id": "04_en_market:b128:r1",
+      "original_status": "UnsafeTokenizationError",
+      "original_reverse_match": null,
+      "verified_status": "UnsafeTokenizationError",
+      "verified_reverse_match": null,
+      "additional_tokens": 0,
+      "rejected_stop_count": 0
+    },
+    {
+      "case_id": "09_en_workshop:b512:r1",
+      "original_status": "complete",
+      "original_reverse_match": true,
+      "verified_status": "complete",
+      "verified_reverse_match": true,
+      "additional_tokens": 0,
+      "rejected_stop_count": 0
+    },
+    {
+      "case_id": "09_en_workshop:b128:r1",
+      "original_status": "complete",
+      "original_reverse_match": true,
+      "verified_status": "complete",
+      "verified_reverse_match": true,
+      "additional_tokens": 0,
+      "rejected_stop_count": 0
+    },
+    {
+      "case_id": "03_en_garden:b128:r1",
+      "original_status": "complete",
+      "original_reverse_match": true,
+      "verified_status": "complete",
+      "verified_reverse_match": true,
+      "additional_tokens": 0,
+      "rejected_stop_count": 0
+    },
+    {
+      "case_id": "08_en_mountain:b512:r0",
+      "original_status": "complete",
+      "original_reverse_match": true,
+      "verified_status": "complete",
+      "verified_reverse_match": true,
+      "additional_tokens": 0,
+      "rejected_stop_count": 0
+    },
+    {
+      "case_id": "03_en_garden:b512:r1",
+      "original_status": "complete",
+      "original_reverse_match": true,
+      "verified_status": "complete",
+      "verified_reverse_match": true,
+      "additional_tokens": 0,
+      "rejected_stop_count": 0
+    },
+    {
+      "case_id": "08_en_mountain:b512:r1",
+      "original_status": "complete",
+      "original_reverse_match": true,
+      "verified_status": "complete",
+      "verified_reverse_match": true,
+      "additional_tokens": 0,
+      "rejected_stop_count": 0
+    },
+    {
+      "case_id": "03_en_garden:b512:r0",
+      "original_status": "complete",
+      "original_reverse_match": true,
+      "verified_status": "complete",
+      "verified_reverse_match": true,
+      "additional_tokens": 0,
+      "rejected_stop_count": 0
+    },
+    {
+      "case_id": "07_en_museum:b128:r1",
+      "original_status": "complete",
+      "original_reverse_match": true,
+      "verified_status": "complete",
+      "verified_reverse_match": true,
+      "additional_tokens": 0,
+      "rejected_stop_count": 0
+    },
+    {
+      "case_id": "03_en_garden:b128:r0",
+      "original_status": "complete",
+      "original_reverse_match": true,
+      "verified_status": "complete",
+      "verified_reverse_match": true,
+      "additional_tokens": 0,
+      "rejected_stop_count": 0
+    },
+    {
+      "case_id": "08_en_mountain:b128:r0",
+      "original_status": "complete",
+      "original_reverse_match": true,
+      "verified_status": "complete",
+      "verified_reverse_match": true,
+      "additional_tokens": 0,
+      "rejected_stop_count": 0
+    },
+    {
+      "case_id": "05_en_train:b128:r0",
+      "original_status": "UnsafeTokenizationError",
+      "original_reverse_match": null,
+      "verified_status": "UnsafeTokenizationError",
+      "verified_reverse_match": null,
+      "additional_tokens": 0,
+      "rejected_stop_count": 0
+    },
+    {
+      "case_id": "01_en_corner_cafe:b128:r0",
+      "original_status": "complete",
+      "original_reverse_match": true,
+      "verified_status": "complete",
+      "verified_reverse_match": true,
+      "additional_tokens": 0,
+      "rejected_stop_count": 0
+    },
+    {
+      "case_id": "04_en_market:b512:r0",
+      "original_status": "complete",
+      "original_reverse_match": true,
+      "verified_status": "complete",
+      "verified_reverse_match": true,
+      "additional_tokens": 0,
+      "rejected_stop_count": 0
+    },
+    {
+      "case_id": "02_en_library:b512:r0",
+      "original_status": "complete",
+      "original_reverse_match": true,
+      "verified_status": "complete",
+      "verified_reverse_match": true,
+      "additional_tokens": 0,
+      "rejected_stop_count": 0
+    },
+    {
+      "case_id": "05_en_train:b512:r1",
+      "original_status": "complete",
+      "original_reverse_match": true,
+      "verified_status": "complete",
+      "verified_reverse_match": true,
+      "additional_tokens": 0,
+      "rejected_stop_count": 0
+    },
+    {
+      "case_id": "01_en_corner_cafe:b512:r0",
+      "original_status": "UnsafeTokenizationError",
+      "original_reverse_match": null,
+      "verified_status": "UnsafeTokenizationError",
+      "verified_reverse_match": null,
+      "additional_tokens": 0,
+      "rejected_stop_count": 0
+    },
+    {
+      "case_id": "05_en_train:b128:r1",
+      "original_status": "complete",
+      "original_reverse_match": true,
+      "verified_status": "complete",
+      "verified_reverse_match": true,
+      "additional_tokens": 0,
+      "rejected_stop_count": 0
+    },
+    {
+      "case_id": "06_en_science:b512:r0",
+      "original_status": "complete",
+      "original_reverse_match": true,
+      "verified_status": "complete",
+      "verified_reverse_match": true,
+      "additional_tokens": 0,
+      "rejected_stop_count": 0
+    },
+    {
+      "case_id": "00_en_evening_walk:b128:r1",
+      "original_status": "UnsafeTokenizationError",
+      "original_reverse_match": null,
+      "verified_status": "UnsafeTokenizationError",
+      "verified_reverse_match": null,
+      "additional_tokens": 0,
+      "rejected_stop_count": 0
+    },
+    {
+      "case_id": "04_en_market:b512:r1",
+      "original_status": "UnsafeTokenizationError",
+      "original_reverse_match": null,
+      "verified_status": "UnsafeTokenizationError",
+      "verified_reverse_match": null,
+      "additional_tokens": 0,
+      "rejected_stop_count": 0
+    }
+  ],
+  "inputs": {
+    "results/sp2027-stopping-gpt2/pairs.jsonl": "d7f672ecf9b6e528536a75bbdb1a20f25af0be0d1ff2073bedb274852fc7bb85",
+    "results/sp2027-stopping-gpt2-verified/pairs.jsonl": "d86bde2b9e5ef25659880e74d0e0392654334a244160ab1d083c905c3d77c76b"
+  }
+}

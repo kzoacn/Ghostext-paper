@@ -1,0 +1,179 @@
+{
+  "reference": "Filtered floating-point probabilities with raw-argmax fallback after empty stable sets.",
+  "not_the_reference": "Not the strict integer-frequency Q used in fresh studies; not ordinary EOS sampling.",
+  "fallback_events": 3,
+  "texts_with_fallbacks": 3,
+  "fallback_positions": "Not recorded; cannot infer whether before or after the bootstrap.",
+  "pairing": "Original raw-row order, checked against prompt/case identifiers and visible lengths.",
+  "reused_case_run_keys": 6,
+  "records": [
+    {
+      "raw_row_index": 0,
+      "case_id": "en_short_01",
+      "run_index": 0,
+      "visible_tokens": 314,
+      "length_matches": true,
+      "recorded_unfiltered_fallbacks": 0,
+      "legacy_probe_status": "zero_width_interval"
+    },
+    {
+      "raw_row_index": 1,
+      "case_id": "en_short_02",
+      "run_index": 0,
+      "visible_tokens": 374,
+      "length_matches": true,
+      "recorded_unfiltered_fallbacks": 0,
+      "legacy_probe_status": "zero_width_interval"
+    },
+    {
+      "raw_row_index": 2,
+      "case_id": "en_mid_01",
+      "run_index": 0,
+      "visible_tokens": 682,
+      "length_matches": true,
+      "recorded_unfiltered_fallbacks": 0,
+      "legacy_probe_status": "admissible"
+    },
+    {
+      "raw_row_index": 3,
+      "case_id": "zh_short_01",
+      "run_index": 0,
+      "visible_tokens": 463,
+      "length_matches": true,
+      "recorded_unfiltered_fallbacks": 1,
+      "legacy_probe_status": "admissible"
+    },
+    {
+      "raw_row_index": 4,
+      "case_id": "zh_short_02",
+      "run_index": 0,
+      "visible_tokens": 475,
+      "length_matches": true,
+      "recorded_unfiltered_fallbacks": 0,
+      "legacy_probe_status": "zero_width_interval"
+    },
+    {
+      "raw_row_index": 5,
+      "case_id": "zh_mid_01",
+      "run_index": 0,
+      "visible_tokens": 821,
+      "length_matches": true,
+      "recorded_unfiltered_fallbacks": 0,
+      "legacy_probe_status": "zero_width_interval"
+    },
+    {
+      "raw_row_index": 6,
+      "case_id": "en_short_01",
+      "run_index": 0,
+      "visible_tokens": 382,
+      "length_matches": true,
+      "recorded_unfiltered_fallbacks": 0,
+      "legacy_probe_status": "zero_width_interval"
+    },
+    {
+      "raw_row_index": 7,
+      "case_id": "en_short_02",
+      "run_index": 0,
+      "visible_tokens": 422,
+      "length_matches": true,
+      "recorded_unfiltered_fallbacks": 0,
+      "legacy_probe_status": "zero_width_interval"
+    },
+    {
+      "raw_row_index": 8,
+      "case_id": "en_mid_01",
+      "run_index": 0,
+      "visible_tokens": 642,
+      "length_matches": true,
+      "recorded_unfiltered_fallbacks": 0,
+      "legacy_probe_status": "zero_width_interval"
+    },
+    {
+      "raw_row_index": 9,
+      "case_id": "zh_short_01",
+      "run_index": 0,
+      "visible_tokens": 431,
+      "length_matches": true,
+      "recorded_unfiltered_fallbacks": 0,
+      "legacy_probe_status": "admissible"
+    },
+    {
+      "raw_row_index": 10,
+      "case_id": "zh_short_02",
+      "run_index": 0,
+      "visible_tokens": 436,
+      "length_matches": true,
+      "recorded_unfiltered_fallbacks": 0,
+      "legacy_probe_status": "zero_width_interval"
+    },
+    {
+      "raw_row_index": 11,
+      "case_id": "zh_mid_01",
+      "run_index": 0,
+      "visible_tokens": 656,
+      "length_matches": true,
+      "recorded_unfiltered_fallbacks": 1,
+      "legacy_probe_status": "zero_width_interval"
+    },
+    {
+      "raw_row_index": 12,
+      "case_id": "en_short_01",
+      "run_index": 1,
+      "visible_tokens": 463,
+      "length_matches": true,
+      "recorded_unfiltered_fallbacks": 0,
+      "legacy_probe_status": "admissible"
+    },
+    {
+      "raw_row_index": 13,
+      "case_id": "en_short_02",
+      "run_index": 1,
+      "visible_tokens": 394,
+      "length_matches": true,
+      "recorded_unfiltered_fallbacks": 0,
+      "legacy_probe_status": "zero_width_interval"
+    },
+    {
+      "raw_row_index": 14,
+      "case_id": "en_mid_01",
+      "run_index": 1,
+      "visible_tokens": 706,
+      "length_matches": true,
+      "recorded_unfiltered_fallbacks": 0,
+      "legacy_probe_status": "admissible"
+    },
+    {
+      "raw_row_index": 15,
+      "case_id": "zh_short_01",
+      "run_index": 1,
+      "visible_tokens": 408,
+      "length_matches": true,
+      "recorded_unfiltered_fallbacks": 0,
+      "legacy_probe_status": "admissible"
+    },
+    {
+      "raw_row_index": 16,
+      "case_id": "zh_short_02",
+      "run_index": 1,
+      "visible_tokens": 474,
+      "length_matches": true,
+      "recorded_unfiltered_fallbacks": 0,
+      "legacy_probe_status": "zero_width_interval"
+    },
+    {
+      "raw_row_index": 17,
+      "case_id": "zh_mid_01",
+      "run_index": 1,
+      "visible_tokens": 651,
+      "length_matches": true,
+      "recorded_unfiltered_fallbacks": 1,
+      "legacy_probe_status": "admissible"
+    }
+  ],
+  "input_sha256": {
+    "results/detector-block/matched_natural_covers.jsonl": "48c2c4fd5dcde5437c47a62515c1bf56658cb1101b590ed38d202f567cc21e66",
+    "results/real-backend-baseline-runs-merged.jsonl": "8ef05c7cb90be46668dbaa67e8e8e15ce51f8a515d6868f050bad57657781ddf",
+    "results/sp2027-keyless-legacy/runs.jsonl": "db8747ed5db81a631a21b5b72c22377eca5f2e78afa67f06202952052e637507",
+    "scripts/run_detector_block.py": "72fc0b660f27448ce8693c4a0a35da961bb67a41c596b37b00c90e67c2e8d405"
+  }
+}

@@ -57,10 +57,15 @@ def original_nls_counterexample():
 
     class ToyTokenizer:
         def decode(self, ids):
-            return "x" * len(ids)
+            # An injective synthetic text channel, including the context token.
+            return "".join(chr(0x400 + int(token)) for token in ids)
+
+        def encode(self, text):
+            return [ord(symbol) - 0x400 for symbol in text]
 
     endings = Counter()
     lengths = Counter()
+    texts = Counter()
     reported_kl = []
     for value in range(256):
         bits = [int(c) for c in f"{value:08b}"]
@@ -70,12 +75,18 @@ def original_nls_counterexample():
         )
         endings[tokens[-1]] += 1
         lengths[len(tokens)] += 1
+        text = ToyTokenizer().decode(tokens)
+        assert ToyTokenizer().encode(text) == list(tokens)
+        texts[text] += 1
         reported_kl.append(float(kl))
     tv = sum(abs(Fraction(endings[token], 256) - Fraction(1, 64)) for token in range(64)) / 2
     assert lengths == {2: 256}
     assert sorted(endings.values()) == [64] * 4
     assert tv == Fraction(15, 16)
     assert set(reported_kl) == {0.}
+    text_tv = sum(abs(Fraction(texts[ToyTokenizer().decode(pair)], 256) - Fraction(1, 4096))
+                  for pair in itertools.product(range(64), repeat=2)) / 2
+    assert len(texts) == 256 and text_tv == Fraction(15, 16)
     return {
         "scope": "Unmodified original NLS coding function on synthetic logits; not a GPT-2 attack.",
         "sources": sources, "message_bits": 8, "messages_enumerated": 256,
@@ -83,6 +94,10 @@ def original_nls_counterexample():
         "output_length_histogram": dict(lengths),
         "terminal_token_histogram": dict(endings),
         "terminal_tv_exact": str(tv), "reported_average_kl_max": max(reported_kl),
+        "rendering": "Injective Unicode symbols: token t maps to chr(0x400+t).",
+        "distinct_stego_texts": len(texts), "natural_two_symbol_texts": 4096,
+        "complete_text_tv_exact": str(text_tv),
+        "rendered_text_histogram": dict(sorted(texts.items())),
     }
 
 
@@ -134,7 +149,8 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--out-dir", type=Path, default=ROOT / "results/sp2027-external-audit")
     args = ap.parse_args()
-    summary = {"nls": original_nls_counterexample(), "rrc_paper": rrc_exact_counterexample()}
+    summary = {"nls": original_nls_counterexample(), "rrc_paper": rrc_exact_counterexample(),
+               "harness_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}
     args.out_dir.mkdir(parents=True, exist_ok=True)
     (args.out_dir / "summary.json").write_text(json.dumps(summary, indent=2) + "\n")
     print(json.dumps(summary, indent=2))

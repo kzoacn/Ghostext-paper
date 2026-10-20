@@ -84,6 +84,28 @@ is established by its proof rather than these simulations. The uniform binary
 source is a negative control: its stopping time is independent of token
 identities, giving exact equality with the independently length-matched law.
 
+An independent dynamic program propagates surviving and stopped probability
+mass over length and rare-symbol count. It agrees with the simulation's band
+probabilities and retains total mass to within $2\cdot10^{-12}$. At $B=2048$,
+the count-and-length TV is $0.915$ for $p=0.75$, whereas it is zero, up to
+numerical precision, for the uniform source at every tested length. This
+observable projection gives a lower bound on full ordered-transcript TV.
+Figure~\ref{fig:finite-effects} separates the decreasing coding error from the
+increasing stopped-text signal.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/finite-message-effects.pdf}
+\caption{Two different comparisons. Left: exact rational coding-law TV for an
+eight-bit uniform payload, with a stopping-matched reference; the dashed curve
+uses the worst candidate count of the two plotted sources. The uniform-64
+source, omitted from this log plot, has exactly zero error for $g\ge4$.
+Right: deterministic IID calculations for the published RRC stopping rule with
+$p=0.75$ and band $[B-8,B+2]$. The control has the exact same length marginal.
+Count-and-length TV is a projection of complete-transcript TV.}
+\label{fig:finite-effects}
+\end{figure*}
+
 \subsection{Reanalysis of the Archived Delivery Grid}
 
 The archive contains a fixed $10\times10$ grid: five English and five Chinese
@@ -129,9 +151,13 @@ an independent-Bernoulli interpretation.
 We replay all 118 archived stego texts: the 100 grid records and an earlier
 18-run cohort. All satisfy the legacy public bootstrap interval. For a paired
 pilot, the earlier cohort also provides 18 independently sampled controls with
-the same prompts and matched total lengths. These controls already use the
-stability-filtered candidate policy, so the test is deliberately narrower than
-ordinary model-output detection.
+the same prompts and matched visible token lengths. Their historical sampler
+draws from the filtered floating-point probabilities, rather than integer
+frequencies $f/F$. It also emits an unfiltered raw argmax if the stable set is
+empty: three such fallbacks occur across three of the 18 texts. Their positions
+were not recorded. Thus this pilot does not isolate the codec against the
+strict quantized source $Q$ used in the fresh experiments, and it is not an
+ordinary-model-output comparison.
 
 The legacy check accepts 18/18 stego texts and 7/18 controls; all 11 rejected
 controls choose a zero-width subinterval. Thus the paired pilot has TPR 1 and
@@ -161,3 +187,110 @@ Additional guarded-versus-legacy delivery trials use the full authenticated
 pipeline and retain every encoding attempt. Their purpose is to distinguish
 coding repair from the separate stopping and retry effects, not to claim that
 the repaired prototype is detector-resistant.
+
+\subsection{Fresh Stopping Results and Selection}
+
+The strict-source study completes all 160 planned GPT-2 pairs and 320 planned
+Qwen pairs. Table~\ref{tab:stopping-outcomes} keeps attempted generation separate
+from completed output. GPT-2 has 39 stego and 37 control tokenization failures;
+Qwen has 19 and 5, respectively. Consequently, only 90 GPT-2 pairs and 296 Qwen
+pairs satisfy the complete, canonical, exactly matched inclusion rule.
+This selection is substantial for GPT-2. Reporting its denominator does not
+turn a conditional detector result into an unconditional transmitted-text law.
+
+\input{tables/stopping-outcomes}
+
+We fix the score to $-|S(y)-B|$ and fit a threshold at the 95th percentile of
+development-control scores, using the higher observed quantile and a strict
+greater-than decision. No test scores tune the rule. Table~\ref{tab:stopping-llm}
+reports held-out topic results and 5000-resample topic-cluster intervals.
+These intervals are conditional on eligibility and the fitted threshold, with
+only five held-out topic families; they do not certify deployment calibration.
+The empirical length-only AUC is exactly $0.5$ in every matched slice.
+
+\input{tables/stopping-results}
+
+For the strict source, GPT-2's held-out AUCs are $0.865$ and $0.934$ at 128 and
+512 bits, while Qwen's are $0.950$ and $0.973$. Observed TPR/FPR pairs vary
+substantially, so high AUC is not presented as a low-FPR operating guarantee.
+Among completed outputs, three GPT-2 and sixteen Qwen samples fail the
+sender-side reverse check. Requiring reverse success leaves strict-source
+held-out AUCs of $0.861/0.934$ for GPT-2 and $0.948/0.970$ for Qwen. This
+sensitivity analysis remains conditional; it does not erase recovery failures.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/stopping-llm-gap.pdf}
+\caption{Public surprisal gaps on complete matched held-out pairs from the
+strict candidate source. Both classes have identical empirical length
+histograms. Horizontal axes are linear below one bit and logarithmic above it;
+outlying control gaps remain included. The plotted inclusion rule and sample
+sizes are conditional on the outcomes in Table~\ref{tab:stopping-outcomes}.}
+\label{fig:llm-gaps}
+\end{figure*}
+
+A separate replay reads only visible text and public model inputs for the
+first eligible held-out case in each bit-length/language group. All twelve
+stego/control texts across the two models reproduce their saved token IDs and
+every selected quantized probability exactly. This validates public feature
+computation without reusing sender intervals or private rotation states.
+
+\subsection{A Separate Source-Expansion Follow-up}
+
+The empty-set failures motivate an explicitly different source, developed from
+two failed development cases. When the original truncated pool contains no
+stable token, an optional policy searches the top 4096 ranked candidates and
+keeps at most 64 stable entries. Otherwise it preserves the original selection.
+Both classes use this same rule. It changes the source and carries a distinct
+protocol identifier; it is not a distribution-preserving transformation of
+the strict source.
+
+We retain every strict-source record and run a separate full cohort using seed
+20261023, the same topic split, and the unchanged public score. All 160 GPT-2
+pairs complete, with canonical text and matched lengths; four completed stego
+outputs fail sender-side reverse recovery. The held-out AUCs are $0.862$ and
+$0.986$ at 128 and 512 bits. Thus the measured stopping signal persists in this
+follow-up without filtering out generation failures. This is a post-hoc
+robustness study of the stated source, not an estimate for arbitrary prompts
+or ordinary EOS generation.
+
+\subsection{Authenticated Delivery and Coding Repair}
+
+Fresh delivery trials cross the same prompts with two repetitions and guards
+$g=0$ or $128$. Each application message is 16 UTF-8 bytes, so its packet is
+104 bytes; no optional natural tail is generated. A maximum of ten attempts
+is allowed, and every failed prefix is retained.
+
+\input{tables/repair-results}
+
+The completed GPT-2 cohort has 19/20 deliveries under each guard setting, with
+12/20 first-attempt deliveries in each. Legacy and guarded trials consume 51
+and 46 total attempts, respectively. Every delivery failure is due to the
+strict tokenization filter, which the coding repair does not change.
+The mean net rates are $0.556$ and $0.553$ bits/token; packet overhead explains
+much of the difference from gross rates of $3.615$ and $3.596$.
+
+Only nine legacy and thirteen guarded GPT-2 trials have complete matched
+controls. The matching legacy bootstrap probe accepts all nine stego prefixes
+and four controls. The guarded probe accepts all thirteen stego prefixes and
+all thirteen controls. This removes the measured zero-width rejection signal
+in that limited set. It neither rules out other distinguishers nor proves
+that the entire encrypted packet satisfies the theorem's uniform-source
+assumption.
+
+\subsection{Checking the Later Stopping Modification}
+
+A separately labelled 40-case GPT-2 ablation enables reverse verification
+before accepting a stop, using the original experimental tapes. It rejects
+zero candidate stops, so it is only an unchanged-path check and supplies no
+evidence of a real-model recovery repair. The exact finite-tape control in the
+artifact does exercise the veto and also exhibits token-budget exhaustion.
+
+For a targeted diagnostic, we separately replay every completed reverse-failure
+case from the full GPT-2 cohort. All three original token/probability sequences
+reproduce exactly. Verification adds one, two, and two tokens, respectively.
+An independent decoder then rebuilds intervals from visible text and the
+experimental rotation tape: it fails to recover the original message before
+the modification and succeeds afterward in these three cases. This selected
+diagnostic establishes the behavior of our adapter on those examples, not a
+general recovery rate or a security result for the current upstream software.

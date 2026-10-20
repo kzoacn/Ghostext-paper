@@ -6,6 +6,7 @@
 \usepackage{algorithmic}
 \usepackage{array}
 \usepackage{booktabs}
+\usepackage{graphicx}
 \usepackage{tikz}
 \usepackage{tabularx}
 \usepackage[nocompress]{cite}
@@ -36,8 +37,12 @@ between these two stopped-text laws tends to one as message length grows.
 We then implement a guarded-prefix repair in Ghostext, retaining authenticated
 packet recovery while bounding integer-coding error against an explicitly
 specified stopping-matched reference. An audit of archived Qwen outputs
-confirms that a password-free bootstrap check accepts all 118 stego texts
-and rejects 11 of 18 matched control texts. These results separate codec
+and fresh authenticated-delivery trials test a password-free bootstrap probe.
+In controlled GPT-2 and bilingual Qwen stopping experiments, 386 of 480
+attempted pairs yield complete, canonical, length-matched outputs. A public
+surprisal score achieves held-out AUCs of 0.865--0.973 within these eligible
+slices, while length alone has AUC 0.5. All failed attempts remain recorded.
+These results separate codec
 correctness, conditional sampling accuracy, and complete-text security;
 the guarded codec alone does not establish indistinguishability from ordinary
 language-model generation.

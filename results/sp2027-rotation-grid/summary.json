@@ -1,0 +1,190 @@
+{
+  "scope": "Public token/stop/cap/failure transcript only; no private rotations, reverse-recovery flag, timing or conditioning.",
+  "grid_size": 8,
+  "cdf_denominator": 4,
+  "message_bits": 2,
+  "horizon": 3,
+  "phase_representatives": [
+    "0",
+    "1/16",
+    "1/8",
+    "3/16",
+    "1/4",
+    "5/16"
+  ],
+  "maximum_conditional_hazard_errors": [
+    "1/9",
+    "0"
+  ],
+  "full_tape_enumerations": [
+    {
+      "fixed_message": 0,
+      "source_failure_at_active_AA": false,
+      "transcript_tv_exact": "1/96",
+      "discrete": {
+        "stop:A": "1/4",
+        "stop:AA": "5/32",
+        "stop:AAA": "3/32",
+        "stop:AAB": "7/128",
+        "stop:AB": "1/8",
+        "stop:B": "1/4",
+        "token_budget:AAA": "9/128"
+      },
+      "continuous": {
+        "stop:A": "1/4",
+        "stop:AA": "1/6",
+        "stop:AAA": "5/54",
+        "stop:AAB": "5/96",
+        "stop:AB": "1/8",
+        "stop:B": "1/4",
+        "token_budget:AAA": "55/864"
+      }
+    },
+    {
+      "fixed_message": 1,
+      "source_failure_at_active_AA": false,
+      "transcript_tv_exact": "1/96",
+      "discrete": {
+        "stop:A": "1/4",
+        "stop:AA": "5/32",
+        "stop:AAA": "3/32",
+        "stop:AAB": "7/128",
+        "stop:AB": "1/8",
+        "stop:B": "1/4",
+        "token_budget:AAA": "9/128"
+      },
+      "continuous": {
+        "stop:A": "1/4",
+        "stop:AA": "1/6",
+        "stop:AAA": "5/54",
+        "stop:AAB": "5/96",
+        "stop:AB": "1/8",
+        "stop:B": "1/4",
+        "token_budget:AAA": "55/864"
+      }
+    },
+    {
+      "fixed_message": 2,
+      "source_failure_at_active_AA": false,
+      "transcript_tv_exact": "1/96",
+      "discrete": {
+        "stop:A": "1/4",
+        "stop:AA": "5/32",
+        "stop:AAA": "3/32",
+        "stop:AAB": "7/128",
+        "stop:AB": "1/8",
+        "stop:B": "1/4",
+        "token_budget:AAA": "9/128"
+      },
+      "continuous": {
+        "stop:A": "1/4",
+        "stop:AA": "1/6",
+        "stop:AAA": "5/54",
+        "stop:AAB": "5/96",
+        "stop:AB": "1/8",
+        "stop:B": "1/4",
+        "token_budget:AAA": "55/864"
+      }
+    },
+    {
+      "fixed_message": 3,
+      "source_failure_at_active_AA": false,
+      "transcript_tv_exact": "1/96",
+      "discrete": {
+        "stop:A": "1/4",
+        "stop:AA": "5/32",
+        "stop:AAA": "3/32",
+        "stop:AAB": "7/128",
+        "stop:AB": "1/8",
+        "stop:B": "1/4",
+        "token_budget:AAA": "9/128"
+      },
+      "continuous": {
+        "stop:A": "1/4",
+        "stop:AA": "1/6",
+        "stop:AAA": "5/54",
+        "stop:AAB": "5/96",
+        "stop:AB": "1/8",
+        "stop:B": "1/4",
+        "token_budget:AAA": "55/864"
+      }
+    },
+    {
+      "fixed_message": 0,
+      "source_failure_at_active_AA": true,
+      "transcript_tv_exact": "1/96",
+      "discrete": {
+        "source_failure:AA": "7/32",
+        "stop:A": "1/4",
+        "stop:AA": "5/32",
+        "stop:AB": "1/8",
+        "stop:B": "1/4"
+      },
+      "continuous": {
+        "source_failure:AA": "5/24",
+        "stop:A": "1/4",
+        "stop:AA": "1/6",
+        "stop:AB": "1/8",
+        "stop:B": "1/4"
+      }
+    },
+    {
+      "fixed_message": 1,
+      "source_failure_at_active_AA": true,
+      "transcript_tv_exact": "1/96",
+      "discrete": {
+        "source_failure:AA": "7/32",
+        "stop:A": "1/4",
+        "stop:AA": "5/32",
+        "stop:AB": "1/8",
+        "stop:B": "1/4"
+      },
+      "continuous": {
+        "source_failure:AA": "5/24",
+        "stop:A": "1/4",
+        "stop:AA": "1/6",
+        "stop:AB": "1/8",
+        "stop:B": "1/4"
+      }
+    },
+    {
+      "fixed_message": 2,
+      "source_failure_at_active_AA": true,
+      "transcript_tv_exact": "1/96",
+      "discrete": {
+        "source_failure:AA": "7/32",
+        "stop:A": "1/4",
+        "stop:AA": "5/32",
+        "stop:AB": "1/8",
+        "stop:B": "1/4"
+      },
+      "continuous": {
+        "source_failure:AA": "5/24",
+        "stop:A": "1/4",
+        "stop:AA": "1/6",
+        "stop:AB": "1/8",
+        "stop:B": "1/4"
+      }
+    },
+    {
+      "fixed_message": 3,
+      "source_failure_at_active_AA": true,
+      "transcript_tv_exact": "1/96",
+      "discrete": {
+        "source_failure:AA": "7/32",
+        "stop:A": "1/4",
+        "stop:AA": "5/32",
+        "stop:AB": "1/8",
+        "stop:B": "1/4"
+      },
+      "continuous": {
+        "source_failure:AA": "5/24",
+        "stop:A": "1/4",
+        "stop:AA": "1/6",
+        "stop:AB": "1/8",
+        "stop:B": "1/4"
+      }
+    }
+  ],
+  "source_sha256": "4c29cf2c9607bd26a2f5f13f5dbee736c29f2cb494a4323001eb26e63e41424a"
+}

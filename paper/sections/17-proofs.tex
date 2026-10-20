@@ -47,3 +47,36 @@ Choosing $k=\log_2 B$ yields Theorem~\ref{thm:stopping}. Constants depend on the
 fixed source and deteriorate near $p=1/2$; no nonlattice approximation is used.
 The proof establishes a limit, not monotonicity in $B$ or a universal guarantee
 for dependent language-model sources.
+
+\subsection{Finite Rotation Grids}
+\label{app:rotation-grid}
+
+The experiment uses a finite grid rather than continuous offsets. Suppose each
+rotation is independently uniform on $M=2^k$ grid points and $F\mid M$.
+For any parent interval of width $W$ and any prior point, rotation produces a
+translated circular lattice with spacing $W/M$. A token interval of length
+$Wq_i=Wf_i/F$ contains exactly $Mq_i$ lattice points, including boundary cases.
+Thus the active token law is exactly $Q$ without assuming a uniform message.
+
+Conditional on that token, the accepted half-unit window is a half-open
+interval of length $\min(Wq_i,1)$. Its lattice-point count differs from its
+length divided by lattice spacing by less than one. If $\widehat h_i$ is the
+finite-grid hazard and $h_i$ the ideal hazard, then
+\[
+ |\widehat h_i-h_i|\le\frac{1}{Mq_i},\qquad
+ \operatorname{TV}(\widehat K,K)
+ =\sum_iq_i|\widehat h_i-h_i|\le\frac{N}{M}.
+\]
+The bound is uniform in the prior point, so conditioning on earlier survival
+and then averaging does not invalidate it. Coupling these public token/stop
+kernels for at most $T$ steps gives TV at most $\min(1,TN_{\max}/M)$.
+Deterministic source failures at matched prefixes couple identically.
+
+For $k=192$, $N_{\max}=64$, and the largest experimental cap $T=1024$, this
+finite-grid bound is $2^{-176}$ under independent uniform draws. The artifact
+checks a nonzero discrepancy exactly: $M=8$, $F=4$, $B=2$, and $T=3$ give TV
+$1/96$ for each fixed message, both with and without a source failure at active
+prefix $AA$. This bridge does not cover private rotations, reverse-recovery
+flags, timing, verification-dependent stopping, or successful-run conditioning.
+It also does not turn the experimental \texttt{random.Random} generator into a
+cryptographic primitive.

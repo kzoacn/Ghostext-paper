@@ -1,0 +1,385 @@
+{
+  "sp2027-expanded-gpt2-pilot": {
+    "source_profile": "sp2027-expanded-gpt2-pilot",
+    "entry_point": "Ghostext-paper/scripts/run_expanded_policy_pilot.py",
+    "arguments": [
+      "--backend",
+      "gpt2",
+      "--model-path",
+      "<GPT2_DIRECTORY>",
+      "--out-dir",
+      "<NEW_OUTPUT_DIRECTORY>",
+      "--threads",
+      "2",
+      "--repeats",
+      "2"
+    ],
+    "policy": {
+      "scope": "post-hoc development-case delivery pilot",
+      "empty_candidate_search": 4096
+    },
+    "recorded_cpu_affinity": null,
+    "package_environment": "results/sp2027-environment/python-packages.json"
+  },
+  "sp2027-expanded-qwen-pilot": {
+    "source_profile": "sp2027-expanded-qwen-pilot",
+    "entry_point": "Ghostext-paper/scripts/run_expanded_policy_pilot.py",
+    "arguments": [
+      "--backend",
+      "qwen",
+      "--model-path",
+      "<QWEN_GGUF>",
+      "--out-dir",
+      "<NEW_OUTPUT_DIRECTORY>",
+      "--threads",
+      "2",
+      "--repeats",
+      "2"
+    ],
+    "policy": {
+      "scope": "post-hoc development-case delivery pilot",
+      "empty_candidate_search": 4096
+    },
+    "recorded_cpu_affinity": null,
+    "package_environment": "results/sp2027-environment/python-packages.json"
+  },
+  "sp2027-keyless-legacy": {
+    "source_profile": "sp2027-keyless-legacy",
+    "entry_point": "Ghostext-paper/scripts/run_keyless_attack.py",
+    "arguments": [
+      "--model-path",
+      "<QWEN_GGUF>",
+      "--threads",
+      "4",
+      "--out-dir",
+      "<NEW_OUTPUT_DIRECTORY>",
+      "--include-grid"
+    ],
+    "policy": {
+      "public_bootstrap_bytes": 60,
+      "probe_horizon": 2048,
+      "guards": [
+        0,
+        128
+      ],
+      "historical_control": "floating probabilities plus three raw-argmax fallbacks"
+    },
+    "recorded_cpu_affinity": null,
+    "package_environment": "results/sp2027-environment/python-packages.json"
+  },
+  "sp2027-repair-gpt2": {
+    "source_profile": "sp2027-repair-gpt2",
+    "entry_point": "Ghostext-paper/scripts/run_repair_matrix.py",
+    "arguments": [
+      "--backend",
+      "gpt2",
+      "--model-path",
+      "<GPT2_DIRECTORY>",
+      "--out-dir",
+      "<NEW_OUTPUT_DIRECTORY>",
+      "--threads",
+      "2",
+      "--repeats",
+      "2",
+      "--guards",
+      "0",
+      "128"
+    ],
+    "policy": {
+      "header_token_cap": 2048,
+      "body_token_cap": 4096,
+      "max_attempts": 10,
+      "tail_tokens": 0,
+      "randomness": "OS packet/guard randomness; statistically rerunnable, saved text exactly replayable on the compatible stack"
+    },
+    "recorded_cpu_affinity": [
+      4,
+      5
+    ],
+    "package_environment": "results/sp2027-environment/python-packages.json"
+  },
+  "sp2027-repair-qwen": {
+    "source_profile": "sp2027-repair-qwen",
+    "entry_point": "Ghostext-paper/scripts/run_repair_matrix.py",
+    "arguments": [
+      "--backend",
+      "qwen",
+      "--model-path",
+      "<QWEN_GGUF>",
+      "--out-dir",
+      "<NEW_OUTPUT_DIRECTORY>",
+      "--threads",
+      "2",
+      "--repeats",
+      "2",
+      "--guards",
+      "0",
+      "128"
+    ],
+    "policy": {
+      "header_token_cap": 2048,
+      "body_token_cap": 4096,
+      "max_attempts": 10,
+      "tail_tokens": 0,
+      "randomness": "OS packet/guard randomness; statistically rerunnable, saved text exactly replayable on the compatible stack"
+    },
+    "recorded_cpu_affinity": [
+      6,
+      7
+    ],
+    "package_environment": "results/sp2027-environment/python-packages.json"
+  },
+  "sp2027-repair-qwen-pilot": {
+    "source_profile": "sp2027-repair-qwen-pilot",
+    "entry_point": "Ghostext-paper/scripts/run_repair_matrix.py",
+    "arguments": [
+      "--backend",
+      "qwen",
+      "--model-path",
+      "<QWEN_GGUF>",
+      "--out-dir",
+      "<NEW_OUTPUT_DIRECTORY>",
+      "--threads",
+      "2",
+      "--repeats",
+      "1",
+      "--guards",
+      "128",
+      "--limit",
+      "2"
+    ],
+    "policy": {
+      "header_token_cap": 2048,
+      "body_token_cap": 4096,
+      "max_attempts": 10,
+      "tail_tokens": 0,
+      "randomness": "OS packet/guard randomness; statistically rerunnable, saved text exactly replayable on the compatible stack"
+    },
+    "recorded_cpu_affinity": [
+      6,
+      7
+    ],
+    "package_environment": "results/sp2027-environment/python-packages.json"
+  },
+  "sp2027-reverse-failure-gpt2": {
+    "source_profile": "sp2027-reverse-failure-gpt2",
+    "entry_point": "Ghostext-paper/scripts/replay_reverse_failures.py",
+    "arguments": [
+      "results/sp2027-stopping-gpt2",
+      "--model-path",
+      "<GPT2_DIRECTORY>",
+      "--out-dir",
+      "<NEW_OUTPUT_DIRECTORY>"
+    ],
+    "policy": {
+      "selection": "all completed reverse-failure cases; a targeted diagnostic"
+    },
+    "recorded_cpu_affinity": null,
+    "package_environment": "results/sp2027-environment/python-packages.json"
+  },
+  "sp2027-stopping-gpt2": {
+    "source_profile": "sp2027-stopping-gpt2",
+    "entry_point": "Ghostext-paper/scripts/run_stopping_llm.py",
+    "arguments": [
+      "--backend",
+      "gpt2",
+      "--model-path",
+      "<GPT2_DIRECTORY>",
+      "--out-dir",
+      "<NEW_OUTPUT_DIRECTORY>",
+      "--threads",
+      "2",
+      "--repeats",
+      "8",
+      "--bits",
+      "128",
+      "512",
+      "--seed",
+      "20261020"
+    ],
+    "policy": {
+      "generation_horizon": "2 * message_bits",
+      "ideal_theorem_horizon": "uncapped",
+      "control": "independent Q draws at the observed stego length",
+      "randomness": "public deterministic experimental PRNG tapes; not a cryptographic secrecy test",
+      "scope": "capped published-rule adapter"
+    },
+    "recorded_cpu_affinity": [
+      4,
+      5
+    ],
+    "package_environment": "results/sp2027-environment/python-packages.json"
+  },
+  "sp2027-stopping-gpt2-expanded": {
+    "source_profile": "sp2027-stopping-gpt2-expanded",
+    "entry_point": "Ghostext-paper/scripts/run_stopping_llm.py",
+    "arguments": [
+      "--backend",
+      "gpt2",
+      "--model-path",
+      "<GPT2_DIRECTORY>",
+      "--out-dir",
+      "<NEW_OUTPUT_DIRECTORY>",
+      "--threads",
+      "2",
+      "--repeats",
+      "8",
+      "--bits",
+      "128",
+      "512",
+      "--seed",
+      "20261023",
+      "--empty-candidate-search",
+      "4096"
+    ],
+    "policy": {
+      "generation_horizon": "2 * message_bits",
+      "ideal_theorem_horizon": "uncapped",
+      "control": "independent Q draws at the observed stego length",
+      "randomness": "public deterministic experimental PRNG tapes; not a cryptographic secrecy test",
+      "scope": "capped published-rule adapter"
+    },
+    "recorded_cpu_affinity": [
+      4,
+      5
+    ],
+    "package_environment": "results/sp2027-environment/python-packages.json"
+  },
+  "sp2027-stopping-gpt2-pilot": {
+    "source_profile": "sp2027-stopping-gpt2-pilot",
+    "entry_point": "Ghostext-paper/scripts/run_stopping_llm.py",
+    "arguments": [
+      "--backend",
+      "gpt2",
+      "--model-path",
+      "<GPT2_DIRECTORY>",
+      "--out-dir",
+      "<NEW_OUTPUT_DIRECTORY>",
+      "--threads",
+      "2",
+      "--repeats",
+      "1",
+      "--bits",
+      "128",
+      "--seed",
+      "20261020",
+      "--limit",
+      "2"
+    ],
+    "policy": {
+      "generation_horizon": "2 * message_bits",
+      "ideal_theorem_horizon": "uncapped",
+      "control": "independent Q draws at the observed stego length",
+      "randomness": "public deterministic experimental PRNG tapes; not a cryptographic secrecy test",
+      "scope": "capped published-rule adapter"
+    },
+    "recorded_cpu_affinity": null,
+    "package_environment": "results/sp2027-environment/python-packages.json"
+  },
+  "sp2027-stopping-gpt2-verified": {
+    "source_profile": "sp2027-stopping-gpt2-verified",
+    "entry_point": "Ghostext-paper/scripts/run_stopping_llm.py",
+    "arguments": [
+      "--backend",
+      "gpt2",
+      "--model-path",
+      "<GPT2_DIRECTORY>",
+      "--out-dir",
+      "<NEW_OUTPUT_DIRECTORY>",
+      "--threads",
+      "2",
+      "--repeats",
+      "2",
+      "--bits",
+      "128",
+      "512",
+      "--seed",
+      "20261020",
+      "--verify-before-stop"
+    ],
+    "policy": {
+      "generation_horizon": "2 * message_bits",
+      "ideal_theorem_horizon": "uncapped",
+      "control": "independent Q draws at the observed stego length",
+      "randomness": "public deterministic experimental PRNG tapes; not a cryptographic secrecy test",
+      "scope": "separate mechanical verification-before-stop ablation"
+    },
+    "recorded_cpu_affinity": [
+      4,
+      5
+    ],
+    "package_environment": "results/sp2027-environment/python-packages.json"
+  },
+  "sp2027-stopping-qwen": {
+    "source_profile": "sp2027-stopping-qwen",
+    "entry_point": "Ghostext-paper/scripts/run_stopping_llm.py",
+    "arguments": [
+      "--backend",
+      "qwen",
+      "--model-path",
+      "<QWEN_GGUF>",
+      "--out-dir",
+      "<NEW_OUTPUT_DIRECTORY>",
+      "--threads",
+      "4",
+      "--repeats",
+      "8",
+      "--bits",
+      "128",
+      "512",
+      "--seed",
+      "20261020"
+    ],
+    "policy": {
+      "generation_horizon": "2 * message_bits",
+      "ideal_theorem_horizon": "uncapped",
+      "control": "independent Q draws at the observed stego length",
+      "randomness": "public deterministic experimental PRNG tapes; not a cryptographic secrecy test",
+      "scope": "capped published-rule adapter"
+    },
+    "recorded_cpu_affinity": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "package_environment": "results/sp2027-environment/python-packages.json"
+  },
+  "sp2027-stopping-qwen-expanded": {
+    "source_profile": "sp2027-stopping-qwen-expanded",
+    "entry_point": "Ghostext-paper/scripts/run_stopping_llm.py",
+    "arguments": [
+      "--backend",
+      "qwen",
+      "--model-path",
+      "<QWEN_GGUF>",
+      "--out-dir",
+      "<NEW_OUTPUT_DIRECTORY>",
+      "--threads",
+      "4",
+      "--repeats",
+      "8",
+      "--bits",
+      "128",
+      "512",
+      "--seed",
+      "20261023",
+      "--empty-candidate-search",
+      "4096"
+    ],
+    "policy": {
+      "generation_horizon": "2 * message_bits",
+      "ideal_theorem_horizon": "uncapped",
+      "control": "independent Q draws at the observed stego length",
+      "randomness": "public deterministic experimental PRNG tapes; not a cryptographic secrecy test",
+      "scope": "capped published-rule adapter"
+    },
+    "recorded_cpu_affinity": [
+      8,
+      9,
+      10,
+      11
+    ],
+    "package_environment": "results/sp2027-environment/python-packages.json"
+  }
+}

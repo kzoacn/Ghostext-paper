@@ -15,7 +15,9 @@ Our harness extracts and executes the original encoder and its utility functions
 unchanged from a pinned 2019 revision. A synthetic model assigns probability
 $1/64$ to each of 64 active tokens. We enumerate all 256 eight-bit messages,
 with precision 16, candidate cap 64, and sentence completion disabled. Each
-output contains two tokens. The first carries six bits; the remaining two input
+token has an injective synthetic Unicode rendering, and rendering followed by
+tokenization is checked for every output. Each output contains two tokens.
+The first carries six bits; the remaining two input
 bits and four zero padding bits restrict the final token to four choices.
 Consequently,
 \begin{equation}
@@ -26,6 +28,8 @@ The same counting argument applies to $B=6k+2$, including 128-bit messages.
 This is an algorithm-level counterexample to the diagnostic, not an empirical
 claim about GPT-2 output quality. It holds with a uniform finite input, so
 normalizing plaintext through encryption does not remove this padding effect.
+The injective text channel has 256 equally likely stego strings among 4096
+possible natural two-symbol strings, giving complete-text TV $15/16$ as well.
 Meteor masks its lookahead with fresh pseudorandom bits after padding; the
 specific argument above does not apply to that construction~\cite{kaptchuk2021language}.
 

@@ -1,0 +1,124 @@
+{
+  "scope": "Independent replay consumes only visible text, prompt, public model and policy.",
+  "selection": "First lexicographic eligible held-out case per (message bits or guard, language).",
+  "study": "stopping",
+  "backend": "qwen",
+  "records": [
+    {
+      "case_id": "05_en_train:b128:r0",
+      "label": "stego",
+      "text_sha256": "a013e5fe9f1893ded268b965a068a73e12057d2d3b03c12f108703743e272e98",
+      "tokens": 65,
+      "surprisal_bits": 128.12137935682478,
+      "max_probability_difference": 0.0,
+      "exact_probability_match": true
+    },
+    {
+      "case_id": "05_en_train:b128:r0",
+      "label": "natural",
+      "text_sha256": "ff0fc7c6fc5985e8252bc26ca1a7692ddb92f2b93fc8129baa0060111427124f",
+      "tokens": 65,
+      "surprisal_bits": 211.0609414782461,
+      "max_probability_difference": 0.0,
+      "exact_probability_match": true
+    },
+    {
+      "case_id": "05_en_train:b512:r0",
+      "label": "stego",
+      "text_sha256": "d055f0171b2145db19565c810c7b82184ad04eff5bfdc2697086531c3e6d553c",
+      "tokens": 192,
+      "surprisal_bits": 515.528588691161,
+      "max_probability_difference": 0.0,
+      "exact_probability_match": true
+    },
+    {
+      "case_id": "05_en_train:b512:r0",
+      "label": "natural",
+      "text_sha256": "684bda96bc7579d1904c476f392c6eadc87566278619d7fca359ef7ce64e6ee2",
+      "tokens": 192,
+      "surprisal_bits": 568.4343760179137,
+      "max_probability_difference": 0.0,
+      "exact_probability_match": true
+    },
+    {
+      "case_id": "05_zh_train:b128:r0",
+      "label": "stego",
+      "text_sha256": "6fb52f6adb659e2e347c5b9bed4dfb63cf329c5a77891c8395b2acb39fc5cb3e",
+      "tokens": 60,
+      "surprisal_bits": 127.04906633805565,
+      "max_probability_difference": 0.0,
+      "exact_probability_match": true
+    },
+    {
+      "case_id": "05_zh_train:b128:r0",
+      "label": "natural",
+      "text_sha256": "30e299444f8a3d8bd2aa72c427f5d4a340d571e80140965f475cd3688ed86d35",
+      "tokens": 60,
+      "surprisal_bits": 175.17568995208987,
+      "max_probability_difference": 0.0,
+      "exact_probability_match": true
+    },
+    {
+      "case_id": "05_zh_train:b512:r0",
+      "label": "stego",
+      "text_sha256": "e587d7d0452b1cab4c60d58e6ebe46b7347c3659e1a97319ee0dd225d648a37e",
+      "tokens": 195,
+      "surprisal_bits": 512.2223982369838,
+      "max_probability_difference": 0.0,
+      "exact_probability_match": true
+    },
+    {
+      "case_id": "05_zh_train:b512:r0",
+      "label": "natural",
+      "text_sha256": "a32a29d656fc3dc20d9521a5de2bd694a836c529bd276bc35d00b8d0c70ee478",
+      "tokens": 195,
+      "surprisal_bits": 480.9079930270505,
+      "max_probability_difference": 0.0,
+      "exact_probability_match": true
+    }
+  ],
+  "source_input_sha256": "49ff2e921ca3ed329856350940515176737efc273d658d7798e7043f5fe75eec",
+  "model_sha256": {
+    "Qwen_Qwen3.5-2B-Q4_K_S.gguf": "ae7c7f78251e36c8f8c50bdd4df2cb593a62ace1271327789dea67fd62eb31c2"
+  },
+  "runtime": {
+    "timestamp_utc": "2026-10-20T16:00:27Z",
+    "host": "kzoacn-PC",
+    "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.12.12",
+    "cpu_model": "AMD Ryzen 7 7800X3D 8-Core Processor",
+    "cpu_count_logical": 16,
+    "ram_total_gib": 30.92,
+    "ghostext_git_head": "624bae9eacccbf955a6c491d4542254072c7ba77",
+    "paper_git_head": "ca221b1757f006c832dab5c5d24b1d502aaf6121",
+    "llama_cpp_python_version": "0.3.20",
+    "llama_cpp_commit_sha": "f49e917",
+    "llama_cpp_build_number": "1",
+    "ggml_build_commit": "f49e917-dirty",
+    "ggml_build_number": "1",
+    "ggml_version": "0.9.11",
+    "llama_system_info": "CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | AVX512 = 1 | AVX512_VBMI = 1 | AVX512_VNNI = 1 | AVX512_BF16 = 1 | LLAMAFILE = 1 | OPENMP = 1 | REPACK = 1 |"
+  },
+  "source_sha256": {
+    "Ghostext-paper/scripts/replay_public_features.py": "fc6d28e0e8731334ab7a1f939a5dd6a72da779038053f1485c1da65de989e121",
+    "Ghostext-paper/scripts/keyless_probe.py": "5e16a40f81cd74fd87c6aaf56bbcc0f4ef1f4243d0fb3da3ee02f0b7f477064f",
+    "Ghostext-paper/scripts/model_adapters.py": "ad41399f2e457aa6af85ed93ae5cf98864020181681907cc8b305bea1a510bac",
+    "Ghostext/src/ghostext/__init__.py": "d37c170dfeef70b1b7c12b76ac7baaab8544c5d3e236ef8ae5a82432997d3991",
+    "Ghostext/src/ghostext/benchmark.py": "f6e3fd9dd9d8615331c4684b097903142ab74b5bbec3064aac50c07264f4a831",
+    "Ghostext/src/ghostext/candidate_policy.py": "ef1a4b16a6d661a4c265d9ac7f3f75c21bda9048d43159383b1974a925bb1224",
+    "Ghostext/src/ghostext/cli.py": "3b17cb948d4355829154eb32da926c5717080c71d36d8d2983f4ee75c2b30c49",
+    "Ghostext/src/ghostext/codec.py": "585d65d10b18d9861ba0d02f0a4671743b2fa8cf2cd31152db860dc80724e9f5",
+    "Ghostext/src/ghostext/config.py": "43fc08a3ba07fcc95bac05ce57d74f7044cce229b12d8e135537fb7500d6f637",
+    "Ghostext/src/ghostext/crypto.py": "7ce5498b9b86a907c0a97901a2aaa339e9ff4ec324566382f0516ef21b1c36d5",
+    "Ghostext/src/ghostext/decoder.py": "40b85a1c41fc466b79a28d54e9c3e079151e507a6d888007cc1a3f9c73c25e81",
+    "Ghostext/src/ghostext/encoder.py": "fd66120a07172d43a07200c74f72b65bfeef806154d1557de7b37a7c21870aa9",
+    "Ghostext/src/ghostext/errors.py": "70020cb389ada0d1d16147e2a5055ff3c42e95bb5cd2a85853f1cf2088e29b54",
+    "Ghostext/src/ghostext/llama_cpp_backend.py": "07f3653b87c61444bd0888ff5013d8c223df555f5fe9c172fa71a29496249b2b",
+    "Ghostext/src/ghostext/model_assets.py": "8089d5d0cef24207b081d1c5ab59cdee0ff38799d774b08d88b8472ec3ce3350",
+    "Ghostext/src/ghostext/model_backend.py": "74d35dab5ca32df6f8bd07a775f75ff9778621301f157d8fa0238f994e9203d4",
+    "Ghostext/src/ghostext/packet.py": "fa938220b13f7b466b28330d99875b4b7da4270ad3904987b689ceb30e32104b",
+    "Ghostext/src/ghostext/pipeline.py": "85e2199ba095001c2a7c1aaffc672b953e633d6bf51de592748f85295134eae5",
+    "Ghostext/src/ghostext/progress.py": "a53ab3454e33094e9292524cf8fa25e1fa1f2ead1c96c2168b0e32a238925c25",
+    "Ghostext/src/ghostext/quantization.py": "b43e6f652d0dc97012f03295f4ab96eb2859c903a9b7609bf06702583c3b82ff"
+  }
+}

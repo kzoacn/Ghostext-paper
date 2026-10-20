@@ -15,6 +15,7 @@ sys.path.insert(0, str(ROOT.parent / "Ghostext/src"))
 from artifact_utils import build_runtime_info, deterministic_seed, utc_timestamp
 from experiment_prompts import prompts
 from model_adapters import GPT2Backend
+from ghostext.config import CandidatePolicyConfig
 from ghostext.llama_cpp_backend import LlamaCppBackendConfig, QwenLlamaCppBackend
 from stopping_experiment import sample_text
 
@@ -34,8 +35,11 @@ def main():
     ap.add_argument("--threads", type=int, default=4)
     ap.add_argument("--seed", type=int, default=20261020)
     ap.add_argument("--verify-before-stop", action="store_true")
+    ap.add_argument("--empty-candidate-search", type=int, default=0)
     ap.add_argument("--limit", type=int)
     args = ap.parse_args()
+    policy = CandidatePolicyConfig(top_p=.995, max_candidates=64, min_entropy_bits=0,
+                                   empty_candidate_search=args.empty_candidate_search)
     dataset = prompts(args.backend)
     tasks = [
         {**prompt, "repeat": repeat, "message_bits": bits,
@@ -69,6 +73,7 @@ def main():
                        "seed": args.seed, "verify_before_stop": args.verify_before_stop,
                        "top_p": .995, "max_candidates": 64, "frequency": 4096,
                        "stability_filter": True, "rotation_bits": 192,
+                       "empty_candidate_search": args.empty_candidate_search,
                        "cpu_affinity": sorted(os.sched_getaffinity(0))},
         "prompts": dataset, "tasks": tasks, "created_utc": utc_timestamp(),
         "runtime": build_runtime_info(),
@@ -97,11 +102,13 @@ def main():
                 continue
             seed = deterministic_seed("stopping", args.seed, args.backend, task["case_id"])
             stego = sample_text(backend, task["prompt"], seed=seed,
-                                bits=task["message_bits"], verify_before_stop=args.verify_before_stop)
+                                bits=task["message_bits"], verify_before_stop=args.verify_before_stop,
+                                policy=policy)
             natural = sample_text(
                 backend, task["prompt"],
                 seed=deterministic_seed("natural", args.seed, args.backend, task["case_id"]),
                 target_tokens=stego["tokens"],
+                policy=policy,
             )
             for record in [stego, natural]:
                 record["text_sha256"] = hashlib.sha256(record["cover_text"].encode()).hexdigest()

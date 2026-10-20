@@ -1,0 +1,13 @@
+\begin{table*}[t]
+\centering
+\caption{Fresh authenticated delivery trials under strict candidates, with 16-byte plaintexts and no natural tail. Net rate conditions on delivery. The last column counts admissible stego/control prefixes under the matching codec, among complete matched controls only.}
+\label{tab:repair-matrix}
+\begin{tabular}{lrrrrrrr}
+\toprule
+Model & $g$ & Delivered/planned & First attempt & All attempts & Net bits/token & Matched pairs & Probe accepts (S/C) \\
+\midrule
+GPT-2 & 0 & 19/20 & 12/20 & 51 & 0.556 & 9 & 9/4 \\
+GPT-2 & 128 & 19/20 & 12/20 & 46 & 0.553 & 13 & 13/13 \\
+\bottomrule
+\end{tabular}
+\end{table*}

@@ -1,0 +1,17 @@
+\begin{table*}[t]
+\centering
+\caption{Stopping-score results on held-out topic families. Eligible pairs are complete, canonical, and exactly length matched. The denominator counts all planned pairs. AUC intervals resample five test topic families; TPR/FPR use the threshold fitted only to development controls.}
+\label{tab:stopping-llm}
+\begin{tabular}{llrrrrrr}
+\toprule
+Source & Model & $B$ & Eligible/planned & Dev./test & AUC [95\% cluster interval] & TPR & FPR \\
+\midrule
+Strict & GPT-2 & 128 & 54/80 & 28/26 & 0.865 [0.771,0.957] & 0.538 & 0.115 \\
+Strict & GPT-2 & 512 & 36/80 & 20/16 & 0.934 [0.770,1.000] & 0.438 & 0.062 \\
+Strict & Qwen & 128 & 151/160 & 71/80 & 0.950 [0.892,0.982] & 0.287 & 0.000 \\
+Strict & Qwen & 512 & 145/160 & 68/77 & 0.973 [0.956,0.988] & 0.377 & 0.026 \\
+Expanded & GPT-2 & 128 & 80/80 & 40/40 & 0.862 [0.743,0.925] & 0.150 & 0.000 \\
+Expanded & GPT-2 & 512 & 80/80 & 40/40 & 0.986 [0.966,0.999] & 0.700 & 0.000 \\
+\bottomrule
+\end{tabular}
+\end{table*}

@@ -1,7 +1,7 @@
 \section{Setting and Security Objects}
 \label{sec:setting}
 
-\paragraph{Text channel.}
+\paragraph{Text channel}
 Alice and Bob share a passphrase, model and tokenizer, prompt, and decoding
 configuration. Alice encrypts a plaintext, embeds the packet into generated
 tokens, and transmits only their rendered text. Bob tokenizes the received text,
@@ -10,7 +10,7 @@ A text-only passive observer sees the complete transmitted text, including its
 length and endpoint, but does not obtain the passphrase, private rotation coins,
 retry counters, or intermediate token annotations.
 
-\paragraph{Observer knowledge.}
+\paragraph{Observer knowledge}
 Our main observer knows the model, tokenizer, candidate policy, and prompt.
 This is a public-configuration threat model, not a claim about unknown-prompt
 traffic. The bootstrap attack additionally uses the protocol's public 60-byte
@@ -19,18 +19,19 @@ natural for a fixed-size application or a chosen-message security experiment.
 An unknown mixture of message lengths is a separate case. We study neither
 endpoint compromise nor recovery from active edits.
 
-\paragraph{Three reference laws.}
+\paragraph{Three reference laws}
 Let $P_t(\cdot\mid y_{<t})$ denote the backend's masked next-token distribution.
 Truncation, tokenization filtering, and frequency quantization produce $Q_t$.
 This processed source is not the unmodified model. We distinguish:
 (i) a $Q$ sampler with a fixed or independently drawn output length;
 (ii) a $Q$ sampler following the codec's own public state transitions and stopping
-rule; and (iii) ordinary model generation with its own end-of-sequence policy.
+rule, including identical deterministic emissions at no-payload steps; and
+(iii) ordinary model generation with its own end-of-sequence policy.
 A theorem or experiment against one reference does not imply security against
 the others. In particular, the coding repair below uses reference (ii), while
 the stopping separation uses reference (i).
 
-\paragraph{Distances and distinguishers.}
+\paragraph{Distances and distinguishers}
 For discrete laws $R$ and $S$, we use
 \begin{equation}
  \operatorname{TV}(R,S)=\tfrac12\sum_x |R(x)-S(x)|
@@ -43,15 +44,17 @@ conditional kernels; they are not automatically distances between complete
 texts. Perplexity is a fluency-related measurement, not a substitute for either
 quantity.
 
-\paragraph{Reliability and integrity.}
+\paragraph{Reliability and integrity}
 Delivery success means that the receiver obtains exactly the original plaintext
 after authentication. First-attempt success and success after retries are
 reported separately. Authentication protects the recovered packet, not every
 character of the visible text: Ghostext deliberately ignores trailing tokens
-after packet recovery. Conversely, a candidate-path or interval-consistency
+after packet recovery, and guarded packet-bearing paths can differ only in
+discarded suffix randomness while decoding to the same packet.
+Conversely, a candidate-path or interval-consistency
 check may distinguish an output without any ability to authenticate it.
 
-\paragraph{Idealizations.}
+\paragraph{Idealizations}
 The integer-code analysis assumes a uniform payload integer with independent
 random guard bits. Authentication alone does not imply that a packet, including
 its tags and metadata, is indistinguishable from uniform bytes; applying the

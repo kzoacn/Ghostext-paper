@@ -3,14 +3,24 @@
 
 This statement describes the artifact supporting the IEEE S\&P 2027 draft.
 
-\paragraph{Anonymous artifact for review.}
-The working artifact includes the protocol implementation, measurement scripts,
-and historical result records. A submission artifact must be frozen and checked
-for author-identifying metadata before anonymous release. The working repositories
-and historical machine paths are not an anonymous submission package.
+\paragraph{Anonymous artifact for review}
+The review artifact includes the protocol implementation, exact-audit and
+measurement scripts, retained observations, and manuscript sources. Its export
+removes author-identifying host and path metadata while preserving observation
+fields, and records original-to-exported file hashes. The working repositories
+are separate from this review package.
 
-\paragraph{Reproducibility metadata.}
-To support repeatability, each released run summary records protocol-sensitive settings and runtime metadata, including model/backend identifiers, tokenizer hash, candidate policy parameters, entropy and quantization settings, and software/runtime versions. The paper repository additionally keeps claim-to-evidence notes and result files so that readers can trace each reported number back to a concrete artifact.
+\paragraph{Reproducibility metadata}
+Each cohort has a source profile, model hashes, task list, and configuration.
+Content-addressed source snapshots reconstruct earlier experiment versions,
+and a command index specifies their entry points and stopping caps. A separate
+environment snapshot supplements package fields missing from older delivery
+manifests. Model acquisition uses exact upstream revisions, including the
+historical Qwen GGUF whose current upstream replacement has different bytes.
 
-\paragraph{Scope of reproducibility claim.}
-We do not claim cross-hardware bit-level determinism from this release. Our reproducibility claim is limited to the pinned local software stack and configuration recorded in the artifact.
+\paragraph{Scope of reproducibility claim}
+Saved-data analyses and exact checks need no model weights. Public-feature
+replays and fresh generation use separately downloaded models. Stopping-study
+random tapes are repeatable on the compatible stack; authenticated delivery
+uses OS randomness and is statistically rerunnable, with saved text available
+for replay. Cross-hardware bit-level determinism is not claimed.

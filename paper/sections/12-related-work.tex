@@ -1,7 +1,7 @@
 \section{Related Work}
 \label{sec:related-positioning}
 
-\paragraph{Security definitions and coding.}
+\paragraph{Security definitions and coding}
 Classical steganographic security compares cover and stego distributions or
 uses computational distinguishing games~\cite{cachin1998information,hopper2002provably}.
 Distribution-aware coding predates neural language models, including P-code
@@ -14,7 +14,7 @@ source-coding literature~\cite{drmota2010tunstall}. We use elementary
 anticoncentration to establish a security separation between two precisely
 specified stopped-text laws.
 
-\paragraph{Neural and cryptographic linguistic steganography.}
+\paragraph{Neural and cryptographic linguistic steganography}
 NLS connects arithmetic coding to neural generation~\cite{ziegler2019neural};
 self-adjusting and grouping approaches explore security and capacity
 tradeoffs~\cite{dai2019towards,shen2020near,zhang2021provably}.
@@ -33,7 +33,7 @@ counterexample and asymptotic theorem concern its published midpoint rule;
 later code that verifies extraction before stopping is a distinct algorithm.
 This distinction is necessary both for fair comparison and for reproducibility.
 
-\paragraph{Operational constraints and stopping.}
+\paragraph{Operational constraints and stopping}
 OD-Stega~\cite{huang2026odstega} optimizes the distribution--capacity tradeoff and
 addresses tokenization ambiguity; it already assumes pre-encrypted input bits.
 Yan and Murawaki~\cite{yan2025tokenization} give the stepwise retokenization
@@ -44,11 +44,13 @@ length leakage, and EOS-based segmentation. Our stopping separation remains
 after matching the full marginal length distribution and concerns residual
 content--length dependence.
 
-\paragraph{Empirical detection.}
+\paragraph{Empirical detection}
 A successful trained detector establishes a practical signal for its evaluation
 setting; a failed detector does not prove indistinguishability. We therefore
 combine explicit events and exact transcript laws with real-model measurements.
 General generated-text detection methods such as DetectGPT~\cite{mitchell2023detectgpt}
 address a different labeling problem from stego-versus-nonstego text generated
-by the same model. Our controls share the model and candidate source so that
-ordinary model-identification signals are not the intended explanation.
+by the same model. Our fresh controls share the exact processed candidate
+source so that ordinary model-identification signals are not the intended
+explanation. The historical floating-point sampler with occasional unfiltered
+fallbacks is a separately identified, less controlled pilot.

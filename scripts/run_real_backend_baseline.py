@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+"""Archived baseline runner.
+
+The old Bhat calculation below is retained only as historical source. It used
+an invalid quantization bound and omitted finite-interval and stopping effects.
+New executions are disabled; use run_repair_matrix.py and the explicit security
+audits for the S&P revision. build_cases remains importable by legacy analyses.
+"""
 from __future__ import annotations
 
 import argparse
@@ -146,6 +153,11 @@ def build_step_audit(
     packet_tokens: int,
     segment_stats: tuple[Any, ...],
 ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    raise RuntimeError(
+        "The historical Bhat audit is mathematically invalid and has been retired. "
+        "Use run_codec_security_audit.py and keyless_probe.py; archived results "
+        "are retained as historical data, not valid security bounds."
+    )
     rows: list[dict[str, Any]] = []
     generated_token_ids: list[int] = []
     phase_labels = segment_labels(segment_stats, len(token_ids))
@@ -222,6 +234,10 @@ def build_failure_histogram(rows: list[dict[str, Any]]) -> dict[str, int]:
 
 
 def run(args: argparse.Namespace) -> int:
+    raise RuntimeError(
+        "Retired historical runner: Bhat is not a valid security bound. "
+        "Use run_repair_matrix.py for fresh delivery experiments."
+    )
     out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
 
@@ -502,4 +518,7 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 if __name__ == "__main__":
-    raise SystemExit(run(build_parser().parse_args()))
+    raise SystemExit(
+        "This historical runner is retired because its Bhat audit is invalid. "
+        "Use scripts/run_repair_matrix.py for fresh delivery experiments."
+    )

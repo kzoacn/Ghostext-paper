@@ -1,0 +1,115 @@
+{
+  "scope": "Post-hoc development-case delivery pilot; a changed source, not a security repair or general reliability estimate.",
+  "backend": "qwen",
+  "tasks": [
+    {
+      "prompt_id": "03_zh_garden",
+      "family": "garden",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n雨停以后，花园里的小路仍然湿漉漉的。在大门旁边，",
+      "repeat": 0,
+      "case_id": "03_zh_garden:expanded:r0"
+    },
+    {
+      "prompt_id": "03_zh_garden",
+      "family": "garden",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n雨停以后，花园里的小路仍然湿漉漉的。在大门旁边，",
+      "repeat": 1,
+      "case_id": "03_zh_garden:expanded:r1"
+    },
+    {
+      "prompt_id": "04_en_market",
+      "family": "market",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nAt the neighborhood market, the stalls were opening for the morning.",
+      "repeat": 0,
+      "case_id": "04_en_market:expanded:r0"
+    },
+    {
+      "prompt_id": "04_en_market",
+      "family": "market",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nAt the neighborhood market, the stalls were opening for the morning.",
+      "repeat": 1,
+      "case_id": "04_en_market:expanded:r1"
+    }
+  ],
+  "config": {
+    "candidate_policy": {
+      "empty_candidate_search": 4096,
+      "enforce_retokenization_stability": true,
+      "max_candidates": 64,
+      "min_entropy_bits": 0,
+      "top_p": 0.995
+    },
+    "codec": {
+      "guard_bits": 128,
+      "low_entropy_threshold_bits": 0.1,
+      "low_entropy_window_tokens": 32,
+      "max_body_tokens": 4096,
+      "max_encode_attempts": 10,
+      "max_header_tokens": 2048,
+      "natural_tail_max_tokens": 0,
+      "stall_patience_tokens": 256,
+      "total_frequency": 4096
+    },
+    "crypto": {
+      "kdf_n": 16384,
+      "kdf_p": 1,
+      "kdf_r": 8,
+      "nonce_len": 12,
+      "salt_len": 16
+    },
+    "seed": 7
+  },
+  "model_sha256": {
+    "Qwen_Qwen3.5-2B-Q4_K_S.gguf": "ae7c7f78251e36c8f8c50bdd4df2cb593a62ace1271327789dea67fd62eb31c2"
+  },
+  "source_sha256": {
+    "Ghostext-paper/scripts/run_expanded_policy_pilot.py": "923e0f87439a00d386c384e25d59cb7c783179b1b4bdc90d9a7035ac5b6d3ff4",
+    "Ghostext-paper/scripts/model_adapters.py": "ad41399f2e457aa6af85ed93ae5cf98864020181681907cc8b305bea1a510bac",
+    "Ghostext-paper/scripts/experiment_prompts.py": "20ba3d9539d3d90193b736c1aabde84fd8b88ab7e6c42dd34ed0f2f4e92ae40d",
+    "Ghostext/src/ghostext/__init__.py": "d37c170dfeef70b1b7c12b76ac7baaab8544c5d3e236ef8ae5a82432997d3991",
+    "Ghostext/src/ghostext/benchmark.py": "f6e3fd9dd9d8615331c4684b097903142ab74b5bbec3064aac50c07264f4a831",
+    "Ghostext/src/ghostext/candidate_policy.py": "ef1a4b16a6d661a4c265d9ac7f3f75c21bda9048d43159383b1974a925bb1224",
+    "Ghostext/src/ghostext/cli.py": "3b17cb948d4355829154eb32da926c5717080c71d36d8d2983f4ee75c2b30c49",
+    "Ghostext/src/ghostext/codec.py": "585d65d10b18d9861ba0d02f0a4671743b2fa8cf2cd31152db860dc80724e9f5",
+    "Ghostext/src/ghostext/config.py": "43fc08a3ba07fcc95bac05ce57d74f7044cce229b12d8e135537fb7500d6f637",
+    "Ghostext/src/ghostext/crypto.py": "7ce5498b9b86a907c0a97901a2aaa339e9ff4ec324566382f0516ef21b1c36d5",
+    "Ghostext/src/ghostext/decoder.py": "40b85a1c41fc466b79a28d54e9c3e079151e507a6d888007cc1a3f9c73c25e81",
+    "Ghostext/src/ghostext/encoder.py": "fd66120a07172d43a07200c74f72b65bfeef806154d1557de7b37a7c21870aa9",
+    "Ghostext/src/ghostext/errors.py": "70020cb389ada0d1d16147e2a5055ff3c42e95bb5cd2a85853f1cf2088e29b54",
+    "Ghostext/src/ghostext/llama_cpp_backend.py": "07f3653b87c61444bd0888ff5013d8c223df555f5fe9c172fa71a29496249b2b",
+    "Ghostext/src/ghostext/model_assets.py": "8089d5d0cef24207b081d1c5ab59cdee0ff38799d774b08d88b8472ec3ce3350",
+    "Ghostext/src/ghostext/model_backend.py": "74d35dab5ca32df6f8bd07a775f75ff9778621301f157d8fa0238f994e9203d4",
+    "Ghostext/src/ghostext/packet.py": "fa938220b13f7b466b28330d99875b4b7da4270ad3904987b689ceb30e32104b",
+    "Ghostext/src/ghostext/pipeline.py": "85e2199ba095001c2a7c1aaffc672b953e633d6bf51de592748f85295134eae5",
+    "Ghostext/src/ghostext/progress.py": "a53ab3454e33094e9292524cf8fa25e1fa1f2ead1c96c2168b0e32a238925c25",
+    "Ghostext/src/ghostext/quantization.py": "b43e6f652d0dc97012f03295f4ab96eb2859c903a9b7609bf06702583c3b82ff"
+  },
+  "runtime": {
+    "timestamp_utc": "2026-10-20T15:22:31Z",
+    "host": "kzoacn-PC",
+    "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.12.12",
+    "cpu_model": "AMD Ryzen 7 7800X3D 8-Core Processor",
+    "cpu_count_logical": 16,
+    "ram_total_gib": 30.92,
+    "ghostext_git_head": "a47336a5dac75cde899a02d66cfc409f01ac18e5",
+    "paper_git_head": "ca221b1757f006c832dab5c5d24b1d502aaf6121",
+    "llama_cpp_python_version": "0.3.20",
+    "llama_cpp_commit_sha": "f49e917",
+    "llama_cpp_build_number": "1",
+    "ggml_build_commit": "f49e917-dirty",
+    "ggml_build_number": "1",
+    "ggml_version": "0.9.11",
+    "llama_system_info": "CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | AVX512 = 1 | AVX512_VBMI = 1 | AVX512_VNNI = 1 | AVX512_BF16 = 1 | LLAMAFILE = 1 | OPENMP = 1 | REPACK = 1 |"
+  },
+  "threads": 2,
+  "test_passphrase": "public-artifact-evaluation-key"
+}

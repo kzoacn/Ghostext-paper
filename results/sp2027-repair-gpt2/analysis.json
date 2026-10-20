@@ -1,0 +1,205 @@
+{
+  "backend": "gpt2",
+  "observed": 40,
+  "manifest_sha256": "e2db138d7395db78c8e3cd19d0c31515587ef6f80afb45f97deeabfe9898c7cb",
+  "runs_sha256": "4208109cc6a606aaf0ab0c8806344843e9d79455c87c3bf80170531dafe50965",
+  "by_guard": {
+    "0": {
+      "planned": 20,
+      "deliveries": 19,
+      "delivery_rate": 0.95,
+      "nominal_delivery_wilson_95": [
+        0.763868806553258,
+        0.9911185511992047
+      ],
+      "first_attempt_deliveries": 12,
+      "attempts": 51,
+      "failed_attempt_reasons": {
+        "UnsafeTokenizationError": 32
+      },
+      "delivery_statuses": {
+        "success": 19,
+        "failure": 1
+      },
+      "natural_statuses_among_deliveries": {
+        "UnsafeTokenizationError": 10,
+        "complete": 9
+      },
+      "complete_matched_pairs": 9,
+      "mean_net_bpt_given_delivery": 0.5562074589883138,
+      "aggregate_net_bpt_given_delivery": 0.5537340619307832,
+      "mean_gross_bpt_given_delivery": 3.61534848342404,
+      "median_encode_seconds_given_delivery": 15.012247927021235,
+      "median_instrumented_decode_seconds_given_delivery": 17.93552963901311,
+      "all_attempt_seconds_per_planned_trial": 16.641906525287776,
+      "probe_on_complete_matched_pairs": {
+        "0": {
+          "stego": {
+            "admissible": 9
+          },
+          "natural": {
+            "zero_width_interval": 5,
+            "admissible": 4
+          }
+        },
+        "128": {
+          "stego": {
+            "admissible": 9
+          },
+          "natural": {
+            "admissible": 9
+          }
+        }
+      }
+    },
+    "128": {
+      "planned": 20,
+      "deliveries": 19,
+      "delivery_rate": 0.95,
+      "nominal_delivery_wilson_95": [
+        0.763868806553258,
+        0.9911185511992047
+      ],
+      "first_attempt_deliveries": 12,
+      "attempts": 46,
+      "failed_attempt_reasons": {
+        "UnsafeTokenizationError": 27
+      },
+      "delivery_statuses": {
+        "success": 19,
+        "failure": 1
+      },
+      "natural_statuses_among_deliveries": {
+        "UnsafeTokenizationError": 6,
+        "complete": 13
+      },
+      "complete_matched_pairs": 13,
+      "mean_net_bpt_given_delivery": 0.5532194041713479,
+      "aggregate_net_bpt_given_delivery": 0.5505999547203985,
+      "mean_gross_bpt_given_delivery": 3.5959261271137617,
+      "median_encode_seconds_given_delivery": 15.32770435884595,
+      "median_instrumented_decode_seconds_given_delivery": 17.60033522802405,
+      "all_attempt_seconds_per_planned_trial": 17.31759871779941,
+      "probe_on_complete_matched_pairs": {
+        "0": {
+          "stego": {
+            "zero_width_interval": 6,
+            "admissible": 7
+          },
+          "natural": {
+            "zero_width_interval": 8,
+            "admissible": 5
+          }
+        },
+        "128": {
+          "stego": {
+            "admissible": 13
+          },
+          "natural": {
+            "admissible": 13
+          }
+        }
+      }
+    }
+  },
+  "by_guard_language": {
+    "0:en": {
+      "planned": 20,
+      "deliveries": 19,
+      "delivery_rate": 0.95,
+      "nominal_delivery_wilson_95": [
+        0.763868806553258,
+        0.9911185511992047
+      ],
+      "first_attempt_deliveries": 12,
+      "attempts": 51,
+      "failed_attempt_reasons": {
+        "UnsafeTokenizationError": 32
+      },
+      "delivery_statuses": {
+        "success": 19,
+        "failure": 1
+      },
+      "natural_statuses_among_deliveries": {
+        "UnsafeTokenizationError": 10,
+        "complete": 9
+      },
+      "complete_matched_pairs": 9,
+      "mean_net_bpt_given_delivery": 0.5562074589883138,
+      "aggregate_net_bpt_given_delivery": 0.5537340619307832,
+      "mean_gross_bpt_given_delivery": 3.61534848342404,
+      "median_encode_seconds_given_delivery": 15.012247927021235,
+      "median_instrumented_decode_seconds_given_delivery": 17.93552963901311,
+      "all_attempt_seconds_per_planned_trial": 16.641906525287776,
+      "probe_on_complete_matched_pairs": {
+        "0": {
+          "stego": {
+            "admissible": 9
+          },
+          "natural": {
+            "zero_width_interval": 5,
+            "admissible": 4
+          }
+        },
+        "128": {
+          "stego": {
+            "admissible": 9
+          },
+          "natural": {
+            "admissible": 9
+          }
+        }
+      }
+    },
+    "128:en": {
+      "planned": 20,
+      "deliveries": 19,
+      "delivery_rate": 0.95,
+      "nominal_delivery_wilson_95": [
+        0.763868806553258,
+        0.9911185511992047
+      ],
+      "first_attempt_deliveries": 12,
+      "attempts": 46,
+      "failed_attempt_reasons": {
+        "UnsafeTokenizationError": 27
+      },
+      "delivery_statuses": {
+        "success": 19,
+        "failure": 1
+      },
+      "natural_statuses_among_deliveries": {
+        "UnsafeTokenizationError": 6,
+        "complete": 13
+      },
+      "complete_matched_pairs": 13,
+      "mean_net_bpt_given_delivery": 0.5532194041713479,
+      "aggregate_net_bpt_given_delivery": 0.5505999547203985,
+      "mean_gross_bpt_given_delivery": 3.5959261271137617,
+      "median_encode_seconds_given_delivery": 15.32770435884595,
+      "median_instrumented_decode_seconds_given_delivery": 17.60033522802405,
+      "all_attempt_seconds_per_planned_trial": 17.31759871779941,
+      "probe_on_complete_matched_pairs": {
+        "0": {
+          "stego": {
+            "zero_width_interval": 6,
+            "admissible": 7
+          },
+          "natural": {
+            "zero_width_interval": 8,
+            "admissible": 5
+          }
+        },
+        "128": {
+          "stego": {
+            "admissible": 13
+          },
+          "natural": {
+            "admissible": 13
+          }
+        }
+      }
+    }
+  },
+  "scope": "Fixed prompt/repeat cohort, not an IID deployment sample. Nominal Wilson intervals do not account for shared prompt families. Rates condition on successful delivery; attempt counts and all-attempt runtime include failures. Instrumented decode latency includes duplicate candidate auditing. Probe results condition on complete matched controls."
+}

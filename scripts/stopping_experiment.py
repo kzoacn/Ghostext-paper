@@ -18,9 +18,9 @@ from ghostext.quantization import quantize_candidates
 POLICY = CandidatePolicyConfig(top_p=.995, max_candidates=64, min_entropy_bits=0)
 
 
-def next_q(backend, prompt, ids):
+def next_q(backend, prompt, ids, policy=POLICY):
     raw = backend.distribution(prompt, ids, 7)
-    selection = select_candidates(raw, POLICY, backend=backend, prompt=prompt,
+    selection = select_candidates(raw, policy, backend=backend, prompt=prompt,
                                   generated_token_ids=ids)
     return quantize_candidates(selection, 4096)
 
@@ -35,12 +35,14 @@ def recover_integer(low, high, history):
 
 
 def sample_text(backend, prompt, *, seed, bits=None, target_tokens=None,
-                verify_before_stop=False):
+                verify_before_stop=False, policy=POLICY):
     """RRC-paper if bits is set, otherwise independent fixed-length Q sampling."""
     rng = random.Random(seed)
     ids, probabilities, widths, history = [], [], [], []
     start = perf_counter()
-    mode = "rrc_paper" if bits is not None else "matched_q_sampler"
+    mode = ("rrc_verified_adapter" if verify_before_stop else "rrc_paper") \
+        if bits is not None else "matched_q_sampler"
+    first_candidate_stop_tokens, rejected_stop_count = None, 0
     if bits is not None:
         low, high = Fraction(0), Fraction(1 << bits)
         target = Fraction(rng.getrandbits(bits))
@@ -51,7 +53,7 @@ def sample_text(backend, prompt, *, seed, bits=None, target_tokens=None,
     status, error = "token_budget", None
     for _ in range(max_tokens):
         try:
-            q = next_q(backend, prompt, ids)
+            q = next_q(backend, prompt, ids, policy)
         except GhostextError as exc:
             status, error = type(exc).__name__, str(exc)
             break
@@ -78,9 +80,12 @@ def sample_text(backend, prompt, *, seed, bits=None, target_tokens=None,
         ids.append(entry.token_id)
         probabilities.append(entry.frequency / q.total_frequency)
         if bits is not None and -Fraction(1, 2) < (low + high) / 2 - target <= Fraction(1, 2):
+            if first_candidate_stop_tokens is None:
+                first_candidate_stop_tokens = len(ids)
             if not verify_before_stop or recover_integer(low, high, history) == message_integer:
                 status = "complete"
                 break
+            rejected_stop_count += 1
     if bits is None and len(ids) == target_tokens:
         status = "complete"
     text = backend.render(ids) if ids else ""
@@ -93,6 +98,8 @@ def sample_text(backend, prompt, *, seed, bits=None, target_tokens=None,
         "surprisal_bits": surprisal, "interval_log2_widths": widths,
         "elapsed_seconds": perf_counter() - start,
         "verify_before_stop": verify_before_stop,
+        "first_candidate_stop_tokens": first_candidate_stop_tokens,
+        "rejected_stop_count": rejected_stop_count,
         "recovery_match": (
             recover_integer(low, high, history) == message_integer
             if bits is not None and status == "complete" else None

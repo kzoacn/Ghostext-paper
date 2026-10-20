@@ -1,29 +1,32 @@
 \section{Limitations and Implications}
 
-\paragraph{What is established.}
+\paragraph{What is established}
 The exact counterexamples and binary-source separation are statements about
 specified algorithms and distributions. The guarded-prefix theorem controls
 integer-coding error relative to a stopping-matched processed sampler. The
-archived real-model audit demonstrates an admissibility signal in a limited
-paired control set. None of these statements equates successful authenticated
+real-model studies demonstrate public stopping and admissibility signals
+against their specified processed sources. None of these statements equates successful authenticated
 recovery, small token-table error, and complete-text security.
 
-\paragraph{What remains conditional.}
+\paragraph{What remains conditional}
 The stopping detector knows $B$, the prompt, and the source. Unknown prompts,
 unknown-length mixtures, model mismatch, and dependent real-language sources
 require separate evaluation. The IID asymptotic theorem does not automatically
-apply to an LLM. The historical bootstrap pilot has only 18 natural controls
-and does not support a low-false-positive deployment claim. Candidate filtering
-can fail, and conditioning empirical analyses on completed pairs changes the
-estimand; failures must accompany reported detection results.
+apply to an LLM. The stopping studies have only five held-out topic families,
+and the historical bootstrap pilot has only 18 natural controls. Neither
+supports a low-false-positive deployment claim. Candidate filtering can fail,
+and conditioning analyses on completed pairs changes the estimand. The
+expanded-source follow-up reduces this selection in its measured cohort but
+changes the reference source and remains a post-hoc study.
 
 The cryptographic packet is an engineering composition of standard primitives,
 not a proof that its entire fixed-length byte string is pseudorandom. A weak
 passphrase can be guessed. The configuration digest and pinned artifacts help
 replay, but do not prove cross-hardware determinism. Active edits can prevent
-recovery, while modifications confined to an ignored tail need not be rejected.
+recovery, while edits affecting only discarded guard randomness or an ignored
+tail need not be rejected. Authentication is not visible-text integrity.
 
-\paragraph{Design implications.}
+\paragraph{Design implications}
 Random guard bits address a concrete finite-precision defect without requiring
 the receiver to recover the added randomness. They do not choose an honest
 cover length policy. A fixed exogenous token budget, or a content-dependent
@@ -32,7 +35,7 @@ question and introduces its own delivery-capacity tradeoff. Silently retrying
 until success also changes the transmitted law. These decisions belong in the
 protocol and in its reference sampler, not only in implementation footnotes.
 
-\paragraph{Conclusion.}
+\paragraph{Conclusion}
 Ghostext provides an auditable setting for studying the gap between token-level
 sampling claims and finite transmitted texts. Exact external counterexamples,
 a public stopping likelihood, and a guarded-prefix coding bound expose distinct

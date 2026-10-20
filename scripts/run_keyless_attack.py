@@ -67,7 +67,11 @@ def main():
         "backend_metadata": backend.metadata.as_dict(), "threads": args.threads,
         "runtime": build_runtime_info(), "created_utc": utc_timestamp(),
         "threat": "Passive text-only observer knowing exact model, prompt, policy and 60-byte bootstrap; no key.",
-        "baseline_caveat": "Archived stable-filtered natural controls are length-matched and not ordinary EOS generation.",
+        "baseline_caveat": (
+            "Archived controls sample filtered floating probabilities, not f/F, and use "
+            "unfiltered raw-argmax fallbacks after empty stable sets. Visible lengths match. "
+            "They are neither strict-Q nor ordinary EOS controls; see audit_legacy_controls.py."
+        ),
     }
     manifest_path = args.out_dir / "manifest.json"
     if manifest_path.exists():
