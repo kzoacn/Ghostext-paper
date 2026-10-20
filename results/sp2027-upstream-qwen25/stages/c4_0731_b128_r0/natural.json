@@ -1,0 +1,253 @@
+{
+  "status": "complete",
+  "error": null,
+  "token_ids": [
+    13980,
+    304,
+    3319,
+    17785,
+    40434,
+    37596,
+    13,
+    1634,
+    32835,
+    686,
+    387,
+    3832,
+    311,
+    2297,
+    11,
+    4486,
+    1779,
+    279
+  ],
+  "tokens": 18,
+  "cover_text": "This class includes 10 hours of instruction: three weeknight courses in Caltech undergraduate mathematics. As offerings will be subject to change, please check the",
+  "text_sha256": "3ddbda6eef440412a010af68fc76f73457f8e62b5c2277821622a8f01e4b1528",
+  "context_token_ids": [
+    1986,
+    536,
+    5646,
+    220,
+    16,
+    15,
+    4115,
+    315,
+    7600,
+    25,
+    2326,
+    2003,
+    9287
+  ],
+  "visible_token_ids": [
+    1986,
+    536,
+    5646,
+    220,
+    16,
+    15,
+    4115,
+    315,
+    7600,
+    25,
+    2326,
+    2003,
+    9287,
+    13980,
+    304,
+    3319,
+    17785,
+    40434,
+    37596,
+    13,
+    1634,
+    32835,
+    686,
+    387,
+    3832,
+    311,
+    2297,
+    11,
+    4486,
+    1779,
+    279
+  ],
+  "visible_continuation_token_ids": [
+    13980,
+    304,
+    3319,
+    17785,
+    40434,
+    37596,
+    13,
+    1634,
+    32835,
+    686,
+    387,
+    3832,
+    311,
+    2297,
+    11,
+    4486,
+    1779,
+    279
+  ],
+  "prompt_prefix_matches": true,
+  "canonical_text_roundtrip": true,
+  "chosen_probabilities": [
+    0.06188728501056615,
+    0.06820210057415664,
+    0.000149306389139,
+    0.326096898043158,
+    0.0035962903001109,
+    0.19586719213997522,
+    0.15085319528330174,
+    0.0036603474751422,
+    5.96512102714e-05,
+    0.0186007461264722,
+    0.25910611222143204,
+    0.11437058121848467,
+    0.9779973684731291,
+    0.7255045782361623,
+    0.8042716399673561,
+    0.26806968457204944,
+    0.25404668170329,
+    0.3525133339270287
+  ],
+  "interval_observations": [
+    {
+      "token_id": 13980,
+      "cdf_low": "0.36616214711142",
+      "cdf_high": "0.42804943212198615",
+      "probability_decimal": "0.06188728501056615"
+    },
+    {
+      "token_id": 304,
+      "cdf_low": "0.43139420209251916",
+      "cdf_high": "0.4995963026666758",
+      "probability_decimal": "0.06820210057415664"
+    },
+    {
+      "token_id": 3319,
+      "cdf_low": "0.757704063517417",
+      "cdf_high": "0.757853369906556",
+      "probability_decimal": "0.000149306389139"
+    },
+    {
+      "token_id": 17785,
+      "cdf_low": "0.0",
+      "cdf_high": "0.326096898043158",
+      "probability_decimal": "0.326096898043158"
+    },
+    {
+      "token_id": 40434,
+      "cdf_low": "0.7342284439394602",
+      "cdf_high": "0.7378247342395711",
+      "probability_decimal": "0.0035962903001109"
+    },
+    {
+      "token_id": 37596,
+      "cdf_low": "0.0",
+      "cdf_high": "0.19586719213997522",
+      "probability_decimal": "0.19586719213997522"
+    },
+    {
+      "token_id": 13,
+      "cdf_low": "0.33701577041262437",
+      "cdf_high": "0.4878689656959261",
+      "probability_decimal": "0.15085319528330173"
+    },
+    {
+      "token_id": 1634,
+      "cdf_low": "0.7795159532696299",
+      "cdf_high": "0.7831763007447721",
+      "probability_decimal": "0.0036603474751422"
+    },
+    {
+      "token_id": 32835,
+      "cdf_low": "0.9641814827938892",
+      "cdf_high": "0.9642411340041606",
+      "probability_decimal": "0.0000596512102714"
+    },
+    {
+      "token_id": 686,
+      "cdf_low": "0.6531519181253052",
+      "cdf_high": "0.6717526642517774",
+      "probability_decimal": "0.0186007461264722"
+    },
+    {
+      "token_id": 387,
+      "cdf_low": "0.42736001164625464",
+      "cdf_high": "0.6864661238676867",
+      "probability_decimal": "0.25910611222143206"
+    },
+    {
+      "token_id": 3832,
+      "cdf_low": "0.0",
+      "cdf_high": "0.11437058121848467",
+      "probability_decimal": "0.11437058121848467"
+    },
+    {
+      "token_id": 311,
+      "cdf_low": "0.0",
+      "cdf_high": "0.9779973684731291",
+      "probability_decimal": "0.9779973684731291"
+    },
+    {
+      "token_id": 2297,
+      "cdf_low": "0.0",
+      "cdf_high": "0.7255045782361623",
+      "probability_decimal": "0.7255045782361623"
+    },
+    {
+      "token_id": 11,
+      "cdf_low": "0.0",
+      "cdf_high": "0.8042716399673561",
+      "probability_decimal": "0.8042716399673561"
+    },
+    {
+      "token_id": 4486,
+      "cdf_low": "0.0",
+      "cdf_high": "0.26806968457204944",
+      "probability_decimal": "0.26806968457204944"
+    },
+    {
+      "token_id": 1779,
+      "cdf_low": "0.0",
+      "cdf_high": "0.25404668170329",
+      "probability_decimal": "0.25404668170329"
+    },
+    {
+      "token_id": 279,
+      "cdf_low": "0.0",
+      "cdf_high": "0.3525133339270287",
+      "probability_decimal": "0.3525133339270287"
+    }
+  ],
+  "surprisal_bits": 74.55610346385599,
+  "elapsed_seconds": 4.2755366310011595,
+  "context_trim_calls": 0,
+  "rejected_stop_count": 0,
+  "decimal_precision": 79,
+  "requested_tokens": 18,
+  "sampling_bits_per_token": [
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64
+  ]
+}

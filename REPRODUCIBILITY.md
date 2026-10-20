@@ -32,6 +32,7 @@ python scripts/audit_rotation_grid.py
 python scripts/audit_termination_theory.py
 python scripts/certify_verified_stopping.py
 python scripts/audit_observable_followup.py
+python scripts/audit_upstream_execution.py
 python scripts/run_stopping_dp.py
 python scripts/audit_existing_evidence.py
 python scripts/audit_legacy_controls.py
@@ -113,6 +114,11 @@ class-wise analysis, and injects later failure/interruption into the budget
 stream. Earlier reached endpoints must remain complete and byte-preserved.
 The all-text analyses themselves consume every planned output binding;
 deduplicating an identical public input does not remove its repeated binding.
+`audit_upstream_execution.py` checks the complete Qwen2.5 task set, stage
+journals, documented interruption, and unchanged saved files. It also checks
+that supplemental workers completed their assigned frozen tasks without
+overlapping stage executions. This is a consistency check of the records,
+not external attestation of the inference.
 
 The historical 18-control pilot used filtered floating probabilities and
 three raw-argmax fallbacks. The old JSON label `historical_stable_sampler`

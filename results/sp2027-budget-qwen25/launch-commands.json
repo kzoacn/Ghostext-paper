@@ -1,0 +1,42 @@
+{
+  "workers": [
+    {
+      "cpu": 0,
+      "shard_count": 6,
+      "shard_index": 0,
+      "command": "taskset -c 0 python3 scripts/run_upstream_budget_curve.py --cohort results/sp2027-upstream-qwen25 --model-path ../models/qwen25-0.5b --out-dir results/sp2027-budget-qwen25 --shard-count 6 --shard-index 0"
+    },
+    {
+      "cpu": 1,
+      "shard_count": 6,
+      "shard_index": 1,
+      "command": "taskset -c 1 python3 scripts/run_upstream_budget_curve.py --cohort results/sp2027-upstream-qwen25 --model-path ../models/qwen25-0.5b --out-dir results/sp2027-budget-qwen25 --shard-count 6 --shard-index 1"
+    },
+    {
+      "cpu": 2,
+      "shard_count": 6,
+      "shard_index": 2,
+      "command": "taskset -c 2 python3 scripts/run_upstream_budget_curve.py --cohort results/sp2027-upstream-qwen25 --model-path ../models/qwen25-0.5b --out-dir results/sp2027-budget-qwen25 --shard-count 6 --shard-index 2"
+    },
+    {
+      "cpu": 3,
+      "shard_count": 6,
+      "shard_index": 3,
+      "command": "taskset -c 3 python3 scripts/run_upstream_budget_curve.py --cohort results/sp2027-upstream-qwen25 --model-path ../models/qwen25-0.5b --out-dir results/sp2027-budget-qwen25 --shard-count 6 --shard-index 3"
+    },
+    {
+      "cpu": 4,
+      "shard_count": 6,
+      "shard_index": 4,
+      "command": "taskset -c 4 python3 scripts/run_upstream_budget_curve.py --cohort results/sp2027-upstream-qwen25 --model-path ../models/qwen25-0.5b --out-dir results/sp2027-budget-qwen25 --shard-count 6 --shard-index 4"
+    },
+    {
+      "cpu": 5,
+      "shard_count": 6,
+      "shard_index": 5,
+      "command": "taskset -c 5 python3 scripts/run_upstream_budget_curve.py --cohort results/sp2027-upstream-qwen25 --model-path ../models/qwen25-0.5b --out-dir results/sp2027-budget-qwen25 --shard-count 6 --shard-index 5"
+    }
+  ],
+  "threads_per_worker": 1,
+  "scope": "Disjoint fixed manifest-index partitions. Every planned task is retained. Execution CPU affinity is measured in the per-case worker events."
+}

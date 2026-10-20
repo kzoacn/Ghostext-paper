@@ -1,0 +1,1392 @@
+{
+  "prompt_id": "c4_0629",
+  "source_row": 629,
+  "prompt": "John Cohen will be the producer of Rovios self financed",
+  "selection_sha256": "0547e3aa49857e4fc6cafd63514a87e0a6f1515ab54a55819ecf736486480475",
+  "split": "test",
+  "message_bits": 128,
+  "repeat": 2,
+  "case_id": "c4_0629_b128_r2",
+  "variants": {
+    "unverified": {
+      "status": "complete",
+      "error": null,
+      "token_ids": [
+        24954,
+        911,
+        1644,
+        79744,
+        17632,
+        13,
+        422,
+        3413,
+        63224,
+        913,
+        12736,
+        7437,
+        4105,
+        5721,
+        11,
+        902
+      ],
+      "tokens": 16,
+      "cover_text": "John Cohen will be the producer of Rovios self financed documentary about Armando Sin. Dão estaba su nombre sin activación, no",
+      "text_sha256": "4783274a844493691e3ce517bf89656a54e51790928dfcfabfd2cf0ab2528ad5",
+      "context_token_ids": [
+        13079,
+        31096,
+        686,
+        387,
+        279,
+        16851,
+        315,
+        431,
+        859,
+        3530,
+        656,
+        69664
+      ],
+      "visible_token_ids": [
+        13079,
+        31096,
+        686,
+        387,
+        279,
+        16851,
+        315,
+        431,
+        859,
+        3530,
+        656,
+        69664,
+        24954,
+        911,
+        1644,
+        79744,
+        17632,
+        13,
+        422,
+        3413,
+        63224,
+        913,
+        12736,
+        7437,
+        4105,
+        5721,
+        11,
+        902
+      ],
+      "visible_continuation_token_ids": [
+        24954,
+        911,
+        1644,
+        79744,
+        17632,
+        13,
+        422,
+        3413,
+        63224,
+        913,
+        12736,
+        7437,
+        4105,
+        5721,
+        11,
+        902
+      ],
+      "prompt_prefix_matches": true,
+      "canonical_text_roundtrip": true,
+      "chosen_probabilities": [
+        0.1597829344973703,
+        0.0563546787415629,
+        0.0002833563705714,
+        0.1025251624061676,
+        0.0004331677979006,
+        0.0171287270198695,
+        0.0004002063993085,
+        2.99368951032e-05,
+        3.0991185905e-06,
+        0.00566187984257347,
+        0.006830777640606,
+        0.0165178944663211,
+        9.88510106409e-05,
+        0.0964760382726722,
+        0.10982989397788281,
+        0.0202487768472156
+      ],
+      "interval_observations": [
+        {
+          "token_id": 24954,
+          "cdf_low": "0.0",
+          "cdf_high": "0.1597829344973703",
+          "probability_decimal": "0.1597829344973703"
+        },
+        {
+          "token_id": 911,
+          "cdf_low": "0.3116306530177557",
+          "cdf_high": "0.3679853317593186",
+          "probability_decimal": "0.0563546787415629"
+        },
+        {
+          "token_id": 1644,
+          "cdf_low": "0.7431280765784505",
+          "cdf_high": "0.7434114329490219",
+          "probability_decimal": "0.0002833563705714"
+        },
+        {
+          "token_id": 79744,
+          "cdf_low": "0.0",
+          "cdf_high": "0.1025251624061676",
+          "probability_decimal": "0.1025251624061676"
+        },
+        {
+          "token_id": 17632,
+          "cdf_low": "0.7767597137900162",
+          "cdf_high": "0.7771928815879168",
+          "probability_decimal": "0.0004331677979006"
+        },
+        {
+          "token_id": 13,
+          "cdf_low": "0.303310621853057",
+          "cdf_high": "0.3204393488729265",
+          "probability_decimal": "0.0171287270198695"
+        },
+        {
+          "token_id": 422,
+          "cdf_low": "0.8703229164773415",
+          "cdf_high": "0.87072312287665",
+          "probability_decimal": "0.0004002063993085"
+        },
+        {
+          "token_id": 3413,
+          "cdf_low": "0.9453176777305242",
+          "cdf_high": "0.9453476146256274",
+          "probability_decimal": "0.0000299368951032"
+        },
+        {
+          "token_id": 63224,
+          "cdf_low": "0.9757874879996143",
+          "cdf_high": "0.9757905871182048",
+          "probability_decimal": "0.0000030991185905"
+        },
+        {
+          "token_id": 913,
+          "cdf_low": "0.35911058308052873",
+          "cdf_high": "0.3647724629231022",
+          "probability_decimal": "0.00566187984257347"
+        },
+        {
+          "token_id": 12736,
+          "cdf_low": "0.6164578756691166",
+          "cdf_high": "0.6232886533097226",
+          "probability_decimal": "0.0068307776406060"
+        },
+        {
+          "token_id": 7437,
+          "cdf_low": "0.5763258646105504",
+          "cdf_high": "0.5928437590768715",
+          "probability_decimal": "0.0165178944663211"
+        },
+        {
+          "token_id": 4105,
+          "cdf_low": "0.8736467604658098",
+          "cdf_high": "0.8737456114764507",
+          "probability_decimal": "0.0000988510106409"
+        },
+        {
+          "token_id": 5721,
+          "cdf_low": "0.7282390272736946",
+          "cdf_high": "0.8247150655463668",
+          "probability_decimal": "0.0964760382726722"
+        },
+        {
+          "token_id": 11,
+          "cdf_low": "0.11666293628535673",
+          "cdf_high": "0.22649283026323955",
+          "probability_decimal": "0.10982989397788282"
+        },
+        {
+          "token_id": 902,
+          "cdf_low": "0.41327154281538436",
+          "cdf_high": "0.43352031966259996",
+          "probability_decimal": "0.02024877684721560"
+        }
+      ],
+      "surprisal_bits": 129.5896126477931,
+      "elapsed_seconds": 3.061039875028655,
+      "context_trim_calls": 0,
+      "rejected_stop_count": 0,
+      "decimal_precision": 79
+    },
+    "verified": {
+      "status": "complete",
+      "error": null,
+      "token_ids": [
+        24954,
+        911,
+        1644,
+        79744,
+        17632,
+        13,
+        422,
+        3413,
+        63224,
+        913,
+        12736,
+        7437,
+        4105,
+        5721,
+        11,
+        902
+      ],
+      "tokens": 16,
+      "cover_text": "John Cohen will be the producer of Rovios self financed documentary about Armando Sin. Dão estaba su nombre sin activación, no",
+      "text_sha256": "4783274a844493691e3ce517bf89656a54e51790928dfcfabfd2cf0ab2528ad5",
+      "context_token_ids": [
+        13079,
+        31096,
+        686,
+        387,
+        279,
+        16851,
+        315,
+        431,
+        859,
+        3530,
+        656,
+        69664
+      ],
+      "visible_token_ids": [
+        13079,
+        31096,
+        686,
+        387,
+        279,
+        16851,
+        315,
+        431,
+        859,
+        3530,
+        656,
+        69664,
+        24954,
+        911,
+        1644,
+        79744,
+        17632,
+        13,
+        422,
+        3413,
+        63224,
+        913,
+        12736,
+        7437,
+        4105,
+        5721,
+        11,
+        902
+      ],
+      "visible_continuation_token_ids": [
+        24954,
+        911,
+        1644,
+        79744,
+        17632,
+        13,
+        422,
+        3413,
+        63224,
+        913,
+        12736,
+        7437,
+        4105,
+        5721,
+        11,
+        902
+      ],
+      "prompt_prefix_matches": true,
+      "canonical_text_roundtrip": true,
+      "chosen_probabilities": [
+        0.1597829344973703,
+        0.0563546787415629,
+        0.0002833563705714,
+        0.1025251624061676,
+        0.0004331677979006,
+        0.0171287270198695,
+        0.0004002063993085,
+        2.99368951032e-05,
+        3.0991185905e-06,
+        0.00566187984257347,
+        0.006830777640606,
+        0.0165178944663211,
+        9.88510106409e-05,
+        0.0964760382726722,
+        0.10982989397788281,
+        0.0202487768472156
+      ],
+      "interval_observations": [
+        {
+          "token_id": 24954,
+          "cdf_low": "0.0",
+          "cdf_high": "0.1597829344973703",
+          "probability_decimal": "0.1597829344973703"
+        },
+        {
+          "token_id": 911,
+          "cdf_low": "0.3116306530177557",
+          "cdf_high": "0.3679853317593186",
+          "probability_decimal": "0.0563546787415629"
+        },
+        {
+          "token_id": 1644,
+          "cdf_low": "0.7431280765784505",
+          "cdf_high": "0.7434114329490219",
+          "probability_decimal": "0.0002833563705714"
+        },
+        {
+          "token_id": 79744,
+          "cdf_low": "0.0",
+          "cdf_high": "0.1025251624061676",
+          "probability_decimal": "0.1025251624061676"
+        },
+        {
+          "token_id": 17632,
+          "cdf_low": "0.7767597137900162",
+          "cdf_high": "0.7771928815879168",
+          "probability_decimal": "0.0004331677979006"
+        },
+        {
+          "token_id": 13,
+          "cdf_low": "0.303310621853057",
+          "cdf_high": "0.3204393488729265",
+          "probability_decimal": "0.0171287270198695"
+        },
+        {
+          "token_id": 422,
+          "cdf_low": "0.8703229164773415",
+          "cdf_high": "0.87072312287665",
+          "probability_decimal": "0.0004002063993085"
+        },
+        {
+          "token_id": 3413,
+          "cdf_low": "0.9453176777305242",
+          "cdf_high": "0.9453476146256274",
+          "probability_decimal": "0.0000299368951032"
+        },
+        {
+          "token_id": 63224,
+          "cdf_low": "0.9757874879996143",
+          "cdf_high": "0.9757905871182048",
+          "probability_decimal": "0.0000030991185905"
+        },
+        {
+          "token_id": 913,
+          "cdf_low": "0.35911058308052873",
+          "cdf_high": "0.3647724629231022",
+          "probability_decimal": "0.00566187984257347"
+        },
+        {
+          "token_id": 12736,
+          "cdf_low": "0.6164578756691166",
+          "cdf_high": "0.6232886533097226",
+          "probability_decimal": "0.0068307776406060"
+        },
+        {
+          "token_id": 7437,
+          "cdf_low": "0.5763258646105504",
+          "cdf_high": "0.5928437590768715",
+          "probability_decimal": "0.0165178944663211"
+        },
+        {
+          "token_id": 4105,
+          "cdf_low": "0.8736467604658098",
+          "cdf_high": "0.8737456114764507",
+          "probability_decimal": "0.0000988510106409"
+        },
+        {
+          "token_id": 5721,
+          "cdf_low": "0.7282390272736946",
+          "cdf_high": "0.8247150655463668",
+          "probability_decimal": "0.0964760382726722"
+        },
+        {
+          "token_id": 11,
+          "cdf_low": "0.11666293628535673",
+          "cdf_high": "0.22649283026323955",
+          "probability_decimal": "0.10982989397788282"
+        },
+        {
+          "token_id": 902,
+          "cdf_low": "0.41327154281538436",
+          "cdf_high": "0.43352031966259996",
+          "probability_decimal": "0.02024877684721560"
+        }
+      ],
+      "surprisal_bits": 129.5896126477931,
+      "elapsed_seconds": 2.980951740872115,
+      "context_trim_calls": 0,
+      "rejected_stop_count": 0,
+      "decimal_precision": 79
+    },
+    "fixed_endpoint": {
+      "status": "complete",
+      "error": null,
+      "token_ids": [
+        4531,
+        11615,
+        431,
+        7072,
+        294,
+        39712,
+        68,
+        328,
+        56188,
+        13,
+        1260,
+        686,
+        2118,
+        279,
+        4361,
+        4531
+      ],
+      "tokens": 16,
+      "cover_text": "John Cohen will be the producer of Rovios self financed film Les Roes d IXe Saison. He will direct the whole film",
+      "text_sha256": "477a83d637578ea8cf178eb524e376dae70c65d184209b59ed8e2ce3d74c5044",
+      "context_token_ids": [
+        13079,
+        31096,
+        686,
+        387,
+        279,
+        16851,
+        315,
+        431,
+        859,
+        3530,
+        656,
+        69664
+      ],
+      "visible_token_ids": [
+        13079,
+        31096,
+        686,
+        387,
+        279,
+        16851,
+        315,
+        431,
+        859,
+        3530,
+        656,
+        69664,
+        4531,
+        11615,
+        431,
+        7072,
+        294,
+        39712,
+        68,
+        328,
+        56188,
+        13,
+        1260,
+        686,
+        2118,
+        279,
+        4361,
+        4531
+      ],
+      "visible_continuation_token_ids": [
+        4531,
+        11615,
+        431,
+        7072,
+        294,
+        39712,
+        68,
+        328,
+        56188,
+        13,
+        1260,
+        686,
+        2118,
+        279,
+        4361,
+        4531
+      ],
+      "prompt_prefix_matches": true,
+      "canonical_text_roundtrip": true,
+      "chosen_probabilities": [
+        0.12838894987619603,
+        0.0005233975560212,
+        0.00767086430423458,
+        0.0137687791701117,
+        0.026014766044306,
+        1.4636043669e-06,
+        0.06191797970636539,
+        0.0024169954678267,
+        0.39138612030088926,
+        0.1659367362034845,
+        0.08879825076366807,
+        0.3630689117024447,
+        0.1300954128085885,
+        0.41297994523354525,
+        0.0018296052536215,
+        0.5216092527822989
+      ],
+      "interval_observations": [
+        {
+          "token_id": 4531,
+          "cdf_low": "0.1597829344973703",
+          "cdf_high": "0.28817188437356633",
+          "probability_decimal": "0.12838894987619603"
+        },
+        {
+          "token_id": 11615,
+          "cdf_low": "0.7938749866769974",
+          "cdf_high": "0.7943983842330186",
+          "probability_decimal": "0.0005233975560212"
+        },
+        {
+          "token_id": 431,
+          "cdf_low": "0.25387268882761915",
+          "cdf_high": "0.26154355313185373",
+          "probability_decimal": "0.00767086430423458"
+        },
+        {
+          "token_id": 7072,
+          "cdf_low": "0.654423552334339",
+          "cdf_high": "0.6681923315044507",
+          "probability_decimal": "0.0137687791701117"
+        },
+        {
+          "token_id": 294,
+          "cdf_low": "0.4912007630145993",
+          "cdf_high": "0.5172155290589053",
+          "probability_decimal": "0.0260147660443060"
+        },
+        {
+          "token_id": 39712,
+          "cdf_low": "0.9932316552196252",
+          "cdf_high": "0.9932331188239921",
+          "probability_decimal": "0.0000014636043669"
+        },
+        {
+          "token_id": 68,
+          "cdf_low": "0.13953325666392963",
+          "cdf_high": "0.20145123637029502",
+          "probability_decimal": "0.06191797970636539"
+        },
+        {
+          "token_id": 328,
+          "cdf_low": "0.5501089030238152",
+          "cdf_high": "0.5525258984916419",
+          "probability_decimal": "0.0024169954678267"
+        },
+        {
+          "token_id": 56188,
+          "cdf_low": "0.0",
+          "cdf_high": "0.39138612030088926",
+          "probability_decimal": "0.39138612030088926"
+        },
+        {
+          "token_id": 13,
+          "cdf_low": "0.2675973088841621",
+          "cdf_high": "0.4335340450876466",
+          "probability_decimal": "0.1659367362034845"
+        },
+        {
+          "token_id": 1260,
+          "cdf_low": "0.22306427045563457",
+          "cdf_high": "0.31186252121930264",
+          "probability_decimal": "0.08879825076366807"
+        },
+        {
+          "token_id": 686,
+          "cdf_low": "0.0",
+          "cdf_high": "0.3630689117024447",
+          "probability_decimal": "0.3630689117024447"
+        },
+        {
+          "token_id": 2118,
+          "cdf_low": "0.4063365707527604",
+          "cdf_high": "0.5364319835613489",
+          "probability_decimal": "0.1300954128085885"
+        },
+        {
+          "token_id": 279,
+          "cdf_low": "0.0",
+          "cdf_high": "0.41297994523354525",
+          "probability_decimal": "0.41297994523354525"
+        },
+        {
+          "token_id": 4361,
+          "cdf_low": "0.8252458742851703",
+          "cdf_high": "0.8270754795387918",
+          "probability_decimal": "0.0018296052536215"
+        },
+        {
+          "token_id": 4531,
+          "cdf_low": "0.0",
+          "cdf_high": "0.5216092527822989",
+          "probability_decimal": "0.5216092527822989"
+        }
+      ],
+      "surprisal_bits": 87.57376342489307,
+      "elapsed_seconds": 3.029474935028702,
+      "context_trim_calls": 0,
+      "rejected_stop_count": 0,
+      "decimal_precision": 476,
+      "requested_tokens": 16
+    }
+  },
+  "natural_controls": {
+    "unverified": {
+      "status": "complete",
+      "error": null,
+      "token_ids": [
+        4531,
+        21131,
+        369,
+        264,
+        7679,
+        13,
+        21131,
+        1752,
+        362,
+        7679,
+        374,
+        264,
+        3364,
+        911,
+        264,
+        883
+      ],
+      "tokens": 16,
+      "cover_text": "John Cohen will be the producer of Rovios self financed film Looking for a Star. Looking For A Star is a story about a man",
+      "text_sha256": "5787cbddd895bc94c5101a32988a8aff0e5521ec420a9721da3dfc56fccf2b4e",
+      "context_token_ids": [
+        13079,
+        31096,
+        686,
+        387,
+        279,
+        16851,
+        315,
+        431,
+        859,
+        3530,
+        656,
+        69664
+      ],
+      "visible_token_ids": [
+        13079,
+        31096,
+        686,
+        387,
+        279,
+        16851,
+        315,
+        431,
+        859,
+        3530,
+        656,
+        69664,
+        4531,
+        21131,
+        369,
+        264,
+        7679,
+        13,
+        21131,
+        1752,
+        362,
+        7679,
+        374,
+        264,
+        3364,
+        911,
+        264,
+        883
+      ],
+      "visible_continuation_token_ids": [
+        4531,
+        21131,
+        369,
+        264,
+        7679,
+        13,
+        21131,
+        1752,
+        362,
+        7679,
+        374,
+        264,
+        3364,
+        911,
+        264,
+        883
+      ],
+      "prompt_prefix_matches": true,
+      "canonical_text_roundtrip": true,
+      "chosen_probabilities": [
+        0.12838894987619603,
+        8.82800127574e-05,
+        0.3685185095033552,
+        0.08422254698941412,
+        0.00318441626217615,
+        0.17808377263337644,
+        0.0094971238711605,
+        0.0467813615999316,
+        0.5037346343385851,
+        0.9802413621655574,
+        0.52676142826209,
+        0.5617804611708784,
+        0.06171861668967577,
+        0.47146419991936056,
+        0.39866798995419617,
+        0.09570049128808852
+      ],
+      "interval_observations": [
+        {
+          "token_id": 4531,
+          "cdf_low": "0.1597829344973703",
+          "cdf_high": "0.28817188437356633",
+          "probability_decimal": "0.12838894987619603"
+        },
+        {
+          "token_id": 21131,
+          "cdf_low": "0.8767665951492434",
+          "cdf_high": "0.8768548751620008",
+          "probability_decimal": "0.0000882800127574"
+        },
+        {
+          "token_id": 369,
+          "cdf_low": "0.0",
+          "cdf_high": "0.3685185095033552",
+          "probability_decimal": "0.3685185095033552"
+        },
+        {
+          "token_id": 264,
+          "cdf_low": "0.08940119655295078",
+          "cdf_high": "0.1736237435423649",
+          "probability_decimal": "0.08422254698941412"
+        },
+        {
+          "token_id": 7679,
+          "cdf_low": "0.35547457446968905",
+          "cdf_high": "0.3586589907318652",
+          "probability_decimal": "0.00318441626217615"
+        },
+        {
+          "token_id": 13,
+          "cdf_low": "0.28326815996547416",
+          "cdf_high": "0.4613519325988506",
+          "probability_decimal": "0.17808377263337644"
+        },
+        {
+          "token_id": 21131,
+          "cdf_low": "0.6766082695513768",
+          "cdf_high": "0.6861053934225373",
+          "probability_decimal": "0.0094971238711605"
+        },
+        {
+          "token_id": 1752,
+          "cdf_low": "0.9386006060647144",
+          "cdf_high": "0.985381967664646",
+          "probability_decimal": "0.0467813615999316"
+        },
+        {
+          "token_id": 362,
+          "cdf_low": "0.0",
+          "cdf_high": "0.5037346343385851",
+          "probability_decimal": "0.5037346343385851"
+        },
+        {
+          "token_id": 7679,
+          "cdf_low": "0.0",
+          "cdf_high": "0.9802413621655574",
+          "probability_decimal": "0.9802413621655574"
+        },
+        {
+          "token_id": 374,
+          "cdf_low": "0.0",
+          "cdf_high": "0.52676142826209",
+          "probability_decimal": "0.52676142826209"
+        },
+        {
+          "token_id": 264,
+          "cdf_low": "0.0",
+          "cdf_high": "0.5617804611708784",
+          "probability_decimal": "0.5617804611708784"
+        },
+        {
+          "token_id": 3364,
+          "cdf_low": "0.14277602219480903",
+          "cdf_high": "0.2044946388844848",
+          "probability_decimal": "0.06171861668967577"
+        },
+        {
+          "token_id": 911,
+          "cdf_low": "0.0",
+          "cdf_high": "0.47146419991936056",
+          "probability_decimal": "0.47146419991936056"
+        },
+        {
+          "token_id": 264,
+          "cdf_low": "0.0",
+          "cdf_high": "0.39866798995419617",
+          "probability_decimal": "0.39866798995419617"
+        },
+        {
+          "token_id": 883,
+          "cdf_low": "0.20211278735874288",
+          "cdf_high": "0.2978132786468314",
+          "probability_decimal": "0.09570049128808852"
+        }
+      ],
+      "surprisal_bits": 55.94890050815845,
+      "elapsed_seconds": 3.012364255031571,
+      "context_trim_calls": 0,
+      "rejected_stop_count": 0,
+      "decimal_precision": 79,
+      "requested_tokens": 16,
+      "elapsed_scope": "Time of the full shared natural stream, not this prefix",
+      "sampling_bits_per_token": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64
+      ]
+    },
+    "verified": {
+      "status": "complete",
+      "error": null,
+      "token_ids": [
+        4531,
+        21131,
+        369,
+        264,
+        7679,
+        13,
+        21131,
+        1752,
+        362,
+        7679,
+        374,
+        264,
+        3364,
+        911,
+        264,
+        883
+      ],
+      "tokens": 16,
+      "cover_text": "John Cohen will be the producer of Rovios self financed film Looking for a Star. Looking For A Star is a story about a man",
+      "text_sha256": "5787cbddd895bc94c5101a32988a8aff0e5521ec420a9721da3dfc56fccf2b4e",
+      "context_token_ids": [
+        13079,
+        31096,
+        686,
+        387,
+        279,
+        16851,
+        315,
+        431,
+        859,
+        3530,
+        656,
+        69664
+      ],
+      "visible_token_ids": [
+        13079,
+        31096,
+        686,
+        387,
+        279,
+        16851,
+        315,
+        431,
+        859,
+        3530,
+        656,
+        69664,
+        4531,
+        21131,
+        369,
+        264,
+        7679,
+        13,
+        21131,
+        1752,
+        362,
+        7679,
+        374,
+        264,
+        3364,
+        911,
+        264,
+        883
+      ],
+      "visible_continuation_token_ids": [
+        4531,
+        21131,
+        369,
+        264,
+        7679,
+        13,
+        21131,
+        1752,
+        362,
+        7679,
+        374,
+        264,
+        3364,
+        911,
+        264,
+        883
+      ],
+      "prompt_prefix_matches": true,
+      "canonical_text_roundtrip": true,
+      "chosen_probabilities": [
+        0.12838894987619603,
+        8.82800127574e-05,
+        0.3685185095033552,
+        0.08422254698941412,
+        0.00318441626217615,
+        0.17808377263337644,
+        0.0094971238711605,
+        0.0467813615999316,
+        0.5037346343385851,
+        0.9802413621655574,
+        0.52676142826209,
+        0.5617804611708784,
+        0.06171861668967577,
+        0.47146419991936056,
+        0.39866798995419617,
+        0.09570049128808852
+      ],
+      "interval_observations": [
+        {
+          "token_id": 4531,
+          "cdf_low": "0.1597829344973703",
+          "cdf_high": "0.28817188437356633",
+          "probability_decimal": "0.12838894987619603"
+        },
+        {
+          "token_id": 21131,
+          "cdf_low": "0.8767665951492434",
+          "cdf_high": "0.8768548751620008",
+          "probability_decimal": "0.0000882800127574"
+        },
+        {
+          "token_id": 369,
+          "cdf_low": "0.0",
+          "cdf_high": "0.3685185095033552",
+          "probability_decimal": "0.3685185095033552"
+        },
+        {
+          "token_id": 264,
+          "cdf_low": "0.08940119655295078",
+          "cdf_high": "0.1736237435423649",
+          "probability_decimal": "0.08422254698941412"
+        },
+        {
+          "token_id": 7679,
+          "cdf_low": "0.35547457446968905",
+          "cdf_high": "0.3586589907318652",
+          "probability_decimal": "0.00318441626217615"
+        },
+        {
+          "token_id": 13,
+          "cdf_low": "0.28326815996547416",
+          "cdf_high": "0.4613519325988506",
+          "probability_decimal": "0.17808377263337644"
+        },
+        {
+          "token_id": 21131,
+          "cdf_low": "0.6766082695513768",
+          "cdf_high": "0.6861053934225373",
+          "probability_decimal": "0.0094971238711605"
+        },
+        {
+          "token_id": 1752,
+          "cdf_low": "0.9386006060647144",
+          "cdf_high": "0.985381967664646",
+          "probability_decimal": "0.0467813615999316"
+        },
+        {
+          "token_id": 362,
+          "cdf_low": "0.0",
+          "cdf_high": "0.5037346343385851",
+          "probability_decimal": "0.5037346343385851"
+        },
+        {
+          "token_id": 7679,
+          "cdf_low": "0.0",
+          "cdf_high": "0.9802413621655574",
+          "probability_decimal": "0.9802413621655574"
+        },
+        {
+          "token_id": 374,
+          "cdf_low": "0.0",
+          "cdf_high": "0.52676142826209",
+          "probability_decimal": "0.52676142826209"
+        },
+        {
+          "token_id": 264,
+          "cdf_low": "0.0",
+          "cdf_high": "0.5617804611708784",
+          "probability_decimal": "0.5617804611708784"
+        },
+        {
+          "token_id": 3364,
+          "cdf_low": "0.14277602219480903",
+          "cdf_high": "0.2044946388844848",
+          "probability_decimal": "0.06171861668967577"
+        },
+        {
+          "token_id": 911,
+          "cdf_low": "0.0",
+          "cdf_high": "0.47146419991936056",
+          "probability_decimal": "0.47146419991936056"
+        },
+        {
+          "token_id": 264,
+          "cdf_low": "0.0",
+          "cdf_high": "0.39866798995419617",
+          "probability_decimal": "0.39866798995419617"
+        },
+        {
+          "token_id": 883,
+          "cdf_low": "0.20211278735874288",
+          "cdf_high": "0.2978132786468314",
+          "probability_decimal": "0.09570049128808852"
+        }
+      ],
+      "surprisal_bits": 55.94890050815845,
+      "elapsed_seconds": 3.012364255031571,
+      "context_trim_calls": 0,
+      "rejected_stop_count": 0,
+      "decimal_precision": 79,
+      "requested_tokens": 16,
+      "elapsed_scope": "Time of the full shared natural stream, not this prefix",
+      "sampling_bits_per_token": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64
+      ]
+    },
+    "fixed_endpoint": {
+      "status": "complete",
+      "error": null,
+      "token_ids": [
+        4531,
+        21131,
+        369,
+        264,
+        7679,
+        13,
+        21131,
+        1752,
+        362,
+        7679,
+        374,
+        264,
+        3364,
+        911,
+        264,
+        883
+      ],
+      "tokens": 16,
+      "cover_text": "John Cohen will be the producer of Rovios self financed film Looking for a Star. Looking For A Star is a story about a man",
+      "text_sha256": "5787cbddd895bc94c5101a32988a8aff0e5521ec420a9721da3dfc56fccf2b4e",
+      "context_token_ids": [
+        13079,
+        31096,
+        686,
+        387,
+        279,
+        16851,
+        315,
+        431,
+        859,
+        3530,
+        656,
+        69664
+      ],
+      "visible_token_ids": [
+        13079,
+        31096,
+        686,
+        387,
+        279,
+        16851,
+        315,
+        431,
+        859,
+        3530,
+        656,
+        69664,
+        4531,
+        21131,
+        369,
+        264,
+        7679,
+        13,
+        21131,
+        1752,
+        362,
+        7679,
+        374,
+        264,
+        3364,
+        911,
+        264,
+        883
+      ],
+      "visible_continuation_token_ids": [
+        4531,
+        21131,
+        369,
+        264,
+        7679,
+        13,
+        21131,
+        1752,
+        362,
+        7679,
+        374,
+        264,
+        3364,
+        911,
+        264,
+        883
+      ],
+      "prompt_prefix_matches": true,
+      "canonical_text_roundtrip": true,
+      "chosen_probabilities": [
+        0.12838894987619603,
+        8.82800127574e-05,
+        0.3685185095033552,
+        0.08422254698941412,
+        0.00318441626217615,
+        0.17808377263337644,
+        0.0094971238711605,
+        0.0467813615999316,
+        0.5037346343385851,
+        0.9802413621655574,
+        0.52676142826209,
+        0.5617804611708784,
+        0.06171861668967577,
+        0.47146419991936056,
+        0.39866798995419617,
+        0.09570049128808852
+      ],
+      "interval_observations": [
+        {
+          "token_id": 4531,
+          "cdf_low": "0.1597829344973703",
+          "cdf_high": "0.28817188437356633",
+          "probability_decimal": "0.12838894987619603"
+        },
+        {
+          "token_id": 21131,
+          "cdf_low": "0.8767665951492434",
+          "cdf_high": "0.8768548751620008",
+          "probability_decimal": "0.0000882800127574"
+        },
+        {
+          "token_id": 369,
+          "cdf_low": "0.0",
+          "cdf_high": "0.3685185095033552",
+          "probability_decimal": "0.3685185095033552"
+        },
+        {
+          "token_id": 264,
+          "cdf_low": "0.08940119655295078",
+          "cdf_high": "0.1736237435423649",
+          "probability_decimal": "0.08422254698941412"
+        },
+        {
+          "token_id": 7679,
+          "cdf_low": "0.35547457446968905",
+          "cdf_high": "0.3586589907318652",
+          "probability_decimal": "0.00318441626217615"
+        },
+        {
+          "token_id": 13,
+          "cdf_low": "0.28326815996547416",
+          "cdf_high": "0.4613519325988506",
+          "probability_decimal": "0.17808377263337644"
+        },
+        {
+          "token_id": 21131,
+          "cdf_low": "0.6766082695513768",
+          "cdf_high": "0.6861053934225373",
+          "probability_decimal": "0.0094971238711605"
+        },
+        {
+          "token_id": 1752,
+          "cdf_low": "0.9386006060647144",
+          "cdf_high": "0.985381967664646",
+          "probability_decimal": "0.0467813615999316"
+        },
+        {
+          "token_id": 362,
+          "cdf_low": "0.0",
+          "cdf_high": "0.5037346343385851",
+          "probability_decimal": "0.5037346343385851"
+        },
+        {
+          "token_id": 7679,
+          "cdf_low": "0.0",
+          "cdf_high": "0.9802413621655574",
+          "probability_decimal": "0.9802413621655574"
+        },
+        {
+          "token_id": 374,
+          "cdf_low": "0.0",
+          "cdf_high": "0.52676142826209",
+          "probability_decimal": "0.52676142826209"
+        },
+        {
+          "token_id": 264,
+          "cdf_low": "0.0",
+          "cdf_high": "0.5617804611708784",
+          "probability_decimal": "0.5617804611708784"
+        },
+        {
+          "token_id": 3364,
+          "cdf_low": "0.14277602219480903",
+          "cdf_high": "0.2044946388844848",
+          "probability_decimal": "0.06171861668967577"
+        },
+        {
+          "token_id": 911,
+          "cdf_low": "0.0",
+          "cdf_high": "0.47146419991936056",
+          "probability_decimal": "0.47146419991936056"
+        },
+        {
+          "token_id": 264,
+          "cdf_low": "0.0",
+          "cdf_high": "0.39866798995419617",
+          "probability_decimal": "0.39866798995419617"
+        },
+        {
+          "token_id": 883,
+          "cdf_low": "0.20211278735874288",
+          "cdf_high": "0.2978132786468314",
+          "probability_decimal": "0.09570049128808852"
+        }
+      ],
+      "surprisal_bits": 55.94890050815845,
+      "elapsed_seconds": 3.012364255031571,
+      "context_trim_calls": 0,
+      "rejected_stop_count": 0,
+      "decimal_precision": 79,
+      "requested_tokens": 16,
+      "elapsed_scope": "Time of the full shared natural stream, not this prefix",
+      "sampling_bits_per_token": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64
+      ]
+    }
+  },
+  "receivers": {
+    "unverified": {
+      "ids": {
+        "status": "complete",
+        "recovery_match": true,
+        "public_probabilities_match_sender": true,
+        "public_surprisal_bits": 129.5896126477931,
+        "elapsed_seconds": 3.16201808094047,
+        "execution": "fresh upstream receiver and model stepper"
+      },
+      "text": {
+        "status": "complete",
+        "recovery_match": true,
+        "public_probabilities_match_sender": true,
+        "public_surprisal_bits": 129.5896126477931,
+        "elapsed_seconds": 3.16201808094047,
+        "execution": "same verified receiver input as ids"
+      }
+    },
+    "verified": {
+      "ids": {
+        "status": "complete",
+        "recovery_match": true,
+        "public_probabilities_match_sender": true,
+        "public_surprisal_bits": 129.5896126477931,
+        "elapsed_seconds": 2.955904590897262,
+        "execution": "fresh upstream receiver and model stepper"
+      },
+      "text": {
+        "status": "complete",
+        "recovery_match": true,
+        "public_probabilities_match_sender": true,
+        "public_surprisal_bits": 129.5896126477931,
+        "elapsed_seconds": 2.955904590897262,
+        "execution": "same verified receiver input as ids"
+      }
+    },
+    "fixed_endpoint": {
+      "ids": {
+        "status": "complete",
+        "recovery_match": false,
+        "public_probabilities_match_sender": true,
+        "public_surprisal_bits": 87.57376342489307,
+        "elapsed_seconds": 2.9872231089975685,
+        "execution": "fresh upstream receiver and model stepper"
+      },
+      "text": {
+        "status": "complete",
+        "recovery_match": false,
+        "public_probabilities_match_sender": true,
+        "public_surprisal_bits": 87.57376342489307,
+        "elapsed_seconds": 2.9872231089975685,
+        "execution": "same verified receiver input as ids"
+      }
+    }
+  },
+  "manifest_sha256": "10f2993e31449f4cbb8c14ae717eb65e16139a1f3c75038e16df0a04797000e3"
+}

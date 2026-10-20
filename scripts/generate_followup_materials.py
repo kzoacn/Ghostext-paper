@@ -124,7 +124,7 @@ def main():
                         markersize=3.5, label=series_label)
                 ax.fill_between(x, bounds[:, 0], bounds[:, 1], color=color, alpha=.13, linewidth=0)
             ax.set(title=f"{label}, B={bits}", ylabel="Recovery fraction",
-                   xlabel="Independent budget / N", ylim=(0, 1.03), xlim=(.97, 2.03))
+                   xlabel="Prescribed budget multiplier", ylim=(0, 1.03), xlim=(.97, 2.03))
             ax.set_xticks(x, ["1", "1.25", "1.5", "2"])
             ax.set_yticks([0, .25, .5, .75, 1])
             ax.grid(axis="y", color="#e3e3e3", linewidth=.5)

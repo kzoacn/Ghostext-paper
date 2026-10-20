@@ -1,0 +1,1413 @@
+{
+  "schema": "upstream-rrc-analysis-v1",
+  "pilot": false,
+  "planned_secret_instances": 160,
+  "observed_secret_instances": 160,
+  "manifest_sha256": "10f2993e31449f4cbb8c14ae717eb65e16139a1f3c75038e16df0a04797000e3",
+  "case_sha256": {
+    "c4_0052_b128_r0.json": "b048e2fe3d9077ce5ec8bbd70b5d21eff66de721ccf649567a99171afd6ae94a",
+    "c4_0052_b128_r1.json": "f18a6bb9e108185e8ba273aa8b5b4100feaa7087e03af79249232fd19c197bee",
+    "c4_0052_b128_r2.json": "50e4a40ac20806b6707c892ebd45c0a72e7d6af0c06d6ea98c83b018ccf9618c",
+    "c4_0052_b128_r3.json": "884529ae56d9295cde19591da01f023a8c8bffb2500f70cd6cae0dce3bb344d3",
+    "c4_0052_b512_r0.json": "7b61d9cb799775f06da3e1a2abe079d50dd3a0d305db70816a858a1e382fc2ac",
+    "c4_0052_b512_r1.json": "93979e1d56a984ae1f1b3bb6d55dcbdc57b1a88948caa7db9876d88941ad42f2",
+    "c4_0052_b512_r2.json": "ebf098dcd94aabfff450a610710c81777461e07385ce54e4454f23f8a4bc9c53",
+    "c4_0052_b512_r3.json": "0421da96f0e63bb0476bb3f8ca4f705adc49afb10d9d47103b6c735292988789",
+    "c4_0081_b128_r0.json": "3cb7d3091059052bf8b7ca99468cc7dec2c5a3f88e35ec570db4f27ed48aea6e",
+    "c4_0081_b128_r1.json": "549771f359220cdfa57b7168e3c05ca193367b3dcb5f2191e79d49f3b6ca7acd",
+    "c4_0081_b128_r2.json": "f1d82a036974087549cbae724b509ba0afa7a4735369d17ace69e552073b5b52",
+    "c4_0081_b128_r3.json": "34e2b0278a05c63ab6d58786ef00b9cdee80bc6ca626230bd5959b7c3421351e",
+    "c4_0081_b512_r0.json": "236b3ce0e63ac85565b96c877695920741b3b9279b63461118de5c7fb0507265",
+    "c4_0081_b512_r1.json": "b97c8ea27b7bed0a85e112641eeb08e6e4ac4c76dc7d49217c743aa2fd91a030",
+    "c4_0081_b512_r2.json": "ed0559fb0d8bb42a493d7dd7e26c764e3f2f3147cee0c4ba2a899d6f93d9de79",
+    "c4_0081_b512_r3.json": "135f4f7deed604e0e8a6ead5cfe8ab01bf77e61092a220369d7bae305acd0c4d",
+    "c4_0092_b128_r0.json": "8828810b5ce6d91342b7807aa6e4d2aea8ce3b375ccb4b19580d37369ace4d93",
+    "c4_0092_b128_r1.json": "8dc1052af7d4ed5207e653c71b139208916b45574766588c8662afbbd6c149b1",
+    "c4_0092_b128_r2.json": "cef1e7e7f2857d26cc43386495a4dcd72c6879681f42cc9e7fdb4dd4a7ebd5f1",
+    "c4_0092_b128_r3.json": "cd8d3328f6dfc2a74917fd829adaeb28f9bf062bdf2aa171bedacd6dd1ef1aac",
+    "c4_0092_b512_r0.json": "6bbd9a8056cee0f72623dfd79f59dc5ff4a4afd21c4cb8d9ecf187d5d3dc7454",
+    "c4_0092_b512_r1.json": "8742289cb262b7f8b34dd553965396ec3a3bf515765fd4e7b0aab78b94fb539c",
+    "c4_0092_b512_r2.json": "4aa3c7b28d9124673a809a6b9dd483a1e4369672076b4c1d838d7cf561352ca0",
+    "c4_0092_b512_r3.json": "28aa39dcebcd465b3117cb72e45c82e10feef705a9fa3640295b3a3a6b237e3c",
+    "c4_0114_b128_r0.json": "ef4fbc1e276b6f39978390d13f913c43ebff7c44a6635ae38215830b0cb41810",
+    "c4_0114_b128_r1.json": "a8bab9c855b1cca8a175ddb6b9c4c455082a1aafd8b49dd2b2d9dc5f2455fbad",
+    "c4_0114_b128_r2.json": "919af487a87ded70f85b39a2d00ad24361959dc377f32bcf6ab84c7d6173c774",
+    "c4_0114_b128_r3.json": "7b537a48fe4de17bc7085c5ac47f935ad95a90ce0e188051db245d7f2b3dbe1d",
+    "c4_0114_b512_r0.json": "dbe6fe69c345cef00327db877fb69a98ec649354c3feeb203a446660533640e3",
+    "c4_0114_b512_r1.json": "bbfec203984f6c71a435696516b1e10163a142aaf26bb0368f1269ff88df539a",
+    "c4_0114_b512_r2.json": "85930269c004f50581db167f02f8fadff8eb79e650ad4471b974513328613ac6",
+    "c4_0114_b512_r3.json": "bf5da8df3633b6b0758ac6242e8a764a426080f9438eb8e9692cd0b5713717c1",
+    "c4_0203_b128_r0.json": "7b84f62191f3c94f0740a55c4c1a002e155148a44b04fb2cafe50df354e53306",
+    "c4_0203_b128_r1.json": "714d9fb79cc11872f400c6ff34d44f64e63a47e5d8646e7d49b3f4b3d61d0003",
+    "c4_0203_b128_r2.json": "d1644dd6a488d39de61da1d9370ec705c3b502b305325339405736989a3889bf",
+    "c4_0203_b128_r3.json": "f9e458f00a9369e8c851a8c8ee9e7e82050e5694dff57e67cdca574566a9e7f6",
+    "c4_0203_b512_r0.json": "829753b9775a6feddab472945bb64d085a5804bb40b36dd0c72fd828f7763e58",
+    "c4_0203_b512_r1.json": "ab4915e2bcdf3d9914bcd7273e3820f20528a6e4f75fd156e0669a03e715f917",
+    "c4_0203_b512_r2.json": "670618eeba93983b9a5d8353aba72c3a1800057175554810396bec48da132895",
+    "c4_0203_b512_r3.json": "cf71e7d3075313cdd6305d0e67ce280b58de7a048fdff8da369d79e951688b15",
+    "c4_0295_b128_r0.json": "5fdf06fffc00ff446ebe978f2efa16f81942b9d0e60102a4a56edc1e5a886e0a",
+    "c4_0295_b128_r1.json": "9b10173637d16025485ef943b7b613123bc738c6792ce606fccc192e50311e78",
+    "c4_0295_b128_r2.json": "113f0588817b0f087156b2dd95f37c405758903c1fc2309bc086346eb72730de",
+    "c4_0295_b128_r3.json": "88c46873d161e3787327c7c94a85b3fa449f42b8503d0ad0a61281fde1f5674b",
+    "c4_0295_b512_r0.json": "64d496a0d6c289e792c1c4b11e5624d6dc532ad61ae7b05a4d161cae5686f1da",
+    "c4_0295_b512_r1.json": "81b4b31fd23f3216aba2e44dba77114b3854877307a5342f2683a4e95d0505c3",
+    "c4_0295_b512_r2.json": "9b76e999e2c5b03cfd0970e2a5065078a97b158f4589a0a3aa002dba29132f6e",
+    "c4_0295_b512_r3.json": "36c47569a3c5426a8228624d916b99cc25e35dc5d09bff3089e30245fdc95d14",
+    "c4_0305_b128_r0.json": "09262bf824b088c5a78317628c8552969b617d7ad2367abf0a213e1e35671bfd",
+    "c4_0305_b128_r1.json": "2b6c191a2bb0f6d234eaa2a4df54a8cb1f1cb1ef0e057b0a3c9936749f1e1aba",
+    "c4_0305_b128_r2.json": "b41695808a04c110b62589b96d357b05c3fa44ed2b5bcb03098546ebbe76e535",
+    "c4_0305_b128_r3.json": "30ac888b96b51e6625fb4d0cf8d6de3f38ecd7ecdda94a3de18340841fb2bec3",
+    "c4_0305_b512_r0.json": "dd39753bab6d279eb5d80aabe18e238eea2ae50720ea692a48e5f659be888d2e",
+    "c4_0305_b512_r1.json": "cd8fa9f000ac6836439a8624dc922ab4244af3857e1146b364ef742d01f69683",
+    "c4_0305_b512_r2.json": "e1b03f6c954a5dbba7e7addc3687ed25978064e5242ea57484b2ffa58576a8d6",
+    "c4_0305_b512_r3.json": "cab407d385890c32a64d3d488f175c4a28540786b10701b459c47ee2ad755b36",
+    "c4_0401_b128_r0.json": "3261233a34481ce974022a4787461519c2d28132496af6a58b9dbc5e806418f0",
+    "c4_0401_b128_r1.json": "6cdaadd23ecc619beed241e654e14a2112f65dc6f51ea7f7409ac116f1f1e423",
+    "c4_0401_b128_r2.json": "72eb2b14c2334620bc99d2d8ca3cfe976923a2fdec54789c8038de698365ad90",
+    "c4_0401_b128_r3.json": "24af447cae46a77f0be79866daa82802b9d0efd7aaccc48f6769d4af5ce4e17e",
+    "c4_0401_b512_r0.json": "241eeb69c6d31a87d2789d492267f76a21d1b66cd0f63129155da82c64d660f3",
+    "c4_0401_b512_r1.json": "b50ac2af1adb791111c7f037f85a77249a14fb4ac5adf7029f42f811273666af",
+    "c4_0401_b512_r2.json": "cf7a294f468f47c6ce2060fbf7671bd32ff39303b5402168e326498a33af2693",
+    "c4_0401_b512_r3.json": "5dd7ca316236a76c57b670a308421b3fe30f03304d0a4a0d9cd0c8e9dbaa7358",
+    "c4_0455_b128_r0.json": "09a84cf976376e0fdbffd0ab9f3a2d9eabdb2f70f49abb2dcebf893fa7545e23",
+    "c4_0455_b128_r1.json": "5f66391725a8ce6408b61b1401943e922ae1c923fa22800cac9ec29a909ae645",
+    "c4_0455_b128_r2.json": "4c5c1945cfd08dbf09374ee64cdc217ca1c74c276fbe793bbd91fc44abe78f8c",
+    "c4_0455_b128_r3.json": "b58bb0994277d4fff89bc07cef260fd0a95c75ebae183e64dda5a05c3ef01550",
+    "c4_0455_b512_r0.json": "2bfd5c628a51711c58e7e95deec16a4951e5603e3106855f66ba218fb4ae6028",
+    "c4_0455_b512_r1.json": "ba486a75269f06453e0a1ee11ae45af0dfc9b5833642394d989eea5b61c6c1a1",
+    "c4_0455_b512_r2.json": "db14cc1b3d9ee64a40bf8fe57046a3c3763e86630f195817fa95616f761b0520",
+    "c4_0455_b512_r3.json": "328e37c1ef0cf1200c7bb9f6e78452f82015dbe26f27aaa7c88a274b6a2e033f",
+    "c4_0471_b128_r0.json": "77c70b0d62948610695484f478594c4788fde7117bc46a8c89eb6c6be97e1315",
+    "c4_0471_b128_r1.json": "57884d849f6683e1721c75726dd81d3cae032b8bd8d30bbfb23eed92c72e4192",
+    "c4_0471_b128_r2.json": "264095944a0b9d0ceba81d8bf43d33af89d000bb33a9faed79ed901c29686f05",
+    "c4_0471_b128_r3.json": "ca16366dae7a0e0768635cee4960ec1ab715e5efa96095254e5590898cbf2c3b",
+    "c4_0471_b512_r0.json": "7a526cda35af863e134cadf39cf90b91c49c4b8d54a87b3bbb77a5fea7c535db",
+    "c4_0471_b512_r1.json": "effabb2482124fc5cb7f83ba07efcfa94d1d5ec9db08002fd7b1535f4ee6daec",
+    "c4_0471_b512_r2.json": "2d026318f4fd70aefba1f9c1604168d1f43e06d05d87b5ca1d5127aad45038e5",
+    "c4_0471_b512_r3.json": "a3e6383002bc609799bc45d4ff10f59e407b5ce7ab9a5086b6c692bc51411b78",
+    "c4_0553_b128_r0.json": "c79cf0f1e406497b681e25291dba840806fc58dd69579cc2808353f1d551a14e",
+    "c4_0553_b128_r1.json": "899d511e484da120f46953fcf1b65d71490bcfa912c574cb61b6b8d943912b4f",
+    "c4_0553_b128_r2.json": "2ef96f0f84160023c02497e0043fd90825494f75a224510534715cd4bae5e078",
+    "c4_0553_b128_r3.json": "06d726026339948e24c1129529f9e841dadf86e757fc214bf8daf9b373553e1c",
+    "c4_0553_b512_r0.json": "d6d5894ff751c6bd05282b1b3ee48cad81c27c5355be84e17650ba8c568a2fc4",
+    "c4_0553_b512_r1.json": "dbcd6d6e894f01a9f25b7af898bd2192a0b22a7716a7e0babf1fc5d57c4ee056",
+    "c4_0553_b512_r2.json": "85f48ad459246640258123caefa2b4282adc59263ae9dd8ca9d7e4c20579b603",
+    "c4_0553_b512_r3.json": "2f2f64d7a4cc5498b0280093225f2b688aac4ff5cd474c1364eba2a0d2892cec",
+    "c4_0603_b128_r0.json": "30f77d8fb766a5cbbbfba41f885035915d030eaac47c0d5b691a551eb42e3ba8",
+    "c4_0603_b128_r1.json": "9d821e905dbf5105adf7ce666ee290df244fa8b5ef7fc3b8810f6dc37dd0a1ce",
+    "c4_0603_b128_r2.json": "6a9b2fa02d1f700d6a82444d0d3d8dd5a7e155d60e6a4052f2605e4c2404534a",
+    "c4_0603_b128_r3.json": "0018e79b932b49461fb9de08c2d733705e0d43d1936ebd1bfff18396ce983e7d",
+    "c4_0603_b512_r0.json": "a407a0335fcaa0b64f2a24952591ae480f45ce864373bf3e29df807652641ee6",
+    "c4_0603_b512_r1.json": "324a1df098adc3df66d659a4f0dcad40f77ed9c1a10d6403d718aec8e71e20d1",
+    "c4_0603_b512_r2.json": "3ee76920ec94fea95df14466a4f97ac50f536f70a94bfd6b039eddcf9127bad6",
+    "c4_0603_b512_r3.json": "d6929fac5b23f212a1ba8e7f5e7849f45c8cdb818c489ee0f78033a14afead10",
+    "c4_0612_b128_r0.json": "cf74e111fdfe94b7ff8f170e76e1c87e26175359131a2b39ae0c4b6e55785d7c",
+    "c4_0612_b128_r1.json": "0ebce308bc514aa6bff0d28ff78113c59f8e661b95b8409592d0bbcc744fed41",
+    "c4_0612_b128_r2.json": "8a02fb9a0b0b2f69f413ff8fdde04795590e68edc52abd184deea4f8cfeac7a1",
+    "c4_0612_b128_r3.json": "b5c36577cf252570a0a69eca02a7f16b9490372f912f5b3966c0ecc86882b400",
+    "c4_0612_b512_r0.json": "64384e13e41a36db57bf5fb2a8b329c110d493465713d645fe292916a1cfcbf7",
+    "c4_0612_b512_r1.json": "a7e6f65ae4d02f3cafc9ab821404e4e1e233e584d27307fa59aafa7444825bc9",
+    "c4_0612_b512_r2.json": "3ef7eb3523e8cc334e62323aa439f437a0aa75fcc844bf30154604d7a92f18d3",
+    "c4_0612_b512_r3.json": "465855cf8d03a56c714b124d8b191d3de3f8f67e461ec9f6ea9bdea4b7d8a44c",
+    "c4_0629_b128_r0.json": "0f36c864e46ad77a9effbc0007e707523e88fea1e2c0eec921f82c41a9108d2d",
+    "c4_0629_b128_r1.json": "bdc177e2c051c5fa358c3beed8ab27f3b15ea9b0828f6f56ff28431e248c0f67",
+    "c4_0629_b128_r2.json": "bde1f7a2830a96ccb13a481374c149f8c523c5a15445eb76e99ed9ce4c2b207c",
+    "c4_0629_b128_r3.json": "c1afd196f9da78af21bb8056eebf2c02c8dac25ade0e37823986b82c5424dd59",
+    "c4_0629_b512_r0.json": "f70f1772c6c461c3b7dd3378d5cb52d3942858c974e7da443323fbfbfb61e169",
+    "c4_0629_b512_r1.json": "d4aa4b4244fca54d46d77362b4e267ff689176e68347d9f837c5fab91b7fdb00",
+    "c4_0629_b512_r2.json": "a3d5d266ab6f25408cd0e18bd60e905066fda1f36d8487b05e43441223fb4c49",
+    "c4_0629_b512_r3.json": "1cf32ae49066c5017a922826b1806a714e6961727ddc2b582977d21c91c34599",
+    "c4_0672_b128_r0.json": "dd7b8b69a1469763195e0fedba5c0e222e0439f735c0cdac63120b55331d6193",
+    "c4_0672_b128_r1.json": "d57e60376ec9ad83f866ac35ff28d54658c8756419d8adaa11ac13b550d0db00",
+    "c4_0672_b128_r2.json": "42c29f460618fa677af5bfa93ea29a4ff51f70230486266e8e0f96173475e16b",
+    "c4_0672_b128_r3.json": "ab569d36c3cf64dd97bd38da5872469bbafa86817133d10e533a7b8e7cdd202c",
+    "c4_0672_b512_r0.json": "ff2a105fa056a0b0682d5eafaea12262cca32a8502d9f07cc705b883e57b947c",
+    "c4_0672_b512_r1.json": "9bd2b16bf6c3baa312196437ebfabf5ed538980b3cf843870382cbf3cadfb76b",
+    "c4_0672_b512_r2.json": "2302e19b70c57d9eca275446d9eeab273a1e270ebadec23c3632a89a748cd3df",
+    "c4_0672_b512_r3.json": "363074ffa087530d9e450a9b727199a3f9c4b80cc2274735708f47112f1cafb4",
+    "c4_0723_b128_r0.json": "78dde556c1eedcb9b975d791e8a99dea545bc24f2087406a90d8b825a026a59b",
+    "c4_0723_b128_r1.json": "5774cca7b694ef1b4ca8005a161a730ee60c2428c7858b2de15e20516b821535",
+    "c4_0723_b128_r2.json": "acfc1e1ff2c6529f93004dd25b68926ab5101837a32fc0bdd1745a4d96d796bb",
+    "c4_0723_b128_r3.json": "cc7323c0cd59707e4bb5551e68cb4910070a1a90220d34ca07488377f9e79d54",
+    "c4_0723_b512_r0.json": "d2fea9a6992a97cee9a915131471721cdccd81201b1bf78760dff60f3049bf8c",
+    "c4_0723_b512_r1.json": "8edf37fd17a7529c01e95d9bf912799731a539174a3eb7e4cc035fe08fad3308",
+    "c4_0723_b512_r2.json": "e230132bf45a302df4f945b5e8cb265b8969419c864227d71da28cf89792d241",
+    "c4_0723_b512_r3.json": "5d5d61caead4cb2791696e74c4d85a815cc670f6fe2ccf0bc7ca45dc195d9e87",
+    "c4_0725_b128_r0.json": "79737ee6a5448bf173e9843f9e940a73fbaa9d59d12e29d11f0602b4b5b93bec",
+    "c4_0725_b128_r1.json": "284333010ed1c7d85b11957762f2bf674abb09191e50a8e91a3f25f8c8916fe9",
+    "c4_0725_b128_r2.json": "fb027355346673980683922b440c0b12edd72ff3d5217ceb5d670cba3b218b61",
+    "c4_0725_b128_r3.json": "790c018f664b91ad1158e4bdd176b0c368a46f3312e3aaa8a87c95cf8be25beb",
+    "c4_0725_b512_r0.json": "d6294d6191f7e3739109e851a8325ad44ae7933baaac2f310d8b64142bbb322d",
+    "c4_0725_b512_r1.json": "22c6e41f62a587a3d8ce110ab936ddb69e04993a725ba2b858f5cf97628fe5e2",
+    "c4_0725_b512_r2.json": "b0d54af5a1684896c77bb048aa0ddf34da66c6cebef9a8a34ace0751e47784ff",
+    "c4_0725_b512_r3.json": "61c1e274e6e2de07f3398846a0402152bc8a103fe91400e33b376aaeee39aa63",
+    "c4_0731_b128_r0.json": "5cc7bc57a13c37e2cda3f90f03b45b2b4409e2c8cd6c47646173150ad5238c23",
+    "c4_0731_b128_r1.json": "d00e24f8bc7e310a996310d737db9b0453d1fafb2c0933ea64855bbe12d1681b",
+    "c4_0731_b128_r2.json": "9285ef966b01639e9fdcd7fee1dd033c2cb0db93bcfde35a0ddb002765e8315c",
+    "c4_0731_b128_r3.json": "148c3f775a20135797b69fd351ef1657884f60fff25f737ca240c87adcf88f64",
+    "c4_0731_b512_r0.json": "918550a42856974378c010bd052ed58bff33cfd302ea45798fc66d82ced8c4c8",
+    "c4_0731_b512_r1.json": "bd6506dac8ce8780f1f784462303eed460195ec1662c1985bd5e9587320112a9",
+    "c4_0731_b512_r2.json": "fc06b9cca61ecb2f3260b07ba709c9242ca62c825d176f161336653ae114efee",
+    "c4_0731_b512_r3.json": "77ff2122e1ed7b55470f6f415dee84dce038daa335c4cb76638cfd5200b7e256",
+    "c4_0798_b128_r0.json": "dbdb00de16936b695a5cec1cf33a1f199f6f8e7acad65793e9f0fcb329e939ef",
+    "c4_0798_b128_r1.json": "3092a9d43ace75835390b02bf66ce11b1e6532759b613b05fe896ea10b079f39",
+    "c4_0798_b128_r2.json": "87e68924696b4c30045e4365aba4892b681b292d0509970f68aa868f0de82c17",
+    "c4_0798_b128_r3.json": "c36ea40953ae9b2a73a2abb81b415649b918e59e011fd8b09359d974387dba88",
+    "c4_0798_b512_r0.json": "ab2ca3de9e704702574e1ae4973807275f0dc827747937fe8c62628dc5c2d95c",
+    "c4_0798_b512_r1.json": "91ab918335e59eb7409606512c6f0c59dfe5082c335cfdd369323673d26e5440",
+    "c4_0798_b512_r2.json": "8b25c845f37db2b35707568bc043925cb143244133b833dcf538a4435ab7b0e7",
+    "c4_0798_b512_r3.json": "c6e37d48039d115091b96aa3f5c5882ba638fa0c4722ada0517847c062a55c93",
+    "c4_0857_b128_r0.json": "8be0dfe1897635497578f26959a05dcbece1a1725ef7becfd49a1a830128923d",
+    "c4_0857_b128_r1.json": "59bf98039e09fd8cf428bfcb627be3b9625001939bad78bc16e430b29627edde",
+    "c4_0857_b128_r2.json": "e0145a9268473bbba0ecab8adaf9282a433223de91178d6a4c68ee8db5d00475",
+    "c4_0857_b128_r3.json": "b59b99795f1c8ed24d4031ec8bfd6ff51bfa12c3523451e9797205e22bc86e52",
+    "c4_0857_b512_r0.json": "753941ab6dcf3aad00c499062b6003a02f0eeb901c9164a68b96af236626011d",
+    "c4_0857_b512_r1.json": "85efcdbf1432f4fe9d6b21351c8a34ba8bdefbfa7cd8ba67bac5d382f3e7874d",
+    "c4_0857_b512_r2.json": "465c92fc8a4f1726d4d940d9a1a4d53358932a2647e049d9581aa5c2438db167",
+    "c4_0857_b512_r3.json": "b76e21f86759f2b149236095d2c996c1029572213d484c096f1d0bb2fa9d06b1"
+  },
+  "score": "-abs(public Decimal-boundary-source surprisal - known B)",
+  "threshold": "higher 95th percentile of development natural scores; strict greater",
+  "bootstrap_repetitions": 5000,
+  "bootstrap_seed": 20261026,
+  "scope": "Unchanged upstream embed/extract functions for stopping variants; separate fixed-endpoint and rational natural samplers. Known B/model/prompt. All stage outputs and failures retained; no cryptographic PRNG claim.",
+  "selection_caveat": "Primary text-channel analyses condition on complete canonical matched pairs. Recovered sensitivity is a further selection. Fixed-endpoint primary retains failed recovery.",
+  "variants": {
+    "unverified": {
+      "generation_statuses": {
+        "complete": 160
+      },
+      "natural_statuses": {
+        "complete": 160
+      },
+      "canonical_generated": 125,
+      "id_receiver_successes": 154,
+      "text_receiver_successes": 120,
+      "vetoed_candidate_stops": 0,
+      "instances_with_vetoes": 0,
+      "complete_canonical_matched_pairs": 112,
+      "by_message_bits": {
+        "128": {
+          "primary": {
+            "development_pairs": 34,
+            "test_pairs": 38,
+            "estimable": true,
+            "auc": 0.9813019390581718,
+            "auc_prompt_cluster_95": [
+              0.9567901234567902,
+              0.9975
+            ],
+            "length_only_auc": 0.5,
+            "threshold": -2.8672870479865935,
+            "test_tpr": 0.631578947368421,
+            "test_fpr": 0.0,
+            "test_tpr_wilson_95": [
+              0.47283959557009003,
+              0.7661578075284404
+            ],
+            "test_fpr_wilson_95": [
+              0,
+              0.09180986822558396
+            ],
+            "test_tpr_prompt_cluster_95": [
+              0.5128205128205128,
+              0.7692307692307693
+            ],
+            "test_fpr_prompt_cluster_95": [
+              0.0,
+              0.0
+            ],
+            "test_prompt_ids": [
+              "c4_0052",
+              "c4_0203",
+              "c4_0295",
+              "c4_0401",
+              "c4_0455",
+              "c4_0629",
+              "c4_0672",
+              "c4_0723",
+              "c4_0798",
+              "c4_0857"
+            ],
+            "by_test_prompt": {
+              "c4_0052": {
+                "pairs": 4,
+                "auc": 1.0,
+                "tpr": 0.75,
+                "fpr": 0.0
+              },
+              "c4_0203": {
+                "pairs": 4,
+                "auc": 1.0,
+                "tpr": 0.5,
+                "fpr": 0.0
+              },
+              "c4_0295": {
+                "pairs": 3,
+                "auc": 1.0,
+                "tpr": 1.0,
+                "fpr": 0.0
+              },
+              "c4_0401": {
+                "pairs": 4,
+                "auc": 1.0,
+                "tpr": 0.5,
+                "fpr": 0.0
+              },
+              "c4_0455": {
+                "pairs": 4,
+                "auc": 1.0,
+                "tpr": 0.5,
+                "fpr": 0.0
+              },
+              "c4_0629": {
+                "pairs": 4,
+                "auc": 1.0,
+                "tpr": 0.75,
+                "fpr": 0.0
+              },
+              "c4_0672": {
+                "pairs": 4,
+                "auc": 1.0,
+                "tpr": 1.0,
+                "fpr": 0.0
+              },
+              "c4_0723": {
+                "pairs": 3,
+                "auc": 0.8888888888888888,
+                "tpr": 0.3333333333333333,
+                "fpr": 0.0
+              },
+              "c4_0798": {
+                "pairs": 4,
+                "auc": 1.0,
+                "tpr": 0.5,
+                "fpr": 0.0
+              },
+              "c4_0857": {
+                "pairs": 4,
+                "auc": 1.0,
+                "tpr": 0.5,
+                "fpr": 0.0
+              }
+            },
+            "interval_scope": "Prompt-cluster resampling conditional on eligibility and development threshold."
+          },
+          "recovered_only_sensitivity": {
+            "development_pairs": 34,
+            "test_pairs": 35,
+            "estimable": true,
+            "auc": 0.9779591836734693,
+            "auc_prompt_cluster_95": [
+              0.9541509819690744,
+              0.9969135802469136
+            ],
+            "length_only_auc": 0.5,
+            "threshold": -2.8672870479865935,
+            "test_tpr": 0.6,
+            "test_fpr": 0.0,
+            "test_tpr_wilson_95": [
+              0.435727090128925,
+              0.7444927114061941
+            ],
+            "test_fpr_wilson_95": [
+              6.938893903907228e-18,
+              0.09890099232440402
+            ],
+            "test_tpr_prompt_cluster_95": [
+              0.45454545454545453,
+              0.7428571428571429
+            ],
+            "test_fpr_prompt_cluster_95": [
+              0.0,
+              0.0
+            ],
+            "test_prompt_ids": [
+              "c4_0052",
+              "c4_0203",
+              "c4_0295",
+              "c4_0401",
+              "c4_0455",
+              "c4_0629",
+              "c4_0672",
+              "c4_0723",
+              "c4_0798",
+              "c4_0857"
+            ],
+            "by_test_prompt": {
+              "c4_0052": {
+                "pairs": 4,
+                "auc": 1.0,
+                "tpr": 0.75,
+                "fpr": 0.0
+              },
+              "c4_0203": {
+                "pairs": 4,
+                "auc": 1.0,
+                "tpr": 0.5,
+                "fpr": 0.0
+              },
+              "c4_0295": {
+                "pairs": 3,
+                "auc": 1.0,
+                "tpr": 1.0,
+                "fpr": 0.0
+              },
+              "c4_0401": {
+                "pairs": 2,
+                "auc": 1.0,
+                "tpr": 0.0,
+                "fpr": 0.0
+              },
+              "c4_0455": {
+                "pairs": 4,
+                "auc": 1.0,
+                "tpr": 0.5,
+                "fpr": 0.0
+              },
+              "c4_0629": {
+                "pairs": 4,
+                "auc": 1.0,
+                "tpr": 0.75,
+                "fpr": 0.0
+              },
+              "c4_0672": {
+                "pairs": 3,
+                "auc": 1.0,
+                "tpr": 1.0,
+                "fpr": 0.0
+              },
+              "c4_0723": {
+                "pairs": 3,
+                "auc": 0.8888888888888888,
+                "tpr": 0.3333333333333333,
+                "fpr": 0.0
+              },
+              "c4_0798": {
+                "pairs": 4,
+                "auc": 1.0,
+                "tpr": 0.5,
+                "fpr": 0.0
+              },
+              "c4_0857": {
+                "pairs": 4,
+                "auc": 1.0,
+                "tpr": 0.5,
+                "fpr": 0.0
+              }
+            },
+            "interval_scope": "Prompt-cluster resampling conditional on eligibility and development threshold."
+          }
+        },
+        "512": {
+          "primary": {
+            "development_pairs": 21,
+            "test_pairs": 19,
+            "estimable": true,
+            "auc": 1.0,
+            "auc_prompt_cluster_95": [
+              1.0,
+              1.0
+            ],
+            "length_only_auc": 0.5,
+            "threshold": -4.090928791992724,
+            "test_tpr": 0.7894736842105263,
+            "test_fpr": 0.0,
+            "test_tpr_wilson_95": [
+              0.5666572155618583,
+              0.9149232336708375
+            ],
+            "test_fpr_wilson_95": [
+              0,
+              0.16817922405261626
+            ],
+            "test_tpr_prompt_cluster_95": [
+              0.6666666666666666,
+              0.9333333333333333
+            ],
+            "test_fpr_prompt_cluster_95": [
+              0.0,
+              0.0
+            ],
+            "test_prompt_ids": [
+              "c4_0052",
+              "c4_0203",
+              "c4_0295",
+              "c4_0455",
+              "c4_0629",
+              "c4_0672",
+              "c4_0723",
+              "c4_0798",
+              "c4_0857"
+            ],
+            "by_test_prompt": {
+              "c4_0052": {
+                "pairs": 1,
+                "auc": 1.0,
+                "tpr": 1.0,
+                "fpr": 0.0
+              },
+              "c4_0203": {
+                "pairs": 4,
+                "auc": 1.0,
+                "tpr": 0.75,
+                "fpr": 0.0
+              },
+              "c4_0295": {
+                "pairs": 1,
+                "auc": 1.0,
+                "tpr": 1.0,
+                "fpr": 0.0
+              },
+              "c4_0455": {
+                "pairs": 3,
+                "auc": 1.0,
+                "tpr": 0.6666666666666666,
+                "fpr": 0.0
+              },
+              "c4_0629": {
+                "pairs": 1,
+                "auc": 1.0,
+                "tpr": 1.0,
+                "fpr": 0.0
+              },
+              "c4_0672": {
+                "pairs": 2,
+                "auc": 1.0,
+                "tpr": 1.0,
+                "fpr": 0.0
+              },
+              "c4_0723": {
+                "pairs": 3,
+                "auc": 1.0,
+                "tpr": 1.0,
+                "fpr": 0.0
+              },
+              "c4_0798": {
+                "pairs": 2,
+                "auc": 1.0,
+                "tpr": 0.5,
+                "fpr": 0.0
+              },
+              "c4_0857": {
+                "pairs": 2,
+                "auc": 1.0,
+                "tpr": 0.5,
+                "fpr": 0.0
+              }
+            },
+            "interval_scope": "Prompt-cluster resampling conditional on eligibility and development threshold."
+          },
+          "recovered_only_sensitivity": {
+            "development_pairs": 21,
+            "test_pairs": 18,
+            "estimable": true,
+            "auc": 1.0,
+            "auc_prompt_cluster_95": [
+              1.0,
+              1.0
+            ],
+            "length_only_auc": 0.5,
+            "threshold": -4.090928791992724,
+            "test_tpr": 0.7777777777777778,
+            "test_fpr": 0.0,
+            "test_tpr_wilson_95": [
+              0.5478541568378739,
+              0.9099907189139831
+            ],
+            "test_fpr_wilson_95": [
+              0,
+              0.17587922364665765
+            ],
+            "test_tpr_prompt_cluster_95": [
+              0.6428571428571429,
+              0.9333333333333333
+            ],
+            "test_fpr_prompt_cluster_95": [
+              0.0,
+              0.0
+            ],
+            "test_prompt_ids": [
+              "c4_0052",
+              "c4_0203",
+              "c4_0295",
+              "c4_0455",
+              "c4_0629",
+              "c4_0672",
+              "c4_0723",
+              "c4_0798",
+              "c4_0857"
+            ],
+            "by_test_prompt": {
+              "c4_0052": {
+                "pairs": 1,
+                "auc": 1.0,
+                "tpr": 1.0,
+                "fpr": 0.0
+              },
+              "c4_0203": {
+                "pairs": 4,
+                "auc": 1.0,
+                "tpr": 0.75,
+                "fpr": 0.0
+              },
+              "c4_0295": {
+                "pairs": 1,
+                "auc": 1.0,
+                "tpr": 1.0,
+                "fpr": 0.0
+              },
+              "c4_0455": {
+                "pairs": 2,
+                "auc": 1.0,
+                "tpr": 0.5,
+                "fpr": 0.0
+              },
+              "c4_0629": {
+                "pairs": 1,
+                "auc": 1.0,
+                "tpr": 1.0,
+                "fpr": 0.0
+              },
+              "c4_0672": {
+                "pairs": 2,
+                "auc": 1.0,
+                "tpr": 1.0,
+                "fpr": 0.0
+              },
+              "c4_0723": {
+                "pairs": 3,
+                "auc": 1.0,
+                "tpr": 1.0,
+                "fpr": 0.0
+              },
+              "c4_0798": {
+                "pairs": 2,
+                "auc": 1.0,
+                "tpr": 0.5,
+                "fpr": 0.0
+              },
+              "c4_0857": {
+                "pairs": 2,
+                "auc": 1.0,
+                "tpr": 0.5,
+                "fpr": 0.0
+              }
+            },
+            "interval_scope": "Prompt-cluster resampling conditional on eligibility and development threshold."
+          }
+        }
+      }
+    },
+    "verified": {
+      "generation_statuses": {
+        "complete": 160
+      },
+      "natural_statuses": {
+        "complete": 160
+      },
+      "canonical_generated": 125,
+      "id_receiver_successes": 160,
+      "text_receiver_successes": 125,
+      "vetoed_candidate_stops": 12,
+      "instances_with_vetoes": 6,
+      "complete_canonical_matched_pairs": 112,
+      "by_message_bits": {
+        "128": {
+          "primary": {
+            "development_pairs": 34,
+            "test_pairs": 38,
+            "estimable": true,
+            "auc": 0.9757617728531855,
+            "auc_prompt_cluster_95": [
+              0.9510204081632653,
+              0.99625
+            ],
+            "length_only_auc": 0.5,
+            "threshold": -2.8672870479865935,
+            "test_tpr": 0.5789473684210527,
+            "test_fpr": 0.0,
+            "test_tpr_wilson_95": [
+              0.42192345343670545,
+              0.7214749884224129
+            ],
+            "test_fpr_wilson_95": [
+              0,
+              0.09180986822558396
+            ],
+            "test_tpr_prompt_cluster_95": [
+              0.4,
+              0.75
+            ],
+            "test_fpr_prompt_cluster_95": [
+              0.0,
+              0.0
+            ],
+            "test_prompt_ids": [
+              "c4_0052",
+              "c4_0203",
+              "c4_0295",
+              "c4_0401",
+              "c4_0455",
+              "c4_0629",
+              "c4_0672",
+              "c4_0723",
+              "c4_0798",
+              "c4_0857"
+            ],
+            "by_test_prompt": {
+              "c4_0052": {
+                "pairs": 4,
+                "auc": 1.0,
+                "tpr": 0.75,
+                "fpr": 0.0
+              },
+              "c4_0203": {
+                "pairs": 4,
+                "auc": 1.0,
+                "tpr": 0.5,
+                "fpr": 0.0
+              },
+              "c4_0295": {
+                "pairs": 3,
+                "auc": 1.0,
+                "tpr": 1.0,
+                "fpr": 0.0
+              },
+              "c4_0401": {
+                "pairs": 4,
+                "auc": 1.0,
+                "tpr": 0.0,
+                "fpr": 0.0
+              },
+              "c4_0455": {
+                "pairs": 4,
+                "auc": 1.0,
+                "tpr": 0.5,
+                "fpr": 0.0
+              },
+              "c4_0629": {
+                "pairs": 4,
+                "auc": 1.0,
+                "tpr": 0.75,
+                "fpr": 0.0
+              },
+              "c4_0672": {
+                "pairs": 4,
+                "auc": 1.0,
+                "tpr": 1.0,
+                "fpr": 0.0
+              },
+              "c4_0723": {
+                "pairs": 3,
+                "auc": 0.8888888888888888,
+                "tpr": 0.3333333333333333,
+                "fpr": 0.0
+              },
+              "c4_0798": {
+                "pairs": 4,
+                "auc": 1.0,
+                "tpr": 0.5,
+                "fpr": 0.0
+              },
+              "c4_0857": {
+                "pairs": 4,
+                "auc": 1.0,
+                "tpr": 0.5,
+                "fpr": 0.0
+              }
+            },
+            "interval_scope": "Prompt-cluster resampling conditional on eligibility and development threshold."
+          },
+          "recovered_only_sensitivity": {
+            "development_pairs": 34,
+            "test_pairs": 38,
+            "estimable": true,
+            "auc": 0.9757617728531855,
+            "auc_prompt_cluster_95": [
+              0.9510204081632653,
+              0.99625
+            ],
+            "length_only_auc": 0.5,
+            "threshold": -2.8672870479865935,
+            "test_tpr": 0.5789473684210527,
+            "test_fpr": 0.0,
+            "test_tpr_wilson_95": [
+              0.42192345343670545,
+              0.7214749884224129
+            ],
+            "test_fpr_wilson_95": [
+              0,
+              0.09180986822558396
+            ],
+            "test_tpr_prompt_cluster_95": [
+              0.4,
+              0.75
+            ],
+            "test_fpr_prompt_cluster_95": [
+              0.0,
+              0.0
+            ],
+            "test_prompt_ids": [
+              "c4_0052",
+              "c4_0203",
+              "c4_0295",
+              "c4_0401",
+              "c4_0455",
+              "c4_0629",
+              "c4_0672",
+              "c4_0723",
+              "c4_0798",
+              "c4_0857"
+            ],
+            "by_test_prompt": {
+              "c4_0052": {
+                "pairs": 4,
+                "auc": 1.0,
+                "tpr": 0.75,
+                "fpr": 0.0
+              },
+              "c4_0203": {
+                "pairs": 4,
+                "auc": 1.0,
+                "tpr": 0.5,
+                "fpr": 0.0
+              },
+              "c4_0295": {
+                "pairs": 3,
+                "auc": 1.0,
+                "tpr": 1.0,
+                "fpr": 0.0
+              },
+              "c4_0401": {
+                "pairs": 4,
+                "auc": 1.0,
+                "tpr": 0.0,
+                "fpr": 0.0
+              },
+              "c4_0455": {
+                "pairs": 4,
+                "auc": 1.0,
+                "tpr": 0.5,
+                "fpr": 0.0
+              },
+              "c4_0629": {
+                "pairs": 4,
+                "auc": 1.0,
+                "tpr": 0.75,
+                "fpr": 0.0
+              },
+              "c4_0672": {
+                "pairs": 4,
+                "auc": 1.0,
+                "tpr": 1.0,
+                "fpr": 0.0
+              },
+              "c4_0723": {
+                "pairs": 3,
+                "auc": 0.8888888888888888,
+                "tpr": 0.3333333333333333,
+                "fpr": 0.0
+              },
+              "c4_0798": {
+                "pairs": 4,
+                "auc": 1.0,
+                "tpr": 0.5,
+                "fpr": 0.0
+              },
+              "c4_0857": {
+                "pairs": 4,
+                "auc": 1.0,
+                "tpr": 0.5,
+                "fpr": 0.0
+              }
+            },
+            "interval_scope": "Prompt-cluster resampling conditional on eligibility and development threshold."
+          }
+        },
+        "512": {
+          "primary": {
+            "development_pairs": 21,
+            "test_pairs": 19,
+            "estimable": true,
+            "auc": 1.0,
+            "auc_prompt_cluster_95": [
+              1.0,
+              1.0
+            ],
+            "length_only_auc": 0.5,
+            "threshold": -4.090928791992724,
+            "test_tpr": 0.7894736842105263,
+            "test_fpr": 0.0,
+            "test_tpr_wilson_95": [
+              0.5666572155618583,
+              0.9149232336708375
+            ],
+            "test_fpr_wilson_95": [
+              0,
+              0.16817922405261626
+            ],
+            "test_tpr_prompt_cluster_95": [
+              0.6666666666666666,
+              0.9333333333333333
+            ],
+            "test_fpr_prompt_cluster_95": [
+              0.0,
+              0.0
+            ],
+            "test_prompt_ids": [
+              "c4_0052",
+              "c4_0203",
+              "c4_0295",
+              "c4_0455",
+              "c4_0629",
+              "c4_0672",
+              "c4_0723",
+              "c4_0798",
+              "c4_0857"
+            ],
+            "by_test_prompt": {
+              "c4_0052": {
+                "pairs": 1,
+                "auc": 1.0,
+                "tpr": 1.0,
+                "fpr": 0.0
+              },
+              "c4_0203": {
+                "pairs": 4,
+                "auc": 1.0,
+                "tpr": 0.75,
+                "fpr": 0.0
+              },
+              "c4_0295": {
+                "pairs": 1,
+                "auc": 1.0,
+                "tpr": 1.0,
+                "fpr": 0.0
+              },
+              "c4_0455": {
+                "pairs": 3,
+                "auc": 1.0,
+                "tpr": 0.6666666666666666,
+                "fpr": 0.0
+              },
+              "c4_0629": {
+                "pairs": 1,
+                "auc": 1.0,
+                "tpr": 1.0,
+                "fpr": 0.0
+              },
+              "c4_0672": {
+                "pairs": 2,
+                "auc": 1.0,
+                "tpr": 1.0,
+                "fpr": 0.0
+              },
+              "c4_0723": {
+                "pairs": 3,
+                "auc": 1.0,
+                "tpr": 1.0,
+                "fpr": 0.0
+              },
+              "c4_0798": {
+                "pairs": 2,
+                "auc": 1.0,
+                "tpr": 0.5,
+                "fpr": 0.0
+              },
+              "c4_0857": {
+                "pairs": 2,
+                "auc": 1.0,
+                "tpr": 0.5,
+                "fpr": 0.0
+              }
+            },
+            "interval_scope": "Prompt-cluster resampling conditional on eligibility and development threshold."
+          },
+          "recovered_only_sensitivity": {
+            "development_pairs": 21,
+            "test_pairs": 19,
+            "estimable": true,
+            "auc": 1.0,
+            "auc_prompt_cluster_95": [
+              1.0,
+              1.0
+            ],
+            "length_only_auc": 0.5,
+            "threshold": -4.090928791992724,
+            "test_tpr": 0.7894736842105263,
+            "test_fpr": 0.0,
+            "test_tpr_wilson_95": [
+              0.5666572155618583,
+              0.9149232336708375
+            ],
+            "test_fpr_wilson_95": [
+              0,
+              0.16817922405261626
+            ],
+            "test_tpr_prompt_cluster_95": [
+              0.6666666666666666,
+              0.9333333333333333
+            ],
+            "test_fpr_prompt_cluster_95": [
+              0.0,
+              0.0
+            ],
+            "test_prompt_ids": [
+              "c4_0052",
+              "c4_0203",
+              "c4_0295",
+              "c4_0455",
+              "c4_0629",
+              "c4_0672",
+              "c4_0723",
+              "c4_0798",
+              "c4_0857"
+            ],
+            "by_test_prompt": {
+              "c4_0052": {
+                "pairs": 1,
+                "auc": 1.0,
+                "tpr": 1.0,
+                "fpr": 0.0
+              },
+              "c4_0203": {
+                "pairs": 4,
+                "auc": 1.0,
+                "tpr": 0.75,
+                "fpr": 0.0
+              },
+              "c4_0295": {
+                "pairs": 1,
+                "auc": 1.0,
+                "tpr": 1.0,
+                "fpr": 0.0
+              },
+              "c4_0455": {
+                "pairs": 3,
+                "auc": 1.0,
+                "tpr": 0.6666666666666666,
+                "fpr": 0.0
+              },
+              "c4_0629": {
+                "pairs": 1,
+                "auc": 1.0,
+                "tpr": 1.0,
+                "fpr": 0.0
+              },
+              "c4_0672": {
+                "pairs": 2,
+                "auc": 1.0,
+                "tpr": 1.0,
+                "fpr": 0.0
+              },
+              "c4_0723": {
+                "pairs": 3,
+                "auc": 1.0,
+                "tpr": 1.0,
+                "fpr": 0.0
+              },
+              "c4_0798": {
+                "pairs": 2,
+                "auc": 1.0,
+                "tpr": 0.5,
+                "fpr": 0.0
+              },
+              "c4_0857": {
+                "pairs": 2,
+                "auc": 1.0,
+                "tpr": 0.5,
+                "fpr": 0.0
+              }
+            },
+            "interval_scope": "Prompt-cluster resampling conditional on eligibility and development threshold."
+          }
+        }
+      }
+    },
+    "fixed_endpoint": {
+      "generation_statuses": {
+        "complete": 160
+      },
+      "natural_statuses": {
+        "complete": 160
+      },
+      "canonical_generated": 137,
+      "id_receiver_successes": 89,
+      "text_receiver_successes": 77,
+      "vetoed_candidate_stops": 0,
+      "instances_with_vetoes": 0,
+      "complete_canonical_matched_pairs": 117,
+      "by_message_bits": {
+        "128": {
+          "primary": {
+            "development_pairs": 35,
+            "test_pairs": 39,
+            "estimable": true,
+            "auc": 0.5299145299145299,
+            "auc_prompt_cluster_95": [
+              0.419375,
+              0.6581628926223518
+            ],
+            "length_only_auc": 0.5,
+            "threshold": -2.8672870479865935,
+            "test_tpr": 0.02564102564102564,
+            "test_fpr": 0.0,
+            "test_tpr_wilson_95": [
+              0.004540703100990098,
+              0.13180990169850076
+            ],
+            "test_fpr_wilson_95": [
+              0,
+              0.08966685370757144
+            ],
+            "test_tpr_prompt_cluster_95": [
+              0.0,
+              0.07692307692307693
+            ],
+            "test_fpr_prompt_cluster_95": [
+              0.0,
+              0.0
+            ],
+            "test_prompt_ids": [
+              "c4_0052",
+              "c4_0203",
+              "c4_0295",
+              "c4_0401",
+              "c4_0455",
+              "c4_0629",
+              "c4_0672",
+              "c4_0723",
+              "c4_0798",
+              "c4_0857"
+            ],
+            "by_test_prompt": {
+              "c4_0052": {
+                "pairs": 4,
+                "auc": 0.25,
+                "tpr": 0.0,
+                "fpr": 0.0
+              },
+              "c4_0203": {
+                "pairs": 4,
+                "auc": 0.5,
+                "tpr": 0.0,
+                "fpr": 0.0
+              },
+              "c4_0295": {
+                "pairs": 4,
+                "auc": 0.5,
+                "tpr": 0.25,
+                "fpr": 0.0
+              },
+              "c4_0401": {
+                "pairs": 4,
+                "auc": 0.25,
+                "tpr": 0.0,
+                "fpr": 0.0
+              },
+              "c4_0455": {
+                "pairs": 4,
+                "auc": 0.75,
+                "tpr": 0.0,
+                "fpr": 0.0
+              },
+              "c4_0629": {
+                "pairs": 4,
+                "auc": 0.375,
+                "tpr": 0.0,
+                "fpr": 0.0
+              },
+              "c4_0672": {
+                "pairs": 4,
+                "auc": 0.625,
+                "tpr": 0.0,
+                "fpr": 0.0
+              },
+              "c4_0723": {
+                "pairs": 4,
+                "auc": 0.4375,
+                "tpr": 0.0,
+                "fpr": 0.0
+              },
+              "c4_0798": {
+                "pairs": 4,
+                "auc": 0.9375,
+                "tpr": 0.0,
+                "fpr": 0.0
+              },
+              "c4_0857": {
+                "pairs": 3,
+                "auc": 0.7777777777777778,
+                "tpr": 0.0,
+                "fpr": 0.0
+              }
+            },
+            "interval_scope": "Prompt-cluster resampling conditional on eligibility and development threshold."
+          },
+          "recovered_only_sensitivity": {
+            "development_pairs": 16,
+            "test_pairs": 20,
+            "estimable": true,
+            "auc": 0.48,
+            "auc_prompt_cluster_95": [
+              0.35600907029478457,
+              0.642682763181857
+            ],
+            "length_only_auc": 0.5,
+            "threshold": -9.939457702423823,
+            "test_tpr": 0.15,
+            "test_fpr": 0.2,
+            "test_tpr_wilson_95": [
+              0.052368745896216595,
+              0.36041886474075696
+            ],
+            "test_fpr_wilson_95": [
+              0.08065766257979806,
+              0.41601743225189364
+            ],
+            "test_tpr_prompt_cluster_95": [
+              0.0,
+              0.3888888888888889
+            ],
+            "test_fpr_prompt_cluster_95": [
+              0.0,
+              0.43478260869565216
+            ],
+            "test_prompt_ids": [
+              "c4_0052",
+              "c4_0203",
+              "c4_0295",
+              "c4_0401",
+              "c4_0455",
+              "c4_0629",
+              "c4_0723",
+              "c4_0798"
+            ],
+            "by_test_prompt": {
+              "c4_0052": {
+                "pairs": 3,
+                "auc": 0.3333333333333333,
+                "tpr": 0.0,
+                "fpr": 0.6666666666666666
+              },
+              "c4_0203": {
+                "pairs": 3,
+                "auc": 0.6666666666666666,
+                "tpr": 0.0,
+                "fpr": 0.0
+              },
+              "c4_0295": {
+                "pairs": 3,
+                "auc": 0.5555555555555556,
+                "tpr": 0.3333333333333333,
+                "fpr": 0.6666666666666666
+              },
+              "c4_0401": {
+                "pairs": 3,
+                "auc": 0.2222222222222222,
+                "tpr": 0.0,
+                "fpr": 0.0
+              },
+              "c4_0455": {
+                "pairs": 2,
+                "auc": 0.75,
+                "tpr": 0.0,
+                "fpr": 0.0
+              },
+              "c4_0629": {
+                "pairs": 2,
+                "auc": 0.0,
+                "tpr": 0.0,
+                "fpr": 0.0
+              },
+              "c4_0723": {
+                "pairs": 2,
+                "auc": 0.75,
+                "tpr": 0.0,
+                "fpr": 0.0
+              },
+              "c4_0798": {
+                "pairs": 2,
+                "auc": 1.0,
+                "tpr": 1.0,
+                "fpr": 0.0
+              }
+            },
+            "interval_scope": "Prompt-cluster resampling conditional on eligibility and development threshold."
+          }
+        },
+        "512": {
+          "primary": {
+            "development_pairs": 25,
+            "test_pairs": 18,
+            "estimable": true,
+            "auc": 0.5061728395061729,
+            "auc_prompt_cluster_95": [
+              0.3632712409106648,
+              0.6785714285714286
+            ],
+            "length_only_auc": 0.5,
+            "threshold": -4.090928791992724,
+            "test_tpr": 0.05555555555555555,
+            "test_fpr": 0.0,
+            "test_tpr_wilson_95": [
+              0.009875190978303097,
+              0.25757300781872594
+            ],
+            "test_fpr_wilson_95": [
+              0,
+              0.17587922364665765
+            ],
+            "test_tpr_prompt_cluster_95": [
+              0.0,
+              0.14285714285714285
+            ],
+            "test_fpr_prompt_cluster_95": [
+              0.0,
+              0.0
+            ],
+            "test_prompt_ids": [
+              "c4_0052",
+              "c4_0203",
+              "c4_0295",
+              "c4_0401",
+              "c4_0455",
+              "c4_0672",
+              "c4_0723",
+              "c4_0798",
+              "c4_0857"
+            ],
+            "by_test_prompt": {
+              "c4_0052": {
+                "pairs": 1,
+                "auc": 1.0,
+                "tpr": 0.0,
+                "fpr": 0.0
+              },
+              "c4_0203": {
+                "pairs": 4,
+                "auc": 0.6875,
+                "tpr": 0.25,
+                "fpr": 0.0
+              },
+              "c4_0295": {
+                "pairs": 1,
+                "auc": 1.0,
+                "tpr": 0.0,
+                "fpr": 0.0
+              },
+              "c4_0401": {
+                "pairs": 1,
+                "auc": 1.0,
+                "tpr": 0.0,
+                "fpr": 0.0
+              },
+              "c4_0455": {
+                "pairs": 3,
+                "auc": 0.3333333333333333,
+                "tpr": 0.0,
+                "fpr": 0.0
+              },
+              "c4_0672": {
+                "pairs": 2,
+                "auc": 0.5,
+                "tpr": 0.0,
+                "fpr": 0.0
+              },
+              "c4_0723": {
+                "pairs": 3,
+                "auc": 0.3333333333333333,
+                "tpr": 0.0,
+                "fpr": 0.0
+              },
+              "c4_0798": {
+                "pairs": 2,
+                "auc": 0.0,
+                "tpr": 0.0,
+                "fpr": 0.0
+              },
+              "c4_0857": {
+                "pairs": 1,
+                "auc": 0.0,
+                "tpr": 0.0,
+                "fpr": 0.0
+              }
+            },
+            "interval_scope": "Prompt-cluster resampling conditional on eligibility and development threshold."
+          },
+          "recovered_only_sensitivity": {
+            "development_pairs": 18,
+            "test_pairs": 6,
+            "estimable": true,
+            "auc": 0.4722222222222222,
+            "auc_prompt_cluster_95": [
+              0.12244897959183673,
+              0.88
+            ],
+            "length_only_auc": 0.5,
+            "threshold": -0.25837697328546483,
+            "test_tpr": 0.0,
+            "test_fpr": 0.0,
+            "test_tpr_wilson_95": [
+              2.7755575615628914e-17,
+              0.3903342879021653
+            ],
+            "test_fpr_wilson_95": [
+              2.7755575615628914e-17,
+              0.3903342879021653
+            ],
+            "test_tpr_prompt_cluster_95": [
+              0.0,
+              0.0
+            ],
+            "test_fpr_prompt_cluster_95": [
+              0.0,
+              0.0
+            ],
+            "test_prompt_ids": [
+              "c4_0203",
+              "c4_0401",
+              "c4_0455",
+              "c4_0723",
+              "c4_0798"
+            ],
+            "by_test_prompt": {
+              "c4_0203": {
+                "pairs": 1,
+                "auc": 1.0,
+                "tpr": 0.0,
+                "fpr": 0.0
+              },
+              "c4_0401": {
+                "pairs": 1,
+                "auc": 1.0,
+                "tpr": 0.0,
+                "fpr": 0.0
+              },
+              "c4_0455": {
+                "pairs": 1,
+                "auc": 0.0,
+                "tpr": 0.0,
+                "fpr": 0.0
+              },
+              "c4_0723": {
+                "pairs": 1,
+                "auc": 0.0,
+                "tpr": 0.0,
+                "fpr": 0.0
+              },
+              "c4_0798": {
+                "pairs": 2,
+                "auc": 0.0,
+                "tpr": 0.0,
+                "fpr": 0.0
+              }
+            },
+            "interval_scope": "Prompt-cluster resampling conditional on eligibility and development threshold."
+          }
+        }
+      }
+    }
+  }
+}

@@ -31,6 +31,14 @@ def verify_new_profile(paper, manifest_path, manifest, allow_draft):
             assert interruption["manifest_sha256"] == digest(manifest_path)
             for relative, expected_hash in interruption["preserved_files_sha256"].items():
                 assert digest(directory / relative) == expected_hash, relative
+        for launch_path in (directory / "launches").glob("*.json"):
+            launch = json.loads(launch_path.read_text())
+            assert launch["manifest_sha256"] == digest(manifest_path)
+            assert launch["source_sha256"] == manifest["source_sha256"]
+            for worker in launch["workers"]:
+                position = worker["manifest_task_index"]
+                assert manifest["tasks"][position]["case_id"] == worker["case_id"]
+                assert position % worker["shard_count"] == worker["shard_index"]
         path = directory / "analysis.json"
         if path.exists():
             analysis = json.loads(path.read_text())
@@ -169,6 +177,16 @@ def main():
     assert observable_audit["all_passed"] and all(observable_audit["checks"].values())
     for relative, expected in observable_audit["source_sha256"].items():
         assert digest(root / relative) == expected
+    execution_path = paper / "results/sp2027-validation/upstream-qwen25-execution.json"
+    if execution_path.exists():
+        execution = json.loads(execution_path.read_text())
+        assert digest(paper / "scripts/audit_upstream_execution.py") == execution["source_sha256"]
+        assert execution["all_checks_passed"]
+        assert execution["planned_case_records"] == execution["observed_case_records"] == 160
+        for relative, expected in execution["inputs"].items():
+            assert digest(paper / relative) == expected, relative
+    elif not args.allow_draft:
+        raise AssertionError("Missing complete upstream execution-journal audit")
     for model in ["gpt2", "qwen25"]:
         fidelity_path = paper / "results/sp2027-observable-fidelity" / (model + ".json")
         if args.allow_draft and not fidelity_path.exists():
