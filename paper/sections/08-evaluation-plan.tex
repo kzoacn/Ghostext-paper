@@ -1,31 +1,163 @@
 \section{Evaluation}
+\label{sec:evaluation}
 
-We keep the evaluation narrow and tied to the released implementation. Instead of relying on a single smoke-style benchmark, we report a fixed-grid experiment driven by the released Ghostext evaluation script \nolinkurl{run_prompt_message_grid.py}. The grid crosses ten public prompts with ten public messages for 100 end-to-end encode/decode trials under the same pinned local backend from \S\ref{sec:open-science}. The prompt set contains five English and five Chinese templates. The message set contains four short, four medium, and two long plaintexts spanning both languages. All trials use the released defaults. We keep seed $7$ throughout. The decoding settings remain \texttt{top\_p}=0.995, \texttt{max\_candidates}=64, \texttt{min\_entropy\_bits}=0.0, and \texttt{total\_frequency}=4096. The built-in low-entropy retry logic stays enabled throughout. A fixed local passphrase is reused across the grid for reproducibility, but only the policy and not the secret itself is released.
+We evaluate four distinct questions: whether finite-input diagnostics describe
+the executed sampling law, whether stopping creates a signal after length
+matching, whether the guarded codec repairs its stated defect, and how these
+mechanisms appear in a real text-channel implementation. Exact enumeration,
+synthetic simulation, archived-result audit, and fresh model experiments are
+kept separate. We do not turn a failed classifier or a successful decode into
+an indistinguishability claim.
 
-\subsection{Fixed 10x10 Prompt-Message Grid}
+\subsection{Exact Coding and Stopping Audits}
+
+The original NLS result and the RRC stopped-law table in
+Sections~\ref{sec:audit}--\ref{sec:stopping} are exhaustively reproducible.
+The former executes pinned original code on all 256 one-byte inputs. The latter
+uses exact rational probabilities, including natural strings absent from the
+stego support. Neither result is a Monte Carlo estimate.
+
+For Ghostext, we enumerate the complete capped transcript tree for an eight-bit
+uniform payload and guard precisions $g\in\{0,2,4,8,16,32,64,128\}$, with a
+32-step horizon. We use three sources: uniform over 64 tokens; a three-token
+source proportional to $(0.61,0.28,0.11)$ after quantization; and a
+context-dependent source alternating between that table and a four-token table
+according to the observed prefix. The reference follows the same public prefix
+stopping rule. Zero-width reference branches and horizon exhaustion remain in
+the probability space.
 
 \begin{table}[t]
-\caption{Fixed 10x10 prompt-message grid on the pinned local \texttt{llama-cpp} backend.}
-\label{tab:grid-benchmark}
-\footnotesize
 \centering
-\setlength{\tabcolsep}{2pt}
-\begin{tabular}{@{}lrrrrrr@{}}
+\caption{Exact capped-transcript TV for the integer codec against its
+stopping-matched $Q$ reference; $B=8$, $T=32$.}
+\label{tab:guard-tv}
+\begin{tabular}{lrrr}
 \toprule
-Slice & Trials & Success & Enc med (s) & Dec med (s) & Mean bpt & Attempts mean \\
+Source & $g=0$ & $g=8$ & $g=128$ \\
 \midrule
-Overall & 100 & 100/100 & 37.74 & 34.47 & 2.619 & 1.40 \\
-EN prompts & 50 & 50/50 & 35.04 & 34.21 & 2.686 & 1.18 \\
-ZH prompts & 50 & 50/50 & 38.90 & 37.09 & 2.552 & 1.62 \\
-Short msgs & 40 & 40/40 & 27.90 & 26.45 & 2.645 & 1.08 \\
-Medium msgs & 40 & 40/40 & 42.31 & 37.43 & 2.594 & 1.48 \\
-Long msgs & 20 & 20/20 & 60.22 & 58.11 & 2.615 & 1.90 \\
+Uniform 64 & $0.9375$ & $0$ & $0$ \\
+Skewed 3 & $0.3034$ & $0.01112$ & $3.10\cdot10^{-38}$ \\
+Context-dependent & $0.3454$ & $0.01058$ & $3.33\cdot10^{-38}$ \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Table~\ref{tab:grid-benchmark} shows exact round-trip recovery for all 100 trials, with decode success rate $1.000$. Overall median encode latency is $37.74$\,s and median decode latency is $34.47$\,s. Mean encode payload density is $2.619$ bits/token (median $2.677$), while mean packet length is $167.1$ bytes.
+Table~\ref{tab:guard-tv} shows the intended effect of retaining random suffix
+precision. The exact values obey Theorem~\ref{thm:guard}; the enumerator computes
+them from path probabilities rather than substituting that bound. The uniform
+case already reaches zero at $g=4$, because its dyadic partitions align with
+payload blocks. Nonuniform tables retain finite rounding error. These are
+coding-law measurements under a uniform source, not measurements of ciphertext
+pseudorandomness or of ordinary natural-language security.
 
-The main performance caveat is not correctness but tail latency. Encode latency has mean $50.56$\,s, $p90=74.69$\,s, $p99=196.55$\,s, and maximum $291.69$\,s, whereas decode latency is tighter with mean $38.02$\,s, $p90=58.07$\,s, and $p99=72.22$\,s. Retry behavior explains much of that spread, because some local contexts trigger low-entropy or no-stable-candidate retries. English-prompt cases are modestly faster and denser than Chinese-prompt cases, while message length mainly affects latency rather than mean bits/token.
+\subsection{Stopping with an Identical Length Histogram}
 
-These results support one narrow claim: within one pinned local environment and one fixed prompt-message grid, Ghostext provides deterministic end-to-end recoverability with transparent overhead measurements. They also give a more realistic view of runtime than the earlier smoke benchmark, because they expose tail behavior across multiple prompt and payload regimes. They do not establish detector resistance, direct distribution-distance bounds, cross-hardware determinism, or robustness to active text modification.
+We simulate the published ideal RRC stopping law for the fixed binary source
+$p=0.75$, using 20,000 outputs per class at each $B$. The natural control receives
+a permutation of the stego lengths and independent fresh content, so the two
+empirical length histograms are exactly equal. We fix the detector score before
+sampling to $-|S(y)-B|$; there is no trained text model or fitted threshold.
+Table~\ref{tab:stopping-simulation} also reports the event
+$B-8\le S(y)\le B+2$, whose stopped-law probability is at least $0.984375$ by
+the hazard bound. Complete simulation outputs and seeds are retained.
+
+\begin{table}[t]
+\centering
+\caption{IID stopping simulation with exactly matched empirical length
+histograms. Band rates use the fixed event $B-8\le S\le B+2$.}
+\label{tab:stopping-simulation}
+\begin{tabular}{rrrr}
+\toprule
+$B$ (bits) & Gap-score AUC & Stego band rate & Control band rate \\
+\midrule
+8 & 0.666 & 1.000 & 0.878 \\
+32 & 0.778 & 0.993 & 0.585 \\
+128 & 0.880 & 0.993 & 0.322 \\
+512 & 0.940 & 0.993 & 0.158 \\
+2048 & 0.969 & 0.994 & 0.082 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The growing gap is consistent with Theorem~\ref{thm:stopping}, but the theorem
+is established by its proof rather than these simulations. The uniform binary
+source is a negative control: its stopping time is independent of token
+identities, giving exact equality with the independently length-matched law.
+
+\subsection{Reanalysis of the Archived Delivery Grid}
+
+The archive contains a fixed $10\times10$ grid: five English and five Chinese
+prompts crossed with ten public messages. We verify unique pair identifiers,
+cover-text hashes, packet sizes, token accounting, and the reported rate
+calculation directly from the 100 records. All records report matching decoded
+plaintext, but only 81 deliveries succeed on their first attempt; the 100
+deliveries require 140 attempts. Failed-attempt prefixes were not retained in
+that archive, so their detailed causes cannot be reconstructed from its success
+summaries alone.
+
+\begin{table*}[t]
+\centering
+\caption{Historical Qwen delivery grid, reanalyzed without changing its raw
+records. Net rate counts plaintext; gross rate counts the entire packet. Rates
+include all transmitted tokens. Timings are historical measurements.}
+\label{tab:grid-benchmark}
+\begin{tabular}{lrrrrrr}
+\toprule
+Slice & Trials & Recorded deliveries & Net bits/token & Gross bits/token & Encode median (s) & Decode median (s) \\
+\midrule
+Overall & 100 & 100/100 & 1.172 & 2.619 & 37.74 & 34.47 \\
+English prompts & 50 & 50/50 & 1.203 & 2.686 & 35.04 & 34.21 \\
+Chinese prompts & 50 & 50/50 & 1.142 & 2.552 & 38.90 & 37.09 \\
+Short messages & 40 & 40/40 & 0.874 & 2.645 & 27.90 & 26.45 \\
+Medium messages & 40 & 40/40 & 1.248 & 2.594 & 42.31 & 37.43 \\
+Long messages & 20 & 20/20 & 1.619 & 2.615 & 60.22 & 58.11 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+The fixed 88-byte framing cost is substantial for 31--147-byte plaintexts.
+The mean per-text net rate is 1.172 bits/token, while aggregate plaintext bits
+divided by aggregate tokens is 1.210; the two estimands differ. A prompt-cluster
+bootstrap over this fixed set gives a 95\% interval of [1.127,1.215] for the
+mean net rate. It describes variation over these ten prompt clusters, not
+arbitrary deployment prompts. The nominal Wilson interval for 100/100 recorded
+deliveries is [0.963,1], but shared grid inputs and one observation per cell limit
+an independent-Bernoulli interpretation.
+
+\subsection{Keyless Bootstrap Probe on Real Text}
+
+We replay all 118 archived stego texts: the 100 grid records and an earlier
+18-run cohort. All satisfy the legacy public bootstrap interval. For a paired
+pilot, the earlier cohort also provides 18 independently sampled controls with
+the same prompts and matched total lengths. These controls already use the
+stability-filtered candidate policy, so the test is deliberately narrower than
+ordinary model-output detection.
+
+The legacy check accepts 18/18 stego texts and 7/18 controls; all 11 rejected
+controls choose a zero-width subinterval. Thus the paired pilot has TPR 1 and
+FPR 0.389, with nominal Wilson 95\% intervals [0.824,1] and [0.203,0.614],
+respectively. These wide intervals and the small number of prompt families
+preclude a low-FPR claim. Replaying the same texts with $g=128$ instead makes
+all 36 prefixes admissible, illustrating that an interval-validity rule depends
+on its precise codec state. It is not yet a measurement of newly generated
+repaired traffic.
+
+\subsection{Fresh Model Protocol}
+
+The fresh stopping study uses ten topic families, with English contexts for
+GPT-2 and paired English/Chinese contexts for Qwen. Five families are reserved
+for development and five for testing before generation. Each context is
+repeated eight times at 128 and 512 bits. The natural control is independently
+sampled for the observed stego length under the same processed source $Q$.
+The manifests specify all prompts, task order, random seeds, model hashes,
+CPU affinity, and software versions. No retry silently replaces a failed
+stopping-study sample.
+
+Completion, canonical retokenization, reverse recovery, and control completion
+are recorded separately. Analyses restricted to complete matched pairs must
+report their denominators and excluded outcomes. The public stopping score is
+computed from text-source likelihood and known $B$, without private rotations.
+Additional guarded-versus-legacy delivery trials use the full authenticated
+pipeline and retain every encoding attempt. Their purpose is to distinguish
+coding repair from the separate stopping and retry effects, not to claim that
+the repaired prototype is detector-resistant.

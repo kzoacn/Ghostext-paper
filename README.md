@@ -1,56 +1,32 @@
-# Ghostext-paper
+# Ghostext: IEEE S&P 2027 revision
 
-Security-first writing workspace for the Ghostext ACM CCS 2026 submission.
+This workspace contains the paper, historical raw measurements, and ongoing
+experiments. The implementation source is `../Ghostext`. The user authorized
+resuming experiments and revising both repositories on 2026-10-20.
 
-This repository focuses on paper drafting, claim-to-evidence traceability, and reproducible experiment planning. The implementation source of truth is `../Ghostext`.
+The draft is being revised against the
+[official S&P 2027 CFP](https://sp2027.ieee-security.org/cfpapers.html):
+IEEEtran 1.8b, `conference,compsoc`, US Letter, at most 13 pages of main text and
+18 pages overall. No author block appears in the review version. The unmodified
+class and bibliography style are vendored from
+[CTAN](https://ctan.org/pkg/ieeetran); their license notices remain intact.
 
-## Current Status (2026-04-16)
-
-- Core paper draft skeleton is in `paper/`.
-- Claim-to-evidence mapping is maintained under `notes/literature/`.
-- Experiment execution is paused by project policy (see `AGENTS.md`).
-
-## Quick Start
-
-1. Read project boundaries and claim rules:
-
-```text
-AGENTS.md
-```
-
-2. Edit the paper:
-
-```text
-paper/main.tex
-paper/sections/*.tex
-paper/refs.bib
-```
-
-3. Update evidence traceability when adding or changing claims:
-
-```text
-notes/literature/claim-evidence-map.md
-notes/literature/related-work-matrix.md
-```
-
-4. (Optional) compile the paper locally if LaTeX toolchain is available:
+Build from `paper/`:
 
 ```bash
-cd paper
-latexmk -pdf main.tex
+latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
 ```
 
-## Repository Map
+Historical results are retained unchanged. They must not be mistaken for new
+runs or for proof of detector resistance. In particular, the historical
+`bits_per_token_encode` metric counts the entire encrypted packet, including
+88 bytes of framing, rather than only application plaintext.
 
-- `AGENTS.md`: project mission, hard boundaries, and writing constraints
-- `literature/key-paper/`: mandatory full-text key papers
-- `literature/key-md/`: local reading notes for key papers
-- `paper/`: ACM-format draft, section files, bibliography
-- `notes/policies/`: writing and reporting checklists
-- `notes/literature/`: claim-evidence map and related-work matrix
-- `results/`: reserved for future experiment outputs (currently paused)
-- `scripts/`: reserved for future reproducible pipelines (currently placeholder)
+The revision is not yet ready for submission. An independent reviewer is
+examining correctness, novelty, empirical security, and reproducibility. An
+internal weak-accept recommendation is a quality gate, not a prediction of
+conference acceptance. Human authors must review the final content and complete
+the ethics and AI-use disclosures before submission.
 
-## Important Boundary
-
-Do not run experiment pipelines in this repository until the user explicitly lifts the pause.
+Second-cycle abstract registration is November 10, 2026 and paper submission is
+November 17, 2026, both 23:59:59 AoE, according to the CFP checked on 2026-10-20.

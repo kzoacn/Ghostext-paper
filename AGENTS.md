@@ -1,22 +1,23 @@
 # AGENTS.md
 
-This file is the compact execution guide for agents in this repository. Detailed policies, rationale, and extended checklists are moved to `SPEC.md`.
+This file is the execution guide for the paper revision. Implementation details
+and protocol requirements are in `../Ghostext/spec.md`.
 
 ## 1) Mission
 
-This repository is for drafting the Ghostext paper (target venue: ACM CCS 2026), organizing evidence-focused experiments, and keeping clear claim-to-evidence traceability.
+This repository is for drafting the Ghostext paper (target venue: IEEE S&P 2027), organizing evidence-focused experiments, and keeping clear claim-to-evidence traceability.
 
 The implementation source of truth is `../Ghostext`.
 
 ## 2) Hard Boundaries
 
-- Follow ACM CCS CFP requirements.
-- Keep ACM `sigconf` style unaltered.
+- Follow the IEEE S&P 2027 CFP requirements.
+- Keep IEEEtran 1.8b `conference,compsoc` style unaltered, using US Letter.
 - Keep main-content page length compliant.
-- Keep main-content length at **at least 7 pages** (excluding references and appendices), while still complying with ACM CCS limits.
-- Until this pause is explicitly lifted by the user, do **not** run experiment pipelines in this repository.
+- Keep main-content length at **at least 7 pages** (excluding references and appendices), and at most 13 pages, with at most 18 pages in total.
+- The user's 2026-10-20 request explicitly authorizes resumed experiments and iterative paper/implementation improvements for S&P 2027.
 - Read `../Ghostext` before making technical claims.
-- Do **not** modify `../Ghostext` unless the user explicitly asks for it.
+- Changes to `../Ghostext` needed for this revision are authorized by the same request; keep protocol, tests, and specification consistent.
 
 ## 3) Writing Style
 
@@ -26,14 +27,15 @@ Use English for the full paper and all notes, and keep the tone friendly, clear,
 
 Use this as the working title (can be modified):
 
-**Ghostext: A Distribution-Preserving LLM Steganography with Authenticated Packet Framing**
+**Ghostext: Auditing Finite-Message Leakage in LLM Steganography**
 
 Core setting:
 
 - Three roles: `Alice`, `Bob`, and `Censor`.
 - Alice uses a prompt, a password, and a secret message with Ghostext.
 - Ghostext outputs a fluent `cover text`.
-- Censor (passive observer) only sees the text and lets it pass as normal language.
+- Censor (passive observer) sees the text and attempts to distinguish it from
+  an explicitly specified reference source.
 - Bob uses the same prompt and password to recover the secret message.
 
 ## 5) Security Model And Claim Discipline
@@ -41,7 +43,9 @@ Core setting:
 Assumed censor:
 
 - Passive censor only (observes text only).
-- No knowledge of the prompt or password.
+- The observer knows the model, prompt, algorithm, and public parameters, but
+  not the password or private randomness. Message length is additionally public
+  in the stopping-law analysis. Historical hidden-prompt claims are superseded.
 
 Security goal:
 
@@ -49,11 +53,13 @@ Security goal:
 
 Technical basis:
 
-- LLM supplies next-token distributions close to natural language.
-- The encoding process must not distort that next-token distribution.
-- Encryption makes message bits computationally indistinguishable from randomness.
-- Arithmetic coding uses nearly all available entropy from the next-token distribution.
-- The scheme aims to preserve model output distribution while maximizing embedded information.
+- Distinguish the raw model, processed candidate source, integer coding law,
+  complete stopped transcript, and successful-retry conditioning.
+- Do not infer uniform packet bytes from authenticated-encryption security.
+- The guarded codec has a coding-only bound against a stopping-matched
+  reference. It does not prove full-text security against ordinary generation.
+- Finite-message counterexamples and the stopping separation are the primary
+  contributions; packet framing and stepwise token filtering are prior art.
 
 Claim wording:
 

@@ -1,0 +1,84 @@
+{
+  "threat": "Passive text-only observer knowing exact model, prompt, policy and 60-byte bootstrap; no key.",
+  "by_source": {
+    "historical_stable_sampler": {
+      "0": {
+        "n": 18,
+        "admissible": 7,
+        "admissible_rate": 0.3888888888888889,
+        "nominal_wilson_95": [
+          0.2030524657216362,
+          0.613809583977621
+        ],
+        "statuses": {
+          "zero_width_interval": 11,
+          "admissible": 7
+        }
+      },
+      "128": {
+        "n": 18,
+        "admissible": 18,
+        "admissible_rate": 1.0,
+        "nominal_wilson_95": [
+          0.8241207763533425,
+          1
+        ],
+        "statuses": {
+          "admissible": 18
+        }
+      }
+    },
+    "legacy_grid": {
+      "0": {
+        "n": 100,
+        "admissible": 100,
+        "admissible_rate": 1.0,
+        "nominal_wilson_95": [
+          0.9630065017930143,
+          1
+        ],
+        "statuses": {
+          "admissible": 100
+        }
+      },
+      "128": {
+        "n": 100,
+        "admissible": 100,
+        "admissible_rate": 1.0,
+        "nominal_wilson_95": [
+          0.9630065017930143,
+          1
+        ],
+        "statuses": {
+          "admissible": 100
+        }
+      }
+    },
+    "legacy_stego": {
+      "0": {
+        "n": 18,
+        "admissible": 18,
+        "admissible_rate": 1.0,
+        "nominal_wilson_95": [
+          0.8241207763533425,
+          1
+        ],
+        "statuses": {
+          "admissible": 18
+        }
+      },
+      "128": {
+        "n": 18,
+        "admissible": 18,
+        "admissible_rate": 1.0,
+        "nominal_wilson_95": [
+          0.8241207763533425,
+          1
+        ],
+        "statuses": {
+          "admissible": 18
+        }
+      }
+    }
+  }
+}

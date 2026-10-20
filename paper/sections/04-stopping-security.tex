@@ -1,0 +1,108 @@
+\section{Security of Complete Stopped Texts}
+\label{sec:stopping}
+
+\subsection{A Public Stopping Likelihood}
+
+RRC's published Algorithm 3 rotates its current point by an independent uniform
+offset, selects a token, and stops when the point lies within one half-unit of
+the selected interval's midpoint~\cite{yan2026rrc}. Conditional on the active
+history and selected token, the rotated point is uniform in that interval.
+For $B$ input bits and observed tokens $y_{1:t}$, define
+\begin{equation}
+ W_i=2^B\prod_{j=1}^{i}q_j(y_j\mid y_{<j}),\qquad
+ h_i=\min\{1,W_i^{-1}\}.
+\end{equation}
+Here $q_i$ is the specified token source, which may already include processing.
+The midpoint window has length one, so $h_i$ is the conditional probability of
+stopping at step $i$. Fresh independent rotations then give the stopped law
+\begin{equation}
+ S(y_{1:t})=
+ \left(\prod_{i=1}^{t}q_i(y_i\mid y_{<i})\right)
+ \left(\prod_{i<t}(1-h_i)\right)h_t.
+ \label{eq:stopped-law}
+\end{equation}
+The extra factor is computable from the public model, prompt, output, and $B$.
+It does not require the rotated point or key.
+
+Suppose a natural control first draws a length $L$ independently from
+$\ell(t)=\Pr_S(\tau=t)$ and then generates $L$ tokens from $q$. Its law is
+$C(y_{1:t})=\ell(t)\prod_i q_i(y_i\mid y_{<i})$. The length histograms agree
+exactly, yet the likelihood ratio still contains
+$\prod_{i<t}(1-h_i)h_t/\ell(t)$. This is content--length dependence, not a
+length-only attack. Using the \emph{same content-dependent stopping law} for
+the control would instead reproduce the ideal process; the comparator must
+therefore be explicit.
+
+\subsection{An Exact Counterexample}
+
+Let $B=1$, $q(A)=3/4$, and $q(B)=1/4$. Table~\ref{tab:rrc-exact} lists the entire
+stopped law, calculated with rational arithmetic. Its length probabilities are
+$3/4$, $11/48$, and $1/48$ for lengths one, two, and three. An independently
+length-matched natural source assigns probability $3/16$ to the complete text
+$B$, whereas the stopped encoder assigns $1/4$. That event alone distinguishes
+by $1/16$ with ideal randomness. Enumerating all natural strings at these three
+lengths gives total variation $33/256$.
+
+\begin{table}[t]
+\centering
+\caption{Exact stopped law of the published ideal RRC rule. The independent
+control has the same marginal length distribution.}
+\label{tab:rrc-exact}
+\begin{tabular}{lrr}
+\toprule
+Complete text & Stopped law & Independent control \\
+\midrule
+$A$ & $1/2$ & $9/16$ \\
+$B$ & $1/4$ & $3/16$ \\
+$AA$ & $1/6$ & $33/256$ \\
+$AB$ & $1/16$ & $11/256$ \\
+$AAA$ & $1/64$ & $9/1024$ \\
+$AAB$ & $1/192$ & $3/1024$ \\
+Other strings & $0$ & positive \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This counterexample addresses the step from active next-token preservation to
+complete-text indistinguishability in the paper's Appendix B.3. It does not
+challenge the fresh-rotation sampling argument. Current RRC code adds reverse
+verification before stopping, which changes the stopping law; neither the
+formula nor the exact table is attributed to that revised implementation.
+
+\subsection{The Gap Can Grow with Message Length}
+
+The issue is not confined to a one-bit example. Consider a fixed binary IID
+source with probabilities $p$ and $1-p$, where $0<p<1$ and $p\ne1/2$. Write
+$S_n=-\sum_{i=1}^n\log_2 q(Y_i)$ for cumulative surprisal. The ideal RRC stopping
+rule accepts at step $n$ with probability $\min(1,2^{S_n-B})$.
+
+\begin{theorem}[Stopping separation]
+\label{thm:stopping}
+Let $P_B$ be the stopped-transcript law under this rule, and let $C_B$ draw the
+exact marginal stopping length independently before sampling fresh IID tokens.
+For every fixed nonuniform binary source,
+\begin{equation}
+ \operatorname{TV}(P_B,C_B)\ge
+ 1-O_p\!\left(\frac{\log B}{\sqrt B}\right)\longrightarrow1.
+\end{equation}
+\end{theorem}
+
+\paragraph{Proof sketch.}
+Let $a$ and $b$ be the minimum and maximum symbol surprisals. Stopping is certain
+once $S_n\ge B$, hence $S_\tau\le B+b$. Before $S_n<B-k$, the possible hazards
+sum to at most $2^{-k}/(1-2^{-a})$, because the surprisal increases by at least
+$a$ each step. Thus a stopped text lies in the band $[B-k,B+b]$ with high
+probability. For an independently sampled length, the surprisal is a shifted
+and scaled binomial variable. Its probability of occupying a band of width
+$k+b$ is $O_p((k+1)/\sqrt B)$, except for exponentially unlikely very short
+lengths. Choosing $k=\log_2 B$ proves the claim. Appendix~\ref{app:proofs}
+gives constants and the elementary anticoncentration argument.
+
+The assumption $p\ne1/2$ matters. For a uniform binary source, interval width
+and hazard depend only on the step index. Stopping length is then independent
+of token identities, and the independently length-matched law is identical.
+The theorem concerns a fixed source as $B$ grows, not a source approaching
+uniformity with $B$, and it does not assert monotonicity at every finite $B$.
+Our use of information random walks follows established source-coding
+analysis~\cite{drmota2010tunstall}; the security question here is the separation
+between complete transcript laws after length matching.

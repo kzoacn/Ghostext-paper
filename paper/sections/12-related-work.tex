@@ -1,8 +1,54 @@
 \section{Related Work}
 \label{sec:related-positioning}
 
-NLS~\cite{ziegler2019neural} established arithmetic-coding neural steganography. Its main conceptual move is to map hidden bits onto LM token choices while keeping the generated sequence close to the model distribution. Ghostext inherits that arithmetic-coding viewpoint and the Alice/Bob/Censor communication framing, but it focuses on the systems questions that become acute in a local LLM setting: what exact bitstream is embedded, how prompt and tokenizer state are synchronized, and how replay failure is surfaced when practical candidate truncation and retokenization are involved. Later work explored adaptive and near-imperceptible variants~\cite{shen2020near,dai2019towards,yang2019rnnstega,fang2017generating} and stronger formal constructions~\cite{zhang2021provably,ding2023discop,dewitt2024perfect}. OD-Stega~\cite{huang2026odstega} is most directly related in its constrained-distribution perspective and explicit tokenization-mismatch emphasis, which motivates our retokenization-stability filtering.
+\paragraph{Security definitions and coding.}
+Classical steganographic security compares cover and stego distributions or
+uses computational distinguishing games~\cite{cachin1998information,hopper2002provably}.
+Distribution-aware coding predates neural language models, including P-code
+constructions~\cite{le2003pcodes} and model-based
+steganography~\cite{sallee2004model,cox2005information}. Our guarded-prefix bound
+is specific to the implemented codec and stopping rule; random continuation
+and inverse-width rounding analysis are not presented as new general ideas.
+Information random walks and phrase-length stopping have a substantial
+source-coding literature~\cite{drmota2010tunstall}. We use elementary
+anticoncentration to establish a security separation between two precisely
+specified stopped-text laws.
 
-Ghostext's novelty is therefore at the systems-integration level. It combines cryptographic payload normalization, authenticated packet framing, and retokenization-aware candidate control in one pipeline. Relative to the formal distribution-preserving line~\cite{zhang2021provably,ding2023discop,dewitt2024perfect}, we use ``near-distribution-preserving'' in a weaker, implementation-aligned sense. Against the same-policy natural-cover baseline, the only residual per-step deviations are integer quantization and retokenization filtering. Classical security frameworks~\cite{cachin1998information,hopper2002provably} remain the conceptual baseline for strong claims, and Ghostext does not claim to replace them.
+\paragraph{Neural and cryptographic linguistic steganography.}
+NLS connects arithmetic coding to neural generation~\cite{ziegler2019neural};
+self-adjusting and grouping approaches explore security and capacity
+tradeoffs~\cite{dai2019towards,shen2020near,zhang2021provably}.
+Meteor~\cite{kaptchuk2021language}, Discop~\cite{ding2023discop}, and minimum
+entropy coupling~\cite{dewitt2024perfect} develop stronger randomized
+constructions. Discop explicitly discusses finite-message probability
+granularity and padding. Our NLS experiment instead identifies a concrete
+mismatch between an executed finite-input encoder and its own reported KL.
+Meteor's fresh masking and Discop's randomized fixed-length experimental path
+prevent transferring that specific counterexample indiscriminately.
 
-Two adjacent literatures are also relevant for interpreting our scope. LLM watermarking manipulates generation distributions under detectability constraints~\cite{kirchenbauer2023watermark}; it shares the language of distribution control, but its operational goal is almost the opposite of steganography, since the watermark owner wants later detectability. Detector papers and practical steganalysis pipelines~\cite{joulin2017fasttext,mitchell2023detectgpt} matter because they define what an informed passive observer might actually run, but those results cannot be borrowed without direct experiments on Ghostext outputs. Meteor~\cite{kaptchuk2021language} further illustrates that practical language steganography depends on explicit assumptions about the communication channel and shared model state. Our empirical section is intentionally limited to a fixed prompt-message grid under one pinned backend rather than a historical reproduction of NLS/OD-Stega under their original settings; we therefore do not make broad superiority claims, and whether this systems combination yields significant detector-facing gains remains an open empirical question.
+RRC~\cite{yan2026rrc} recognizes small-interval distortion and replaces the
+sampling point through fresh rotation. Our analysis agrees with its active
+next-token argument and examines the separate stopping step. The exact
+counterexample and asymptotic theorem concern its published midpoint rule;
+later code that verifies extraction before stopping is a distinct algorithm.
+This distinction is necessary both for fair comparison and for reproducibility.
+
+\paragraph{Operational constraints and stopping.}
+OD-Stega~\cite{huang2026odstega} optimizes the distribution--capacity tradeoff and
+addresses tokenization ambiguity; it already assumes pre-encrypted input bits.
+Yan and Murawaki~\cite{yan2025tokenization} give the stepwise retokenization
+verification used here. Accordingly, neither encryption-first processing nor
+candidate-level verification is claimed as Ghostext's novelty. Johnston's
+study~\cite{johnston2026entropy} discusses payload-completion stopping, visible
+length leakage, and EOS-based segmentation. Our stopping separation remains
+after matching the full marginal length distribution and concerns residual
+content--length dependence.
+
+\paragraph{Empirical detection.}
+A successful trained detector establishes a practical signal for its evaluation
+setting; a failed detector does not prove indistinguishability. We therefore
+combine explicit events and exact transcript laws with real-model measurements.
+General generated-text detection methods such as DetectGPT~\cite{mitchell2023detectgpt}
+address a different labeling problem from stego-versus-nonstego text generated
+by the same model. Our controls share the model and candidate source so that
+ordinary model-identification signals are not the intended explanation.

@@ -1,129 +1,109 @@
-\section{Protocol}
+\section{Ghostext and a Guarded-Prefix Repair}
 \label{sec:protocol-details}
 
-Ghostext combines a cryptographic packet layer and an LLM token-selection layer. The first protects confidentiality and integrity; the second provides reversible embedding into generated cover text.
+\subsection{Packet and Replay Contract}
 
-\subsection{Operational Semantics}
+Ghostext separates authenticated packet recovery from token generation. Its
+packet contains a 16-byte salt, a 12-byte header nonce, a 32-byte encrypted
+header including its tag, a 12-byte body nonce, and an encrypted body with a
+16-byte tag. The fixed bootstrap is therefore 60 bytes, and total overhead is
+88 bytes. The internal header records protocol and algorithm identifiers,
+body length, and a 64-bit configuration digest. The packet uses scrypt
+($N=2^{14},r=8,p=1$), HKDF-SHA256 key separation, and ChaCha20-Poly1305.
+These are standard components, not new cryptographic constructions.
 
-Alice takes plaintext, passphrase, and shared prompt. Plaintext is wrapped into an authenticated packet, split into \emph{bootstrap} and \emph{body} segments, and mapped to token choices through deterministic candidate selection, quantization, and interval narrowing. Bob tokenizes the received text under the same prompt, replays the same distributions, reconstructs the bootstrap segment first, checks the header, and then decodes the body. Plaintext is released only after full packet authentication. After packet resolution the encoder may append a short natural tail that carries no payload and is ignored by the decoder.
+The receiver first reconstructs and authenticates the bootstrap to obtain the
+body length. It then reconstructs the body and authenticates it before releasing
+plaintext. Both parties must agree on the model, tokenizer, prompt, candidate
+policy, frequency table, and codec variant. The digest binds the configured
+metadata values, but does not prove identity of every numerical-runtime setting
+or every model-file byte. Exact weight and source hashes are recorded separately
+in the experiment manifests. Low-entropy passphrases remain susceptible to
+offline guessing; scrypt does not create entropy that the passphrase lacks.
 
-Synchronization is a protocol invariant: sender and receiver must share the same prompt and decoding policy so that per-step distributions can be replayed deterministically. The decoder aborts on authentication mismatch, synchronization mismatch, unstable tokenization, or token-budget exhaustion, and never emits partial plaintext after authentication failure.
+\subsection{Candidate Source}
 
-\subsection{Authenticated Packet Layer}
+For each prefix, Ghostext masks specified special tokens, selects a descending
+probability top-$p$ list capped at $K$, and removes candidates for which rendering
+and retokenizing the entire generated prefix changes the token sequence. This
+stepwise verification follows an established approach~\cite{yan2025tokenization}.
+The remaining probabilities are renormalized and converted to positive integer
+frequencies summing to $F$. Candidate ordering and tie-breaking are deterministic.
+A singleton or an entropy below $h_{\min}$ causes greedy emission without
+payload progress. An empty stable set causes failure or a fresh-packet retry.
+The real-model configurations use $p=0.995$, $K=64$, $F=4096$, and $h_{\min}=0$.
 
-The packet format is
+Prefix verification establishes that the emitted text has the intended token
+sequence at every accepted step. It does not preserve the unfiltered source:
+removed probability mass is an explicit change. Moreover, a prefix can have
+stable candidates now and none at a later step. We retain these failures and
+retry trajectories in the artifact.
+
+\subsection{Random Guard Bits and Prefix Recovery}
+
+The repaired codec keeps the original integer-CDF update but changes its target
+and stopping condition. For a $B$-bit segment $m$, draw an independent uniform
+$g$-bit suffix $r$ and set $z=2^g\operatorname{Int}(m)+r$. Start with
+$[L,H)=[0,2^{B+g})$. At each payload-bearing step select the subinterval
+containing $z$, as in Eq.~\eqref{eq:integer-law}. Stop when
 \begin{equation}
-\begin{aligned}
-\texttt{salt} \parallel \texttt{header\_nonce} \parallel \texttt{encrypted\_header} \\
-\parallel\ \texttt{body\_nonce} \parallel \texttt{encrypted\_body}.
-\end{aligned}
+ \left\lfloor L/2^g\right\rfloor
+ =\left\lfloor(H-1)/2^g\right\rfloor.
+ \label{eq:guard-stop}
 \end{equation}
-The internal header stores protocol version, crypto IDs, and body length. The implementation uses scrypt for key derivation, HKDF-SHA256 for key separation, and ChaCha20-Poly1305 for authenticated encryption. Under standard AEAD assumptions and unknown passphrase, packet bytes are intended to be computationally indistinguishable from random given fixed field lengths; the arithmetic-coding layer is thus driven by a bitstream that is secret-independent at the byte level.
-
-\subsection{Candidate Policy and Quantization}
-
-At step $t$, raw logits define base distribution $P_t$ over vocabulary $\mathcal{V}$. Ghostext forms candidate set $C_t$ via deterministic top-$p$/max-$k$ truncation and renormalizes to $\widetilde{P}_t$. If $|C_t|<2$ or step entropy is below threshold $h_{\min}$, no payload bit is consumed. Retokenization-stability filtering then removes candidates that fail render/re-tokenize consistency.
-
-Let $N_t=|C_t|$ and total frequency budget $F_{\mathrm{tot}}$. Each candidate $v\in C_t$ receives $f_t(v)=1+\lfloor \widetilde{P}_t(v)(F_{\mathrm{tot}}-N_t)\rfloor$, with leftover units distributed by fractional remainder and token-id tie-break; $Q_t(v)=f_t(v)/F_{\mathrm{tot}}$. Writing $\mathrm{cdf}^-_t(v)$ and $\mathrm{cdf}^+_t(v)$ for the lower and upper cumulative \emph{integer} frequencies of $v$, selecting token $v$ updates
-\begin{align}
-L_{t+1}&=L_t+\left\lfloor(H_t-L_t)\,\mathrm{cdf}^-_t(v)/F_{\mathrm{tot}}\right\rfloor,\\
-H_{t+1}&=L_t+\left\lfloor(H_t-L_t)\,\mathrm{cdf}^+_t(v)/F_{\mathrm{tot}}\right\rfloor.
-\end{align}
-A segment resolves when $H_t-L_t=1$. Implementation defaults are $F_{\mathrm{tot}}=65536$ and $h_{\min}=1.0$ bit; the released baseline uses $F_{\mathrm{tot}}=4096$ and $h_{\min}=0.0$.
-
-\subsection{Finite-Message Interval Coding}
-
-Ghostext uses a finite-message integer interval codec at the segment level. For a segment $s$ of $n$ bytes, the encoder interprets the whole segment as a target integer $z=\mathrm{Int}(s)\in[0,2^{8n})$ and initializes $[L_0,H_0)=[0,2^{8n})$. At each payload-bearing step, the current quantized distribution partitions $[L_t,H_t)$ into candidate-specific subintervals. The encoder emits the unique token whose subinterval contains $z$; the decoder observes that token and mirrors the same interval update. Once the interval width becomes $1$, the segment is uniquely determined. This design stays fully integer based but avoids the extra renormalization machinery of a streaming range coder.
-
-Algorithms~\ref{alg:arith-encode} and~\ref{alg:arith-decode} make this inner loop explicit from the encoder and decoder sides. To keep the presentation short, they take the quantized distributions $Q_t$ and the segment length as already prepared inputs, and show only payload-bearing steps; deterministic candidate truncation, no-payload handling, retokenization filtering, retry logic, and the post-packet natural tail are omitted here.
+The decoder outputs this common $B$-bit prefix. It neither knows nor reconstructs
+$r$. With $g=0$, this is the legacy width-one codec. With $g>0$, recovery can
+finish while many possible suffixes remain. Guard bits are random precision,
+not extra authenticated application bytes that the receiver must deliver.
 
 \begin{algorithm}[t]
-\caption{Arithmetic Encoding (Simplified)}
-\label{alg:arith-encode}
+\caption{Guarded segment encoding and mirrored decoding}
+\label{alg:guard}
 \begin{algorithmic}[1]
-\REQUIRE segment bytes $s$, quantized distributions $\{Q_t\}_{t\ge 0}$
-\ENSURE token sequence $y$
-\STATE $z \leftarrow \mathrm{Int}(s)$
-\STATE $L \leftarrow 0$; $H \leftarrow 2^{8|s|}$; $y \leftarrow [\ ]$
-\FOR{$t=0,1,2,\dots$}
-  \IF{$H-L=1$}
-    \STATE \textbf{break}
-  \ENDIF
-  \STATE $Q \leftarrow Q_t$
-  \FORALL{$v \in Q$}
-    \STATE $L_v \leftarrow L + \lfloor (H-L)\,\mathrm{cdf}^-_Q(v)/F_{\mathrm{tot}} \rfloor$
-    \STATE $H_v \leftarrow L + \lfloor (H-L)\,\mathrm{cdf}^+_Q(v)/F_{\mathrm{tot}} \rfloor$
-    \IF{$L_v \le z < H_v$}
-      \STATE append $v$ to $y$
-      \STATE $L \leftarrow L_v$; $H \leftarrow H_v$
-      \STATE \textbf{break}
-    \ENDIF
-  \ENDFOR
-\ENDFOR
-\RETURN $y$
-\end{algorithmic}
-\end{algorithm}
-
-\begin{algorithm}[t]
-\caption{Arithmetic Decoding (Simplified)}
-\label{alg:arith-decode}
-\begin{algorithmic}[1]
-\REQUIRE token sequence $y$, segment length $n$, quantized distributions $\{Q_t\}_{t\ge 0}$
-\ENSURE recovered segment bytes $s$
-\STATE $L \leftarrow 0$; $H \leftarrow 2^{8n}$
-\FOR{$t=0,1,2,\dots$}
-  \IF{$H-L=1$}
-    \STATE \textbf{break}
-  \ENDIF
-  \STATE $Q \leftarrow Q_t$
-  \STATE $v \leftarrow y[t]$
-  \STATE $L' \leftarrow L + \lfloor (H-L)\,\mathrm{cdf}^-_Q(v)/F_{\mathrm{tot}} \rfloor$
-  \STATE $H' \leftarrow L + \lfloor (H-L)\,\mathrm{cdf}^+_Q(v)/F_{\mathrm{tot}} \rfloor$
-  \STATE $L \leftarrow L'$; $H \leftarrow H'$
-\ENDFOR
-\RETURN $\mathrm{Bytes}(L, n)$
-\end{algorithmic}
-\end{algorithm}
-
-The two procedures differ only in direction: the encoder chooses the unique token whose subinterval contains the target integer, while the decoder observes that token and applies the same interval update. The full protocol additionally specifies deterministic no-payload steps and validation checks; those are intentionally omitted here so the simplified pseudocode can focus on the interval arithmetic itself.
-
-\subsection{Reference Pseudocode}
-\label{sec:protocol-pseudocode}
-
-Algorithm~\ref{alg:ghostext-encode} and Algorithm~\ref{alg:ghostext-decode} show the outer protocol-level data flow: \emph{packet $\rightarrow$ bitstream $\rightarrow$ per-token arithmetic-coding selection}. Algorithms~\ref{alg:arith-encode} and~\ref{alg:arith-decode} make the inner segment-level arithmetic step explicit.
-
-\begin{algorithm}[t]
-\caption{Ghostext Encode (Simplified)}
-\label{alg:ghostext-encode}
-\begin{algorithmic}[1]
-\REQUIRE plaintext $m$, passphrase $pw$, prompt $\pi$
-\ENSURE stego text $x$
-\STATE $\mathrm{LLM.init}(\pi)$
-\STATE $stream \leftarrow \mathrm{Packet}(m, pw)$
-\STATE $AC \leftarrow \mathrm{ACEncoder.init}(stream)$
-\WHILE{$\NOT \mathrm{ACEncoder.finished}(AC)$}
-  \STATE $dist \leftarrow \mathrm{LLM.next\_token}()$
-  \STATE $tok \leftarrow \mathrm{ACEncoder.select}(AC, dist)$
-  \STATE $\mathrm{LLM.context.push}(tok)$
+\REQUIRE segment length $B$, guard precision $g$, shared candidate source
+\STATE Sender only: $r\gets U(\{0,\ldots,2^g-1\})$; $z\gets2^g m+r$
+\STATE Both: $L\gets0$; $H\gets2^{B+g}$
+\WHILE{$\lfloor L/2^g\rfloor\ne\lfloor(H-1)/2^g\rfloor$}
+  \STATE Recreate the next quantized CDF from the shared prefix
+  \STATE Sender selects the token whose integer subinterval contains $z$
+  \STATE Receiver observes that token and rejects an empty subinterval
+  \STATE Both replace $[L,H)$ with the selected subinterval
 \ENDWHILE
-\STATE \textit{// optional natural tail, no payload bits}
-\RETURN $\mathrm{LLM.outputs}()$
+\STATE Receiver returns $\lfloor L/2^g\rfloor$ as exactly $B$ bits
 \end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}[t]
-\caption{Ghostext Decode (Simplified)}
-\label{alg:ghostext-decode}
-\begin{algorithmic}[1]
-\REQUIRE stego text $x$, passphrase $pw$, prompt $\pi$
-\ENSURE plaintext $m$
-\STATE $\mathrm{LLM.init}(\pi)$
-\STATE $AC \leftarrow \mathrm{ACDecoder.init}(pw)$
-\FORALL{$tok \in x$}
-  \STATE $dist \leftarrow \mathrm{LLM.next\_token}()$
-  \STATE $\mathrm{ACDecoder.update}(AC, tok, dist)$
-  \STATE $\mathrm{LLM.context.push}(tok)$
-\ENDFOR
-\RETURN $\mathrm{ACDecoder.decode}(AC)$
-\end{algorithmic}
-\end{algorithm}
+The full implementation also enforces token budgets and deterministic no-payload
+steps. Empty segments resolve immediately. The codec identifier and $g$ enter
+the configuration digest; incompatible endpoints must not silently mix variants.
+
+\begin{theorem}[Guarded coding bound]
+\label{thm:guard}
+For a uniform $B$-bit segment and independent uniform $g$-bit guard, consider at
+most $T$ steps and at most $N$ candidates per step. Compare the guarded codec
+with a $Q$ sampler using the same integer state transitions, prefix stopping
+rule, horizon, and absorbing invalid states. Their transcript TV is at most
+\begin{equation}
+ \min\{1,TN/2^{g+1}\}.
+ \label{eq:guard-bound}
+\end{equation}
+\end{theorem}
+
+\paragraph{Proof.}
+At any depth, the active intervals are disjoint subsets of the initial integer
+domain. Every unresolved interval crosses a strict interior boundary between
+two $B$-bit payload blocks, hence there are at most $2^B-1$ active intervals.
+An interval of width $W$ has probability $W/2^{B+g}$ under the uniform target.
+Multiplying this by the local bound $N/(2W)$ from
+Eq.~\eqref{eq:local-rounding} and summing over active intervals bounds the
+expected one-step TV by $N/2^{g+1}$. Sequential TV composition over $T$ steps
+proves the result. Both laws include invalid and horizon-exhaustion outcomes;
+none are conditioned away.
+
+For two independent fixed-length uniform segments, their horizon contributions
+add. The implementation's $g=128$, $N\le64$, and combined 6144-token budget give
+a coding-only bound of approximately $2^{-110.4}$. This is not ``128-bit
+steganographic security.'' Frequency quantization, source pseudorandomness,
+filtering, retry conditioning, and the choice of stopping reference remain
+outside this bound. In particular, Theorem~\ref{thm:guard} does not repair the
+separate comparison in Theorem~\ref{thm:stopping}.

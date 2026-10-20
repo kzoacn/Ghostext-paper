@@ -1,0 +1,161 @@
+{
+  "source_file": "results/prompt-message-grid/prompt_message_grid_runs.jsonl",
+  "source_sha256": "cb160b95c7aa95880f022d17aa81b3c7fd774f4f454dab373bf12240b4d28edd",
+  "interpretation": "Reanalysis of historical observations, not newly executed LLM experiments.",
+  "overall": {
+    "trials": 100,
+    "successful_deliveries": 100,
+    "first_attempt_deliveries": 81,
+    "recorded_attempts": 140,
+    "attempt_histogram": {
+      "1": 81,
+      "2": 11,
+      "3": 1,
+      "4": 3,
+      "5": 2,
+      "6": 2
+    },
+    "packet_overhead_bytes": [
+      88
+    ],
+    "net_plaintext_bpt_mean": 1.172499638991318,
+    "net_plaintext_bpt_aggregate": 1.20973446252079,
+    "gross_packet_bpt_mean": 2.6186761900607496,
+    "encode_seconds_median": 37.7381556170003,
+    "decode_seconds_median": 34.47430381450067,
+    "nominal_wilson_95": [
+      0.9630065017930143,
+      1
+    ]
+  },
+  "by_prompt_language": {
+    "en": {
+      "trials": 50,
+      "successful_deliveries": 50,
+      "first_attempt_deliveries": 44,
+      "recorded_attempts": 59,
+      "attempt_histogram": {
+        "1": 44,
+        "2": 5,
+        "5": 1
+      },
+      "packet_overhead_bytes": [
+        88
+      ],
+      "net_plaintext_bpt_mean": 1.2025058139159512,
+      "net_plaintext_bpt_aggregate": 1.2440530020052687,
+      "gross_packet_bpt_mean": 2.6857614237875156,
+      "encode_seconds_median": 35.03671439899972,
+      "decode_seconds_median": 34.20816865599954,
+      "nominal_wilson_95": [
+        0.9286524008666414,
+        1
+      ]
+    },
+    "zh": {
+      "trials": 50,
+      "successful_deliveries": 50,
+      "first_attempt_deliveries": 37,
+      "recorded_attempts": 81,
+      "attempt_histogram": {
+        "1": 37,
+        "2": 6,
+        "3": 1,
+        "4": 3,
+        "5": 1,
+        "6": 2
+      },
+      "packet_overhead_bytes": [
+        88
+      ],
+      "net_plaintext_bpt_mean": 1.1424934640666848,
+      "net_plaintext_bpt_aggregate": 1.1772585206131865,
+      "gross_packet_bpt_mean": 2.5515909563339836,
+      "encode_seconds_median": 38.90219642000011,
+      "decode_seconds_median": 37.08563385299931,
+      "nominal_wilson_95": [
+        0.9286524008666414,
+        1
+      ]
+    }
+  },
+  "by_message_length": {
+    "short": {
+      "trials": 40,
+      "successful_deliveries": 40,
+      "first_attempt_deliveries": 37,
+      "recorded_attempts": 43,
+      "attempt_histogram": {
+        "1": 37,
+        "2": 3
+      },
+      "packet_overhead_bytes": [
+        88
+      ],
+      "net_plaintext_bpt_mean": 0.8741646192951169,
+      "net_plaintext_bpt_aggregate": 0.8675938974327554,
+      "gross_packet_bpt_mean": 2.6447696709682313,
+      "encode_seconds_median": 27.902831576999233,
+      "decode_seconds_median": 26.447318851500313,
+      "nominal_wilson_95": [
+        0.9123783988027135,
+        1
+      ]
+    },
+    "medium": {
+      "trials": 40,
+      "successful_deliveries": 40,
+      "first_attempt_deliveries": 30,
+      "recorded_attempts": 59,
+      "attempt_histogram": {
+        "1": 30,
+        "2": 6,
+        "3": 1,
+        "4": 2,
+        "6": 1
+      },
+      "packet_overhead_bytes": [
+        88
+      ],
+      "net_plaintext_bpt_mean": 1.2476898563693042,
+      "net_plaintext_bpt_aggregate": 1.216673621736913,
+      "gross_packet_bpt_mean": 2.5943107030912356,
+      "encode_seconds_median": 42.31311254499997,
+      "decode_seconds_median": 37.425123604500186,
+      "nominal_wilson_95": [
+        0.9123783988027135,
+        1
+      ]
+    },
+    "long": {
+      "trials": 20,
+      "successful_deliveries": 20,
+      "first_attempt_deliveries": 14,
+      "recorded_attempts": 38,
+      "attempt_histogram": {
+        "1": 14,
+        "2": 2,
+        "4": 1,
+        "5": 2,
+        "6": 1
+      },
+      "packet_overhead_bytes": [
+        88
+      ],
+      "net_plaintext_bpt_mean": 1.6187892436277482,
+      "net_plaintext_bpt_aggregate": 1.5865751334858886,
+      "gross_packet_bpt_mean": 2.615220202184814,
+      "encode_seconds_median": 60.22196331850046,
+      "decode_seconds_median": 58.11022676650009,
+      "nominal_wilson_95": [
+        0.8388748419471806,
+        1
+      ]
+    }
+  },
+  "uncertainty_caveat": "Wilson interval is nominal under independent Bernoulli sampling; the fixed grid shares prompts/messages and has one run per cell. It is not a confidence bound for arbitrary prompts or deployments.",
+  "net_bpt_prompt_cluster_bootstrap_95": [
+    1.127012012421315,
+    1.2154218365569505
+  ]
+}

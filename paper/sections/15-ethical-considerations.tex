@@ -1,8 +1,21 @@
 \section{Ethical Considerations}
 \label{sec:ethical-considerations}
 
-Ghostext studies linguistic steganography, which is a dual-use capability. The same mechanisms that can support privacy-preserving communication under surveillance risk can also be misused to conceal harmful coordination or policy violations. We therefore scope our claims narrowly, report implementation caveats explicitly, and avoid framing the current system as detector-proof or abuse-resistant.
+This work studies a dual-use communication mechanism. Concealment can support
+privacy, but can also hide harmful coordination. Our experiments use public
+models, author-written prompts, and synthetic test messages on local machines.
+They do not target deployed third-party services or involve human participants,
+private communications, or attempts to bypass a live moderation system.
 
-Our threat model is a passive text-only observer, and our measured evidence is limited to recoverability and practical overhead in a pinned environment. We do not claim robustness against active moderation, endpoint compromise, or large-scale forensic analysis. These boundaries are intentional: overstating security could create unsafe deployment expectations.
+A principal risk is giving users unwarranted confidence in a covert channel.
+We therefore report detectable structure, failure cases, and the exact scope
+of security bounds, and do not describe the prototype as safe for at-risk
+communication. Test credentials and seeds are intentionally public and are
+not operational secrets.
 
-For release practice, we provide an anonymous research artifact with reproducibility metadata and clear failure modes, without claiming that the method bypasses real-world safety systems. Future work should include abuse-oriented evaluation and red-team analysis under controlled governance before any operational use is considered.
+The external counterexamples concern published algorithms and locally executed
+public code. Before submission, the authors should provide the relevant
+maintainers with pinned reproductions, distinguish historical algorithms from
+later fixes, and record their responses or a disclosure plan. This working
+draft does not claim that such notifications have already been sent. No live
+system exploit or personal data is needed to reproduce the findings.

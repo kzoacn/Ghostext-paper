@@ -1,7 +1,41 @@
-\section{Limitations and Conclusion}
+\section{Limitations and Implications}
 
-\paragraph{Limitations.} Ghostext targets passive-text observation and does not provide empirical detector-resistance evidence. The main LLM-backend evidence is now a 100-trial fixed prompt-message grid on one pinned Qwen/\texttt{llama-cpp} stack; although all 100 trials decode successfully, the evidence remains template-known, single-backend, and local-machine specific. Encode latency shows a visible retry-driven tail under low-entropy or unstable-candidate local contexts. Cross-family generalization, direct distribution-distance measurement, and active text modification in transit remain out of scope.
+\paragraph{What is established.}
+The exact counterexamples and binary-source separation are statements about
+specified algorithms and distributions. The guarded-prefix theorem controls
+integer-coding error relative to a stopping-matched processed sampler. The
+archived real-model audit demonstrates an admissibility signal in a limited
+paired control set. None of these statements equates successful authenticated
+recovery, small token-table error, and complete-text security.
 
-\paragraph{Conclusion.} Ghostext contributes a near-distribution-preserving, implementation-auditable LLM steganography protocol with authenticated packetization and synchronization binding. Relative to the same-policy natural-cover baseline, only two implementation-level effects remain: integer quantization and retokenization filtering. On the released fixed $10 \times 10$ prompt-message grid, the pinned local implementation achieves 100/100 exact recoveries with median encode/decode latencies of $37.74$\,s/$34.47$\,s and mean encode payload density of $2.619$ bits/token. This supports a narrow systems claim: Ghostext can provide deterministic round trips under a shared prompt and pinned runtime, while encode latency still has a meaningful long tail. Detector-facing, traffic-side, and cross-family evaluation under the same artifact discipline remains the next milestone.
+\paragraph{What remains conditional.}
+The stopping detector knows $B$, the prompt, and the source. Unknown prompts,
+unknown-length mixtures, model mismatch, and dependent real-language sources
+require separate evaluation. The IID asymptotic theorem does not automatically
+apply to an LLM. The historical bootstrap pilot has only 18 natural controls
+and does not support a low-false-positive deployment claim. Candidate filtering
+can fail, and conditioning empirical analyses on completed pairs changes the
+estimand; failures must accompany reported detection results.
 
-One practical takeaway from the current artifact is that Ghostext should be read as a protocolized covert channel rather than as a generic prompt trick. The passphrase, prompt, backend metadata, tokenizer behavior, and retry policy are all part of one shared replay contract. That is what makes exact recovery possible, and it is also what bounds the current evidence. In other words, the main contribution is not that a language model can hide bits in principle, but that a concrete local implementation can do so with authenticated framing, auditable failure behavior, and reproducible measurements under a pinned stack.
+The cryptographic packet is an engineering composition of standard primitives,
+not a proof that its entire fixed-length byte string is pseudorandom. A weak
+passphrase can be guessed. The configuration digest and pinned artifacts help
+replay, but do not prove cross-hardware determinism. Active edits can prevent
+recovery, while modifications confined to an ignored tail need not be rejected.
+
+\paragraph{Design implications.}
+Random guard bits address a concrete finite-precision defect without requiring
+the receiver to recover the added randomness. They do not choose an honest
+cover length policy. A fixed exogenous token budget, or a content-dependent
+stopping rule genuinely shared with the reference source, changes that security
+question and introduces its own delivery-capacity tradeoff. Silently retrying
+until success also changes the transmitted law. These decisions belong in the
+protocol and in its reference sampler, not only in implementation footnotes.
+
+\paragraph{Conclusion.}
+Ghostext provides an auditable setting for studying the gap between token-level
+sampling claims and finite transmitted texts. Exact external counterexamples,
+a public stopping likelihood, and a guarded-prefix coding bound expose distinct
+failure mechanisms and delimit what each repair proves. Complete-text security
+requires accounting for the message source, sampling state, failure selection,
+and endpoint together.

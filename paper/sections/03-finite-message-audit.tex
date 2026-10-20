@@ -1,0 +1,83 @@
+\section{Three Finite-Message Effects}
+\label{sec:audit}
+
+\subsection{Finite Input Is Not an Infinite Random Stream}
+
+An arithmetic decoder can simulate a token source when its driving bits have the
+required random distribution. Finishing a finite message changes that premise.
+The original NLS implementation~\cite{ziegler2019neural} maintains a fixed-precision
+interval and renormalizes shared leading bits. When its lookahead extends beyond
+the message, it fills the missing positions with zeros. Its reported KL compares
+rounded token frequencies with model probabilities; this calculation does not
+account for the deterministic suffix of the actual input.
+
+Our harness extracts and executes the original encoder and its utility functions
+unchanged from a pinned 2019 revision. A synthetic model assigns probability
+$1/64$ to each of 64 active tokens. We enumerate all 256 eight-bit messages,
+with precision 16, candidate cap 64, and sentence completion disabled. Each
+output contains two tokens. The first carries six bits; the remaining two input
+bits and four zero padding bits restrict the final token to four choices.
+Consequently,
+\begin{equation}
+ \operatorname{TV}(R_{\mathrm{last}},U_{64})=\frac{15}{16},
+ \qquad \widehat D_{\mathrm{KL}}=0.
+\end{equation}
+The same counting argument applies to $B=6k+2$, including 128-bit messages.
+This is an algorithm-level counterexample to the diagnostic, not an empirical
+claim about GPT-2 output quality. It holds with a uniform finite input, so
+normalizing plaintext through encryption does not remove this padding effect.
+Meteor masks its lookahead with fresh pseudorandom bits after padding; the
+specific argument above does not apply to that construction~\cite{kaptchuk2021language}.
+
+\subsection{Integer Interval Width Determines the Sampling Law}
+
+Ghostext's legacy codec uses a different representation. It interprets an entire
+$n$-byte segment as an integer in $[0,2^{8n})$ and narrows an integer interval
+until only one integer remains. Suppose the current width is $W$, total
+frequency is $F$, and token $i$ has cumulative integer frequencies $c_i,c_{i+1}$.
+Even under a uniform target within the current interval, its selection
+probability is
+\begin{equation}
+ R_W(i)=\frac{\lfloor Wc_{i+1}/F\rfloor-\lfloor Wc_i/F\rfloor}{W}.
+ \label{eq:integer-law}
+\end{equation}
+This law need not equal $Q(i)=(c_{i+1}-c_i)/F$. Each endpoint floor contributes
+less than one unit of count error, giving
+\begin{equation}
+ \operatorname{TV}(R_W,Q)<\frac{N}{2W},
+ \label{eq:local-rounding}
+\end{equation}
+for $N$ candidate tokens. The bound can be large when $W$ is small.
+
+An exhaustive uniform-64 example again gives TV $15/16$, but for a different
+reason. With an eight-bit target and $F=4096$, the first token leaves width four.
+Only four of the next 64 subintervals are nonempty. Of the 4096 possible natural
+two-token sequences, only 256 are admissible. This effect exists with exact
+frequency quantization and an identity tokenizer.
+
+It also gives a keyless test for a framed protocol. Ghostext's bootstrap length
+is public, so an observer can initialize its interval, replay candidate tables,
+and reject any sequence that enters a zero-width subinterval. No authentication
+key is needed. We retain separate reasons for rejection: candidate exclusion,
+violation of a deterministic no-payload step, and zero-width interval selection.
+A positive result means only that the prefix is admissible, not that it contains
+an authenticated packet.
+
+\subsection{Other Transformations Must Be Measured Separately}
+
+The released quantizer reserves one frequency for every candidate before
+allocating the remaining $F-N$ counts. An $N/(2F)$ error claim therefore cannot
+be borrowed from ordinary rounding. With $N=64$, $F=4096$, and probabilities
+approximately $(1,0,\ldots,0)$, its measured TV is $0.015381$, exceeding
+$N/(2F)=0.0078125$. Our revised audit computes
+$\frac12\sum_i|p_i-f_i/F|$ directly and measures interval rounding separately
+using Eq.~\eqref{eq:integer-law}.
+
+Truncation, removal of retokenization-unstable candidates, greedy emission at
+low entropy, successful-attempt selection, and the final stopping rule can all
+change the visible distribution. In particular, fresh retries do not remove
+selection bias. For an attempt law $\mu$ and success event $A$, the first
+successful independent attempt has law $\mu(\cdot\mid A)$, regardless of the
+retry cap conditional on eventual success. At the attempt-trajectory level,
+$\operatorname{TV}(\mu,\mu(\cdot\mid A))=1-\mu(A)$; projecting to visible text
+can reduce this distance, but cannot justify ignoring the conditioning.

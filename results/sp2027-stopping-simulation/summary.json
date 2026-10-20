@@ -1,0 +1,117 @@
+{
+  "scope": "Monte Carlo of the ideal published RRC stopping law on an IID binary source; not an LLM experiment.",
+  "seed": 20261020,
+  "score": "-abs(total surprisal in bits - known message length in bits)",
+  "results": [
+    {
+      "message_bits": 8,
+      "n_per_class": 20000,
+      "p_A": 0.75,
+      "mean_tokens": 7.8445,
+      "auc_capacity_gap": 0.66613413125,
+      "preregistered_band": [
+        0,
+        10.0
+      ],
+      "stego_band_rate": 1.0,
+      "natural_band_rate": 0.87805,
+      "stego_band_wilson_95": [
+        0.9998079639438954,
+        0.9999999999999999
+      ],
+      "natural_band_wilson_95": [
+        0.8734421890439392,
+        0.8825126124940401
+      ],
+      "theoretical_stego_band_lower_bound": 0.984375
+    },
+    {
+      "message_bits": 32,
+      "n_per_class": 20000,
+      "p_A": 0.75,
+      "mean_tokens": 37.3667,
+      "auc_capacity_gap": 0.77837272375,
+      "preregistered_band": [
+        24,
+        34.0
+      ],
+      "stego_band_rate": 0.9928,
+      "natural_band_rate": 0.58515,
+      "stego_band_wilson_95": [
+        0.991529924157616,
+        0.9938808051054874
+      ],
+      "natural_band_wilson_95": [
+        0.5783059896978112,
+        0.591961306561834
+      ],
+      "theoretical_stego_band_lower_bound": 0.984375
+    },
+    {
+      "message_bits": 128,
+      "n_per_class": 20000,
+      "p_A": 0.75,
+      "mean_tokens": 155.8868,
+      "auc_capacity_gap": 0.8802298825,
+      "preregistered_band": [
+        120,
+        130.0
+      ],
+      "stego_band_rate": 0.9927,
+      "natural_band_rate": 0.32195,
+      "stego_band_wilson_95": [
+        0.9914219220373862,
+        0.9937888456329284
+      ],
+      "natural_band_wilson_95": [
+        0.31550944924521795,
+        0.32845893479436095
+      ],
+      "theoretical_stego_band_lower_bound": 0.984375
+    },
+    {
+      "message_bits": 512,
+      "n_per_class": 20000,
+      "p_A": 0.75,
+      "mean_tokens": 628.9718,
+      "auc_capacity_gap": 0.9403038249999999,
+      "preregistered_band": [
+        504,
+        514.0
+      ],
+      "stego_band_rate": 0.99325,
+      "natural_band_rate": 0.1583,
+      "stego_band_wilson_95": [
+        0.9920166536273292,
+        0.9942939028033235
+      ],
+      "natural_band_wilson_95": [
+        0.1533068240920167,
+        0.16342441334872518
+      ],
+      "theoretical_stego_band_lower_bound": 0.984375
+    },
+    {
+      "message_bits": 2048,
+      "n_per_class": 20000,
+      "p_A": 0.75,
+      "mean_tokens": 2522.9957,
+      "auc_capacity_gap": 0.9690321224999999,
+      "preregistered_band": [
+        2040,
+        2050.0
+      ],
+      "stego_band_rate": 0.994,
+      "natural_band_rate": 0.0823,
+      "stego_band_wilson_95": [
+        0.9928307494523352,
+        0.9949795189242334
+      ],
+      "natural_band_wilson_95": [
+        0.07857097656616052,
+        0.08618945035510928
+      ],
+      "theoretical_stego_band_lower_bound": 0.984375
+    }
+  ]
+}

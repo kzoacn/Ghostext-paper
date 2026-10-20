@@ -1,0 +1,49 @@
+\section{Proof Details for Stopping Separation}
+\label{app:proofs}
+
+Fix $p\in(0,1)\setminus\{1/2\}$. Let
+$a=-\log_2\max(p,1-p)$, $b=-\log_2\min(p,1-p)$,
+$d=b-a>0$, and $A_a=(1-2^{-a})^{-1}$. The IID symbols may be sampled in advance;
+independent stopping coins then accept the hazards
+$h_n=\min(1,2^{S_n-B})$. This realizes the ideal stopped law of
+Eq.~\eqref{eq:stopped-law}.
+
+For any fixed symbol sequence, the sum of hazards before $S_n<B-k$ is bounded
+by a reverse geometric series:
+\begin{equation}
+ \sum_{n:S_n<B-k}2^{S_n-B}\le A_a2^{-k}.
+\end{equation}
+A union bound over the stopping coins gives
+$P_B(S_\tau<B-k)\le A_a2^{-k}$. As stopping is certain when $S_n\ge B$ and
+increments are at most $b$, $P_B(S_\tau>B+b)=0$. Also,
+$\tau<B/(2b)$ implies $S_\tau<B/2$, so
+$P_B(\tau<B/(2b))\le A_a2^{-B/2}$.
+
+For the independent natural control, conditional on length $n$, write
+$S_n=na+dK_n$, with $K_n$ binomial of parameter $\min(p,1-p)$.
+An interval of width $k+b$ contains at most
+$\lfloor(k+b)/d\rfloor+1$ possible values. We use the elementary atom bound
+\begin{equation}
+ \sup_j\Pr(K_n=j)\le\frac{M_p}{\sqrt n},\qquad
+ M_p=\frac{\sqrt\pi}{2\sqrt{2p(1-p)}}.
+\end{equation}
+For completeness, Fourier inversion bounds an atom by
+$(2\pi)^{-1}\int_{-\pi}^{\pi}|1-p+pe^{it}|^n\,dt$.
+The identity $|1-p+pe^{it}|^2=1-4p(1-p)\sin^2(t/2)$,
+$\sin(|t|/2)\ge|t|/\pi$, and $1-u\le e^{-u}$ bound the
+integrand by $\exp[-2np(1-p)t^2/\pi^2]$. Extending the integral to the real
+line gives the stated constant.
+
+Set $E_B=\{B-k\le S\le B+b\}$. Split the natural length mixture at $B/(2b)$,
+and subtract its event probability from the stopped-law lower bound. For
+$0\le k\le B$,
+\begin{align}
+ \operatorname{TV}(P_B,C_B)\ge{}&1-A_a2^{-k}-A_a2^{-B/2}\notag\\
+ &-M_p\sqrt{\frac{2b}{B}}
+ \left(\left\lfloor\frac{k+b}{d}\right\rfloor+1\right).
+\end{align}
+The maximum of this expression and zero is a valid numerical lower bound.
+Choosing $k=\log_2 B$ yields Theorem~\ref{thm:stopping}. Constants depend on the
+fixed source and deteriorate near $p=1/2$; no nonlattice approximation is used.
+The proof establishes a limit, not monotonicity in $B$ or a universal guarantee
+for dependent language-model sources.

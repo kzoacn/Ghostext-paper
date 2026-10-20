@@ -1,53 +1,65 @@
-\documentclass[sigconf,nonacm]{acmart}
+\documentclass[conference,compsoc]{IEEEtran}
 
-\makeatletter
-\@ACM@balancefalse
-\makeatother
-
-\settopmatter{printacmref=false,printfolios=true}
-\renewcommand\footnotetextcopyrightpermission[1]{}
-\pagestyle{plain}
-\raggedbottom
-\vfuzz=2pt
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
 \usepackage{algorithm}
 \usepackage{algorithmic}
 \usepackage{array}
 \usepackage{booktabs}
 \usepackage{tikz}
 \usepackage{tabularx}
+\usepackage[nocompress]{cite}
+\usepackage[hidelinks]{hyperref}
 \usetikzlibrary{arrows.meta}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
 
-\title{Ghostext: Near-Distribution-Preserving LLM Steganography with Authenticated Packet Framing}
-
-\author{Anonymous Author(s)}
+\title{Ghostext: Auditing Finite-Message Leakage in LLM Steganography}
+\author{}
 
 \begin{document}
 
-\begin{abstract}
-We present Ghostext, a generation-based linguistic steganography protocol for large language models that lets a sender (Alice) deliver a secret message to a receiver (Bob) as natural-language cover text in the presence of a passive censor. Alice wraps her plaintext into an authenticated packet keyed by a passphrase shared with Bob, and then generates cover text token by token from a shared prompt: at each next-token step she picks one token from the model's candidate set via an arithmetic-coding-style mapping driven by the packet bits. The censor sees only this text; Ghostext is designed to preserve the model-side truncated next-token distribution up to deterministic implementation effects while the carried packet bits remain pseudorandom under authenticated encryption. Bob re-feeds the shared prompt to the same model, replays the same candidate construction at each step, and inverts the arithmetic coding to recover the packet---and from it, the secret message. We implement Ghostext end to end and report a fixed $10 \times 10$ prompt-message grid evaluation on a pinned local backend.
-\end{abstract}
-
 \maketitle
+
+\begin{abstract}
+Language-model steganography often evaluates security through next-token
+probabilities, although an observer receives a finite text with an endpoint.
+We study three ways in which these objects differ: deterministic padding of
+finite input bits, rounding inside a shrinking integer interval, and
+content-dependent termination. Executing the original Neural Linguistic
+Steganography encoder on an exhaustive synthetic example yields terminal-token
+total variation $15/16$ while its reported average KL is zero. For the published
+rotation range-coding algorithm, we derive a public stopping likelihood and
+an exact counterexample even when the natural control has the same marginal
+length distribution. On every fixed nonuniform binary IID source, the distance
+between these two stopped-text laws tends to one as message length grows.
+We then implement a guarded-prefix repair in Ghostext, retaining authenticated
+packet recovery while bounding integer-coding error against an explicitly
+specified stopping-matched reference. An audit of archived Qwen outputs
+confirms that a password-free bootstrap check accepts all 118 stego texts
+and rejects 11 of 18 matched control texts. These results separate codec
+correctness, conditional sampling accuracy, and complete-text security;
+the guarded codec alone does not establish indistinguishability from ordinary
+language-model generation.
+\end{abstract}
 
 \input{sections/01-introduction}
 \input{sections/02-background}
-\input{sections/03-design-overview}
-\input{sections/04-security-goal}
+\input{sections/03-finite-message-audit}
+\input{sections/04-stopping-security}
 \input{sections/05-protocol-details}
 \input{sections/06-implementation}
-\input{sections/07-operational-discussion}
 \input{sections/08-evaluation-plan}
-\input{sections/09-security-discussion}
-\input{sections/10-operational-implications}
 \input{sections/12-related-work}
 \input{sections/13-limitations-and-conclusion}
 
-\bibliographystyle{ACM-Reference-Format}
+\bibliographystyle{IEEEtran}
 \bibliography{refs}
 
-\appendix
+\appendices
 \input{sections/14-open-science}
 \input{sections/15-ethical-considerations}
 \input{sections/16-generative-ai-usage}
+\input{sections/17-proofs}
 
 \end{document}

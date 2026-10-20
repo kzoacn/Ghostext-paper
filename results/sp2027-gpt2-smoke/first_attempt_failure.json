@@ -1,0 +1,12 @@
+{
+  "scope": "First real GPT-2 smoke before retry telemetry instrumentation",
+  "status": "failure",
+  "attempts_allowed": 1,
+  "failure_class": "UnsafeTokenizationError",
+  "message": "candidate selection contains no retokenization-stable token",
+  "timing_seconds": null,
+  "reason_timing_missing": "Initial shell smoke did not persist timing on failure",
+  "prompt": "The museum opened its doors in the morning. Visitors walked through the rooms and",
+  "plaintext": "Local smoke test.",
+  "guard_bits": 128
+}
