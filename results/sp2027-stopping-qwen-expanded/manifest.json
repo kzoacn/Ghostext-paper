@@ -1,0 +1,3427 @@
+{
+  "schema": "stopping-llm-v1",
+  "backend": "qwen",
+  "backend_metadata": {
+    "model_id": "Qwen/Qwen3.5-2B",
+    "tokenizer_hash": "0fa174fde298ae08d4f75613b3d06c9c027f382133c93e41b3bcf8e134dd8b75",
+    "backend_id": "llama-cpp-qwen3"
+  },
+  "model_sha256": {
+    "Qwen_Qwen3.5-2B-Q4_K_S.gguf": "ae7c7f78251e36c8f8c50bdd4df2cb593a62ace1271327789dea67fd62eb31c2"
+  },
+  "source_sha256": {
+    "Ghostext-paper/scripts/run_stopping_llm.py": "4ebea59365dd02a0dd9c474ef7fa38afe483986f1dfd7ddbf83a0a76ce139324",
+    "Ghostext-paper/scripts/stopping_experiment.py": "cba8f568ff755225e1c228523f0374236269091c623d628a317271ca97114184",
+    "Ghostext-paper/scripts/experiment_prompts.py": "20ba3d9539d3d90193b736c1aabde84fd8b88ab7e6c42dd34ed0f2f4e92ae40d",
+    "Ghostext-paper/scripts/model_adapters.py": "ad41399f2e457aa6af85ed93ae5cf98864020181681907cc8b305bea1a510bac",
+    "Ghostext/src/ghostext/__init__.py": "d37c170dfeef70b1b7c12b76ac7baaab8544c5d3e236ef8ae5a82432997d3991",
+    "Ghostext/src/ghostext/benchmark.py": "f6e3fd9dd9d8615331c4684b097903142ab74b5bbec3064aac50c07264f4a831",
+    "Ghostext/src/ghostext/candidate_policy.py": "ef1a4b16a6d661a4c265d9ac7f3f75c21bda9048d43159383b1974a925bb1224",
+    "Ghostext/src/ghostext/cli.py": "3b17cb948d4355829154eb32da926c5717080c71d36d8d2983f4ee75c2b30c49",
+    "Ghostext/src/ghostext/codec.py": "585d65d10b18d9861ba0d02f0a4671743b2fa8cf2cd31152db860dc80724e9f5",
+    "Ghostext/src/ghostext/config.py": "43fc08a3ba07fcc95bac05ce57d74f7044cce229b12d8e135537fb7500d6f637",
+    "Ghostext/src/ghostext/crypto.py": "7ce5498b9b86a907c0a97901a2aaa339e9ff4ec324566382f0516ef21b1c36d5",
+    "Ghostext/src/ghostext/decoder.py": "40b85a1c41fc466b79a28d54e9c3e079151e507a6d888007cc1a3f9c73c25e81",
+    "Ghostext/src/ghostext/encoder.py": "fd66120a07172d43a07200c74f72b65bfeef806154d1557de7b37a7c21870aa9",
+    "Ghostext/src/ghostext/errors.py": "70020cb389ada0d1d16147e2a5055ff3c42e95bb5cd2a85853f1cf2088e29b54",
+    "Ghostext/src/ghostext/llama_cpp_backend.py": "07f3653b87c61444bd0888ff5013d8c223df555f5fe9c172fa71a29496249b2b",
+    "Ghostext/src/ghostext/model_assets.py": "8089d5d0cef24207b081d1c5ab59cdee0ff38799d774b08d88b8472ec3ce3350",
+    "Ghostext/src/ghostext/model_backend.py": "74d35dab5ca32df6f8bd07a775f75ff9778621301f157d8fa0238f994e9203d4",
+    "Ghostext/src/ghostext/packet.py": "fa938220b13f7b466b28330d99875b4b7da4270ad3904987b689ceb30e32104b",
+    "Ghostext/src/ghostext/pipeline.py": "85e2199ba095001c2a7c1aaffc672b953e633d6bf51de592748f85295134eae5",
+    "Ghostext/src/ghostext/progress.py": "a53ab3454e33094e9292524cf8fa25e1fa1f2ead1c96c2168b0e32a238925c25",
+    "Ghostext/src/ghostext/quantization.py": "b43e6f652d0dc97012f03295f4ab96eb2859c903a9b7609bf06702583c3b82ff"
+  },
+  "parameters": {
+    "repeats": 8,
+    "bits": [
+      128,
+      512
+    ],
+    "threads": 4,
+    "seed": 20261023,
+    "verify_before_stop": false,
+    "top_p": 0.995,
+    "max_candidates": 64,
+    "frequency": 4096,
+    "stability_filter": true,
+    "rotation_bits": 192,
+    "empty_candidate_search": 4096,
+    "cpu_affinity": [
+      8,
+      9,
+      10,
+      11
+    ]
+  },
+  "prompts": [
+    {
+      "prompt_id": "00_en_evening_walk",
+      "family": "evening_walk",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nThe evening walk through the neighborhood was quiet. Along the street,"
+    },
+    {
+      "prompt_id": "00_zh_evening_walk",
+      "family": "evening_walk",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n傍晚散步时，社区里的街道很安静。沿着路边，"
+    },
+    {
+      "prompt_id": "01_en_corner_cafe",
+      "family": "corner_cafe",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nInside the small cafe, the afternoon light fell across the wooden tables."
+    },
+    {
+      "prompt_id": "01_zh_corner_cafe",
+      "family": "corner_cafe",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n小咖啡馆里，午后的阳光照在木桌上。"
+    },
+    {
+      "prompt_id": "02_en_library",
+      "family": "library",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nThe library was nearly empty when the last class ended. On the second floor,"
+    },
+    {
+      "prompt_id": "02_zh_library",
+      "family": "library",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n最后一节课结束后，图书馆里已经没什么人了。在二楼，"
+    },
+    {
+      "prompt_id": "03_en_garden",
+      "family": "garden",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nAfter the rain, the garden paths were still wet. Near the gate,"
+    },
+    {
+      "prompt_id": "03_zh_garden",
+      "family": "garden",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n雨停以后，花园里的小路仍然湿漉漉的。在大门旁边，"
+    },
+    {
+      "prompt_id": "04_en_market",
+      "family": "market",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nAt the neighborhood market, the stalls were opening for the morning."
+    },
+    {
+      "prompt_id": "04_zh_market",
+      "family": "market",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n清晨，社区菜市场里的摊位陆续开始营业。"
+    },
+    {
+      "prompt_id": "05_en_train",
+      "family": "train",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe train reached the next station a few minutes early. Through the window,"
+    },
+    {
+      "prompt_id": "05_zh_train",
+      "family": "train",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n火车提前几分钟到达了下一站。透过车窗，"
+    },
+    {
+      "prompt_id": "06_en_science",
+      "family": "science",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nIn the school laboratory, the class prepared a simple experiment with water."
+    },
+    {
+      "prompt_id": "06_zh_science",
+      "family": "science",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n学校的实验室里，同学们准备做一个与水有关的小实验。"
+    },
+    {
+      "prompt_id": "07_en_museum",
+      "family": "museum",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe museum opened a new room about the history of local transportation."
+    },
+    {
+      "prompt_id": "07_zh_museum",
+      "family": "museum",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n博物馆新开放了一个介绍当地交通历史的展厅。"
+    },
+    {
+      "prompt_id": "08_en_mountain",
+      "family": "mountain",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe trail climbed gently through the forest before reaching an open hillside."
+    },
+    {
+      "prompt_id": "08_zh_mountain",
+      "family": "mountain",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n山路穿过树林缓缓上升，随后来到一片开阔的山坡。"
+    },
+    {
+      "prompt_id": "09_en_workshop",
+      "family": "workshop",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nIn the repair workshop, a bicycle stood beside a box of carefully sorted tools."
+    },
+    {
+      "prompt_id": "09_zh_workshop",
+      "family": "workshop",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n修理铺里，一辆自行车停在装着分类工具的箱子旁边。"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt_id": "01_en_corner_cafe",
+      "family": "corner_cafe",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nInside the small cafe, the afternoon light fell across the wooden tables.",
+      "repeat": 3,
+      "message_bits": 512,
+      "case_id": "01_en_corner_cafe:b512:r3"
+    },
+    {
+      "prompt_id": "08_en_mountain",
+      "family": "mountain",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe trail climbed gently through the forest before reaching an open hillside.",
+      "repeat": 0,
+      "message_bits": 128,
+      "case_id": "08_en_mountain:b128:r0"
+    },
+    {
+      "prompt_id": "05_zh_train",
+      "family": "train",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n火车提前几分钟到达了下一站。透过车窗，",
+      "repeat": 6,
+      "message_bits": 512,
+      "case_id": "05_zh_train:b512:r6"
+    },
+    {
+      "prompt_id": "02_en_library",
+      "family": "library",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nThe library was nearly empty when the last class ended. On the second floor,",
+      "repeat": 7,
+      "message_bits": 128,
+      "case_id": "02_en_library:b128:r7"
+    },
+    {
+      "prompt_id": "04_zh_market",
+      "family": "market",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n清晨，社区菜市场里的摊位陆续开始营业。",
+      "repeat": 6,
+      "message_bits": 128,
+      "case_id": "04_zh_market:b128:r6"
+    },
+    {
+      "prompt_id": "07_en_museum",
+      "family": "museum",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe museum opened a new room about the history of local transportation.",
+      "repeat": 5,
+      "message_bits": 512,
+      "case_id": "07_en_museum:b512:r5"
+    },
+    {
+      "prompt_id": "03_en_garden",
+      "family": "garden",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nAfter the rain, the garden paths were still wet. Near the gate,",
+      "repeat": 1,
+      "message_bits": 128,
+      "case_id": "03_en_garden:b128:r1"
+    },
+    {
+      "prompt_id": "02_zh_library",
+      "family": "library",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n最后一节课结束后，图书馆里已经没什么人了。在二楼，",
+      "repeat": 2,
+      "message_bits": 512,
+      "case_id": "02_zh_library:b512:r2"
+    },
+    {
+      "prompt_id": "08_zh_mountain",
+      "family": "mountain",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n山路穿过树林缓缓上升，随后来到一片开阔的山坡。",
+      "repeat": 4,
+      "message_bits": 512,
+      "case_id": "08_zh_mountain:b512:r4"
+    },
+    {
+      "prompt_id": "08_en_mountain",
+      "family": "mountain",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe trail climbed gently through the forest before reaching an open hillside.",
+      "repeat": 2,
+      "message_bits": 512,
+      "case_id": "08_en_mountain:b512:r2"
+    },
+    {
+      "prompt_id": "02_en_library",
+      "family": "library",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nThe library was nearly empty when the last class ended. On the second floor,",
+      "repeat": 7,
+      "message_bits": 512,
+      "case_id": "02_en_library:b512:r7"
+    },
+    {
+      "prompt_id": "01_zh_corner_cafe",
+      "family": "corner_cafe",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n小咖啡馆里，午后的阳光照在木桌上。",
+      "repeat": 3,
+      "message_bits": 128,
+      "case_id": "01_zh_corner_cafe:b128:r3"
+    },
+    {
+      "prompt_id": "07_en_museum",
+      "family": "museum",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe museum opened a new room about the history of local transportation.",
+      "repeat": 4,
+      "message_bits": 512,
+      "case_id": "07_en_museum:b512:r4"
+    },
+    {
+      "prompt_id": "08_zh_mountain",
+      "family": "mountain",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n山路穿过树林缓缓上升，随后来到一片开阔的山坡。",
+      "repeat": 0,
+      "message_bits": 128,
+      "case_id": "08_zh_mountain:b128:r0"
+    },
+    {
+      "prompt_id": "02_zh_library",
+      "family": "library",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n最后一节课结束后，图书馆里已经没什么人了。在二楼，",
+      "repeat": 7,
+      "message_bits": 512,
+      "case_id": "02_zh_library:b512:r7"
+    },
+    {
+      "prompt_id": "03_en_garden",
+      "family": "garden",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nAfter the rain, the garden paths were still wet. Near the gate,",
+      "repeat": 4,
+      "message_bits": 512,
+      "case_id": "03_en_garden:b512:r4"
+    },
+    {
+      "prompt_id": "01_en_corner_cafe",
+      "family": "corner_cafe",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nInside the small cafe, the afternoon light fell across the wooden tables.",
+      "repeat": 1,
+      "message_bits": 128,
+      "case_id": "01_en_corner_cafe:b128:r1"
+    },
+    {
+      "prompt_id": "05_zh_train",
+      "family": "train",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n火车提前几分钟到达了下一站。透过车窗，",
+      "repeat": 1,
+      "message_bits": 512,
+      "case_id": "05_zh_train:b512:r1"
+    },
+    {
+      "prompt_id": "07_zh_museum",
+      "family": "museum",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n博物馆新开放了一个介绍当地交通历史的展厅。",
+      "repeat": 2,
+      "message_bits": 128,
+      "case_id": "07_zh_museum:b128:r2"
+    },
+    {
+      "prompt_id": "00_zh_evening_walk",
+      "family": "evening_walk",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n傍晚散步时，社区里的街道很安静。沿着路边，",
+      "repeat": 6,
+      "message_bits": 128,
+      "case_id": "00_zh_evening_walk:b128:r6"
+    },
+    {
+      "prompt_id": "06_zh_science",
+      "family": "science",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n学校的实验室里，同学们准备做一个与水有关的小实验。",
+      "repeat": 0,
+      "message_bits": 128,
+      "case_id": "06_zh_science:b128:r0"
+    },
+    {
+      "prompt_id": "00_zh_evening_walk",
+      "family": "evening_walk",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n傍晚散步时，社区里的街道很安静。沿着路边，",
+      "repeat": 0,
+      "message_bits": 512,
+      "case_id": "00_zh_evening_walk:b512:r0"
+    },
+    {
+      "prompt_id": "01_zh_corner_cafe",
+      "family": "corner_cafe",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n小咖啡馆里，午后的阳光照在木桌上。",
+      "repeat": 6,
+      "message_bits": 128,
+      "case_id": "01_zh_corner_cafe:b128:r6"
+    },
+    {
+      "prompt_id": "02_en_library",
+      "family": "library",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nThe library was nearly empty when the last class ended. On the second floor,",
+      "repeat": 6,
+      "message_bits": 128,
+      "case_id": "02_en_library:b128:r6"
+    },
+    {
+      "prompt_id": "09_en_workshop",
+      "family": "workshop",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nIn the repair workshop, a bicycle stood beside a box of carefully sorted tools.",
+      "repeat": 0,
+      "message_bits": 128,
+      "case_id": "09_en_workshop:b128:r0"
+    },
+    {
+      "prompt_id": "00_zh_evening_walk",
+      "family": "evening_walk",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n傍晚散步时，社区里的街道很安静。沿着路边，",
+      "repeat": 4,
+      "message_bits": 512,
+      "case_id": "00_zh_evening_walk:b512:r4"
+    },
+    {
+      "prompt_id": "06_en_science",
+      "family": "science",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nIn the school laboratory, the class prepared a simple experiment with water.",
+      "repeat": 7,
+      "message_bits": 128,
+      "case_id": "06_en_science:b128:r7"
+    },
+    {
+      "prompt_id": "09_zh_workshop",
+      "family": "workshop",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n修理铺里，一辆自行车停在装着分类工具的箱子旁边。",
+      "repeat": 6,
+      "message_bits": 512,
+      "case_id": "09_zh_workshop:b512:r6"
+    },
+    {
+      "prompt_id": "04_zh_market",
+      "family": "market",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n清晨，社区菜市场里的摊位陆续开始营业。",
+      "repeat": 2,
+      "message_bits": 128,
+      "case_id": "04_zh_market:b128:r2"
+    },
+    {
+      "prompt_id": "03_en_garden",
+      "family": "garden",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nAfter the rain, the garden paths were still wet. Near the gate,",
+      "repeat": 4,
+      "message_bits": 128,
+      "case_id": "03_en_garden:b128:r4"
+    },
+    {
+      "prompt_id": "05_zh_train",
+      "family": "train",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n火车提前几分钟到达了下一站。透过车窗，",
+      "repeat": 5,
+      "message_bits": 128,
+      "case_id": "05_zh_train:b128:r5"
+    },
+    {
+      "prompt_id": "02_zh_library",
+      "family": "library",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n最后一节课结束后，图书馆里已经没什么人了。在二楼，",
+      "repeat": 1,
+      "message_bits": 512,
+      "case_id": "02_zh_library:b512:r1"
+    },
+    {
+      "prompt_id": "06_zh_science",
+      "family": "science",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n学校的实验室里，同学们准备做一个与水有关的小实验。",
+      "repeat": 5,
+      "message_bits": 512,
+      "case_id": "06_zh_science:b512:r5"
+    },
+    {
+      "prompt_id": "01_zh_corner_cafe",
+      "family": "corner_cafe",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n小咖啡馆里，午后的阳光照在木桌上。",
+      "repeat": 7,
+      "message_bits": 512,
+      "case_id": "01_zh_corner_cafe:b512:r7"
+    },
+    {
+      "prompt_id": "06_zh_science",
+      "family": "science",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n学校的实验室里，同学们准备做一个与水有关的小实验。",
+      "repeat": 7,
+      "message_bits": 128,
+      "case_id": "06_zh_science:b128:r7"
+    },
+    {
+      "prompt_id": "02_zh_library",
+      "family": "library",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n最后一节课结束后，图书馆里已经没什么人了。在二楼，",
+      "repeat": 4,
+      "message_bits": 512,
+      "case_id": "02_zh_library:b512:r4"
+    },
+    {
+      "prompt_id": "07_zh_museum",
+      "family": "museum",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n博物馆新开放了一个介绍当地交通历史的展厅。",
+      "repeat": 7,
+      "message_bits": 512,
+      "case_id": "07_zh_museum:b512:r7"
+    },
+    {
+      "prompt_id": "01_zh_corner_cafe",
+      "family": "corner_cafe",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n小咖啡馆里，午后的阳光照在木桌上。",
+      "repeat": 2,
+      "message_bits": 512,
+      "case_id": "01_zh_corner_cafe:b512:r2"
+    },
+    {
+      "prompt_id": "08_zh_mountain",
+      "family": "mountain",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n山路穿过树林缓缓上升，随后来到一片开阔的山坡。",
+      "repeat": 5,
+      "message_bits": 512,
+      "case_id": "08_zh_mountain:b512:r5"
+    },
+    {
+      "prompt_id": "05_en_train",
+      "family": "train",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe train reached the next station a few minutes early. Through the window,",
+      "repeat": 5,
+      "message_bits": 512,
+      "case_id": "05_en_train:b512:r5"
+    },
+    {
+      "prompt_id": "00_en_evening_walk",
+      "family": "evening_walk",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nThe evening walk through the neighborhood was quiet. Along the street,",
+      "repeat": 0,
+      "message_bits": 512,
+      "case_id": "00_en_evening_walk:b512:r0"
+    },
+    {
+      "prompt_id": "09_en_workshop",
+      "family": "workshop",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nIn the repair workshop, a bicycle stood beside a box of carefully sorted tools.",
+      "repeat": 6,
+      "message_bits": 128,
+      "case_id": "09_en_workshop:b128:r6"
+    },
+    {
+      "prompt_id": "00_zh_evening_walk",
+      "family": "evening_walk",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n傍晚散步时，社区里的街道很安静。沿着路边，",
+      "repeat": 5,
+      "message_bits": 128,
+      "case_id": "00_zh_evening_walk:b128:r5"
+    },
+    {
+      "prompt_id": "03_zh_garden",
+      "family": "garden",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n雨停以后，花园里的小路仍然湿漉漉的。在大门旁边，",
+      "repeat": 3,
+      "message_bits": 128,
+      "case_id": "03_zh_garden:b128:r3"
+    },
+    {
+      "prompt_id": "05_en_train",
+      "family": "train",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe train reached the next station a few minutes early. Through the window,",
+      "repeat": 3,
+      "message_bits": 128,
+      "case_id": "05_en_train:b128:r3"
+    },
+    {
+      "prompt_id": "03_en_garden",
+      "family": "garden",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nAfter the rain, the garden paths were still wet. Near the gate,",
+      "repeat": 2,
+      "message_bits": 128,
+      "case_id": "03_en_garden:b128:r2"
+    },
+    {
+      "prompt_id": "01_zh_corner_cafe",
+      "family": "corner_cafe",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n小咖啡馆里，午后的阳光照在木桌上。",
+      "repeat": 4,
+      "message_bits": 128,
+      "case_id": "01_zh_corner_cafe:b128:r4"
+    },
+    {
+      "prompt_id": "00_zh_evening_walk",
+      "family": "evening_walk",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n傍晚散步时，社区里的街道很安静。沿着路边，",
+      "repeat": 2,
+      "message_bits": 128,
+      "case_id": "00_zh_evening_walk:b128:r2"
+    },
+    {
+      "prompt_id": "00_zh_evening_walk",
+      "family": "evening_walk",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n傍晚散步时，社区里的街道很安静。沿着路边，",
+      "repeat": 6,
+      "message_bits": 512,
+      "case_id": "00_zh_evening_walk:b512:r6"
+    },
+    {
+      "prompt_id": "01_en_corner_cafe",
+      "family": "corner_cafe",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nInside the small cafe, the afternoon light fell across the wooden tables.",
+      "repeat": 7,
+      "message_bits": 128,
+      "case_id": "01_en_corner_cafe:b128:r7"
+    },
+    {
+      "prompt_id": "05_zh_train",
+      "family": "train",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n火车提前几分钟到达了下一站。透过车窗，",
+      "repeat": 0,
+      "message_bits": 512,
+      "case_id": "05_zh_train:b512:r0"
+    },
+    {
+      "prompt_id": "06_en_science",
+      "family": "science",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nIn the school laboratory, the class prepared a simple experiment with water.",
+      "repeat": 5,
+      "message_bits": 128,
+      "case_id": "06_en_science:b128:r5"
+    },
+    {
+      "prompt_id": "07_zh_museum",
+      "family": "museum",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n博物馆新开放了一个介绍当地交通历史的展厅。",
+      "repeat": 5,
+      "message_bits": 512,
+      "case_id": "07_zh_museum:b512:r5"
+    },
+    {
+      "prompt_id": "03_en_garden",
+      "family": "garden",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nAfter the rain, the garden paths were still wet. Near the gate,",
+      "repeat": 1,
+      "message_bits": 512,
+      "case_id": "03_en_garden:b512:r1"
+    },
+    {
+      "prompt_id": "00_zh_evening_walk",
+      "family": "evening_walk",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n傍晚散步时，社区里的街道很安静。沿着路边，",
+      "repeat": 0,
+      "message_bits": 128,
+      "case_id": "00_zh_evening_walk:b128:r0"
+    },
+    {
+      "prompt_id": "03_zh_garden",
+      "family": "garden",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n雨停以后，花园里的小路仍然湿漉漉的。在大门旁边，",
+      "repeat": 6,
+      "message_bits": 512,
+      "case_id": "03_zh_garden:b512:r6"
+    },
+    {
+      "prompt_id": "00_en_evening_walk",
+      "family": "evening_walk",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nThe evening walk through the neighborhood was quiet. Along the street,",
+      "repeat": 0,
+      "message_bits": 128,
+      "case_id": "00_en_evening_walk:b128:r0"
+    },
+    {
+      "prompt_id": "07_en_museum",
+      "family": "museum",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe museum opened a new room about the history of local transportation.",
+      "repeat": 3,
+      "message_bits": 128,
+      "case_id": "07_en_museum:b128:r3"
+    },
+    {
+      "prompt_id": "09_zh_workshop",
+      "family": "workshop",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n修理铺里，一辆自行车停在装着分类工具的箱子旁边。",
+      "repeat": 3,
+      "message_bits": 128,
+      "case_id": "09_zh_workshop:b128:r3"
+    },
+    {
+      "prompt_id": "08_zh_mountain",
+      "family": "mountain",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n山路穿过树林缓缓上升，随后来到一片开阔的山坡。",
+      "repeat": 0,
+      "message_bits": 512,
+      "case_id": "08_zh_mountain:b512:r0"
+    },
+    {
+      "prompt_id": "05_zh_train",
+      "family": "train",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n火车提前几分钟到达了下一站。透过车窗，",
+      "repeat": 2,
+      "message_bits": 128,
+      "case_id": "05_zh_train:b128:r2"
+    },
+    {
+      "prompt_id": "07_en_museum",
+      "family": "museum",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe museum opened a new room about the history of local transportation.",
+      "repeat": 7,
+      "message_bits": 512,
+      "case_id": "07_en_museum:b512:r7"
+    },
+    {
+      "prompt_id": "03_zh_garden",
+      "family": "garden",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n雨停以后，花园里的小路仍然湿漉漉的。在大门旁边，",
+      "repeat": 6,
+      "message_bits": 128,
+      "case_id": "03_zh_garden:b128:r6"
+    },
+    {
+      "prompt_id": "04_en_market",
+      "family": "market",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nAt the neighborhood market, the stalls were opening for the morning.",
+      "repeat": 7,
+      "message_bits": 512,
+      "case_id": "04_en_market:b512:r7"
+    },
+    {
+      "prompt_id": "06_zh_science",
+      "family": "science",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n学校的实验室里，同学们准备做一个与水有关的小实验。",
+      "repeat": 2,
+      "message_bits": 128,
+      "case_id": "06_zh_science:b128:r2"
+    },
+    {
+      "prompt_id": "03_zh_garden",
+      "family": "garden",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n雨停以后，花园里的小路仍然湿漉漉的。在大门旁边，",
+      "repeat": 2,
+      "message_bits": 512,
+      "case_id": "03_zh_garden:b512:r2"
+    },
+    {
+      "prompt_id": "00_en_evening_walk",
+      "family": "evening_walk",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nThe evening walk through the neighborhood was quiet. Along the street,",
+      "repeat": 3,
+      "message_bits": 512,
+      "case_id": "00_en_evening_walk:b512:r3"
+    },
+    {
+      "prompt_id": "03_en_garden",
+      "family": "garden",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nAfter the rain, the garden paths were still wet. Near the gate,",
+      "repeat": 0,
+      "message_bits": 128,
+      "case_id": "03_en_garden:b128:r0"
+    },
+    {
+      "prompt_id": "05_en_train",
+      "family": "train",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe train reached the next station a few minutes early. Through the window,",
+      "repeat": 5,
+      "message_bits": 128,
+      "case_id": "05_en_train:b128:r5"
+    },
+    {
+      "prompt_id": "05_zh_train",
+      "family": "train",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n火车提前几分钟到达了下一站。透过车窗，",
+      "repeat": 3,
+      "message_bits": 128,
+      "case_id": "05_zh_train:b128:r3"
+    },
+    {
+      "prompt_id": "06_en_science",
+      "family": "science",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nIn the school laboratory, the class prepared a simple experiment with water.",
+      "repeat": 6,
+      "message_bits": 128,
+      "case_id": "06_en_science:b128:r6"
+    },
+    {
+      "prompt_id": "09_zh_workshop",
+      "family": "workshop",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n修理铺里，一辆自行车停在装着分类工具的箱子旁边。",
+      "repeat": 5,
+      "message_bits": 128,
+      "case_id": "09_zh_workshop:b128:r5"
+    },
+    {
+      "prompt_id": "07_en_museum",
+      "family": "museum",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe museum opened a new room about the history of local transportation.",
+      "repeat": 2,
+      "message_bits": 128,
+      "case_id": "07_en_museum:b128:r2"
+    },
+    {
+      "prompt_id": "08_zh_mountain",
+      "family": "mountain",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n山路穿过树林缓缓上升，随后来到一片开阔的山坡。",
+      "repeat": 3,
+      "message_bits": 512,
+      "case_id": "08_zh_mountain:b512:r3"
+    },
+    {
+      "prompt_id": "08_en_mountain",
+      "family": "mountain",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe trail climbed gently through the forest before reaching an open hillside.",
+      "repeat": 6,
+      "message_bits": 128,
+      "case_id": "08_en_mountain:b128:r6"
+    },
+    {
+      "prompt_id": "04_en_market",
+      "family": "market",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nAt the neighborhood market, the stalls were opening for the morning.",
+      "repeat": 0,
+      "message_bits": 128,
+      "case_id": "04_en_market:b128:r0"
+    },
+    {
+      "prompt_id": "05_zh_train",
+      "family": "train",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n火车提前几分钟到达了下一站。透过车窗，",
+      "repeat": 5,
+      "message_bits": 512,
+      "case_id": "05_zh_train:b512:r5"
+    },
+    {
+      "prompt_id": "07_en_museum",
+      "family": "museum",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe museum opened a new room about the history of local transportation.",
+      "repeat": 1,
+      "message_bits": 128,
+      "case_id": "07_en_museum:b128:r1"
+    },
+    {
+      "prompt_id": "07_zh_museum",
+      "family": "museum",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n博物馆新开放了一个介绍当地交通历史的展厅。",
+      "repeat": 4,
+      "message_bits": 128,
+      "case_id": "07_zh_museum:b128:r4"
+    },
+    {
+      "prompt_id": "09_en_workshop",
+      "family": "workshop",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nIn the repair workshop, a bicycle stood beside a box of carefully sorted tools.",
+      "repeat": 3,
+      "message_bits": 128,
+      "case_id": "09_en_workshop:b128:r3"
+    },
+    {
+      "prompt_id": "02_en_library",
+      "family": "library",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nThe library was nearly empty when the last class ended. On the second floor,",
+      "repeat": 5,
+      "message_bits": 512,
+      "case_id": "02_en_library:b512:r5"
+    },
+    {
+      "prompt_id": "01_zh_corner_cafe",
+      "family": "corner_cafe",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n小咖啡馆里，午后的阳光照在木桌上。",
+      "repeat": 0,
+      "message_bits": 512,
+      "case_id": "01_zh_corner_cafe:b512:r0"
+    },
+    {
+      "prompt_id": "01_zh_corner_cafe",
+      "family": "corner_cafe",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n小咖啡馆里，午后的阳光照在木桌上。",
+      "repeat": 2,
+      "message_bits": 128,
+      "case_id": "01_zh_corner_cafe:b128:r2"
+    },
+    {
+      "prompt_id": "04_zh_market",
+      "family": "market",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n清晨，社区菜市场里的摊位陆续开始营业。",
+      "repeat": 1,
+      "message_bits": 128,
+      "case_id": "04_zh_market:b128:r1"
+    },
+    {
+      "prompt_id": "04_en_market",
+      "family": "market",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nAt the neighborhood market, the stalls were opening for the morning.",
+      "repeat": 1,
+      "message_bits": 512,
+      "case_id": "04_en_market:b512:r1"
+    },
+    {
+      "prompt_id": "03_en_garden",
+      "family": "garden",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nAfter the rain, the garden paths were still wet. Near the gate,",
+      "repeat": 5,
+      "message_bits": 512,
+      "case_id": "03_en_garden:b512:r5"
+    },
+    {
+      "prompt_id": "08_en_mountain",
+      "family": "mountain",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe trail climbed gently through the forest before reaching an open hillside.",
+      "repeat": 0,
+      "message_bits": 512,
+      "case_id": "08_en_mountain:b512:r0"
+    },
+    {
+      "prompt_id": "05_en_train",
+      "family": "train",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe train reached the next station a few minutes early. Through the window,",
+      "repeat": 7,
+      "message_bits": 128,
+      "case_id": "05_en_train:b128:r7"
+    },
+    {
+      "prompt_id": "06_en_science",
+      "family": "science",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nIn the school laboratory, the class prepared a simple experiment with water.",
+      "repeat": 5,
+      "message_bits": 512,
+      "case_id": "06_en_science:b512:r5"
+    },
+    {
+      "prompt_id": "01_en_corner_cafe",
+      "family": "corner_cafe",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nInside the small cafe, the afternoon light fell across the wooden tables.",
+      "repeat": 6,
+      "message_bits": 128,
+      "case_id": "01_en_corner_cafe:b128:r6"
+    },
+    {
+      "prompt_id": "09_zh_workshop",
+      "family": "workshop",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n修理铺里，一辆自行车停在装着分类工具的箱子旁边。",
+      "repeat": 4,
+      "message_bits": 128,
+      "case_id": "09_zh_workshop:b128:r4"
+    },
+    {
+      "prompt_id": "07_zh_museum",
+      "family": "museum",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n博物馆新开放了一个介绍当地交通历史的展厅。",
+      "repeat": 5,
+      "message_bits": 128,
+      "case_id": "07_zh_museum:b128:r5"
+    },
+    {
+      "prompt_id": "06_zh_science",
+      "family": "science",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n学校的实验室里，同学们准备做一个与水有关的小实验。",
+      "repeat": 4,
+      "message_bits": 128,
+      "case_id": "06_zh_science:b128:r4"
+    },
+    {
+      "prompt_id": "03_zh_garden",
+      "family": "garden",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n雨停以后，花园里的小路仍然湿漉漉的。在大门旁边，",
+      "repeat": 7,
+      "message_bits": 128,
+      "case_id": "03_zh_garden:b128:r7"
+    },
+    {
+      "prompt_id": "00_zh_evening_walk",
+      "family": "evening_walk",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n傍晚散步时，社区里的街道很安静。沿着路边，",
+      "repeat": 7,
+      "message_bits": 128,
+      "case_id": "00_zh_evening_walk:b128:r7"
+    },
+    {
+      "prompt_id": "01_en_corner_cafe",
+      "family": "corner_cafe",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nInside the small cafe, the afternoon light fell across the wooden tables.",
+      "repeat": 6,
+      "message_bits": 512,
+      "case_id": "01_en_corner_cafe:b512:r6"
+    },
+    {
+      "prompt_id": "08_zh_mountain",
+      "family": "mountain",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n山路穿过树林缓缓上升，随后来到一片开阔的山坡。",
+      "repeat": 1,
+      "message_bits": 128,
+      "case_id": "08_zh_mountain:b128:r1"
+    },
+    {
+      "prompt_id": "01_en_corner_cafe",
+      "family": "corner_cafe",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nInside the small cafe, the afternoon light fell across the wooden tables.",
+      "repeat": 2,
+      "message_bits": 512,
+      "case_id": "01_en_corner_cafe:b512:r2"
+    },
+    {
+      "prompt_id": "06_en_science",
+      "family": "science",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nIn the school laboratory, the class prepared a simple experiment with water.",
+      "repeat": 1,
+      "message_bits": 128,
+      "case_id": "06_en_science:b128:r1"
+    },
+    {
+      "prompt_id": "04_zh_market",
+      "family": "market",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n清晨，社区菜市场里的摊位陆续开始营业。",
+      "repeat": 4,
+      "message_bits": 128,
+      "case_id": "04_zh_market:b128:r4"
+    },
+    {
+      "prompt_id": "08_en_mountain",
+      "family": "mountain",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe trail climbed gently through the forest before reaching an open hillside.",
+      "repeat": 3,
+      "message_bits": 128,
+      "case_id": "08_en_mountain:b128:r3"
+    },
+    {
+      "prompt_id": "02_zh_library",
+      "family": "library",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n最后一节课结束后，图书馆里已经没什么人了。在二楼，",
+      "repeat": 6,
+      "message_bits": 128,
+      "case_id": "02_zh_library:b128:r6"
+    },
+    {
+      "prompt_id": "02_zh_library",
+      "family": "library",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n最后一节课结束后，图书馆里已经没什么人了。在二楼，",
+      "repeat": 5,
+      "message_bits": 512,
+      "case_id": "02_zh_library:b512:r5"
+    },
+    {
+      "prompt_id": "00_en_evening_walk",
+      "family": "evening_walk",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nThe evening walk through the neighborhood was quiet. Along the street,",
+      "repeat": 6,
+      "message_bits": 512,
+      "case_id": "00_en_evening_walk:b512:r6"
+    },
+    {
+      "prompt_id": "04_zh_market",
+      "family": "market",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n清晨，社区菜市场里的摊位陆续开始营业。",
+      "repeat": 5,
+      "message_bits": 512,
+      "case_id": "04_zh_market:b512:r5"
+    },
+    {
+      "prompt_id": "09_zh_workshop",
+      "family": "workshop",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n修理铺里，一辆自行车停在装着分类工具的箱子旁边。",
+      "repeat": 4,
+      "message_bits": 512,
+      "case_id": "09_zh_workshop:b512:r4"
+    },
+    {
+      "prompt_id": "05_en_train",
+      "family": "train",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe train reached the next station a few minutes early. Through the window,",
+      "repeat": 2,
+      "message_bits": 512,
+      "case_id": "05_en_train:b512:r2"
+    },
+    {
+      "prompt_id": "03_zh_garden",
+      "family": "garden",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n雨停以后，花园里的小路仍然湿漉漉的。在大门旁边，",
+      "repeat": 5,
+      "message_bits": 512,
+      "case_id": "03_zh_garden:b512:r5"
+    },
+    {
+      "prompt_id": "09_zh_workshop",
+      "family": "workshop",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n修理铺里，一辆自行车停在装着分类工具的箱子旁边。",
+      "repeat": 0,
+      "message_bits": 128,
+      "case_id": "09_zh_workshop:b128:r0"
+    },
+    {
+      "prompt_id": "06_en_science",
+      "family": "science",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nIn the school laboratory, the class prepared a simple experiment with water.",
+      "repeat": 0,
+      "message_bits": 512,
+      "case_id": "06_en_science:b512:r0"
+    },
+    {
+      "prompt_id": "01_zh_corner_cafe",
+      "family": "corner_cafe",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n小咖啡馆里，午后的阳光照在木桌上。",
+      "repeat": 1,
+      "message_bits": 512,
+      "case_id": "01_zh_corner_cafe:b512:r1"
+    },
+    {
+      "prompt_id": "02_zh_library",
+      "family": "library",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n最后一节课结束后，图书馆里已经没什么人了。在二楼，",
+      "repeat": 4,
+      "message_bits": 128,
+      "case_id": "02_zh_library:b128:r4"
+    },
+    {
+      "prompt_id": "03_zh_garden",
+      "family": "garden",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n雨停以后，花园里的小路仍然湿漉漉的。在大门旁边，",
+      "repeat": 4,
+      "message_bits": 128,
+      "case_id": "03_zh_garden:b128:r4"
+    },
+    {
+      "prompt_id": "04_en_market",
+      "family": "market",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nAt the neighborhood market, the stalls were opening for the morning.",
+      "repeat": 2,
+      "message_bits": 512,
+      "case_id": "04_en_market:b512:r2"
+    },
+    {
+      "prompt_id": "09_zh_workshop",
+      "family": "workshop",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n修理铺里，一辆自行车停在装着分类工具的箱子旁边。",
+      "repeat": 7,
+      "message_bits": 512,
+      "case_id": "09_zh_workshop:b512:r7"
+    },
+    {
+      "prompt_id": "09_en_workshop",
+      "family": "workshop",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nIn the repair workshop, a bicycle stood beside a box of carefully sorted tools.",
+      "repeat": 1,
+      "message_bits": 512,
+      "case_id": "09_en_workshop:b512:r1"
+    },
+    {
+      "prompt_id": "05_zh_train",
+      "family": "train",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n火车提前几分钟到达了下一站。透过车窗，",
+      "repeat": 4,
+      "message_bits": 128,
+      "case_id": "05_zh_train:b128:r4"
+    },
+    {
+      "prompt_id": "01_en_corner_cafe",
+      "family": "corner_cafe",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nInside the small cafe, the afternoon light fell across the wooden tables.",
+      "repeat": 3,
+      "message_bits": 128,
+      "case_id": "01_en_corner_cafe:b128:r3"
+    },
+    {
+      "prompt_id": "00_zh_evening_walk",
+      "family": "evening_walk",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n傍晚散步时，社区里的街道很安静。沿着路边，",
+      "repeat": 1,
+      "message_bits": 512,
+      "case_id": "00_zh_evening_walk:b512:r1"
+    },
+    {
+      "prompt_id": "04_en_market",
+      "family": "market",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nAt the neighborhood market, the stalls were opening for the morning.",
+      "repeat": 3,
+      "message_bits": 512,
+      "case_id": "04_en_market:b512:r3"
+    },
+    {
+      "prompt_id": "04_zh_market",
+      "family": "market",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n清晨，社区菜市场里的摊位陆续开始营业。",
+      "repeat": 5,
+      "message_bits": 128,
+      "case_id": "04_zh_market:b128:r5"
+    },
+    {
+      "prompt_id": "08_en_mountain",
+      "family": "mountain",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe trail climbed gently through the forest before reaching an open hillside.",
+      "repeat": 7,
+      "message_bits": 512,
+      "case_id": "08_en_mountain:b512:r7"
+    },
+    {
+      "prompt_id": "07_en_museum",
+      "family": "museum",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe museum opened a new room about the history of local transportation.",
+      "repeat": 5,
+      "message_bits": 128,
+      "case_id": "07_en_museum:b128:r5"
+    },
+    {
+      "prompt_id": "00_en_evening_walk",
+      "family": "evening_walk",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nThe evening walk through the neighborhood was quiet. Along the street,",
+      "repeat": 4,
+      "message_bits": 128,
+      "case_id": "00_en_evening_walk:b128:r4"
+    },
+    {
+      "prompt_id": "08_en_mountain",
+      "family": "mountain",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe trail climbed gently through the forest before reaching an open hillside.",
+      "repeat": 2,
+      "message_bits": 128,
+      "case_id": "08_en_mountain:b128:r2"
+    },
+    {
+      "prompt_id": "04_zh_market",
+      "family": "market",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n清晨，社区菜市场里的摊位陆续开始营业。",
+      "repeat": 4,
+      "message_bits": 512,
+      "case_id": "04_zh_market:b512:r4"
+    },
+    {
+      "prompt_id": "07_en_museum",
+      "family": "museum",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe museum opened a new room about the history of local transportation.",
+      "repeat": 0,
+      "message_bits": 512,
+      "case_id": "07_en_museum:b512:r0"
+    },
+    {
+      "prompt_id": "06_zh_science",
+      "family": "science",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n学校的实验室里，同学们准备做一个与水有关的小实验。",
+      "repeat": 7,
+      "message_bits": 512,
+      "case_id": "06_zh_science:b512:r7"
+    },
+    {
+      "prompt_id": "04_en_market",
+      "family": "market",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nAt the neighborhood market, the stalls were opening for the morning.",
+      "repeat": 5,
+      "message_bits": 512,
+      "case_id": "04_en_market:b512:r5"
+    },
+    {
+      "prompt_id": "04_en_market",
+      "family": "market",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nAt the neighborhood market, the stalls were opening for the morning.",
+      "repeat": 3,
+      "message_bits": 128,
+      "case_id": "04_en_market:b128:r3"
+    },
+    {
+      "prompt_id": "06_zh_science",
+      "family": "science",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n学校的实验室里，同学们准备做一个与水有关的小实验。",
+      "repeat": 3,
+      "message_bits": 512,
+      "case_id": "06_zh_science:b512:r3"
+    },
+    {
+      "prompt_id": "08_en_mountain",
+      "family": "mountain",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe trail climbed gently through the forest before reaching an open hillside.",
+      "repeat": 1,
+      "message_bits": 128,
+      "case_id": "08_en_mountain:b128:r1"
+    },
+    {
+      "prompt_id": "07_en_museum",
+      "family": "museum",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe museum opened a new room about the history of local transportation.",
+      "repeat": 6,
+      "message_bits": 128,
+      "case_id": "07_en_museum:b128:r6"
+    },
+    {
+      "prompt_id": "01_zh_corner_cafe",
+      "family": "corner_cafe",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n小咖啡馆里，午后的阳光照在木桌上。",
+      "repeat": 7,
+      "message_bits": 128,
+      "case_id": "01_zh_corner_cafe:b128:r7"
+    },
+    {
+      "prompt_id": "07_zh_museum",
+      "family": "museum",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n博物馆新开放了一个介绍当地交通历史的展厅。",
+      "repeat": 2,
+      "message_bits": 512,
+      "case_id": "07_zh_museum:b512:r2"
+    },
+    {
+      "prompt_id": "03_en_garden",
+      "family": "garden",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nAfter the rain, the garden paths were still wet. Near the gate,",
+      "repeat": 6,
+      "message_bits": 512,
+      "case_id": "03_en_garden:b512:r6"
+    },
+    {
+      "prompt_id": "09_zh_workshop",
+      "family": "workshop",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n修理铺里，一辆自行车停在装着分类工具的箱子旁边。",
+      "repeat": 5,
+      "message_bits": 512,
+      "case_id": "09_zh_workshop:b512:r5"
+    },
+    {
+      "prompt_id": "04_zh_market",
+      "family": "market",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n清晨，社区菜市场里的摊位陆续开始营业。",
+      "repeat": 1,
+      "message_bits": 512,
+      "case_id": "04_zh_market:b512:r1"
+    },
+    {
+      "prompt_id": "06_zh_science",
+      "family": "science",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n学校的实验室里，同学们准备做一个与水有关的小实验。",
+      "repeat": 6,
+      "message_bits": 512,
+      "case_id": "06_zh_science:b512:r6"
+    },
+    {
+      "prompt_id": "02_en_library",
+      "family": "library",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nThe library was nearly empty when the last class ended. On the second floor,",
+      "repeat": 2,
+      "message_bits": 128,
+      "case_id": "02_en_library:b128:r2"
+    },
+    {
+      "prompt_id": "03_zh_garden",
+      "family": "garden",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n雨停以后，花园里的小路仍然湿漉漉的。在大门旁边，",
+      "repeat": 0,
+      "message_bits": 128,
+      "case_id": "03_zh_garden:b128:r0"
+    },
+    {
+      "prompt_id": "09_en_workshop",
+      "family": "workshop",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nIn the repair workshop, a bicycle stood beside a box of carefully sorted tools.",
+      "repeat": 4,
+      "message_bits": 128,
+      "case_id": "09_en_workshop:b128:r4"
+    },
+    {
+      "prompt_id": "02_zh_library",
+      "family": "library",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n最后一节课结束后，图书馆里已经没什么人了。在二楼，",
+      "repeat": 3,
+      "message_bits": 512,
+      "case_id": "02_zh_library:b512:r3"
+    },
+    {
+      "prompt_id": "03_zh_garden",
+      "family": "garden",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n雨停以后，花园里的小路仍然湿漉漉的。在大门旁边，",
+      "repeat": 1,
+      "message_bits": 512,
+      "case_id": "03_zh_garden:b512:r1"
+    },
+    {
+      "prompt_id": "02_zh_library",
+      "family": "library",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n最后一节课结束后，图书馆里已经没什么人了。在二楼，",
+      "repeat": 1,
+      "message_bits": 128,
+      "case_id": "02_zh_library:b128:r1"
+    },
+    {
+      "prompt_id": "09_zh_workshop",
+      "family": "workshop",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n修理铺里，一辆自行车停在装着分类工具的箱子旁边。",
+      "repeat": 7,
+      "message_bits": 128,
+      "case_id": "09_zh_workshop:b128:r7"
+    },
+    {
+      "prompt_id": "04_en_market",
+      "family": "market",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nAt the neighborhood market, the stalls were opening for the morning.",
+      "repeat": 6,
+      "message_bits": 128,
+      "case_id": "04_en_market:b128:r6"
+    },
+    {
+      "prompt_id": "06_en_science",
+      "family": "science",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nIn the school laboratory, the class prepared a simple experiment with water.",
+      "repeat": 4,
+      "message_bits": 128,
+      "case_id": "06_en_science:b128:r4"
+    },
+    {
+      "prompt_id": "01_zh_corner_cafe",
+      "family": "corner_cafe",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n小咖啡馆里，午后的阳光照在木桌上。",
+      "repeat": 0,
+      "message_bits": 128,
+      "case_id": "01_zh_corner_cafe:b128:r0"
+    },
+    {
+      "prompt_id": "02_en_library",
+      "family": "library",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nThe library was nearly empty when the last class ended. On the second floor,",
+      "repeat": 4,
+      "message_bits": 512,
+      "case_id": "02_en_library:b512:r4"
+    },
+    {
+      "prompt_id": "09_zh_workshop",
+      "family": "workshop",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n修理铺里，一辆自行车停在装着分类工具的箱子旁边。",
+      "repeat": 6,
+      "message_bits": 128,
+      "case_id": "09_zh_workshop:b128:r6"
+    },
+    {
+      "prompt_id": "05_en_train",
+      "family": "train",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe train reached the next station a few minutes early. Through the window,",
+      "repeat": 0,
+      "message_bits": 512,
+      "case_id": "05_en_train:b512:r0"
+    },
+    {
+      "prompt_id": "08_en_mountain",
+      "family": "mountain",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe trail climbed gently through the forest before reaching an open hillside.",
+      "repeat": 4,
+      "message_bits": 512,
+      "case_id": "08_en_mountain:b512:r4"
+    },
+    {
+      "prompt_id": "08_en_mountain",
+      "family": "mountain",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe trail climbed gently through the forest before reaching an open hillside.",
+      "repeat": 7,
+      "message_bits": 128,
+      "case_id": "08_en_mountain:b128:r7"
+    },
+    {
+      "prompt_id": "06_zh_science",
+      "family": "science",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n学校的实验室里，同学们准备做一个与水有关的小实验。",
+      "repeat": 1,
+      "message_bits": 512,
+      "case_id": "06_zh_science:b512:r1"
+    },
+    {
+      "prompt_id": "03_zh_garden",
+      "family": "garden",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n雨停以后，花园里的小路仍然湿漉漉的。在大门旁边，",
+      "repeat": 1,
+      "message_bits": 128,
+      "case_id": "03_zh_garden:b128:r1"
+    },
+    {
+      "prompt_id": "04_en_market",
+      "family": "market",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nAt the neighborhood market, the stalls were opening for the morning.",
+      "repeat": 0,
+      "message_bits": 512,
+      "case_id": "04_en_market:b512:r0"
+    },
+    {
+      "prompt_id": "08_zh_mountain",
+      "family": "mountain",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n山路穿过树林缓缓上升，随后来到一片开阔的山坡。",
+      "repeat": 4,
+      "message_bits": 128,
+      "case_id": "08_zh_mountain:b128:r4"
+    },
+    {
+      "prompt_id": "04_zh_market",
+      "family": "market",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n清晨，社区菜市场里的摊位陆续开始营业。",
+      "repeat": 7,
+      "message_bits": 512,
+      "case_id": "04_zh_market:b512:r7"
+    },
+    {
+      "prompt_id": "08_en_mountain",
+      "family": "mountain",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe trail climbed gently through the forest before reaching an open hillside.",
+      "repeat": 3,
+      "message_bits": 512,
+      "case_id": "08_en_mountain:b512:r3"
+    },
+    {
+      "prompt_id": "00_en_evening_walk",
+      "family": "evening_walk",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nThe evening walk through the neighborhood was quiet. Along the street,",
+      "repeat": 5,
+      "message_bits": 512,
+      "case_id": "00_en_evening_walk:b512:r5"
+    },
+    {
+      "prompt_id": "02_en_library",
+      "family": "library",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nThe library was nearly empty when the last class ended. On the second floor,",
+      "repeat": 2,
+      "message_bits": 512,
+      "case_id": "02_en_library:b512:r2"
+    },
+    {
+      "prompt_id": "03_zh_garden",
+      "family": "garden",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n雨停以后，花园里的小路仍然湿漉漉的。在大门旁边，",
+      "repeat": 4,
+      "message_bits": 512,
+      "case_id": "03_zh_garden:b512:r4"
+    },
+    {
+      "prompt_id": "02_en_library",
+      "family": "library",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nThe library was nearly empty when the last class ended. On the second floor,",
+      "repeat": 6,
+      "message_bits": 512,
+      "case_id": "02_en_library:b512:r6"
+    },
+    {
+      "prompt_id": "01_zh_corner_cafe",
+      "family": "corner_cafe",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n小咖啡馆里，午后的阳光照在木桌上。",
+      "repeat": 1,
+      "message_bits": 128,
+      "case_id": "01_zh_corner_cafe:b128:r1"
+    },
+    {
+      "prompt_id": "03_en_garden",
+      "family": "garden",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nAfter the rain, the garden paths were still wet. Near the gate,",
+      "repeat": 5,
+      "message_bits": 128,
+      "case_id": "03_en_garden:b128:r5"
+    },
+    {
+      "prompt_id": "09_en_workshop",
+      "family": "workshop",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nIn the repair workshop, a bicycle stood beside a box of carefully sorted tools.",
+      "repeat": 5,
+      "message_bits": 128,
+      "case_id": "09_en_workshop:b128:r5"
+    },
+    {
+      "prompt_id": "07_en_museum",
+      "family": "museum",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe museum opened a new room about the history of local transportation.",
+      "repeat": 7,
+      "message_bits": 128,
+      "case_id": "07_en_museum:b128:r7"
+    },
+    {
+      "prompt_id": "07_zh_museum",
+      "family": "museum",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n博物馆新开放了一个介绍当地交通历史的展厅。",
+      "repeat": 0,
+      "message_bits": 512,
+      "case_id": "07_zh_museum:b512:r0"
+    },
+    {
+      "prompt_id": "02_zh_library",
+      "family": "library",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n最后一节课结束后，图书馆里已经没什么人了。在二楼，",
+      "repeat": 6,
+      "message_bits": 512,
+      "case_id": "02_zh_library:b512:r6"
+    },
+    {
+      "prompt_id": "05_en_train",
+      "family": "train",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe train reached the next station a few minutes early. Through the window,",
+      "repeat": 6,
+      "message_bits": 512,
+      "case_id": "05_en_train:b512:r6"
+    },
+    {
+      "prompt_id": "04_zh_market",
+      "family": "market",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n清晨，社区菜市场里的摊位陆续开始营业。",
+      "repeat": 7,
+      "message_bits": 128,
+      "case_id": "04_zh_market:b128:r7"
+    },
+    {
+      "prompt_id": "08_en_mountain",
+      "family": "mountain",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe trail climbed gently through the forest before reaching an open hillside.",
+      "repeat": 5,
+      "message_bits": 128,
+      "case_id": "08_en_mountain:b128:r5"
+    },
+    {
+      "prompt_id": "09_en_workshop",
+      "family": "workshop",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nIn the repair workshop, a bicycle stood beside a box of carefully sorted tools.",
+      "repeat": 4,
+      "message_bits": 512,
+      "case_id": "09_en_workshop:b512:r4"
+    },
+    {
+      "prompt_id": "06_en_science",
+      "family": "science",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nIn the school laboratory, the class prepared a simple experiment with water.",
+      "repeat": 0,
+      "message_bits": 128,
+      "case_id": "06_en_science:b128:r0"
+    },
+    {
+      "prompt_id": "06_en_science",
+      "family": "science",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nIn the school laboratory, the class prepared a simple experiment with water.",
+      "repeat": 7,
+      "message_bits": 512,
+      "case_id": "06_en_science:b512:r7"
+    },
+    {
+      "prompt_id": "05_en_train",
+      "family": "train",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe train reached the next station a few minutes early. Through the window,",
+      "repeat": 1,
+      "message_bits": 512,
+      "case_id": "05_en_train:b512:r1"
+    },
+    {
+      "prompt_id": "08_zh_mountain",
+      "family": "mountain",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n山路穿过树林缓缓上升，随后来到一片开阔的山坡。",
+      "repeat": 6,
+      "message_bits": 128,
+      "case_id": "08_zh_mountain:b128:r6"
+    },
+    {
+      "prompt_id": "05_zh_train",
+      "family": "train",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n火车提前几分钟到达了下一站。透过车窗，",
+      "repeat": 7,
+      "message_bits": 512,
+      "case_id": "05_zh_train:b512:r7"
+    },
+    {
+      "prompt_id": "07_en_museum",
+      "family": "museum",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe museum opened a new room about the history of local transportation.",
+      "repeat": 4,
+      "message_bits": 128,
+      "case_id": "07_en_museum:b128:r4"
+    },
+    {
+      "prompt_id": "06_en_science",
+      "family": "science",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nIn the school laboratory, the class prepared a simple experiment with water.",
+      "repeat": 3,
+      "message_bits": 128,
+      "case_id": "06_en_science:b128:r3"
+    },
+    {
+      "prompt_id": "01_en_corner_cafe",
+      "family": "corner_cafe",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nInside the small cafe, the afternoon light fell across the wooden tables.",
+      "repeat": 2,
+      "message_bits": 128,
+      "case_id": "01_en_corner_cafe:b128:r2"
+    },
+    {
+      "prompt_id": "06_en_science",
+      "family": "science",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nIn the school laboratory, the class prepared a simple experiment with water.",
+      "repeat": 2,
+      "message_bits": 512,
+      "case_id": "06_en_science:b512:r2"
+    },
+    {
+      "prompt_id": "06_zh_science",
+      "family": "science",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n学校的实验室里，同学们准备做一个与水有关的小实验。",
+      "repeat": 1,
+      "message_bits": 128,
+      "case_id": "06_zh_science:b128:r1"
+    },
+    {
+      "prompt_id": "03_en_garden",
+      "family": "garden",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nAfter the rain, the garden paths were still wet. Near the gate,",
+      "repeat": 0,
+      "message_bits": 512,
+      "case_id": "03_en_garden:b512:r0"
+    },
+    {
+      "prompt_id": "00_en_evening_walk",
+      "family": "evening_walk",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nThe evening walk through the neighborhood was quiet. Along the street,",
+      "repeat": 7,
+      "message_bits": 128,
+      "case_id": "00_en_evening_walk:b128:r7"
+    },
+    {
+      "prompt_id": "01_zh_corner_cafe",
+      "family": "corner_cafe",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n小咖啡馆里，午后的阳光照在木桌上。",
+      "repeat": 4,
+      "message_bits": 512,
+      "case_id": "01_zh_corner_cafe:b512:r4"
+    },
+    {
+      "prompt_id": "07_en_museum",
+      "family": "museum",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe museum opened a new room about the history of local transportation.",
+      "repeat": 0,
+      "message_bits": 128,
+      "case_id": "07_en_museum:b128:r0"
+    },
+    {
+      "prompt_id": "01_en_corner_cafe",
+      "family": "corner_cafe",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nInside the small cafe, the afternoon light fell across the wooden tables.",
+      "repeat": 7,
+      "message_bits": 512,
+      "case_id": "01_en_corner_cafe:b512:r7"
+    },
+    {
+      "prompt_id": "08_zh_mountain",
+      "family": "mountain",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n山路穿过树林缓缓上升，随后来到一片开阔的山坡。",
+      "repeat": 7,
+      "message_bits": 128,
+      "case_id": "08_zh_mountain:b128:r7"
+    },
+    {
+      "prompt_id": "06_zh_science",
+      "family": "science",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n学校的实验室里，同学们准备做一个与水有关的小实验。",
+      "repeat": 2,
+      "message_bits": 512,
+      "case_id": "06_zh_science:b512:r2"
+    },
+    {
+      "prompt_id": "02_en_library",
+      "family": "library",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nThe library was nearly empty when the last class ended. On the second floor,",
+      "repeat": 0,
+      "message_bits": 128,
+      "case_id": "02_en_library:b128:r0"
+    },
+    {
+      "prompt_id": "00_zh_evening_walk",
+      "family": "evening_walk",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n傍晚散步时，社区里的街道很安静。沿着路边，",
+      "repeat": 4,
+      "message_bits": 128,
+      "case_id": "00_zh_evening_walk:b128:r4"
+    },
+    {
+      "prompt_id": "09_en_workshop",
+      "family": "workshop",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nIn the repair workshop, a bicycle stood beside a box of carefully sorted tools.",
+      "repeat": 3,
+      "message_bits": 512,
+      "case_id": "09_en_workshop:b512:r3"
+    },
+    {
+      "prompt_id": "09_en_workshop",
+      "family": "workshop",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nIn the repair workshop, a bicycle stood beside a box of carefully sorted tools.",
+      "repeat": 5,
+      "message_bits": 512,
+      "case_id": "09_en_workshop:b512:r5"
+    },
+    {
+      "prompt_id": "02_en_library",
+      "family": "library",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nThe library was nearly empty when the last class ended. On the second floor,",
+      "repeat": 0,
+      "message_bits": 512,
+      "case_id": "02_en_library:b512:r0"
+    },
+    {
+      "prompt_id": "06_en_science",
+      "family": "science",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nIn the school laboratory, the class prepared a simple experiment with water.",
+      "repeat": 4,
+      "message_bits": 512,
+      "case_id": "06_en_science:b512:r4"
+    },
+    {
+      "prompt_id": "01_zh_corner_cafe",
+      "family": "corner_cafe",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n小咖啡馆里，午后的阳光照在木桌上。",
+      "repeat": 6,
+      "message_bits": 512,
+      "case_id": "01_zh_corner_cafe:b512:r6"
+    },
+    {
+      "prompt_id": "03_zh_garden",
+      "family": "garden",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n雨停以后，花园里的小路仍然湿漉漉的。在大门旁边，",
+      "repeat": 2,
+      "message_bits": 128,
+      "case_id": "03_zh_garden:b128:r2"
+    },
+    {
+      "prompt_id": "01_zh_corner_cafe",
+      "family": "corner_cafe",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n小咖啡馆里，午后的阳光照在木桌上。",
+      "repeat": 5,
+      "message_bits": 512,
+      "case_id": "01_zh_corner_cafe:b512:r5"
+    },
+    {
+      "prompt_id": "04_zh_market",
+      "family": "market",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n清晨，社区菜市场里的摊位陆续开始营业。",
+      "repeat": 6,
+      "message_bits": 512,
+      "case_id": "04_zh_market:b512:r6"
+    },
+    {
+      "prompt_id": "04_en_market",
+      "family": "market",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nAt the neighborhood market, the stalls were opening for the morning.",
+      "repeat": 1,
+      "message_bits": 128,
+      "case_id": "04_en_market:b128:r1"
+    },
+    {
+      "prompt_id": "05_zh_train",
+      "family": "train",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n火车提前几分钟到达了下一站。透过车窗，",
+      "repeat": 6,
+      "message_bits": 128,
+      "case_id": "05_zh_train:b128:r6"
+    },
+    {
+      "prompt_id": "05_en_train",
+      "family": "train",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe train reached the next station a few minutes early. Through the window,",
+      "repeat": 3,
+      "message_bits": 512,
+      "case_id": "05_en_train:b512:r3"
+    },
+    {
+      "prompt_id": "04_zh_market",
+      "family": "market",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n清晨，社区菜市场里的摊位陆续开始营业。",
+      "repeat": 0,
+      "message_bits": 512,
+      "case_id": "04_zh_market:b512:r0"
+    },
+    {
+      "prompt_id": "09_zh_workshop",
+      "family": "workshop",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n修理铺里，一辆自行车停在装着分类工具的箱子旁边。",
+      "repeat": 2,
+      "message_bits": 128,
+      "case_id": "09_zh_workshop:b128:r2"
+    },
+    {
+      "prompt_id": "02_zh_library",
+      "family": "library",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n最后一节课结束后，图书馆里已经没什么人了。在二楼，",
+      "repeat": 2,
+      "message_bits": 128,
+      "case_id": "02_zh_library:b128:r2"
+    },
+    {
+      "prompt_id": "00_en_evening_walk",
+      "family": "evening_walk",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nThe evening walk through the neighborhood was quiet. Along the street,",
+      "repeat": 1,
+      "message_bits": 512,
+      "case_id": "00_en_evening_walk:b512:r1"
+    },
+    {
+      "prompt_id": "06_zh_science",
+      "family": "science",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n学校的实验室里，同学们准备做一个与水有关的小实验。",
+      "repeat": 6,
+      "message_bits": 128,
+      "case_id": "06_zh_science:b128:r6"
+    },
+    {
+      "prompt_id": "00_en_evening_walk",
+      "family": "evening_walk",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nThe evening walk through the neighborhood was quiet. Along the street,",
+      "repeat": 2,
+      "message_bits": 512,
+      "case_id": "00_en_evening_walk:b512:r2"
+    },
+    {
+      "prompt_id": "00_zh_evening_walk",
+      "family": "evening_walk",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n傍晚散步时，社区里的街道很安静。沿着路边，",
+      "repeat": 5,
+      "message_bits": 512,
+      "case_id": "00_zh_evening_walk:b512:r5"
+    },
+    {
+      "prompt_id": "01_en_corner_cafe",
+      "family": "corner_cafe",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nInside the small cafe, the afternoon light fell across the wooden tables.",
+      "repeat": 4,
+      "message_bits": 512,
+      "case_id": "01_en_corner_cafe:b512:r4"
+    },
+    {
+      "prompt_id": "00_en_evening_walk",
+      "family": "evening_walk",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nThe evening walk through the neighborhood was quiet. Along the street,",
+      "repeat": 1,
+      "message_bits": 128,
+      "case_id": "00_en_evening_walk:b128:r1"
+    },
+    {
+      "prompt_id": "06_zh_science",
+      "family": "science",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n学校的实验室里，同学们准备做一个与水有关的小实验。",
+      "repeat": 3,
+      "message_bits": 128,
+      "case_id": "06_zh_science:b128:r3"
+    },
+    {
+      "prompt_id": "01_en_corner_cafe",
+      "family": "corner_cafe",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nInside the small cafe, the afternoon light fell across the wooden tables.",
+      "repeat": 5,
+      "message_bits": 512,
+      "case_id": "01_en_corner_cafe:b512:r5"
+    },
+    {
+      "prompt_id": "05_zh_train",
+      "family": "train",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n火车提前几分钟到达了下一站。透过车窗，",
+      "repeat": 1,
+      "message_bits": 128,
+      "case_id": "05_zh_train:b128:r1"
+    },
+    {
+      "prompt_id": "06_zh_science",
+      "family": "science",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n学校的实验室里，同学们准备做一个与水有关的小实验。",
+      "repeat": 5,
+      "message_bits": 128,
+      "case_id": "06_zh_science:b128:r5"
+    },
+    {
+      "prompt_id": "03_en_garden",
+      "family": "garden",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nAfter the rain, the garden paths were still wet. Near the gate,",
+      "repeat": 7,
+      "message_bits": 128,
+      "case_id": "03_en_garden:b128:r7"
+    },
+    {
+      "prompt_id": "05_en_train",
+      "family": "train",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe train reached the next station a few minutes early. Through the window,",
+      "repeat": 1,
+      "message_bits": 128,
+      "case_id": "05_en_train:b128:r1"
+    },
+    {
+      "prompt_id": "00_en_evening_walk",
+      "family": "evening_walk",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nThe evening walk through the neighborhood was quiet. Along the street,",
+      "repeat": 6,
+      "message_bits": 128,
+      "case_id": "00_en_evening_walk:b128:r6"
+    },
+    {
+      "prompt_id": "09_en_workshop",
+      "family": "workshop",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nIn the repair workshop, a bicycle stood beside a box of carefully sorted tools.",
+      "repeat": 6,
+      "message_bits": 512,
+      "case_id": "09_en_workshop:b512:r6"
+    },
+    {
+      "prompt_id": "07_en_museum",
+      "family": "museum",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe museum opened a new room about the history of local transportation.",
+      "repeat": 6,
+      "message_bits": 512,
+      "case_id": "07_en_museum:b512:r6"
+    },
+    {
+      "prompt_id": "07_zh_museum",
+      "family": "museum",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n博物馆新开放了一个介绍当地交通历史的展厅。",
+      "repeat": 0,
+      "message_bits": 128,
+      "case_id": "07_zh_museum:b128:r0"
+    },
+    {
+      "prompt_id": "08_zh_mountain",
+      "family": "mountain",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n山路穿过树林缓缓上升，随后来到一片开阔的山坡。",
+      "repeat": 5,
+      "message_bits": 128,
+      "case_id": "08_zh_mountain:b128:r5"
+    },
+    {
+      "prompt_id": "04_en_market",
+      "family": "market",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nAt the neighborhood market, the stalls were opening for the morning.",
+      "repeat": 4,
+      "message_bits": 128,
+      "case_id": "04_en_market:b128:r4"
+    },
+    {
+      "prompt_id": "02_zh_library",
+      "family": "library",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n最后一节课结束后，图书馆里已经没什么人了。在二楼，",
+      "repeat": 5,
+      "message_bits": 128,
+      "case_id": "02_zh_library:b128:r5"
+    },
+    {
+      "prompt_id": "01_en_corner_cafe",
+      "family": "corner_cafe",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nInside the small cafe, the afternoon light fell across the wooden tables.",
+      "repeat": 0,
+      "message_bits": 512,
+      "case_id": "01_en_corner_cafe:b512:r0"
+    },
+    {
+      "prompt_id": "09_en_workshop",
+      "family": "workshop",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nIn the repair workshop, a bicycle stood beside a box of carefully sorted tools.",
+      "repeat": 2,
+      "message_bits": 512,
+      "case_id": "09_en_workshop:b512:r2"
+    },
+    {
+      "prompt_id": "03_zh_garden",
+      "family": "garden",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n雨停以后，花园里的小路仍然湿漉漉的。在大门旁边，",
+      "repeat": 5,
+      "message_bits": 128,
+      "case_id": "03_zh_garden:b128:r5"
+    },
+    {
+      "prompt_id": "00_en_evening_walk",
+      "family": "evening_walk",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nThe evening walk through the neighborhood was quiet. Along the street,",
+      "repeat": 7,
+      "message_bits": 512,
+      "case_id": "00_en_evening_walk:b512:r7"
+    },
+    {
+      "prompt_id": "05_zh_train",
+      "family": "train",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n火车提前几分钟到达了下一站。透过车窗，",
+      "repeat": 7,
+      "message_bits": 128,
+      "case_id": "05_zh_train:b128:r7"
+    },
+    {
+      "prompt_id": "07_en_museum",
+      "family": "museum",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe museum opened a new room about the history of local transportation.",
+      "repeat": 2,
+      "message_bits": 512,
+      "case_id": "07_en_museum:b512:r2"
+    },
+    {
+      "prompt_id": "06_en_science",
+      "family": "science",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nIn the school laboratory, the class prepared a simple experiment with water.",
+      "repeat": 1,
+      "message_bits": 512,
+      "case_id": "06_en_science:b512:r1"
+    },
+    {
+      "prompt_id": "09_zh_workshop",
+      "family": "workshop",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n修理铺里，一辆自行车停在装着分类工具的箱子旁边。",
+      "repeat": 2,
+      "message_bits": 512,
+      "case_id": "09_zh_workshop:b512:r2"
+    },
+    {
+      "prompt_id": "02_en_library",
+      "family": "library",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nThe library was nearly empty when the last class ended. On the second floor,",
+      "repeat": 1,
+      "message_bits": 128,
+      "case_id": "02_en_library:b128:r1"
+    },
+    {
+      "prompt_id": "09_en_workshop",
+      "family": "workshop",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nIn the repair workshop, a bicycle stood beside a box of carefully sorted tools.",
+      "repeat": 0,
+      "message_bits": 512,
+      "case_id": "09_en_workshop:b512:r0"
+    },
+    {
+      "prompt_id": "00_en_evening_walk",
+      "family": "evening_walk",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nThe evening walk through the neighborhood was quiet. Along the street,",
+      "repeat": 2,
+      "message_bits": 128,
+      "case_id": "00_en_evening_walk:b128:r2"
+    },
+    {
+      "prompt_id": "08_zh_mountain",
+      "family": "mountain",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n山路穿过树林缓缓上升，随后来到一片开阔的山坡。",
+      "repeat": 6,
+      "message_bits": 512,
+      "case_id": "08_zh_mountain:b512:r6"
+    },
+    {
+      "prompt_id": "01_en_corner_cafe",
+      "family": "corner_cafe",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nInside the small cafe, the afternoon light fell across the wooden tables.",
+      "repeat": 1,
+      "message_bits": 512,
+      "case_id": "01_en_corner_cafe:b512:r1"
+    },
+    {
+      "prompt_id": "04_en_market",
+      "family": "market",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nAt the neighborhood market, the stalls were opening for the morning.",
+      "repeat": 5,
+      "message_bits": 128,
+      "case_id": "04_en_market:b128:r5"
+    },
+    {
+      "prompt_id": "07_zh_museum",
+      "family": "museum",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n博物馆新开放了一个介绍当地交通历史的展厅。",
+      "repeat": 3,
+      "message_bits": 128,
+      "case_id": "07_zh_museum:b128:r3"
+    },
+    {
+      "prompt_id": "05_en_train",
+      "family": "train",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe train reached the next station a few minutes early. Through the window,",
+      "repeat": 6,
+      "message_bits": 128,
+      "case_id": "05_en_train:b128:r6"
+    },
+    {
+      "prompt_id": "04_en_market",
+      "family": "market",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nAt the neighborhood market, the stalls were opening for the morning.",
+      "repeat": 2,
+      "message_bits": 128,
+      "case_id": "04_en_market:b128:r2"
+    },
+    {
+      "prompt_id": "02_zh_library",
+      "family": "library",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n最后一节课结束后，图书馆里已经没什么人了。在二楼，",
+      "repeat": 3,
+      "message_bits": 128,
+      "case_id": "02_zh_library:b128:r3"
+    },
+    {
+      "prompt_id": "05_en_train",
+      "family": "train",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe train reached the next station a few minutes early. Through the window,",
+      "repeat": 2,
+      "message_bits": 128,
+      "case_id": "05_en_train:b128:r2"
+    },
+    {
+      "prompt_id": "01_zh_corner_cafe",
+      "family": "corner_cafe",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n小咖啡馆里，午后的阳光照在木桌上。",
+      "repeat": 3,
+      "message_bits": 512,
+      "case_id": "01_zh_corner_cafe:b512:r3"
+    },
+    {
+      "prompt_id": "09_en_workshop",
+      "family": "workshop",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nIn the repair workshop, a bicycle stood beside a box of carefully sorted tools.",
+      "repeat": 7,
+      "message_bits": 512,
+      "case_id": "09_en_workshop:b512:r7"
+    },
+    {
+      "prompt_id": "08_zh_mountain",
+      "family": "mountain",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n山路穿过树林缓缓上升，随后来到一片开阔的山坡。",
+      "repeat": 2,
+      "message_bits": 128,
+      "case_id": "08_zh_mountain:b128:r2"
+    },
+    {
+      "prompt_id": "07_zh_museum",
+      "family": "museum",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n博物馆新开放了一个介绍当地交通历史的展厅。",
+      "repeat": 6,
+      "message_bits": 128,
+      "case_id": "07_zh_museum:b128:r6"
+    },
+    {
+      "prompt_id": "07_zh_museum",
+      "family": "museum",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n博物馆新开放了一个介绍当地交通历史的展厅。",
+      "repeat": 1,
+      "message_bits": 512,
+      "case_id": "07_zh_museum:b512:r1"
+    },
+    {
+      "prompt_id": "05_zh_train",
+      "family": "train",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n火车提前几分钟到达了下一站。透过车窗，",
+      "repeat": 4,
+      "message_bits": 512,
+      "case_id": "05_zh_train:b512:r4"
+    },
+    {
+      "prompt_id": "00_en_evening_walk",
+      "family": "evening_walk",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nThe evening walk through the neighborhood was quiet. Along the street,",
+      "repeat": 5,
+      "message_bits": 128,
+      "case_id": "00_en_evening_walk:b128:r5"
+    },
+    {
+      "prompt_id": "03_en_garden",
+      "family": "garden",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nAfter the rain, the garden paths were still wet. Near the gate,",
+      "repeat": 6,
+      "message_bits": 128,
+      "case_id": "03_en_garden:b128:r6"
+    },
+    {
+      "prompt_id": "07_zh_museum",
+      "family": "museum",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n博物馆新开放了一个介绍当地交通历史的展厅。",
+      "repeat": 1,
+      "message_bits": 128,
+      "case_id": "07_zh_museum:b128:r1"
+    },
+    {
+      "prompt_id": "00_zh_evening_walk",
+      "family": "evening_walk",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n傍晚散步时，社区里的街道很安静。沿着路边，",
+      "repeat": 2,
+      "message_bits": 512,
+      "case_id": "00_zh_evening_walk:b512:r2"
+    },
+    {
+      "prompt_id": "07_en_museum",
+      "family": "museum",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe museum opened a new room about the history of local transportation.",
+      "repeat": 1,
+      "message_bits": 512,
+      "case_id": "07_en_museum:b512:r1"
+    },
+    {
+      "prompt_id": "00_zh_evening_walk",
+      "family": "evening_walk",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n傍晚散步时，社区里的街道很安静。沿着路边，",
+      "repeat": 1,
+      "message_bits": 128,
+      "case_id": "00_zh_evening_walk:b128:r1"
+    },
+    {
+      "prompt_id": "00_en_evening_walk",
+      "family": "evening_walk",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nThe evening walk through the neighborhood was quiet. Along the street,",
+      "repeat": 3,
+      "message_bits": 128,
+      "case_id": "00_en_evening_walk:b128:r3"
+    },
+    {
+      "prompt_id": "01_en_corner_cafe",
+      "family": "corner_cafe",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nInside the small cafe, the afternoon light fell across the wooden tables.",
+      "repeat": 0,
+      "message_bits": 128,
+      "case_id": "01_en_corner_cafe:b128:r0"
+    },
+    {
+      "prompt_id": "03_en_garden",
+      "family": "garden",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nAfter the rain, the garden paths were still wet. Near the gate,",
+      "repeat": 2,
+      "message_bits": 512,
+      "case_id": "03_en_garden:b512:r2"
+    },
+    {
+      "prompt_id": "00_zh_evening_walk",
+      "family": "evening_walk",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n傍晚散步时，社区里的街道很安静。沿着路边，",
+      "repeat": 7,
+      "message_bits": 512,
+      "case_id": "00_zh_evening_walk:b512:r7"
+    },
+    {
+      "prompt_id": "09_zh_workshop",
+      "family": "workshop",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n修理铺里，一辆自行车停在装着分类工具的箱子旁边。",
+      "repeat": 1,
+      "message_bits": 512,
+      "case_id": "09_zh_workshop:b512:r1"
+    },
+    {
+      "prompt_id": "00_en_evening_walk",
+      "family": "evening_walk",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nThe evening walk through the neighborhood was quiet. Along the street,",
+      "repeat": 4,
+      "message_bits": 512,
+      "case_id": "00_en_evening_walk:b512:r4"
+    },
+    {
+      "prompt_id": "04_zh_market",
+      "family": "market",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n清晨，社区菜市场里的摊位陆续开始营业。",
+      "repeat": 0,
+      "message_bits": 128,
+      "case_id": "04_zh_market:b128:r0"
+    },
+    {
+      "prompt_id": "02_en_library",
+      "family": "library",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nThe library was nearly empty when the last class ended. On the second floor,",
+      "repeat": 1,
+      "message_bits": 512,
+      "case_id": "02_en_library:b512:r1"
+    },
+    {
+      "prompt_id": "04_zh_market",
+      "family": "market",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n清晨，社区菜市场里的摊位陆续开始营业。",
+      "repeat": 2,
+      "message_bits": 512,
+      "case_id": "04_zh_market:b512:r2"
+    },
+    {
+      "prompt_id": "09_en_workshop",
+      "family": "workshop",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nIn the repair workshop, a bicycle stood beside a box of carefully sorted tools.",
+      "repeat": 2,
+      "message_bits": 128,
+      "case_id": "09_en_workshop:b128:r2"
+    },
+    {
+      "prompt_id": "09_en_workshop",
+      "family": "workshop",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nIn the repair workshop, a bicycle stood beside a box of carefully sorted tools.",
+      "repeat": 7,
+      "message_bits": 128,
+      "case_id": "09_en_workshop:b128:r7"
+    },
+    {
+      "prompt_id": "09_en_workshop",
+      "family": "workshop",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nIn the repair workshop, a bicycle stood beside a box of carefully sorted tools.",
+      "repeat": 1,
+      "message_bits": 128,
+      "case_id": "09_en_workshop:b128:r1"
+    },
+    {
+      "prompt_id": "05_zh_train",
+      "family": "train",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n火车提前几分钟到达了下一站。透过车窗，",
+      "repeat": 3,
+      "message_bits": 512,
+      "case_id": "05_zh_train:b512:r3"
+    },
+    {
+      "prompt_id": "04_en_market",
+      "family": "market",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nAt the neighborhood market, the stalls were opening for the morning.",
+      "repeat": 7,
+      "message_bits": 128,
+      "case_id": "04_en_market:b128:r7"
+    },
+    {
+      "prompt_id": "08_zh_mountain",
+      "family": "mountain",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n山路穿过树林缓缓上升，随后来到一片开阔的山坡。",
+      "repeat": 7,
+      "message_bits": 512,
+      "case_id": "08_zh_mountain:b512:r7"
+    },
+    {
+      "prompt_id": "08_zh_mountain",
+      "family": "mountain",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n山路穿过树林缓缓上升，随后来到一片开阔的山坡。",
+      "repeat": 3,
+      "message_bits": 128,
+      "case_id": "08_zh_mountain:b128:r3"
+    },
+    {
+      "prompt_id": "04_zh_market",
+      "family": "market",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n清晨，社区菜市场里的摊位陆续开始营业。",
+      "repeat": 3,
+      "message_bits": 128,
+      "case_id": "04_zh_market:b128:r3"
+    },
+    {
+      "prompt_id": "07_zh_museum",
+      "family": "museum",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n博物馆新开放了一个介绍当地交通历史的展厅。",
+      "repeat": 6,
+      "message_bits": 512,
+      "case_id": "07_zh_museum:b512:r6"
+    },
+    {
+      "prompt_id": "01_en_corner_cafe",
+      "family": "corner_cafe",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nInside the small cafe, the afternoon light fell across the wooden tables.",
+      "repeat": 4,
+      "message_bits": 128,
+      "case_id": "01_en_corner_cafe:b128:r4"
+    },
+    {
+      "prompt_id": "00_zh_evening_walk",
+      "family": "evening_walk",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n傍晚散步时，社区里的街道很安静。沿着路边，",
+      "repeat": 3,
+      "message_bits": 128,
+      "case_id": "00_zh_evening_walk:b128:r3"
+    },
+    {
+      "prompt_id": "04_en_market",
+      "family": "market",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nAt the neighborhood market, the stalls were opening for the morning.",
+      "repeat": 6,
+      "message_bits": 512,
+      "case_id": "04_en_market:b512:r6"
+    },
+    {
+      "prompt_id": "06_en_science",
+      "family": "science",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nIn the school laboratory, the class prepared a simple experiment with water.",
+      "repeat": 6,
+      "message_bits": 512,
+      "case_id": "06_en_science:b512:r6"
+    },
+    {
+      "prompt_id": "09_zh_workshop",
+      "family": "workshop",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n修理铺里，一辆自行车停在装着分类工具的箱子旁边。",
+      "repeat": 1,
+      "message_bits": 128,
+      "case_id": "09_zh_workshop:b128:r1"
+    },
+    {
+      "prompt_id": "02_en_library",
+      "family": "library",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nThe library was nearly empty when the last class ended. On the second floor,",
+      "repeat": 3,
+      "message_bits": 128,
+      "case_id": "02_en_library:b128:r3"
+    },
+    {
+      "prompt_id": "04_zh_market",
+      "family": "market",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n清晨，社区菜市场里的摊位陆续开始营业。",
+      "repeat": 3,
+      "message_bits": 512,
+      "case_id": "04_zh_market:b512:r3"
+    },
+    {
+      "prompt_id": "03_zh_garden",
+      "family": "garden",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n雨停以后，花园里的小路仍然湿漉漉的。在大门旁边，",
+      "repeat": 0,
+      "message_bits": 512,
+      "case_id": "03_zh_garden:b512:r0"
+    },
+    {
+      "prompt_id": "05_en_train",
+      "family": "train",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe train reached the next station a few minutes early. Through the window,",
+      "repeat": 0,
+      "message_bits": 128,
+      "case_id": "05_en_train:b128:r0"
+    },
+    {
+      "prompt_id": "02_en_library",
+      "family": "library",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nThe library was nearly empty when the last class ended. On the second floor,",
+      "repeat": 4,
+      "message_bits": 128,
+      "case_id": "02_en_library:b128:r4"
+    },
+    {
+      "prompt_id": "07_zh_museum",
+      "family": "museum",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n博物馆新开放了一个介绍当地交通历史的展厅。",
+      "repeat": 4,
+      "message_bits": 512,
+      "case_id": "07_zh_museum:b512:r4"
+    },
+    {
+      "prompt_id": "03_en_garden",
+      "family": "garden",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nAfter the rain, the garden paths were still wet. Near the gate,",
+      "repeat": 3,
+      "message_bits": 512,
+      "case_id": "03_en_garden:b512:r3"
+    },
+    {
+      "prompt_id": "07_zh_museum",
+      "family": "museum",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n博物馆新开放了一个介绍当地交通历史的展厅。",
+      "repeat": 7,
+      "message_bits": 128,
+      "case_id": "07_zh_museum:b128:r7"
+    },
+    {
+      "prompt_id": "08_zh_mountain",
+      "family": "mountain",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n山路穿过树林缓缓上升，随后来到一片开阔的山坡。",
+      "repeat": 2,
+      "message_bits": 512,
+      "case_id": "08_zh_mountain:b512:r2"
+    },
+    {
+      "prompt_id": "06_en_science",
+      "family": "science",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nIn the school laboratory, the class prepared a simple experiment with water.",
+      "repeat": 3,
+      "message_bits": 512,
+      "case_id": "06_en_science:b512:r3"
+    },
+    {
+      "prompt_id": "06_zh_science",
+      "family": "science",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n学校的实验室里，同学们准备做一个与水有关的小实验。",
+      "repeat": 0,
+      "message_bits": 512,
+      "case_id": "06_zh_science:b512:r0"
+    },
+    {
+      "prompt_id": "07_en_museum",
+      "family": "museum",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe museum opened a new room about the history of local transportation.",
+      "repeat": 3,
+      "message_bits": 512,
+      "case_id": "07_en_museum:b512:r3"
+    },
+    {
+      "prompt_id": "08_zh_mountain",
+      "family": "mountain",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n山路穿过树林缓缓上升，随后来到一片开阔的山坡。",
+      "repeat": 1,
+      "message_bits": 512,
+      "case_id": "08_zh_mountain:b512:r1"
+    },
+    {
+      "prompt_id": "08_en_mountain",
+      "family": "mountain",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe trail climbed gently through the forest before reaching an open hillside.",
+      "repeat": 4,
+      "message_bits": 128,
+      "case_id": "08_en_mountain:b128:r4"
+    },
+    {
+      "prompt_id": "08_en_mountain",
+      "family": "mountain",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe trail climbed gently through the forest before reaching an open hillside.",
+      "repeat": 5,
+      "message_bits": 512,
+      "case_id": "08_en_mountain:b512:r5"
+    },
+    {
+      "prompt_id": "08_en_mountain",
+      "family": "mountain",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe trail climbed gently through the forest before reaching an open hillside.",
+      "repeat": 1,
+      "message_bits": 512,
+      "case_id": "08_en_mountain:b512:r1"
+    },
+    {
+      "prompt_id": "02_zh_library",
+      "family": "library",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n最后一节课结束后，图书馆里已经没什么人了。在二楼，",
+      "repeat": 0,
+      "message_bits": 128,
+      "case_id": "02_zh_library:b128:r0"
+    },
+    {
+      "prompt_id": "01_zh_corner_cafe",
+      "family": "corner_cafe",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n小咖啡馆里，午后的阳光照在木桌上。",
+      "repeat": 5,
+      "message_bits": 128,
+      "case_id": "01_zh_corner_cafe:b128:r5"
+    },
+    {
+      "prompt_id": "02_zh_library",
+      "family": "library",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n最后一节课结束后，图书馆里已经没什么人了。在二楼，",
+      "repeat": 7,
+      "message_bits": 128,
+      "case_id": "02_zh_library:b128:r7"
+    },
+    {
+      "prompt_id": "05_zh_train",
+      "family": "train",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n火车提前几分钟到达了下一站。透过车窗，",
+      "repeat": 0,
+      "message_bits": 128,
+      "case_id": "05_zh_train:b128:r0"
+    },
+    {
+      "prompt_id": "05_en_train",
+      "family": "train",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe train reached the next station a few minutes early. Through the window,",
+      "repeat": 4,
+      "message_bits": 512,
+      "case_id": "05_en_train:b512:r4"
+    },
+    {
+      "prompt_id": "03_zh_garden",
+      "family": "garden",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n雨停以后，花园里的小路仍然湿漉漉的。在大门旁边，",
+      "repeat": 7,
+      "message_bits": 512,
+      "case_id": "03_zh_garden:b512:r7"
+    },
+    {
+      "prompt_id": "03_en_garden",
+      "family": "garden",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nAfter the rain, the garden paths were still wet. Near the gate,",
+      "repeat": 3,
+      "message_bits": 128,
+      "case_id": "03_en_garden:b128:r3"
+    },
+    {
+      "prompt_id": "05_en_train",
+      "family": "train",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe train reached the next station a few minutes early. Through the window,",
+      "repeat": 7,
+      "message_bits": 512,
+      "case_id": "05_en_train:b512:r7"
+    },
+    {
+      "prompt_id": "07_zh_museum",
+      "family": "museum",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n博物馆新开放了一个介绍当地交通历史的展厅。",
+      "repeat": 3,
+      "message_bits": 512,
+      "case_id": "07_zh_museum:b512:r3"
+    },
+    {
+      "prompt_id": "04_en_market",
+      "family": "market",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nAt the neighborhood market, the stalls were opening for the morning.",
+      "repeat": 4,
+      "message_bits": 512,
+      "case_id": "04_en_market:b512:r4"
+    },
+    {
+      "prompt_id": "09_zh_workshop",
+      "family": "workshop",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n修理铺里，一辆自行车停在装着分类工具的箱子旁边。",
+      "repeat": 3,
+      "message_bits": 512,
+      "case_id": "09_zh_workshop:b512:r3"
+    },
+    {
+      "prompt_id": "06_en_science",
+      "family": "science",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nIn the school laboratory, the class prepared a simple experiment with water.",
+      "repeat": 2,
+      "message_bits": 128,
+      "case_id": "06_en_science:b128:r2"
+    },
+    {
+      "prompt_id": "01_en_corner_cafe",
+      "family": "corner_cafe",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nInside the small cafe, the afternoon light fell across the wooden tables.",
+      "repeat": 5,
+      "message_bits": 128,
+      "case_id": "01_en_corner_cafe:b128:r5"
+    },
+    {
+      "prompt_id": "09_zh_workshop",
+      "family": "workshop",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n修理铺里，一辆自行车停在装着分类工具的箱子旁边。",
+      "repeat": 0,
+      "message_bits": 512,
+      "case_id": "09_zh_workshop:b512:r0"
+    },
+    {
+      "prompt_id": "02_en_library",
+      "family": "library",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nThe library was nearly empty when the last class ended. On the second floor,",
+      "repeat": 5,
+      "message_bits": 128,
+      "case_id": "02_en_library:b128:r5"
+    },
+    {
+      "prompt_id": "02_zh_library",
+      "family": "library",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n最后一节课结束后，图书馆里已经没什么人了。在二楼，",
+      "repeat": 0,
+      "message_bits": 512,
+      "case_id": "02_zh_library:b512:r0"
+    },
+    {
+      "prompt_id": "06_zh_science",
+      "family": "science",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n学校的实验室里，同学们准备做一个与水有关的小实验。",
+      "repeat": 4,
+      "message_bits": 512,
+      "case_id": "06_zh_science:b512:r4"
+    },
+    {
+      "prompt_id": "03_en_garden",
+      "family": "garden",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nAfter the rain, the garden paths were still wet. Near the gate,",
+      "repeat": 7,
+      "message_bits": 512,
+      "case_id": "03_en_garden:b512:r7"
+    },
+    {
+      "prompt_id": "00_zh_evening_walk",
+      "family": "evening_walk",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n傍晚散步时，社区里的街道很安静。沿着路边，",
+      "repeat": 3,
+      "message_bits": 512,
+      "case_id": "00_zh_evening_walk:b512:r3"
+    },
+    {
+      "prompt_id": "05_en_train",
+      "family": "train",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe train reached the next station a few minutes early. Through the window,",
+      "repeat": 4,
+      "message_bits": 128,
+      "case_id": "05_en_train:b128:r4"
+    },
+    {
+      "prompt_id": "08_en_mountain",
+      "family": "mountain",
+      "language": "en",
+      "split": "test",
+      "prompt": "Continue the following passage in natural English prose:\nThe trail climbed gently through the forest before reaching an open hillside.",
+      "repeat": 6,
+      "message_bits": 512,
+      "case_id": "08_en_mountain:b512:r6"
+    },
+    {
+      "prompt_id": "05_zh_train",
+      "family": "train",
+      "language": "zh",
+      "split": "test",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n火车提前几分钟到达了下一站。透过车窗，",
+      "repeat": 2,
+      "message_bits": 512,
+      "case_id": "05_zh_train:b512:r2"
+    },
+    {
+      "prompt_id": "03_zh_garden",
+      "family": "garden",
+      "language": "zh",
+      "split": "development",
+      "prompt": "请用自然连贯的中文续写下面的段落：\n雨停以后，花园里的小路仍然湿漉漉的。在大门旁边，",
+      "repeat": 3,
+      "message_bits": 512,
+      "case_id": "03_zh_garden:b512:r3"
+    },
+    {
+      "prompt_id": "02_en_library",
+      "family": "library",
+      "language": "en",
+      "split": "development",
+      "prompt": "Continue the following passage in natural English prose:\nThe library was nearly empty when the last class ended. On the second floor,",
+      "repeat": 3,
+      "message_bits": 512,
+      "case_id": "02_en_library:b512:r3"
+    }
+  ],
+  "created_utc": "2026-10-20T15:34:58Z",
+  "runtime": {
+    "timestamp_utc": "2026-10-20T15:34:58Z",
+    "host": "kzoacn-PC",
+    "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.12.12",
+    "cpu_model": "AMD Ryzen 7 7800X3D 8-Core Processor",
+    "cpu_count_logical": 16,
+    "ram_total_gib": 30.92,
+    "ghostext_git_head": "5ba9a06ddbf4fcba4feb33093293355817e5044d",
+    "paper_git_head": "ca221b1757f006c832dab5c5d24b1d502aaf6121",
+    "llama_cpp_python_version": "0.3.20",
+    "llama_cpp_commit_sha": "f49e917",
+    "llama_cpp_build_number": "1",
+    "ggml_build_commit": "f49e917-dirty",
+    "ggml_build_number": "1",
+    "ggml_version": "0.9.11",
+    "llama_system_info": "CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | AVX512 = 1 | AVX512_VBMI = 1 | AVX512_VNNI = 1 | AVX512_BF16 = 1 | LLAMAFILE = 1 | OPENMP = 1 | REPACK = 1 |"
+  },
+  "packages": {
+    "numpy": "1.26.4",
+    "torch": "2.11.0",
+    "transformers": "4.57.6",
+    "llama-cpp-python": "0.3.20"
+  },
+  "scope": "Rational adapter of RRC paper Algorithm 3 to Ghostext's masked, truncated, stable, quantized source Q. Optional reverse verification is separately labelled. No claim of reproducing the paper's full model setup or current source."
+}

@@ -1,0 +1,228 @@
+{
+  "scope": "Independent replay consumes only visible text, prompt, public model and policy.",
+  "selection": "First lexicographic eligible held-out case per (message bits or guard, language).",
+  "study": "repair",
+  "backend": "qwen",
+  "records": [
+    {
+      "case_id": "05_en_train:r0:g0",
+      "label": "stego",
+      "text_sha256": "37383446fbc8052450d8412a8a292f4e658e5a20d95dd076b56c7c1d01c088fb",
+      "probe": {
+        "0": {
+          "status": "admissible",
+          "tokens_observed": 169,
+          "log_likelihood_ratio": 2.8594758555010937,
+          "max_codec_rounding_tv": 0.04146034212360595,
+          "sum_codec_rounding_tv": 0.08270838817807549
+        },
+        "128": {
+          "status": "admissible",
+          "tokens_observed": 171,
+          "log_likelihood_ratio": 0.0,
+          "max_codec_rounding_tv": 7.307898245425482e-37,
+          "sum_codec_rounding_tv": 8.04776876266078e-37
+        }
+      },
+      "cached_probe_matches": true
+    },
+    {
+      "case_id": "05_en_train:r0:g0",
+      "label": "natural",
+      "text_sha256": "7e1fcb1b7ecccef33c229cc97027053df33f84e233fb9589b2986c1ce53ac046",
+      "probe": {
+        "0": {
+          "status": "zero_width_interval",
+          "tokens_observed": 171,
+          "log_likelihood_ratio": null,
+          "max_codec_rounding_tv": 0.4442795973557692,
+          "sum_codec_rounding_tv": 0.6079145426247814
+        },
+        "128": {
+          "status": "admissible",
+          "tokens_observed": 172,
+          "log_likelihood_ratio": 0.0,
+          "max_codec_rounding_tv": 7.893553951660679e-38,
+          "sum_codec_rounding_tv": 8.206861685103365e-38
+        }
+      },
+      "cached_probe_matches": true
+    },
+    {
+      "case_id": "05_en_train:r0:g128",
+      "label": "stego",
+      "text_sha256": "c5e34a1773d8d04208da0943b9080f9bd65c67ecc3dace024d3555fe1ed3f8da",
+      "probe": {
+        "0": {
+          "status": "admissible",
+          "tokens_observed": 153,
+          "log_likelihood_ratio": 0.1842124999964888,
+          "max_codec_rounding_tv": 0.3675601356907895,
+          "sum_codec_rounding_tv": 0.4466507584742141
+        },
+        "128": {
+          "status": "admissible",
+          "tokens_observed": 154,
+          "log_likelihood_ratio": 0.0,
+          "max_codec_rounding_tv": 2.5953527854500667e-38,
+          "sum_codec_rounding_tv": 2.756721938383983e-38
+        }
+      },
+      "cached_probe_matches": true
+    },
+    {
+      "case_id": "05_en_train:r0:g128",
+      "label": "natural",
+      "text_sha256": "70fc2fc9721c0d9519a6a1ec2af6f0dd62c75f393022c9c8df216f83c02b3e2a",
+      "probe": {
+        "0": {
+          "status": "zero_width_interval",
+          "tokens_observed": 186,
+          "log_likelihood_ratio": null,
+          "max_codec_rounding_tv": 0.77685546875,
+          "sum_codec_rounding_tv": 0.8383280151599187
+        },
+        "128": {
+          "status": "admissible",
+          "tokens_observed": 186,
+          "log_likelihood_ratio": 0.0,
+          "max_codec_rounding_tv": 5.875427505592858e-39,
+          "sum_codec_rounding_tv": 6.031882198236148e-39
+        }
+      },
+      "cached_probe_matches": true
+    },
+    {
+      "case_id": "05_zh_train:r0:g0",
+      "label": "stego",
+      "text_sha256": "0e1e65f12a457dd8433eb09c39a1f8a51450bc6621de119f27e17830a83ad14a",
+      "probe": {
+        "0": {
+          "status": "admissible",
+          "tokens_observed": 161,
+          "log_likelihood_ratio": 2.0481488127841745,
+          "max_codec_rounding_tv": 0.1432347790948276,
+          "sum_codec_rounding_tv": 0.14382655432444003
+        },
+        "128": {
+          "status": "admissible",
+          "tokens_observed": 161,
+          "log_likelihood_ratio": 0.0,
+          "max_codec_rounding_tv": 1.0117095539594208e-39,
+          "sum_codec_rounding_tv": 1.0137375247352462e-39
+        }
+      },
+      "cached_probe_matches": true
+    },
+    {
+      "case_id": "05_zh_train:r0:g0",
+      "label": "natural",
+      "text_sha256": "cd569a85b087fb5c424022277232cc31a7499c6358bd2c052ad2d73e4b4de7b7",
+      "probe": {
+        "0": {
+          "status": "zero_width_interval",
+          "tokens_observed": 166,
+          "log_likelihood_ratio": null,
+          "max_codec_rounding_tv": 0.3912876674107143,
+          "sum_codec_rounding_tv": 0.7320627837308947
+        },
+        "128": {
+          "status": "admissible",
+          "tokens_observed": 168,
+          "log_likelihood_ratio": 0.0,
+          "max_codec_rounding_tv": 1.7774217433922578e-38,
+          "sum_codec_rounding_tv": 2.595421743312499e-38
+        }
+      },
+      "cached_probe_matches": true
+    },
+    {
+      "case_id": "05_zh_train:r0:g128",
+      "label": "stego",
+      "text_sha256": "52bdb76a50d2118815de031c26681b823d3458c9e085d0f2fca143322836a61b",
+      "probe": {
+        "0": {
+          "status": "zero_width_interval",
+          "tokens_observed": 179,
+          "log_likelihood_ratio": null,
+          "max_codec_rounding_tv": 0.37109375,
+          "sum_codec_rounding_tv": 0.7940560683976328
+        },
+        "128": {
+          "status": "admissible",
+          "tokens_observed": 179,
+          "log_likelihood_ratio": 0.0,
+          "max_codec_rounding_tv": 8.17737994909962e-39,
+          "sum_codec_rounding_tv": 1.1094991174190556e-38
+        }
+      },
+      "cached_probe_matches": true
+    },
+    {
+      "case_id": "05_zh_train:r0:g128",
+      "label": "natural",
+      "text_sha256": "a472ee4428cbaff485575f3141c1d7bb9307aa7cf90859b853a07c1a01c16338",
+      "probe": {
+        "0": {
+          "status": "admissible",
+          "tokens_observed": 180,
+          "log_likelihood_ratio": -0.5508076222291484,
+          "max_codec_rounding_tv": 0.4990234375,
+          "sum_codec_rounding_tv": 0.835283287661405
+        },
+        "128": {
+          "status": "admissible",
+          "tokens_observed": 181,
+          "log_likelihood_ratio": 0.0,
+          "max_codec_rounding_tv": 1.6345749236534288e-38,
+          "sum_codec_rounding_tv": 1.9507492802259613e-38
+        }
+      },
+      "cached_probe_matches": true
+    }
+  ],
+  "source_input_sha256": "028899b53643deee06a070fcb4d003090c495374122519c5a198f10a08695fcd",
+  "model_sha256": {
+    "Qwen_Qwen3.5-2B-Q4_K_S.gguf": "ae7c7f78251e36c8f8c50bdd4df2cb593a62ace1271327789dea67fd62eb31c2"
+  },
+  "runtime": {
+    "timestamp_utc": "2026-10-20T17:31:30Z",
+    "host": "kzoacn-PC",
+    "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.12.12",
+    "cpu_model": "AMD Ryzen 7 7800X3D 8-Core Processor",
+    "cpu_count_logical": 16,
+    "ram_total_gib": 30.92,
+    "ghostext_git_head": "624bae9eacccbf955a6c491d4542254072c7ba77",
+    "paper_git_head": "4d6e9a0dc0053860cb05a11989ba402a6ac9d21d",
+    "llama_cpp_python_version": "0.3.20",
+    "llama_cpp_commit_sha": "f49e917",
+    "llama_cpp_build_number": "1",
+    "ggml_build_commit": "f49e917-dirty",
+    "ggml_build_number": "1",
+    "ggml_version": "0.9.11",
+    "llama_system_info": "CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | AVX512 = 1 | AVX512_VBMI = 1 | AVX512_VNNI = 1 | AVX512_BF16 = 1 | LLAMAFILE = 1 | OPENMP = 1 | REPACK = 1 |"
+  },
+  "source_sha256": {
+    "Ghostext-paper/scripts/replay_public_features.py": "fc6d28e0e8731334ab7a1f939a5dd6a72da779038053f1485c1da65de989e121",
+    "Ghostext-paper/scripts/keyless_probe.py": "5e16a40f81cd74fd87c6aaf56bbcc0f4ef1f4243d0fb3da3ee02f0b7f477064f",
+    "Ghostext-paper/scripts/model_adapters.py": "ad41399f2e457aa6af85ed93ae5cf98864020181681907cc8b305bea1a510bac",
+    "Ghostext/src/ghostext/__init__.py": "d37c170dfeef70b1b7c12b76ac7baaab8544c5d3e236ef8ae5a82432997d3991",
+    "Ghostext/src/ghostext/benchmark.py": "f6e3fd9dd9d8615331c4684b097903142ab74b5bbec3064aac50c07264f4a831",
+    "Ghostext/src/ghostext/candidate_policy.py": "ef1a4b16a6d661a4c265d9ac7f3f75c21bda9048d43159383b1974a925bb1224",
+    "Ghostext/src/ghostext/cli.py": "3b17cb948d4355829154eb32da926c5717080c71d36d8d2983f4ee75c2b30c49",
+    "Ghostext/src/ghostext/codec.py": "585d65d10b18d9861ba0d02f0a4671743b2fa8cf2cd31152db860dc80724e9f5",
+    "Ghostext/src/ghostext/config.py": "43fc08a3ba07fcc95bac05ce57d74f7044cce229b12d8e135537fb7500d6f637",
+    "Ghostext/src/ghostext/crypto.py": "7ce5498b9b86a907c0a97901a2aaa339e9ff4ec324566382f0516ef21b1c36d5",
+    "Ghostext/src/ghostext/decoder.py": "40b85a1c41fc466b79a28d54e9c3e079151e507a6d888007cc1a3f9c73c25e81",
+    "Ghostext/src/ghostext/encoder.py": "fd66120a07172d43a07200c74f72b65bfeef806154d1557de7b37a7c21870aa9",
+    "Ghostext/src/ghostext/errors.py": "70020cb389ada0d1d16147e2a5055ff3c42e95bb5cd2a85853f1cf2088e29b54",
+    "Ghostext/src/ghostext/llama_cpp_backend.py": "07f3653b87c61444bd0888ff5013d8c223df555f5fe9c172fa71a29496249b2b",
+    "Ghostext/src/ghostext/model_assets.py": "8089d5d0cef24207b081d1c5ab59cdee0ff38799d774b08d88b8472ec3ce3350",
+    "Ghostext/src/ghostext/model_backend.py": "74d35dab5ca32df6f8bd07a775f75ff9778621301f157d8fa0238f994e9203d4",
+    "Ghostext/src/ghostext/packet.py": "fa938220b13f7b466b28330d99875b4b7da4270ad3904987b689ceb30e32104b",
+    "Ghostext/src/ghostext/pipeline.py": "85e2199ba095001c2a7c1aaffc672b953e633d6bf51de592748f85295134eae5",
+    "Ghostext/src/ghostext/progress.py": "a53ab3454e33094e9292524cf8fa25e1fa1f2ead1c96c2168b0e32a238925c25",
+    "Ghostext/src/ghostext/quantization.py": "b43e6f652d0dc97012f03295f4ab96eb2859c903a9b7609bf06702583c3b82ff"
+  }
+}

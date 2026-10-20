@@ -2,6 +2,7 @@
 """Preserve exact source objects referenced by experiment manifests."""
 from __future__ import annotations
 import hashlib
+import ast
 import json
 from pathlib import Path
 import subprocess
@@ -42,6 +43,29 @@ def resolve(name, expected):
     raise ValueError(f"No exact source object found for {name} / {expected}")
 
 
+def supplemental_dependencies(sources, current):
+    """Pin local imports omitted from the original manifest, without rewriting it."""
+    supplemental = {}
+    pending = list(sources.items())
+    while pending:
+        name, expected = pending.pop()
+        if not name.startswith("Ghostext-paper/scripts/"):
+            continue
+        tree = ast.parse((CACHE / (expected + ".py")).read_bytes())
+        modules = []
+        for node in ast.walk(tree):
+            if isinstance(node, ast.ImportFrom) and node.module and node.level == 0:
+                modules.append(node.module.split(".")[0])
+            elif isinstance(node, ast.Import):
+                modules.extend(alias.name.split(".")[0] for alias in node.names)
+        for module in modules:
+            dependency = f"Ghostext-paper/scripts/{module}.py"
+            if dependency in current and dependency not in sources and dependency not in supplemental:
+                supplemental[dependency] = current[dependency]
+                pending.append((dependency, current[dependency]))
+    return supplemental
+
+
 def main():
     CACHE.mkdir(exist_ok=True)
     current = {}
@@ -56,16 +80,33 @@ def main():
             continue
         for name, expected in sources.items():
             resolve(name, expected)
-        # This helper was unchanged throughout the original research session.
-        helper = "Ghostext-paper/scripts/artifact_utils.py"
-        supplemental = {} if helper in sources else {helper: current[helper]}
+        supplemental = supplemental_dependencies(sources, current)
+        data_inputs = {}
+        for name, expected in manifest.get("inputs", {}).items():
+            data_path = ROOT / name
+            assert data_path.resolve().is_relative_to(ROOT.resolve())
+            assert hashlib.sha256(data_path.read_bytes()).hexdigest() == expected
+            data_inputs["Ghostext-paper/" + name] = expected
+        if "selected_case_ids" in manifest and "input_sha256" in manifest:
+            matches = [
+                p for p in (ROOT / "results").glob("sp2027-*/pairs.jsonl")
+                if hashlib.sha256(p.read_bytes()).hexdigest() == manifest["input_sha256"]
+            ]
+            if len(matches) != 1:
+                raise ValueError(f"Cannot identify unique diagnostic input for {path}")
+            for data_path in [matches[0], matches[0].with_name("manifest.json")]:
+                data_inputs["Ghostext-paper/" + str(data_path.relative_to(ROOT))] = (
+                    hashlib.sha256(data_path.read_bytes()).hexdigest())
         profiles[path.parent.name] = {
             "manifest": str(path.relative_to(ROOT)),
             "manifest_sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
             "sources": sources, "supplemental_helpers": supplemental,
+            "data_inputs": data_inputs,
             "supplement_note": (
-                "Older manifests omitted artifact_utils.py. Its unchanged session source "
-                "is supplied explicitly here; this does not rewrite the original manifest."
+                "Local imported modules omitted from older manifests are explicitly pinned "
+                "at artifact freeze. This supplements dependencies without retroactively "
+                "claiming that their hashes were recorded by the original runs. The unchanged "
+                "helper functions are checked in sp2027-validation/helper-compatibility.json."
             ),
         }
     output = {

@@ -104,6 +104,15 @@ current source is expected to fail its hash check. The source-object store
 preserves exact bytes, indexed by SHA-256, and
 `results/sp2027-source-map/protocols.json` maps every profile to its entry point,
 arguments, candidate policy, stopping horizon, and recorded CPU affinity.
+Materialization also stages hash-checked input records for the archived
+bootstrap probe and targeted reverse-failure diagnostic. Command-index paths
+are relative to the root of the materialized profile; use absolute model and
+output paths when running those commands.
+Helpers omitted from old manifests are separately pinned at artifact freeze,
+with their status distinguished from originally recorded hashes.
+`results/sp2027-validation/helper-compatibility.json` checks whole unchanged
+modules or the unchanged imported function ASTs against the earlier research
+milestone.
 
 | Profile | Planned pairs or trials | Candidate policy | Stop/generation policy |
 |---|---:|---|---|
@@ -145,6 +154,17 @@ Stopping experiments use deterministic public experimental random tapes.
 Authenticated delivery uses OS randomness for fresh packets and guards.
 Delivery is therefore statistically rerunnable; a task-order seed does not
 reproduce identical cover texts. The saved texts support independent replay.
+
+The Qwen delivery process terminated after 64 saved trials. Its original
+source profile and configuration were restored to resume the remaining tasks.
+`results/sp2027-repair-qwen/interruption.json` records the saved-prefix hash
+and the next task. The first 64 rows are checked byte for byte. The interrupted
+in-flight trial, `01_zh_corner_cafe:r0:g128`, had not been persisted and resumes
+with a fresh attempt budget and OS randomness. Its original ten-attempt and
+first-attempt outcomes are unknown. Primary summaries exclude it, leaving 79
+uninterrupted trials; the resumed record and conservative one-case bounds for
+the original plan are reported separately. Unknown interrupted work is excluded
+from attempt counts and timing.
 
 ## Independent public-feature replay
 

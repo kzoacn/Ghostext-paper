@@ -39,7 +39,7 @@ def main():
     })
     codec = read("results/sp2027-codec-audit/summary.json")["results"]
     dp = read("results/sp2027-stopping-dp/summary.json")["results"]
-    fig, axes = plt.subplots(1, 2, figsize=(7.0, 2.35), constrained_layout=True)
+    fig, axes = plt.subplots(1, 2, figsize=(7.0, 3.0), constrained_layout=True)
     ax = axes[0]
     colors = ["#225ea8", "#d95f0e", "#756bb1"]
     for case, label, color, marker in [
@@ -58,7 +58,7 @@ def main():
            xlim=(-2, 130), ylim=(1e-40, 2))
     ax.set_xticks([0, 32, 64, 96, 128])
     ax.set_yticks([1, 1e-10, 1e-20, 1e-30, 1e-40])
-    ax.legend(loc="upper right", frameon=False)
+    ax.legend(loc="upper center", bbox_to_anchor=(.5, -.28), frameon=False)
     ax.set_title("(a) Rounding repair; stopping-matched reference", pad=7)
     ax = axes[1]
     rows = [r for r in dp if r["p_A"] == .75]
@@ -75,7 +75,7 @@ def main():
     ax.set_xticks([8, 32, 128, 512, 2048], ["8", "32", "128", "512", "2048"])
     ax.set(xlabel="Message bits B", ylabel="Probability or TV", ylim=(-.035, 1.06))
     ax.set_title("(b) Stopping leakage; identical length marginals", pad=7)
-    ax.legend(loc="center right", frameon=False)
+    ax.legend(loc="upper center", bbox_to_anchor=(.5, -.28), frameon=False)
     save(fig, "finite-message-effects.pdf")
 
     # Only a completed analyzed cohort is eligible for a paper figure.
@@ -92,7 +92,7 @@ def main():
         rows = [json.loads(line) for line in path.read_text().splitlines()]
         cohorts.append((backend, rows))
     if cohorts:
-        fig, axes = plt.subplots(len(cohorts), 2, figsize=(7.0, 2.05 * len(cohorts)),
+        fig, axes = plt.subplots(len(cohorts), 2, figsize=(7.0, 2.05 * len(cohorts) + .2),
                                  squeeze=False, constrained_layout=True)
         for row_index, (backend, rows) in enumerate(cohorts):
             for column, bits in enumerate([128, 512]):
@@ -117,7 +117,8 @@ def main():
                 ax.set_xlim(left=0)
                 ax.set_title(f'{"GPT-2" if backend == "gpt2" else "Qwen3.5-2B"}, '
                              f'B={bits}; {len(selected)} held-out pairs')
-                ax.legend(loc="lower right", frameon=False)
+        handles, labels = axes[-1, -1].get_legend_handles_labels()
+        fig.legend(handles, labels, loc="outside lower center", ncol=2, frameon=False)
         save(fig, "stopping-llm-gap.pdf")
     generated = [OUT / "finite-message-effects.pdf"]
     if cohorts:

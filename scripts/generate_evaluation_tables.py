@@ -2,11 +2,16 @@
 """Render manuscript tables from complete, validated analysis files."""
 from __future__ import annotations
 import argparse
+from decimal import Decimal, ROUND_HALF_UP
 import hashlib
 import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def fixed(value):
+    return format(Decimal(str(value)).quantize(Decimal(".001"), rounding=ROUND_HALF_UP), "f")
 
 
 def main():
@@ -41,8 +46,8 @@ def main():
             lines.append(
                 f"{policy} & {label} & {bits} & {group['complete_pairs']}/{group['planned_pairs']} & "
                 f"{score['development_pairs']}/{score['test_pairs']} & "
-                f"{score['auc']:.3f} [{lo:.3f},{hi:.3f}] & "
-                f"{score['test_tpr']:.3f} & {score['test_fpr']:.3f}" + r" \\")
+                f"{fixed(score['auc'])} [{fixed(lo)},{fixed(hi)}] & "
+                f"{fixed(score['test_tpr'])} & {fixed(score['test_fpr'])}" + r" \\")
         ns = data["stego_statuses"].get("complete", 0)
         nn = data["natural_statuses"].get("complete", 0)
         attempted = data["planned_pairs"]
@@ -74,15 +79,15 @@ def main():
         for guard, r in data["by_guard"].items():
             probe = r["probe_on_complete_matched_pairs"][guard]
             repair_lines.append(
-                f"{label} & {guard} & {r['deliveries']}/{r['planned']} & "
-                f"{r['first_attempt_deliveries']}/{r['planned']} & {r['attempts']} & "
-                f"{r['mean_net_bpt_given_delivery']:.3f} & {r['complete_matched_pairs']} & "
+                f"{label} & {guard} & {r['deliveries']}/{r['evaluable_trials']} & "
+                f"{r['first_attempt_deliveries']}/{r['evaluable_trials']} & {r['attempts']} & "
+                f"{fixed(r['mean_net_bpt_given_delivery'])} & {r['complete_matched_pairs']} & "
                 f"{probe['stego'].get('admissible', 0)}/{probe['natural'].get('admissible', 0)}" + r" \\")
     repair = [
         r"\begin{table*}[t]", r"\centering",
-        r"\caption{Fresh authenticated delivery trials under strict candidates, with 16-byte plaintexts and no natural tail. Net rate conditions on delivery. The last column counts admissible stego/control prefixes under the matching codec, among complete matched controls only.}",
+        r"\caption{Fresh authenticated delivery trials under strict candidates, with 16-byte plaintexts and no natural tail. The interrupted/resumed Qwen $g=128$ case is reported separately and excluded here, leaving 39 evaluable trials in that row. Net rate conditions on delivery; probe counts use complete matched controls only.}",
         r"\label{tab:repair-matrix}", r"\begin{tabular}{lrrrrrrr}", r"\toprule",
-        r"Model & $g$ & Delivered/planned & First attempt & All attempts & Net bits/token & Matched pairs & Probe accepts (S/C) \\",
+        r"Model & $g$ & Delivered/evaluable & First attempt & Attempts & Net bits/token & Matched pairs & Accepts (S/C) \\",
         r"\midrule", *repair_lines, r"\bottomrule", r"\end{tabular}", r"\end{table*}",
     ]
     (tables / "repair-results.tex").write_text("\n".join(repair) + "\n")

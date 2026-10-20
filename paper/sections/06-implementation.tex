@@ -1,4 +1,4 @@
-\section{Implementation and Reproducible Measurement}
+\section{Implementation and Measurement}
 \label{sec:implementation}
 
 The implementation separates packet crypto, candidate policy, quantization,
@@ -13,9 +13,9 @@ context-dependent candidate tables.
 
 \paragraph{Observation without changing the wire format}
 An optional attempt callback records success or failure, elapsed time, packet
-hash and length, and the generated prefix for every encoding attempt. Normal
-library use emits none of this telemetry. Research scripts preserve failed
-attempts instead of retaining only the final cover. A separate keyless probe
+hash and length, and the generated prefix for each completed encoding attempt. Normal
+library use emits none of this telemetry. Completed research records preserve
+failed attempts as well as the final cover. A separate keyless probe
 accepts text, public configuration, and bootstrap length; its interface does not
 accept a passphrase. It records distinct rejection reasons and can be replayed
 on natural controls.

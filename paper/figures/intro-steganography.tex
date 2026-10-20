@@ -4,15 +4,15 @@
       stage/.style={draw,rounded corners,align=center,minimum height=1cm,
                     text width=2.45cm,fill=blue!5}]
     \node[stage] (packet) at (0,0) {Alice: plaintext\\authenticated packet};
-    \node[stage] (encode) at (3.7,0) {Shared LLM\\interval encoder};
-    \node[stage] (decode) at (7.4,0) {Shared LLM\\interval decoder};
-    \node[stage] (verify) at (11.1,0) {Bob: authenticate\\then release plaintext};
+    \node[stage] (encode) at (4.2,0) {Shared LLM\\interval encoder};
+    \node[stage] (decode) at (8.4,0) {Shared LLM\\interval decoder};
+    \node[stage] (verify) at (12.6,0) {Bob: authenticate\\then release plaintext};
     \draw[->] (packet) -- node[above,font=\footnotesize]{bytes} (encode);
     \draw[->] (encode) -- node[above,font=\footnotesize]{cover text} (decode);
     \draw[->] (decode) -- node[above,font=\footnotesize]{bytes} (verify);
-    \node[draw,align=center,fill=gray!10] (observer) at (5.55,-1.5)
+    \node[draw,align=center,fill=gray!10] (observer) at (6.3,-1.5)
       {Passive observer\\distinguishes cover sources};
-    \draw[->,dashed] (5.55,-0.15) -- (observer);
+    \draw[->,dashed] (6.3,-0.15) -- (observer);
   \end{tikzpicture}
   \caption{Ghostext's text channel. Sender and receiver share the model,
   tokenizer, prompt, configuration, and passphrase. The observer's distinguishing

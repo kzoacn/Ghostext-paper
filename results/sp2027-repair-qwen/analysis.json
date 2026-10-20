@@ -1,0 +1,426 @@
+{
+  "backend": "qwen",
+  "planned": 80,
+  "observed": 80,
+  "primary_evaluable_trials": 79,
+  "planned_trials_by_guard": {
+    "128": 40,
+    "0": 40
+  },
+  "manifest_sha256": "f2f98dad5d1f3a2f3b49716c8f2fb7c31b39ad8275aab8bee4ca3e2225f868cf",
+  "runs_sha256": "028899b53643deee06a070fcb4d003090c495374122519c5a198f10a08695fcd",
+  "by_guard": {
+    "0": {
+      "evaluable_trials": 40,
+      "deliveries": 39,
+      "delivery_rate": 0.975,
+      "nominal_delivery_wilson_95": [
+        0.8711863103652591,
+        0.9955731684973186
+      ],
+      "first_attempt_deliveries": 33,
+      "attempts": 59,
+      "failed_attempt_reasons": {
+        "_LowEntropyWindowTriggered": 5,
+        "UnsafeTokenizationError": 15
+      },
+      "delivery_statuses": {
+        "success": 39,
+        "failure": 1
+      },
+      "natural_statuses_among_deliveries": {
+        "complete": 37,
+        "UnsafeTokenizationError": 2
+      },
+      "complete_matched_pairs": 37,
+      "mean_net_bpt_given_delivery": 0.4126497438653578,
+      "aggregate_net_bpt_given_delivery": 0.4099868593955322,
+      "mean_gross_bpt_given_delivery": 2.6822233351248257,
+      "median_encode_seconds_given_delivery": 31.374026379082352,
+      "median_instrumented_decode_seconds_given_delivery": 45.931155112804845,
+      "recorded_attempt_seconds_per_evaluable_trial": 34.39652968330775,
+      "probe_on_complete_matched_pairs": {
+        "0": {
+          "stego": {
+            "admissible": 37
+          },
+          "natural": {
+            "admissible": 19,
+            "zero_width_interval": 18
+          }
+        },
+        "128": {
+          "stego": {
+            "admissible": 37
+          },
+          "natural": {
+            "admissible": 37
+          }
+        }
+      }
+    },
+    "128": {
+      "evaluable_trials": 39,
+      "deliveries": 38,
+      "delivery_rate": 0.9743589743589743,
+      "nominal_delivery_wilson_95": [
+        0.8681900983014993,
+        0.99545929689901
+      ],
+      "first_attempt_deliveries": 36,
+      "attempts": 56,
+      "failed_attempt_reasons": {
+        "UnsafeTokenizationError": 18
+      },
+      "delivery_statuses": {
+        "success": 38,
+        "failure": 1
+      },
+      "natural_statuses_among_deliveries": {
+        "complete": 37,
+        "UnsafeTokenizationError": 1
+      },
+      "complete_matched_pairs": 37,
+      "mean_net_bpt_given_delivery": 0.41647385139146686,
+      "aggregate_net_bpt_given_delivery": 0.4127280441238863,
+      "mean_gross_bpt_given_delivery": 2.7070800340445347,
+      "median_encode_seconds_given_delivery": 30.490355513524264,
+      "median_instrumented_decode_seconds_given_delivery": 43.15662924502976,
+      "recorded_attempt_seconds_per_evaluable_trial": 30.19316495453509,
+      "probe_on_complete_matched_pairs": {
+        "0": {
+          "stego": {
+            "admissible": 19,
+            "zero_width_interval": 18
+          },
+          "natural": {
+            "zero_width_interval": 21,
+            "admissible": 16
+          }
+        },
+        "128": {
+          "stego": {
+            "admissible": 37
+          },
+          "natural": {
+            "admissible": 37
+          }
+        }
+      }
+    }
+  },
+  "by_guard_language": {
+    "0:en": {
+      "evaluable_trials": 20,
+      "deliveries": 20,
+      "delivery_rate": 1.0,
+      "nominal_delivery_wilson_95": [
+        0.8388748419471806,
+        1
+      ],
+      "first_attempt_deliveries": 18,
+      "attempts": 22,
+      "failed_attempt_reasons": {
+        "_LowEntropyWindowTriggered": 2
+      },
+      "delivery_statuses": {
+        "success": 20
+      },
+      "natural_statuses_among_deliveries": {
+        "complete": 20
+      },
+      "complete_matched_pairs": 20,
+      "mean_net_bpt_given_delivery": 0.4156262981730049,
+      "aggregate_net_bpt_given_delivery": 0.41190667739340303,
+      "mean_gross_bpt_given_delivery": 2.701570938124532,
+      "median_encode_seconds_given_delivery": 29.64496107643936,
+      "median_instrumented_decode_seconds_given_delivery": 43.482193881995045,
+      "recorded_attempt_seconds_per_evaluable_trial": 33.086541872355156,
+      "probe_on_complete_matched_pairs": {
+        "0": {
+          "stego": {
+            "admissible": 20
+          },
+          "natural": {
+            "admissible": 9,
+            "zero_width_interval": 11
+          }
+        },
+        "128": {
+          "stego": {
+            "admissible": 20
+          },
+          "natural": {
+            "admissible": 20
+          }
+        }
+      }
+    },
+    "0:zh": {
+      "evaluable_trials": 20,
+      "deliveries": 19,
+      "delivery_rate": 0.95,
+      "nominal_delivery_wilson_95": [
+        0.763868806553258,
+        0.9911185511992047
+      ],
+      "first_attempt_deliveries": 15,
+      "attempts": 37,
+      "failed_attempt_reasons": {
+        "_LowEntropyWindowTriggered": 3,
+        "UnsafeTokenizationError": 15
+      },
+      "delivery_statuses": {
+        "success": 19,
+        "failure": 1
+      },
+      "natural_statuses_among_deliveries": {
+        "complete": 17,
+        "UnsafeTokenizationError": 2
+      },
+      "complete_matched_pairs": 17,
+      "mean_net_bpt_given_delivery": 0.4095165288046766,
+      "aggregate_net_bpt_given_delivery": 0.4079852373762792,
+      "mean_gross_bpt_given_delivery": 2.6618574372303976,
+      "median_encode_seconds_given_delivery": 32.33506525401026,
+      "median_instrumented_decode_seconds_given_delivery": 46.32473129197024,
+      "recorded_attempt_seconds_per_evaluable_trial": 35.70651749426033,
+      "probe_on_complete_matched_pairs": {
+        "0": {
+          "stego": {
+            "admissible": 17
+          },
+          "natural": {
+            "zero_width_interval": 7,
+            "admissible": 10
+          }
+        },
+        "128": {
+          "stego": {
+            "admissible": 17
+          },
+          "natural": {
+            "admissible": 17
+          }
+        }
+      }
+    },
+    "128:en": {
+      "evaluable_trials": 20,
+      "deliveries": 20,
+      "delivery_rate": 1.0,
+      "nominal_delivery_wilson_95": [
+        0.8388748419471806,
+        1
+      ],
+      "first_attempt_deliveries": 20,
+      "attempts": 20,
+      "failed_attempt_reasons": {},
+      "delivery_statuses": {
+        "success": 20
+      },
+      "natural_statuses_among_deliveries": {
+        "complete": 20
+      },
+      "complete_matched_pairs": 20,
+      "mean_net_bpt_given_delivery": 0.42062991211477946,
+      "aggregate_net_bpt_given_delivery": 0.4153147306943543,
+      "mean_gross_bpt_given_delivery": 2.734094428746066,
+      "median_encode_seconds_given_delivery": 28.520332647953182,
+      "median_instrumented_decode_seconds_given_delivery": 41.171464173472486,
+      "recorded_attempt_seconds_per_evaluable_trial": 29.24310121291783,
+      "probe_on_complete_matched_pairs": {
+        "0": {
+          "stego": {
+            "admissible": 10,
+            "zero_width_interval": 10
+          },
+          "natural": {
+            "zero_width_interval": 11,
+            "admissible": 9
+          }
+        },
+        "128": {
+          "stego": {
+            "admissible": 20
+          },
+          "natural": {
+            "admissible": 20
+          }
+        }
+      }
+    },
+    "128:zh": {
+      "evaluable_trials": 19,
+      "deliveries": 18,
+      "delivery_rate": 0.9473684210526315,
+      "nominal_delivery_wilson_95": [
+        0.753612688331012,
+        0.9906480059376995
+      ],
+      "first_attempt_deliveries": 16,
+      "attempts": 36,
+      "failed_attempt_reasons": {
+        "UnsafeTokenizationError": 18
+      },
+      "delivery_statuses": {
+        "success": 18,
+        "failure": 1
+      },
+      "natural_statuses_among_deliveries": {
+        "complete": 17,
+        "UnsafeTokenizationError": 1
+      },
+      "complete_matched_pairs": 17,
+      "mean_net_bpt_given_delivery": 0.4118560061433418,
+      "aggregate_net_bpt_given_delivery": 0.4098914783846291,
+      "mean_gross_bpt_given_delivery": 2.6770640399317216,
+      "median_encode_seconds_given_delivery": 31.15905246301554,
+      "median_instrumented_decode_seconds_given_delivery": 44.98415293847211,
+      "recorded_attempt_seconds_per_evaluable_trial": 31.193232050974313,
+      "probe_on_complete_matched_pairs": {
+        "0": {
+          "stego": {
+            "admissible": 9,
+            "zero_width_interval": 8
+          },
+          "natural": {
+            "zero_width_interval": 10,
+            "admissible": 7
+          }
+        },
+        "128": {
+          "stego": {
+            "admissible": 17
+          },
+          "natural": {
+            "admissible": 17
+          }
+        }
+      }
+    }
+  },
+  "scope": "Fixed prompt/repeat cohort, not an IID deployment sample. Nominal Wilson intervals do not account for shared prompt families. Rates condition on successful delivery; attempt counts and all-attempt runtime include failures. Instrumented decode latency includes duplicate candidate auditing. Probe results condition on complete matched controls. A terminated process left an unpersisted in-flight task. The resumed case is excluded from primary delivery, first-attempt, rate, timing and probe summaries. Its original bounded-attempt outcome is unknown; recorded_all_trials_by_guard is descriptive only and excludes unknown interrupted work.",
+  "interruption": {
+    "record_sha256": "b1ee74dc63f3987f9a460e89eaa603d6358a170b6848e554dc39e66429bfb2e0",
+    "pre_interruption_rows_preserved": 64,
+    "excluded_from_primary": "01_zh_corner_cafe:r0:g128",
+    "unpersisted_attempt_count": "Unknown, between zero and ten for the in-flight task. Attempt callbacks were buffered until the trial record was saved.",
+    "measurement_scope": "Reported attempt totals and attempt timings cover persisted completed trial records; any unpersisted interrupted work is excluded and not silently counted as zero.",
+    "resumed_record_status": "success",
+    "resumed_record_attempts": 1,
+    "original_plan_one_case_bounds": {
+      "guard_bits": 128,
+      "planned_trials": 40,
+      "ten_attempt_delivery_count": [
+        38,
+        39
+      ],
+      "first_attempt_delivery_count": [
+        36,
+        37
+      ],
+      "scope": "Unknown original bounded-attempt outcome of the interrupted case; resumed success does not resolve it."
+    }
+  },
+  "recorded_all_trials_by_guard": {
+    "0": {
+      "evaluable_trials": 40,
+      "deliveries": 39,
+      "delivery_rate": 0.975,
+      "nominal_delivery_wilson_95": [
+        0.8711863103652591,
+        0.9955731684973186
+      ],
+      "first_attempt_deliveries": 33,
+      "attempts": 59,
+      "failed_attempt_reasons": {
+        "_LowEntropyWindowTriggered": 5,
+        "UnsafeTokenizationError": 15
+      },
+      "delivery_statuses": {
+        "success": 39,
+        "failure": 1
+      },
+      "natural_statuses_among_deliveries": {
+        "complete": 37,
+        "UnsafeTokenizationError": 2
+      },
+      "complete_matched_pairs": 37,
+      "mean_net_bpt_given_delivery": 0.4126497438653578,
+      "aggregate_net_bpt_given_delivery": 0.4099868593955322,
+      "mean_gross_bpt_given_delivery": 2.6822233351248257,
+      "median_encode_seconds_given_delivery": 31.374026379082352,
+      "median_instrumented_decode_seconds_given_delivery": 45.931155112804845,
+      "recorded_attempt_seconds_per_evaluable_trial": 34.39652968330775,
+      "probe_on_complete_matched_pairs": {
+        "0": {
+          "stego": {
+            "admissible": 37
+          },
+          "natural": {
+            "admissible": 19,
+            "zero_width_interval": 18
+          }
+        },
+        "128": {
+          "stego": {
+            "admissible": 37
+          },
+          "natural": {
+            "admissible": 37
+          }
+        }
+      }
+    },
+    "128": {
+      "evaluable_trials": 40,
+      "deliveries": 39,
+      "delivery_rate": 0.975,
+      "nominal_delivery_wilson_95": [
+        0.8711863103652591,
+        0.9955731684973186
+      ],
+      "first_attempt_deliveries": 37,
+      "attempts": 57,
+      "failed_attempt_reasons": {
+        "UnsafeTokenizationError": 18
+      },
+      "delivery_statuses": {
+        "success": 39,
+        "failure": 1
+      },
+      "natural_statuses_among_deliveries": {
+        "complete": 38,
+        "UnsafeTokenizationError": 1
+      },
+      "complete_matched_pairs": 38,
+      "mean_net_bpt_given_delivery": 0.4153916758647101,
+      "aggregate_net_bpt_given_delivery": 0.41164344025727717,
+      "mean_gross_bpt_given_delivery": 2.700045893120616,
+      "median_encode_seconds_given_delivery": 30.72851072717458,
+      "median_instrumented_decode_seconds_given_delivery": 44.06915930402465,
+      "recorded_attempt_seconds_per_evaluable_trial": 30.289959793223534,
+      "probe_on_complete_matched_pairs": {
+        "0": {
+          "stego": {
+            "admissible": 20,
+            "zero_width_interval": 18
+          },
+          "natural": {
+            "zero_width_interval": 21,
+            "admissible": 17
+          }
+        },
+        "128": {
+          "stego": {
+            "admissible": 38
+          },
+          "natural": {
+            "admissible": 38
+          }
+        }
+      }
+    }
+  }
+}

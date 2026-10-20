@@ -27,9 +27,12 @@
         "Ghostext/src/ghostext/quantization.py": "b43e6f652d0dc97012f03295f4ab96eb2859c903a9b7609bf06702583c3b82ff"
       },
       "supplemental_helpers": {
-        "Ghostext-paper/scripts/artifact_utils.py": "d10b888a292718b1b730d569e9eb0f9a8850f065359778b297536be503f7cbdf"
+        "Ghostext-paper/scripts/artifact_utils.py": "d10b888a292718b1b730d569e9eb0f9a8850f065359778b297536be503f7cbdf",
+        "Ghostext-paper/scripts/run_stopping_llm.py": "4ebea59365dd02a0dd9c474ef7fa38afe483986f1dfd7ddbf83a0a76ce139324",
+        "Ghostext-paper/scripts/stopping_experiment.py": "cba8f568ff755225e1c228523f0374236269091c623d628a317271ca97114184"
       },
-      "supplement_note": "Older manifests omitted artifact_utils.py. Its unchanged session source is supplied explicitly here; this does not rewrite the original manifest."
+      "data_inputs": {},
+      "supplement_note": "Local imported modules omitted from older manifests are explicitly pinned at artifact freeze. This supplements dependencies without retroactively claiming that their hashes were recorded by the original runs. The unchanged helper functions are checked in sp2027-validation/helper-compatibility.json."
     },
     "sp2027-expanded-qwen-pilot": {
       "manifest": "results/sp2027-expanded-qwen-pilot/manifest.json",
@@ -57,9 +60,12 @@
         "Ghostext/src/ghostext/quantization.py": "b43e6f652d0dc97012f03295f4ab96eb2859c903a9b7609bf06702583c3b82ff"
       },
       "supplemental_helpers": {
-        "Ghostext-paper/scripts/artifact_utils.py": "d10b888a292718b1b730d569e9eb0f9a8850f065359778b297536be503f7cbdf"
+        "Ghostext-paper/scripts/artifact_utils.py": "d10b888a292718b1b730d569e9eb0f9a8850f065359778b297536be503f7cbdf",
+        "Ghostext-paper/scripts/run_stopping_llm.py": "4ebea59365dd02a0dd9c474ef7fa38afe483986f1dfd7ddbf83a0a76ce139324",
+        "Ghostext-paper/scripts/stopping_experiment.py": "cba8f568ff755225e1c228523f0374236269091c623d628a317271ca97114184"
       },
-      "supplement_note": "Older manifests omitted artifact_utils.py. Its unchanged session source is supplied explicitly here; this does not rewrite the original manifest."
+      "data_inputs": {},
+      "supplement_note": "Local imported modules omitted from older manifests are explicitly pinned at artifact freeze. This supplements dependencies without retroactively claiming that their hashes were recorded by the original runs. The unchanged helper functions are checked in sp2027-validation/helper-compatibility.json."
     },
     "sp2027-keyless-legacy": {
       "manifest": "results/sp2027-keyless-legacy/manifest.json",
@@ -86,9 +92,15 @@
         "Ghostext/src/ghostext/quantization.py": "b43e6f652d0dc97012f03295f4ab96eb2859c903a9b7609bf06702583c3b82ff"
       },
       "supplemental_helpers": {
-        "Ghostext-paper/scripts/artifact_utils.py": "d10b888a292718b1b730d569e9eb0f9a8850f065359778b297536be503f7cbdf"
+        "Ghostext-paper/scripts/artifact_utils.py": "d10b888a292718b1b730d569e9eb0f9a8850f065359778b297536be503f7cbdf",
+        "Ghostext-paper/scripts/audit_existing_evidence.py": "3984ccd585a271b520829c2691b340be80ef54e52114f023973668c625f864fa"
       },
-      "supplement_note": "Older manifests omitted artifact_utils.py. Its unchanged session source is supplied explicitly here; this does not rewrite the original manifest."
+      "data_inputs": {
+        "Ghostext-paper/results/real-backend-baseline-runs-merged.jsonl": "8ef05c7cb90be46668dbaa67e8e8e15ce51f8a515d6868f050bad57657781ddf",
+        "Ghostext-paper/results/detector-block/matched_natural_covers.jsonl": "48c2c4fd5dcde5437c47a62515c1bf56658cb1101b590ed38d202f567cc21e66",
+        "Ghostext-paper/results/prompt-message-grid/prompt_message_grid_runs.jsonl": "cb160b95c7aa95880f022d17aa81b3c7fd774f4f454dab373bf12240b4d28edd"
+      },
+      "supplement_note": "Local imported modules omitted from older manifests are explicitly pinned at artifact freeze. This supplements dependencies without retroactively claiming that their hashes were recorded by the original runs. The unchanged helper functions are checked in sp2027-validation/helper-compatibility.json."
     },
     "sp2027-repair-gpt2": {
       "manifest": "results/sp2027-repair-gpt2/manifest.json",
@@ -118,9 +130,11 @@
         "Ghostext/src/ghostext/quantization.py": "b43e6f652d0dc97012f03295f4ab96eb2859c903a9b7609bf06702583c3b82ff"
       },
       "supplemental_helpers": {
-        "Ghostext-paper/scripts/artifact_utils.py": "d10b888a292718b1b730d569e9eb0f9a8850f065359778b297536be503f7cbdf"
+        "Ghostext-paper/scripts/artifact_utils.py": "d10b888a292718b1b730d569e9eb0f9a8850f065359778b297536be503f7cbdf",
+        "Ghostext-paper/scripts/run_stopping_llm.py": "4ebea59365dd02a0dd9c474ef7fa38afe483986f1dfd7ddbf83a0a76ce139324"
       },
-      "supplement_note": "Older manifests omitted artifact_utils.py. Its unchanged session source is supplied explicitly here; this does not rewrite the original manifest."
+      "data_inputs": {},
+      "supplement_note": "Local imported modules omitted from older manifests are explicitly pinned at artifact freeze. This supplements dependencies without retroactively claiming that their hashes were recorded by the original runs. The unchanged helper functions are checked in sp2027-validation/helper-compatibility.json."
     },
     "sp2027-repair-qwen": {
       "manifest": "results/sp2027-repair-qwen/manifest.json",
@@ -150,9 +164,11 @@
         "Ghostext/src/ghostext/quantization.py": "b43e6f652d0dc97012f03295f4ab96eb2859c903a9b7609bf06702583c3b82ff"
       },
       "supplemental_helpers": {
-        "Ghostext-paper/scripts/artifact_utils.py": "d10b888a292718b1b730d569e9eb0f9a8850f065359778b297536be503f7cbdf"
+        "Ghostext-paper/scripts/artifact_utils.py": "d10b888a292718b1b730d569e9eb0f9a8850f065359778b297536be503f7cbdf",
+        "Ghostext-paper/scripts/run_stopping_llm.py": "4ebea59365dd02a0dd9c474ef7fa38afe483986f1dfd7ddbf83a0a76ce139324"
       },
-      "supplement_note": "Older manifests omitted artifact_utils.py. Its unchanged session source is supplied explicitly here; this does not rewrite the original manifest."
+      "data_inputs": {},
+      "supplement_note": "Local imported modules omitted from older manifests are explicitly pinned at artifact freeze. This supplements dependencies without retroactively claiming that their hashes were recorded by the original runs. The unchanged helper functions are checked in sp2027-validation/helper-compatibility.json."
     },
     "sp2027-repair-qwen-pilot": {
       "manifest": "results/sp2027-repair-qwen-pilot/manifest.json",
@@ -182,9 +198,11 @@
         "Ghostext/src/ghostext/quantization.py": "b43e6f652d0dc97012f03295f4ab96eb2859c903a9b7609bf06702583c3b82ff"
       },
       "supplemental_helpers": {
-        "Ghostext-paper/scripts/artifact_utils.py": "d10b888a292718b1b730d569e9eb0f9a8850f065359778b297536be503f7cbdf"
+        "Ghostext-paper/scripts/artifact_utils.py": "d10b888a292718b1b730d569e9eb0f9a8850f065359778b297536be503f7cbdf",
+        "Ghostext-paper/scripts/run_stopping_llm.py": "4ebea59365dd02a0dd9c474ef7fa38afe483986f1dfd7ddbf83a0a76ce139324"
       },
-      "supplement_note": "Older manifests omitted artifact_utils.py. Its unchanged session source is supplied explicitly here; this does not rewrite the original manifest."
+      "data_inputs": {},
+      "supplement_note": "Local imported modules omitted from older manifests are explicitly pinned at artifact freeze. This supplements dependencies without retroactively claiming that their hashes were recorded by the original runs. The unchanged helper functions are checked in sp2027-validation/helper-compatibility.json."
     },
     "sp2027-reverse-failure-gpt2": {
       "manifest": "results/sp2027-reverse-failure-gpt2/manifest.json",
@@ -212,8 +230,15 @@
         "Ghostext/src/ghostext/progress.py": "a53ab3454e33094e9292524cf8fa25e1fa1f2ead1c96c2168b0e32a238925c25",
         "Ghostext/src/ghostext/quantization.py": "b43e6f652d0dc97012f03295f4ab96eb2859c903a9b7609bf06702583c3b82ff"
       },
-      "supplemental_helpers": {},
-      "supplement_note": "Older manifests omitted artifact_utils.py. Its unchanged session source is supplied explicitly here; this does not rewrite the original manifest."
+      "supplemental_helpers": {
+        "Ghostext-paper/scripts/run_stopping_llm.py": "4ebea59365dd02a0dd9c474ef7fa38afe483986f1dfd7ddbf83a0a76ce139324",
+        "Ghostext-paper/scripts/experiment_prompts.py": "20ba3d9539d3d90193b736c1aabde84fd8b88ab7e6c42dd34ed0f2f4e92ae40d"
+      },
+      "data_inputs": {
+        "Ghostext-paper/results/sp2027-stopping-gpt2/pairs.jsonl": "d7f672ecf9b6e528536a75bbdb1a20f25af0be0d1ff2073bedb274852fc7bb85",
+        "Ghostext-paper/results/sp2027-stopping-gpt2/manifest.json": "abf3ec067b7ec041d21d5450e31391aff5562dca9555fd92c5a94adc4f6db747"
+      },
+      "supplement_note": "Local imported modules omitted from older manifests are explicitly pinned at artifact freeze. This supplements dependencies without retroactively claiming that their hashes were recorded by the original runs. The unchanged helper functions are checked in sp2027-validation/helper-compatibility.json."
     },
     "sp2027-stopping-gpt2": {
       "manifest": "results/sp2027-stopping-gpt2/manifest.json",
@@ -244,7 +269,8 @@
       "supplemental_helpers": {
         "Ghostext-paper/scripts/artifact_utils.py": "d10b888a292718b1b730d569e9eb0f9a8850f065359778b297536be503f7cbdf"
       },
-      "supplement_note": "Older manifests omitted artifact_utils.py. Its unchanged session source is supplied explicitly here; this does not rewrite the original manifest."
+      "data_inputs": {},
+      "supplement_note": "Local imported modules omitted from older manifests are explicitly pinned at artifact freeze. This supplements dependencies without retroactively claiming that their hashes were recorded by the original runs. The unchanged helper functions are checked in sp2027-validation/helper-compatibility.json."
     },
     "sp2027-stopping-gpt2-expanded": {
       "manifest": "results/sp2027-stopping-gpt2-expanded/manifest.json",
@@ -275,7 +301,8 @@
       "supplemental_helpers": {
         "Ghostext-paper/scripts/artifact_utils.py": "d10b888a292718b1b730d569e9eb0f9a8850f065359778b297536be503f7cbdf"
       },
-      "supplement_note": "Older manifests omitted artifact_utils.py. Its unchanged session source is supplied explicitly here; this does not rewrite the original manifest."
+      "data_inputs": {},
+      "supplement_note": "Local imported modules omitted from older manifests are explicitly pinned at artifact freeze. This supplements dependencies without retroactively claiming that their hashes were recorded by the original runs. The unchanged helper functions are checked in sp2027-validation/helper-compatibility.json."
     },
     "sp2027-stopping-gpt2-pilot": {
       "manifest": "results/sp2027-stopping-gpt2-pilot/manifest.json",
@@ -306,7 +333,8 @@
       "supplemental_helpers": {
         "Ghostext-paper/scripts/artifact_utils.py": "d10b888a292718b1b730d569e9eb0f9a8850f065359778b297536be503f7cbdf"
       },
-      "supplement_note": "Older manifests omitted artifact_utils.py. Its unchanged session source is supplied explicitly here; this does not rewrite the original manifest."
+      "data_inputs": {},
+      "supplement_note": "Local imported modules omitted from older manifests are explicitly pinned at artifact freeze. This supplements dependencies without retroactively claiming that their hashes were recorded by the original runs. The unchanged helper functions are checked in sp2027-validation/helper-compatibility.json."
     },
     "sp2027-stopping-gpt2-verified": {
       "manifest": "results/sp2027-stopping-gpt2-verified/manifest.json",
@@ -337,7 +365,8 @@
       "supplemental_helpers": {
         "Ghostext-paper/scripts/artifact_utils.py": "d10b888a292718b1b730d569e9eb0f9a8850f065359778b297536be503f7cbdf"
       },
-      "supplement_note": "Older manifests omitted artifact_utils.py. Its unchanged session source is supplied explicitly here; this does not rewrite the original manifest."
+      "data_inputs": {},
+      "supplement_note": "Local imported modules omitted from older manifests are explicitly pinned at artifact freeze. This supplements dependencies without retroactively claiming that their hashes were recorded by the original runs. The unchanged helper functions are checked in sp2027-validation/helper-compatibility.json."
     },
     "sp2027-stopping-qwen": {
       "manifest": "results/sp2027-stopping-qwen/manifest.json",
@@ -368,7 +397,8 @@
       "supplemental_helpers": {
         "Ghostext-paper/scripts/artifact_utils.py": "d10b888a292718b1b730d569e9eb0f9a8850f065359778b297536be503f7cbdf"
       },
-      "supplement_note": "Older manifests omitted artifact_utils.py. Its unchanged session source is supplied explicitly here; this does not rewrite the original manifest."
+      "data_inputs": {},
+      "supplement_note": "Local imported modules omitted from older manifests are explicitly pinned at artifact freeze. This supplements dependencies without retroactively claiming that their hashes were recorded by the original runs. The unchanged helper functions are checked in sp2027-validation/helper-compatibility.json."
     },
     "sp2027-stopping-qwen-expanded": {
       "manifest": "results/sp2027-stopping-qwen-expanded/manifest.json",
@@ -399,11 +429,12 @@
       "supplemental_helpers": {
         "Ghostext-paper/scripts/artifact_utils.py": "d10b888a292718b1b730d569e9eb0f9a8850f065359778b297536be503f7cbdf"
       },
-      "supplement_note": "Older manifests omitted artifact_utils.py. Its unchanged session source is supplied explicitly here; this does not rewrite the original manifest."
+      "data_inputs": {},
+      "supplement_note": "Local imported modules omitted from older manifests are explicitly pinned at artifact freeze. This supplements dependencies without retroactively claiming that their hashes were recorded by the original runs. The unchanged helper functions are checked in sp2027-validation/helper-compatibility.json."
     }
   },
   "current_sources": {
-    "Ghostext-paper/scripts/analyze_repair_matrix.py": "908f7e6f674fc7bd329e93e17186bbd423e9e3aebf51410a2353bc50097d981c",
+    "Ghostext-paper/scripts/analyze_repair_matrix.py": "77b3e25c22201f95226bb7fe177dc427b747b08f8468f4850a58225cb8e2566c",
     "Ghostext-paper/scripts/analyze_stopping_ablation.py": "4baf87b52efc2dc6dd98c90051adc390e0932d6cb88fd3425bbab7b6511d42f9",
     "Ghostext-paper/scripts/analyze_stopping_llm.py": "812f86b2d61acc1173bde6b66c4aec219e028f43f9d15dc271ef2656c3e0b061",
     "Ghostext-paper/scripts/artifact_utils.py": "d10b888a292718b1b730d569e9eb0f9a8850f065359778b297536be503f7cbdf",
@@ -413,14 +444,14 @@
     "Ghostext-paper/scripts/audit_rotation_grid.py": "4c29cf2c9607bd26a2f5f13f5dbee736c29f2cb494a4323001eb26e63e41424a",
     "Ghostext-paper/scripts/audit_stopping_adapter.py": "8126cef256cbb64a68b918d6ddbfca57772c199dddf88a0a261ceba987119175",
     "Ghostext-paper/scripts/build_anonymous_artifact.py": "ff4796049b52bea335e0a4fc02e070700e82038b00d8404bd38a9fa17d692223",
-    "Ghostext-paper/scripts/build_protocol_index.py": "b941bc73b9500726baa69f8a6b00fc9217905411c706108aad5c4e112a660ad9",
-    "Ghostext-paper/scripts/capture_source_snapshots.py": "695e90c76a4a92ebcbf1d092d990a1b29d3f0648c23b17bc2bcae26f791e9e61",
+    "Ghostext-paper/scripts/build_protocol_index.py": "9b4c115e0c3d27e023af2ffa55750adef5f9ae77abf10d26e92cfa022249fe55",
+    "Ghostext-paper/scripts/capture_source_snapshots.py": "55db80417c943cdff91960aeacbd83b7fdd7180e17bca9755ecdbc95846c36dd",
     "Ghostext-paper/scripts/experiment_prompts.py": "20ba3d9539d3d90193b736c1aabde84fd8b88ab7e6c42dd34ed0f2f4e92ae40d",
     "Ghostext-paper/scripts/fetch_revision_models.py": "fb4020df19b0b631fc390a376e000d53b86adbea2738fd5c624ddcdb25e2eb1e",
-    "Ghostext-paper/scripts/generate_evaluation_tables.py": "d36844cfb7ebfedc77e37eae7b80be02d6b4a4e9e19b5feef6e40f1de92e9dd9",
-    "Ghostext-paper/scripts/generate_revision_figures.py": "0ee973863a3c7bdf9987b29113b38f209de51a66fd01f109f2c25c6c59f4dbff",
+    "Ghostext-paper/scripts/generate_evaluation_tables.py": "62cbbd376ef5028ea9e970956bfd82c04832f9e0f60693f96afe83ed69887c37",
+    "Ghostext-paper/scripts/generate_revision_figures.py": "99904f4ecb701f206e46701e797526a0bdff5d5aefcca187b01a03ec8c83b48d",
     "Ghostext-paper/scripts/keyless_probe.py": "5e16a40f81cd74fd87c6aaf56bbcc0f4ef1f4243d0fb3da3ee02f0b7f477064f",
-    "Ghostext-paper/scripts/materialize_profile.py": "ec9bc42ba5d2c82fbbf33142254ad9031e8edb3d6f7c3c2267bd25a36d95e3a7",
+    "Ghostext-paper/scripts/materialize_profile.py": "2859a8c7d0d0e7e62d911ec34b4cd2585117738604dd6ca8679cd2a2ba519faf",
     "Ghostext-paper/scripts/merge_aligned_baselines.py": "238706b47b9180ffa811cc678a383fc4cab8133a177fd998de8e77eff20ba13e",
     "Ghostext-paper/scripts/merge_real_backend_baseline.py": "42d69bde74ec3eb860172f148d48b6d8558f05a4f3375af1e9832cf0147f4cb9",
     "Ghostext-paper/scripts/model_adapters.py": "ad41399f2e457aa6af85ed93ae5cf98864020181681907cc8b305bea1a510bac",
@@ -441,7 +472,7 @@
     "Ghostext-paper/scripts/stopping_experiment.py": "cba8f568ff755225e1c228523f0374236269091c623d628a317271ca97114184",
     "Ghostext-paper/scripts/trace_probe.py": "4310de27171693f6cba56be34f07b83d0a1f4a2788c2c396462b62b214bb6dbe",
     "Ghostext-paper/scripts/validate_manuscript.py": "5dc98682989907aa55673657a3b56aca2d18c98efb88006ca60b203c2a04c886",
-    "Ghostext-paper/scripts/verify_artifact.py": "fbd89cb12860995db1da1b0dfd73ac102e53deee954737ef00ec27ae2f5e87f8",
+    "Ghostext-paper/scripts/verify_artifact.py": "f4af62c51ea1b43574c49240326515a834f0ec9c5833de932713dada1e259b74",
     "Ghostext/src/ghostext/__init__.py": "d37c170dfeef70b1b7c12b76ac7baaab8544c5d3e236ef8ae5a82432997d3991",
     "Ghostext/src/ghostext/benchmark.py": "f6e3fd9dd9d8615331c4684b097903142ab74b5bbec3064aac50c07264f4a831",
     "Ghostext/src/ghostext/candidate_policy.py": "ef1a4b16a6d661a4c265d9ac7f3f75c21bda9048d43159383b1974a925bb1224",

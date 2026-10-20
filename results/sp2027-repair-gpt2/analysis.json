@@ -1,11 +1,17 @@
 {
   "backend": "gpt2",
+  "planned": 40,
   "observed": 40,
+  "primary_evaluable_trials": 40,
+  "planned_trials_by_guard": {
+    "128": 20,
+    "0": 20
+  },
   "manifest_sha256": "e2db138d7395db78c8e3cd19d0c31515587ef6f80afb45f97deeabfe9898c7cb",
   "runs_sha256": "4208109cc6a606aaf0ab0c8806344843e9d79455c87c3bf80170531dafe50965",
   "by_guard": {
     "0": {
-      "planned": 20,
+      "evaluable_trials": 20,
       "deliveries": 19,
       "delivery_rate": 0.95,
       "nominal_delivery_wilson_95": [
@@ -31,7 +37,7 @@
       "mean_gross_bpt_given_delivery": 3.61534848342404,
       "median_encode_seconds_given_delivery": 15.012247927021235,
       "median_instrumented_decode_seconds_given_delivery": 17.93552963901311,
-      "all_attempt_seconds_per_planned_trial": 16.641906525287776,
+      "recorded_attempt_seconds_per_evaluable_trial": 16.641906525287776,
       "probe_on_complete_matched_pairs": {
         "0": {
           "stego": {
@@ -53,7 +59,7 @@
       }
     },
     "128": {
-      "planned": 20,
+      "evaluable_trials": 20,
       "deliveries": 19,
       "delivery_rate": 0.95,
       "nominal_delivery_wilson_95": [
@@ -79,7 +85,7 @@
       "mean_gross_bpt_given_delivery": 3.5959261271137617,
       "median_encode_seconds_given_delivery": 15.32770435884595,
       "median_instrumented_decode_seconds_given_delivery": 17.60033522802405,
-      "all_attempt_seconds_per_planned_trial": 17.31759871779941,
+      "recorded_attempt_seconds_per_evaluable_trial": 17.31759871779941,
       "probe_on_complete_matched_pairs": {
         "0": {
           "stego": {
@@ -104,7 +110,7 @@
   },
   "by_guard_language": {
     "0:en": {
-      "planned": 20,
+      "evaluable_trials": 20,
       "deliveries": 19,
       "delivery_rate": 0.95,
       "nominal_delivery_wilson_95": [
@@ -130,7 +136,7 @@
       "mean_gross_bpt_given_delivery": 3.61534848342404,
       "median_encode_seconds_given_delivery": 15.012247927021235,
       "median_instrumented_decode_seconds_given_delivery": 17.93552963901311,
-      "all_attempt_seconds_per_planned_trial": 16.641906525287776,
+      "recorded_attempt_seconds_per_evaluable_trial": 16.641906525287776,
       "probe_on_complete_matched_pairs": {
         "0": {
           "stego": {
@@ -152,7 +158,7 @@
       }
     },
     "128:en": {
-      "planned": 20,
+      "evaluable_trials": 20,
       "deliveries": 19,
       "delivery_rate": 0.95,
       "nominal_delivery_wilson_95": [
@@ -178,7 +184,7 @@
       "mean_gross_bpt_given_delivery": 3.5959261271137617,
       "median_encode_seconds_given_delivery": 15.32770435884595,
       "median_instrumented_decode_seconds_given_delivery": 17.60033522802405,
-      "all_attempt_seconds_per_planned_trial": 17.31759871779941,
+      "recorded_attempt_seconds_per_evaluable_trial": 17.31759871779941,
       "probe_on_complete_matched_pairs": {
         "0": {
           "stego": {

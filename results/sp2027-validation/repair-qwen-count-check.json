@@ -1,0 +1,28 @@
+{
+  "scope": "Independent raw-record count check of the uninterrupted primary subset and conservative bounds for one interrupted case.",
+  "input_sha256": "028899b53643deee06a070fcb4d003090c495374122519c5a198f10a08695fcd",
+  "analysis_sha256": "b1814a642cb0165406e678e6f0336d634d24b05d1fc345d747ee526b5da22dcb",
+  "excluded_case_id": "01_zh_corner_cafe:r0:g128",
+  "counts": {
+    "0": {
+      "evaluable": 40,
+      "delivered": 39,
+      "first_attempt": 33,
+      "recorded_attempts": 59
+    },
+    "128": {
+      "evaluable": 39,
+      "delivered": 38,
+      "first_attempt": 36,
+      "recorded_attempts": 56
+    }
+  },
+  "original_guard128_delivery_count_bounds": [
+    38,
+    39
+  ],
+  "original_guard128_first_attempt_count_bounds": [
+    36,
+    37
+  ]
+}

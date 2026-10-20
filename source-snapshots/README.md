@@ -10,3 +10,6 @@ intermediate revisions verified against contemporaneous manifest hashes.
 without overwriting the current implementation. Current tests apply to the
 current implementation; frozen profiles preserve earlier experiment entry
 points and dependencies for reproduction.
+Profiles also list required data inputs. Materialization verifies and stages
+those files, so historical probes and targeted diagnostics can resolve their
+recorded inputs inside the reconstructed tree.

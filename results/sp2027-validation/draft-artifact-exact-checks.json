@@ -1,0 +1,40 @@
+{
+  "scope": "Rehearsal from extracted anonymous draft bundle; exact checks and saved-data audits execute successfully. Final bundle will be verified separately.",
+  "checks": [
+    {
+      "command": [
+        "python3",
+        "scripts/run_codec_security_audit.py"
+      ],
+      "returncode": 0
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/audit_stopping_adapter.py"
+      ],
+      "returncode": 0
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/audit_rotation_grid.py"
+      ],
+      "returncode": 0
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/audit_existing_evidence.py"
+      ],
+      "returncode": 0
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/audit_legacy_controls.py"
+      ],
+      "returncode": 0
+    }
+  ]
+}

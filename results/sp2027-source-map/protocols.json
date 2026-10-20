@@ -2,6 +2,7 @@
   "sp2027-expanded-gpt2-pilot": {
     "source_profile": "sp2027-expanded-gpt2-pilot",
     "entry_point": "Ghostext-paper/scripts/run_expanded_policy_pilot.py",
+    "working_directory": "root of the materialized profile",
     "arguments": [
       "--backend",
       "gpt2",
@@ -18,12 +19,14 @@
       "scope": "post-hoc development-case delivery pilot",
       "empty_candidate_search": 4096
     },
+    "staged_input_files": {},
     "recorded_cpu_affinity": null,
     "package_environment": "results/sp2027-environment/python-packages.json"
   },
   "sp2027-expanded-qwen-pilot": {
     "source_profile": "sp2027-expanded-qwen-pilot",
     "entry_point": "Ghostext-paper/scripts/run_expanded_policy_pilot.py",
+    "working_directory": "root of the materialized profile",
     "arguments": [
       "--backend",
       "qwen",
@@ -40,12 +43,14 @@
       "scope": "post-hoc development-case delivery pilot",
       "empty_candidate_search": 4096
     },
+    "staged_input_files": {},
     "recorded_cpu_affinity": null,
     "package_environment": "results/sp2027-environment/python-packages.json"
   },
   "sp2027-keyless-legacy": {
     "source_profile": "sp2027-keyless-legacy",
     "entry_point": "Ghostext-paper/scripts/run_keyless_attack.py",
+    "working_directory": "root of the materialized profile",
     "arguments": [
       "--model-path",
       "<QWEN_GGUF>",
@@ -64,12 +69,18 @@
       ],
       "historical_control": "floating probabilities plus three raw-argmax fallbacks"
     },
+    "staged_input_files": {
+      "Ghostext-paper/results/real-backend-baseline-runs-merged.jsonl": "8ef05c7cb90be46668dbaa67e8e8e15ce51f8a515d6868f050bad57657781ddf",
+      "Ghostext-paper/results/detector-block/matched_natural_covers.jsonl": "48c2c4fd5dcde5437c47a62515c1bf56658cb1101b590ed38d202f567cc21e66",
+      "Ghostext-paper/results/prompt-message-grid/prompt_message_grid_runs.jsonl": "cb160b95c7aa95880f022d17aa81b3c7fd774f4f454dab373bf12240b4d28edd"
+    },
     "recorded_cpu_affinity": null,
     "package_environment": "results/sp2027-environment/python-packages.json"
   },
   "sp2027-repair-gpt2": {
     "source_profile": "sp2027-repair-gpt2",
     "entry_point": "Ghostext-paper/scripts/run_repair_matrix.py",
+    "working_directory": "root of the materialized profile",
     "arguments": [
       "--backend",
       "gpt2",
@@ -92,6 +103,7 @@
       "tail_tokens": 0,
       "randomness": "OS packet/guard randomness; statistically rerunnable, saved text exactly replayable on the compatible stack"
     },
+    "staged_input_files": {},
     "recorded_cpu_affinity": [
       4,
       5
@@ -101,6 +113,7 @@
   "sp2027-repair-qwen": {
     "source_profile": "sp2027-repair-qwen",
     "entry_point": "Ghostext-paper/scripts/run_repair_matrix.py",
+    "working_directory": "root of the materialized profile",
     "arguments": [
       "--backend",
       "qwen",
@@ -123,6 +136,7 @@
       "tail_tokens": 0,
       "randomness": "OS packet/guard randomness; statistically rerunnable, saved text exactly replayable on the compatible stack"
     },
+    "staged_input_files": {},
     "recorded_cpu_affinity": [
       6,
       7
@@ -132,6 +146,7 @@
   "sp2027-repair-qwen-pilot": {
     "source_profile": "sp2027-repair-qwen-pilot",
     "entry_point": "Ghostext-paper/scripts/run_repair_matrix.py",
+    "working_directory": "root of the materialized profile",
     "arguments": [
       "--backend",
       "qwen",
@@ -155,6 +170,7 @@
       "tail_tokens": 0,
       "randomness": "OS packet/guard randomness; statistically rerunnable, saved text exactly replayable on the compatible stack"
     },
+    "staged_input_files": {},
     "recorded_cpu_affinity": [
       6,
       7
@@ -164,8 +180,9 @@
   "sp2027-reverse-failure-gpt2": {
     "source_profile": "sp2027-reverse-failure-gpt2",
     "entry_point": "Ghostext-paper/scripts/replay_reverse_failures.py",
+    "working_directory": "root of the materialized profile",
     "arguments": [
-      "results/sp2027-stopping-gpt2",
+      "Ghostext-paper/results/sp2027-stopping-gpt2",
       "--model-path",
       "<GPT2_DIRECTORY>",
       "--out-dir",
@@ -174,12 +191,17 @@
     "policy": {
       "selection": "all completed reverse-failure cases; a targeted diagnostic"
     },
+    "staged_input_files": {
+      "Ghostext-paper/results/sp2027-stopping-gpt2/pairs.jsonl": "d7f672ecf9b6e528536a75bbdb1a20f25af0be0d1ff2073bedb274852fc7bb85",
+      "Ghostext-paper/results/sp2027-stopping-gpt2/manifest.json": "abf3ec067b7ec041d21d5450e31391aff5562dca9555fd92c5a94adc4f6db747"
+    },
     "recorded_cpu_affinity": null,
     "package_environment": "results/sp2027-environment/python-packages.json"
   },
   "sp2027-stopping-gpt2": {
     "source_profile": "sp2027-stopping-gpt2",
     "entry_point": "Ghostext-paper/scripts/run_stopping_llm.py",
+    "working_directory": "root of the materialized profile",
     "arguments": [
       "--backend",
       "gpt2",
@@ -204,6 +226,7 @@
       "randomness": "public deterministic experimental PRNG tapes; not a cryptographic secrecy test",
       "scope": "capped published-rule adapter"
     },
+    "staged_input_files": {},
     "recorded_cpu_affinity": [
       4,
       5
@@ -213,6 +236,7 @@
   "sp2027-stopping-gpt2-expanded": {
     "source_profile": "sp2027-stopping-gpt2-expanded",
     "entry_point": "Ghostext-paper/scripts/run_stopping_llm.py",
+    "working_directory": "root of the materialized profile",
     "arguments": [
       "--backend",
       "gpt2",
@@ -239,6 +263,7 @@
       "randomness": "public deterministic experimental PRNG tapes; not a cryptographic secrecy test",
       "scope": "capped published-rule adapter"
     },
+    "staged_input_files": {},
     "recorded_cpu_affinity": [
       4,
       5
@@ -248,6 +273,7 @@
   "sp2027-stopping-gpt2-pilot": {
     "source_profile": "sp2027-stopping-gpt2-pilot",
     "entry_point": "Ghostext-paper/scripts/run_stopping_llm.py",
+    "working_directory": "root of the materialized profile",
     "arguments": [
       "--backend",
       "gpt2",
@@ -273,12 +299,14 @@
       "randomness": "public deterministic experimental PRNG tapes; not a cryptographic secrecy test",
       "scope": "capped published-rule adapter"
     },
+    "staged_input_files": {},
     "recorded_cpu_affinity": null,
     "package_environment": "results/sp2027-environment/python-packages.json"
   },
   "sp2027-stopping-gpt2-verified": {
     "source_profile": "sp2027-stopping-gpt2-verified",
     "entry_point": "Ghostext-paper/scripts/run_stopping_llm.py",
+    "working_directory": "root of the materialized profile",
     "arguments": [
       "--backend",
       "gpt2",
@@ -304,6 +332,7 @@
       "randomness": "public deterministic experimental PRNG tapes; not a cryptographic secrecy test",
       "scope": "separate mechanical verification-before-stop ablation"
     },
+    "staged_input_files": {},
     "recorded_cpu_affinity": [
       4,
       5
@@ -313,6 +342,7 @@
   "sp2027-stopping-qwen": {
     "source_profile": "sp2027-stopping-qwen",
     "entry_point": "Ghostext-paper/scripts/run_stopping_llm.py",
+    "working_directory": "root of the materialized profile",
     "arguments": [
       "--backend",
       "qwen",
@@ -337,6 +367,7 @@
       "randomness": "public deterministic experimental PRNG tapes; not a cryptographic secrecy test",
       "scope": "capped published-rule adapter"
     },
+    "staged_input_files": {},
     "recorded_cpu_affinity": [
       0,
       1,
@@ -348,6 +379,7 @@
   "sp2027-stopping-qwen-expanded": {
     "source_profile": "sp2027-stopping-qwen-expanded",
     "entry_point": "Ghostext-paper/scripts/run_stopping_llm.py",
+    "working_directory": "root of the materialized profile",
     "arguments": [
       "--backend",
       "qwen",
@@ -374,6 +406,7 @@
       "randomness": "public deterministic experimental PRNG tapes; not a cryptographic secrecy test",
       "scope": "capped published-rule adapter"
     },
+    "staged_input_files": {},
     "recorded_cpu_affinity": [
       8,
       9,

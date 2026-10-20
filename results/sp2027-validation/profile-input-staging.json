@@ -1,0 +1,33 @@
+{
+  "checks": [
+    {
+      "profile": "sp2027-keyless-legacy",
+      "staged_input_hashes": {
+        "Ghostext-paper/results/real-backend-baseline-runs-merged.jsonl": "8ef05c7cb90be46668dbaa67e8e8e15ce51f8a515d6868f050bad57657781ddf",
+        "Ghostext-paper/results/detector-block/matched_natural_covers.jsonl": "48c2c4fd5dcde5437c47a62515c1bf56658cb1101b590ed38d202f567cc21e66",
+        "Ghostext-paper/results/prompt-message-grid/prompt_message_grid_runs.jsonl": "cb160b95c7aa95880f022d17aa81b3c7fd774f4f454dab373bf12240b4d28edd"
+      },
+      "supplemental_helper_hashes": {
+        "Ghostext-paper/scripts/artifact_utils.py": "d10b888a292718b1b730d569e9eb0f9a8850f065359778b297536be503f7cbdf",
+        "Ghostext-paper/scripts/audit_existing_evidence.py": "3984ccd585a271b520829c2691b340be80ef54e52114f023973668c625f864fa"
+      },
+      "input_loading_passed": true,
+      "expected_failure": "Deliberately nonexistent model path; no inference performed.",
+      "returncode": 1
+    },
+    {
+      "profile": "sp2027-reverse-failure-gpt2",
+      "staged_input_hashes": {
+        "Ghostext-paper/results/sp2027-stopping-gpt2/pairs.jsonl": "d7f672ecf9b6e528536a75bbdb1a20f25af0be0d1ff2073bedb274852fc7bb85",
+        "Ghostext-paper/results/sp2027-stopping-gpt2/manifest.json": "abf3ec067b7ec041d21d5450e31391aff5562dca9555fd92c5a94adc4f6db747"
+      },
+      "supplemental_helper_hashes": {
+        "Ghostext-paper/scripts/run_stopping_llm.py": "4ebea59365dd02a0dd9c474ef7fa38afe483986f1dfd7ddbf83a0a76ce139324",
+        "Ghostext-paper/scripts/experiment_prompts.py": "20ba3d9539d3d90193b736c1aabde84fd8b88ab7e6c42dd34ed0f2f4e92ae40d"
+      },
+      "input_loading_passed": true,
+      "expected_failure": "Deliberately nonexistent model path; no inference performed.",
+      "returncode": 1
+    }
+  ]
+}

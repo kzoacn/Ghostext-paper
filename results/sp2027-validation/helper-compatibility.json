@@ -1,0 +1,38 @@
+{
+  "scope": "Supplemental dependencies omitted from historical manifests; checked against the earlier paper research milestone. This is a later compatibility check, not a claim that original runs recorded these helper hashes.",
+  "paper_git_head": "ca221b1757f006c832dab5c5d24b1d502aaf6121",
+  "checks": [
+    {
+      "module": "Ghostext-paper/scripts/artifact_utils.py",
+      "function": null,
+      "method": "Whole module byte identity",
+      "baseline_source_sha256": "d10b888a292718b1b730d569e9eb0f9a8850f065359778b297536be503f7cbdf",
+      "supplemental_source_sha256": "d10b888a292718b1b730d569e9eb0f9a8850f065359778b297536be503f7cbdf",
+      "matches": true
+    },
+    {
+      "module": "Ghostext-paper/scripts/experiment_prompts.py",
+      "function": null,
+      "method": "Whole module byte identity",
+      "baseline_source_sha256": "20ba3d9539d3d90193b736c1aabde84fd8b88ab7e6c42dd34ed0f2f4e92ae40d",
+      "supplemental_source_sha256": "20ba3d9539d3d90193b736c1aabde84fd8b88ab7e6c42dd34ed0f2f4e92ae40d",
+      "matches": true
+    },
+    {
+      "module": "Ghostext-paper/scripts/run_stopping_llm.py",
+      "function": "digest_file",
+      "method": "Function AST identity; other parts of the module changed between cohorts",
+      "baseline_source_sha256": "9ed71023d74d7321c1ee9b4c6a93f9aa00d99a7b4d0c0484251e516caf0fd7f4",
+      "supplemental_source_sha256": "4ebea59365dd02a0dd9c474ef7fa38afe483986f1dfd7ddbf83a0a76ce139324",
+      "matches": true
+    },
+    {
+      "module": "Ghostext-paper/scripts/audit_existing_evidence.py",
+      "function": "wilson",
+      "method": "Function AST identity; other parts of the module changed between cohorts",
+      "baseline_source_sha256": "3984ccd585a271b520829c2691b340be80ef54e52114f023973668c625f864fa",
+      "supplemental_source_sha256": "3984ccd585a271b520829c2691b340be80ef54e52114f023973668c625f864fa",
+      "matches": true
+    }
+  ]
+}

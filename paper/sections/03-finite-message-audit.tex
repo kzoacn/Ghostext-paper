@@ -33,7 +33,7 @@ possible natural two-symbol strings, giving complete-text TV $15/16$ as well.
 Meteor masks its lookahead with fresh pseudorandom bits after padding; the
 specific argument above does not apply to that construction~\cite{kaptchuk2021language}.
 
-\subsection{Integer Interval Width Determines the Sampling Law}
+\subsection{Integer-Interval Sampling Law}
 
 Ghostext's legacy codec uses a different representation. It interprets an entire
 $n$-byte segment as an integer in $[0,2^{8n})$ and narrows an integer interval
@@ -67,7 +67,7 @@ violation of a deterministic no-payload step, and zero-width interval selection.
 A positive result means only that the prefix is admissible, not that it contains
 an authenticated packet.
 
-\subsection{Other Transformations Must Be Measured Separately}
+\subsection{Other Distribution Changes}
 
 The released quantizer reserves one frequency for every candidate before
 allocating the remaining $F-N$ counts. An $N/(2F)$ error claim therefore cannot

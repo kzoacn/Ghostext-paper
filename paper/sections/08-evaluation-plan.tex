@@ -165,7 +165,7 @@ FPR 0.389, with nominal Wilson 95\% intervals [0.824,1] and [0.203,0.614],
 respectively. These wide intervals and the small number of prompt families
 preclude a low-FPR claim. Replaying the same texts with $g=128$ instead makes
 all 36 prefixes admissible, illustrating that an interval-validity rule depends
-on its precise codec state. It is not yet a measurement of newly generated
+on its precise codec state. This replay does not measure newly generated
 repaired traffic.
 
 \subsection{Fresh Model Protocol}
@@ -184,7 +184,7 @@ are recorded separately. Analyses restricted to complete matched pairs must
 report their denominators and excluded outcomes. The public stopping score is
 computed from text-source likelihood and known $B$, without private rotations.
 Additional guarded-versus-legacy delivery trials use the full authenticated
-pipeline and retain every encoding attempt. Their purpose is to distinguish
+pipeline with per-trial attempt traces. Their purpose is to distinguish
 coding repair from the separate stopping and retry effects, not to claim that
 the repaired prototype is detector-resistant.
 
@@ -247,19 +247,34 @@ the strict source.
 
 We retain every strict-source record and run a separate full cohort using seed
 20261023, the same topic split, and the unchanged public score. All 160 GPT-2
-pairs complete, with canonical text and matched lengths; four completed stego
-outputs fail sender-side reverse recovery. The held-out AUCs are $0.862$ and
-$0.986$ at 128 and 512 bits. Thus the measured stopping signal persists in this
-follow-up without filtering out generation failures. This is a post-hoc
+and 320 Qwen pairs complete, with canonical text and matched lengths. Four
+GPT-2 and eight Qwen stego outputs fail sender-side reverse recovery.
+The held-out AUCs at 128/512 bits are $0.862/0.986$ for GPT-2 and
+$0.955/0.965$ for Qwen. Requiring reverse success gives
+$0.862/0.985$ and $0.954/0.965$, respectively.
+Qwen's observed TPR/FPR pairs are
+$0.963/0.088$ and $0.638/0.050$, again illustrating that the development
+threshold does not guarantee a low test FPR.
+The stopping signal persists in these two cohorts without excluding generation
+failures, but successful generation does not guarantee reverse recovery. This is a post-hoc
 robustness study of the stated source, not an estimate for arbitrary prompts
 or ordinary EOS generation.
+Independent public-feature replays on twelve expanded-source texts across both
+models reproduce all saved token IDs and selected probabilities exactly.
 
 \subsection{Authenticated Delivery and Coding Repair}
 
 Fresh delivery trials cross the same prompts with two repetitions and guards
 $g=0$ or $128$. Each application message is 16 UTF-8 bytes, so its packet is
 104 bytes; no optional natural tail is generated. A maximum of ten attempts
-is allowed, and every failed prefix is retained.
+is allowed per trial. Completed trial records retain every failed prefix.
+The Qwen process was terminated after 64 saved trials and resumed from the
+original source profile. Those rows remain byte-identical. The in-flight task
+had not been saved and receives a fresh budget on resume. We therefore exclude
+that case, \texttt{01\_zh\_corner\_cafe:r0:g128}, from primary bounded-attempt,
+rate, and probe estimates, leaving 40 legacy and 39 guarded Qwen trials.
+The resumed record and one-case bounds for the original plan are reported
+separately; unknown interrupted work is excluded from timing.
 
 \input{tables/repair-results}
 
@@ -270,13 +285,27 @@ strict tokenization filter, which the coding repair does not change.
 The mean net rates are $0.556$ and $0.553$ bits/token; packet overhead explains
 much of the difference from gross rates of $3.615$ and $3.596$.
 
+Among Qwen's uninterrupted trials, legacy and guarded delivery succeed in
+39/40 and 38/39 cases, with 33 and 36 first-attempt successes and 59 and 56
+recorded attempts. Both exhausted trials fail at the strict tokenization
+filter. The retained retries also include five low-entropy restarts.
+Mean net rates are $0.413/0.416$ bits/token, versus gross rates
+$2.682/2.707$. The separately resumed case succeeds on its first recorded
+attempt. For the original 40-case guarded plan, this leaves conservative
+counts of 38--39 ten-attempt deliveries and 36--37 first-attempt deliveries;
+the resumed result does not determine the missing original outcome.
+
 Only nine legacy and thirteen guarded GPT-2 trials have complete matched
 controls. The matching legacy bootstrap probe accepts all nine stego prefixes
 and four controls. The guarded probe accepts all thirteen stego prefixes and
-all thirteen controls. This removes the measured zero-width rejection signal
-in that limited set. It neither rules out other distinguishers nor proves
+all thirteen controls. Qwen has 37 complete matched pairs under each guard:
+the legacy probe accepts 37 stego prefixes and 19 controls, whereas the guarded
+probe accepts all 37 of each. This removes the measured zero-width rejection
+signal in these matched sets. It neither rules out other distinguishers nor proves
 that the entire encrypted packet satisfies the theorem's uniform-source
 assumption.
+Independent replays from twelve held-out texts across the two models reproduce
+the cached bootstrap outcomes and stopping positions.
 
 \subsection{Checking the Later Stopping Modification}
 

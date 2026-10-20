@@ -36,10 +36,19 @@ def main():
         target = destination / name
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_bytes(data)
+    for name, expected in profile.get("data_inputs", {}).items():
+        source = ROOT.parent / name
+        assert source.resolve().is_relative_to(ROOT.parent.resolve())
+        data = source.read_bytes()
+        assert hashlib.sha256(data).hexdigest() == expected
+        target = destination / name
+        assert target.resolve().is_relative_to(destination)
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_bytes(data)
     (destination / "PROFILE.json").write_text(json.dumps(profile, indent=2) + "\n")
     print(destination)
     print("Run the recorded entry-point script from this tree with a new output directory.")
-    print("Weights, dependencies, and raw results remain separate; no model data was copied.")
+    print("Hash-checked required input records were staged; weights and dependencies remain separate.")
 
 
 if __name__ == "__main__":

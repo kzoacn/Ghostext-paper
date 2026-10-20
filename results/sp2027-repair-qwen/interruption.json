@@ -1,0 +1,14 @@
+{
+  "observed_utc": "2026-10-20T17:00:19.547216+00:00",
+  "exit_status": 143,
+  "reason": "Terminated by signal; external cause not reported by the execution service.",
+  "completed_persisted_trials": 64,
+  "persisted_prefix_sha256": "75083b6a2374429bf9775fe0f870ead00ce0bcc16a322d78fe03c0d83e498b9a",
+  "last_persisted_case_id": "03_zh_garden:r0:g128",
+  "first_unpersisted_case_id": "01_zh_corner_cafe:r0:g128",
+  "unpersisted_attempt_count": "Unknown, between zero and ten for the in-flight task. Attempt callbacks were buffered until the trial record was saved.",
+  "resume_policy": "Keep all persisted rows unchanged. Resume the complete original task list under the original byte-exact source profile, model hashes, parameters, and CPU affinity. The unpersisted task uses fresh OS packet/guard randomness.",
+  "measurement_scope": "Reported attempt totals and attempt timings cover persisted completed trial records; any unpersisted interrupted work is excluded and not silently counted as zero.",
+  "original_bounded_attempt_outcome": "Unknown for first_unpersisted_case_id: resume starts a fresh attempt budget.",
+  "primary_analysis": "Exclude the affected case from primary bounded-attempt, first-attempt, rate, timing and probe estimates; report its resumed record and one-case original-plan bounds separately."
+}

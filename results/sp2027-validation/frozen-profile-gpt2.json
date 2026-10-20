@@ -1,21 +1,34 @@
 {
-  "scope": "Regeneration using an extracted anonymous draft bundle and its frozen original source profile. Same pinned model, seed and CPU stack. Single prespecified first task; not a new cohort.",
+  "scope": "First prespecified task regenerated using extracted anonymous draft bundle and original frozen source profile. Same pinned model and compatible CPU stack; not a new cohort.",
   "profile": "sp2027-stopping-gpt2",
   "case_id": "00_en_evening_walk:b128:r3",
-  "labels": [
-    "stego",
-    "natural"
+  "all_original_fields_match_except": [
+    "stego.elapsed_seconds",
+    "natural.elapsed_seconds"
   ],
-  "exact_match_fields": [
-    "cover_text",
-    "token_ids",
-    "chosen_probabilities",
-    "surprisal_bits",
-    "status",
-    "tokens",
-    "canonical_text_roundtrip",
-    "recovery_match"
-  ],
+  "source_sha256": {
+    "Ghostext-paper/scripts/run_stopping_llm.py": "9ed71023d74d7321c1ee9b4c6a93f9aa00d99a7b4d0c0484251e516caf0fd7f4",
+    "Ghostext-paper/scripts/stopping_experiment.py": "1afd75a6141cba741badcbdd3d995d4657c34d5d3ee10472778f5299a73192c0",
+    "Ghostext-paper/scripts/experiment_prompts.py": "20ba3d9539d3d90193b736c1aabde84fd8b88ab7e6c42dd34ed0f2f4e92ae40d",
+    "Ghostext-paper/scripts/model_adapters.py": "ad41399f2e457aa6af85ed93ae5cf98864020181681907cc8b305bea1a510bac",
+    "Ghostext/src/ghostext/__init__.py": "d37c170dfeef70b1b7c12b76ac7baaab8544c5d3e236ef8ae5a82432997d3991",
+    "Ghostext/src/ghostext/benchmark.py": "f6e3fd9dd9d8615331c4684b097903142ab74b5bbec3064aac50c07264f4a831",
+    "Ghostext/src/ghostext/candidate_policy.py": "efdd1c90a5dd93f382a7345bfdcbab6d9e0e7ec284cc05f28342da514d5fcc48",
+    "Ghostext/src/ghostext/cli.py": "cc502efbee906db783a793336d89f2bc68b123be5bab90c7f06e920c5041a0d2",
+    "Ghostext/src/ghostext/codec.py": "585d65d10b18d9861ba0d02f0a4671743b2fa8cf2cd31152db860dc80724e9f5",
+    "Ghostext/src/ghostext/config.py": "3138a9dad0975f12ad8a3f98353af0ba22f91ee73973eb9e4ab751b104c39062",
+    "Ghostext/src/ghostext/crypto.py": "7ce5498b9b86a907c0a97901a2aaa339e9ff4ec324566382f0516ef21b1c36d5",
+    "Ghostext/src/ghostext/decoder.py": "40b85a1c41fc466b79a28d54e9c3e079151e507a6d888007cc1a3f9c73c25e81",
+    "Ghostext/src/ghostext/encoder.py": "fd66120a07172d43a07200c74f72b65bfeef806154d1557de7b37a7c21870aa9",
+    "Ghostext/src/ghostext/errors.py": "70020cb389ada0d1d16147e2a5055ff3c42e95bb5cd2a85853f1cf2088e29b54",
+    "Ghostext/src/ghostext/llama_cpp_backend.py": "07f3653b87c61444bd0888ff5013d8c223df555f5fe9c172fa71a29496249b2b",
+    "Ghostext/src/ghostext/model_assets.py": "8089d5d0cef24207b081d1c5ab59cdee0ff38799d774b08d88b8472ec3ce3350",
+    "Ghostext/src/ghostext/model_backend.py": "74d35dab5ca32df6f8bd07a775f75ff9778621301f157d8fa0238f994e9203d4",
+    "Ghostext/src/ghostext/packet.py": "fa938220b13f7b466b28330d99875b4b7da4270ad3904987b689ceb30e32104b",
+    "Ghostext/src/ghostext/pipeline.py": "85e2199ba095001c2a7c1aaffc672b953e633d6bf51de592748f85295134eae5",
+    "Ghostext/src/ghostext/progress.py": "a53ab3454e33094e9292524cf8fa25e1fa1f2ead1c96c2168b0e32a238925c25",
+    "Ghostext/src/ghostext/quantization.py": "b43e6f652d0dc97012f03295f4ab96eb2859c903a9b7609bf06702583c3b82ff"
+  },
   "model_sha256": {
     "model.safetensors": "248dfc3911869ec493c76e65bf2fcf7f615828b0254c12b473182f0f81d3a707",
     "config.json": "0daed7749b4f02b8f76240d5444551d7b08712dab4d0adb8239c56ba823bb7b4",
@@ -23,5 +36,6 @@
     "revision.txt": "1d3d99ea8f4853f9ef628089fdb07d496a5cf79244a069a484a7dce83ec7df7f"
   },
   "source_input_sha256": "d7f672ecf9b6e528536a75bbdb1a20f25af0be0d1ff2073bedb274852fc7bb85",
-  "reproduced_pair_sha256": "26900b3cfb67d8f4ff5ee54c070b6c09b39ad122226a6500dda3836d6b130cd3"
+  "reproduced_pair": "results/sp2027-validation/frozen-profile-gpt2-pair.json",
+  "reproduced_pair_sha256": "8db44dc08e5b9d3752b11938cf7f34b74efcecaa8f35f7d917bbc68d207f27d3"
 }

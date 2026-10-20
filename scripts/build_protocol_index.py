@@ -69,10 +69,10 @@ def main():
                        "historical_control": "floating probabilities plus three raw-argmax fallbacks"}
         elif "selected_case_ids" in manifest:
             entry = "replay_reverse_failures.py"
-            original = f"results/sp2027-stopping-{backend}"
+            original = f"Ghostext-paper/results/sp2027-stopping-{backend}"
             # These targeted manifests predate a backend field; filenames identify their model.
             if "gpt2" in name:
-                model, original = "<GPT2_DIRECTORY>", "results/sp2027-stopping-gpt2"
+                model, original = "<GPT2_DIRECTORY>", "Ghostext-paper/results/sp2027-stopping-gpt2"
             arguments = [original, "--model-path", model, "--out-dir", "<NEW_OUTPUT_DIRECTORY>"]
             details = {"selection": "all completed reverse-failure cases; a targeted diagnostic"}
         elif "test_passphrase" in manifest and "tasks" in manifest:
@@ -86,7 +86,9 @@ def main():
             raise ValueError(f"No command map for {name}")
         output[name] = {
             "source_profile": name, "entry_point": f"Ghostext-paper/scripts/{entry}",
+            "working_directory": "root of the materialized profile",
             "arguments": arguments, "policy": details,
+            "staged_input_files": profile.get("data_inputs", {}),
             "recorded_cpu_affinity": manifest.get("parameters", {}).get("cpu_affinity"),
             "package_environment": "results/sp2027-environment/python-packages.json",
         }

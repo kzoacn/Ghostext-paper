@@ -31,6 +31,8 @@ def main():
         assert digest(manifest_path) == profile["manifest_sha256"]
         for path, expected in {**profile["sources"], **profile["supplemental_helpers"]}.items():
             assert digest(paper / "source-snapshots" / (expected + ".py")) == expected
+        for path, expected in profile.get("data_inputs", {}).items():
+            assert digest(root / path) == expected
         manifest = json.loads(manifest_path.read_text())
         if manifest.get("schema") not in {"stopping-llm-v1", "repair-matrix-v1"}:
             continue

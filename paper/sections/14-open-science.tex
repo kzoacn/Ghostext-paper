@@ -12,8 +12,9 @@ are separate from this review package.
 
 \paragraph{Reproducibility metadata}
 Each cohort has a source profile, model hashes, task list, and configuration.
-Content-addressed source snapshots reconstruct earlier experiment versions,
-and a command index specifies their entry points and stopping caps. A separate
+Content-addressed snapshots preserve manifest-listed source versions;
+omitted helper modules are separately pinned and compatibility-checked.
+A command index specifies entry points, required data inputs, and stopping caps. A separate
 environment snapshot supplements package fields missing from older delivery
 manifests. Model acquisition uses exact upstream revisions, including the
 historical Qwen GGUF whose current upstream replacement has different bytes.

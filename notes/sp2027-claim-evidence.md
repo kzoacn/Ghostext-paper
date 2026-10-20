@@ -17,12 +17,15 @@ conference acceptance.
 | Archived Qwen covers exhibit a public bootstrap signal | `results/sp2027-keyless-legacy/` | 118 stego covers, only 18 matched controls. Historical controls use floating probabilities and three raw-argmax fallbacks; they do not isolate strict quantized Q. |
 | Archived rate previously counted framing as payload | `results/sp2027-historical-audit/summary.json` | 88-byte overhead; mean net 1.1725 bits/token; 100 deliveries required 140 attempts. Historical failed prefixes unavailable. |
 | Real-model stopping effects under the strict source | `results/sp2027-stopping-gpt2/`, `results/sp2027-stopping-qwen/` | Complete 160/320 attempted pairs; 90/296 eligible pairs. Primary AUCs condition on complete canonical matched pairs. All attempts retained. |
-| Stopping effects under expanded candidate search | `results/sp2027-stopping-gpt2-expanded/`, `results/sp2027-stopping-qwen-expanded/` | Separate post-hoc cohorts, new seed and unchanged score/topic split. GPT-2 complete 160/160; Qwen ongoing at this checkpoint. |
-| Guarded versus legacy authenticated delivery | `results/sp2027-repair-gpt2/`, `results/sp2027-repair-qwen/` | GPT-2 complete 40/40, 19/20 deliveries per guard. Qwen ongoing at this checkpoint. Every failed attempt retained. |
+| Stopping effects under expanded candidate search | `results/sp2027-stopping-gpt2-expanded/`, `results/sp2027-stopping-qwen-expanded/` | Separate post-hoc cohorts, new seed and unchanged score/topic split. GPT-2 160/160 and Qwen 320/320 complete matched pairs; four/eight reverse mismatches. |
+| Guarded versus legacy authenticated delivery | `results/sp2027-repair-gpt2/`, `results/sp2027-repair-qwen/` | All 120 trial records saved. Primary GPT-2 deliveries 19/20 per guard; Qwen 39/40 legacy and 38/39 guarded. One interrupted/resumed Qwen case excluded from primary estimates and reported separately. |
 | Optional expanded candidate pool resolves specific empty-set prefixes | `results/sp2027-empty-set-diagnosis/`; `results/sp2027-expanded-*-pilot/` | Selected development diagnosis and six successful first-attempt deliveries. Not a general reliability or security estimate. |
 | Verification extends three observed reverse-failure outputs | `results/sp2027-reverse-failure-gpt2/` | All three completed GPT-2 failures selected, reproduced, and independently decoded after one/two/two added tokens. Separate 40-case verified cohort vetoes zero stops. |
 | Finite experimental rotations approximate the ideal public stopped law | `results/sp2027-rotation-grid/`; proof appendix | Independent uniform 192-bit draws, quantized Q, public token/stop/cap/failure transcript only. Excludes verified stopping, latent rotations, and success conditioning. |
 | Source and model profiles are reconstructible | `source-snapshots/`; `results/sp2027-source-map/`; `REPRODUCIBILITY.md` | Exact source bytes for 13 profiles and pinned model revisions. OS-random delivery is statistically rerunnable, not seeded bit-exact regeneration. |
+| Public features can be reconstructed from text | `results/sp2027-public-replay/` | Exact token/probability matches on 24 stopping texts; matching bootstrap outcomes on 12 delivery-study texts. Selection is the first eligible held-out case per stated group. |
+| Interrupted work is not counted as an observed trial outcome | `results/sp2027-repair-qwen/interruption.json`; `results/sp2027-validation/repair-qwen-count-check.json` | First 64 rows byte-preserved. Case `01_zh_corner_cafe:r0:g128` uses a fresh budget on resume; original 40-case guarded-plan delivery/first-attempt counts bounded by 38–39/36–37. |
+| Lightweight reproduction does not need model libraries | `results/sp2027-validation/lightweight-environment.json` | Clean virtual environment with no Torch, Transformers, or llama.cpp: 59 tests pass, one optional integration test skips, five subtests pass. |
 
 The historical `Bhat` calculation used an inapplicable `N/(2F)` quantization
 bound and omitted finite-interval error. Archived values are preserved for
@@ -36,6 +39,6 @@ source-file hashes, not merely a branch name; source snapshots preserve those
 versions. Core regression validation now records 59 passed and one optional
 model test skipped, with five subtests passed.
 
-Outstanding gates: finish the two remaining Qwen cohorts and their independent
-public replays, integrate final denominators, inspect every final PDF page,
-verify the anonymous artifact, and obtain the independent review addendum.
+All planned cohorts and public replays are complete, including explicit
+interruption accounting. Remaining release gates are final page inspection,
+anonymous-artifact verification, and the independent review addendum.

@@ -1,10 +1,12 @@
 # Ghostext: IEEE S&P 2027 revision
 
-This workspace contains the paper, historical raw measurements, and ongoing
-experiments. The implementation source is `../Ghostext`. The user authorized
-resuming experiments and revising both repositories on 2026-10-20.
+This branch contains the S&P 2027 manuscript, retained measurements, exact
+audits, and reproducibility tools. The implementation source is `../Ghostext`.
+The revision studies finite-message padding, integer rounding, and public
+stopping leakage. Its guarded codec repairs a specified coding defect; it
+does not establish complete-text security against ordinary model generation.
 
-The draft is being revised against the
+The review manuscript follows the
 [official S&P 2027 CFP](https://sp2027.ieee-security.org/cfpapers.html):
 IEEEtran 1.8b, `conference,compsoc`, US Letter, at most 13 pages of main text and
 18 pages overall. No author block appears in the review version. The unmodified
@@ -22,11 +24,27 @@ runs or for proof of detector resistance. In particular, the historical
 `bits_per_token_encode` metric counts the entire encrypted packet, including
 88 bytes of framing, rather than only application plaintext.
 
-The revision is not yet ready for submission. An independent reviewer is
-examining correctness, novelty, empirical security, and reproducibility. An
-internal weak-accept recommendation is a quality gate, not a prediction of
-conference acceptance. Human authors must review the final content and complete
-the ethics and AI-use disclosures before submission.
+The completed stopping studies contain 960 planned pairs across two models
+and two separately analyzed candidate policies. The delivery studies retain
+120 trial records. One Qwen trial resumed after an external termination and
+is reported separately; primary bounded-attempt estimates use the other 119
+trials, with conservative bounds for the interrupted case.
+
+Start with [REPRODUCIBILITY.md](REPRODUCIBILITY.md) for model pins, frozen source
+profiles, exact checks, saved-data analyses, and replay commands. The lightweight
+environment needs no model libraries: its regression run passed 59 tests, with
+one optional integration test skipped and five subtests passed.
+The export builder creates `output/ghostext-sp2027-artifact.zip`, preserving
+observations while removing identifying metadata. The final PDF is
+`output/pdf/ghostext-sp2027.pdf`.
+
+The [independent review](notes/reviews/2026-10-20-independent-sp2027-review.md)
+recommends **weak accept** for the narrow security analysis and implementation
+audit. This is an internal quality gate, not a prediction of conference
+acceptance. Human authors must review the final content and complete the ethics
+and AI-use disclosures before submission. Older CCS notes and unused section
+files are historical material, excluded from the active manuscript and review
+artifact.
 
 Second-cycle abstract registration is November 10, 2026 and paper submission is
 November 17, 2026, both 23:59:59 AoE, according to the CFP checked on 2026-10-20.
