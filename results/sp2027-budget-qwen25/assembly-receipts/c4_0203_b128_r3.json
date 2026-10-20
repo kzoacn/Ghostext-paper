@@ -1,0 +1,23 @@
+{
+  "operation": "Join already persisted prefixes and receivers after final-case write failure",
+  "utc": "2026-10-20T22:24:59Z",
+  "case_id": "c4_0203_b128_r3",
+  "source_script_sha256": "680f3489b088c8daee022502506e776fb0d8dbaccef7745302114a6d65f5a0a9",
+  "inputs": {
+    "results/sp2027-budget-qwen25/manifest.json": "89714e4b55d10234036048fb3b2c55f2480c135e5435c58d7183bc8a4aba22f2",
+    "results/sp2027-upstream-qwen25/cases/c4_0203_b128_r3.json": "f9e458f00a9369e8c851a8c8ee9e7e82050e5694dff57e67cdca574566a9e7f6",
+    "results/sp2027-budget-qwen25/prefixes/c4_0203_b128_r3/n38.json": "2fd323e2a732b2150362c6fa0e3b71563366a5b833ee699fbf0476c8027e3148",
+    "results/sp2027-budget-qwen25/stages/c4_0203_b128_r3/receiver_n38.json": "b4d939fc65a9cc8e37bf45e227b56d919e24e8df58aee4609dc228c697024ed1",
+    "results/sp2027-budget-qwen25/prefixes/c4_0203_b128_r3/n48.json": "db890349a14ebae79bc0689233f3a37d9ed7ca75fd887dc0801a4d63d90f47af",
+    "results/sp2027-budget-qwen25/stages/c4_0203_b128_r3/receiver_n48.json": "2a8a8eb82a7c6feb8d885a86d4a642228dfe58cfeb2b2939a00a8a5324af914e",
+    "results/sp2027-budget-qwen25/prefixes/c4_0203_b128_r3/n57.json": "0c35edf1cd0a58fbff9fd4c575a14ed81cac4e0242e6b13df4e7c298b3d386bd",
+    "results/sp2027-budget-qwen25/stages/c4_0203_b128_r3/receiver_n57.json": "2a959ff570575900b47b66e99ba0593a43816d7790072e23c32e58e76544af18",
+    "results/sp2027-budget-qwen25/prefixes/c4_0203_b128_r3/n76.json": "10fedebf07e209a02a75c53415aaefcbc920585af3bad81e5e65ae0c6b6eae9d",
+    "results/sp2027-budget-qwen25/stages/c4_0203_b128_r3/receiver_n76.json": "09c712071d0950f5151802ea04ef5c7d27ffd7e489ff2a15c372145a6d7ffd41"
+  },
+  "output": "results/sp2027-budget-qwen25/cases/c4_0203_b128_r3.json",
+  "output_sha256": "eef1e1853989462b0ae902edd12245ed4fab43be69ad7fef9ee94aa99ca38408",
+  "output_already_existed": false,
+  "model_inference_performed": false,
+  "new_randomness_drawn": false
+}

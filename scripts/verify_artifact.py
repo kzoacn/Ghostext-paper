@@ -93,6 +93,20 @@ def verify_new_profile(paper, manifest_path, manifest, allow_draft):
                         assert block["generation"]["tokens"] == n
                         receiver = directory / "stages" / row["case_id"] / f"receiver_n{n}.json"
                         assert json.loads(receiver.read_text()) == block["receiver"]
+            for receipt_path in (directory / "assembly-receipts").glob("*.json"):
+                receipt = json.loads(receipt_path.read_text())
+                assert receipt["case_id"] in ids
+                assert receipt["model_inference_performed"] is False
+                assert receipt["new_randomness_drawn"] is False
+                assert receipt["source_script_sha256"] == digest(
+                    paper / "scripts/assemble_saved_budget_case.py")
+                target = directory / "cases" / (receipt["case_id"] + ".json")
+                assert paper / receipt["output"] == target
+                assert digest(target) == receipt["output_sha256"]
+                for relative, expected_hash in receipt["inputs"].items():
+                    source = paper / relative
+                    assert source.resolve().is_relative_to(paper.resolve())
+                    assert digest(source) == expected_hash, relative
     elif schema == "upstream-public-replay-v1":
         path = directory / "summary.json"
         if not path.exists() and allow_draft:

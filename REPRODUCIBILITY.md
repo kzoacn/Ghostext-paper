@@ -120,6 +120,22 @@ that supplemental workers completed their assigned frozen tasks without
 overlapping stage executions. This is a consistency check of the records,
 not external attestation of the inference.
 
+The Qwen2.5 budget study additionally retains an exit-143 interruption and
+a reported memory-allocation error while writing a final case summary.
+The latter occurred after all four prefix/receiver pairs were saved; its
+temporary output was empty. `assemble_saved_budget_case.py` joins those
+existing observations without model inference or new randomness. The
+assembly receipt binds the ten input files, helper source, and resulting
+case. Its output was checked against 209 already complete cases before use.
+Saved records are preserved, and infrastructure failures do not become
+model-generation failures. The interrupted shard uses the same original
+tasks and tapes when resumed.
+
+```bash
+python scripts/assemble_saved_budget_case.py results/sp2027-budget-qwen25 \
+  --case-id c4_0203_b128_r3
+```
+
 The historical 18-control pilot used filtered floating probabilities and
 three raw-argmax fallbacks. The old JSON label `historical_stable_sampler`
 remains an identifier, not a claim that these are strict quantized-Q samples.
