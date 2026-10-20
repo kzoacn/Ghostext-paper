@@ -197,10 +197,18 @@ component, yielding, for $n\ge2$,
 \end{equation}
 where $d=\log_2(3/2)$ and $K=11\sqrt\pi/12$. The varentropy rate is
 $0.4269101$ bits squared per token. Appendix~\ref{app:markov-proof} proves the
-bound and positivity without a numerical limit approximation. These explicit
-constants are conservative: the resulting verified-rule lower bound is zero
-at 128 and 512 bits. The theorem establishes a limit, not the observed AUC or
-monotonicity at every finite $B$.
+bound and positivity without a numerical limit approximation.
+
+\paragraph{A finite certificate}
+The closed-form envelopes above can be conservative. For this same chain,
+started in state zero, exact integration of the safe-rule kernel and integer
+probability bounds instead certify verified-rule TV at least $0.1347$ at
+$B=512$ and $0.4294$ at $B=2048$. The retained 128-bit certificate is vacuous.
+The calculation covers every natural length, including those beyond its finite
+scan, without estimating the encoder's length law. Appendix~\ref{app:finite-certificate}
+gives the recurrence, error accounting, and complete rational bounds. These
+are finite results for the ideal continuous-rotation mechanism on the stated
+dependent source, not predictions of model AUC or a transfer to Decimal software.
 
 \paragraph{A dependent negative control}
 Consider three states, each staying or advancing modulo three with probability

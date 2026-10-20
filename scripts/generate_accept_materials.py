@@ -65,9 +65,9 @@ def main():
             r"\caption{Post-hoc public endpoint replay of guarded no-tail deliveries. "
             r"Counts use the original eligible pair sets and known 16-byte plaintext length.}",
             r"\label{tab:endpoint-replay}", r"\begin{tabular}{lrrr}", r"\toprule",
-            r"Model & Paired texts & Stego endpoint & Natural endpoint \\", r"\midrule"]
+            r"Model & Pairs & Stego endpoint & Natural endpoint \\", r"\midrule"]
         for backend, directory in [("GPT-2", "sp2027-endpoint-gpt2-corrected"),
-                                   ("Qwen", "sp2027-endpoint-qwen")]:
+                                   ("Qwen3.5-2B", "sp2027-endpoint-qwen")]:
             path = ROOT / "results" / directory / "analysis.json"
             data = json.loads(path.read_text())
             assert data["source_replay_check_passed"]

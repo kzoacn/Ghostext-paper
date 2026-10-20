@@ -12,7 +12,7 @@ an indistinguishability claim.
 \subsection{Exact Coding and Stopping Audits}
 
 The original NLS result and the RRC stopped-law example in
-Sections~\ref{sec:audit}--\ref{sec:stopping} are exhaustively reproducible.
+Sections~\ref{sec:audit} and~\ref{sec:stopping} are exhaustively reproducible.
 The former executes pinned original code on all 256 one-byte inputs. The latter
 uses exact rational probabilities, including natural strings absent from the
 stego support. Neither result is a Monte Carlo estimate.
@@ -57,6 +57,10 @@ Eq.~\eqref{eq:endpoint-identity} at a public cap of eight tokens, retaining
 unresolved cap outcomes, and fixed-depth enumerations check
 Eq.~\eqref{eq:fixed-endpoint-failure}. These finite checks supplement the
 proofs; they do not establish an asymptotic claim by simulation.
+The separate finite verified-rule certificate uses rational kernel integration
+and downward-rounded integer masses, with all omitted mass retained as an
+error budget. Its 512/2048-bit bounds in Appendix~\ref{app:finite-certificate}
+are rigorous finite calculations rather than Monte Carlo estimates.
 
 \subsection{Stopping with an Identical Length Histogram}
 
@@ -183,151 +187,76 @@ reduce this to nine distinct model replays. The upstream empirical result
 therefore concerns the current numerical implementation separately from the
 continuous verified-rule theorem.
 
-\subsection{Archived Delivery Evidence}
+\subsection{Supporting Studies under Processed Sources}
 
-The historical Qwen archive has 100 deliveries from a fixed bilingual
-$10\times10$ prompt/message grid, requiring 140 attempts; 81 succeed first
-try. Reanalysis verifies identifiers, text hashes, sizes, and token accounting.
-Its mean plaintext rate is 1.172 bits/token, versus gross packet rate 2.619;
-88-byte framing explains the difference. Failed-attempt prefixes were not
-retained, so this archive cannot establish their detailed causes.
+Earlier controlled studies use GPT-2 and the Qwen3.5-2B GGUF backend with
+Ghostext's processed candidate source and a separate rational-arithmetic RRC
+adapter. Ten topic families are split into five development and five test
+families before generation; Qwen has paired English/Chinese prompts. Each
+context has eight tapes at 128 and 512 bits. The same public information score,
+development-quantile threshold, and topic-cluster intervals are used. These
+studies support the mechanism under different sources; they are not additional
+runs of the unchanged upstream implementation.
 
-A separate 18-pair historical bootstrap pilot accepts all stego prefixes but
-only seven controls under the legacy interval rule. The controls used filtered
-floating probabilities and three unfiltered-argmax fallbacks, not the strict
-quantized source of the fresh experiments. Its small, partially controlled
-sample is supporting context only. The artifact retains all records, exact
-rate reanalysis, and the distinct pilot provenance.
+The strict-source cohorts retain all 160 GPT-2 and 320 Qwen planned pairs.
+Candidate-stability failures leave 121/123 completed GPT-2 stego/control
+outputs and 301/315 Qwen outputs, with only 90/296 complete canonical matched
+pairs. Their held-out AUCs at 128/512 bits are $0.865/0.934$ for GPT-2 and
+$0.950/0.973$ for Qwen. Three and sixteen completed stego outputs fail the
+sender-side reverse check. All counts and the recovery-conditioned sensitivity
+are retained; these conditional AUCs do not describe every attempted output.
 
-\subsection{Controlled Model Protocol}
-
-The fresh stopping study uses ten topic families, with English contexts for
-GPT-2 and paired English/Chinese contexts for Qwen. Five families are reserved
-for development and five for testing before generation. Each context is
-repeated eight times at 128 and 512 bits. The natural control is independently
-sampled for the observed stego length under the same processed source $Q$.
-The manifests specify all prompts, task order, random seeds, model hashes,
-CPU affinity, and software versions. No retry silently replaces a failed
-stopping-study sample.
-
-Completion, canonical retokenization, reverse recovery, and control completion
-are recorded separately. Analyses restricted to complete matched pairs must
-report their denominators and excluded outcomes. The public stopping score is
-computed from text-source likelihood and known $B$, without private rotations.
-Additional guarded-versus-legacy delivery trials use the full authenticated
-pipeline with per-trial attempt traces. Their purpose is to distinguish
-coding repair from the separate stopping and retry effects, not to claim that
-the repaired prototype is detector-resistant.
-
-\subsection{Controlled Stopping Results and Selection}
-
-The strict-source study completes all 160 planned GPT-2 pairs and 320 planned
-Qwen pairs. Table~\ref{tab:stopping-outcomes} keeps attempted generation separate
-from completed output. GPT-2 has 39 stego and 37 control tokenization failures;
-Qwen has 19 and 5, respectively. Consequently, only 90 GPT-2 pairs and 296 Qwen
-pairs satisfy the complete, canonical, exactly matched inclusion rule.
-This selection is substantial for GPT-2. Reporting its denominator does not
-turn a conditional detector result into an unconditional transmitted-text law.
-
-\input{tables/stopping-outcomes}
-
-We fix the score to $-|I(y)-B|$ and fit a threshold at the 95th percentile of
-development-control scores, using the higher observed quantile and a strict
-greater-than decision. No test scores tune the rule. Table~\ref{tab:stopping-llm}
-reports held-out topic results and 5000-resample topic-cluster intervals.
-These intervals are conditional on eligibility and the fitted threshold, with
-only five held-out topic families; they do not certify deployment calibration.
-The empirical length-only AUC is exactly $0.5$ in every matched slice.
-
-\input{tables/stopping-results}
-
-For the strict source, GPT-2's held-out AUCs are $0.865$ and $0.934$ at 128 and
-512 bits, while Qwen's are $0.950$ and $0.973$. Observed TPR/FPR pairs vary
-substantially, so high AUC is not presented as a low-FPR operating guarantee.
-Among completed outputs, three GPT-2 and sixteen Qwen samples fail the
-sender-side reverse check. Requiring reverse success leaves strict-source
-held-out AUCs of $0.861/0.934$ for GPT-2 and $0.948/0.970$ for Qwen. This
-sensitivity analysis remains conditional; it does not erase recovery failures.
-
-
-
-A separate replay reads only visible text and public model inputs for the
-first eligible held-out case in each bit-length/language group. All twelve
-stego/control texts across the two models reproduce their saved token IDs and
-every selected quantized probability exactly. This validates public feature
-computation without reusing sender intervals or private rotation states.
-
-\subsection{A Separate Source-Expansion Follow-up}
-
-The empty-set failures motivate an explicitly different source, developed from
-two failed development cases. When the original truncated pool contains no
-stable token, an optional policy searches the top 4096 ranked candidates and
-keeps at most 64 stable entries. Otherwise it preserves the original selection.
-Both classes use this same rule. It changes the source and carries a distinct
-protocol identifier; it is not a distribution-preserving transformation of
-the strict source.
-
-We retain every strict-source record and run a separate full cohort using seed
-20261023, the same topic split, and the unchanged public score. All 160 GPT-2
-and 320 Qwen pairs complete, with canonical text and matched lengths. Four
-GPT-2 and eight Qwen stego outputs fail sender-side reverse recovery.
-The held-out AUCs at 128/512 bits are $0.862/0.986$ for GPT-2 and
-$0.955/0.965$ for Qwen. Requiring reverse success gives
-$0.862/0.985$ and $0.954/0.965$, respectively.
-Qwen's observed TPR/FPR pairs are
-$0.963/0.088$ and $0.638/0.050$, again illustrating that the development
-threshold does not guarantee a low test FPR.
-The stopping signal persists in these two cohorts without excluding generation
-failures, but successful generation does not guarantee reverse recovery. This is a post-hoc
-robustness study of the stated source, not an estimate for arbitrary prompts
-or ordinary EOS generation.
-Independent public-feature replays on twelve expanded-source texts across both
-models reproduce all saved token IDs and selected probabilities exactly.
+A separate source-expansion follow-up was motivated by two failed development
+cases. Only when the initial truncated pool has no stable candidate, it searches
+the top 4096 ranked candidates and retains at most 64 stable entries. Both
+classes use the changed source, identified by a distinct protocol and seed.
+All 160/320 new pairs complete canonically with matched lengths. The AUCs are
+$0.862/0.986$ and $0.955/0.965$, with four/eight reverse-recovery failures.
+This is a post-hoc source-robustness result, not a distribution-preserving
+repair or an estimate for ordinary EOS generation. Independent public replays
+on twelve strict-source and twelve expanded-source texts reproduce the saved
+token IDs and every selected probability. Full settings, failure traces,
+threshold results, and intervals remain in the artifact.
 
 \subsection{Authenticated Delivery and Coding Repair}
 
-Fresh delivery trials cross the same prompts with two repetitions and guards
-$g=0$ or $128$. Each application message is 16 UTF-8 bytes, so its packet is
-104 bytes; no optional natural tail is generated. A maximum of ten attempts
-is allowed per trial. Completed trial records retain every failed prefix.
-The Qwen process was terminated after 64 saved trials and resumed from the
-original source profile. Those rows remain byte-identical. The in-flight task
-had not been saved and receives a fresh budget on resume. We therefore exclude
-that case, \texttt{01\_zh\_corner\_cafe:r0:g128}, from primary bounded-attempt,
-rate, and probe estimates, leaving 40 legacy and 39 guarded Qwen trials.
-The resumed record and one-case bounds for the original plan are reported
-separately; unknown interrupted work is excluded from timing.
+Fresh authenticated trials use the same bilingual prompt families, two
+repetitions, guards $g=0$ or $128$, and at most ten attempts per trial.
+A 16-byte plaintext produces a 104-byte packet; natural tails are disabled.
+Every completed trial retains its failed prefixes. This subsection's Qwen
+model is the Qwen3.5-2B GGUF backend.
+
+The Qwen process stopped after 64 saved trials and resumed from its original
+source profile; those saved rows remain byte-identical. The interrupted
+in-flight task had no saved result and received a fresh budget. We exclude
+\texttt{01\_zh\_corner\_cafe:r0:g128} from primary bounded-attempt, rate, and
+probe estimates, leaving 40 legacy and 39 guarded Qwen trials. The resumed
+record succeeds, but does not establish its original outcome: the original
+40-case guarded plan has conservative bounds of 38--39 ten-attempt deliveries
+and 36--37 first-attempt deliveries. Unknown interrupted work is excluded
+from timing.
 
 \input{tables/repair-results}
 
-The completed GPT-2 cohort has 19/20 deliveries under each guard setting, with
-12/20 first-attempt deliveries in each. Legacy and guarded trials consume 51
-and 46 total attempts, respectively. Every delivery failure is due to the
-strict tokenization filter, which the coding repair does not change.
-The mean net rates are $0.556$ and $0.553$ bits/token; packet overhead explains
-much of the difference from gross rates of $3.615$ and $3.596$.
+Table~\ref{tab:repair-matrix} reports delivery, attempts, and net plaintext
+rate. Every exhausted trial fails at the strict candidate filter, which the
+coding repair does not change. The retained Qwen retries also include five
+low-entropy restarts. Gross packet rates around $2.7$--$3.6$ bits/token are
+substantially higher than the reported net rates because framing adds 88 bytes.
 
-Among Qwen's uninterrupted trials, legacy and guarded delivery succeed in
-39/40 and 38/39 cases, with 33 and 36 first-attempt successes and 59 and 56
-recorded attempts. Both exhausted trials fail at the strict tokenization
-filter. The retained retries also include five low-entropy restarts.
-Mean net rates are $0.413/0.416$ bits/token, versus gross rates
-$2.682/2.707$. The separately resumed case succeeds on its first recorded
-attempt. For the original 40-case guarded plan, this leaves conservative
-counts of 38--39 ten-attempt deliveries and 36--37 first-attempt deliveries;
-the resumed result does not determine the missing original outcome.
+The legacy bootstrap-admissibility probe accepts all nine eligible GPT-2
+stego prefixes versus four controls, and all 37 Qwen stego prefixes versus
+nineteen controls. With guard 128, it accepts both classes on all thirteen
+GPT-2 and 37 Qwen matched pairs. This removes that measured zero-width
+rejection signal; it does not prove packet uniformity or complete-text
+security. Twelve independent public replays reproduce the cached bootstrap
+outcomes and stopping positions. The next test uses all fifty previously
+eligible guarded pairs without a new outcome-dependent inclusion rule.
 
-Only nine legacy and thirteen guarded GPT-2 trials have complete matched
-controls. The matching legacy bootstrap probe accepts all nine stego prefixes
-and four controls. The guarded probe accepts all thirteen stego prefixes and
-all thirteen controls. Qwen has 37 complete matched pairs under each guard:
-the legacy probe accepts 37 stego prefixes and 19 controls, whereas the guarded
-probe accepts all 37 of each. This removes the measured zero-width rejection
-signal in these matched sets. It neither rules out other distinguishers nor proves
-that the entire encrypted packet satisfies the theorem's uniform-source
-assumption.
-Independent replays from twelve held-out texts across the two models reproduce
-the cached bootstrap outcomes and stopping positions.
+The artifact also preserves an earlier 100-delivery archive and an 18-pair
+bootstrap pilot. The latter used filtered floating probabilities with three
+unfiltered-argmax fallbacks, so neither historical cohort is pooled with the
+strict-source or unchanged-upstream comparisons.
 
 \subsection{The Endpoint Signal after Coding Repair}
 \label{sec:endpoint-replay}

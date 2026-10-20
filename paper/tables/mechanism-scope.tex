@@ -1,0 +1,42 @@
+\begin{table*}[t]
+\centering
+\caption{Mechanisms, assumptions, and comparison laws. Exact ideal results and
+finite-software measurements have separate claims. $Q$ denotes the stated
+source in each row, including its public context.}
+\label{tab:mechanism-scope}
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{.15\textwidth}>{\raggedright\arraybackslash}p{.27\textwidth}>{\raggedright\arraybackslash}p{.24\textwidth}>{\raggedright\arraybackslash}X}
+\toprule
+Mechanism & Randomness and numerical setting & Reference law & Established result \\
+\midrule
+Published RRC midpoint &
+Any fixed message; fresh continuous rotations; exact reals &
+Fresh $Q$ content with the encoder's exact length marginal, independently drawn &
+Public hazard; stopping separation under Theorem~\ref{thm:stopping}'s source conditions \\
+Reverse-verified midpoint &
+Same ideal rotations and arithmetic; recovery check can veto stopping &
+Same independent-length comparison, using this rule's own length marginal &
+Safe-interval band (Lemma~\ref{lem:verified-band}) and stopping separation \\
+Arithmetic-prefix recovery &
+Uniform payload with independent infinite continuation; exact reals &
+Independent-length comparison; public-stopping identity stated separately &
+Stopping separation; fixed-endpoint failure bound \\
+Guarded integer codec &
+Uniform payload and independent $g$-bit guard; integer CDF updates &
+$Q$ with the same integer-state stop, invalid states, and cap &
+Coding-only TV at most $TN/2^{g+1}$; public endpoint remains \\
+Original NLS audit &
+Uniform eight-bit inputs; zero padding; executed pinned code and synthetic uniform-64 source &
+Natural two-token strings, injective rendering &
+Exact complete-text TV $15/16$ despite reported KL zero \\
+Current RRC software &
+Finite PRNG tapes, nominal 53-bit rotations, Decimal arithmetic, model CDFs and published serialization &
+Fresh boundary-source content at independently assigned raw-token lengths, then the same serializer &
+Public text-score and recovery measurements; no transfer of the ideal theorem \\
+Authenticated Ghostext &
+Actual encrypted packets; finite guards and processed model source; no packet-uniformity premise &
+Previously eligible matched natural controls for successful no-tail deliveries &
+Post-hoc public endpoint support test, with explicit delivery/control conditioning \\
+\bottomrule
+\end{tabularx}
+\end{table*}

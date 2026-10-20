@@ -187,6 +187,94 @@ hazard union bound still bounds its lower tail. Adding the two tails proves
 Lemma~\ref{lem:verified-band}. For Eq.~\eqref{eq:dependent-source}, the miss
 bound is $4\,2^{-k}+4(7/8)^j$ for the band $[B-k,B+3+4j]$.
 
+\subsection{A Rational Finite-Size Certificate}
+\label{app:finite-certificate}
+
+For the source in Eq.~\eqref{eq:dependent-source}, $\rho=3/4$ and $b=2$.
+We sharpen the sufficient safe-rule tail without changing the verified rule.
+For a nonnegative decreasing $g$, put $G(x)=\int_0^x g(v)\,dv$. Equation~\eqref{eq:killed-kernel}
+can be written, with $x=z/q$, as
+\[
+ K_qg(z)=G(\min\{x,1/2\})+(1-2x)_+g(x),
+\]
+where the second term is evaluated only for $x<1/2$. On that interval its
+derivative with respect to $x$ is $-g(x)+(1-2x)g'(x)\le0$; above $1/2$ it is
+constant. Hence $K_qg\le K_\rho g$ for $q\le\rho$, and $K_\rho$ preserves
+nonnegative decreasing functions. Set $h_0=1$ and $h_{s+1}=K_\rho h_s$.
+Conditioning on each next selected token and using its independent uniform
+position shows that $h_s$ bounds safe-rule survival for $s$ further steps
+from any surviving history. Actual verification can accept additional points.
+
+At the entry time $\kappa$ above, retain the \emph{submeasure}
+$\mu(A)=\Pr(\tau_v>\kappa,z_\kappa\in A)$, supported on $[0,1/2]$.
+The entry argument gives $\mu([0,u])\le\min\{1,4u\}$. Integration against
+decreasing $h_s$ therefore yields
+\begin{equation}
+ \Pr(\tau_v>\kappa+s)\le H_s:=4\int_0^{1/4}h_s(z)\,dz.
+ \label{eq:rational-safe-tail}
+\end{equation}
+The submeasure is never normalized by survival. Each $h_s$ is a piecewise
+polynomial with rational coefficients and breakpoints among
+$0,(1/2)\rho^s,\ldots,(1/2)\rho,1/2$, so $H_s$ is computed exactly.
+For example, $H_1=5/6$, $H_2=37/54$, and $H_9\approx0.2122041$.
+Combining Eq.~\eqref{eq:rational-safe-tail} with the early-stop bound gives
+miss probability at most $4\,2^{-k}+H_s$ for $[L,U]=[B-k,B+3+2s]$.
+
+The natural band probability is bounded with an integer dynamic program.
+A path starting at state zero, with $u$ transitions $0\to0$ and $v$ transitions
+$0\to1$ in $n$ steps, has
+$I_n=n+u+v-\log_2(3^u)$. Let
+$f_u=\operatorname{bitlength}(3^u)-1$ and $c_u=f_u+\mathbf1_{\{u>0\}}$.
+For integer $L,U$, band membership is exactly
+\[
+ n+u+v-c_u\ge L,\qquad n+u+v-f_u\le U.
+\]
+This retains the integer-log case $u=0$ without floating tolerances.
+Lengths with $2n<L$ have zero band probability.
+
+At denominator $D=2^{60}$, propagate lower masses $w/D$ over the state and
+$(u,v)$ using integer counts $\lfloor3w/4\rfloor,\lfloor w/4\rfloor$
+from state zero and two copies of $\lfloor w/2\rfloor$ from state one.
+All merges are exact additions. Induction proves a lower bound for every
+state. If $S_n$ is the total count and $E_n$ the count inside the band, then
+\[
+ Q(L\le I_n\le U)\le(E_n+D-S_n)/D.
+\]
+No mass is renormalized: the entire deficit is an error budget. Counts sum
+to at most $D$, so even the largest product $3w<2^{62}$ fits unsigned 64-bit
+arithmetic.
+
+To cover lengths beyond a scan through $T$, put $R=P\odot P$. Its row sums
+are at most $5/8$, so
+\[
+ \mathbb E_Q[2^{-I_n}]=e_0^{\mathsf T}R^n\mathbf1\le(5/8)^n,\quad
+ Q(I_n\le U)\le2^U(5/8)^n.
+\]
+Let $\widehat A$ be the maximum of the finite-scan upper bounds and
+$2^U(5/8)^{T+1}$, capped at one. The terminal band then certifies
+\begin{equation}
+ \operatorname{TV}(P_B^{v},C_B)
+ \ge\max\{0,1-4\,2^{-k}-H_s-\widehat A\}.
+ \label{eq:finite-verified-certificate}
+\end{equation}
+The artifact uses $T=\lceil3B/2\rceil+64$ and retains every integer scan row.
+The following decimals are rounded downward from rational bounds:
+\[
+ \begin{array}{rrrr}
+ B&k&s&\text{certified TV lower bound}\\
+ 128&8&9&0\\
+ 512&8&9&0.13470320\\
+ 2048&8&12&0.42946703
+ \end{array}
+\]
+Independent run-composition counts additionally verify the natural maxima
+at lengths 154, 593, and 2353; this refinement leaves the displayed decimals
+unchanged. These are rigorous sufficient bounds, not exact TV or measured
+verified tails. They apply to the uncapped exact-real rule for every fixed
+payload, and hence independent payload mixtures, on this source. Finite
+rotations, successful-output conditioning, and text serialization require
+separate arguments.
+
 \subsection{Verified Zero-Varentropy Control}
 \label{app:verified-zero}
 

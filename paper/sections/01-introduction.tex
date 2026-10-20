@@ -1,41 +1,26 @@
 \section{Introduction}
 
-A language-model steganographic system must do two things that are easy to
-confuse: recover a hidden message and make the transmitted text difficult to
-distinguish from its cover source. Encrypting a message and mapping the resulting
-bits to model tokens can address the first requirement without satisfying the
-second. The distinction becomes particularly important for short, finite
-messages, where packet boundaries, decoder termination, and retries determine
-which texts are actually sent.
+A language-model steganographic encoder must eventually stop. For a finite
+message, a natural policy is to stop when the generated prefix lets the receiver
+recover the payload. That decision depends on the sampled content: an
+information-rich prefix can finish earlier than a predictable one. Even when
+every active token follows the intended source distribution, the observer
+receives a complete text whose content and endpoint were selected together.
+Reliable recovery and accurate active sampling therefore leave a separate
+security question about the transmitted text.
 
 Arithmetic coding supplies the basic connection between random bits and model
 sampling~\cite{ziegler2019neural,shen2020near}. Subsequent work strengthens security
 through fresh cryptographic randomness, distribution copies, and coupling
 constructions~\cite{kaptchuk2021language,ding2023discop,dewitt2024perfect}.
-Finite-message granularity and rounding are already recognized limitations of
-arithmetic-coding steganography~\cite{ding2023discop}; our starting point is not
-that these limitations are new. Instead, we ask which security measurements
-remain valid after a finite message is framed, encoded, and stopped.
+Finite-message granularity and rounding are already recognized
+limitations~\cite{ding2023discop}. We study the additional effect of terminating
+the output, giving the natural control the encoder's \emph{entire marginal
+length distribution}, independently of fresh source content. This removes any
+length-only distinguisher. An observer can still exploit content--length
+dependence without recovering a secret or breaking a pseudorandom generator.
 
-The answer depends on the object being measured. A quantized token table may
-closely approximate model probabilities, yet the encoder may select from that
-table using a nonuniform finite source. Even exact next-token sampling does not
-settle the distribution of complete texts when the stopping decision depends on
-the sampled content. Matching the marginal length histogram removes a direct
-length-only signal, but it does not remove correlations between content and
-length. An observer can exploit those correlations without recovering a secret
-or breaking a pseudorandom generator.
-
-We develop this distinction through Ghostext, an authenticated linguistic
-steganography prototype, and exact audits of related constructions. Our audit
-finds a terminal support restriction in Ghostext's original finite-integer
-codec. A separate experiment executes the original NLS coding function without
-modification: under uniform synthetic token probabilities, its finite-input
-padding restricts the final token to four of 64 possibilities, despite a reported
-KL of zero. The mechanisms differ, so we do not attribute Ghostext's interval
-implementation to NLS.
-
-Our main result concerns a broader termination problem. If an encoder finishes
+Our main result identifies when that residual signal grows. If an encoder finishes
 in a narrow band of cumulative source information, while independently sampled
 texts spread their information over a wider range, the endpoint exposes a
 public signal. We prove this concentration for arithmetic-prefix recovery and
@@ -44,7 +29,18 @@ midpoint rules~\cite{yan2026rrc}. On fixed Markov sources with positive
 varentropy, all three ideal mechanisms become asymptotically distinguishable
 even after matching the \emph{entire marginal length distribution}. A dependent zero-varentropy source gives exact equality instead. A fixed
 exogenous endpoint avoids the termination dependence but introduces a
-quantifiable recovery-failure probability.
+quantifiable recovery-failure probability. These results concern specified
+ideal mechanisms and source assumptions, which we keep separate from numerical
+software measurements.
+
+Reverse verification is a particularly important case. Current RRC code can
+reject a candidate endpoint when reversing its rotations would recover the
+wrong message. This changes the stopping law, so the published midpoint hazard
+cannot simply be reused. We prove a new concentration bound by tracking a
+one-sided interval of points that reverse safely to the original message.
+A contraction argument controls unusually narrow safe intervals and shows
+that correcting this recovery failure does not remove the ideal stopping
+separation.
 
 The distinction also reaches actual implementations. We execute unchanged
 current RRC sender and receiver functions over their full-vocabulary GPT-2
@@ -53,6 +49,15 @@ endpoint control. A separate public replay of Ghostext's authenticated delivery
 texts checks whether their first prefix-resolution endpoint remains visible
 after the integer-coding repair. These experiments keep numerical failures,
 serialization changes, and delivery conditioning explicit.
+
+Ghostext also supplies an authenticated implementation for separating the
+endpoint issue from finite-input coding errors. Its original integer codec
+has a terminal support restriction, addressed by a scoped guarded-prefix bound.
+A separate exhaustive experiment executes the original NLS coding function:
+with uniform synthetic token probabilities, finite-input padding restricts
+the last token to four of 64 choices despite reported KL zero. These audits
+test the executed law rather than equating a token-table diagnostic with
+complete-text security.
 
 \input{figures/intro-steganography}
 
@@ -68,7 +73,8 @@ controlled two-model studies and complete failure records.
 \paragraph{Scope}
 Our results do not show that all arithmetic-coding schemes share these defects.
 Meteor's fresh masking and Discop's randomized fixed-length experimental path
-are relevant negative controls. Nor do we claim that correcting finite-interval
+exclude the particular deterministic-padding example; their output policies
+still require their own complete-text analysis. Nor do we claim that correcting finite-interval
 rounding makes Ghostext a secure deployment tool. Filtering, retries, plaintext
 length, and output stopping remain part of the observable channel. The purpose
 of the revised system is to make these distinctions testable rather than to

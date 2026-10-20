@@ -20,7 +20,7 @@ def main():
     args = ap.parse_args()
     paths, blocks = [], []
     for policy, suffix in [("Strict", ""), ("Expanded", "-expanded")]:
-        for backend, label in [("gpt2", "GPT-2"), ("qwen", "Qwen")]:
+        for backend, label in [("gpt2", "GPT-2"), ("qwen", "Qwen3.5-2B")]:
             path = ROOT / f"results/sp2027-stopping-{backend}{suffix}/analysis.json"
             if not path.exists():
                 if args.require_all:
@@ -68,7 +68,7 @@ def main():
     ]
     (tables / "stopping-outcomes.tex").write_text("\n".join(status) + "\n")
     repair_lines = []
-    for backend, label in [("gpt2", "GPT-2"), ("qwen", "Qwen")]:
+    for backend, label in [("gpt2", "GPT-2"), ("qwen", "Qwen3.5-2B")]:
         path = ROOT / f"results/sp2027-repair-{backend}/analysis.json"
         if not path.exists():
             if args.require_all:
@@ -85,7 +85,7 @@ def main():
                 f"{probe['stego'].get('admissible', 0)}/{probe['natural'].get('admissible', 0)}" + r" \\")
     repair = [
         r"\begin{table*}[t]", r"\centering",
-        r"\caption{Fresh authenticated delivery trials under strict candidates, with 16-byte plaintexts and no natural tail. The interrupted/resumed Qwen $g=128$ case is reported separately and excluded here, leaving 39 evaluable trials in that row. Net rate conditions on delivery; probe counts use complete matched controls only.}",
+        r"\caption{Fresh authenticated delivery trials under strict candidates, with 16-byte plaintexts and no natural tail. The interrupted/resumed Qwen3.5-2B $g=128$ case is reported separately and excluded here, leaving 39 evaluable trials in that row. Net rate conditions on delivery; probe counts use complete matched controls only.}",
         r"\label{tab:repair-matrix}", r"\begin{tabular}{lrrrrrrr}", r"\toprule",
         r"Model & $g$ & Delivered/evaluable & First attempt & Attempts & Net bits/token & Matched pairs & Accepts (S/C) \\",
         r"\midrule", *repair_lines, r"\bottomrule", r"\end{tabular}", r"\end{table*}",

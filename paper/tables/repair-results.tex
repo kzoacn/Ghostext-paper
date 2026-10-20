@@ -1,6 +1,6 @@
 \begin{table*}[t]
 \centering
-\caption{Fresh authenticated delivery trials under strict candidates, with 16-byte plaintexts and no natural tail. The interrupted/resumed Qwen $g=128$ case is reported separately and excluded here, leaving 39 evaluable trials in that row. Net rate conditions on delivery; probe counts use complete matched controls only.}
+\caption{Fresh authenticated delivery trials under strict candidates, with 16-byte plaintexts and no natural tail. The interrupted/resumed Qwen3.5-2B $g=128$ case is reported separately and excluded here, leaving 39 evaluable trials in that row. Net rate conditions on delivery; probe counts use complete matched controls only.}
 \label{tab:repair-matrix}
 \begin{tabular}{lrrrrrrr}
 \toprule
@@ -8,8 +8,8 @@ Model & $g$ & Delivered/evaluable & First attempt & Attempts & Net bits/token & 
 \midrule
 GPT-2 & 0 & 19/20 & 12/20 & 51 & 0.556 & 9 & 9/4 \\
 GPT-2 & 128 & 19/20 & 12/20 & 46 & 0.553 & 13 & 13/13 \\
-Qwen & 0 & 39/40 & 33/40 & 59 & 0.413 & 37 & 37/19 \\
-Qwen & 128 & 38/39 & 36/39 & 56 & 0.416 & 37 & 37/37 \\
+Qwen3.5-2B & 0 & 39/40 & 33/40 & 59 & 0.413 & 37 & 37/19 \\
+Qwen3.5-2B & 128 & 38/39 & 36/39 & 56 & 0.416 & 37 & 37/37 \\
 \bottomrule
 \end{tabular}
 \end{table*}
