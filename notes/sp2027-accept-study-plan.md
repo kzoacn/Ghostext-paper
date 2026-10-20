@@ -37,7 +37,8 @@ These are external source inputs, fetched by immutable revision.
 The first stage uses the already pinned GPT-2 weights and tokenizer. It uses
 the upstream full-vocabulary source, including its special-token behavior,
 with no Ghostext truncation, quantization, or stability filter. Decimal
-precision follows the upstream rule with a 40-digit margin; rotations use
+precision in the two stopping arms follows the upstream rule with a 40-digit
+margin; rotations use
 the upstream `Decimal(prng.random())` path. Public probabilities are the
 differences of the actual Decimal-converted cumulative boundaries, rather
 than the separately reported softmax probabilities. The earlier 192-bit
@@ -63,6 +64,18 @@ verified arm. Its endpoint is independent of its own sampled content.
 This arm is a separately written control, not an unchanged upstream encoder.
 It will retain failed recovery rather than select successful fixed-budget
 deliveries.
+
+The excluded four-case harness pilot found a numerical issue before
+confirmatory generation: fixed-endpoint case `c4_0196_b512_r0` exhausted the
+40-digit reserve after 111 tokens and 660.019 bits of accumulated information.
+Its unchanged record is retained under `sp2027-upstream-gpt2-pilot`.
+Consequently the fixed-endpoint control, and only its receiver, will use
+precision margin `53 + N*(ceil(log10(V))+17) + 16`, where `N` is its predetermined
+endpoint and `V` the vocabulary size. This reserves precision for continued
+boundary multiplications. The two upstream stopping arms keep margin 40.
+A second excluded harness pilot will check the corrected control. This
+pilot-motivated change is frozen before the confirmatory cohort and changes
+neither its prompts, score, endpoint choice, nor planned size.
 
 Natural controls are independent draws from the same boundary-defined
 source, using lazy unbiased-bit comparison with the exact rational values of

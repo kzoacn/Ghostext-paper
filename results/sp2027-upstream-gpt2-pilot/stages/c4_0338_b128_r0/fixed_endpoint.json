@@ -1,0 +1,238 @@
+{
+  "status": "complete",
+  "error": null,
+  "token_ids": [
+    6884,
+    4896,
+    11,
+    475,
+    262,
+    2938,
+    3139,
+    7327,
+    788,
+    287,
+    4505,
+    318,
+    2440,
+    11,
+    290,
+    262,
+    5410,
+    3484,
+    561
+  ],
+  "tokens": 19,
+  "cover_text": "Residential buildings account for a significant amount of the national infrastructure investment, but the expected capital consumption then in Australia is higher, and the planning costs would",
+  "text_sha256": "8e5eb13d130b73089e17d7b2a424d758ae9c7f65eae665001fbb5d197d5cac31",
+  "context_token_ids": [
+    4965,
+    35599,
+    6832,
+    1848,
+    329,
+    257,
+    2383,
+    2033,
+    286,
+    262,
+    2260
+  ],
+  "visible_token_ids": [
+    4965,
+    35599,
+    6832,
+    1848,
+    329,
+    257,
+    2383,
+    2033,
+    286,
+    262,
+    2260,
+    6884,
+    4896,
+    11,
+    475,
+    262,
+    2938,
+    3139,
+    7327,
+    788,
+    287,
+    4505,
+    318,
+    2440,
+    11,
+    290,
+    262,
+    5410,
+    3484,
+    561
+  ],
+  "visible_continuation_token_ids": [
+    6884,
+    4896,
+    11,
+    475,
+    262,
+    2938,
+    3139,
+    7327,
+    788,
+    287,
+    4505,
+    318,
+    2440,
+    11,
+    290,
+    262,
+    5410,
+    3484,
+    561
+  ],
+  "prompt_prefix_matches": true,
+  "canonical_text_roundtrip": true,
+  "chosen_probabilities": [
+    0.0027361090104358,
+    0.06487266496353793,
+    0.1432068609556196,
+    0.0881328832862501,
+    0.11235743339762183,
+    0.0002515609898653,
+    0.0032262243832489,
+    0.0005851168661729,
+    7.31589129092e-05,
+    0.0081227261233839,
+    0.0066754357400041,
+    0.2558567761197585,
+    0.0123433119701433,
+    0.0327005014315667,
+    0.2024448465856007,
+    0.18978729539135902,
+    0.0003669674531009,
+    0.03379206111140842,
+    0.0153228529360047
+  ],
+  "interval_observations": [
+    {
+      "token_id": 6884,
+      "cdf_low": "0.6864750848869222",
+      "cdf_high": "0.689211193897358",
+      "probability_decimal": "0.0027361090104358"
+    },
+    {
+      "token_id": 4896,
+      "cdf_low": "0.23383907367505888",
+      "cdf_high": "0.2987117386385968",
+      "probability_decimal": "0.06487266496353792"
+    },
+    {
+      "token_id": 11,
+      "cdf_low": "0.3652768309547308",
+      "cdf_high": "0.5084836919103504",
+      "probability_decimal": "0.1432068609556196"
+    },
+    {
+      "token_id": 475,
+      "cdf_low": "0.1931678418706462",
+      "cdf_high": "0.2813007251568963",
+      "probability_decimal": "0.0881328832862501"
+    },
+    {
+      "token_id": 262,
+      "cdf_low": "0.0",
+      "cdf_high": "0.11235743339762183",
+      "probability_decimal": "0.11235743339762183"
+    },
+    {
+      "token_id": 2938,
+      "cdf_low": "0.7011496040503783",
+      "cdf_high": "0.7014011650402436",
+      "probability_decimal": "0.0002515609898653"
+    },
+    {
+      "token_id": 3139,
+      "cdf_low": "0.5824194374449142",
+      "cdf_high": "0.5856456618281631",
+      "probability_decimal": "0.0032262243832489"
+    },
+    {
+      "token_id": 7327,
+      "cdf_low": "0.907793580969446",
+      "cdf_high": "0.9083786978356189",
+      "probability_decimal": "0.0005851168661729"
+    },
+    {
+      "token_id": 788,
+      "cdf_low": "0.9580017615037016",
+      "cdf_high": "0.9580749204166108",
+      "probability_decimal": "0.0000731589129092"
+    },
+    {
+      "token_id": 287,
+      "cdf_low": "0.5599412447430784",
+      "cdf_high": "0.5680639708664623",
+      "probability_decimal": "0.0081227261233839"
+    },
+    {
+      "token_id": 4505,
+      "cdf_low": "0.5702452783412597",
+      "cdf_high": "0.5769207140812638",
+      "probability_decimal": "0.0066754357400041"
+    },
+    {
+      "token_id": 318,
+      "cdf_low": "0.0",
+      "cdf_high": "0.2558567761197585",
+      "probability_decimal": "0.2558567761197585"
+    },
+    {
+      "token_id": 2440,
+      "cdf_low": "0.4143959463247053",
+      "cdf_high": "0.4267392582948486",
+      "probability_decimal": "0.0123433119701433"
+    },
+    {
+      "token_id": 11,
+      "cdf_low": "0.8043936889469606",
+      "cdf_high": "0.8370941903785273",
+      "probability_decimal": "0.0327005014315667"
+    },
+    {
+      "token_id": 290,
+      "cdf_low": "0.0",
+      "cdf_high": "0.2024448465856007",
+      "probability_decimal": "0.2024448465856007"
+    },
+    {
+      "token_id": 262,
+      "cdf_low": "0.0",
+      "cdf_high": "0.18978729539135902",
+      "probability_decimal": "0.18978729539135902"
+    },
+    {
+      "token_id": 5410,
+      "cdf_low": "0.7401387725687231",
+      "cdf_high": "0.740505740021824",
+      "probability_decimal": "0.0003669674531009"
+    },
+    {
+      "token_id": 3484,
+      "cdf_low": "0.24418503992786345",
+      "cdf_high": "0.27797710103927187",
+      "probability_decimal": "0.03379206111140842"
+    },
+    {
+      "token_id": 561,
+      "cdf_low": "0.6996014061484976",
+      "cdf_high": "0.7149242590845023",
+      "probability_decimal": "0.0153228529360047"
+    }
+  ],
+  "surprisal_bits": 121.07342741433712,
+  "elapsed_seconds": 0.618923770962283,
+  "context_trim_calls": 0,
+  "rejected_stop_count": 0,
+  "requested_tokens": 19
+}

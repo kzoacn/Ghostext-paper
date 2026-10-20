@@ -6,7 +6,7 @@ encoder, receiver, numerical primitives, and model stepper are never patched.
 from __future__ import annotations
 
 import csv
-from decimal import Decimal
+from decimal import Decimal, getcontext
 from fractions import Fraction
 import hashlib
 import importlib.util
@@ -133,6 +133,7 @@ def summarize_record(tokenizer, context_ids, ids, observations, *, status, error
         "surprisal_bits": -sum(math.log2(p) for p in probabilities),
         "elapsed_seconds": elapsed, "context_trim_calls": trim_calls,
         "rejected_stop_count": extra_tokens,
+        "decimal_precision": getcontext().prec,
     }
 
 
@@ -179,6 +180,12 @@ def sample_control(core, model, tokenizer, context, *, case_id, bits, tokens, ex
     core.set_precision(bits, margin=40)
     ctx = tokenizer(context, return_tensors="pt")["input_ids"].to(model.device)
     vocab_size = min(model.config.vocab_size, len(tokenizer.vocab))
+    if exogenous:
+        # This control continues past payload completion. Reserve digits for
+        # every further boundary multiplication instead of inheriting the
+        # stopping encoder's payload-only precision allowance.
+        margin = 53 + tokens * (math.ceil(math.log10(vocab_size)) + 17) + 16
+        core.set_precision(bits, margin=margin)
     stepper = traced_stepper(core, model, vocab_size)
     secret, key = secret_and_key(case_id, bits, exogenous=True)
     rng = random.Random(key if exogenous else deterministic_seed(
@@ -226,11 +233,14 @@ def prefix_record(record, tokenizer, tokens):
     result["requested_tokens"] = tokens
     result["elapsed_scope"] = "Time of the full shared natural stream, not this prefix"
     result["sampling_bits_per_token"] = record["sampling_bits_per_token"][:tokens]
+    result["decimal_precision"] = record["decimal_precision"]
     return result
 
 
 def decode(core, model, tokenizer, context, record, *, case_id, bits, exogenous=False):
     core.set_precision(bits, margin=40)
+    if exogenous:
+        getcontext().prec = record["decimal_precision"]
     ctx = tokenizer(context, return_tensors="pt")["input_ids"].to(model.device)
     vocab_size = min(model.config.vocab_size, len(tokenizer.vocab))
     secret, key = secret_and_key(case_id, bits, exogenous=exogenous)

@@ -98,6 +98,7 @@ def prepare(args, provenance, source):
             "serialization": "tokenizer.decode(context+continuation, skip_special_tokens=True)",
             "variants": ["unverified", "verified", "fixed_endpoint"],
             "fixed_endpoint": "verified length, independent message/rotation tape",
+            "fixed_endpoint_precision_margin": "53 + N*(ceil(log10(vocabulary_size))+17) + 16",
         },
         "prompt_counts": prompt_counts, "prompts": dataset, "tasks": tasks,
         "runtime": build_runtime_info(),
