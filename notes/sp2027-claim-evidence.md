@@ -11,8 +11,20 @@ That archived release's artifact checks are recorded in the
 [release validation](sp2027-release-validation.json); the recommendation does
 not imply conference acceptance.
 
-The current revision adds the results below; its final artifact and independent
-acceptance assessment are being checked separately from the archived release.
+The theory and unchanged-upstream revision below was independently assessed
+in the [fresh review](reviews/2026-10-21-fresh-sp-review.md). Its recommendation
+is **Weak Accept, confidence 4/5**, with no confirmed scientific or artifact
+blocker. The assessed PDF and archive remain unchanged under
+`output/archive/weak-accept-theory-2026-10-21/`. Full reproduction passed for
+1,903 indexed files and 20 source profiles.
+
+A further [prospective follow-up](sp2027-observable-followup-plan.md) now
+addresses the remaining canonical-pair selection and empirical-breadth limits.
+It fixes an all-observable-text score, a second unchanged-upstream model
+replication, and independent endpoint-budget recovery curves. The
+[design audit](reviews/2026-10-21-observable-followup-design-review.md)
+finds no remaining design-level blocker. This is a plan, not new outcome
+evidence or a revised acceptance recommendation.
 
 | Claim | Evidence | Scope and limitation |
 |---|---|---|

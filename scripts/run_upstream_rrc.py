@@ -45,7 +45,8 @@ def event(directory, case_id, stage, state):
     path = directory / "events" / f"{case_id}.jsonl"
     path.parent.mkdir(parents=True, exist_ok=True)
     record = {"case_id": case_id, "stage": stage, "state": state,
-              "utc": datetime.now(timezone.utc).isoformat(), "pid": os.getpid()}
+              "utc": datetime.now(timezone.utc).isoformat(), "pid": os.getpid(),
+              "cpu_affinity": sorted(os.sched_getaffinity(0))}
     with path.open("a") as handle:
         handle.write(json.dumps(record) + "\n")
         handle.flush()
@@ -83,15 +84,35 @@ def prepare(args, provenance, source):
         "model.safetensors", "config.json", "tokenizer.json", "tokenizer_config.json",
         "vocab.json", "merges.txt", "revision.txt",
     ]]
+    from transformers import AutoTokenizer
+    tokenizer = AutoTokenizer.from_pretrained(args.model_path, local_files_only=True)
+    model_config = json.loads((args.model_path / "config.json").read_text())
+    source_dimensions = {
+        "model_output_vocabulary": model_config["vocab_size"],
+        "tokenizer_vocabulary": len(tokenizer.vocab),
+        "effective_vocabulary": min(model_config["vocab_size"], len(tokenizer.vocab)),
+    }
+    inputs = {str(args.study_plan.resolve().relative_to(ROOT)): digest(args.study_plan)}
+    if args.backend == "qwen25":
+        pin_path = ROOT / "results/sp2027-environment/qwen25-download.json"
+        pin = json.loads(pin_path.read_text())
+        if {p.name: digest(p) for p in model_files} != {
+                p.name: pin["files"][p.name] for p in model_files}:
+            raise ValueError("Second-model files differ from the prospective official pin")
+        inputs[str(pin_path.relative_to(ROOT))] = digest(pin_path)
     manifest = {
-        "schema": "upstream-rrc-v1", "backend": "gpt2", "pilot": args.pilot,
+        "schema": "upstream-rrc-v1", "backend": args.backend, "pilot": args.pilot,
         "created_utc": utc_timestamp(), "upstream": provenance,
         "source_sha256": {str(p.relative_to(ROOT.parent)): digest(p) for p in sources},
         "model_sha256": {p.name: digest(p) for p in model_files},
-        "study_plan_sha256": digest(ROOT / "notes/sp2027-accept-study-plan.md"),
+        "source_dimensions": source_dimensions,
+        "study_plan_sha256": digest(args.study_plan),
+        "study_plan_path": str(args.study_plan.resolve().relative_to(ROOT)),
+        "inputs": inputs,
         "parameters": {
             "seed": EXPERIMENT_SEED, "message_bits": [128, 512], "repeats": repeats,
             "threads": 1, "max_context_tokens": 900, "generation_cap": "2*message_bits",
+            "model_dtype": "float32",
             "precision_margin": 40, "candidate_source": "upstream full vocabulary",
             "rotations": "Decimal(random.Random.random()), nominal 53-bit uniform grid",
             "natural_sampling": "lazy unbiased-bit sampling of exact Decimal(str(CDF)) masses",
@@ -114,8 +135,9 @@ def prepare(args, provenance, source):
     path = args.out_dir / "manifest.json"
     if path.exists():
         old = json.loads(path.read_text())
-        for key in ["schema", "pilot", "upstream", "source_sha256", "model_sha256",
-                    "study_plan_sha256", "parameters", "prompts", "tasks"]:
+        for key in ["schema", "backend", "pilot", "upstream", "source_sha256", "model_sha256",
+                    "study_plan_sha256", "study_plan_path", "inputs", "parameters",
+                    "source_dimensions", "prompts", "tasks"]:
             if old[key] != manifest[key]:
                 raise ValueError(f"Resume mismatch in {key}")
         return old
@@ -127,6 +149,9 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--model-path", type=Path, required=True)
     parser.add_argument("--out-dir", type=Path, required=True)
+    parser.add_argument("--backend", choices=["gpt2", "qwen25"], default="gpt2")
+    parser.add_argument("--study-plan", type=Path,
+                        default=ROOT / "notes/sp2027-accept-study-plan.md")
     parser.add_argument("--pilot", action="store_true")
     parser.add_argument("--prepare-only", action="store_true")
     parser.add_argument("--shard-count", type=int, default=1)
@@ -135,14 +160,16 @@ def main():
     if not 0 <= args.shard_index < args.shard_count:
         raise ValueError("Invalid task shard")
     core, source, provenance = load_core()
+    core.use_single_cpu_thread()
     manifest = prepare(args, provenance, source)
     if args.prepare_only:
         print("Frozen", len(manifest["tasks"]), "planned secret instances.")
         return
-    core.use_single_cpu_thread()
+    import torch
     from transformers import AutoModelForCausalLM, AutoTokenizer
     model = AutoModelForCausalLM.from_pretrained(
-        args.model_path, local_files_only=True).eval()
+        args.model_path, local_files_only=True, dtype=torch.float32).eval()
+    assert all(p.dtype == torch.float32 for p in model.parameters())
     tokenizer = AutoTokenizer.from_pretrained(args.model_path, local_files_only=True)
     for index, task in enumerate(manifest["tasks"]):
         if index % args.shard_count != args.shard_index:
