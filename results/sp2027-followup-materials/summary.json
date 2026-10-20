@@ -1,0 +1,687 @@
+{
+  "all_planned_generations_complete": true,
+  "models": {
+    "gpt2": {
+      "public_score_statuses": {
+        "unverified": {
+          "positive": {
+            "complete": 160
+          },
+          "negative": {
+            "complete": 160
+          }
+        },
+        "verified": {
+          "positive": {
+            "complete": 160
+          },
+          "negative": {
+            "complete": 160
+          }
+        },
+        "fixed_endpoint": {
+          "positive": {
+            "complete": 160
+          },
+          "negative": {
+            "complete": 160
+          }
+        }
+      },
+      "verified_all_text": {
+        "128": {
+          "development_pairs": 40,
+          "test_pairs": 40,
+          "estimable": true,
+          "auc": 0.923125,
+          "auc_prompt_cluster_95": [
+            0.865,
+            0.9725
+          ],
+          "threshold": -5.74470951680081,
+          "threshold_is_negative_infinity": false,
+          "test_tpr": 0.775,
+          "test_fpr": 0.175,
+          "test_tpr_prompt_cluster_95": [
+            0.675,
+            0.875
+          ],
+          "test_fpr_prompt_cluster_95": [
+            0.05,
+            0.3
+          ],
+          "test_tpr_wilson_95": [
+            0.6249690325768998,
+            0.8768390867645927
+          ],
+          "test_fpr_wilson_95": [
+            0.0874541374603592,
+            0.31949990331787714
+          ],
+          "test_prompt_ids": [
+            "c4_0052",
+            "c4_0203",
+            "c4_0295",
+            "c4_0401",
+            "c4_0455",
+            "c4_0629",
+            "c4_0672",
+            "c4_0723",
+            "c4_0798",
+            "c4_0857"
+          ],
+          "length_baselines": {
+            "visible_token_count": {
+              "auc": 0.5059375,
+              "orientation": "higher is positive"
+            },
+            "visible_character_count": {
+              "auc": 0.5728125,
+              "orientation": "higher is positive"
+            }
+          },
+          "score_statuses": {
+            "positive": {
+              "complete": 40
+            },
+            "negative": {
+              "complete": 40
+            }
+          },
+          "by_test_prompt": {
+            "c4_0052": {
+              "pairs": 4,
+              "auc": 0.9375,
+              "tpr": 1.0,
+              "fpr": 0.25
+            },
+            "c4_0203": {
+              "pairs": 4,
+              "auc": 1.0,
+              "tpr": 1.0,
+              "fpr": 0.0
+            },
+            "c4_0295": {
+              "pairs": 4,
+              "auc": 0.875,
+              "tpr": 0.75,
+              "fpr": 0.25
+            },
+            "c4_0401": {
+              "pairs": 4,
+              "auc": 1.0,
+              "tpr": 1.0,
+              "fpr": 0.5
+            },
+            "c4_0455": {
+              "pairs": 4,
+              "auc": 1.0,
+              "tpr": 0.75,
+              "fpr": 0.0
+            },
+            "c4_0629": {
+              "pairs": 4,
+              "auc": 0.75,
+              "tpr": 0.75,
+              "fpr": 0.25
+            },
+            "c4_0672": {
+              "pairs": 4,
+              "auc": 1.0,
+              "tpr": 0.75,
+              "fpr": 0.0
+            },
+            "c4_0723": {
+              "pairs": 4,
+              "auc": 1.0,
+              "tpr": 0.75,
+              "fpr": 0.0
+            },
+            "c4_0798": {
+              "pairs": 4,
+              "auc": 0.9375,
+              "tpr": 0.5,
+              "fpr": 0.0
+            },
+            "c4_0857": {
+              "pairs": 4,
+              "auc": 0.75,
+              "tpr": 0.5,
+              "fpr": 0.5
+            }
+          },
+          "interval_scope": "Prompt-cluster resampling; fixed development threshold; no canonical selection."
+        },
+        "512": {
+          "development_pairs": 40,
+          "test_pairs": 40,
+          "estimable": true,
+          "auc": 0.97125,
+          "auc_prompt_cluster_95": [
+            0.925,
+            0.999375
+          ],
+          "threshold": -5.567879902378479,
+          "threshold_is_negative_infinity": false,
+          "test_tpr": 0.75,
+          "test_fpr": 0.0,
+          "test_tpr_prompt_cluster_95": [
+            0.5993750000000002,
+            0.9
+          ],
+          "test_fpr_prompt_cluster_95": [
+            0.0,
+            0.0
+          ],
+          "test_tpr_wilson_95": [
+            0.5980603857923197,
+            0.858128813609037
+          ],
+          "test_fpr_wilson_95": [
+            0,
+            0.08762160119728664
+          ],
+          "test_prompt_ids": [
+            "c4_0052",
+            "c4_0203",
+            "c4_0295",
+            "c4_0401",
+            "c4_0455",
+            "c4_0629",
+            "c4_0672",
+            "c4_0723",
+            "c4_0798",
+            "c4_0857"
+          ],
+          "length_baselines": {
+            "visible_token_count": {
+              "auc": 0.4934375,
+              "orientation": "higher is positive"
+            },
+            "visible_character_count": {
+              "auc": 0.511875,
+              "orientation": "higher is positive"
+            }
+          },
+          "score_statuses": {
+            "positive": {
+              "complete": 40
+            },
+            "negative": {
+              "complete": 40
+            }
+          },
+          "by_test_prompt": {
+            "c4_0052": {
+              "pairs": 4,
+              "auc": 0.875,
+              "tpr": 0.5,
+              "fpr": 0.0
+            },
+            "c4_0203": {
+              "pairs": 4,
+              "auc": 1.0,
+              "tpr": 0.5,
+              "fpr": 0.0
+            },
+            "c4_0295": {
+              "pairs": 4,
+              "auc": 0.8125,
+              "tpr": 0.75,
+              "fpr": 0.0
+            },
+            "c4_0401": {
+              "pairs": 4,
+              "auc": 1.0,
+              "tpr": 0.75,
+              "fpr": 0.0
+            },
+            "c4_0455": {
+              "pairs": 4,
+              "auc": 1.0,
+              "tpr": 1.0,
+              "fpr": 0.0
+            },
+            "c4_0629": {
+              "pairs": 4,
+              "auc": 1.0,
+              "tpr": 0.25,
+              "fpr": 0.0
+            },
+            "c4_0672": {
+              "pairs": 4,
+              "auc": 1.0,
+              "tpr": 1.0,
+              "fpr": 0.0
+            },
+            "c4_0723": {
+              "pairs": 4,
+              "auc": 1.0,
+              "tpr": 1.0,
+              "fpr": 0.0
+            },
+            "c4_0798": {
+              "pairs": 4,
+              "auc": 1.0,
+              "tpr": 1.0,
+              "fpr": 0.0
+            },
+            "c4_0857": {
+              "pairs": 4,
+              "auc": 1.0,
+              "tpr": 0.75,
+              "fpr": 0.0
+            }
+          },
+          "interval_scope": "Prompt-cluster resampling; fixed development threshold; no canonical selection."
+        }
+      },
+      "budget_counts": {
+        "128": {
+          "1.00": {
+            "planned_instances": 80,
+            "id_recovery_successes": 39,
+            "text_recovery_successes": 35,
+            "canonical_complete_outputs": 70,
+            "aggregate_bits_per_prescribed_token": 5.663716814159292
+          },
+          "1.25": {
+            "planned_instances": 80,
+            "id_recovery_successes": 59,
+            "text_recovery_successes": 53,
+            "canonical_complete_outputs": 67,
+            "aggregate_bits_per_prescribed_token": 4.479440069991251
+          },
+          "1.50": {
+            "planned_instances": 80,
+            "id_recovery_successes": 72,
+            "text_recovery_successes": 63,
+            "canonical_complete_outputs": 66,
+            "aggregate_bits_per_prescribed_token": 3.750915750915751
+          },
+          "2.00": {
+            "planned_instances": 80,
+            "id_recovery_successes": 79,
+            "text_recovery_successes": 70,
+            "canonical_complete_outputs": 66,
+            "aggregate_bits_per_prescribed_token": 2.831858407079646
+          }
+        },
+        "512": {
+          "1.00": {
+            "planned_instances": 80,
+            "id_recovery_successes": 35,
+            "text_recovery_successes": 26,
+            "canonical_complete_outputs": 60,
+            "aggregate_bits_per_prescribed_token": 5.684941013185288
+          },
+          "1.25": {
+            "planned_instances": 80,
+            "id_recovery_successes": 64,
+            "text_recovery_successes": 48,
+            "canonical_complete_outputs": 54,
+            "aggregate_bits_per_prescribed_token": 4.530472292887955
+          },
+          "1.50": {
+            "planned_instances": 80,
+            "id_recovery_successes": 75,
+            "text_recovery_successes": 56,
+            "canonical_complete_outputs": 51,
+            "aggregate_bits_per_prescribed_token": 3.7827853712596973
+          },
+          "2.00": {
+            "planned_instances": 80,
+            "id_recovery_successes": 79,
+            "text_recovery_successes": 59,
+            "canonical_complete_outputs": 42,
+            "aggregate_bits_per_prescribed_token": 2.842470506592644
+          }
+        }
+      }
+    },
+    "qwen25": {
+      "public_score_statuses": {
+        "unverified": {
+          "positive": {
+            "complete": 160
+          },
+          "negative": {
+            "complete": 160
+          }
+        },
+        "verified": {
+          "positive": {
+            "complete": 160
+          },
+          "negative": {
+            "complete": 160
+          }
+        },
+        "fixed_endpoint": {
+          "positive": {
+            "complete": 159,
+            "prompt_prefix_mismatch": 1
+          },
+          "negative": {
+            "complete": 160
+          }
+        }
+      },
+      "verified_all_text": {
+        "128": {
+          "development_pairs": 40,
+          "test_pairs": 40,
+          "estimable": true,
+          "auc": 0.96625,
+          "auc_prompt_cluster_95": [
+            0.92625,
+            0.995625
+          ],
+          "threshold": -2.8672870479865935,
+          "threshold_is_negative_infinity": false,
+          "test_tpr": 0.55,
+          "test_fpr": 0.0,
+          "test_tpr_prompt_cluster_95": [
+            0.375,
+            0.7
+          ],
+          "test_fpr_prompt_cluster_95": [
+            0.0,
+            0.0
+          ],
+          "test_tpr_wilson_95": [
+            0.39829091798932054,
+            0.6929469218909508
+          ],
+          "test_fpr_wilson_95": [
+            0,
+            0.08762160119728664
+          ],
+          "test_prompt_ids": [
+            "c4_0052",
+            "c4_0203",
+            "c4_0295",
+            "c4_0401",
+            "c4_0455",
+            "c4_0629",
+            "c4_0672",
+            "c4_0723",
+            "c4_0798",
+            "c4_0857"
+          ],
+          "length_baselines": {
+            "visible_token_count": {
+              "auc": 0.4965625,
+              "orientation": "higher is positive"
+            },
+            "visible_character_count": {
+              "auc": 0.4821875,
+              "orientation": "higher is positive"
+            }
+          },
+          "score_statuses": {
+            "positive": {
+              "complete": 40
+            },
+            "negative": {
+              "complete": 40
+            }
+          },
+          "by_test_prompt": {
+            "c4_0052": {
+              "pairs": 4,
+              "auc": 1.0,
+              "tpr": 0.75,
+              "fpr": 0.0
+            },
+            "c4_0203": {
+              "pairs": 4,
+              "auc": 1.0,
+              "tpr": 0.5,
+              "fpr": 0.0
+            },
+            "c4_0295": {
+              "pairs": 4,
+              "auc": 0.875,
+              "tpr": 0.75,
+              "fpr": 0.0
+            },
+            "c4_0401": {
+              "pairs": 4,
+              "auc": 1.0,
+              "tpr": 0.0,
+              "fpr": 0.0
+            },
+            "c4_0455": {
+              "pairs": 4,
+              "auc": 1.0,
+              "tpr": 0.5,
+              "fpr": 0.0
+            },
+            "c4_0629": {
+              "pairs": 4,
+              "auc": 1.0,
+              "tpr": 0.75,
+              "fpr": 0.0
+            },
+            "c4_0672": {
+              "pairs": 4,
+              "auc": 1.0,
+              "tpr": 1.0,
+              "fpr": 0.0
+            },
+            "c4_0723": {
+              "pairs": 4,
+              "auc": 0.875,
+              "tpr": 0.25,
+              "fpr": 0.0
+            },
+            "c4_0798": {
+              "pairs": 4,
+              "auc": 1.0,
+              "tpr": 0.5,
+              "fpr": 0.0
+            },
+            "c4_0857": {
+              "pairs": 4,
+              "auc": 1.0,
+              "tpr": 0.5,
+              "fpr": 0.0
+            }
+          },
+          "interval_scope": "Prompt-cluster resampling; fixed development threshold; no canonical selection."
+        },
+        "512": {
+          "development_pairs": 40,
+          "test_pairs": 40,
+          "estimable": true,
+          "auc": 0.975,
+          "auc_prompt_cluster_95": [
+            0.953125,
+            0.995
+          ],
+          "threshold": -4.090928791992724,
+          "threshold_is_negative_infinity": false,
+          "test_tpr": 0.525,
+          "test_fpr": 0.0,
+          "test_tpr_prompt_cluster_95": [
+            0.4,
+            0.65
+          ],
+          "test_fpr_prompt_cluster_95": [
+            0.0,
+            0.0
+          ],
+          "test_tpr_wilson_95": [
+            0.3749736210669248,
+            0.670645298873211
+          ],
+          "test_fpr_wilson_95": [
+            0,
+            0.08762160119728664
+          ],
+          "test_prompt_ids": [
+            "c4_0052",
+            "c4_0203",
+            "c4_0295",
+            "c4_0401",
+            "c4_0455",
+            "c4_0629",
+            "c4_0672",
+            "c4_0723",
+            "c4_0798",
+            "c4_0857"
+          ],
+          "length_baselines": {
+            "visible_token_count": {
+              "auc": 0.4971875,
+              "orientation": "higher is positive"
+            },
+            "visible_character_count": {
+              "auc": 0.4996875,
+              "orientation": "higher is positive"
+            }
+          },
+          "score_statuses": {
+            "positive": {
+              "complete": 40
+            },
+            "negative": {
+              "complete": 40
+            }
+          },
+          "by_test_prompt": {
+            "c4_0052": {
+              "pairs": 4,
+              "auc": 1.0,
+              "tpr": 0.25,
+              "fpr": 0.0
+            },
+            "c4_0203": {
+              "pairs": 4,
+              "auc": 1.0,
+              "tpr": 0.75,
+              "fpr": 0.0
+            },
+            "c4_0295": {
+              "pairs": 4,
+              "auc": 1.0,
+              "tpr": 0.25,
+              "fpr": 0.0
+            },
+            "c4_0401": {
+              "pairs": 4,
+              "auc": 0.9375,
+              "tpr": 0.5,
+              "fpr": 0.0
+            },
+            "c4_0455": {
+              "pairs": 4,
+              "auc": 1.0,
+              "tpr": 0.75,
+              "fpr": 0.0
+            },
+            "c4_0629": {
+              "pairs": 4,
+              "auc": 0.9375,
+              "tpr": 0.5,
+              "fpr": 0.0
+            },
+            "c4_0672": {
+              "pairs": 4,
+              "auc": 1.0,
+              "tpr": 0.75,
+              "fpr": 0.0
+            },
+            "c4_0723": {
+              "pairs": 4,
+              "auc": 1.0,
+              "tpr": 0.75,
+              "fpr": 0.0
+            },
+            "c4_0798": {
+              "pairs": 4,
+              "auc": 1.0,
+              "tpr": 0.5,
+              "fpr": 0.0
+            },
+            "c4_0857": {
+              "pairs": 4,
+              "auc": 1.0,
+              "tpr": 0.25,
+              "fpr": 0.0
+            }
+          },
+          "interval_scope": "Prompt-cluster resampling; fixed development threshold; no canonical selection."
+        }
+      },
+      "budget_counts": {
+        "128": {
+          "1.00": {
+            "planned_instances": 80,
+            "id_recovery_successes": 39,
+            "text_recovery_successes": 39,
+            "canonical_complete_outputs": 77,
+            "aggregate_bits_per_prescribed_token": 4.30432955023119
+          },
+          "1.25": {
+            "planned_instances": 80,
+            "id_recovery_successes": 59,
+            "text_recovery_successes": 57,
+            "canonical_complete_outputs": 77,
+            "aggregate_bits_per_prescribed_token": 3.4031239614489865
+          },
+          "1.50": {
+            "planned_instances": 80,
+            "id_recovery_successes": 69,
+            "text_recovery_successes": 67,
+            "canonical_complete_outputs": 77,
+            "aggregate_bits_per_prescribed_token": 2.852367688022284
+          },
+          "2.00": {
+            "planned_instances": 80,
+            "id_recovery_successes": 77,
+            "text_recovery_successes": 74,
+            "canonical_complete_outputs": 73,
+            "aggregate_bits_per_prescribed_token": 2.152164775115595
+          }
+        },
+        "512": {
+          "1.00": {
+            "planned_instances": 80,
+            "id_recovery_successes": 50,
+            "text_recovery_successes": 38,
+            "canonical_complete_outputs": 60,
+            "aggregate_bits_per_prescribed_token": 3.8352059925093633
+          },
+          "1.25": {
+            "planned_instances": 80,
+            "id_recovery_successes": 72,
+            "text_recovery_successes": 54,
+            "canonical_complete_outputs": 54,
+            "aggregate_bits_per_prescribed_token": 3.0612855007473843
+          },
+          "1.50": {
+            "planned_instances": 80,
+            "id_recovery_successes": 76,
+            "text_recovery_successes": 58,
+            "canonical_complete_outputs": 53,
+            "aggregate_bits_per_prescribed_token": 2.553775173015774
+          },
+          "2.00": {
+            "planned_instances": 80,
+            "id_recovery_successes": 77,
+            "text_recovery_successes": 59,
+            "canonical_complete_outputs": 45,
+            "aggregate_bits_per_prescribed_token": 1.9176029962546817
+          }
+        }
+      }
+    }
+  },
+  "finite_certificate_lower_bounds": {
+    "128": "0.00000000",
+    "512": "0.13470320",
+    "2048": "0.42946703"
+  }
+}

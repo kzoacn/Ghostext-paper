@@ -14,6 +14,11 @@ independently of a fresh source trajectory:
 Length alone has no distinguishing power in this comparison. Dependence between
 the content and its endpoint remains observable. Sampling from $Q$ with the
 encoder's own content-dependent stopping rule defines a different reference.
+Here a transcript is a token sequence and length is its token count. The
+result transfers to rendered strings when the observer can recover that
+sequence, including injective renderings. A lossy serializer can reduce TV.
+Our all-text experiments instead score the published string directly and
+do not assume that transfer or an equal visible-length histogram.
 
 The following event bound states the common mechanism. Its probability tools
 are elementary; the substantive premises are proved separately for each encoder.
@@ -179,8 +184,28 @@ of fresh source content. Then
 \end{theorem}
 
 Choose $k,r,j$ of order $\log B$ in the respective band bounds and apply
-Eqs.~\eqref{eq:band-criterion}--\eqref{eq:markov-anticoncentration}. For a fully
-explicit dependent example, take public initial state zero and
+Eqs.~\eqref{eq:band-criterion}--\eqref{eq:markov-anticoncentration}.
+
+\begin{corollary}[Full token support]
+\label{cor:full-support}
+Fix a finite alphabet of size $V\ge2$ and a time-homogeneous finite-order
+kernel with $q(a\mid h)>0$ for every token $a$ and context $h$. Unless every
+row is uniform over tokens, Theorem~\ref{thm:stopping} applies to this source
+from any fixed initial context.
+\end{corollary}
+
+The standard zero-varentropy characterization~\cite{kontoyiannis1998recurrence}
+implies that zero variance in this class is possible only for uniform IID
+tokens; Appendix~\ref{app:full-support} gives a short self-contained proof.
+Finiteness also supplies the bounds in Eq.~\eqref{eq:bounded-increments}.
+Both kernel and context order stay fixed as $B$ grows. An ideal fixed-window
+softmax source with finite logits and a nonuniform row fits these conditions
+if its law depends only on that window. This gives no useful numerical bound
+for a large neural context, and does not establish the premises for masked,
+rounded, or stateful implementations.
+
+\paragraph{An explicit dependent source}
+Take public initial state zero and
 \begin{equation}
  P=\begin{pmatrix}3/4&1/4\\1/2&1/2\end{pmatrix}.
  \label{eq:dependent-source}

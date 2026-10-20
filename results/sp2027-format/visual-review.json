@@ -1,105 +1,116 @@
 {
-  "pdf_sha256": "500f2431f56a735bd58ff600b70591da0c29686ad54aa1a15aa28c77b597c2f2",
+  "pdf_sha256": "8364e8e3d623da10e6c2d5575ccfd9761534ab4834e206c3e87c0a5b7902c8af",
   "all_pages_inspected": true,
   "render_dpi": 120,
-  "method": "Every page viewed individually. After the final appendix-only scope clarification, page16 was re-rendered and re-inspected; pages1--15 had byte-identical PNGs to the inspected version.",
+  "method": "Every one of the 18 final pages was rendered and viewed individually at 120 dpi after the final two-model result and proof integration. No clipping, overlap, broken glyph, or unreadable figure/table was found.",
   "pages": [
     {
       "page": 1,
-      "png_sha256": "64c83ed1e2dca8c471ee4c07fe812cc3c6a70e3c5fee5dca2089eb5c99be7863",
+      "png_sha256": "7504b2b328080ceef982fe3ec99bece698ec4c2e58dd32406d051b018155a19c",
       "result": "pass",
-      "notes": "Title, abstract and introduction are legible; empty author block preserves the venue layout."
+      "notes": "Title, abstract and introduction are legible; the unmodified class retains its anonymous title spacing."
     },
     {
       "page": 2,
-      "png_sha256": "f64c1e180157ef4992eb1e955c57e18a2c2b3bf276173082937867abe516d5d9",
+      "png_sha256": "44fb2b03ecd7618a0cc10594dccd5d59179a09f041d03449c711ec08d6607c50",
       "result": "pass",
-      "notes": "Architecture arrows and caption fit; body and TV display stay inside columns."
+      "notes": "Threat model, reference laws, TV definition and section transition fit both columns."
     },
     {
       "page": 3,
-      "png_sha256": "af074773de917392934cb1e2631e9a3e7203c0489f0761f8efbbc52f755c4080",
+      "png_sha256": "b86ec8b33b20a2c62dd408a135d2175166c342a89830dad1b1b96eef5324142c",
       "result": "pass",
-      "notes": "Finite-message equations and section transitions fit without overlap."
+      "notes": "Architecture figure, mechanism-scope table and terminal-information criterion are legible without clipping."
     },
     {
       "page": 4,
-      "png_sha256": "29fce6c519be7cc793f0517db66ce8fc3a43eb29a9759dfcf99681b616db44ce",
+      "png_sha256": "2a226cacb5ee65acfa2ed80b1ebe31f30823dd0e9b1e2132d8cf14f125cd31fc",
       "result": "pass",
-      "notes": "Criterion, endpoint identity and verified-band display are fully readable."
+      "notes": "Public-endpoint identity and the three terminal-band displays fit their columns."
     },
     {
       "page": 5,
-      "png_sha256": "4b0783c89c34703ad02c3dc0502d1b427c8b98c8b30e715668d1ed3fc4abadee",
+      "png_sha256": "22349b28e769147e817c6c42bfafd19530296e7ab8057f59af0c8298660edc76",
       "result": "pass",
-      "notes": "Markov matrix, explicit bound and fixed-endpoint tradeoff fit the columns."
+      "notes": "Stopping theorem, full-support corollary, explicit Markov bound and finite certificate are readable."
     },
     {
       "page": 6,
-      "png_sha256": "e3c3a4fa1d145586ed4cb6f449925498a2622b1e2862814ad79a50b1509f1ad0",
+      "png_sha256": "c8a3390e2ae56e0b6a780cccf0898fbd9c5361a7672e0c79c84fa5e28b619d90",
       "result": "pass",
-      "notes": "Guarded-code theorem, proof and implementation prose are readable."
+      "notes": "Finite-input counterexample, interval equations and packet-format description fit cleanly."
     },
     {
       "page": 7,
-      "png_sha256": "682613a510fea86ad1f89dec08dc22cdf33a13b8345c9722727c2c24a62ca4f8",
+      "png_sha256": "338cfe0d96a6e72337d19299b98596797cccc4bff9b831a46f1faf0526047c9d",
       "result": "pass",
-      "notes": "Exact-audit table and transition to simulation are readable; standard class spacing retained."
+      "notes": "Guarded-code theorem, proof and implementation settings are readable and correctly aligned."
     },
     {
       "page": 8,
-      "png_sha256": "130f48b16b26d45dc7fbce55e45552fc6882778cb43dd0e74c8f6a1b3903a02d",
+      "png_sha256": "f8dc03d548d9ff057435a65b46c855e2cc1303ebf8ba22833f86e36e9c58c4b9",
       "result": "pass",
-      "notes": "Two-panel scientific plot, axis labels, legends and caption are clear."
+      "notes": "Exact-audit table and evaluation methods are legible; standard float spacing is retained."
     },
     {
       "page": 9,
-      "png_sha256": "203abb3b2504ee67446e938d107462aa325cd7d6b6afae7b548b6675527cf581",
+      "png_sha256": "32ac04904858cdf8dbc74cd12095813128f64be2407efeca9143d295f70bab0e",
       "result": "pass",
-      "notes": "Upstream comparison table has complete headers, intervals and denominators."
+      "notes": "Two-panel finite-effects plot, legends, caption and upstream study methods are clear."
     },
     {
       "page": 10,
-      "png_sha256": "a0d33dccc647c5e25dc9a17ffd85372b0bf668560c486ba874b88199d2bf583b",
+      "png_sha256": "d74cbe5bb54535fb1bb01fe5419260b92e440cd1d2bdc156847d26e16288e486",
       "result": "pass",
-      "notes": "Four-panel upstream control figure and outcome table are legible, with no clipping."
+      "notes": "Both-model all-string table shows all twelve rows, confidence intervals, TPR/FPR and denominators."
     },
     {
       "page": 11,
-      "png_sha256": "c5002be1e1424eafbf597f5b64f71ce40b8b29da4cfa53974394ec3f83b96a3f",
+      "png_sha256": "08b5194aab2027845e0d0376f21042e7706be0605b9f814b052fbd4bf7ace8f5",
       "result": "pass",
-      "notes": "Controlled-model table and endpoint-replay discussion fit the columns."
+      "notes": "Four-panel budget-recovery plot, interval shading, axes, legend and caption are clear."
     },
     {
       "page": 12,
-      "png_sha256": "2f7726ca837b43475984f3b953d738f78b66b5528d838787ec1bbbbbd10aad41",
+      "png_sha256": "6b77642750331b36752cfb4c5bb7a63f72381cb58afb7ee547a8362dcf2afb8c",
       "result": "pass",
-      "notes": "Delivery and endpoint tables and related-work transition are clear."
+      "notes": "Delivery and endpoint tables, supporting studies and related-work text are legible."
     },
     {
       "page": 13,
-      "png_sha256": "616b33f0993e178fbabb923ba057a45dc87edb786ff634f51ed0bac2d662e28f",
+      "png_sha256": "542aba9cf19f349194cac9361ed2b8e405049e3811d198f7438b6b477d508b30",
       "result": "pass",
-      "notes": "Main text ends before references; URLs and bibliography entries fit."
+      "notes": "Limitations end on page 13 before the reference section; bibliography entries fit."
     },
     {
       "page": 14,
-      "png_sha256": "e85de25efe9afb443ed5f0f1946b89f5b6493696f6682eb4be85c6200f2bf528",
+      "png_sha256": "235b5be270b6e2e1885d83f1725495f067c3f95c0d03f603fcb1513d5b73befa",
       "result": "pass",
-      "notes": "Open-science, ethics, AI-use statements and Markov proof opening are readable."
+      "notes": "Remaining bibliography, open-science, ethics and AI-use statements are readable."
     },
     {
       "page": 15,
-      "png_sha256": "d99d59a19dd482ed6ed89a45de0b0a2890230faa0053f9ae66169a6fff49c20c",
+      "png_sha256": "a4515b0f44e54e2ea0f44c3a7aef1a8e035b90ae885491a46101e730a4d247b9",
       "result": "pass",
-      "notes": "Safe-interval and killed-kernel equations, cases and proof text fit."
+      "notes": "Full-support proof, Poisson identity and explicit Markov calculations fit without overlap."
     },
     {
       "page": 16,
-      "png_sha256": "687fd7f4edb4d9431e29de1f2466bb0a06715332cd7d399c4c85371e16f2eadd",
+      "png_sha256": "cf51586f805a0f083ad64d4a145397a67bc1d14757e0c1de870ccc0101859773",
       "result": "pass",
-      "notes": "Final scope clarification, reverse-error formula and finite-grid proof are readable."
+      "notes": "Verified safe-interval proof and piecewise killed-kernel displays are fully visible."
+    },
+    {
+      "page": 17,
+      "png_sha256": "551ce35e1c5e4b4be3515cddda24f0ad013af80f766482064b9927aa15358b7a",
+      "result": "pass",
+      "notes": "Finite certificate, exact decimal bounds, negative control and endpoint-approximation proof are legible."
+    },
+    {
+      "page": 18,
+      "png_sha256": "ffcf5443b4a685194372e00ae7b993332f577030d139676edaf8763cbc09b01d",
+      "result": "pass",
+      "notes": "Finite-grid scope, equations and ending fit the final page; remaining whitespace follows normal flow."
     }
-  ],
-  "issues_requiring_changes": []
+  ]
 }

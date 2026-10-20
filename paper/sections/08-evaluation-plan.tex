@@ -102,90 +102,121 @@ Count-and-length TV is a projection of complete-transcript TV.}
 \label{fig:finite-effects}
 \end{figure*}
 
-\subsection{Current Upstream Code and an Endpoint Control}
+\subsection{Upstream Code and Endpoint Controls}
 \label{sec:upstream-study}
 
-We separately execute RRC commit \texttt{dae3262} (September 2026)~\cite{rrc2026code}, including its
-unchanged \texttt{embed\_message} and \texttt{extract\_message} functions. This
-study uses the upstream full GPT-2 vocabulary and Decimal-converted CDFs;
-there is no Ghostext truncation, frequency quantization, or stability filter.
-The public information score uses differences of the actual cumulative
-boundaries, which need not equal the separately reported softmax values.
+We execute RRC commit \texttt{dae3262} (September 2026)~\cite{rrc2026code},
+including its unchanged \texttt{embed\_message} and \texttt{extract\_message}
+functions, on GPT-2 and Qwen2.5-0.5B. Both use the full tokenizer-supported
+vocabulary and upstream Decimal-converted CDFs, without Ghostext filtering or
+frequency quantization. Information scores use differences of the actual
+cumulative boundaries, which need not equal the separately reported softmax
+values. The context window is 900 tokens and the generation cap is $2B$.
 
-A frozen hash ordering of the released C4 prompt rows chooses 20 distinct
+A frozen hash ordering of the released C4 prompt rows chooses twenty distinct
 clusters: ten development and ten test prompts, with four tapes at each of
-128 and 512 bits, totaling 160 secret instances. The unverified and verified
-arms share a secret and rotation tape. A separate fixed-endpoint control uses
-independent secrets and rotations, stopping at the verified arm's length,
-which is independent of its own content. A fresh natural stream is sampled
-from the same boundary-defined source using lazy unbiased-bit comparisons;
-its prefixes provide exactly paired token lengths. Experimental random tapes
-remain seeded PRNG streams. Each complete output receives a fresh upstream
-receiver replay. The context window is 900 tokens and the cap is $2B$.
+128 and 512 bits, totaling 160 secret instances per model. The two models
+share these prompts and prescribed tapes; they are a model replication, not
+two independent prompt populations. Unverified and verified arms share a
+secret and rotation tape. A separate fixed-endpoint control has independent
+secrets and rotations and receives the verified arm's length, independently
+of its own content. A fresh natural stream uses lazy unbiased-bit sampling
+from the same boundary-defined source; its prefixes give exactly paired
+generated-token lengths. Every complete output receives a fresh upstream
+receiver replay. Experimental tapes remain seeded PRNG streams.
 
-The fixed-endpoint arm is a separately written control using upstream active
-primitives, not an unchanged encoder. An excluded four-case harness pilot
-found one precision-exhaustion failure when this control continued past
-payload completion. Before confirmatory generation, its Decimal reserve was
-increased as a fixed function of the prescribed endpoint and vocabulary size;
-the stopping arms retained the upstream 40-digit margin. Both pilot versions,
-including that failure, are retained. No prompts, scores, or sample counts
-were adjusted using confirmatory outcomes.
+The fixed-endpoint arm uses upstream active primitives in a separate loop,
+not an unchanged encoder. An excluded four-case GPT-2 pilot found precision
+exhaustion when this control continued past payload completion. Before the
+main cohort, its Decimal reserve was increased as a fixed function of endpoint
+and vocabulary size; stopping arms retained the upstream 40-digit margin.
+Both pilot versions and the excluded four-case Qwen harness check are retained.
+No main prompts, scores, or sample counts were adjusted using test outcomes.
 
-All 160 instances complete in all three arms and their natural controls, with
-no context trimming. On token IDs, the unverified receiver recovers 159/160
-messages; verification vetoes one candidate stop, adds one token, and gives
-160/160 recovery. Upstream serialization decodes the prompt plus continuation
-while skipping special tokens. Only 130 generated texts per arm and 132
-natural texts preserve their tokenization. This leaves 110 eligible matched
-pairs for either stopping arm and 107 for the independent-endpoint control.
-Visible-text recovery is 129/160 unverified and 130/160 verified. These losses
-are retained, not attributed to the stopping theorem or silently filtered from
-reliability counts.
+\paragraph{Recovery and serialization}
+All 160 instances per model complete in all three arms and their natural
+controls, with no context trimming. On token IDs, unverified recovery is
+159/160 for GPT-2 and 154/160 for Qwen; verification gives 160/160 for each.
+GPT-2 rejects one candidate stop and adds one token. Qwen rejects twelve
+candidate stops across six instances and adds fifteen tokens in total.
+Upstream serialization decodes prompt plus continuation while skipping special
+tokens. Visible-text recovery is only 129/160 unverified and 130/160 verified
+for GPT-2, and 120/160 and 125/160 for Qwen. The independent-endpoint control
+recovers 74/160 and 89/160 messages from IDs, versus 61/160 and 77/160 from
+text. These counts retain all failures.
 
-\input{tables/upstream-results}
+\paragraph{A public score on every published string}
+The observer independently tokenizes each published string and replays its
+continuation from the public prompt. It computes $-|I_{\mathrm{vis}}-B|$,
+where $I_{\mathrm{vis}}$ sums information along that retokenized path. This is
+a public statistic, not the likelihood summed over all serialization preimages.
+The scorer receives neither original IDs nor canonicality, receiver success,
+secret, tape, or class label. An empty continuation, public prompt-prefix
+mismatch, or zero-mass token receives score $-\infty$; execution errors cannot
+silently remove an observation. All planned generations complete, so no
+unobserved failed attempt is inserted as if it were a transmitted text.
 
-The prespecified score remains $-|I(y)-B|$, with the higher development-control
-95th percentile and a strict-greater decision. Both stopping arms have held-out
-AUCs $0.938/0.998$ at 128/512 bits (Table~\ref{tab:upstream-results}). The eligible
-slices contain ten and nine test prompt clusters, respectively. At 128 bits,
-the observed FPR is $0.200$; the zero FPR at 512 bits is only $0/21$ controls.
-Neither result establishes a calibrated low-FPR deployment operating point.
-Requiring successful text recovery changes unverified 128-bit AUC to $0.934$
-and leaves the verified results unchanged. A separate raw-token sensitivity
-retains all 160 instances, including serialization failures: verified AUCs are
-$0.926/0.996$, versus $0.542/0.534$ for the fixed-endpoint control. This is a
-raw-token comparison, not a visible-text result.
+This all-string rule is a retrospective follow-up for GPT-2, frozen before
+its new replays, and a prospective primary analysis for Qwen2.5, frozen before
+generation. Canonicality and recovery do not filter either class. Each
+model, payload size, and arm has forty development and forty test observations
+per class. The threshold is the higher development-control 95th percentile,
+with a strict-greater decision; intervals resample the ten test prompt clusters.
 
-The fixed-endpoint AUCs are $0.533/0.586$, with intervals that include $0.5$.
-These are a pipeline control, not empirical proof of equality. Its delivery
-cost is substantial at these independently chosen budgets: only 74/160
-messages recover from IDs and 61/160 from rendered text. The primary control
-analysis keeps these failures. Figure~\ref{fig:upstream-endpoints} shows the
-information-gap distributions. The ideal fixed-endpoint sampling argument,
-not a nonsignificant test, explains why decoupling the endpoint removes the
-particular stopping mechanism. Larger independently chosen budgets can improve
-recovery at a rate cost.
+\input{tables/upstream-observable-results}
 
+Table~\ref{tab:upstream-observable} gives verified AUCs $0.923/0.971$ for
+GPT-2 and $0.966/0.975$ for Qwen at 128/512 bits, versus $0.549/0.535$ and
+$0.532/0.481$ for independent endpoints. Verified threshold false positives
+are $7/40$ and $0/40$ for GPT-2 and $0/40$ at both Qwen sizes. Verified
+visible token-count AUCs range from $0.493$ to $0.506$ across the four
+model/size cells; character-count AUCs range from $0.482$ to $0.573$.
+Lossy serialization means those histograms are not exactly matched.
+After scoring, all 786 GPT-2 and 783 Qwen canonical output bindings reproduce
+their sender paths, while 174 and 177 noncanonical bindings remain included.
+One Qwen fixed-endpoint string has a public prompt-prefix mismatch and receives
+the predefined $-\infty$ score. Repeated arm bindings are not independent
+public inputs.
+
+Earlier canonical-pair and raw-token analyses remain separate sensitivities
+in the artifact. The canonical comparison retains 110 matched GPT-2 stopping
+pairs and 112 Qwen pairs; it cannot describe every emitted string. The
+fixed-endpoint control undergoes the same serialization and public scoring.
+AUC intervals containing $0.5$ are a pipeline diagnostic, not proof of source
+law equality. The ideal fixed-endpoint argument gives the mechanism-level
+explanation, separately from finite numerical evidence. Small test cohorts
+and observed false positives preclude a calibrated low-FPR deployment claim.
+
+\paragraph{Extra independent output budget}
+For every original instance, a separate run continues the independent control
+stream to $N$, $\lceil1.25N\rceil$, $\lceil1.5N\rceil$, and $2N$, where $N$
+is the other arm's verified endpoint. These budgets do not depend on whether
+this stream has recovered. Each reached prefix is saved before continuing;
+each distinct ID/text input receives an unchanged upstream receiver replay.
+The denominator includes all eighty planned instances per model and payload
+size. The numerical reserve is fixed using the largest prescribed endpoint.
+The extended stream ends at $2N$ and keeps the same 900-token context policy.
 \begin{figure*}[t]
 \centering
-\includegraphics[width=\textwidth]{figures/upstream-endpoint-control.pdf}
-\caption{Current upstream GPT-2 study: absolute information gaps on eligible
-held-out visible texts. Each panel has identical generated/control length
-histograms. The fixed-endpoint arm retains recovery failures. Axes are linear
-below one bit and logarithmic above it; all outlying gaps remain included.
-Canonical-text selection differs between arms and is quantified in
-Table~\ref{tab:upstream-results}.}
-\label{fig:upstream-endpoints}
+\includegraphics[width=\textwidth]{figures/upstream-budget-recovery.pdf}
+\caption{Recovery under independent endpoint budgets. Each panel retains
+all eighty planned instances across twenty prompt clusters. Shaded bands
+are 95\% pointwise intervals from 5000 prompt-cluster resamples. The budget
+is assigned independently of the control stream's own recovery.}
+\label{fig:upstream-budget}
 \end{figure*}
 
-A public-feature replay selects the first eligible held-out case per bit length
-and arm. Scoring uses only visible text, public prompt, model, and $B$, with no
-secret or rotation tape. All twelve arm/control records reproduce their saved
-token IDs and every selected CDF boundary; identical inputs shared across arms
-reduce this to nine distinct model replays. The upstream empirical result
-therefore concerns the current numerical implementation separately from the
-continuous verified-rule theorem.
+All 640 prefixes per model complete, and all 160 $N$ prefixes per model match
+the earlier control IDs and CDFs. At $2N$, ID recovery rises from 74/160 to
+158/160 for GPT-2 and from 89/160 to 154/160 for Qwen; text recovery rises
+from 61/160 to 129/160 and from 77/160 to 133/160
+(Figure~\ref{fig:upstream-budget}). At $N$, prescribed rates at 128/512 bits
+are $5.664/5.685$ bits/token for GPT-2 and $4.304/3.835$ for Qwen; doubling
+the budget halves these rates. They count prescribed payload bits, including
+unrecovered messages, rather than successful-delivery throughput. Two Qwen
+trajectories invoke context trimming at the two largest multipliers.
+The remaining text gap includes serialization effects. These measurements
+concern recovery and cost, not detector resistance at the larger budgets.
 
 \subsection{Supporting Studies under Processed Sources}
 

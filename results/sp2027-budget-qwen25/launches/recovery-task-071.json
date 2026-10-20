@@ -1,0 +1,50 @@
+{
+  "created_utc": "2026-10-20T23:24:40.391737+00:00",
+  "record_kind": "single_fixed_task_launch",
+  "manifest_sha256": "89714e4b55d10234036048fb3b2c55f2480c135e5435c58d7183bc8a4aba22f2",
+  "source_sha256": {
+    "Ghostext-paper/scripts/run_upstream_budget_curve.py": "c89e555ec7bc30369324df6c7c0377bb0b96fc46a94d3728e99d8182dbdb9619",
+    "Ghostext-paper/scripts/analyze_upstream_budget.py": "872fab86666a811e11dd5f31c329ee5ccf5fe0af0344be34ada206cb8462dfc2",
+    "Ghostext-paper/scripts/run_upstream_rrc.py": "baa9d4574e429526d7837a2833b99ba3f682b1b6def49f1ffd540ffef6da1cbd",
+    "Ghostext-paper/scripts/upstream_rrc_experiment.py": "d6077690d2e28749decc0a120bae351ba0809d4c96c8b3b016cbd7058fe6f953",
+    "Ghostext-paper/scripts/fetch_upstream_rrc.py": "980c231137094eea69a343456ca24d81619aa6641c7f15302d636261513159f2",
+    "Ghostext-paper/scripts/artifact_utils.py": "d10b888a292718b1b730d569e9eb0f9a8850f065359778b297536be503f7cbdf",
+    "Ghostext-paper/scripts/analyze_upstream_rrc.py": "0e65d7541551016456ec218b862442e2a912f132e39f55813cfe376d6a2af5c6",
+    "Ghostext-paper/scripts/analyze_stopping_llm.py": "812f86b2d61acc1173bde6b66c4aec219e028f43f9d15dc271ef2656c3e0b061",
+    "Ghostext-paper/scripts/audit_existing_evidence.py": "3984ccd585a271b520829c2691b340be80ef54e52114f023973668c625f864fa"
+  },
+  "schedule_sha256": "322f786dacb3a5ab15879e93ce2a74a422d189dc5563816aa51e4e165e1706ac",
+  "vacated_tool_session_id": 86579,
+  "vacated_exit_code_observed": 0,
+  "maximum_concurrent_model_workers": 7,
+  "command": [
+    "taskset",
+    "-c",
+    "0",
+    "/home/kzoacn/miniforge3/bin/python3",
+    "scripts/run_upstream_budget_curve.py",
+    "--cohort",
+    "results/sp2027-upstream-qwen25",
+    "--model-path",
+    "../models/qwen25-0.5b",
+    "--out-dir",
+    "results/sp2027-budget-qwen25",
+    "--shard-count",
+    "160",
+    "--shard-index",
+    "71"
+  ],
+  "workers": [
+    {
+      "manifest_task_index": 71,
+      "case_id": "c4_0455_b512_r3",
+      "reference_N": 118,
+      "shard_count": 160,
+      "shard_index": 71,
+      "cpu_affinity": [
+        0
+      ]
+    }
+  ],
+  "scope": "Execution scheduling of an unstarted task from the terminated original shard5/count6. All original scientific inputs, source code and randomness are unchanged; no extra sample or recovery-based inclusion."
+}

@@ -1,0 +1,309 @@
+{
+  "scope": "Saved-data analyses, exact finite calculations, and figure/table generation from a separate anonymous extraction; no new model inference. Every named output is compared byte-for-byte with the exported original.",
+  "analysis_and_render_checks": [
+    {
+      "check": "termination-theory",
+      "command": [
+        "python3",
+        "scripts/audit_termination_theory.py"
+      ],
+      "returncode": 0,
+      "outputs_match_byte_for_byte": true,
+      "outputs_sha256": {
+        "results/sp2027-termination-theory/summary.json": "d5316be34c7836ac2f88a692503e9bff253365b2d097344777649fce4ea5fa54"
+      }
+    },
+    {
+      "check": "finite-verified-certificate",
+      "command": [
+        "python3",
+        "scripts/certify_verified_stopping.py"
+      ],
+      "returncode": 0,
+      "outputs_match_byte_for_byte": true,
+      "outputs_sha256": {
+        "results/sp2027-verified-certificate/summary.json": "42e09d46658fe989767907c63804382b146c23a3c0d38f0f813cebcc1695685c",
+        "results/sp2027-verified-certificate/band-scan-b128-k8-m9.json": "2558ba4aed1808e30d216aeaa737c99082f735790cd5587e3d903da815cea83e",
+        "results/sp2027-verified-certificate/band-scan-b512-k8-m9.json": "37e069c04d41a7d67b83cab1cd88cc5fe90beec88653796d74a9e8b857b0291c",
+        "results/sp2027-verified-certificate/band-scan-b2048-k8-m12.json": "7da17445a970e1145da0e872e34130d498c142670b9ab588c236ba80a74e4fc3"
+      }
+    },
+    {
+      "check": "observable-synthetic-audit",
+      "command": [
+        "python3",
+        "scripts/audit_observable_followup.py"
+      ],
+      "returncode": 0,
+      "outputs_match_byte_for_byte": true,
+      "outputs_sha256": {
+        "results/sp2027-observable-audit/summary.json": "d989ef1784f87767759a053c49268b88af6a9e8c77b3e3d700b411553e035956"
+      }
+    },
+    {
+      "check": "upstream-execution-audit",
+      "command": [
+        "python3",
+        "scripts/audit_upstream_execution.py"
+      ],
+      "returncode": 0,
+      "outputs_match_byte_for_byte": true,
+      "outputs_sha256": {
+        "results/sp2027-validation/upstream-qwen25-execution.json": "d6efe5ef71704309da8b2b8b4f2be927c405746a32cc7e517a38b054265e6499"
+      }
+    },
+    {
+      "check": "upstream-analyses",
+      "command": [
+        "python3",
+        "scripts/analyze_upstream_rrc.py",
+        "results/sp2027-upstream-gpt2",
+        "results/sp2027-upstream-gpt2-pilot",
+        "results/sp2027-upstream-gpt2-pilot-v2",
+        "results/sp2027-upstream-qwen25-pilot",
+        "results/sp2027-upstream-qwen25"
+      ],
+      "returncode": 0,
+      "outputs_match_byte_for_byte": true,
+      "outputs_sha256": {
+        "results/sp2027-upstream-gpt2/analysis.json": "56d0f4daf5ea2f2fa15fb61d83e4446ef612100dcb3ff5910c69ec8fce13bacf",
+        "results/sp2027-upstream-gpt2-pilot/analysis.json": "20b52012ef1b180b47b62df194a8ae455c146cb621892f6c4b46daab5e9cd424",
+        "results/sp2027-upstream-gpt2-pilot-v2/analysis.json": "e7df571912c656cbc818b2d1459856537515f38a17bebbac251c0b30d8ce4ecc",
+        "results/sp2027-upstream-qwen25-pilot/analysis.json": "83bb315a947c6b66fc579d3a4b593a476360ef478025019e838f29a2af025f58",
+        "results/sp2027-upstream-qwen25/analysis.json": "ba6a1614f70192bc67dfa9d718af3061e224fbd8520f0e74bfcba9b6cc6286ba"
+      }
+    },
+    {
+      "check": "raw-token-gpt2",
+      "command": [
+        "python3",
+        "scripts/analyze_upstream_tokens.py",
+        "--cohort",
+        "results/sp2027-upstream-gpt2"
+      ],
+      "returncode": 0,
+      "outputs_match_byte_for_byte": true,
+      "outputs_sha256": {
+        "results/sp2027-upstream-gpt2/raw-token-sensitivity.json": "02df9d7e501bfa459c9676983e9b40d6822b26ae2dff50ca1b2bfdfc351d4804"
+      }
+    },
+    {
+      "check": "raw-token-qwen25",
+      "command": [
+        "python3",
+        "scripts/analyze_upstream_tokens.py",
+        "--cohort",
+        "results/sp2027-upstream-qwen25"
+      ],
+      "returncode": 0,
+      "outputs_match_byte_for_byte": true,
+      "outputs_sha256": {
+        "results/sp2027-upstream-qwen25/raw-token-sensitivity.json": "e4fec0ab1fa7b5071c797096955469b371dbee16ccff5010af3e211a52b87a4d"
+      }
+    },
+    {
+      "check": "observable-analyses",
+      "command": [
+        "python3",
+        "scripts/analyze_upstream_observable.py",
+        "results/sp2027-observable-gpt2",
+        "results/sp2027-observable-qwen25"
+      ],
+      "returncode": 0,
+      "outputs_match_byte_for_byte": true,
+      "outputs_sha256": {
+        "results/sp2027-observable-gpt2/analysis.json": "533d467c75dda176c03ed9f89863dc3d765920940ad556e155f775a056774274",
+        "results/sp2027-observable-qwen25/analysis.json": "894549e1889605eb142609f2b0b36eb1bb06e5e678e87159d5c730d09b11cb75"
+      }
+    },
+    {
+      "check": "budget-analyses",
+      "command": [
+        "python3",
+        "scripts/analyze_upstream_budget.py",
+        "results/sp2027-budget-gpt2",
+        "results/sp2027-budget-qwen25"
+      ],
+      "returncode": 0,
+      "outputs_match_byte_for_byte": true,
+      "outputs_sha256": {
+        "results/sp2027-budget-gpt2/analysis.json": "6b86c7b35f8d20418f43dd1f7bbec5f69ed9d4390db5b1e68f677b1c6cd2b458",
+        "results/sp2027-budget-qwen25/analysis.json": "df553cfd363d8da81e62adf8da61c124afc7af51f5eaef201ebc16a63ba13748"
+      }
+    },
+    {
+      "check": "assembled-budget-case",
+      "command": [
+        "python3",
+        "scripts/assemble_saved_budget_case.py",
+        "results/sp2027-budget-qwen25",
+        "--case-id",
+        "c4_0203_b128_r3"
+      ],
+      "returncode": 0,
+      "outputs_match_byte_for_byte": true,
+      "outputs_sha256": {
+        "results/sp2027-budget-qwen25/cases/c4_0203_b128_r3.json": "d90f3815f5e5028f9146b78492dfb848c3088620504b58564bf39fdef48b860f",
+        "results/sp2027-budget-qwen25/assembly-receipts/c4_0203_b128_r3.json": "af4c8b1e0001394980033db3aecc47a29bdda4a3f66176d153b8dd107e0aeedf"
+      }
+    },
+    {
+      "check": "observable-fidelity-gpt2",
+      "command": [
+        "python3",
+        "scripts/audit_observable_fidelity.py",
+        "--cohort",
+        "results/sp2027-upstream-gpt2",
+        "--replay",
+        "results/sp2027-observable-gpt2",
+        "--out",
+        "results/sp2027-observable-fidelity/gpt2.json"
+      ],
+      "returncode": 0,
+      "outputs_match_byte_for_byte": true,
+      "outputs_sha256": {
+        "results/sp2027-observable-fidelity/gpt2.json": "ea437c59e2d59c104b55df4149a6a9f4f89dc4e8145924fc4dbb1611c49dbbd7"
+      }
+    },
+    {
+      "check": "observable-fidelity-qwen25",
+      "command": [
+        "python3",
+        "scripts/audit_observable_fidelity.py",
+        "--cohort",
+        "results/sp2027-upstream-qwen25",
+        "--replay",
+        "results/sp2027-observable-qwen25",
+        "--out",
+        "results/sp2027-observable-fidelity/qwen25.json"
+      ],
+      "returncode": 0,
+      "outputs_match_byte_for_byte": true,
+      "outputs_sha256": {
+        "results/sp2027-observable-fidelity/qwen25.json": "724432e3ca17184b9569d154cff9811ba3c746d01a5bcbb6053ca51b2d4187c9"
+      }
+    },
+    {
+      "check": "endpoint-analyses",
+      "command": [
+        "python3",
+        "scripts/analyze_public_endpoint.py",
+        "results/sp2027-endpoint-gpt2",
+        "results/sp2027-endpoint-gpt2-corrected",
+        "results/sp2027-endpoint-qwen"
+      ],
+      "returncode": 0,
+      "outputs_match_byte_for_byte": true,
+      "outputs_sha256": {
+        "results/sp2027-endpoint-gpt2/analysis.json": "a9ea491ac1366c500399950877c7826add336345ef0650a77310b76a9f16a096",
+        "results/sp2027-endpoint-gpt2-corrected/analysis.json": "1c876cd65652a7ab50b3b69c3f41cb8b19e228d4fbe7737910e0d144abf56fdb",
+        "results/sp2027-endpoint-qwen/analysis.json": "98bb1cbd5284909b60e6d9c46fd5aa5aeaa25aeb838b553e6228db007f7236cc"
+      }
+    },
+    {
+      "check": "processed-source-analyses",
+      "command": [
+        "python3",
+        "scripts/analyze_stopping_llm.py",
+        "results/sp2027-stopping-gpt2",
+        "results/sp2027-stopping-qwen",
+        "results/sp2027-stopping-gpt2-expanded",
+        "results/sp2027-stopping-qwen-expanded"
+      ],
+      "returncode": 0,
+      "outputs_match_byte_for_byte": true,
+      "outputs_sha256": {
+        "results/sp2027-stopping-gpt2/analysis.json": "f73f3de607d845835d9023dab973a253fa1c928763e3ad436b578d6844b7703b",
+        "results/sp2027-stopping-qwen/analysis.json": "735804ff95e7be699e7b70425f4ba2d661fe5e2af6f2b8b58014171f73a42eaf",
+        "results/sp2027-stopping-gpt2-expanded/analysis.json": "07f74d1d9de233860c7436acfdcd4219b4c637fb5400b1a92fc4fcd8eed89937",
+        "results/sp2027-stopping-qwen-expanded/analysis.json": "2fb07a66947b9e0752a2bfc6b0cdaebe730f285de676dca9dcfd9e0dce495a77"
+      }
+    },
+    {
+      "check": "delivery-analyses",
+      "command": [
+        "python3",
+        "scripts/analyze_repair_matrix.py",
+        "results/sp2027-repair-gpt2",
+        "results/sp2027-repair-qwen"
+      ],
+      "returncode": 0,
+      "outputs_match_byte_for_byte": true,
+      "outputs_sha256": {
+        "results/sp2027-repair-gpt2/analysis.json": "3efc46c26ea02b25f53d1d607d23f87522e441ae4754c1f8b7402797ea54c9e3",
+        "results/sp2027-repair-qwen/analysis.json": "fdf5ac18ce14215b4f9838520a31690df1e26d24b33fe6f1a14bbf5bb063c794"
+      }
+    },
+    {
+      "check": "older-tables",
+      "command": [
+        "python3",
+        "scripts/generate_evaluation_tables.py",
+        "--require-all"
+      ],
+      "returncode": 0,
+      "outputs_match_byte_for_byte": true,
+      "outputs_sha256": {
+        "paper/tables/stopping-results.tex": "356399843455a0df602310a59b6e3a2a77cfb8d3986ce599226243b4717545dc",
+        "paper/tables/stopping-outcomes.tex": "359c18bbf115a6428cb4923879e2f18933a4eba882e7c5e8f0940274c1f3bfb6",
+        "paper/tables/repair-results.tex": "5f06ddf0ab74ee9229e3c64cd21c01b09faa5dd4ca5e2c12c5256b20baa5c0e0",
+        "results/sp2027-tables/manifest.json": "cfa455084f9329848168264c0abedea71c50241e9c7669be1c45a6e3b9ec8118"
+      }
+    },
+    {
+      "check": "older-figures",
+      "command": [
+        "python3",
+        "scripts/generate_revision_figures.py"
+      ],
+      "returncode": 0,
+      "outputs_match_byte_for_byte": true,
+      "outputs_sha256": {
+        "paper/figures/finite-message-effects.pdf": "82414db33b206e9dc84c6c13da4a076da35919530f4bc82bc0e6020ff5262553",
+        "paper/figures/stopping-llm-gap.pdf": "04061612218a51ded4bb5bee2a1a46412619a82c0956a4a76f38dcbe586fdeb6",
+        "results/sp2027-figures/manifest.json": "374a3db27d25efee2bb4671130c200f91cb6bc54fd017e4a2377450a9914eb82"
+      }
+    },
+    {
+      "check": "upstream-and-endpoint-materials",
+      "command": [
+        "python3",
+        "scripts/generate_accept_materials.py"
+      ],
+      "returncode": 0,
+      "outputs_match_byte_for_byte": true,
+      "outputs_sha256": {
+        "paper/tables/upstream-results.tex": "bcab699931d0df9043765c0676e4622e86cfe61c83ee5e5e27a200a0e456d96f",
+        "paper/tables/endpoint-replay.tex": "1c9b08e7583adad7ea67efe6c575dce623a5e585219d89960e05213e13ce2e67",
+        "paper/figures/upstream-endpoint-control.pdf": "43ddfb6529c39e7a8f04621b4d45953a3bf2174a63d3614be96888a051da0a8e",
+        "results/sp2027-accept-tables/manifest.json": "59d270498c903e8e774cbceb18cc8f091c133fa258ba150967fe187be4e47126",
+        "results/sp2027-accept-figures/manifest.json": "a0077f58dcda6ec92ebc3489eba068bfd6d3e94dcec1cc1e1a8b83612c67e570"
+      }
+    },
+    {
+      "check": "followup-materials",
+      "command": [
+        "python3",
+        "scripts/generate_followup_materials.py"
+      ],
+      "returncode": 0,
+      "outputs_match_byte_for_byte": true,
+      "outputs_sha256": {
+        "paper/tables/upstream-observable-results.tex": "707ba1a9deeb608a6feb8aadbe6467c5601dbb7e6687256ab306ee399c491786",
+        "paper/tables/upstream-budget-results.tex": "4a64d5c082d6b67c33273bb32bee41d8bddd1c62b2074c3dd218732e6a83518f",
+        "paper/figures/upstream-budget-recovery.pdf": "5bce2d773d9fca46c65c1183134901318ca65f0ff5dd6615510fc119f3de8369",
+        "results/sp2027-followup-materials/summary.json": "32366a2807700e284ada54d085fedd2e566ea3e50234962ba84d3d5cd47d7d06",
+        "results/sp2027-followup-materials/manifest.json": "ac84d467c1766449b11b2875bc2dd9dde9d7831b8de4e506e18f8b0f4c2177cb"
+      }
+    }
+  ],
+  "all_passed": true,
+  "validated_snapshot": {
+    "archive_sha256": "4db29efd219ee8aa568426364fd806570ea8c8e138cae65d5df5d5c629c0a2d0",
+    "file_index_sha256": "471acde5a7cc879d7d338584c6794c996d51a5189c456100d24b93dff1af7c01",
+    "indexed_files": 8625,
+    "pdf_sha256": "8364e8e3d623da10e6c2d5575ccfd9761534ab4834e206c3e87c0a5b7902c8af",
+    "artifact_status": "complete prerelease; final export adds current validation receipts and visual review",
+    "model_inference_performed": false
+  }
+}

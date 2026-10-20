@@ -1,0 +1,164 @@
+{
+  "created_utc": "2026-10-20T23:00:23.377989+00:00",
+  "manifest_sha256": "89714e4b55d10234036048fb3b2c55f2480c135e5435c58d7183bc8a4aba22f2",
+  "source_sha256": {
+    "Ghostext-paper/scripts/run_upstream_budget_curve.py": "c89e555ec7bc30369324df6c7c0377bb0b96fc46a94d3728e99d8182dbdb9619",
+    "Ghostext-paper/scripts/analyze_upstream_budget.py": "872fab86666a811e11dd5f31c329ee5ccf5fe0af0344be34ada206cb8462dfc2",
+    "Ghostext-paper/scripts/run_upstream_rrc.py": "baa9d4574e429526d7837a2833b99ba3f682b1b6def49f1ffd540ffef6da1cbd",
+    "Ghostext-paper/scripts/upstream_rrc_experiment.py": "d6077690d2e28749decc0a120bae351ba0809d4c96c8b3b016cbd7058fe6f953",
+    "Ghostext-paper/scripts/fetch_upstream_rrc.py": "980c231137094eea69a343456ca24d81619aa6641c7f15302d636261513159f2",
+    "Ghostext-paper/scripts/artifact_utils.py": "d10b888a292718b1b730d569e9eb0f9a8850f065359778b297536be503f7cbdf",
+    "Ghostext-paper/scripts/analyze_upstream_rrc.py": "0e65d7541551016456ec218b862442e2a912f132e39f55813cfe376d6a2af5c6",
+    "Ghostext-paper/scripts/analyze_stopping_llm.py": "812f86b2d61acc1173bde6b66c4aec219e028f43f9d15dc271ef2656c3e0b061",
+    "Ghostext-paper/scripts/audit_existing_evidence.py": "3984ccd585a271b520829c2691b340be80ef54e52114f023973668c625f864fa"
+  },
+  "supersedes_planned_execution_in": "interruptions/worker-5-01.json",
+  "original_shard_index": 5,
+  "original_shard_count": 6,
+  "maximum_concurrent_model_workers": 7,
+  "reason": "The original shard process has terminated. Assign its twenty not-yet-started cases individually to vacated model-worker slots using the unchanged runner CLI. This shortens the recovery tail without increasing concurrency or changing any experimental instance.",
+  "ordering": "Descending preassigned reference_N, then original manifest index; execution scheduling only, no outcome-based sample selection.",
+  "tasks": [
+    {
+      "manifest_task_index": 119,
+      "case_id": "c4_0672_b512_r3",
+      "reference_N": 622,
+      "shard_count": 160,
+      "shard_index": 119
+    },
+    {
+      "manifest_task_index": 47,
+      "case_id": "c4_0295_b512_r3",
+      "reference_N": 325,
+      "shard_count": 160,
+      "shard_index": 47
+    },
+    {
+      "manifest_task_index": 95,
+      "case_id": "c4_0603_b512_r3",
+      "reference_N": 126,
+      "shard_count": 160,
+      "shard_index": 95
+    },
+    {
+      "manifest_task_index": 53,
+      "case_id": "c4_0305_b512_r1",
+      "reference_N": 125,
+      "shard_count": 160,
+      "shard_index": 53
+    },
+    {
+      "manifest_task_index": 71,
+      "case_id": "c4_0455_b512_r3",
+      "reference_N": 118,
+      "shard_count": 160,
+      "shard_index": 71
+    },
+    {
+      "manifest_task_index": 77,
+      "case_id": "c4_0471_b512_r1",
+      "reference_N": 118,
+      "shard_count": 160,
+      "shard_index": 77
+    },
+    {
+      "manifest_task_index": 149,
+      "case_id": "c4_0798_b512_r1",
+      "reference_N": 102,
+      "shard_count": 160,
+      "shard_index": 149
+    },
+    {
+      "manifest_task_index": 101,
+      "case_id": "c4_0612_b512_r1",
+      "reference_N": 98,
+      "shard_count": 160,
+      "shard_index": 101
+    },
+    {
+      "manifest_task_index": 143,
+      "case_id": "c4_0731_b512_r3",
+      "reference_N": 98,
+      "shard_count": 160,
+      "shard_index": 143
+    },
+    {
+      "manifest_task_index": 125,
+      "case_id": "c4_0723_b512_r1",
+      "reference_N": 87,
+      "shard_count": 160,
+      "shard_index": 125
+    },
+    {
+      "manifest_task_index": 137,
+      "case_id": "c4_0731_b128_r1",
+      "reference_N": 42,
+      "shard_count": 160,
+      "shard_index": 137
+    },
+    {
+      "manifest_task_index": 89,
+      "case_id": "c4_0603_b128_r1",
+      "reference_N": 33,
+      "shard_count": 160,
+      "shard_index": 89
+    },
+    {
+      "manifest_task_index": 107,
+      "case_id": "c4_0629_b128_r3",
+      "reference_N": 30,
+      "shard_count": 160,
+      "shard_index": 107
+    },
+    {
+      "manifest_task_index": 59,
+      "case_id": "c4_0401_b128_r3",
+      "reference_N": 29,
+      "shard_count": 160,
+      "shard_index": 59
+    },
+    {
+      "manifest_task_index": 113,
+      "case_id": "c4_0672_b128_r1",
+      "reference_N": 26,
+      "shard_count": 160,
+      "shard_index": 113
+    },
+    {
+      "manifest_task_index": 131,
+      "case_id": "c4_0725_b128_r3",
+      "reference_N": 26,
+      "shard_count": 160,
+      "shard_index": 131
+    },
+    {
+      "manifest_task_index": 155,
+      "case_id": "c4_0857_b128_r3",
+      "reference_N": 26,
+      "shard_count": 160,
+      "shard_index": 155
+    },
+    {
+      "manifest_task_index": 83,
+      "case_id": "c4_0553_b128_r3",
+      "reference_N": 25,
+      "shard_count": 160,
+      "shard_index": 83
+    },
+    {
+      "manifest_task_index": 41,
+      "case_id": "c4_0295_b128_r1",
+      "reference_N": 20,
+      "shard_count": 160,
+      "shard_index": 41
+    },
+    {
+      "manifest_task_index": 65,
+      "case_id": "c4_0455_b128_r1",
+      "reference_N": 18,
+      "shard_count": 160,
+      "shard_index": 65
+    }
+  ],
+  "invariants": "Same manifest, original case identifiers, sources, model, float32, one PyTorch thread, prescribed random tapes and budget endpoints. Live original shards0..4 cannot select these tasks; the original shard5 process is terminated. Every case will remain in the final cohort."
+}

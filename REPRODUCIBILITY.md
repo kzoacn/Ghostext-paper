@@ -74,6 +74,15 @@ checks assert their claimed rational values. Saved-data analyses reject
 incomplete or duplicated cohorts and verify recorded text/probability
 consistency before reporting statistics.
 
+The current complete-release checks are recorded in
+`results/sp2027-validation/followup-artifact-reproduction.json`: nineteen
+checks from a separate anonymous extraction regenerate 48 named outputs
+byte-for-byte. `followup-profile-preflight.json` in the same directory records
+all 26 materialized profiles and nine actual upstream command entries run in
+prepare-only mode. Those manifest checks use the pinned local model files
+for hashing, but perform no inference. Earlier validation receipts remain
+historical records for their stated snapshots.
+
 The original NLS function audit additionally needs PyTorch and internet access
 to fetch two source files from the pinned 2019 revision. It executes selected
 original function definitions unchanged; the synthetic model and injective
@@ -129,7 +138,15 @@ assembly receipt binds the ten input files, helper source, and resulting
 case. Its output was checked against 209 already complete cases before use.
 Saved records are preserved, and infrastructure failures do not become
 model-generation failures. The interrupted shard uses the same original
-tasks and tapes when resumed.
+tasks and tapes when resumed. Its `recovery-schedule.json` assigns the twenty
+unstarted shard-5 tasks individually to vacated worker slots, ordered by their
+already prescribed endpoint lengths. Launch records bind each original task,
+command, source, schedule, and vacancy evidence. Where a tool exit result was
+unavailable, the record instead binds the prior single task's completed case
+and explicitly makes no exit-code claim. Seven is the recorded scheduling
+limit, not an independently attested count of resident model processes.
+The verifier checks the schedule, unique assignments, vacancy dependencies,
+stage chronology, and complete final coverage.
 
 ```bash
 python scripts/assemble_saved_budget_case.py results/sp2027-budget-qwen25 \

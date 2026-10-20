@@ -14,6 +14,7 @@
 \usetikzlibrary{arrows.meta}
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
 
 \title{Ghostext: Auditing Finite-Message Leakage in LLM Steganography}
 \author{}
@@ -27,20 +28,23 @@ Language-model steganography often evaluates next-token probabilities, although
 an observer receives a finite text with an endpoint. We show how termination
 can expose content--length dependence even when the entire marginal length
 distribution is matched. A terminal-information criterion yields asymptotic
-total variation one on specified finite-state Markov sources with positive
+token-transcript total variation one on specified finite-state Markov sources with positive
 varentropy. We establish its concentration premise for three ideal mechanisms:
 arithmetic-prefix recovery, published rotation range coding, and its later
-reverse-verified midpoint rule. A dependent zero-varentropy source gives exact
+reverse-verified midpoint rule, with nonzero finite certificates on an explicit
+dependent source. A dependent zero-varentropy source gives exact
 equality instead; fixed exogenous endpoints have an explicit delivery-failure
 tradeoff. Separately, executing the original Neural Linguistic Steganography
 encoder on an exhaustive finite-input example gives terminal TV $15/16$ while
 reported KL is zero. A guarded-prefix repair bounds Ghostext's integer-coding
 error against a stopping-matched reference, while leaving a public endpoint
-predicate. We execute unchanged current rotation range-coding code on 160 GPT-2
-secret instances. Among 110 canonical length-matched pairs, a prespecified
-public score obtains held-out AUCs $0.938/0.998$ at 128/512 bits. An independent
-fixed-endpoint control obtains $0.533/0.586$, but recovers only 74/160 messages
-from token IDs. Controlled two-model studies and authenticated-text endpoint
+predicate. We execute unchanged current rotation range-coding code on 160
+instances each for GPT-2 and Qwen2.5-0.5B. Scoring every published string gives
+verified-rule held-out AUCs $0.923/0.971$ and $0.966/0.975$ at 128/512 bits;
+independent-endpoint AUCs range from $0.481$ to $0.549$.
+Doubling independent token budgets raises ID recovery from 74/160 to 158/160
+and from 89/160 to 154/160, with text recovery reaching 129/160 and 133/160.
+Processed-source studies and authenticated-text endpoint
 replays provide separate implementation evidence. The results distinguish
 sampling accuracy, reliable recovery, and security of complete transmitted texts.
 \end{abstract}

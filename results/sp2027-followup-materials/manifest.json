@@ -1,0 +1,21 @@
+{
+  "source_script_sha256": "13874acc2f76a854697f18437096a23573a4dcb95f15a100086c1f22aef42fee",
+  "inputs": {
+    "results/sp2027-upstream-gpt2/analysis.json": "ff9b953d1114abef394d19abbd0d52425d6c546bdcb0bd817498a3f9312fb427",
+    "results/sp2027-observable-gpt2/analysis.json": "2325cbb0f26ee0e0b94dccc001f629c52c73ac0844942ebf7128140342ea4203",
+    "results/sp2027-budget-gpt2/analysis.json": "ed410159090fb653f15eb916c02725664ecd444b14a9265d88d270d819ac4a0c",
+    "results/sp2027-observable-fidelity/gpt2.json": "c2082346e01e3d24dbcb6f021c02f8e3ca89f2621cb73d40ac480029b66fc70d",
+    "results/sp2027-upstream-qwen25/analysis.json": "0abf85b96fca82958a9147c350a691442649c032aaee8e545e86a18509f3df8d",
+    "results/sp2027-observable-qwen25/analysis.json": "b58cbea7ac9e6a268870b826db5cf7df0048164a9bd57343e96abda7b500a34d",
+    "results/sp2027-budget-qwen25/analysis.json": "e757f72e708303acac824d963e1d3c5e3b6bf9a7ae378e19c9a3f169ba411792",
+    "results/sp2027-observable-fidelity/qwen25.json": "4458d5414b4a49a821258d650ec9ad45937271e5abfa1ad763ba5348b2a3ee38",
+    "results/sp2027-verified-certificate/summary.json": "42e09d46658fe989767907c63804382b146c23a3c0d38f0f813cebcc1695685c"
+  },
+  "outputs": {
+    "paper/tables/upstream-observable-results.tex": "707ba1a9deeb608a6feb8aadbe6467c5601dbb7e6687256ab306ee399c491786",
+    "paper/tables/upstream-budget-results.tex": "4a64d5c082d6b67c33273bb32bee41d8bddd1c62b2074c3dd218732e6a83518f",
+    "paper/figures/upstream-budget-recovery.pdf": "5bce2d773d9fca46c65c1183134901318ca65f0ff5dd6615510fc119f3de8369",
+    "results/sp2027-followup-materials/summary.json": "32366a2807700e284ada54d085fedd2e566ea3e50234962ba84d3d5cd47d7d06"
+  },
+  "scope": "Complete frozen analyses; generation/recovery failures retained in the stated populations."
+}

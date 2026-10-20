@@ -2,6 +2,7 @@
 """Verify exported bytes, source profiles, cohort membership, and input links."""
 from __future__ import annotations
 import argparse
+from datetime import datetime
 from fractions import Fraction
 import hashlib
 import json
@@ -10,6 +11,118 @@ from pathlib import Path
 
 def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def verify_recovery_schedule(directory, manifest, allow_draft):
+    """Bind operational rescheduling to the original frozen task population."""
+    schedule_path = directory / "recovery-schedule.json"
+    launches = [(p, json.loads(p.read_text()))
+                for p in sorted((directory / "launches").glob("*.json"))]
+    if not schedule_path.exists():
+        assert not launches, "Budget launch records require their recovery schedule"
+        return
+    schedule = json.loads(schedule_path.read_text())
+    assert schedule["manifest_sha256"] == digest(directory / "manifest.json")
+    assert schedule["source_sha256"] == manifest["source_sha256"]
+    interruption_path = directory / schedule["supersedes_planned_execution_in"]
+    assert interruption_path.resolve().is_relative_to(directory.resolve())
+    interruption = json.loads(interruption_path.read_text())
+    assert interruption["observed_exit_code"] != 0
+    assert (schedule["original_shard_index"], schedule["original_shard_count"]) == (
+        interruption["shard_index"], interruption["shard_count"])
+    assert schedule["maximum_concurrent_model_workers"] == (
+        interruption["planned_max_concurrent_model_workers"])
+    preserved = {Path(p).stem for p in interruption["preserved_files_sha256"]
+                 if p.startswith("cases/")}
+    preserved.add(interruption["failed_case_id"])
+    expected = {i for i, task in enumerate(manifest["tasks"])
+                if i % schedule["original_shard_count"] == schedule["original_shard_index"]
+                and task["case_id"] not in preserved}
+    scheduled = {}
+    for worker in schedule["tasks"]:
+        i = worker["manifest_task_index"]
+        assert i in expected and i not in scheduled
+        task = manifest["tasks"][i]
+        assert worker["case_id"] == task["case_id"]
+        assert worker["reference_N"] == task["reference_N"]
+        assert worker["shard_count"] == len(manifest["tasks"])
+        assert worker["shard_index"] == i
+        scheduled[i] = worker
+    assert set(scheduled) == expected
+    assert list(scheduled) == sorted(expected,
+        key=lambda i: (-manifest["tasks"][i]["reference_N"], i))
+    seen, vacancies = set(), set()
+    for path, launch in launches:
+        assert launch["record_kind"] == "single_fixed_task_launch"
+        assert launch["schedule_sha256"] == digest(schedule_path)
+        assert launch["maximum_concurrent_model_workers"] == (
+            schedule["maximum_concurrent_model_workers"])
+        assert len(launch["workers"]) == 1
+        worker = launch["workers"][0]
+        i = worker["manifest_task_index"]
+        assert i in scheduled and i not in seen
+        seen.add(i)
+        assert path.name == f"recovery-task-{i:03d}.json"
+        for key, value in scheduled[i].items():
+            assert worker[key] == value
+        command = launch["command"]
+        model_directory = {"gpt2": "gpt2", "qwen25": "qwen25-0.5b"}[manifest["backend"]]
+        cohort = f"results/sp2027-upstream-{manifest['backend']}"
+        assert cohort + "/manifest.json" in manifest["inputs"]
+        assert len(command) == 15 and Path(command[3]).name == "python3"
+        assert command == [
+            "taskset", "-c", ",".join(str(c) for c in worker["cpu_affinity"]),
+            command[3], "scripts/run_upstream_budget_curve.py",
+            "--cohort", cohort, "--model-path", "../models/" + model_directory,
+            "--out-dir", f"results/{directory.name}", "--shard-count",
+            str(worker["shard_count"]), "--shard-index", str(i)]
+        created = datetime.fromisoformat(launch["created_utc"])
+        assert created >= datetime.fromisoformat(schedule["created_utc"])
+        by_session = "vacated_tool_session_id" in launch
+        by_case = "vacated_single_task_index" in launch
+        assert by_session != by_case
+        if by_session:
+            assert launch["vacated_exit_code_observed"] == 0
+            assert "vacated_case_sha256" not in launch and "vacated_launch_sha256" not in launch
+            vacancy = ("session", launch["vacated_tool_session_id"])
+        else:
+            assert "vacated_exit_code_observed" not in launch
+            prior = launch["vacated_single_task_index"]
+            assert prior in scheduled and prior != i
+            old_launch_path = directory / "launches" / f"recovery-task-{prior:03d}.json"
+            assert digest(old_launch_path) == launch["vacated_launch_sha256"]
+            old_launch = json.loads(old_launch_path.read_text())
+            assert datetime.fromisoformat(old_launch["created_utc"]) < created
+            assert len(old_launch["workers"]) == 1
+            assert old_launch["workers"][0]["shard_count"] == len(manifest["tasks"])
+            prior_id = manifest["tasks"][prior]["case_id"]
+            old_case_path = directory / "cases" / (prior_id + ".json")
+            assert digest(old_case_path) == launch["vacated_case_sha256"]
+            old_case = json.loads(old_case_path.read_text())
+            assert old_case["case_id"] == prior_id
+            assert all(b["generation"]["status"] == "complete"
+                       for b in old_case["budgets"].values())
+            events = [json.loads(line) for line in
+                      (directory / "events" / (prior_id + ".jsonl")).read_text().splitlines()]
+            assert events and all(datetime.fromisoformat(e["utc"]) <= created for e in events)
+            vacancy = ("case", prior)
+        assert vacancy not in vacancies
+        vacancies.add(vacancy)
+        events_path = directory / "events" / (worker["case_id"] + ".jsonl")
+        case_path = directory / "cases" / (worker["case_id"] + ".json")
+        if case_path.exists() or not allow_draft:
+            assert events_path.exists() and events_path.stat().st_size > 0
+        if events_path.exists():
+            events = [json.loads(line) for line in events_path.read_text().splitlines()]
+            assert all(e["case_id"] == worker["case_id"]
+                       and e["cpu_affinity"] == worker["cpu_affinity"]
+                       and datetime.fromisoformat(e["utc"]) >= created for e in events)
+            stages = [(e["stage"], e["state"]) for e in events]
+            assert len(stages) == len(set(stages)), "Repeated execution of a recovery stage"
+        if not allow_draft:
+            assert case_path.exists()
+    if not allow_draft:
+        assert seen == expected
 
 
 def verify_new_profile(paper, manifest_path, manifest, allow_draft):
@@ -84,6 +197,7 @@ def verify_new_profile(paper, manifest_path, manifest, allow_draft):
                 if task["text"] is None:
                     assert row["status"] == "no_output"
         elif schema == "upstream-budget-curve-v1":
+            verify_recovery_schedule(directory, manifest, allow_draft)
             for row in rows:
                 for block in row["budgets"].values():
                     n = block["requested_tokens"]

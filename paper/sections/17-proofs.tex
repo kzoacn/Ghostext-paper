@@ -1,6 +1,46 @@
 \section{Proof Details for Termination Results}
 \label{app:proofs}
 
+\subsection{Full Token Support and Positive Varentropy}
+\label{app:full-support}
+
+This specializes the standard zero-variance criterion to a full context
+graph~\cite{kontoyiannis1998recurrence}. Let the context order be $d\ge1$;
+a memoryless source can be represented with identical one-symbol rows.
+The context chain $Z_t$ is irreducible because appending any $d$ symbols
+reaches that context, and aperiodic because constant-symbol contexts have
+self-loops. Write $P,\pi$ for its transition matrix and stationary law.
+On allowed edges put $g(i,j)=-\log_2P_{ij}$,
+$H=\sum_{i,j}\pi_iP_{ij}g(i,j)$, and
+$f(i)=\sum_jP_{ij}g(i,j)-H$. Since $\pi f=0$, solve
+$(I-P)u=f$. The bounded variables
+\[
+ D_t=g(Z_{t-1},Z_t)-H+u(Z_t)-u(Z_{t-1})
+\]
+are martingale differences, with
+$I_n-nH=\sum_{t=1}^nD_t+u(Z_0)-u(Z_n)$. Orthogonality and ergodicity give
+\[
+ \sigma^2=\sum_{i,j}\pi_iP_{ij}
+       [g(i,j)-H+u(j)-u(i)]^2.
+\]
+This limit also holds from any fixed context: the average conditional
+martingale variance has the same limit, and the bounded endpoint term
+contributes $o(n)$ to the variance.
+
+If $\sigma^2=0$, each allowed-edge square vanishes, so a continuation from
+$h$ has information $I_n=nH+u(h)-u(Z_n)$. At $n=d$, every word of $d$ symbols
+is its own distinct final context and has positive probability. Normalization
+therefore gives
+\[
+ 1=2^{-dH-u(h)}\sum_{j\in\mathcal A^d}2^{u(j)}.
+\]
+The sum is independent of $h$, so $u$ is constant. Each row then has $V$
+equal probabilities $2^{-H}=1/V$. Conversely, that kernel has
+$I_n=n\log_2V$ and zero varentropy. Full support here concerns the token
+choices from each context, not every entry of the context transition matrix.
+The three-state negative control forbids a token in each row and is outside
+this corollary.
+
 \subsection{An Explicit Markov Bound}
 \label{app:markov-proof}
 
@@ -192,15 +232,16 @@ bound is $4\,2^{-k}+4(7/8)^j$ for the band $[B-k,B+3+4j]$.
 
 For the source in Eq.~\eqref{eq:dependent-source}, $\rho=3/4$ and $b=2$.
 We sharpen the sufficient safe-rule tail without changing the verified rule.
-For a nonnegative decreasing $g$, put $G(x)=\int_0^x g(v)\,dv$. Equation~\eqref{eq:killed-kernel}
+For a nonnegative nonincreasing $g$, put $G(x)=\int_0^x g(v)\,dv$. Equation~\eqref{eq:killed-kernel}
 can be written, with $x=z/q$, as
 \[
  K_qg(z)=G(\min\{x,1/2\})+(1-2x)_+g(x),
 \]
-where the second term is evaluated only for $x<1/2$. On that interval its
-derivative with respect to $x$ is $-g(x)+(1-2x)g'(x)\le0$; above $1/2$ it is
-constant. Hence $K_qg\le K_\rho g$ for $q\le\rho$, and $K_\rho$ preserves
-nonnegative decreasing functions. Set $h_0=1$ and $h_{s+1}=K_\rho h_s$.
+where the second term is evaluated only for $x<1/2$. In the original
+min-kernel form, both the integrand and the nonnegative product are
+nonincreasing in $x$. Hence $K_qg\le K_\rho g$ for $q\le\rho$, and $K_\rho$
+preserves nonnegative nonincreasing functions. Set $h_0=1$ and
+$h_{s+1}=K_\rho h_s$.
 Conditioning on each next selected token and using its independent uniform
 position shows that $h_s$ bounds safe-rule survival for $s$ further steps
 from any surviving history. Actual verification can accept additional points.
@@ -208,7 +249,7 @@ from any surviving history. Actual verification can accept additional points.
 At the entry time $\kappa$ above, retain the \emph{submeasure}
 $\mu(A)=\Pr(\tau_v>\kappa,z_\kappa\in A)$, supported on $[0,1/2]$.
 The entry argument gives $\mu([0,u])\le\min\{1,4u\}$. Integration against
-decreasing $h_s$ therefore yields
+nonincreasing $h_s$ therefore yields
 \begin{equation}
  \Pr(\tau_v>\kappa+s)\le H_s:=4\int_0^{1/4}h_s(z)\,dz.
  \label{eq:rational-safe-tail}

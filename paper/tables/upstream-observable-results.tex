@@ -1,0 +1,24 @@
+\begin{table*}[t]
+\centering
+\caption{Public-score results on all planned upstream outputs. All planned generations complete, so every published string enters. Each model/payload/arm has 40 development and 40 test observations per class, with ten test prompt clusters. Intervals use 5000 prompt-cluster resamples; TPR/FPR use the fixed development-quantile rule. Canonicality and receiver success do not filter rows.}
+\label{tab:upstream-observable}
+\begin{tabular}{lrlrrr}
+\toprule
+Model & $B$ & Arm & AUC [95\% cluster interval] & TPR & FPR \\
+\midrule
+GPT-2 & 128 & Unverified & $0.923\;[0.865,0.973]$ & $0.775$ & $0.175$ \\
+GPT-2 & 128 & Verified & $0.923\;[0.865,0.973]$ & $0.775$ & $0.175$ \\
+GPT-2 & 128 & Independent endpoint & $0.549\;[0.411,0.702]$ & $0.200$ & $0.175$ \\
+GPT-2 & 512 & Unverified & $0.971\;[0.925,0.999]$ & $0.750$ & $0.000$ \\
+GPT-2 & 512 & Verified & $0.971\;[0.925,0.999]$ & $0.750$ & $0.000$ \\
+GPT-2 & 512 & Independent endpoint & $0.535\;[0.422,0.653]$ & $0.100$ & $0.000$ \\
+\midrule
+Qwen2.5-0.5B & 128 & Unverified & $0.972\;[0.933,0.998]$ & $0.600$ & $0.000$ \\
+Qwen2.5-0.5B & 128 & Verified & $0.966\;[0.926,0.996]$ & $0.550$ & $0.000$ \\
+Qwen2.5-0.5B & 128 & Independent endpoint & $0.532\;[0.423,0.661]$ & $0.025$ & $0.000$ \\
+Qwen2.5-0.5B & 512 & Unverified & $0.975\;[0.953,0.995]$ & $0.525$ & $0.000$ \\
+Qwen2.5-0.5B & 512 & Verified & $0.975\;[0.953,0.995]$ & $0.525$ & $0.000$ \\
+Qwen2.5-0.5B & 512 & Independent endpoint & $0.481\;[0.338,0.604]$ & $0.050$ & $0.000$ \\
+\bottomrule
+\end{tabular}
+\end{table*}

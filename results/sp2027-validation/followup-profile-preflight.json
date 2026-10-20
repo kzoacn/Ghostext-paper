@@ -23,6 +23,27 @@
       }
     },
     {
+      "profile": "sp2027-budget-qwen25",
+      "source_objects": 9,
+      "input_files": 162,
+      "aliases": 0,
+      "all_hashes_match": true,
+      "prepare_only": {
+        "matching_fields": [
+          "schema",
+          "backend",
+          "upstream",
+          "source_sha256",
+          "model_sha256",
+          "inputs",
+          "parameters",
+          "tasks"
+        ],
+        "planned_tasks": 160,
+        "model_generation_performed": false
+      }
+    },
+    {
       "profile": "sp2027-endpoint-gpt2",
       "source_objects": 19,
       "input_files": 4,
@@ -83,6 +104,28 @@
           "bindings"
         ],
         "planned_tasks": 482,
+        "model_generation_performed": false
+      }
+    },
+    {
+      "profile": "sp2027-observable-qwen25",
+      "source_objects": 9,
+      "input_files": 162,
+      "aliases": 0,
+      "all_hashes_match": true,
+      "prepare_only": {
+        "matching_fields": [
+          "schema",
+          "backend",
+          "upstream",
+          "source_sha256",
+          "model_sha256",
+          "inputs",
+          "parameters",
+          "tasks",
+          "bindings"
+        ],
+        "planned_tasks": 492,
         "model_generation_performed": false
       }
     },

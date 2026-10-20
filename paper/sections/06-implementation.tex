@@ -11,12 +11,14 @@ every completed encoding attempt, including failed prefixes, packet hashes,
 and elapsed time; normal library use emits none of this telemetry.
 
 \paragraph{Model and numerical environments}
-The experiments use GPT-2 through Transformers and Qwen3.5-2B in a third-party
-Q4\_K\_S GGUF through \texttt{llama-cpp-python} 0.3.20, packaged llama.cpp build
-\texttt{f49e917}. The host has an AMD Ryzen 7 7800X3D CPU and 31\,GiB available
-RAM. Original controlled stopping runs use two GPT-2 and four Qwen inference
-threads; authenticated delivery and its final replays use two. The upstream
-RRC study follows its single-thread CPU path. Source and model bytes,
+The experiments use GPT-2~\cite{radford2019gpt2} and base
+Qwen2.5-0.5B~\cite{qwen2024models} through Transformers, plus Qwen3.5-2B in a
+third-party Q4\_K\_S GGUF through \texttt{llama-cpp-python} 0.3.20, packaged
+llama.cpp build \texttt{f49e917}. The host has an AMD Ryzen 7 7800X3D CPU and
+31\,GiB RAM. Original controlled stopping runs use two GPT-2 and four
+Qwen3.5 inference threads; authenticated delivery and its final replays use
+two. The upstream RRC studies use float32 weights and one CPU inference
+thread per worker. Source and model bytes,
 parameters, task lists, and CPU allocations are recorded; cross-hardware
 bitwise replay is not claimed. Instrumented delivery decoding repeats candidate
 auditing, so its latency is not a production benchmark.

@@ -1,0 +1,15 @@
+\begin{table*}[t]
+\centering
+\caption{Independent endpoint budgets. Each recovery cell gives ID/text recoveries out of 80 planned instances, including generation and decoding failures. Rates are payload bits per prescribed token budget, not successful-delivery throughput.}
+\label{tab:upstream-budget}
+\begin{tabular}{lrrrrrr}
+\toprule
+Model & $B$ & $N$ & $\lceil1.25N\rceil$ & $\lceil1.5N\rceil$ & $2N$ & Rate at $N$/$2N$ \\
+\midrule
+GPT-2 & 128 & 39/35 & 59/53 & 72/63 & 79/70 & 5.664/2.832 \\
+GPT-2 & 512 & 35/26 & 64/48 & 75/56 & 79/59 & 5.685/2.842 \\
+Qwen2.5-0.5B & 128 & 39/39 & 59/57 & 69/67 & 77/74 & 4.304/2.152 \\
+Qwen2.5-0.5B & 512 & 50/38 & 72/54 & 76/58 & 77/59 & 3.835/1.918 \\
+\bottomrule
+\end{tabular}
+\end{table*}

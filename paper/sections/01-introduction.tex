@@ -16,8 +16,8 @@ constructions~\cite{kaptchuk2021language,ding2023discop,dewitt2024perfect}.
 Finite-message granularity and rounding are already recognized
 limitations~\cite{ding2023discop}. We study the additional effect of terminating
 the output, giving the natural control the encoder's \emph{entire marginal
-length distribution}, independently of fresh source content. This removes any
-length-only distinguisher. An observer can still exploit content--length
+token-length distribution}, independently of fresh source content. This removes
+distinguishers based only on token counts. An observer can still exploit content--length
 dependence without recovering a secret or breaking a pseudorandom generator.
 
 Our main result identifies when that residual signal grows. If an encoder finishes
@@ -27,7 +27,10 @@ public signal. We prove this concentration for arithmetic-prefix recovery and
 for both the published and reverse-verified rotation range-coding (RRC)
 midpoint rules~\cite{yan2026rrc}. On fixed Markov sources with positive
 varentropy, all three ideal mechanisms become asymptotically distinguishable
-even after matching the \emph{entire marginal length distribution}. A dependent zero-varentropy source gives exact equality instead. A fixed
+even after matching the \emph{entire marginal length distribution}. For fixed
+finite-order kernels with full token support, the variance condition fails
+only for uniform IID tokens. A dependent source with restricted support and
+zero varentropy gives exact equality instead. A fixed
 exogenous endpoint avoids the termination dependence but introduces a
 quantifiable recovery-failure probability. These results concern specified
 ideal mechanisms and source assumptions, which we keep separate from numerical
@@ -43,9 +46,12 @@ that correcting this recovery failure does not remove the ideal stopping
 separation.
 
 The distinction also reaches actual implementations. We execute unchanged
-current RRC sender and receiver functions over their full-vocabulary GPT-2
-source, with fresh development and test prompt clusters and an independent
-endpoint control. A separate public replay of Ghostext's authenticated delivery
+current RRC sender and receiver functions over full-vocabulary GPT-2 and
+Qwen2.5-0.5B sources, with development and test prompt clusters and an independent
+endpoint control. Public replays score every published string, including
+changed tokenizations and recovery failures; a separate budget experiment
+measures the recovery cost of an independent endpoint.
+A public replay of Ghostext's authenticated delivery
 texts checks whether their first prefix-resolution endpoint remains visible
 after the integer-coding repair. These experiments keep numerical failures,
 serialization changes, and delivery conditioning explicit.
@@ -64,7 +70,7 @@ complete-text security.
 \paragraph{Contributions}
 First, we establish a stopped-transcript separation for three termination
 mechanisms, including a new concentration argument for reverse verification
-and an explicit dependent-source bound. Second, exact external-code and
+and nonzero finite certificates on an explicit dependent source. Second, exact external-code and
 finite-integer audits distinguish padding error from rounding and endpoint
 effects, with a scoped guarded-prefix repair. Third, unchanged upstream-code
 experiments and keyless text replays test the protocol consequences, alongside

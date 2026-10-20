@@ -1,0 +1,213 @@
+{
+  "status": "complete",
+  "error": null,
+  "token_ids": [
+    4531,
+    11615,
+    431,
+    7072,
+    294,
+    39712,
+    68,
+    328,
+    56188,
+    13,
+    1260,
+    686,
+    2118,
+    279,
+    4361,
+    4531
+  ],
+  "tokens": 16,
+  "cover_text": "John Cohen will be the producer of Rovios self financed film Les Roes d IXe Saison. He will direct the whole film",
+  "text_sha256": "477a83d637578ea8cf178eb524e376dae70c65d184209b59ed8e2ce3d74c5044",
+  "context_token_ids": [
+    13079,
+    31096,
+    686,
+    387,
+    279,
+    16851,
+    315,
+    431,
+    859,
+    3530,
+    656,
+    69664
+  ],
+  "visible_token_ids": [
+    13079,
+    31096,
+    686,
+    387,
+    279,
+    16851,
+    315,
+    431,
+    859,
+    3530,
+    656,
+    69664,
+    4531,
+    11615,
+    431,
+    7072,
+    294,
+    39712,
+    68,
+    328,
+    56188,
+    13,
+    1260,
+    686,
+    2118,
+    279,
+    4361,
+    4531
+  ],
+  "visible_continuation_token_ids": [
+    4531,
+    11615,
+    431,
+    7072,
+    294,
+    39712,
+    68,
+    328,
+    56188,
+    13,
+    1260,
+    686,
+    2118,
+    279,
+    4361,
+    4531
+  ],
+  "prompt_prefix_matches": true,
+  "canonical_text_roundtrip": true,
+  "chosen_probabilities": [
+    0.12838894987619603,
+    0.0005233975560212,
+    0.00767086430423458,
+    0.0137687791701117,
+    0.026014766044306,
+    1.4636043669e-06,
+    0.06191797970636539,
+    0.0024169954678267,
+    0.39138612030088926,
+    0.1659367362034845,
+    0.08879825076366807,
+    0.3630689117024447,
+    0.1300954128085885,
+    0.41297994523354525,
+    0.0018296052536215,
+    0.5216092527822989
+  ],
+  "interval_observations": [
+    {
+      "token_id": 4531,
+      "cdf_low": "0.1597829344973703",
+      "cdf_high": "0.28817188437356633",
+      "probability_decimal": "0.12838894987619603"
+    },
+    {
+      "token_id": 11615,
+      "cdf_low": "0.7938749866769974",
+      "cdf_high": "0.7943983842330186",
+      "probability_decimal": "0.0005233975560212"
+    },
+    {
+      "token_id": 431,
+      "cdf_low": "0.25387268882761915",
+      "cdf_high": "0.26154355313185373",
+      "probability_decimal": "0.00767086430423458"
+    },
+    {
+      "token_id": 7072,
+      "cdf_low": "0.654423552334339",
+      "cdf_high": "0.6681923315044507",
+      "probability_decimal": "0.0137687791701117"
+    },
+    {
+      "token_id": 294,
+      "cdf_low": "0.4912007630145993",
+      "cdf_high": "0.5172155290589053",
+      "probability_decimal": "0.0260147660443060"
+    },
+    {
+      "token_id": 39712,
+      "cdf_low": "0.9932316552196252",
+      "cdf_high": "0.9932331188239921",
+      "probability_decimal": "0.0000014636043669"
+    },
+    {
+      "token_id": 68,
+      "cdf_low": "0.13953325666392963",
+      "cdf_high": "0.20145123637029502",
+      "probability_decimal": "0.06191797970636539"
+    },
+    {
+      "token_id": 328,
+      "cdf_low": "0.5501089030238152",
+      "cdf_high": "0.5525258984916419",
+      "probability_decimal": "0.0024169954678267"
+    },
+    {
+      "token_id": 56188,
+      "cdf_low": "0.0",
+      "cdf_high": "0.39138612030088926",
+      "probability_decimal": "0.39138612030088926"
+    },
+    {
+      "token_id": 13,
+      "cdf_low": "0.2675973088841621",
+      "cdf_high": "0.4335340450876466",
+      "probability_decimal": "0.1659367362034845"
+    },
+    {
+      "token_id": 1260,
+      "cdf_low": "0.22306427045563457",
+      "cdf_high": "0.31186252121930264",
+      "probability_decimal": "0.08879825076366807"
+    },
+    {
+      "token_id": 686,
+      "cdf_low": "0.0",
+      "cdf_high": "0.3630689117024447",
+      "probability_decimal": "0.3630689117024447"
+    },
+    {
+      "token_id": 2118,
+      "cdf_low": "0.4063365707527604",
+      "cdf_high": "0.5364319835613489",
+      "probability_decimal": "0.1300954128085885"
+    },
+    {
+      "token_id": 279,
+      "cdf_low": "0.0",
+      "cdf_high": "0.41297994523354525",
+      "probability_decimal": "0.41297994523354525"
+    },
+    {
+      "token_id": 4361,
+      "cdf_low": "0.8252458742851703",
+      "cdf_high": "0.8270754795387918",
+      "probability_decimal": "0.0018296052536215"
+    },
+    {
+      "token_id": 4531,
+      "cdf_low": "0.0",
+      "cdf_high": "0.5216092527822989",
+      "probability_decimal": "0.5216092527822989"
+    }
+  ],
+  "surprisal_bits": 87.57376342489307,
+  "elapsed_seconds": 4.432804533978924,
+  "context_trim_calls": 0,
+  "rejected_stop_count": 0,
+  "decimal_precision": 844,
+  "requested_tokens": 16,
+  "maximum_stream_tokens": 32,
+  "elapsed_scope": "Cumulative stream time through this endpoint or failure"
+}
