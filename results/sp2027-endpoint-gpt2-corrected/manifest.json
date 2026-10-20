@@ -1,0 +1,290 @@
+{
+  "schema": "public-endpoint-replay-v1",
+  "backend": "gpt2",
+  "inputs": {
+    "results/sp2027-repair-gpt2/manifest.json": "e2db138d7395db78c8e3cd19d0c31515587ef6f80afb45f97deeabfe9898c7cb",
+    "results/sp2027-repair-gpt2/runs.jsonl": "4208109cc6a606aaf0ab0c8806344843e9d79455c87c3bf80170531dafe50965",
+    "results/sp2027-repair-gpt2/analysis.json": "5ff981e797d29b8480b89d0b4952ef950d3b9f247fc1defc7a273066861ebda3",
+    "notes/sp2027-endpoint-replay-plan.md": "400218dd69b8c4dae7911ae96d59501a5d1b40e67eb18669a4e664f45549c375",
+    "notes/sp2027-endpoint-runtime-correction.md": "bbd329515625998ef6bcfa229c82129caed72f52eb6ec07667b65585589b722d"
+  },
+  "source_sha256": {
+    "Ghostext-paper/scripts/model_adapters.py": "ad41399f2e457aa6af85ed93ae5cf98864020181681907cc8b305bea1a510bac",
+    "Ghostext/src/ghostext/__init__.py": "d37c170dfeef70b1b7c12b76ac7baaab8544c5d3e236ef8ae5a82432997d3991",
+    "Ghostext/src/ghostext/benchmark.py": "f6e3fd9dd9d8615331c4684b097903142ab74b5bbec3064aac50c07264f4a831",
+    "Ghostext/src/ghostext/candidate_policy.py": "efdd1c90a5dd93f382a7345bfdcbab6d9e0e7ec284cc05f28342da514d5fcc48",
+    "Ghostext/src/ghostext/cli.py": "cc502efbee906db783a793336d89f2bc68b123be5bab90c7f06e920c5041a0d2",
+    "Ghostext/src/ghostext/codec.py": "585d65d10b18d9861ba0d02f0a4671743b2fa8cf2cd31152db860dc80724e9f5",
+    "Ghostext/src/ghostext/config.py": "3138a9dad0975f12ad8a3f98353af0ba22f91ee73973eb9e4ab751b104c39062",
+    "Ghostext/src/ghostext/crypto.py": "7ce5498b9b86a907c0a97901a2aaa339e9ff4ec324566382f0516ef21b1c36d5",
+    "Ghostext/src/ghostext/decoder.py": "40b85a1c41fc466b79a28d54e9c3e079151e507a6d888007cc1a3f9c73c25e81",
+    "Ghostext/src/ghostext/encoder.py": "fd66120a07172d43a07200c74f72b65bfeef806154d1557de7b37a7c21870aa9",
+    "Ghostext/src/ghostext/errors.py": "70020cb389ada0d1d16147e2a5055ff3c42e95bb5cd2a85853f1cf2088e29b54",
+    "Ghostext/src/ghostext/llama_cpp_backend.py": "07f3653b87c61444bd0888ff5013d8c223df555f5fe9c172fa71a29496249b2b",
+    "Ghostext/src/ghostext/model_assets.py": "8089d5d0cef24207b081d1c5ab59cdee0ff38799d774b08d88b8472ec3ce3350",
+    "Ghostext/src/ghostext/model_backend.py": "74d35dab5ca32df6f8bd07a775f75ff9778621301f157d8fa0238f994e9203d4",
+    "Ghostext/src/ghostext/packet.py": "fa938220b13f7b466b28330d99875b4b7da4270ad3904987b689ceb30e32104b",
+    "Ghostext/src/ghostext/pipeline.py": "85e2199ba095001c2a7c1aaffc672b953e633d6bf51de592748f85295134eae5",
+    "Ghostext/src/ghostext/progress.py": "a53ab3454e33094e9292524cf8fa25e1fa1f2ead1c96c2168b0e32a238925c25",
+    "Ghostext/src/ghostext/quantization.py": "b43e6f652d0dc97012f03295f4ab96eb2859c903a9b7609bf06702583c3b82ff",
+    "Ghostext-paper/scripts/run_public_endpoint_replay.py": "6bfda41d3a6df5d04d5f26362e90f2651fdffaa806b65ce3831315b345ef5c25"
+  },
+  "model_sha256": {
+    "model.safetensors": "248dfc3911869ec493c76e65bf2fcf7f615828b0254c12b473182f0f81d3a707",
+    "tokenizer.json": "8414cab924d8b9b33013f0d221c5862f365ee9be39c5c2bfae8a5a9e970478a6",
+    "config.json": "0daed7749b4f02b8f76240d5444551d7b08712dab4d0adb8239c56ba823bb7b4",
+    "revision.txt": "1d3d99ea8f4853f9ef628089fdb07d496a5cf79244a069a484a7dce83ec7df7f"
+  },
+  "eligibility": [
+    {
+      "case_id": "07_en_museum:r0:g128",
+      "reason": "natural_incomplete"
+    },
+    {
+      "case_id": "03_en_garden:r1:g128",
+      "reason": "eligible"
+    },
+    {
+      "case_id": "04_en_market:r0:g0",
+      "reason": "different_guard"
+    },
+    {
+      "case_id": "05_en_train:r0:g128",
+      "reason": "eligible"
+    },
+    {
+      "case_id": "03_en_garden:r0:g0",
+      "reason": "different_guard"
+    },
+    {
+      "case_id": "03_en_garden:r1:g0",
+      "reason": "different_guard"
+    },
+    {
+      "case_id": "02_en_library:r0:g128",
+      "reason": "eligible"
+    },
+    {
+      "case_id": "07_en_museum:r1:g128",
+      "reason": "natural_incomplete"
+    },
+    {
+      "case_id": "04_en_market:r0:g128",
+      "reason": "delivery_failed"
+    },
+    {
+      "case_id": "08_en_mountain:r0:g128",
+      "reason": "natural_incomplete"
+    },
+    {
+      "case_id": "08_en_mountain:r0:g0",
+      "reason": "different_guard"
+    },
+    {
+      "case_id": "01_en_corner_cafe:r1:g0",
+      "reason": "different_guard"
+    },
+    {
+      "case_id": "05_en_train:r0:g0",
+      "reason": "different_guard"
+    },
+    {
+      "case_id": "04_en_market:r1:g128",
+      "reason": "eligible"
+    },
+    {
+      "case_id": "02_en_library:r0:g0",
+      "reason": "different_guard"
+    },
+    {
+      "case_id": "01_en_corner_cafe:r1:g128",
+      "reason": "eligible"
+    },
+    {
+      "case_id": "01_en_corner_cafe:r0:g0",
+      "reason": "different_guard"
+    },
+    {
+      "case_id": "06_en_science:r0:g128",
+      "reason": "eligible"
+    },
+    {
+      "case_id": "06_en_science:r1:g0",
+      "reason": "different_guard"
+    },
+    {
+      "case_id": "01_en_corner_cafe:r0:g128",
+      "reason": "eligible"
+    },
+    {
+      "case_id": "09_en_workshop:r1:g128",
+      "reason": "eligible"
+    },
+    {
+      "case_id": "06_en_science:r1:g128",
+      "reason": "eligible"
+    },
+    {
+      "case_id": "09_en_workshop:r0:g0",
+      "reason": "different_guard"
+    },
+    {
+      "case_id": "09_en_workshop:r0:g128",
+      "reason": "eligible"
+    },
+    {
+      "case_id": "00_en_evening_walk:r1:g128",
+      "reason": "natural_incomplete"
+    },
+    {
+      "case_id": "00_en_evening_walk:r0:g128",
+      "reason": "natural_incomplete"
+    },
+    {
+      "case_id": "04_en_market:r1:g0",
+      "reason": "different_guard"
+    },
+    {
+      "case_id": "03_en_garden:r0:g128",
+      "reason": "eligible"
+    },
+    {
+      "case_id": "08_en_mountain:r1:g0",
+      "reason": "different_guard"
+    },
+    {
+      "case_id": "05_en_train:r1:g128",
+      "reason": "natural_incomplete"
+    },
+    {
+      "case_id": "06_en_science:r0:g0",
+      "reason": "different_guard"
+    },
+    {
+      "case_id": "05_en_train:r1:g0",
+      "reason": "different_guard"
+    },
+    {
+      "case_id": "07_en_museum:r0:g0",
+      "reason": "different_guard"
+    },
+    {
+      "case_id": "00_en_evening_walk:r1:g0",
+      "reason": "different_guard"
+    },
+    {
+      "case_id": "02_en_library:r1:g128",
+      "reason": "eligible"
+    },
+    {
+      "case_id": "09_en_workshop:r1:g0",
+      "reason": "different_guard"
+    },
+    {
+      "case_id": "00_en_evening_walk:r0:g0",
+      "reason": "different_guard"
+    },
+    {
+      "case_id": "08_en_mountain:r1:g128",
+      "reason": "eligible"
+    },
+    {
+      "case_id": "02_en_library:r1:g0",
+      "reason": "different_guard"
+    },
+    {
+      "case_id": "07_en_museum:r1:g0",
+      "reason": "different_guard"
+    }
+  ],
+  "eligibility_counts": {
+    "natural_incomplete": 6,
+    "eligible": 13,
+    "different_guard": 20,
+    "delivery_failed": 1
+  },
+  "tasks": [
+    {
+      "case_id": "03_en_garden:r1:g128",
+      "prompt_id": "03_en_garden",
+      "language": "en"
+    },
+    {
+      "case_id": "05_en_train:r0:g128",
+      "prompt_id": "05_en_train",
+      "language": "en"
+    },
+    {
+      "case_id": "02_en_library:r0:g128",
+      "prompt_id": "02_en_library",
+      "language": "en"
+    },
+    {
+      "case_id": "04_en_market:r1:g128",
+      "prompt_id": "04_en_market",
+      "language": "en"
+    },
+    {
+      "case_id": "01_en_corner_cafe:r1:g128",
+      "prompt_id": "01_en_corner_cafe",
+      "language": "en"
+    },
+    {
+      "case_id": "06_en_science:r0:g128",
+      "prompt_id": "06_en_science",
+      "language": "en"
+    },
+    {
+      "case_id": "01_en_corner_cafe:r0:g128",
+      "prompt_id": "01_en_corner_cafe",
+      "language": "en"
+    },
+    {
+      "case_id": "09_en_workshop:r1:g128",
+      "prompt_id": "09_en_workshop",
+      "language": "en"
+    },
+    {
+      "case_id": "06_en_science:r1:g128",
+      "prompt_id": "06_en_science",
+      "language": "en"
+    },
+    {
+      "case_id": "09_en_workshop:r0:g128",
+      "prompt_id": "09_en_workshop",
+      "language": "en"
+    },
+    {
+      "case_id": "03_en_garden:r0:g128",
+      "prompt_id": "03_en_garden",
+      "language": "en"
+    },
+    {
+      "case_id": "02_en_library:r1:g128",
+      "prompt_id": "02_en_library",
+      "language": "en"
+    },
+    {
+      "case_id": "08_en_mountain:r1:g128",
+      "prompt_id": "08_en_mountain",
+      "language": "en"
+    }
+  ],
+  "parameters": {
+    "known_segment_bytes": [
+      60,
+      44
+    ],
+    "guard_bits": 128,
+    "threads": 2,
+    "cpu_affinity": [
+      2,
+      3
+    ]
+  },
+  "runtime": {
+    "python": "3.12.12",
+    "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39"
+  },
+  "scope": "Post-hoc replay of the previously eligible successful no-tail delivery pairs, with known 16-byte plaintext length. Tests only first two-segment prefix resolution at the visible endpoint; no authentication, decrypted header, stall, rolling-entropy or token-budget legality test. The old interrupted case stays excluded. No new text generation or selection using endpoint outcomes. Model and core source hashes match generation."
+}

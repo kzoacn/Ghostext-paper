@@ -94,8 +94,10 @@ def main():
     output = {
         "source_script_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         "complete_inputs": {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest() for p in paths},
-        "tables": {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest()
-                   for p in sorted(tables.glob("*.tex"))},
+        "tables": {
+            str((tables / name).relative_to(ROOT)):
+                hashlib.sha256((tables / name).read_bytes()).hexdigest()
+            for name in ["repair-results.tex", "stopping-outcomes.tex", "stopping-results.tex"]},
     }
     target = ROOT / "results/sp2027-tables/manifest.json"
     target.parent.mkdir(parents=True, exist_ok=True)

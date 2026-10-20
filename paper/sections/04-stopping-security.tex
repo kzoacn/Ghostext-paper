@@ -1,108 +1,234 @@
 \section{Security of Complete Stopped Texts}
 \label{sec:stopping}
 
-\subsection{A Public Stopping Likelihood}
+\subsection{Independent Length Matching and Information Bands}
 
-RRC's published Algorithm 3 rotates its current point by an independent uniform
-offset, selects a token, and stops when the point lies within one half-unit of
-the selected interval's midpoint~\cite{yan2026rrc}. Conditional on the active
-history and selected token, the rotated point is uniform in that interval.
-For $B$ input bits and observed tokens $y_{1:t}$, define
+Fix a public token source $Q$, including its initial context, and write
+$I_n(y)=-\log_2 Q(y_{1:n})$. For a stopped encoder law $P_B$, let
+$\ell_B(n)=P_B(\tau=n)$. Our comparator draws this exact marginal length
+independently of a fresh source trajectory:
 \begin{equation}
- W_i=2^B\prod_{j=1}^{i}q_j(y_j\mid y_{<j}),\qquad
- h_i=\min\{1,W_i^{-1}\}.
+ C_B(y_{1:n},n)=\ell_B(n)Q(y_{1:n}).
+ \label{eq:independent-length}
 \end{equation}
-Here $q_i$ is the specified token source, which may already include processing.
-The midpoint window has length one, so $h_i$ is the conditional probability of
-stopping at step $i$. Fresh independent rotations then give the stopped law
+Length alone has no distinguishing power in this comparison. Dependence between
+the content and its endpoint remains observable. Sampling from $Q$ with the
+encoder's own content-dependent stopping rule defines a different reference.
+
+The following event bound states the common mechanism. Its probability tools
+are elementary; the substantive premises are proved separately for each encoder.
+
+\begin{theorem}[Terminal-information criterion]
+\label{thm:criterion}
+Suppose supported token probabilities are at least $2^{-b}$, $B>k\ge0$, and
+$P_B\{B-k\le I_\tau\le B+r\}\ge1-\delta$, for $r\ge0$. Put
+$n_0=\lceil(B-k)/b\rceil$. Then
 \begin{equation}
- S(y_{1:t})=
- \left(\prod_{i=1}^{t}q_i(y_i\mid y_{<i})\right)
- \left(\prod_{i<t}(1-h_i)\right)h_t.
- \label{eq:stopped-law}
-\end{equation}
-The extra factor is computable from the public model, prompt, output, and $B$.
-It does not require the rotated point or key.
-
-Suppose a natural control first draws a length $L$ independently from
-$\ell(t)=\Pr_S(\tau=t)$ and then generates $L$ tokens from $q$. Its law is
-$C(y_{1:t})=\ell(t)\prod_i q_i(y_i\mid y_{<i})$. The length histograms agree
-exactly, yet the likelihood ratio still contains
-$\prod_{i<t}(1-h_i)h_t/\ell(t)$. This is content--length dependence, not a
-length-only attack. Using the \emph{same content-dependent stopping law} for
-the control would instead reproduce the ideal process; the comparator must
-therefore be explicit.
-
-\subsection{An Exact Counterexample}
-
-Let $B=1$, $q(A)=3/4$, and $q(B)=1/4$. Table~\ref{tab:rrc-exact} lists the entire
-stopped law, calculated with rational arithmetic. Its length probabilities are
-$3/4$, $11/48$, and $1/48$ for lengths one, two, and three. An independently
-length-matched natural source assigns probability $3/16$ to the complete text
-$B$, whereas the stopped encoder assigns $1/4$. That event alone distinguishes
-by $1/16$ with ideal randomness. Enumerating all natural strings at these three
-lengths gives total variation $33/256$.
-
-\begin{table}[t]
-\centering
-\caption{Exact stopped law of the published ideal RRC rule. The independent
-control has the same marginal length distribution.}
-\label{tab:rrc-exact}
-\begin{tabular}{lrr}
-\toprule
-Complete text & Stopped law & Independent control \\
-\midrule
-$A$ & $1/2$ & $9/16$ \\
-$B$ & $1/4$ & $3/16$ \\
-$AA$ & $1/6$ & $33/256$ \\
-$AB$ & $1/16$ & $11/256$ \\
-$AAA$ & $1/64$ & $9/1024$ \\
-$AAB$ & $1/192$ & $3/1024$ \\
-Other strings & $0$ & positive \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-This counterexample addresses the step from active next-token preservation to
-complete-text indistinguishability in the paper's Appendix B.3. It does not
-challenge the fresh-rotation sampling argument. Current RRC code adds reverse
-verification before stopping, which changes the stopping law; neither the
-formula nor the exact table is attributed to that revised implementation.
-
-\subsection{The Gap Can Grow with Message Length}
-
-The issue is not confined to a one-bit example. Consider a fixed binary IID
-source with probabilities $p$ and $1-p$, where $0<p<1$ and $p\ne1/2$. Write
-$S_n=-\sum_{i=1}^n\log_2 q(Y_i)$ for cumulative surprisal. The ideal RRC stopping
-rule accepts at step $n$ with probability $\min(1,2^{S_n-B})$.
-
-\begin{theorem}[Stopping separation]
-\label{thm:stopping}
-Let $P_B$ be the stopped-transcript law under this rule, and let $C_B$ draw the
-exact marginal stopping length independently before sampling fresh IID tokens.
-For every fixed nonuniform binary source,
-\begin{equation}
- \operatorname{TV}(P_B,C_B)\ge
- 1-O_p\!\left(\frac{\log B}{\sqrt B}\right)\longrightarrow1.
+ \operatorname{TV}(P_B,C_B)\ge1-\delta-
+ \sup_{n\ge n_0,x}Q\{I_n\in[x,x+k+r]\}.
+ \label{eq:band-criterion}
 \end{equation}
 \end{theorem}
 
-\paragraph{Proof sketch}
-Let $a$ and $b$ be the minimum and maximum symbol surprisals. Stopping is certain
-once $S_n\ge B$, hence $S_\tau\le B+b$. Before $S_n<B-k$, the possible hazards
-sum to at most $2^{-k}/(1-2^{-a})$, because the surprisal increases by at least
-$a$ each step. Thus a stopped text lies in the band $[B-k,B+b]$ with high
-probability. For an independently sampled length, the surprisal is a shifted
-and scaled binomial variable. Its probability of occupying a band of width
-$k+b$ is $O_p((k+1)/\sqrt B)$, except for exponentially unlikely very short
-lengths. Choosing $k=\log_2 B$ proves the claim. Appendix~\ref{app:proofs}
-gives constants and the elementary anticoncentration argument.
+\paragraph{Proof}
+Use the terminal-information band as the distinguishing event. Since
+$I_n\le nb$, this event is impossible under $Q$ when $n<n_0$. For every other
+length its probability is at most the displayed supremum. Average over the
+independent length draw and subtract from the encoder's event probability.
+No early-length approximation or successful-delivery conditioning is needed.
 
-The assumption $p\ne1/2$ matters. For a uniform binary source, interval width
-and hazard depend only on the step index. Stopping length is then independent
-of token identities, and the independently length-matched law is identical.
-The theorem concerns a fixed source as $B$ grows, not a source approaching
-uniformity with $B$, and it does not assert monotonicity at every finite $B$.
-Our use of information random walks follows established source-coding
-analysis~\cite{drmota2010tunstall}; the security question here is the separation
-between complete transcript laws after length matching.
+For a fixed finite-state irreducible aperiodic Markov source with positive
+varentropy rate $\sigma^2$, a classical Berry--Esseen theorem gives
+\begin{equation}
+ \sup_x Q\{I_n\in[x,x+w]\}
+ \le\frac{w/(\sigma\sqrt{2\pi})+2A_Q}{\sqrt n},
+ \label{eq:markov-anticoncentration}
+\end{equation}
+where $A_Q<\infty$ depends on the source and initial state. This follows from
+Kontoyiannis and Verd\'u's Theorem~21, including nonstationary initialization
+in their Section~VI~\cite{kontoyiannis2014lossless}. Their general theorem does
+not supply a numerical $A_Q$. We also give an elementary explicit bound for a
+dependent example below. A terminal band of width $o(\sqrt B)$ with vanishing
+miss probability therefore forces TV to one under these conditions.
+
+\subsection{A Public Endpoint Can Be an Exact Test}
+\label{sec:public-endpoint}
+
+Some stopping predicates are public even though the encoded value is secret.
+For arithmetic-prefix coding, an observer can test whether the current interval
+lies inside \emph{some} payload cell without knowing which cell. Let $\tau$
+be an almost surely finite deterministic public stopping time for $Q$, and
+let $S(y,n)=Q(y)\mathbf1\{\tau(y)=n\}$, with length law $\ell$.
+Then the event $E=\{\tau(y)=|y|\}$ attains
+\begin{equation}
+ \operatorname{TV}(S,\ell(n)Q_n)
+ =1-\sum_n\ell(n)^2.
+ \label{eq:endpoint-identity}
+\end{equation}
+Indeed, $S\ge\ell(n)Q_n$ on $E$ and $S=0$ elsewhere. The test has TPR one and
+FPR $\sum_n\ell(n)^2$. This is a stopping-time corollary of the standard
+TV dependence calculation associated with the Gini--Simpson
+index~\cite{perrone2024entropy}, not a new probability identity. The protocol
+consequence is that accurate sampling up to a public decoding endpoint can
+still be separated exactly from independent length matching.
+
+The test must recognize the \emph{first} endpoint exactly at the end, rather
+than merely successful resolution by then. The latter event has FPR
+$(1+\sum_n\ell(n)^2)/2$. A public cap can be included as an endpoint if all cap
+outcomes are retained. Contexts must be conditioned on separately: with a
+public prompt $H$, the collision term is averaged over $\ell_H$, not computed
+from a pooled prompt histogram. Canonical text replay is required to transfer
+a token-level predicate to the visible-text channel. Privately randomized
+midpoint stopping is outside this exact identity; it is handled by
+Theorem~\ref{thm:criterion}.
+
+\subsection{Three Terminal-Information Bounds}
+\label{sec:terminal-bands}
+
+For the following ideal mechanisms assume
+\begin{equation}
+ 2^{-b}\le q_t(Y_t\mid Y_{<t})\le\rho<1.
+ \label{eq:bounded-increments}
+\end{equation}
+Thus every information increment lies between $-\log_2\rho>0$ and $b$.
+The midpoint mechanisms use exact real arithmetic and fresh independent
+continuous rotations; the prefix mechanism uses a uniform continuous target.
+These assumptions do not describe finite-precision model software automatically.
+
+\paragraph{Published midpoint rule}
+RRC's published Algorithm~3 stops when the rotated point lies within a half-unit
+of the selected interval's midpoint~\cite{yan2026rrc}. After $t$ tokens the width
+is $W_t=2^{B-I_t}$. Conditional on the selected token, the rotated point is
+uniform in that interval, giving hazard $h_t=\min\{1,2^{I_t-B}\}$ and stopped law
+\begin{equation}
+ P_B(y_{1:t})=Q(y_{1:t})\prod_{i<t}(1-h_i)h_t.
+ \label{eq:stopped-law}
+\end{equation}
+The extra factor is public given $Q$ and $B$. For example, with $B=1$ and
+$Q(A)=3/4$, the complete outputs $A,B,AA,AB,AAA,AAB$ have probabilities
+$1/2,1/4,1/6,1/16,1/64,1/192$. Exact enumeration gives TV $33/256$ against the
+independent control with the same entire length marginal. This addresses the
+published Appendix~B.3 stopping argument without challenging active next-token
+preservation. It is not the exact law of the later verified implementation.
+
+For any $k\ge0$, a reverse geometric sum of early hazards gives
+\begin{equation}
+ P_B(I_\tau<B-k)\le\frac{2^{-k}}{1-\rho},\qquad I_\tau<B+b.
+ \label{eq:published-band}
+\end{equation}
+The upper bound holds because the first crossing of $B$ stops certainly.
+Neither argument requires independent token identities.
+
+\paragraph{Midpoint rule with reverse verification}
+The current implementation can veto a candidate endpoint when reverse replay
+does not recover the original message. Its hazard is no longer $h_t$.
+Nevertheless, verification does not remove concentration of the terminal
+information in the corresponding continuous idealization.
+
+\begin{lemma}[Verified midpoint band]
+\label{lem:verified-band}
+For any fixed $B$-bit message, or an independent message mixture, let $\tau_v$
+be the ideal midpoint rule with reverse verification. For integers $j\ge0$
+and $k\ge0$, with $\lambda=(1+\rho)/2$,
+\begin{align}
+ &P_B\{I_{\tau_v}\notin[B-k,B+1+b+2jb]\}\notag\\
+ &\qquad\le\frac{2^{-k}}{1-\rho}
+       +\frac{2\lambda^j}{\sqrt{1-\rho}}.
+ \label{eq:verified-band}
+\end{align}
+The rule terminates almost surely.
+\end{lemma}
+
+The new upper-tail argument tracks a one-sided interval whose every point
+reverses safely to the original message. Its normalized width need not be
+bounded away from zero. A two-step contraction for the reciprocal square root
+of that width bounds survival without conditioning away small safe intervals.
+Appendix~\ref{app:verified-proof} gives the invariant and full calculation.
+This proof concerns continuous rotations and exact reals. It does not transfer
+the old hazard or a finite-grid theorem to verification-dependent software.
+
+\paragraph{Arithmetic-prefix termination}
+Let $U$ be uniform on $[0,1)$, its payload be $\lfloor2^B U\rfloor$, and its
+remaining binary expansion supply independent random continuation. Generate
+nested $Q$-arithmetic intervals containing $U$ and stop when one fits in a
+payload cell. Containment requires $I_\tau\ge B$. At the first crossing
+$\kappa$ of $B+r$, every interval has width at most $2^{-B-r}$. An unresolved
+interval straddles an interior payload boundary; the disjoint intervals can
+be charged to at most $2^B-1$ such boundaries. Hence
+\begin{equation}
+ P\{B\le I_\tau\le B+r+b\}\ge1-2^{-r}.
+ \label{eq:prefix-band}
+\end{equation}
+This is an unconditional bound for the uniform payload mixture. It does not
+assume that authenticated packet bytes are uniform or equate a finite guard
+with infinite random continuation.
+
+\subsection{Separation on Dependent Sources and Its Limits}
+
+\begin{theorem}[Stopping separation]
+\label{thm:stopping}
+Fix a finite-state irreducible aperiodic Markov source satisfying
+Eq.~\eqref{eq:bounded-increments} with positive varentropy rate. For each of
+the three ideal mechanisms above, with its stated message assumptions, let
+$C_B$ use that mechanism's own exact marginal stopping length independently
+of fresh source content. Then
+\begin{equation}
+ \operatorname{TV}(P_B,C_B)\ge
+ 1-O_Q\!\left(\frac{\log B}{\sqrt B}\right)\longrightarrow1.
+\end{equation}
+\end{theorem}
+
+Choose $k,r,j$ of order $\log B$ in the respective band bounds and apply
+Eqs.~\eqref{eq:band-criterion}--\eqref{eq:markov-anticoncentration}. For a fully
+explicit dependent example, take public initial state zero and
+\begin{equation}
+ P=\begin{pmatrix}3/4&1/4\\1/2&1/2\end{pmatrix}.
+ \label{eq:dependent-source}
+\end{equation}
+The row entropies are $0.811278$ and $1$ bits; stationary adjacent information
+increments have covariance $0.0393683>0$. Thus this is not merely dependent
+symbols with IID information increments. Conditioning on even states makes
+odd bridges independent. A repeated bridge type supplies a scaled binomial
+component, yielding, for $n\ge2$,
+\begin{equation}
+ \sup_x Q\{I_n\in[x,x+w]\}\le
+ \min\!\left\{1,\frac{2K(\lfloor w/d\rfloor+1)}{\sqrt{\lfloor n/2\rfloor}}\right\},
+ \label{eq:explicit-markov}
+\end{equation}
+where $d=\log_2(3/2)$ and $K=11\sqrt\pi/12$. The varentropy rate is
+$0.4269101$ bits squared per token. Appendix~\ref{app:markov-proof} proves the
+bound and positivity without a numerical limit approximation. These explicit
+constants are conservative: the resulting verified-rule lower bound is zero
+at 128 and 512 bits. The theorem establishes a limit, not the observed AUC or
+monotonicity at every finite $B$.
+
+\paragraph{A dependent negative control}
+Consider three states, each staying or advancing modulo three with probability
+one half. The chain is irreducible and aperiodic, but every supported length-$n$
+path has $I_n=n$, so its varentropy is zero. For all three ideal mechanisms,
+TV against the independently length-matched source is exactly zero. Prefix
+resolution occurs at depth $B$; unverified midpoint hazards depend only on
+length. For the verified rule, deterministic widths make the reverse-error
+recursion depend only on normalized rotation positions, which are independent
+of the token path (Appendix~\ref{app:verified-zero}). This particular exception
+shows why positive entropy alone is insufficient for the theorem; zero
+varentropy alone is not asserted to secure every stopping mechanism.
+
+\paragraph{A design consequence with a delivery cost}
+A mechanism retaining a vanishing-error $o(\sqrt B)$ terminal-information window
+cannot remove this separation on the stated sources. At a fixed exogenous
+depth $N$, continuous arithmetic sampling instead has output law exactly $Q_N$.
+Its prefix-recovery failure satisfies, for every $r\ge0$,
+\begin{equation}
+ P(\text{recovery fails at }N)
+ \le Q\{I_N<B+r\}+2^{-r}.
+ \label{eq:fixed-endpoint-failure}
+\end{equation}
+Split unresolved intervals into those wider than $2^{-B-r}$ and fine intervals
+straddling payload boundaries; the same boundary charge proves the inequality.
+The output-law statement keeps failures and assumes a uniform payload with
+independent continuation. Conditioning on successful delivery changes it.
+A sublinear extra information budget can leave the narrow-band regime, so this
+is a termination constraint, not an impossibility theorem for rate-efficient
+steganography. Neither fixed endpoints nor this ideal bound establishes
+security for arbitrary encrypted packets, finite precision, or general LLMs.

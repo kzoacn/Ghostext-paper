@@ -1,0 +1,7 @@
+{
+  "role": "retained runtime-mismatch diagnostic",
+  "included_in_same_source_endpoint_estimate": false,
+  "reason": "One inference thread rather than the two recorded at generation. Independent replay shows changed natural quantized frequencies and no matching reconstructed complete stego packet hashes.",
+  "corrected_cohort": "results/sp2027-endpoint-gpt2-corrected",
+  "selection": "The same13 originally eligible pairs; all initial observations retained."
+}

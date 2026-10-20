@@ -1,0 +1,1017 @@
+{
+  "schema": "public-endpoint-analysis-v1",
+  "backend": "qwen",
+  "manifest_sha256": "fe16ff6e226fdbb481ae53150c8f36ac966349a686a98c5f010db0ade895fef7",
+  "cases_sha256": {
+    "00_en_evening_walk_r0_g128.json": "5635227e55cb00f4b25e142d27aba4e7054229b40c8069019a9ccad130186f14",
+    "00_en_evening_walk_r1_g128.json": "bac78ccc4597624291100ed5f4b9f4bbc77aa92140cf01cef9dc950430880309",
+    "00_zh_evening_walk_r0_g128.json": "b4970f3d6d7118ae3b41f86b18170b8235bd1377885b8157c40c8efe99bed740",
+    "00_zh_evening_walk_r1_g128.json": "931d72ac8e7df51dabde60aae5c064c0d0218f44f38bf901d36f3db4ac180165",
+    "01_en_corner_cafe_r0_g128.json": "a093b9caa7c454d5ec948ac2ae0b9f05d5e82362ac4ed9ff972788c0d65f581d",
+    "01_en_corner_cafe_r1_g128.json": "cfda3976cca55a47dc8472edee142ecd9baa379285454d783c74266870e367fd",
+    "01_zh_corner_cafe_r1_g128.json": "0e1590a94d528f95c4a11bd47b0b97c4c1abffcb6d19b187f32625f9c2d3a109",
+    "02_en_library_r0_g128.json": "6eced53c045f578405833154a5fa54cc6efea5c01b55c67afc3afd57709b2b08",
+    "02_en_library_r1_g128.json": "cb3c7744b000fbff60518cb7306b4658ae3aead76566ba4b4afe8b0df6c65de9",
+    "02_zh_library_r0_g128.json": "c2eb65beaa882cde322bc3fa45e3dfcb192608f8933228d67a07a1dac7e8b903",
+    "02_zh_library_r1_g128.json": "7b894aa690dabb9b7271e9ed7466531493ef02bede606b2642a9670cfeea2dc0",
+    "03_en_garden_r0_g128.json": "c953b5f6e90e784b8f49a28cb0158f3125be74cb3d0356c78aa4327541ce8467",
+    "03_en_garden_r1_g128.json": "782670f2534f11aa910e22d18b9076882a6fc91978d3bd4f039cb3f98adc9a10",
+    "03_zh_garden_r0_g128.json": "b3274698a14f7594da8852990edb9a7ab43f0dd916ba7540484c975cdc3e964a",
+    "04_en_market_r0_g128.json": "8f0bbd7863d12516672a3b73a76a00810079daa270d4f974f213ea5ee33165f7",
+    "04_en_market_r1_g128.json": "04c36de52add030c5e3b0ac18912ecfc67992d8a8b0b703180864f3373ed70d1",
+    "04_zh_market_r0_g128.json": "8dd48639eef891ace61e2e5e4466c550d2eaff830af0a2513c5dbd3072571f8a",
+    "04_zh_market_r1_g128.json": "fe9688f04acbc6a09a250eb3b5412b953a83a438c7b83f674ef9824f59845376",
+    "05_en_train_r0_g128.json": "ecf2906283de88086f74524ab17ca77a5e31e775bf7a0acfe009b2e20e592cf4",
+    "05_en_train_r1_g128.json": "ae40ffa9ab572d2fe5b63f1caffaf9deee5fe5834ba724b615872040c8a74ded",
+    "05_zh_train_r0_g128.json": "0486ef68dea0f00c7283c3ca158e9a76aaee6f971836e934e5afd06bb5d7e9c2",
+    "05_zh_train_r1_g128.json": "f42807b21086fcdc702191064f8c482534e51757f8c0156732af337f32bf2adf",
+    "06_en_science_r0_g128.json": "abbef1f1f5afeff42c6cb87e4ea93551d20321bae59c8bc6139e92d95ca8ee4e",
+    "06_en_science_r1_g128.json": "3f81e050c695eb1be14f48b935a2d929adb403af65a8deb4b860d88de8770c66",
+    "06_zh_science_r0_g128.json": "b4e7e06d9c2cf500c14ef3533f5bc875257f24c79983c3ca969014123fd1f598",
+    "06_zh_science_r1_g128.json": "74cf7425d755ca3f5e2aef37f687affa6e8f5da63fed161a2b336f81f81a2fd1",
+    "07_en_museum_r0_g128.json": "53172a609a5fac7e03ecb2a3fc4521030c25dd7ba317792231ecc82503569757",
+    "07_en_museum_r1_g128.json": "b2f602977013676651749067ae949d52ad9e0d9c43e4f954522fb1b89115db98",
+    "07_zh_museum_r0_g128.json": "249cbb0591671a436648ec8b465925f41555cdcb846073fa25ec89f6b91d5a03",
+    "07_zh_museum_r1_g128.json": "484c8b076d884b5de4bbf994ba2962c288d678d9b6b380fa05e549d5fd55aa47",
+    "08_en_mountain_r0_g128.json": "e8c9259aaa0c2e3fd3561d906d45d204d958425d91635d566e8667db818a6cf6",
+    "08_en_mountain_r1_g128.json": "b2e35622fffb452572d2e8fee832544da04b568d27d2053f4f5073911ad1f6cb",
+    "08_zh_mountain_r0_g128.json": "dabd4ef3bc405533b4212436aca7e76f1f5740b4b7d23b2f6a2df11a0f521091",
+    "09_en_workshop_r0_g128.json": "e5d47cca6d955b02e00153feac0da82bab5f79ed7613fac9a6d626c5e25e264c",
+    "09_en_workshop_r1_g128.json": "9ec120b997acaa9d4adeb4775991a341821708efe535d8b35063990716b817c2",
+    "09_zh_workshop_r0_g128.json": "5002013a84ed698a9e392f62753b22e392deaa16e508bbd0ad50c9daa51063d9",
+    "09_zh_workshop_r1_g128.json": "45348c9b0c6fb185b418c8142a60ad2072d57fb139b9c4ec6f5433e765d9b4c5"
+  },
+  "analysis_source_sha256": "03739afa689ba5b82bcfda63d04576ba2278bd4ee3140da3a0b29962a2d5e635",
+  "pairs": 37,
+  "families": 10,
+  "by_family": {
+    "corner_cafe": {
+      "pairs": 3,
+      "stego": 3,
+      "natural": 0
+    },
+    "evening_walk": {
+      "pairs": 4,
+      "stego": 4,
+      "natural": 0
+    },
+    "garden": {
+      "pairs": 3,
+      "stego": 3,
+      "natural": 0
+    },
+    "library": {
+      "pairs": 4,
+      "stego": 4,
+      "natural": 0
+    },
+    "market": {
+      "pairs": 4,
+      "stego": 4,
+      "natural": 0
+    },
+    "mountain": {
+      "pairs": 3,
+      "stego": 3,
+      "natural": 0
+    },
+    "museum": {
+      "pairs": 4,
+      "stego": 4,
+      "natural": 0
+    },
+    "science": {
+      "pairs": 4,
+      "stego": 4,
+      "natural": 0
+    },
+    "train": {
+      "pairs": 4,
+      "stego": 4,
+      "natural": 0
+    },
+    "workshop": {
+      "pairs": 4,
+      "stego": 4,
+      "natural": 1
+    }
+  },
+  "same_thread_count_as_generation": true,
+  "all_archived_token_ids_match": true,
+  "natural_selected_mass_mismatch_count": 0,
+  "natural_inspected_mass_count": 10937,
+  "stego_reconstructed_packet_hash_matches": 37,
+  "outcomes": {
+    "stego": {
+      "endpoint_at_end": 37
+    },
+    "natural": {
+      "endpoint_before_end": 19,
+      "unfinished_at_end": 17,
+      "endpoint_at_end": 1
+    }
+  },
+  "rates": {
+    "stego": {
+      "hits": 37,
+      "denominator": 37,
+      "rate": 1.0,
+      "family_bootstrap_percentile_95": [
+        1.0,
+        1.0
+      ],
+      "nominal_wilson_95": [
+        0.9059390425448564,
+        1.0
+      ]
+    },
+    "natural": {
+      "hits": 1,
+      "denominator": 37,
+      "rate": 0.02702702702702703,
+      "family_bootstrap_percentile_95": [
+        0.0,
+        0.08108108108108109
+      ],
+      "nominal_wilson_95": [
+        0.004786851054907726,
+        0.13824378437563367
+      ]
+    }
+  },
+  "per_pair": [
+    {
+      "case_id": "00_en_evening_walk:r0:g128",
+      "family": "evening_walk",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 351,
+        "tokens_inspected": 351,
+        "segment_endpoints": [
+          192,
+          351
+        ]
+      },
+      "natural": {
+        "status": "endpoint_before_end",
+        "visible_tokens": 351,
+        "tokens_inspected": 324,
+        "segment_endpoints": [
+          191,
+          324
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "00_en_evening_walk:r1:g128",
+      "family": "evening_walk",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 364,
+        "tokens_inspected": 364,
+        "segment_endpoints": [
+          210,
+          364
+        ]
+      },
+      "natural": {
+        "status": "endpoint_before_end",
+        "visible_tokens": 364,
+        "tokens_inspected": 311,
+        "segment_endpoints": [
+          200,
+          311
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "00_zh_evening_walk:r0:g128",
+      "family": "evening_walk",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 300,
+        "tokens_inspected": 300,
+        "segment_endpoints": [
+          162,
+          300
+        ]
+      },
+      "natural": {
+        "status": "unfinished_at_end",
+        "visible_tokens": 300,
+        "tokens_inspected": 300,
+        "segment_endpoints": [
+          199
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "00_zh_evening_walk:r1:g128",
+      "family": "evening_walk",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 340,
+        "tokens_inspected": 340,
+        "segment_endpoints": [
+          200,
+          340
+        ]
+      },
+      "natural": {
+        "status": "endpoint_before_end",
+        "visible_tokens": 340,
+        "tokens_inspected": 298,
+        "segment_endpoints": [
+          181,
+          298
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "01_en_corner_cafe:r0:g128",
+      "family": "corner_cafe",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 270,
+        "tokens_inspected": 270,
+        "segment_endpoints": [
+          162,
+          270
+        ]
+      },
+      "natural": {
+        "status": "unfinished_at_end",
+        "visible_tokens": 270,
+        "tokens_inspected": 270,
+        "segment_endpoints": [
+          200
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "01_en_corner_cafe:r1:g128",
+      "family": "corner_cafe",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 340,
+        "tokens_inspected": 340,
+        "segment_endpoints": [
+          203,
+          340
+        ]
+      },
+      "natural": {
+        "status": "endpoint_before_end",
+        "visible_tokens": 340,
+        "tokens_inspected": 338,
+        "segment_endpoints": [
+          204,
+          338
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "01_zh_corner_cafe:r1:g128",
+      "family": "corner_cafe",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 343,
+        "tokens_inspected": 343,
+        "segment_endpoints": [
+          191,
+          343
+        ]
+      },
+      "natural": {
+        "status": "endpoint_before_end",
+        "visible_tokens": 343,
+        "tokens_inspected": 326,
+        "segment_endpoints": [
+          195,
+          326
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "02_en_library:r0:g128",
+      "family": "library",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 329,
+        "tokens_inspected": 329,
+        "segment_endpoints": [
+          203,
+          329
+        ]
+      },
+      "natural": {
+        "status": "unfinished_at_end",
+        "visible_tokens": 329,
+        "tokens_inspected": 329,
+        "segment_endpoints": [
+          218
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "02_en_library:r1:g128",
+      "family": "library",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 320,
+        "tokens_inspected": 320,
+        "segment_endpoints": [
+          180,
+          320
+        ]
+      },
+      "natural": {
+        "status": "endpoint_before_end",
+        "visible_tokens": 320,
+        "tokens_inspected": 288,
+        "segment_endpoints": [
+          171,
+          288
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "02_zh_library:r0:g128",
+      "family": "library",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 310,
+        "tokens_inspected": 310,
+        "segment_endpoints": [
+          172,
+          310
+        ]
+      },
+      "natural": {
+        "status": "unfinished_at_end",
+        "visible_tokens": 310,
+        "tokens_inspected": 310,
+        "segment_endpoints": [
+          186
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "02_zh_library:r1:g128",
+      "family": "library",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 309,
+        "tokens_inspected": 309,
+        "segment_endpoints": [
+          196,
+          309
+        ]
+      },
+      "natural": {
+        "status": "endpoint_before_end",
+        "visible_tokens": 309,
+        "tokens_inspected": 306,
+        "segment_endpoints": [
+          185,
+          306
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "03_en_garden:r0:g128",
+      "family": "garden",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 380,
+        "tokens_inspected": 380,
+        "segment_endpoints": [
+          228,
+          380
+        ]
+      },
+      "natural": {
+        "status": "endpoint_before_end",
+        "visible_tokens": 380,
+        "tokens_inspected": 345,
+        "segment_endpoints": [
+          206,
+          345
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "03_en_garden:r1:g128",
+      "family": "garden",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 276,
+        "tokens_inspected": 276,
+        "segment_endpoints": [
+          169,
+          276
+        ]
+      },
+      "natural": {
+        "status": "unfinished_at_end",
+        "visible_tokens": 276,
+        "tokens_inspected": 276,
+        "segment_endpoints": [
+          182
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "03_zh_garden:r0:g128",
+      "family": "garden",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 351,
+        "tokens_inspected": 351,
+        "segment_endpoints": [
+          203,
+          351
+        ]
+      },
+      "natural": {
+        "status": "endpoint_before_end",
+        "visible_tokens": 351,
+        "tokens_inspected": 311,
+        "segment_endpoints": [
+          180,
+          311
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "04_en_market:r0:g128",
+      "family": "market",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 273,
+        "tokens_inspected": 273,
+        "segment_endpoints": [
+          166,
+          273
+        ]
+      },
+      "natural": {
+        "status": "unfinished_at_end",
+        "visible_tokens": 273,
+        "tokens_inspected": 273,
+        "segment_endpoints": [
+          184
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "04_en_market:r1:g128",
+      "family": "market",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 281,
+        "tokens_inspected": 281,
+        "segment_endpoints": [
+          161,
+          281
+        ]
+      },
+      "natural": {
+        "status": "endpoint_before_end",
+        "visible_tokens": 281,
+        "tokens_inspected": 264,
+        "segment_endpoints": [
+          170,
+          264
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "04_zh_market:r0:g128",
+      "family": "market",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 323,
+        "tokens_inspected": 323,
+        "segment_endpoints": [
+          190,
+          323
+        ]
+      },
+      "natural": {
+        "status": "endpoint_before_end",
+        "visible_tokens": 323,
+        "tokens_inspected": 302,
+        "segment_endpoints": [
+          189,
+          302
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "04_zh_market:r1:g128",
+      "family": "market",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 261,
+        "tokens_inspected": 261,
+        "segment_endpoints": [
+          163,
+          261
+        ]
+      },
+      "natural": {
+        "status": "unfinished_at_end",
+        "visible_tokens": 261,
+        "tokens_inspected": 261,
+        "segment_endpoints": [
+          192
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "05_en_train:r0:g128",
+      "family": "train",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 275,
+        "tokens_inspected": 275,
+        "segment_endpoints": [
+          154,
+          275
+        ]
+      },
+      "natural": {
+        "status": "unfinished_at_end",
+        "visible_tokens": 275,
+        "tokens_inspected": 275,
+        "segment_endpoints": [
+          186
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "05_en_train:r1:g128",
+      "family": "train",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 283,
+        "tokens_inspected": 283,
+        "segment_endpoints": [
+          170,
+          283
+        ]
+      },
+      "natural": {
+        "status": "unfinished_at_end",
+        "visible_tokens": 283,
+        "tokens_inspected": 283,
+        "segment_endpoints": [
+          208
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "05_zh_train:r0:g128",
+      "family": "train",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 296,
+        "tokens_inspected": 296,
+        "segment_endpoints": [
+          179,
+          296
+        ]
+      },
+      "natural": {
+        "status": "unfinished_at_end",
+        "visible_tokens": 296,
+        "tokens_inspected": 296,
+        "segment_endpoints": [
+          181
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "05_zh_train:r1:g128",
+      "family": "train",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 304,
+        "tokens_inspected": 304,
+        "segment_endpoints": [
+          177,
+          304
+        ]
+      },
+      "natural": {
+        "status": "endpoint_before_end",
+        "visible_tokens": 304,
+        "tokens_inspected": 242,
+        "segment_endpoints": [
+          146,
+          242
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "06_en_science:r0:g128",
+      "family": "science",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 317,
+        "tokens_inspected": 317,
+        "segment_endpoints": [
+          195,
+          317
+        ]
+      },
+      "natural": {
+        "status": "endpoint_before_end",
+        "visible_tokens": 317,
+        "tokens_inspected": 292,
+        "segment_endpoints": [
+          163,
+          292
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "06_en_science:r1:g128",
+      "family": "science",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 302,
+        "tokens_inspected": 302,
+        "segment_endpoints": [
+          161,
+          302
+        ]
+      },
+      "natural": {
+        "status": "unfinished_at_end",
+        "visible_tokens": 302,
+        "tokens_inspected": 302,
+        "segment_endpoints": [
+          184
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "06_zh_science:r0:g128",
+      "family": "science",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 295,
+        "tokens_inspected": 295,
+        "segment_endpoints": [
+          157,
+          295
+        ]
+      },
+      "natural": {
+        "status": "unfinished_at_end",
+        "visible_tokens": 295,
+        "tokens_inspected": 295,
+        "segment_endpoints": [
+          197
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "06_zh_science:r1:g128",
+      "family": "science",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 303,
+        "tokens_inspected": 303,
+        "segment_endpoints": [
+          174,
+          303
+        ]
+      },
+      "natural": {
+        "status": "endpoint_before_end",
+        "visible_tokens": 303,
+        "tokens_inspected": 272,
+        "segment_endpoints": [
+          150,
+          272
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "07_en_museum:r0:g128",
+      "family": "museum",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 313,
+        "tokens_inspected": 313,
+        "segment_endpoints": [
+          186,
+          313
+        ]
+      },
+      "natural": {
+        "status": "endpoint_before_end",
+        "visible_tokens": 313,
+        "tokens_inspected": 302,
+        "segment_endpoints": [
+          184,
+          302
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "07_en_museum:r1:g128",
+      "family": "museum",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 360,
+        "tokens_inspected": 360,
+        "segment_endpoints": [
+          198,
+          360
+        ]
+      },
+      "natural": {
+        "status": "endpoint_before_end",
+        "visible_tokens": 360,
+        "tokens_inspected": 327,
+        "segment_endpoints": [
+          211,
+          327
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "07_zh_museum:r0:g128",
+      "family": "museum",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 302,
+        "tokens_inspected": 302,
+        "segment_endpoints": [
+          181,
+          302
+        ]
+      },
+      "natural": {
+        "status": "unfinished_at_end",
+        "visible_tokens": 302,
+        "tokens_inspected": 302,
+        "segment_endpoints": [
+          196
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "07_zh_museum:r1:g128",
+      "family": "museum",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 296,
+        "tokens_inspected": 296,
+        "segment_endpoints": [
+          178,
+          296
+        ]
+      },
+      "natural": {
+        "status": "endpoint_before_end",
+        "visible_tokens": 296,
+        "tokens_inspected": 275,
+        "segment_endpoints": [
+          153,
+          275
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "08_en_mountain:r0:g128",
+      "family": "mountain",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 284,
+        "tokens_inspected": 284,
+        "segment_endpoints": [
+          171,
+          284
+        ]
+      },
+      "natural": {
+        "status": "unfinished_at_end",
+        "visible_tokens": 284,
+        "tokens_inspected": 284,
+        "segment_endpoints": [
+          195
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "08_en_mountain:r1:g128",
+      "family": "mountain",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 265,
+        "tokens_inspected": 265,
+        "segment_endpoints": [
+          157,
+          265
+        ]
+      },
+      "natural": {
+        "status": "unfinished_at_end",
+        "visible_tokens": 265,
+        "tokens_inspected": 265,
+        "segment_endpoints": [
+          197
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "08_zh_mountain:r0:g128",
+      "family": "mountain",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 332,
+        "tokens_inspected": 332,
+        "segment_endpoints": [
+          207,
+          332
+        ]
+      },
+      "natural": {
+        "status": "unfinished_at_end",
+        "visible_tokens": 332,
+        "tokens_inspected": 332,
+        "segment_endpoints": [
+          225
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "09_en_workshop:r0:g128",
+      "family": "workshop",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 316,
+        "tokens_inspected": 316,
+        "segment_endpoints": [
+          199,
+          316
+        ]
+      },
+      "natural": {
+        "status": "endpoint_before_end",
+        "visible_tokens": 316,
+        "tokens_inspected": 294,
+        "segment_endpoints": [
+          169,
+          294
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "09_en_workshop:r1:g128",
+      "family": "workshop",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 265,
+        "tokens_inspected": 265,
+        "segment_endpoints": [
+          152,
+          265
+        ]
+      },
+      "natural": {
+        "status": "unfinished_at_end",
+        "visible_tokens": 265,
+        "tokens_inspected": 265,
+        "segment_endpoints": [
+          193
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "09_zh_workshop:r0:g128",
+      "family": "workshop",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 328,
+        "tokens_inspected": 328,
+        "segment_endpoints": [
+          213,
+          328
+        ]
+      },
+      "natural": {
+        "status": "endpoint_before_end",
+        "visible_tokens": 328,
+        "tokens_inspected": 301,
+        "segment_endpoints": [
+          184,
+          301
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "09_zh_workshop:r1:g128",
+      "family": "workshop",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 301,
+        "tokens_inspected": 301,
+        "segment_endpoints": [
+          178,
+          301
+        ]
+      },
+      "natural": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 301,
+        "tokens_inspected": 301,
+        "segment_endpoints": [
+          187,
+          301
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    }
+  ],
+  "scope": "Post-hoc first-prefix-resolution support test on the unchanged eligible no-tail delivery slice. Known plaintext length is an additional public assumption. Rates are conditional on earlier complete canonical controls; all replay failures are retained. Family bootstrap resamples the saved families (5000 draws, seed 20261028), not unseen deployment conditions. An all-zero or all-one sample has a degenerate percentile interval, which provides no calibrated bound on an unseen error probability. Wilson intervals are nominal and ignore within-family dependence.",
+  "source_replay_check_passed": true
+}

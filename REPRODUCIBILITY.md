@@ -29,6 +29,7 @@ PYTHONPATH=../Ghostext/src python -m pytest ../Ghostext/tests -q
 python scripts/run_codec_security_audit.py
 python scripts/audit_stopping_adapter.py
 python scripts/audit_rotation_grid.py
+python scripts/audit_termination_theory.py
 python scripts/run_stopping_dp.py
 python scripts/audit_existing_evidence.py
 python scripts/audit_legacy_controls.py
@@ -39,8 +40,16 @@ python scripts/analyze_repair_matrix.py \
   results/sp2027-repair-gpt2 results/sp2027-repair-qwen
 python scripts/analyze_stopping_ablation.py \
   results/sp2027-stopping-gpt2 results/sp2027-stopping-gpt2-verified
+python scripts/analyze_upstream_rrc.py \
+  results/sp2027-upstream-gpt2 \
+  results/sp2027-upstream-gpt2-pilot results/sp2027-upstream-gpt2-pilot-v2
+python scripts/analyze_upstream_tokens.py
+python scripts/analyze_public_endpoint.py \
+  results/sp2027-endpoint-gpt2 results/sp2027-endpoint-gpt2-corrected \
+  results/sp2027-endpoint-qwen
 python scripts/generate_evaluation_tables.py --require-all
 python scripts/generate_revision_figures.py
+python scripts/generate_accept_materials.py
 ```
 
 The model integration test is skipped unless explicitly configured. It is
@@ -64,6 +73,13 @@ The expected exact results include NLS complete-text TV `15/16` with reported
 KL zero, ideal RRC matched-length TV `33/256`, and finite-grid/capped TV `1/96`
 in the supplied regression example. The uniform-source stopping negative
 control has zero distance. These are distinct experiments and reference laws.
+
+`audit_termination_theory.py` additionally checks the verified-rule safe interval,
+reverse-error cancellation, a dependent Markov source's constants, and exact
+public endpoint identities. Its six prefix-tree identity checks use a public
+cap of eight tokens and include unresolved cap outcomes. They must not be
+read as laws conditioned on successful payload resolution. Numerical kernel
+quadrature supplements, rather than replaces, the analytic proof.
 
 The historical 18-control pilot used filtered floating probabilities and
 three raw-argmax fallbacks. The old JSON label `historical_stable_sampler`
@@ -105,7 +121,11 @@ preserves exact bytes, indexed by SHA-256, and
 `results/sp2027-source-map/protocols.json` maps every profile to its entry point,
 arguments, candidate policy, stopping horizon, and recorded CPU affinity.
 Materialization also stages hash-checked input records for the archived
-bootstrap probe and targeted reverse-failure diagnostic. Command-index paths
+bootstrap probe, targeted reverse-failure diagnostic, and new text replays.
+It preserves source objects needed for the replays' own frozen-code imports.
+Each upstream profile stages its exact archived study plan at the path its
+runner expects; this keeps the two excluded pilot versions distinct.
+Command-index paths
 are relative to the root of the materialized profile; use absolute model and
 output paths when running those commands.
 Helpers omitted from old manifests are separately pinned at artifact freeze,
@@ -123,6 +143,13 @@ milestone.
 | `sp2027-repair-gpt2` | 40 trials | Strict | Authenticated packet, guards 0/128, ten attempts |
 | `sp2027-repair-qwen` | 80 trials | Strict | Authenticated packet, guards 0/128, ten attempts |
 | `sp2027-stopping-gpt2-verified` | 40 pairs | Strict | Separate verification-before-stop adapter |
+| `sp2027-upstream-gpt2` | 160 secret instances | Upstream full vocabulary | Unchanged verified/unverified sender and receiver, plus independent-endpoint control |
+| `sp2027-upstream-gpt2-pilot` | 4 excluded instances | Same source | Original control reserve; one precision failure retained |
+| `sp2027-upstream-gpt2-pilot-v2` | 4 excluded instances | Same source | Corrected control reserve, frozen before the main cohort |
+| `sp2027-endpoint-gpt2-corrected` | 13 existing pairs | Original frozen delivery source | Text-only two-segment endpoint replay, original two threads |
+| `sp2027-endpoint-qwen` | 37 existing pairs | Original frozen delivery source | Same replay and previous interruption exclusion |
+| `sp2027-endpoint-gpt2` | 13 existing pairs | Mismatched runtime | Retained one-thread diagnostic; not a same-source result |
+| `sp2027-upstream-public-features` | 6 existing arm/control pairs | Upstream full vocabulary | Public score replay; nine distinct text inputs |
 
 The expanded-source study was introduced after diagnosing development-case
 filter failures. It uses seed `20261023`, retains the original topic split and
@@ -181,6 +208,44 @@ The replay selects the first eligible held-out case in each relevant group
 and consumes text and public configuration only. It compares every selected
 quantized probability or bootstrap-probe outcome with the saved record.
 Additional retained replays cover both models and candidate settings.
+
+The current-upstream study uses RRC commit
+`dae326259e4fca8bc4fcf460dafdbc0e88a0a71a`; its unchanged core SHA-256 is
+`e45a4df5eebc86881d606f2fd6c3cbab5729252dce96e5ae1a7ba424be02ec4a`.
+External files are fetched by immutable revision and checked before execution:
+
+```bash
+python scripts/fetch_upstream_rrc.py
+python scripts/audit_upstream_rrc.py
+python scripts/replay_upstream_public_features.py \
+  --model-path ../models/gpt2 --out-dir local-results/upstream-public-replay
+python scripts/run_public_endpoint_replay.py \
+  --backend gpt2 --model-path ../models/gpt2 --threads 2 \
+  --out-dir local-results/endpoint-gpt2
+```
+
+For generation, materialize `sp2027-upstream-gpt2` and use its command index.
+It has 20 prompt clusters, ten development and ten test, four tapes and two
+payload sizes. The fixed-endpoint arm's extra Decimal reserve was fixed
+after an excluded pilot failure, before the main cohort. It retains receiver
+failures. All raw variants, stage files and execution journals are included.
+The exact model-probability source is defined by differences of upstream
+Decimal-converted CDF boundaries, not by separately reported softmax values.
+
+Endpoint replay is post-hoc and knows the 16-byte application-message length,
+giving two public segment sizes of 60 and 44 bytes. Classification only uses
+visible text and public inputs. Integer-only reanalysis independently
+recomputes all decisions from selected CDF boundaries. After classification,
+reconstructed packet hashes and inspected natural selected masses are compared
+with the archive to check fidelity; they do not filter the cohort.
+
+The first GPT-2 replay used one thread instead of the original two. Token IDs
+still matched, but some integer frequencies changed and reconstructed packets
+did not match. This complete run remains under `sp2027-endpoint-gpt2` as a
+runtime-mismatch diagnostic. The corrected run repeats the same 13 pairs with
+two threads. Reproduction therefore requires the recorded numerical runtime,
+not merely matching weight and tokenizer hashes. The source profile preserves
+the original diagnostic runner; the current runner rejects a thread mismatch.
 
 ## Building the paper
 

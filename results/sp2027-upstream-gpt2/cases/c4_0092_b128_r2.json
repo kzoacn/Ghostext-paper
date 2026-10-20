@@ -1,0 +1,1590 @@
+{
+  "prompt_id": "c4_0092",
+  "source_row": 92,
+  "prompt": "Menara Taming Sari (Melaka Tower) is located at Bandar Hilir",
+  "selection_sha256": "031857ac3c34bb8b4cc0a5458bebf274d6f8c3a6567c3dff9c8c63e7bdb25c23",
+  "split": "development",
+  "message_bits": 128,
+  "repeat": 2,
+  "case_id": "c4_0092_b128_r2",
+  "variants": {
+    "unverified": {
+      "status": "complete",
+      "error": null,
+      "token_ids": [
+        3693,
+        4349,
+        60,
+        198,
+        198,
+        3260,
+        2017,
+        376,
+        4207,
+        72,
+        3453,
+        276,
+        351,
+        16997,
+        3178,
+        292,
+        42676,
+        1141
+      ],
+      "tokens": 18,
+      "cover_text": "Menara Taming Sari (Melaka Tower) is located at Bandar Hilir.[51]\n\nAfterwards Foomi conversed with surviving Charas princes during",
+      "text_sha256": "ea476b08aaafe684acccbfc37323f2426e7df0d6eb0c6cfdd45a2fb9af66caec",
+      "context_token_ids": [
+        10418,
+        3301,
+        309,
+        3723,
+        311,
+        2743,
+        357,
+        21102,
+        8130,
+        8765,
+        8,
+        318,
+        5140,
+        379,
+        10243,
+        283,
+        24410,
+        343
+      ],
+      "visible_token_ids": [
+        10418,
+        3301,
+        309,
+        3723,
+        311,
+        2743,
+        357,
+        21102,
+        8130,
+        8765,
+        8,
+        318,
+        5140,
+        379,
+        10243,
+        283,
+        24410,
+        343,
+        3693,
+        4349,
+        60,
+        198,
+        198,
+        3260,
+        2017,
+        376,
+        4207,
+        72,
+        3453,
+        276,
+        351,
+        16997,
+        3178,
+        292,
+        42676,
+        1141
+      ],
+      "visible_continuation_token_ids": [
+        3693,
+        4349,
+        60,
+        198,
+        198,
+        3260,
+        2017,
+        376,
+        4207,
+        72,
+        3453,
+        276,
+        351,
+        16997,
+        3178,
+        292,
+        42676,
+        1141
+      ],
+      "prompt_prefix_matches": true,
+      "canonical_text_roundtrip": true,
+      "chosen_probabilities": [
+        0.0039809387111473,
+        0.0032514043066103,
+        0.9321028175500207,
+        0.4734185739074246,
+        0.9996103741441362,
+        0.01053131836228925,
+        0.01143573297786466,
+        0.0002587880139587,
+        0.0013383808006537,
+        0.01340528233532632,
+        0.0001250755305927,
+        0.3234393788180067,
+        0.9128462203494758,
+        2.6354925596e-06,
+        0.0002239490143746,
+        0.02687855032959276,
+        2.88747829924e-05,
+        0.0072784240786999
+      ],
+      "interval_observations": [
+        {
+          "token_id": 3693,
+          "cdf_low": "0.6138834056014376",
+          "cdf_high": "0.6178643443125849",
+          "probability_decimal": "0.0039809387111473"
+        },
+        {
+          "token_id": 4349,
+          "cdf_low": "0.8435818403936559",
+          "cdf_high": "0.8468332447002662",
+          "probability_decimal": "0.0032514043066103"
+        },
+        {
+          "token_id": 60,
+          "cdf_low": "0.0",
+          "cdf_high": "0.9321028175500207",
+          "probability_decimal": "0.9321028175500207"
+        },
+        {
+          "token_id": 198,
+          "cdf_low": "0.0",
+          "cdf_high": "0.4734185739074246",
+          "probability_decimal": "0.4734185739074246"
+        },
+        {
+          "token_id": 198,
+          "cdf_low": "0.0",
+          "cdf_high": "0.9996103741441362",
+          "probability_decimal": "0.9996103741441362"
+        },
+        {
+          "token_id": 3260,
+          "cdf_low": "0.31571043559773115",
+          "cdf_high": "0.3262417539600204",
+          "probability_decimal": "0.01053131836228925"
+        },
+        {
+          "token_id": 2017,
+          "cdf_low": "0.3262901172589499",
+          "cdf_high": "0.33772585023681456",
+          "probability_decimal": "0.01143573297786466"
+        },
+        {
+          "token_id": 376,
+          "cdf_low": "0.9402562696879967",
+          "cdf_high": "0.9405150577019554",
+          "probability_decimal": "0.0002587880139587"
+        },
+        {
+          "token_id": 4207,
+          "cdf_low": "0.5770274350007998",
+          "cdf_high": "0.5783658158014535",
+          "probability_decimal": "0.0013383808006537"
+        },
+        {
+          "token_id": 72,
+          "cdf_low": "0.2344085327192491",
+          "cdf_high": "0.24781381505457542",
+          "probability_decimal": "0.01340528233532632"
+        },
+        {
+          "token_id": 3453,
+          "cdf_low": "0.7671388207522558",
+          "cdf_high": "0.7672638962828485",
+          "probability_decimal": "0.0001250755305927"
+        },
+        {
+          "token_id": 276,
+          "cdf_low": "0.6247789675404833",
+          "cdf_high": "0.94821834635849",
+          "probability_decimal": "0.3234393788180067"
+        },
+        {
+          "token_id": 351,
+          "cdf_low": "0.0",
+          "cdf_high": "0.9128462203494758",
+          "probability_decimal": "0.9128462203494758"
+        },
+        {
+          "token_id": 16997,
+          "cdf_low": "0.9894402163160607",
+          "cdf_high": "0.9894428518086203",
+          "probability_decimal": "0.0000026354925596"
+        },
+        {
+          "token_id": 3178,
+          "cdf_low": "0.7031600632236036",
+          "cdf_high": "0.7033840122379782",
+          "probability_decimal": "0.0002239490143746"
+        },
+        {
+          "token_id": 292,
+          "cdf_low": "0.3472550189679373",
+          "cdf_high": "0.37413356929753006",
+          "probability_decimal": "0.02687855032959276"
+        },
+        {
+          "token_id": 42676,
+          "cdf_low": "0.9144898449283764",
+          "cdf_high": "0.9145187197113688",
+          "probability_decimal": "0.0000288747829924"
+        },
+        {
+          "token_id": 1141,
+          "cdf_low": "0.7441426388639228",
+          "cdf_high": "0.7514210629426227",
+          "probability_decimal": "0.0072784240786999"
+        }
+      ],
+      "surprisal_bits": 130.9023084604041,
+      "elapsed_seconds": 0.762713884934783,
+      "context_trim_calls": 0,
+      "rejected_stop_count": 0,
+      "decimal_precision": 79
+    },
+    "verified": {
+      "status": "complete",
+      "error": null,
+      "token_ids": [
+        3693,
+        4349,
+        60,
+        198,
+        198,
+        3260,
+        2017,
+        376,
+        4207,
+        72,
+        3453,
+        276,
+        351,
+        16997,
+        3178,
+        292,
+        42676,
+        1141
+      ],
+      "tokens": 18,
+      "cover_text": "Menara Taming Sari (Melaka Tower) is located at Bandar Hilir.[51]\n\nAfterwards Foomi conversed with surviving Charas princes during",
+      "text_sha256": "ea476b08aaafe684acccbfc37323f2426e7df0d6eb0c6cfdd45a2fb9af66caec",
+      "context_token_ids": [
+        10418,
+        3301,
+        309,
+        3723,
+        311,
+        2743,
+        357,
+        21102,
+        8130,
+        8765,
+        8,
+        318,
+        5140,
+        379,
+        10243,
+        283,
+        24410,
+        343
+      ],
+      "visible_token_ids": [
+        10418,
+        3301,
+        309,
+        3723,
+        311,
+        2743,
+        357,
+        21102,
+        8130,
+        8765,
+        8,
+        318,
+        5140,
+        379,
+        10243,
+        283,
+        24410,
+        343,
+        3693,
+        4349,
+        60,
+        198,
+        198,
+        3260,
+        2017,
+        376,
+        4207,
+        72,
+        3453,
+        276,
+        351,
+        16997,
+        3178,
+        292,
+        42676,
+        1141
+      ],
+      "visible_continuation_token_ids": [
+        3693,
+        4349,
+        60,
+        198,
+        198,
+        3260,
+        2017,
+        376,
+        4207,
+        72,
+        3453,
+        276,
+        351,
+        16997,
+        3178,
+        292,
+        42676,
+        1141
+      ],
+      "prompt_prefix_matches": true,
+      "canonical_text_roundtrip": true,
+      "chosen_probabilities": [
+        0.0039809387111473,
+        0.0032514043066103,
+        0.9321028175500207,
+        0.4734185739074246,
+        0.9996103741441362,
+        0.01053131836228925,
+        0.01143573297786466,
+        0.0002587880139587,
+        0.0013383808006537,
+        0.01340528233532632,
+        0.0001250755305927,
+        0.3234393788180067,
+        0.9128462203494758,
+        2.6354925596e-06,
+        0.0002239490143746,
+        0.02687855032959276,
+        2.88747829924e-05,
+        0.0072784240786999
+      ],
+      "interval_observations": [
+        {
+          "token_id": 3693,
+          "cdf_low": "0.6138834056014376",
+          "cdf_high": "0.6178643443125849",
+          "probability_decimal": "0.0039809387111473"
+        },
+        {
+          "token_id": 4349,
+          "cdf_low": "0.8435818403936559",
+          "cdf_high": "0.8468332447002662",
+          "probability_decimal": "0.0032514043066103"
+        },
+        {
+          "token_id": 60,
+          "cdf_low": "0.0",
+          "cdf_high": "0.9321028175500207",
+          "probability_decimal": "0.9321028175500207"
+        },
+        {
+          "token_id": 198,
+          "cdf_low": "0.0",
+          "cdf_high": "0.4734185739074246",
+          "probability_decimal": "0.4734185739074246"
+        },
+        {
+          "token_id": 198,
+          "cdf_low": "0.0",
+          "cdf_high": "0.9996103741441362",
+          "probability_decimal": "0.9996103741441362"
+        },
+        {
+          "token_id": 3260,
+          "cdf_low": "0.31571043559773115",
+          "cdf_high": "0.3262417539600204",
+          "probability_decimal": "0.01053131836228925"
+        },
+        {
+          "token_id": 2017,
+          "cdf_low": "0.3262901172589499",
+          "cdf_high": "0.33772585023681456",
+          "probability_decimal": "0.01143573297786466"
+        },
+        {
+          "token_id": 376,
+          "cdf_low": "0.9402562696879967",
+          "cdf_high": "0.9405150577019554",
+          "probability_decimal": "0.0002587880139587"
+        },
+        {
+          "token_id": 4207,
+          "cdf_low": "0.5770274350007998",
+          "cdf_high": "0.5783658158014535",
+          "probability_decimal": "0.0013383808006537"
+        },
+        {
+          "token_id": 72,
+          "cdf_low": "0.2344085327192491",
+          "cdf_high": "0.24781381505457542",
+          "probability_decimal": "0.01340528233532632"
+        },
+        {
+          "token_id": 3453,
+          "cdf_low": "0.7671388207522558",
+          "cdf_high": "0.7672638962828485",
+          "probability_decimal": "0.0001250755305927"
+        },
+        {
+          "token_id": 276,
+          "cdf_low": "0.6247789675404833",
+          "cdf_high": "0.94821834635849",
+          "probability_decimal": "0.3234393788180067"
+        },
+        {
+          "token_id": 351,
+          "cdf_low": "0.0",
+          "cdf_high": "0.9128462203494758",
+          "probability_decimal": "0.9128462203494758"
+        },
+        {
+          "token_id": 16997,
+          "cdf_low": "0.9894402163160607",
+          "cdf_high": "0.9894428518086203",
+          "probability_decimal": "0.0000026354925596"
+        },
+        {
+          "token_id": 3178,
+          "cdf_low": "0.7031600632236036",
+          "cdf_high": "0.7033840122379782",
+          "probability_decimal": "0.0002239490143746"
+        },
+        {
+          "token_id": 292,
+          "cdf_low": "0.3472550189679373",
+          "cdf_high": "0.37413356929753006",
+          "probability_decimal": "0.02687855032959276"
+        },
+        {
+          "token_id": 42676,
+          "cdf_low": "0.9144898449283764",
+          "cdf_high": "0.9145187197113688",
+          "probability_decimal": "0.0000288747829924"
+        },
+        {
+          "token_id": 1141,
+          "cdf_low": "0.7441426388639228",
+          "cdf_high": "0.7514210629426227",
+          "probability_decimal": "0.0072784240786999"
+        }
+      ],
+      "surprisal_bits": 130.9023084604041,
+      "elapsed_seconds": 0.7551499169785529,
+      "context_trim_calls": 0,
+      "rejected_stop_count": 0,
+      "decimal_precision": 79
+    },
+    "fixed_endpoint": {
+      "status": "complete",
+      "error": null,
+      "token_ids": [
+        287,
+        48164,
+        13308,
+        292,
+        14813,
+        287,
+        262,
+        5366,
+        12,
+        7038,
+        7674,
+        286,
+        262,
+        1812,
+        286,
+        1855,
+        292,
+        402
+      ],
+      "tokens": 18,
+      "cover_text": "Menara Taming Sari (Melaka Tower) is located at Bandar Hilir in northwestern Rajasthan in the south-west territory of the State of Minas G",
+      "text_sha256": "ea6921cf6c0446604d15660c4f00700502437044ac8bc6e86543392f6e496d3e",
+      "context_token_ids": [
+        10418,
+        3301,
+        309,
+        3723,
+        311,
+        2743,
+        357,
+        21102,
+        8130,
+        8765,
+        8,
+        318,
+        5140,
+        379,
+        10243,
+        283,
+        24410,
+        343
+      ],
+      "visible_token_ids": [
+        10418,
+        3301,
+        309,
+        3723,
+        311,
+        2743,
+        357,
+        21102,
+        8130,
+        8765,
+        8,
+        318,
+        5140,
+        379,
+        10243,
+        283,
+        24410,
+        343,
+        287,
+        48164,
+        13308,
+        292,
+        14813,
+        287,
+        262,
+        5366,
+        12,
+        7038,
+        7674,
+        286,
+        262,
+        1812,
+        286,
+        1855,
+        292,
+        402
+      ],
+      "visible_continuation_token_ids": [
+        287,
+        48164,
+        13308,
+        292,
+        14813,
+        287,
+        262,
+        5366,
+        12,
+        7038,
+        7674,
+        286,
+        262,
+        1812,
+        286,
+        1855,
+        292,
+        402
+      ],
+      "prompt_prefix_matches": true,
+      "canonical_text_roundtrip": true,
+      "chosen_probabilities": [
+        0.1162424870858042,
+        0.0011451013855448,
+        0.0034859893407236,
+        0.7339638973730712,
+        0.9993631122802566,
+        0.0247197468068933,
+        0.21312457073956895,
+        0.03052197705770067,
+        0.2950191860210046,
+        0.194761995551727,
+        0.000167186917359,
+        0.8460622685763584,
+        0.10001824191539925,
+        0.01707807826476635,
+        0.5320626610143334,
+        5.77066479736e-05,
+        0.4166969724575956,
+        0.4339057203914902
+      ],
+      "interval_observations": [
+        {
+          "token_id": 287,
+          "cdf_low": "0.3102732421898954",
+          "cdf_high": "0.4265157292756996",
+          "probability_decimal": "0.1162424870858042"
+        },
+        {
+          "token_id": 48164,
+          "cdf_low": "0.5721237221885592",
+          "cdf_high": "0.573268823574104",
+          "probability_decimal": "0.0011451013855448"
+        },
+        {
+          "token_id": 13308,
+          "cdf_low": "0.5285607289138832",
+          "cdf_high": "0.5320467182546068",
+          "probability_decimal": "0.0034859893407236"
+        },
+        {
+          "token_id": 292,
+          "cdf_low": "0.0",
+          "cdf_high": "0.7339638973730712",
+          "probability_decimal": "0.7339638973730712"
+        },
+        {
+          "token_id": 14813,
+          "cdf_low": "0.0",
+          "cdf_high": "0.9993631122802566",
+          "probability_decimal": "0.9993631122802566"
+        },
+        {
+          "token_id": 287,
+          "cdf_low": "0.7265807780010373",
+          "cdf_high": "0.7513005248079306",
+          "probability_decimal": "0.0247197468068933"
+        },
+        {
+          "token_id": 262,
+          "cdf_low": "0.0",
+          "cdf_high": "0.21312457073956895",
+          "probability_decimal": "0.21312457073956895"
+        },
+        {
+          "token_id": 5366,
+          "cdf_low": "0.06271405173956758",
+          "cdf_high": "0.09323602879726825",
+          "probability_decimal": "0.03052197705770067"
+        },
+        {
+          "token_id": 12,
+          "cdf_low": "0.0",
+          "cdf_high": "0.2950191860210046",
+          "probability_decimal": "0.2950191860210046"
+        },
+        {
+          "token_id": 7038,
+          "cdf_low": "0.7571173011732494",
+          "cdf_high": "0.9518792967249764",
+          "probability_decimal": "0.1947619955517270"
+        },
+        {
+          "token_id": 7674,
+          "cdf_low": "0.9447624751470173",
+          "cdf_high": "0.9449296620643763",
+          "probability_decimal": "0.0001671869173590"
+        },
+        {
+          "token_id": 286,
+          "cdf_low": "0.0",
+          "cdf_high": "0.8460622685763584",
+          "probability_decimal": "0.8460622685763584"
+        },
+        {
+          "token_id": 262,
+          "cdf_low": "0.0",
+          "cdf_high": "0.10001824191539925",
+          "probability_decimal": "0.10001824191539925"
+        },
+        {
+          "token_id": 1812,
+          "cdf_low": "0.4800127500566472",
+          "cdf_high": "0.49709082832141355",
+          "probability_decimal": "0.01707807826476635"
+        },
+        {
+          "token_id": 286,
+          "cdf_low": "0.0",
+          "cdf_high": "0.5320626610143334",
+          "probability_decimal": "0.5320626610143334"
+        },
+        {
+          "token_id": 1855,
+          "cdf_low": "0.9782570568274102",
+          "cdf_high": "0.9783147634753838",
+          "probability_decimal": "0.0000577066479736"
+        },
+        {
+          "token_id": 292,
+          "cdf_low": "0.0",
+          "cdf_high": "0.4166969724575956",
+          "probability_decimal": "0.4166969724575956"
+        },
+        {
+          "token_id": 402,
+          "cdf_low": "0.0",
+          "cdf_high": "0.4339057203914902",
+          "probability_decimal": "0.4339057203914902"
+        }
+      ],
+      "surprisal_bits": 77.6497212009784,
+      "elapsed_seconds": 0.7588937820401043,
+      "context_trim_calls": 0,
+      "rejected_stop_count": 0,
+      "decimal_precision": 504,
+      "requested_tokens": 18
+    }
+  },
+  "natural_controls": {
+    "unverified": {
+      "status": "complete",
+      "error": null,
+      "token_ids": [
+        11,
+        1138,
+        25986,
+        287,
+        12492,
+        326,
+        7042,
+        706,
+        262,
+        2121,
+        286,
+        262,
+        1499,
+        13,
+        30044,
+        10805,
+        11,
+        508
+      ],
+      "tokens": 18,
+      "cover_text": "Menara Taming Sari (Melaka Tower) is located at Bandar Hilir, metropolis in Yemen that formed after the fall of the country. Jude Morgan, who",
+      "text_sha256": "0677ab246cc446d106feaba55691846c3e6c55e7daa4b7985e4a4b3f0c1c27e4",
+      "context_token_ids": [
+        10418,
+        3301,
+        309,
+        3723,
+        311,
+        2743,
+        357,
+        21102,
+        8130,
+        8765,
+        8,
+        318,
+        5140,
+        379,
+        10243,
+        283,
+        24410,
+        343
+      ],
+      "visible_token_ids": [
+        10418,
+        3301,
+        309,
+        3723,
+        311,
+        2743,
+        357,
+        21102,
+        8130,
+        8765,
+        8,
+        318,
+        5140,
+        379,
+        10243,
+        283,
+        24410,
+        343,
+        11,
+        1138,
+        25986,
+        287,
+        12492,
+        326,
+        7042,
+        706,
+        262,
+        2121,
+        286,
+        262,
+        1499,
+        13,
+        30044,
+        10805,
+        11,
+        508
+      ],
+      "visible_continuation_token_ids": [
+        11,
+        1138,
+        25986,
+        287,
+        12492,
+        326,
+        7042,
+        706,
+        262,
+        2121,
+        286,
+        262,
+        1499,
+        13,
+        30044,
+        10805,
+        11,
+        508
+      ],
+      "prompt_prefix_matches": true,
+      "canonical_text_roundtrip": true,
+      "chosen_probabilities": [
+        0.17819097071405968,
+        1.03403974483e-05,
+        0.4301383757870381,
+        0.15657224395890204,
+        0.00356486076317774,
+        0.0074235068082728,
+        0.0008144130128874,
+        0.0208683641713574,
+        0.5225352566056055,
+        0.05418139488434677,
+        0.9940768582172667,
+        0.4494908501076416,
+        0.0029054506145463,
+        0.0750101006956241,
+        1.46645201272e-05,
+        0.0006380028898139,
+        0.1170733679829236,
+        0.09322357012178734
+      ],
+      "interval_observations": [
+        {
+          "token_id": 11,
+          "cdf_low": "0.0",
+          "cdf_high": "0.17819097071405968",
+          "probability_decimal": "0.17819097071405968"
+        },
+        {
+          "token_id": 1138,
+          "cdf_low": "0.9602310171016406",
+          "cdf_high": "0.9602413574990889",
+          "probability_decimal": "0.0000103403974483"
+        },
+        {
+          "token_id": 25986,
+          "cdf_low": "0.0",
+          "cdf_high": "0.4301383757870381",
+          "probability_decimal": "0.4301383757870381"
+        },
+        {
+          "token_id": 287,
+          "cdf_low": "0.43533497525664816",
+          "cdf_high": "0.5919072192155502",
+          "probability_decimal": "0.15657224395890204"
+        },
+        {
+          "token_id": 12492,
+          "cdf_low": "0.478950742858756",
+          "cdf_high": "0.48251560362193374",
+          "probability_decimal": "0.00356486076317774"
+        },
+        {
+          "token_id": 326,
+          "cdf_low": "0.8531460335803567",
+          "cdf_high": "0.8605695403886295",
+          "probability_decimal": "0.0074235068082728"
+        },
+        {
+          "token_id": 7042,
+          "cdf_low": "0.795534022604767",
+          "cdf_high": "0.7963484356176544",
+          "probability_decimal": "0.0008144130128874"
+        },
+        {
+          "token_id": 706,
+          "cdf_low": "0.6626850952777982",
+          "cdf_high": "0.6835534594491556",
+          "probability_decimal": "0.0208683641713574"
+        },
+        {
+          "token_id": 262,
+          "cdf_low": "0.0",
+          "cdf_high": "0.5225352566056055",
+          "probability_decimal": "0.5225352566056055"
+        },
+        {
+          "token_id": 2121,
+          "cdf_low": "0.0",
+          "cdf_high": "0.05418139488434677",
+          "probability_decimal": "0.05418139488434677"
+        },
+        {
+          "token_id": 286,
+          "cdf_low": "0.0",
+          "cdf_high": "0.9940768582172667",
+          "probability_decimal": "0.9940768582172667"
+        },
+        {
+          "token_id": 262,
+          "cdf_low": "0.0",
+          "cdf_high": "0.4494908501076416",
+          "probability_decimal": "0.4494908501076416"
+        },
+        {
+          "token_id": 1499,
+          "cdf_low": "0.5849527388567622",
+          "cdf_high": "0.5878581894713085",
+          "probability_decimal": "0.0029054506145463"
+        },
+        {
+          "token_id": 13,
+          "cdf_low": "0.6916824699358896",
+          "cdf_high": "0.7666925706315137",
+          "probability_decimal": "0.0750101006956241"
+        },
+        {
+          "token_id": 30044,
+          "cdf_low": "0.9652049192540884",
+          "cdf_high": "0.9652195837742156",
+          "probability_decimal": "0.0000146645201272"
+        },
+        {
+          "token_id": 10805,
+          "cdf_low": "0.6805930466131846",
+          "cdf_high": "0.6812310495029985",
+          "probability_decimal": "0.0006380028898139"
+        },
+        {
+          "token_id": 11,
+          "cdf_low": "0.2712357017559172",
+          "cdf_high": "0.3883090697388408",
+          "probability_decimal": "0.1170733679829236"
+        },
+        {
+          "token_id": 508,
+          "cdf_low": "0.2509046901316847",
+          "cdf_high": "0.34412826025347204",
+          "probability_decimal": "0.09322357012178734"
+        }
+      ],
+      "surprisal_bits": 105.64978766502787,
+      "elapsed_seconds": 0.7803165460936725,
+      "context_trim_calls": 0,
+      "rejected_stop_count": 0,
+      "decimal_precision": 79,
+      "requested_tokens": 18,
+      "elapsed_scope": "Time of the full shared natural stream, not this prefix",
+      "sampling_bits_per_token": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64
+      ]
+    },
+    "verified": {
+      "status": "complete",
+      "error": null,
+      "token_ids": [
+        11,
+        1138,
+        25986,
+        287,
+        12492,
+        326,
+        7042,
+        706,
+        262,
+        2121,
+        286,
+        262,
+        1499,
+        13,
+        30044,
+        10805,
+        11,
+        508
+      ],
+      "tokens": 18,
+      "cover_text": "Menara Taming Sari (Melaka Tower) is located at Bandar Hilir, metropolis in Yemen that formed after the fall of the country. Jude Morgan, who",
+      "text_sha256": "0677ab246cc446d106feaba55691846c3e6c55e7daa4b7985e4a4b3f0c1c27e4",
+      "context_token_ids": [
+        10418,
+        3301,
+        309,
+        3723,
+        311,
+        2743,
+        357,
+        21102,
+        8130,
+        8765,
+        8,
+        318,
+        5140,
+        379,
+        10243,
+        283,
+        24410,
+        343
+      ],
+      "visible_token_ids": [
+        10418,
+        3301,
+        309,
+        3723,
+        311,
+        2743,
+        357,
+        21102,
+        8130,
+        8765,
+        8,
+        318,
+        5140,
+        379,
+        10243,
+        283,
+        24410,
+        343,
+        11,
+        1138,
+        25986,
+        287,
+        12492,
+        326,
+        7042,
+        706,
+        262,
+        2121,
+        286,
+        262,
+        1499,
+        13,
+        30044,
+        10805,
+        11,
+        508
+      ],
+      "visible_continuation_token_ids": [
+        11,
+        1138,
+        25986,
+        287,
+        12492,
+        326,
+        7042,
+        706,
+        262,
+        2121,
+        286,
+        262,
+        1499,
+        13,
+        30044,
+        10805,
+        11,
+        508
+      ],
+      "prompt_prefix_matches": true,
+      "canonical_text_roundtrip": true,
+      "chosen_probabilities": [
+        0.17819097071405968,
+        1.03403974483e-05,
+        0.4301383757870381,
+        0.15657224395890204,
+        0.00356486076317774,
+        0.0074235068082728,
+        0.0008144130128874,
+        0.0208683641713574,
+        0.5225352566056055,
+        0.05418139488434677,
+        0.9940768582172667,
+        0.4494908501076416,
+        0.0029054506145463,
+        0.0750101006956241,
+        1.46645201272e-05,
+        0.0006380028898139,
+        0.1170733679829236,
+        0.09322357012178734
+      ],
+      "interval_observations": [
+        {
+          "token_id": 11,
+          "cdf_low": "0.0",
+          "cdf_high": "0.17819097071405968",
+          "probability_decimal": "0.17819097071405968"
+        },
+        {
+          "token_id": 1138,
+          "cdf_low": "0.9602310171016406",
+          "cdf_high": "0.9602413574990889",
+          "probability_decimal": "0.0000103403974483"
+        },
+        {
+          "token_id": 25986,
+          "cdf_low": "0.0",
+          "cdf_high": "0.4301383757870381",
+          "probability_decimal": "0.4301383757870381"
+        },
+        {
+          "token_id": 287,
+          "cdf_low": "0.43533497525664816",
+          "cdf_high": "0.5919072192155502",
+          "probability_decimal": "0.15657224395890204"
+        },
+        {
+          "token_id": 12492,
+          "cdf_low": "0.478950742858756",
+          "cdf_high": "0.48251560362193374",
+          "probability_decimal": "0.00356486076317774"
+        },
+        {
+          "token_id": 326,
+          "cdf_low": "0.8531460335803567",
+          "cdf_high": "0.8605695403886295",
+          "probability_decimal": "0.0074235068082728"
+        },
+        {
+          "token_id": 7042,
+          "cdf_low": "0.795534022604767",
+          "cdf_high": "0.7963484356176544",
+          "probability_decimal": "0.0008144130128874"
+        },
+        {
+          "token_id": 706,
+          "cdf_low": "0.6626850952777982",
+          "cdf_high": "0.6835534594491556",
+          "probability_decimal": "0.0208683641713574"
+        },
+        {
+          "token_id": 262,
+          "cdf_low": "0.0",
+          "cdf_high": "0.5225352566056055",
+          "probability_decimal": "0.5225352566056055"
+        },
+        {
+          "token_id": 2121,
+          "cdf_low": "0.0",
+          "cdf_high": "0.05418139488434677",
+          "probability_decimal": "0.05418139488434677"
+        },
+        {
+          "token_id": 286,
+          "cdf_low": "0.0",
+          "cdf_high": "0.9940768582172667",
+          "probability_decimal": "0.9940768582172667"
+        },
+        {
+          "token_id": 262,
+          "cdf_low": "0.0",
+          "cdf_high": "0.4494908501076416",
+          "probability_decimal": "0.4494908501076416"
+        },
+        {
+          "token_id": 1499,
+          "cdf_low": "0.5849527388567622",
+          "cdf_high": "0.5878581894713085",
+          "probability_decimal": "0.0029054506145463"
+        },
+        {
+          "token_id": 13,
+          "cdf_low": "0.6916824699358896",
+          "cdf_high": "0.7666925706315137",
+          "probability_decimal": "0.0750101006956241"
+        },
+        {
+          "token_id": 30044,
+          "cdf_low": "0.9652049192540884",
+          "cdf_high": "0.9652195837742156",
+          "probability_decimal": "0.0000146645201272"
+        },
+        {
+          "token_id": 10805,
+          "cdf_low": "0.6805930466131846",
+          "cdf_high": "0.6812310495029985",
+          "probability_decimal": "0.0006380028898139"
+        },
+        {
+          "token_id": 11,
+          "cdf_low": "0.2712357017559172",
+          "cdf_high": "0.3883090697388408",
+          "probability_decimal": "0.1170733679829236"
+        },
+        {
+          "token_id": 508,
+          "cdf_low": "0.2509046901316847",
+          "cdf_high": "0.34412826025347204",
+          "probability_decimal": "0.09322357012178734"
+        }
+      ],
+      "surprisal_bits": 105.64978766502787,
+      "elapsed_seconds": 0.7803165460936725,
+      "context_trim_calls": 0,
+      "rejected_stop_count": 0,
+      "decimal_precision": 79,
+      "requested_tokens": 18,
+      "elapsed_scope": "Time of the full shared natural stream, not this prefix",
+      "sampling_bits_per_token": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64
+      ]
+    },
+    "fixed_endpoint": {
+      "status": "complete",
+      "error": null,
+      "token_ids": [
+        11,
+        1138,
+        25986,
+        287,
+        12492,
+        326,
+        7042,
+        706,
+        262,
+        2121,
+        286,
+        262,
+        1499,
+        13,
+        30044,
+        10805,
+        11,
+        508
+      ],
+      "tokens": 18,
+      "cover_text": "Menara Taming Sari (Melaka Tower) is located at Bandar Hilir, metropolis in Yemen that formed after the fall of the country. Jude Morgan, who",
+      "text_sha256": "0677ab246cc446d106feaba55691846c3e6c55e7daa4b7985e4a4b3f0c1c27e4",
+      "context_token_ids": [
+        10418,
+        3301,
+        309,
+        3723,
+        311,
+        2743,
+        357,
+        21102,
+        8130,
+        8765,
+        8,
+        318,
+        5140,
+        379,
+        10243,
+        283,
+        24410,
+        343
+      ],
+      "visible_token_ids": [
+        10418,
+        3301,
+        309,
+        3723,
+        311,
+        2743,
+        357,
+        21102,
+        8130,
+        8765,
+        8,
+        318,
+        5140,
+        379,
+        10243,
+        283,
+        24410,
+        343,
+        11,
+        1138,
+        25986,
+        287,
+        12492,
+        326,
+        7042,
+        706,
+        262,
+        2121,
+        286,
+        262,
+        1499,
+        13,
+        30044,
+        10805,
+        11,
+        508
+      ],
+      "visible_continuation_token_ids": [
+        11,
+        1138,
+        25986,
+        287,
+        12492,
+        326,
+        7042,
+        706,
+        262,
+        2121,
+        286,
+        262,
+        1499,
+        13,
+        30044,
+        10805,
+        11,
+        508
+      ],
+      "prompt_prefix_matches": true,
+      "canonical_text_roundtrip": true,
+      "chosen_probabilities": [
+        0.17819097071405968,
+        1.03403974483e-05,
+        0.4301383757870381,
+        0.15657224395890204,
+        0.00356486076317774,
+        0.0074235068082728,
+        0.0008144130128874,
+        0.0208683641713574,
+        0.5225352566056055,
+        0.05418139488434677,
+        0.9940768582172667,
+        0.4494908501076416,
+        0.0029054506145463,
+        0.0750101006956241,
+        1.46645201272e-05,
+        0.0006380028898139,
+        0.1170733679829236,
+        0.09322357012178734
+      ],
+      "interval_observations": [
+        {
+          "token_id": 11,
+          "cdf_low": "0.0",
+          "cdf_high": "0.17819097071405968",
+          "probability_decimal": "0.17819097071405968"
+        },
+        {
+          "token_id": 1138,
+          "cdf_low": "0.9602310171016406",
+          "cdf_high": "0.9602413574990889",
+          "probability_decimal": "0.0000103403974483"
+        },
+        {
+          "token_id": 25986,
+          "cdf_low": "0.0",
+          "cdf_high": "0.4301383757870381",
+          "probability_decimal": "0.4301383757870381"
+        },
+        {
+          "token_id": 287,
+          "cdf_low": "0.43533497525664816",
+          "cdf_high": "0.5919072192155502",
+          "probability_decimal": "0.15657224395890204"
+        },
+        {
+          "token_id": 12492,
+          "cdf_low": "0.478950742858756",
+          "cdf_high": "0.48251560362193374",
+          "probability_decimal": "0.00356486076317774"
+        },
+        {
+          "token_id": 326,
+          "cdf_low": "0.8531460335803567",
+          "cdf_high": "0.8605695403886295",
+          "probability_decimal": "0.0074235068082728"
+        },
+        {
+          "token_id": 7042,
+          "cdf_low": "0.795534022604767",
+          "cdf_high": "0.7963484356176544",
+          "probability_decimal": "0.0008144130128874"
+        },
+        {
+          "token_id": 706,
+          "cdf_low": "0.6626850952777982",
+          "cdf_high": "0.6835534594491556",
+          "probability_decimal": "0.0208683641713574"
+        },
+        {
+          "token_id": 262,
+          "cdf_low": "0.0",
+          "cdf_high": "0.5225352566056055",
+          "probability_decimal": "0.5225352566056055"
+        },
+        {
+          "token_id": 2121,
+          "cdf_low": "0.0",
+          "cdf_high": "0.05418139488434677",
+          "probability_decimal": "0.05418139488434677"
+        },
+        {
+          "token_id": 286,
+          "cdf_low": "0.0",
+          "cdf_high": "0.9940768582172667",
+          "probability_decimal": "0.9940768582172667"
+        },
+        {
+          "token_id": 262,
+          "cdf_low": "0.0",
+          "cdf_high": "0.4494908501076416",
+          "probability_decimal": "0.4494908501076416"
+        },
+        {
+          "token_id": 1499,
+          "cdf_low": "0.5849527388567622",
+          "cdf_high": "0.5878581894713085",
+          "probability_decimal": "0.0029054506145463"
+        },
+        {
+          "token_id": 13,
+          "cdf_low": "0.6916824699358896",
+          "cdf_high": "0.7666925706315137",
+          "probability_decimal": "0.0750101006956241"
+        },
+        {
+          "token_id": 30044,
+          "cdf_low": "0.9652049192540884",
+          "cdf_high": "0.9652195837742156",
+          "probability_decimal": "0.0000146645201272"
+        },
+        {
+          "token_id": 10805,
+          "cdf_low": "0.6805930466131846",
+          "cdf_high": "0.6812310495029985",
+          "probability_decimal": "0.0006380028898139"
+        },
+        {
+          "token_id": 11,
+          "cdf_low": "0.2712357017559172",
+          "cdf_high": "0.3883090697388408",
+          "probability_decimal": "0.1170733679829236"
+        },
+        {
+          "token_id": 508,
+          "cdf_low": "0.2509046901316847",
+          "cdf_high": "0.34412826025347204",
+          "probability_decimal": "0.09322357012178734"
+        }
+      ],
+      "surprisal_bits": 105.64978766502787,
+      "elapsed_seconds": 0.7803165460936725,
+      "context_trim_calls": 0,
+      "rejected_stop_count": 0,
+      "decimal_precision": 79,
+      "requested_tokens": 18,
+      "elapsed_scope": "Time of the full shared natural stream, not this prefix",
+      "sampling_bits_per_token": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64
+      ]
+    }
+  },
+  "receivers": {
+    "unverified": {
+      "ids": {
+        "status": "complete",
+        "recovery_match": true,
+        "public_probabilities_match_sender": true,
+        "public_surprisal_bits": 130.9023084604041,
+        "elapsed_seconds": 0.7829680489376187,
+        "execution": "fresh upstream receiver and model stepper"
+      },
+      "text": {
+        "status": "complete",
+        "recovery_match": true,
+        "public_probabilities_match_sender": true,
+        "public_surprisal_bits": 130.9023084604041,
+        "elapsed_seconds": 0.7829680489376187,
+        "execution": "same verified receiver input as ids"
+      }
+    },
+    "verified": {
+      "ids": {
+        "status": "complete",
+        "recovery_match": true,
+        "public_probabilities_match_sender": true,
+        "public_surprisal_bits": 130.9023084604041,
+        "elapsed_seconds": 0.761542784050107,
+        "execution": "fresh upstream receiver and model stepper"
+      },
+      "text": {
+        "status": "complete",
+        "recovery_match": true,
+        "public_probabilities_match_sender": true,
+        "public_surprisal_bits": 130.9023084604041,
+        "elapsed_seconds": 0.761542784050107,
+        "execution": "same verified receiver input as ids"
+      }
+    },
+    "fixed_endpoint": {
+      "ids": {
+        "status": "complete",
+        "recovery_match": false,
+        "public_probabilities_match_sender": true,
+        "public_surprisal_bits": 77.6497212009784,
+        "elapsed_seconds": 0.7732777839992195,
+        "execution": "fresh upstream receiver and model stepper"
+      },
+      "text": {
+        "status": "complete",
+        "recovery_match": false,
+        "public_probabilities_match_sender": true,
+        "public_surprisal_bits": 77.6497212009784,
+        "elapsed_seconds": 0.7732777839992195,
+        "execution": "same verified receiver input as ids"
+      }
+    }
+  },
+  "manifest_sha256": "e961f33f864bb12d39e24a1beaa9289556bc777c5f94f070076e12457c5df95c"
+}

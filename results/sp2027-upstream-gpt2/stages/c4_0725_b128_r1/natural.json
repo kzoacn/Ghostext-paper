@@ -1,0 +1,271 @@
+{
+  "status": "complete",
+  "error": null,
+  "token_ids": [
+    10040,
+    884,
+    355,
+    44222,
+    11,
+    3503,
+    13,
+    8670,
+    41570,
+    290,
+    4258,
+    1487,
+    318,
+    1690,
+    8165,
+    284,
+    20691,
+    287,
+    37589,
+    13
+  ],
+  "tokens": 20,
+  "cover_text": "Decreasing biodiversity in an ecosystem can increase the spread of diseases such as tuberculosis, etc. Opforestation and climate change is often tied to reductions in biodiversity.",
+  "text_sha256": "bff4cb78fb27243cdc74af3c3587841094fb41d218805c92cce9fc3d2f9d1545",
+  "context_token_ids": [
+    43198,
+    2313,
+    37589,
+    287,
+    281,
+    13187,
+    460,
+    2620,
+    262,
+    4104,
+    286
+  ],
+  "visible_token_ids": [
+    43198,
+    2313,
+    37589,
+    287,
+    281,
+    13187,
+    460,
+    2620,
+    262,
+    4104,
+    286,
+    10040,
+    884,
+    355,
+    44222,
+    11,
+    3503,
+    13,
+    8670,
+    41570,
+    290,
+    4258,
+    1487,
+    318,
+    1690,
+    8165,
+    284,
+    20691,
+    287,
+    37589,
+    13
+  ],
+  "visible_continuation_token_ids": [
+    10040,
+    884,
+    355,
+    44222,
+    11,
+    3503,
+    13,
+    8670,
+    41570,
+    290,
+    4258,
+    1487,
+    318,
+    1690,
+    8165,
+    284,
+    20691,
+    287,
+    37589,
+    13
+  ],
+  "prompt_prefix_matches": true,
+  "canonical_text_roundtrip": true,
+  "chosen_probabilities": [
+    0.22497757873151522,
+    0.141952939563706,
+    0.9987820955382183,
+    0.03954396434082269,
+    0.4328701773727439,
+    0.0009611584614048,
+    0.7187698939977816,
+    5.59906864228e-05,
+    2.32377191387e-05,
+    0.14607490361207429,
+    0.0071167248915356,
+    0.9567498474650564,
+    0.0375750296514304,
+    0.0209729052646281,
+    0.006406555698156,
+    0.8772277397267657,
+    0.0010926935904461,
+    0.9442343499546799,
+    0.3295055968636663,
+    0.3110501555892416
+  ],
+  "interval_observations": [
+    {
+      "token_id": 10040,
+      "cdf_low": "0.2515691674166012",
+      "cdf_high": "0.47654674614811643",
+      "probability_decimal": "0.22497757873151523"
+    },
+    {
+      "token_id": 884,
+      "cdf_low": "0.4730007886390763",
+      "cdf_high": "0.6149537282027823",
+      "probability_decimal": "0.1419529395637060"
+    },
+    {
+      "token_id": 355,
+      "cdf_low": "0.0",
+      "cdf_high": "0.9987820955382183",
+      "probability_decimal": "0.9987820955382183"
+    },
+    {
+      "token_id": 44222,
+      "cdf_low": "0.44017679455127445",
+      "cdf_high": "0.47972075889209714",
+      "probability_decimal": "0.03954396434082269"
+    },
+    {
+      "token_id": 11,
+      "cdf_low": "0.0",
+      "cdf_high": "0.4328701773727439",
+      "probability_decimal": "0.4328701773727439"
+    },
+    {
+      "token_id": 3503,
+      "cdf_low": "0.8037108930150154",
+      "cdf_high": "0.8046720514764202",
+      "probability_decimal": "0.0009611584614048"
+    },
+    {
+      "token_id": 13,
+      "cdf_low": "0.0",
+      "cdf_high": "0.7187698939977816",
+      "probability_decimal": "0.7187698939977816"
+    },
+    {
+      "token_id": 8670,
+      "cdf_low": "0.9123237327529099",
+      "cdf_high": "0.9123797234393327",
+      "probability_decimal": "0.0000559906864228"
+    },
+    {
+      "token_id": 41570,
+      "cdf_low": "0.9800503241803875",
+      "cdf_high": "0.9800735618995262",
+      "probability_decimal": "0.0000232377191387"
+    },
+    {
+      "token_id": 290,
+      "cdf_low": "0.0",
+      "cdf_high": "0.14607490361207429",
+      "probability_decimal": "0.14607490361207429"
+    },
+    {
+      "token_id": 4258,
+      "cdf_low": "0.3418815886826942",
+      "cdf_high": "0.3489983135742298",
+      "probability_decimal": "0.0071167248915356"
+    },
+    {
+      "token_id": 1487,
+      "cdf_low": "0.0",
+      "cdf_high": "0.9567498474650564",
+      "probability_decimal": "0.9567498474650564"
+    },
+    {
+      "token_id": 318,
+      "cdf_low": "0.5840181227858829",
+      "cdf_high": "0.6215931524373133",
+      "probability_decimal": "0.0375750296514304"
+    },
+    {
+      "token_id": 1690,
+      "cdf_low": "0.4945867100082035",
+      "cdf_high": "0.5155596152728316",
+      "probability_decimal": "0.0209729052646281"
+    },
+    {
+      "token_id": 8165,
+      "cdf_low": "0.6297937665362839",
+      "cdf_high": "0.6362003222344399",
+      "probability_decimal": "0.0064065556981560"
+    },
+    {
+      "token_id": 284,
+      "cdf_low": "0.0",
+      "cdf_high": "0.8772277397267657",
+      "probability_decimal": "0.8772277397267657"
+    },
+    {
+      "token_id": 20691,
+      "cdf_low": "0.7551603982907958",
+      "cdf_high": "0.7562530918812419",
+      "probability_decimal": "0.0010926935904461"
+    },
+    {
+      "token_id": 287,
+      "cdf_low": "0.0",
+      "cdf_high": "0.9442343499546799",
+      "probability_decimal": "0.9442343499546799"
+    },
+    {
+      "token_id": 37589,
+      "cdf_low": "0.0",
+      "cdf_high": "0.3295055968636663",
+      "probability_decimal": "0.3295055968636663"
+    },
+    {
+      "token_id": 13,
+      "cdf_low": "0.0",
+      "cdf_high": "0.3110501555892416",
+      "probability_decimal": "0.3110501555892416"
+    }
+  ],
+  "surprisal_bits": 91.82105936192343,
+  "elapsed_seconds": 0.9005238651297987,
+  "context_trim_calls": 0,
+  "rejected_stop_count": 0,
+  "decimal_precision": 79,
+  "requested_tokens": 20,
+  "sampling_bits_per_token": [
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64
+  ]
+}

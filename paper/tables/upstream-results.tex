@@ -1,0 +1,17 @@
+\begin{table*}[t]
+\centering
+\caption{Current upstream RRC on GPT-2: held-out visible-text results. Every row conditions on complete, canonical, exactly length-matched pairs. Intervals resample eligible test prompt clusters (5000 draws); thresholds use development controls. Length-only AUC is exactly 0.5 throughout. Fixed-endpoint recovery failures are retained.}
+\label{tab:upstream-results}
+\begin{tabular}{lrrrrr}
+\toprule
+Arm & $B$ (bits) & Dev./test pairs & Test prompts & AUC [95\% cluster interval] & TPR/FPR \\
+\midrule
+Unverified stop & 128 & 36/35 & 10 & $0.938\;[0.882,0.981]$ & $0.857/0.200$ \\
+Unverified stop & 512 & 18/21 & 9 & $0.998\;[0.988,1.000]$ & $0.810/0.000$ \\
+Verified stop & 128 & 36/35 & 10 & $0.938\;[0.882,0.981]$ & $0.857/0.200$ \\
+Verified stop & 512 & 18/21 & 9 & $0.998\;[0.988,1.000]$ & $0.810/0.000$ \\
+Fixed endpoint & 128 & 31/32 & 10 & $0.533\;[0.375,0.713]$ & $0.250/0.219$ \\
+Fixed endpoint & 512 & 19/25 & 10 & $0.586\;[0.460,0.740]$ & $0.160/0.000$ \\
+\bottomrule
+\end{tabular}
+\end{table*}

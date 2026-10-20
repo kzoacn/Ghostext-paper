@@ -1,0 +1,186 @@
+{
+  "status": "complete",
+  "error": null,
+  "token_ids": [
+    15312,
+    351,
+    1312,
+    23690,
+    481,
+    1037,
+    43711,
+    27195,
+    6012,
+    8227,
+    3085,
+    287,
+    14457
+  ],
+  "tokens": 13,
+  "cover_text": "The results of the NOMAD crowd-sourced data analytics competition with Wikipedia with iCredit will help LiftEncrypt Plus staff in Cambridge",
+  "text_sha256": "44646d9ea76be59dd55dae0cd6b803023f4e64de61534b5204712caf37c62c3b",
+  "context_token_ids": [
+    464,
+    2482,
+    286,
+    262,
+    399,
+    2662,
+    2885,
+    4315,
+    12,
+    82,
+    30555,
+    1366,
+    23696,
+    5449,
+    351
+  ],
+  "visible_token_ids": [
+    464,
+    2482,
+    286,
+    262,
+    399,
+    2662,
+    2885,
+    4315,
+    12,
+    82,
+    30555,
+    1366,
+    23696,
+    5449,
+    351,
+    15312,
+    351,
+    1312,
+    23690,
+    481,
+    1037,
+    43711,
+    27195,
+    6012,
+    8227,
+    3085,
+    287,
+    14457
+  ],
+  "visible_continuation_token_ids": [
+    15312,
+    351,
+    1312,
+    23690,
+    481,
+    1037,
+    43711,
+    27195,
+    6012,
+    8227,
+    3085,
+    287,
+    14457
+  ],
+  "prompt_prefix_matches": true,
+  "canonical_text_roundtrip": true,
+  "chosen_probabilities": [
+    0.0003976304545698,
+    0.0007444101722252,
+    0.0002109867458365,
+    0.0022248256736838,
+    0.0380574910592204,
+    0.1098714097625745,
+    1.01098146364e-05,
+    6.56040903825e-05,
+    0.8811725325557525,
+    1.4371957287e-05,
+    0.0002213762603626,
+    0.02671650736234027,
+    9.11976574035e-05
+  ],
+  "interval_observations": [
+    {
+      "token_id": 15312,
+      "cdf_low": "0.5558168748383521",
+      "cdf_high": "0.5562145052929219",
+      "probability_decimal": "0.0003976304545698"
+    },
+    {
+      "token_id": 351,
+      "cdf_low": "0.7760800643866244",
+      "cdf_high": "0.7768244745588496",
+      "probability_decimal": "0.0007444101722252"
+    },
+    {
+      "token_id": 1312,
+      "cdf_low": "0.6851092063971601",
+      "cdf_high": "0.6853201931429966",
+      "probability_decimal": "0.0002109867458365"
+    },
+    {
+      "token_id": 23690,
+      "cdf_low": "0.5721518789790828",
+      "cdf_high": "0.5743767046527666",
+      "probability_decimal": "0.0022248256736838"
+    },
+    {
+      "token_id": 481,
+      "cdf_low": "0.2630838484236746",
+      "cdf_high": "0.301141339482895",
+      "probability_decimal": "0.0380574910592204"
+    },
+    {
+      "token_id": 1037,
+      "cdf_low": "0.5201793499668417",
+      "cdf_high": "0.6300507597294162",
+      "probability_decimal": "0.1098714097625745"
+    },
+    {
+      "token_id": 43711,
+      "cdf_low": "0.9639813239845773",
+      "cdf_high": "0.9639914337992137",
+      "probability_decimal": "0.0000101098146364"
+    },
+    {
+      "token_id": 27195,
+      "cdf_low": "0.8095191618367829",
+      "cdf_high": "0.8095847659271654",
+      "probability_decimal": "0.0000656040903825"
+    },
+    {
+      "token_id": 6012,
+      "cdf_low": "0.0",
+      "cdf_high": "0.8811725325557525",
+      "probability_decimal": "0.8811725325557525"
+    },
+    {
+      "token_id": 8227,
+      "cdf_low": "0.9481626552453132",
+      "cdf_high": "0.9481770272026002",
+      "probability_decimal": "0.0000143719572870"
+    },
+    {
+      "token_id": 3085,
+      "cdf_low": "0.8262324978078823",
+      "cdf_high": "0.8264538740682449",
+      "probability_decimal": "0.0002213762603626"
+    },
+    {
+      "token_id": 287,
+      "cdf_low": "0.2821807933426822",
+      "cdf_high": "0.30889730070502247",
+      "probability_decimal": "0.02671650736234027"
+    },
+    {
+      "token_id": 14457,
+      "cdf_low": "0.8966852439447066",
+      "cdf_high": "0.8967764416021101",
+      "probability_decimal": "0.0000911976574035"
+    }
+  ],
+  "surprisal_bits": 128.1589449978467,
+  "elapsed_seconds": 0.5459611010737717,
+  "context_trim_calls": 0,
+  "rejected_stop_count": 0,
+  "decimal_precision": 79
+}

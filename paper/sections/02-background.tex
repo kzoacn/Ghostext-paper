@@ -16,13 +16,16 @@ This is a public-configuration threat model, not a claim about unknown-prompt
 traffic. The bootstrap attack additionally uses the protocol's public 60-byte
 bootstrap length. The stopping attack uses the encoded bit length $B$; this is
 natural for a fixed-size application or a chosen-message security experiment.
+The two-segment endpoint replay additionally knows the plaintext byte length,
+which determines the framed body size without decrypting its header.
 An unknown mixture of message lengths is a separate case. We study neither
 endpoint compromise nor recovery from active edits.
 
 \paragraph{Three reference laws}
 Let $P_t(\cdot\mid y_{<t})$ denote the backend's masked next-token distribution.
 Truncation, tokenization filtering, and frequency quantization produce $Q_t$.
-This processed source is not the unmodified model. We distinguish:
+This processed source is not the unmodified model. The upstream audit instead
+uses its own full-vocabulary CDF source. We distinguish:
 (i) a $Q$ sampler with a fixed or independently drawn output length;
 (ii) a $Q$ sampler following the codec's own public state transitions and stopping
 rule, including identical deterministic emissions at no-payload steps; and
@@ -59,7 +62,7 @@ The integer-code analysis assumes a uniform payload integer with independent
 random guard bits. Authentication alone does not imply that a packet, including
 its tags and metadata, is indistinguishable from uniform bytes; applying the
 bound to encrypted traffic requires a separate fixed-length source assumption.
-The stopping theorem instead uses the RRC paper's ideal independent uniform
-rotations. We retain that idealization to isolate a defect that persists even
-with perfect randomness. Real-model experiments specify their finite sampling
-precision separately.
+The stopping results use ideal independent continuous rotations for the two
+midpoint rules and a uniform continuous arithmetic target for prefix recovery.
+Their Markov-source premises are not assumed for an LLM. Real-model experiments
+specify finite sampling precision and executed stopping rules separately.

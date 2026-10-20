@@ -10,9 +10,11 @@ steganography~\cite{sallee2004model,cox2005information}. Our guarded-prefix boun
 is specific to the implemented codec and stopping rule; random continuation
 and inverse-width rounding analysis are not presented as new general ideas.
 Information random walks and phrase-length stopping have a substantial
-source-coding literature~\cite{drmota2010tunstall}. We use elementary
-anticoncentration to establish a security separation between two precisely
-specified stopped-text laws.
+source-coding literature~\cite{drmota2010tunstall,kontoyiannis2014lossless}.
+The public-endpoint identity is an application of a standard TV dependence
+calculation~\cite{perrone2024entropy}. Our contribution concerns the security
+consequence and the terminal-information premises, especially after reverse
+verification, rather than new general probability tools.
 
 \paragraph{Neural and cryptographic linguistic steganography}
 NLS connects arithmetic coding to neural generation~\cite{ziegler2019neural};
@@ -29,9 +31,10 @@ prevent transferring that specific counterexample indiscriminately.
 RRC~\cite{yan2026rrc} recognizes small-interval distortion and replaces the
 sampling point through fresh rotation. Our analysis agrees with its active
 next-token argument and examines the separate stopping step. The exact
-counterexample and asymptotic theorem concern its published midpoint rule;
-later code that verifies extraction before stopping is a distinct algorithm.
-This distinction is necessary both for fair comparison and for reproducibility.
+counterexample and explicit hazard concern its published midpoint rule.
+We separately prove a concentration bound for the ideal verified rule and
+execute unchanged later sender/receiver code. Its finite arithmetic, rotation
+grid, and serialization remain empirical conditions, outside that ideal proof.
 
 \paragraph{Operational constraints and stopping}
 OD-Stega~\cite{huang2026odstega} optimizes the distribution--capacity tradeoff and

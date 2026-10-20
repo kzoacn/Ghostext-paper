@@ -1,0 +1,339 @@
+{
+  "scope": "Saved-data and profile validation from a separate anonymous pre-release extraction. No new model generation; runtime-only fields excluded from prepare-only comparison.",
+  "analysis_and_render_checks": [
+    {
+      "check": "theory",
+      "command": [
+        "python3",
+        "scripts/audit_termination_theory.py"
+      ],
+      "returncode": 0,
+      "outputs_match_byte_for_byte": true,
+      "outputs_sha256": {
+        "results/sp2027-termination-theory/summary.json": "d5316be34c7836ac2f88a692503e9bff253365b2d097344777649fce4ea5fa54"
+      }
+    },
+    {
+      "check": "upstream",
+      "command": [
+        "python3",
+        "scripts/analyze_upstream_rrc.py",
+        "results/sp2027-upstream-gpt2",
+        "results/sp2027-upstream-gpt2-pilot",
+        "results/sp2027-upstream-gpt2-pilot-v2"
+      ],
+      "returncode": 0,
+      "outputs_match_byte_for_byte": true,
+      "outputs_sha256": {
+        "results/sp2027-upstream-gpt2/analysis.json": "56d0f4daf5ea2f2fa15fb61d83e4446ef612100dcb3ff5910c69ec8fce13bacf",
+        "results/sp2027-upstream-gpt2-pilot/analysis.json": "20b52012ef1b180b47b62df194a8ae455c146cb621892f6c4b46daab5e9cd424",
+        "results/sp2027-upstream-gpt2-pilot-v2/analysis.json": "e7df571912c656cbc818b2d1459856537515f38a17bebbac251c0b30d8ce4ecc"
+      }
+    },
+    {
+      "check": "raw-token",
+      "command": [
+        "python3",
+        "scripts/analyze_upstream_tokens.py"
+      ],
+      "returncode": 0,
+      "outputs_match_byte_for_byte": true,
+      "outputs_sha256": {
+        "results/sp2027-upstream-gpt2/raw-token-sensitivity.json": "02df9d7e501bfa459c9676983e9b40d6822b26ae2dff50ca1b2bfdfc351d4804"
+      }
+    },
+    {
+      "check": "endpoint",
+      "command": [
+        "python3",
+        "scripts/analyze_public_endpoint.py",
+        "results/sp2027-endpoint-gpt2",
+        "results/sp2027-endpoint-gpt2-corrected",
+        "results/sp2027-endpoint-qwen"
+      ],
+      "returncode": 0,
+      "outputs_match_byte_for_byte": true,
+      "outputs_sha256": {
+        "results/sp2027-endpoint-gpt2/analysis.json": "a9ea491ac1366c500399950877c7826add336345ef0650a77310b76a9f16a096",
+        "results/sp2027-endpoint-gpt2-corrected/analysis.json": "1c876cd65652a7ab50b3b69c3f41cb8b19e228d4fbe7737910e0d144abf56fdb",
+        "results/sp2027-endpoint-qwen/analysis.json": "98bb1cbd5284909b60e6d9c46fd5aa5aeaa25aeb838b553e6228db007f7236cc"
+      }
+    },
+    {
+      "check": "old-stopping",
+      "command": [
+        "python3",
+        "scripts/analyze_stopping_llm.py",
+        "results/sp2027-stopping-gpt2",
+        "results/sp2027-stopping-qwen",
+        "results/sp2027-stopping-gpt2-expanded",
+        "results/sp2027-stopping-qwen-expanded"
+      ],
+      "returncode": 0,
+      "outputs_match_byte_for_byte": true,
+      "outputs_sha256": {
+        "results/sp2027-stopping-gpt2/analysis.json": "f73f3de607d845835d9023dab973a253fa1c928763e3ad436b578d6844b7703b",
+        "results/sp2027-stopping-qwen/analysis.json": "735804ff95e7be699e7b70425f4ba2d661fe5e2af6f2b8b58014171f73a42eaf",
+        "results/sp2027-stopping-gpt2-expanded/analysis.json": "07f74d1d9de233860c7436acfdcd4219b4c637fb5400b1a92fc4fcd8eed89937",
+        "results/sp2027-stopping-qwen-expanded/analysis.json": "2fb07a66947b9e0752a2bfc6b0cdaebe730f285de676dca9dcfd9e0dce495a77"
+      }
+    },
+    {
+      "check": "old-delivery",
+      "command": [
+        "python3",
+        "scripts/analyze_repair_matrix.py",
+        "results/sp2027-repair-gpt2",
+        "results/sp2027-repair-qwen"
+      ],
+      "returncode": 0,
+      "outputs_match_byte_for_byte": true,
+      "outputs_sha256": {
+        "results/sp2027-repair-gpt2/analysis.json": "3efc46c26ea02b25f53d1d607d23f87522e441ae4754c1f8b7402797ea54c9e3",
+        "results/sp2027-repair-qwen/analysis.json": "fdf5ac18ce14215b4f9838520a31690df1e26d24b33fe6f1a14bbf5bb063c794"
+      }
+    },
+    {
+      "check": "new-materials",
+      "command": [
+        "python3",
+        "scripts/generate_accept_materials.py"
+      ],
+      "returncode": 0,
+      "outputs_match_byte_for_byte": true,
+      "outputs_sha256": {
+        "paper/tables/upstream-results.tex": "bcab699931d0df9043765c0676e4622e86cfe61c83ee5e5e27a200a0e456d96f",
+        "paper/tables/endpoint-replay.tex": "aa013ce2106b1135dc9feb2562fa6c9186118e3bf6149ec1cab0516e3c8ca11d",
+        "paper/figures/upstream-endpoint-control.pdf": "43ddfb6529c39e7a8f04621b4d45953a3bf2174a63d3614be96888a051da0a8e",
+        "results/sp2027-accept-tables/manifest.json": "b1a9f3cf4a05b8828679f53137f73a8bb045ec8235aa1b27c6d3a043620f6d72",
+        "results/sp2027-accept-figures/manifest.json": "25c15c4c2089c49289cbdbc9d7575a11865e2425144abe676806e9c7805c330c"
+      }
+    },
+    {
+      "check": "old-materials",
+      "command": [
+        "python3",
+        "scripts/generate_evaluation_tables.py",
+        "--require-all"
+      ],
+      "returncode": 0,
+      "outputs_match_byte_for_byte": true,
+      "outputs_sha256": {
+        "paper/tables/stopping-results.tex": "1f58c03e0d842fbe4f3283b0168ccb74f659b705a705cd2a2e159630effe8cac",
+        "paper/tables/stopping-outcomes.tex": "ac3c95f04aef788860cb2e51fbb656a6f37d4baa72babb6a127873108237ce82",
+        "paper/tables/repair-results.tex": "aa26b4e58939f39699fb5c06b6788cb7472dc232ab4fb0c481272bd32e8a4668",
+        "results/sp2027-tables/manifest.json": "ae024d38b4947ecdd19fa13d9f8896f335b582d0586565c9ea45ba3624e0f4fd"
+      }
+    },
+    {
+      "check": "old-figures",
+      "command": [
+        "python3",
+        "scripts/generate_revision_figures.py"
+      ],
+      "returncode": 0,
+      "outputs_match_byte_for_byte": true,
+      "outputs_sha256": {
+        "paper/figures/finite-message-effects.pdf": "82414db33b206e9dc84c6c13da4a076da35919530f4bc82bc0e6020ff5262553",
+        "paper/figures/stopping-llm-gap.pdf": "04061612218a51ded4bb5bee2a1a46412619a82c0956a4a76f38dcbe586fdeb6",
+        "results/sp2027-figures/manifest.json": "374a3db27d25efee2bb4671130c200f91cb6bc54fd017e4a2377450a9914eb82"
+      }
+    }
+  ],
+  "materialized_profiles": [
+    {
+      "profile": "sp2027-endpoint-gpt2",
+      "source_objects": 19,
+      "input_files": 4,
+      "aliases": 0,
+      "all_hashes_match": true
+    },
+    {
+      "profile": "sp2027-endpoint-gpt2-corrected",
+      "source_objects": 19,
+      "input_files": 5,
+      "aliases": 0,
+      "all_hashes_match": true
+    },
+    {
+      "profile": "sp2027-endpoint-qwen",
+      "source_objects": 19,
+      "input_files": 5,
+      "aliases": 0,
+      "all_hashes_match": true
+    },
+    {
+      "profile": "sp2027-expanded-gpt2-pilot",
+      "source_objects": 23,
+      "input_files": 0,
+      "aliases": 0,
+      "all_hashes_match": true
+    },
+    {
+      "profile": "sp2027-expanded-qwen-pilot",
+      "source_objects": 23,
+      "input_files": 0,
+      "aliases": 0,
+      "all_hashes_match": true
+    },
+    {
+      "profile": "sp2027-keyless-legacy",
+      "source_objects": 21,
+      "input_files": 3,
+      "aliases": 0,
+      "all_hashes_match": true
+    },
+    {
+      "profile": "sp2027-repair-gpt2",
+      "source_objects": 24,
+      "input_files": 0,
+      "aliases": 0,
+      "all_hashes_match": true
+    },
+    {
+      "profile": "sp2027-repair-qwen",
+      "source_objects": 24,
+      "input_files": 0,
+      "aliases": 0,
+      "all_hashes_match": true
+    },
+    {
+      "profile": "sp2027-repair-qwen-pilot",
+      "source_objects": 24,
+      "input_files": 0,
+      "aliases": 0,
+      "all_hashes_match": true
+    },
+    {
+      "profile": "sp2027-reverse-failure-gpt2",
+      "source_objects": 23,
+      "input_files": 2,
+      "aliases": 0,
+      "all_hashes_match": true
+    },
+    {
+      "profile": "sp2027-stopping-gpt2",
+      "source_objects": 22,
+      "input_files": 0,
+      "aliases": 0,
+      "all_hashes_match": true
+    },
+    {
+      "profile": "sp2027-stopping-gpt2-expanded",
+      "source_objects": 22,
+      "input_files": 0,
+      "aliases": 0,
+      "all_hashes_match": true
+    },
+    {
+      "profile": "sp2027-stopping-gpt2-pilot",
+      "source_objects": 22,
+      "input_files": 0,
+      "aliases": 0,
+      "all_hashes_match": true
+    },
+    {
+      "profile": "sp2027-stopping-gpt2-verified",
+      "source_objects": 22,
+      "input_files": 0,
+      "aliases": 0,
+      "all_hashes_match": true
+    },
+    {
+      "profile": "sp2027-stopping-qwen",
+      "source_objects": 22,
+      "input_files": 0,
+      "aliases": 0,
+      "all_hashes_match": true
+    },
+    {
+      "profile": "sp2027-stopping-qwen-expanded",
+      "source_objects": 22,
+      "input_files": 0,
+      "aliases": 0,
+      "all_hashes_match": true
+    },
+    {
+      "profile": "sp2027-upstream-gpt2",
+      "source_objects": 7,
+      "input_files": 1,
+      "aliases": 1,
+      "all_hashes_match": true
+    },
+    {
+      "profile": "sp2027-upstream-gpt2-pilot",
+      "source_objects": 7,
+      "input_files": 1,
+      "aliases": 1,
+      "all_hashes_match": true
+    },
+    {
+      "profile": "sp2027-upstream-gpt2-pilot-v2",
+      "source_objects": 7,
+      "input_files": 1,
+      "aliases": 1,
+      "all_hashes_match": true
+    },
+    {
+      "profile": "sp2027-upstream-public-features",
+      "source_objects": 7,
+      "input_files": 162,
+      "aliases": 0,
+      "all_hashes_match": true
+    }
+  ],
+  "upstream_prepare_only": [
+    {
+      "profile": "sp2027-upstream-gpt2",
+      "prepare_only": true,
+      "matching_fields": [
+        "schema",
+        "pilot",
+        "upstream",
+        "source_sha256",
+        "model_sha256",
+        "study_plan_sha256",
+        "parameters",
+        "prompts",
+        "tasks"
+      ],
+      "planned_tasks": 160,
+      "model_generation_performed": false
+    },
+    {
+      "profile": "sp2027-upstream-gpt2-pilot",
+      "prepare_only": true,
+      "matching_fields": [
+        "schema",
+        "pilot",
+        "upstream",
+        "source_sha256",
+        "model_sha256",
+        "study_plan_sha256",
+        "parameters",
+        "prompts",
+        "tasks"
+      ],
+      "planned_tasks": 4,
+      "model_generation_performed": false
+    },
+    {
+      "profile": "sp2027-upstream-gpt2-pilot-v2",
+      "prepare_only": true,
+      "matching_fields": [
+        "schema",
+        "pilot",
+        "upstream",
+        "source_sha256",
+        "model_sha256",
+        "study_plan_sha256",
+        "parameters",
+        "prompts",
+        "tasks"
+      ],
+      "planned_tasks": 4,
+      "model_generation_performed": false
+    }
+  ],
+  "all_passed": true
+}

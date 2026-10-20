@@ -1,58 +1,247 @@
-\section{Proof Details for Stopping Separation}
+\section{Proof Details for Termination Results}
 \label{app:proofs}
 
-Fix $p\in(0,1)\setminus\{1/2\}$. Let
-$a=-\log_2\max(p,1-p)$, $b=-\log_2\min(p,1-p)$,
-$d=b-a>0$, and $A_a=(1-2^{-a})^{-1}$. The IID symbols may be sampled in advance;
-independent stopping coins then accept the hazards
-$h_n=\min(1,2^{S_n-B})$. This realizes the ideal stopped law of
-Eq.~\eqref{eq:stopped-law}.
+\subsection{An Explicit Markov Bound}
+\label{app:markov-proof}
 
-For any fixed symbol sequence, the sum of hazards before $S_n<B-k$ is bounded
-by a reverse geometric series:
+For a positive binary transition matrix $P$, condition on the even-state
+skeleton $Y_0,Y_2,\ldots,Y_{2m}$, where $m=\lfloor n/2\rfloor$. If $n$ is odd,
+also condition on $Y_n$. The remaining odd bridge states are independent.
+A bridge with endpoints $(a,b)$ chooses its middle state zero with probability
+\[
+ \theta_{ab}=\frac{P_{a0}P_{0b}}{P_{a0}P_{0b}+P_{a1}P_{1b}},
+\]
+and its two possible information contributions differ by
+$d_{ab}=|\log_2(P_{a0}P_{0b}/(P_{a1}P_{1b}))|$. The last edge when $n$ is odd is
+constant under this conditioning. At least $m/4$ bridges have one common
+endpoint pair. Condition on all other odd states; the remaining information
+is a shifted, possibly reflected, scaled binomial variable with at least
+$m/4$ trials. The selected bridge type may depend on the skeleton, since the
+bound below is uniform over the four types.
+
+For $K_s\sim\operatorname{Bin}(s,\theta)$, Fourier inversion gives
+\begin{align*}
+ \sup_j\Pr(K_s=j)&\le\frac1{2\pi}
+ \int_{-\pi}^{\pi}|1-\theta+\theta e^{it}|^s\,dt\\
+ &\le\frac{\sqrt\pi}{2\sqrt{2s\theta(1-\theta)}}.
+\end{align*}
+For the second inequality, use
+$|1-\theta+\theta e^{it}|^2=1-4\theta(1-\theta)\sin^2(t/2)$,
+$\sin(|t|/2)\ge|t|/\pi$, and $1-u\le e^{-u}$, then extend the resulting
+Gaussian integral to the real line. A band of width $w$ contains at most
+$\lfloor w/d_{ab}\rfloor+1$ lattice values. Removing the conditioning proves
+Eq.~\eqref{eq:explicit-markov} with
+\[
+ d=\min_{a,b}d_{ab},\qquad
+ K=\max_{a,b}\frac{\sqrt\pi}{2\sqrt{2\theta_{ab}(1-\theta_{ab})}}.
+\]
+For Eq.~\eqref{eq:dependent-source}, the four $\theta$ values are
+$9/11,3/5,3/5,1/3$, and the four gaps are
+$\log_2(9/2),\log_2(3/2),\log_2(3/2),1$. These give the stated $d$ and $K$.
+The conditional information variance is at least
+$m(6/25)[\log_2(3/2)]^2$. Total variance and the finite-state variance limit
+therefore give $\sigma^2\ge(3/25)[\log_2(3/2)]^2>0$.
+With $a=\log_2(4/3)$, direct stationary covariance summation gives
+\[
+ H=a/2+2/3,\qquad
+ \sigma^2=\tfrac7{12}a^2-\tfrac{13}{9}a+\tfrac{25}{27}.
+\]
+For the general Markov bound, subtract the two Berry--Esseen CDF bounds and
+use that a standard normal density is at most $1/\sqrt{2\pi}$. Taking the
+left CDF limit at the lower endpoint handles closed intervals and lattice
+sources without an extra atom term.
+
+\subsection{Published and Prefix Information Bands}
+
+Extend a source trajectory beyond any hypothetical endpoint. For the published
+midpoint rule, the sum of candidate hazards at positions with $I_t<B-k$ is
+at most $2^{-k}/(1-\rho)$: read the positions in reverse order and use the
+minimum information increment $-\log_2\rho$. A union bound gives the lower
+tail in Eq.~\eqref{eq:published-band}. At the first crossing of $B$, the hazard
+is one and the overshoot is less than $b$. This proves its upper tail and
+almost-sure termination.
+
+For continuous arithmetic-prefix coding, the intervals at the first crossing
+of $B+r$ form an antichain partition of $[0,1)$, up to null boundaries. Under
+Eq.~\eqref{eq:bounded-increments} every path reaches this crossing in finite
+time. All intervals have width at most $2^{-B-r}$. Every unresolved interval
+contains an interior payload-cell boundary. Disjoint intervals can be assigned
+distinct boundaries, so their total probability is at most
+$(2^B-1)2^{-B-r}<2^{-r}$. Previously resolved paths may be continued for this
+argument; the bound is not conditioned on survival or successful delivery.
+Since the crossing overshoots by less than $b$, Eq.~\eqref{eq:prefix-band}
+follows. The same reasoning, with $r$ increasing, proves almost-sure prefix
+resolution. At a fixed depth, split unresolved intervals by whether their
+width exceeds $2^{-B-r}$; charging the remaining fine intervals to the same
+boundaries proves Eq.~\eqref{eq:fixed-endpoint-failure}.
+
+\subsection{Verified Midpoint Concentration}
+\label{app:verified-proof}
+
+Fix an original integer message $m\in\{0,\ldots,2^B-1\}$. In the uninterrupted
+rotated process, write the selected interval as $[L_t,H_t)$, its width as
+$W_t=2^{B-I_t}$, and its rotated point as $X_t$. Maintain a half-open interval
+$[X_t,X_t+d_t)$ whose reverse replay maps each point by translation to
+$[m,m+d_t)$. Initialize $d_0=1/2$ and update
 \begin{equation}
- \sum_{n:S_n<B-k}2^{S_n-B}\le A_a2^{-k}.
+ d_t=\min\{d_{t-1},H_t-X_t\}.
+ \label{eq:safe-width}
 \end{equation}
-A union bound over the stopping coins gives
-$P_B(S_\tau<B-k)\le A_a2^{-k}$. As stopping is certain when $S_n\ge B$ and
-increments are at most $b$, $P_B(S_\tau>B+b)=0$. Also,
-$\tau<B/(2b)$ implies $S_\tau<B/2$, so
-$P_B(\tau<B/(2b))\le A_a2^{-B/2}$.
+The old safe width avoids all earlier reverse-map cuts. The new right margin
+avoids the selected-interval boundary and the current parent rotation cut.
+This proves the invariant inductively. The right endpoint must be excluded:
+it can be an earlier modulo discontinuity inside the current interval.
+All points in the reverse image round to $m$.
 
-For the independent natural control, conditional on length $n$, write
-$S_n=na+dK_n$, with $K_n$ binomial of parameter $\min(p,1-p)$.
-An interval of width $k+b$ contains at most
-$\lfloor(k+b)/d\rfloor+1$ possible values. We use the elementary atom bound
+The sufficient event
 \begin{equation}
- \sup_j\Pr(K_n=j)\le\frac{M_p}{\sqrt n},\qquad
- M_p=\frac{\sqrt\pi}{2\sqrt{2p(1-p)}}.
+ 0\le (L_t+H_t)/2-X_t<d_{t-1}
+ \label{eq:safe-success}
 \end{equation}
-For completeness, Fourier inversion bounds an atom by
-$(2\pi)^{-1}\int_{-\pi}^{\pi}|1-p+pe^{it}|^n\,dt$.
-The identity $|1-p+pe^{it}|^2=1-4p(1-p)\sin^2(t/2)$,
-$\sin(|t|/2)\ge|t|/\pi$, and $1-u\le e^{-u}$ bound the
-integrand by $\exp[-2np(1-p)t^2/\pi^2]$. Extending the integral to the real
-line gives the stated constant.
+therefore guarantees midpoint acceptance and reverse recovery. The midpoint
+is interior to the selected interval, so its positive displacement also lies
+below the new right margin. Since $d_{t-1}\le1/2$, the original half-unit test
+holds. This sufficient event does not require $W_t\le1$. The algorithm can
+also accept outside it, so avoiding it upper-bounds verified survival.
 
-Set $E_B=\{B-k\le S\le B+b\}$. Split the natural length mixture at $B/(2b)$,
-and subtract its event probability from the stopped-law lower bound. For
-$0\le k\le B$,
+Put $U_t=(X_t-L_t)/W_t$. Fresh continuous rotation gives
+\[
+ \Pr(Y_t=i,U_t\in du\mid\text{past})=q_t(i)\,du.
+\]
+Consequently the uninterrupted tokens have law $Q$ and, conditional on a token
+path, the $U_t$ are independent uniforms. This statement is used before
+conditioning on stopping survival.
+
+\paragraph{A two-step contraction}
+Put $z=d_{t-1}/W_{t-1}$, $q=W_t/W_{t-1}$, and $V=1-U_t$.
+The sufficient success event is
+$V\in[1/2,\min\{1,1/2+z/q\})$. On failure,
+$z'=d_t/W_t=\min\{z/q,V\}\le1/2$. For a nonnegative function $f$, the transition
+with successful paths removed is
+\begin{equation}
+ \begin{split}
+ (K_qf)(z)={}&\int_0^{1/2}f(\min\{z/q,v\})\,dv\\
+              &+(1/2-z/q)_+f(z/q).
+ \end{split}
+ \label{eq:killed-kernel}
+\end{equation}
+Choose $f(z)=z^{-1/2}$. Integration gives
+$K_qf(z)=\max\{\sqrt{q/z},\sqrt2\}$. For any nonnegative nonincreasing $g$,
+$q\le\rho$ gives $K_qg\le K_\rho g$: increasing $z/q$ reduces the survival
+region and increases the argument of $g$. Also $K_\rho f$ is nonincreasing.
+Thus the following calculation dominates any two consecutive source
+probabilities bounded by $\rho$:
+\begin{equation}
+ K_\rho^2f(z)=
+ \begin{cases}
+ \rho z^{-1/2},&z<\rho^2/2,\\
+ \sqrt2(1+\rho/2-z/\rho),&\rho^2/2\le z<\rho/2,\\
+ (1+\rho)/\sqrt2,&\rho/2\le z\le1/2.
+ \end{cases}
+\end{equation}
+In all three cases,
+\begin{equation}
+ K_\rho^2f(z)\le\lambda f(z),\qquad\lambda=(1+\rho)/2<1.
+ \label{eq:two-step-contraction}
+\end{equation}
+For the middle case, the maximum ratio to $f(z)$ is at most
+$\sqrt{\rho(2+\rho)^3/27}\le(1+\rho)/2$, because
+\[
+ 27(1+\rho)^2-4\rho(2+\rho)^3
+ =(1-\rho)(4\rho^3+28\rho^2+49\rho+27)\ge0.
+\]
+The first and last cases follow directly. This is an analytic inequality;
+the artifact's numerical quadrature is only a supplementary check.
+
+\paragraph{Entering a small interval without selection bias}
+Let $\kappa=\inf\{t:I_t\ge B+1\}$. Then $W_\kappa\le1/2$ and
+$I_\kappa<B+1+b$. Iterating Eq.~\eqref{eq:safe-width} gives
+\[
+ z_\kappa=\frac{d_\kappa}{W_\kappa}
+ =\min\left\{\frac1{2W_\kappa},
+       \min_{1\le i\le\kappa}\frac{V_iW_i}{W_\kappa}\right\}.
+\]
+Conditional on the token path, for $0<u\le1$,
+\[
+ \Pr(z_\kappa<u\mid\text{tokens})
+ \le u\sum_{i=1}^{\kappa}\frac{W_\kappa}{W_i}
+ \le\frac{u}{1-\rho}.
+\]
+Here $1/(2W_\kappa)\ge1$ and $W_\kappa/W_i\le\rho^{\kappa-i}$. Since
+$z_\kappa\le1$, integrating the tail gives
+$\mathbb E[f(z_\kappa)]\le2/\sqrt{1-\rho}$. On verified survival through
+$\kappa$, Eq.~\eqref{eq:safe-success} also failed, so $z_\kappa\le1/2$.
+Keeping the survivor indicator and applying Eq.~\eqref{eq:two-step-contraction}
+in pairs gives
 \begin{align}
- \operatorname{TV}(P_B,C_B)\ge{}&1-A_a2^{-k}-A_a2^{-B/2}\notag\\
- &-M_p\sqrt{\frac{2b}{B}}
- \left(\left\lfloor\frac{k+b}{d}\right\rfloor+1\right).
+ \Pr(\tau_v>\kappa+2j)
+ &\le\lambda^j\mathbb E[
+    \mathbf1_{\{\tau_v>\kappa\}}f(z_\kappa)]\notag\\
+ &\le\frac{2\lambda^j}{\sqrt{1-\rho}}.
+ \label{eq:verified-survival}
 \end{align}
-The maximum of this expression and zero is a valid numerical lower bound.
-Choosing $k=\log_2 B$ yields Theorem~\ref{thm:stopping}. Constants depend on the
-fixed source and deteriorate near $p=1/2$; no nonlattice approximation is used.
-The proof establishes a limit, not monotonicity in $B$ or a universal guarantee
-for dependent language-model sources.
+No division by a survival probability is made. Equation~\eqref{eq:verified-survival}
+proves almost-sure termination and, using the per-token bound $b$, the upper
+tail at $B+1+b+2jb$. Verification only vetoes candidate stops, so the early
+hazard union bound still bounds its lower tail. Adding the two tails proves
+Lemma~\ref{lem:verified-band}. For Eq.~\eqref{eq:dependent-source}, the miss
+bound is $4\,2^{-k}+4(7/8)^j$ for the band $[B-k,B+3+4j]$.
+
+\subsection{Verified Zero-Varentropy Control}
+\label{app:verified-zero}
+
+For the three-state half-probability control, $W_j=2^{B-j}$ is deterministic.
+At a candidate depth $t$, let $Z_j$ be the final midpoint reversed through
+steps $t,\ldots,j+1$, and let $e_j=Z_j-X_j$. Initially
+$e_t=W_t(1/2-U_t)$. Subtract the forward rotation from the inverse modulo
+formula to obtain
+\begin{equation}
+ e_{j-1}=W_{j-1}\left[
+ \left(U_{j-1}+\frac{e_j}{W_{j-1}}\right)\bmod1-U_{j-1}\right],
+ \label{eq:reverse-error}
+\end{equation}
+where $U_0=m/2^B$. Rotation offsets, absolute interval locations, and selected
+child indices cancel. The midpoint condition depends only on $e_t$, and
+reverse verification accepts precisely when $-1/2<e_0\le1/2$. Thus every stop
+decision is a function of $m$ and the normalized-position tape, independent of
+the token path. Almost-sure termination follows from
+Eq.~\eqref{eq:verified-survival} with $\rho=1/2$. The stopped law factors as
+$\Pr(\tau_v=t)Q_t$, proving exact TV zero. The argument also covers a fixed
+number of equiprobable children at every history; it is not a general
+zero-varentropy theorem or a finite-grid claim.
+
+\subsection{Public Endpoints under Approximation}
+
+For any independent natural length law $\gamma$, the same sign argument as
+Eq.~\eqref{eq:endpoint-identity} gives
+$\operatorname{TV}(S,\gamma(n)Q_n)=1-\sum_n\gamma(n)\ell(n)$.
+If another normalized law $P$ satisfies $\operatorname{TV}(P,S)\le\varepsilon$,
+its length marginal $\ell_P$ differs from $\ell$ by at most $\varepsilon$.
+Consequently its own-length comparator $C_P=\ell_P(n)Q_n$ satisfies
+\begin{equation}
+ \operatorname{TV}(P,C_P)\ge1-\sum_n\ell(n)^2-2\varepsilon.
+ \label{eq:endpoint-approximation}
+\end{equation}
+The reference $S$ must obey the stated public-stopping hypotheses on the same
+normalized transcript space. A finite integer codec's reference must use its
+actual integer predicate; its coding bound does not imply closeness to the
+separate continuous prefix construction. Removing failures or conditioning on
+delivery does not preserve an unconditional $\varepsilon$ guarantee.
+
+There is also a packet-independent support statement. If an arbitrary delivered
+law $P$ always emits exactly at the public first-resolution endpoint, then
+$P(E)=1$, regardless of the packet distribution or retry policy. Against its
+independent comparator, $C_P(E)=\sum_n\ell_P(n)\ell(n)$, yielding the lower
+bound $1-C_P(E)$ without a packet-uniformity assumption. It is not an exact TV
+identity for arbitrary $P$. The empirical endpoint replay estimates this event
+on its explicitly selected delivery and natural-control populations.
 
 \subsection{Finite Rotation Grids}
 \label{app:rotation-grid}
 
-The experiment uses a finite grid rather than continuous offsets. Suppose each
-rotation is independently uniform on $M=2^k$ grid points and $F\mid M$.
+This section concerns the unverified controlled adapter with a quantized source,
+not the full-vocabulary upstream study. Suppose each rotation is independently
+uniform on $M=2^k$ grid points and $F\mid M$.
 For any parent interval of width $W$ and any prior point, rotation produces a
 translated circular lattice with spacing $W/M$. A token interval of length
 $Wq_i=Wf_i/F$ contains exactly $Mq_i$ lattice points, including boundary cases.

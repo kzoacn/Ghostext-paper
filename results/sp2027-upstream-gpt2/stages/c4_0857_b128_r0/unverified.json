@@ -1,0 +1,190 @@
+{
+  "status": "complete",
+  "error": null,
+  "token_ids": [
+    2648,
+    511,
+    3665,
+    18069,
+    9889,
+    351,
+    6190,
+    19690,
+    14807,
+    4210,
+    2406,
+    284,
+    262,
+    1402
+  ],
+  "tokens": 14,
+  "cover_text": "These Card Characters are a new range of LogoBugs that share their powerful mathematical capabilities with advanced tropical islands� coming to the small",
+  "text_sha256": "68fbca4bb4b137b7871aafcdd722d609b63e46540ec116d0042a2ebebf53ee67",
+  "context_token_ids": [
+    4711,
+    5172,
+    26813,
+    389,
+    257,
+    649,
+    2837,
+    286,
+    42411,
+    33,
+    10339,
+    326
+  ],
+  "visible_token_ids": [
+    4711,
+    5172,
+    26813,
+    389,
+    257,
+    649,
+    2837,
+    286,
+    42411,
+    33,
+    10339,
+    326,
+    2648,
+    511,
+    3665,
+    18069,
+    9889,
+    351,
+    6190,
+    19690,
+    14807,
+    4210,
+    2406,
+    284,
+    262,
+    1402
+  ],
+  "visible_continuation_token_ids": [
+    2648,
+    511,
+    3665,
+    18069,
+    9889,
+    351,
+    6190,
+    19690,
+    14807,
+    4210,
+    2406,
+    284,
+    262,
+    1402
+  ],
+  "prompt_prefix_matches": true,
+  "canonical_text_roundtrip": true,
+  "chosen_probabilities": [
+    0.0012370165296972,
+    0.04609242056931734,
+    0.0003350116759727,
+    0.0003161966885796,
+    0.02686229393157177,
+    0.2423939887354629,
+    0.0002467684299342,
+    5.5410878705e-06,
+    0.00252633970647326,
+    5.348900476e-06,
+    0.0003585362170032,
+    0.14956077048660382,
+    0.18647251907411588,
+    0.0013605759176768
+  ],
+  "interval_observations": [
+    {
+      "token_id": 2648,
+      "cdf_low": "0.7489146894690104",
+      "cdf_high": "0.7501517059987076",
+      "probability_decimal": "0.0012370165296972"
+    },
+    {
+      "token_id": 511,
+      "cdf_low": "0.49226363984315286",
+      "cdf_high": "0.5383560604124702",
+      "probability_decimal": "0.04609242056931734"
+    },
+    {
+      "token_id": 3665,
+      "cdf_low": "0.6512287789471167",
+      "cdf_high": "0.6515637906230894",
+      "probability_decimal": "0.0003350116759727"
+    },
+    {
+      "token_id": 18069,
+      "cdf_low": "0.7339909182801367",
+      "cdf_high": "0.7343071149687163",
+      "probability_decimal": "0.0003161966885796"
+    },
+    {
+      "token_id": 9889,
+      "cdf_low": "0.3873625578993388",
+      "cdf_high": "0.41422485183091057",
+      "probability_decimal": "0.02686229393157177"
+    },
+    {
+      "token_id": 351,
+      "cdf_low": "0.3579427687258049",
+      "cdf_high": "0.6003367574612678",
+      "probability_decimal": "0.2423939887354629"
+    },
+    {
+      "token_id": 6190,
+      "cdf_low": "0.7483109343199279",
+      "cdf_high": "0.7485577027498621",
+      "probability_decimal": "0.0002467684299342"
+    },
+    {
+      "token_id": 19690,
+      "cdf_low": "0.9723713746652828",
+      "cdf_high": "0.9723769157531533",
+      "probability_decimal": "0.0000055410878705"
+    },
+    {
+      "token_id": 14807,
+      "cdf_low": "0.43271584999386864",
+      "cdf_high": "0.4352421897003419",
+      "probability_decimal": "0.00252633970647326"
+    },
+    {
+      "token_id": 4210,
+      "cdf_low": "0.9829815601175756",
+      "cdf_high": "0.9829869090180516",
+      "probability_decimal": "0.0000053489004760"
+    },
+    {
+      "token_id": 2406,
+      "cdf_low": "0.5711776502650514",
+      "cdf_high": "0.5715361864820546",
+      "probability_decimal": "0.0003585362170032"
+    },
+    {
+      "token_id": 284,
+      "cdf_low": "0.40050196422375867",
+      "cdf_high": "0.5500627347103625",
+      "probability_decimal": "0.14956077048660383"
+    },
+    {
+      "token_id": 262,
+      "cdf_low": "0.0",
+      "cdf_high": "0.18647251907411588",
+      "probability_decimal": "0.18647251907411588"
+    },
+    {
+      "token_id": 1402,
+      "cdf_low": "0.5220424047682178",
+      "cdf_high": "0.5234029806858946",
+      "probability_decimal": "0.0013605759176768"
+    }
+  ],
+  "surprisal_bits": 126.24982254898212,
+  "elapsed_seconds": 0.5183061759453267,
+  "context_trim_calls": 0,
+  "rejected_stop_count": 0,
+  "decimal_precision": 79
+}

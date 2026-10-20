@@ -1,0 +1,4438 @@
+{
+  "case_id": "03_en_garden:r1:g128",
+  "prompt_id": "03_en_garden",
+  "family": "garden",
+  "language": "en",
+  "manifest_sha256": "27ebb8b07ed129083a1985bae837dee015a7a5014dedfe0eaf73ba1f1c3f9d72",
+  "stego": {
+    "text_sha256": "17ff529a0c570eac3315e7c336a19dfb87a1bce73fd64e375188e05b8275426a",
+    "visible_token_ids": [
+      484,
+      5025,
+      379,
+      262,
+      3420,
+      11,
+      618,
+      6451,
+      673,
+      2497,
+      683,
+      2045,
+      503,
+      11,
+      3094,
+      351,
+      6380,
+      13,
+      1629,
+      326,
+      1807,
+      286,
+      326,
+      2589,
+      11,
+      339,
+      3114,
+      736,
+      510,
+      11,
+      290,
+      339,
+      531,
+      25,
+      366,
+      37,
+      2852,
+      11,
+      475,
+      1793,
+      4206,
+      644,
+      13,
+      314,
+      423,
+      587,
+      2045,
+      329,
+      1793,
+      338,
+      26485,
+      329,
+      281,
+      1711,
+      11,
+      290,
+      339,
+      468,
+      925,
+      502,
+      3285,
+      340,
+      11,
+      290,
+      468,
+      925,
+      502,
+      1577,
+      503,
+      616,
+      1204,
+      656,
+      262,
+      995,
+      13,
+      843,
+      783,
+      11,
+      428,
+      640,
+      11,
+      314,
+      460,
+      1234,
+      645,
+      517,
+      3252,
+      656,
+      616,
+      1204,
+      11,
+      4249,
+      466,
+      314,
+      892,
+      11,
+      1867,
+      318,
+      262,
+      886,
+      286,
+      262,
+      995,
+      1701,
+      887,
+      788,
+      339,
+      3114,
+      510,
+      11,
+      290,
+      6939,
+      465,
+      7457,
+      13,
+      383,
+      734,
+      1450,
+      287,
+      2166,
+      286,
+      683,
+      547,
+      12049,
+      287,
+      2042,
+      30720,
+      11,
+      523,
+      484,
+      655,
+      3830,
+      866,
+      13,
+      383,
+      11503,
+      531,
+      2147,
+      13,
+      843,
+      788,
+      530,
+      286,
+      262,
+      1450,
+      1965,
+      25,
+      366,
+      2061,
+      3446,
+      750,
+      345,
+      466,
+      287,
+      534,
+      938,
+      719,
+      1701,
+      290,
+      262,
+      1334,
+      7082,
+      25,
+      366,
+      40,
+      550,
+      645,
+      1176,
+      284,
+      466,
+      644,
+      345,
+      2227,
+      11,
+      290,
+      340,
+      338,
+      780,
+      314,
+      716,
+      991,
+      351,
+      345,
+      257,
+      922,
+      29546,
+      526,
+      198,
+      366,
+      40,
+      1101,
+      9675,
+      339,
+      3181,
+      345,
+      428,
+      1593,
+      16084,
+      13,
+      843,
+      611,
+      345,
+      765,
+      284,
+      2107,
+      416,
+      262,
+      530,
+      3896,
+      326,
+      314,
+      750,
+      287,
+      534,
+      938,
+      719,
+      11,
+      345,
+      481,
+      1239
+    ],
+    "visible_tokens": 220,
+    "status": "endpoint_at_end",
+    "segment_endpoints": [
+      129,
+      220
+    ],
+    "trace": [
+      {
+        "index": 0,
+        "token_id": 484,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 257,
+        "cdf_low": 2919,
+        "cdf_high": 3005
+      },
+      {
+        "index": 1,
+        "token_id": 5025,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 547,
+        "cdf_low": 2553,
+        "cdf_high": 2642
+      },
+      {
+        "index": 2,
+        "token_id": 379,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 284,
+        "cdf_low": 1430,
+        "cdf_high": 1888
+      },
+      {
+        "index": 3,
+        "token_id": 262,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 257,
+        "cdf_low": 1963,
+        "cdf_high": 3467
+      },
+      {
+        "index": 4,
+        "token_id": 3420,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 10384,
+        "cdf_low": 1009,
+        "cdf_high": 1255
+      },
+      {
+        "index": 5,
+        "token_id": 11,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 13,
+        "cdf_low": 1522,
+        "cdf_high": 2153
+      },
+      {
+        "index": 6,
+        "token_id": 618,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 290,
+        "cdf_low": 3694,
+        "cdf_high": 3714
+      },
+      {
+        "index": 7,
+        "token_id": 6451,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 484,
+        "cdf_low": 2506,
+        "cdf_high": 2714
+      },
+      {
+        "index": 8,
+        "token_id": 673,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 11,
+        "cdf_low": 3626,
+        "cdf_high": 3661
+      },
+      {
+        "index": 9,
+        "token_id": 2497,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 2497,
+        "cdf_low": 0,
+        "cdf_high": 1342
+      },
+      {
+        "index": 10,
+        "token_id": 683,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 257,
+        "cdf_low": 2732,
+        "cdf_high": 2874
+      },
+      {
+        "index": 11,
+        "token_id": 2045,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 13,
+        "cdf_low": 2715,
+        "cdf_high": 2778
+      },
+      {
+        "index": 12,
+        "token_id": 503,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 379,
+        "cdf_low": 2067,
+        "cdf_high": 2424
+      },
+      {
+        "index": 13,
+        "token_id": 11,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 262,
+        "cdf_low": 2973,
+        "cdf_high": 3192
+      },
+      {
+        "index": 14,
+        "token_id": 3094,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 290,
+        "cdf_low": 3753,
+        "cdf_high": 3773
+      },
+      {
+        "index": 15,
+        "token_id": 351,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 12,
+        "cdf_low": 3752,
+        "cdf_high": 3816
+      },
+      {
+        "index": 16,
+        "token_id": 6380,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 257,
+        "cdf_low": 2413,
+        "cdf_high": 2490
+      },
+      {
+        "index": 17,
+        "token_id": 13,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 13,
+        "cdf_low": 0,
+        "cdf_high": 2131
+      },
+      {
+        "index": 18,
+        "token_id": 1629,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 198,
+        "cdf_low": 3756,
+        "cdf_high": 3772
+      },
+      {
+        "index": 19,
+        "token_id": 326,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 262,
+        "cdf_low": 2019,
+        "cdf_high": 2601
+      },
+      {
+        "index": 20,
+        "token_id": 1807,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 2589,
+        "cdf_low": 4071,
+        "cdf_high": 4072
+      },
+      {
+        "index": 21,
+        "token_id": 286,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 11,
+        "cdf_low": 3807,
+        "cdf_high": 3841
+      },
+      {
+        "index": 22,
+        "token_id": 326,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 683,
+        "cdf_low": 2881,
+        "cdf_high": 3007
+      },
+      {
+        "index": 23,
+        "token_id": 2589,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 11,
+        "cdf_low": 1800,
+        "cdf_high": 2716
+      },
+      {
+        "index": 24,
+        "token_id": 11,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 11,
+        "cdf_low": 0,
+        "cdf_high": 3289
+      },
+      {
+        "index": 25,
+        "token_id": 339,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 673,
+        "cdf_low": 1720,
+        "cdf_high": 2438
+      },
+      {
+        "index": 26,
+        "token_id": 3114,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 373,
+        "cdf_low": 891,
+        "cdf_high": 1128
+      },
+      {
+        "index": 27,
+        "token_id": 736,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 379,
+        "cdf_low": 892,
+        "cdf_high": 1600
+      },
+      {
+        "index": 28,
+        "token_id": 510,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 379,
+        "cdf_low": 2625,
+        "cdf_high": 2884
+      },
+      {
+        "index": 29,
+        "token_id": 11,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 379,
+        "cdf_low": 1723,
+        "cdf_high": 2335
+      },
+      {
+        "index": 30,
+        "token_id": 290,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 290,
+        "cdf_low": 0,
+        "cdf_high": 1669
+      },
+      {
+        "index": 31,
+        "token_id": 339,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 2497,
+        "cdf_low": 1282,
+        "cdf_high": 1507
+      },
+      {
+        "index": 32,
+        "token_id": 531,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 2497,
+        "cdf_low": 1201,
+        "cdf_high": 1691
+      },
+      {
+        "index": 33,
+        "token_id": 25,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 11,
+        "cdf_low": 2247,
+        "cdf_high": 2964
+      },
+      {
+        "index": 34,
+        "token_id": 366,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 366,
+        "cdf_low": 0,
+        "cdf_high": 2423
+      },
+      {
+        "index": 35,
+        "token_id": 37,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 40,
+        "cdf_low": 3829,
+        "cdf_high": 3851
+      },
+      {
+        "index": 36,
+        "token_id": 2852,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 533,
+        "cdf_low": 2869,
+        "cdf_high": 2911
+      },
+      {
+        "index": 37,
+        "token_id": 11,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 11,
+        "cdf_low": 0,
+        "cdf_high": 771
+      },
+      {
+        "index": 38,
+        "token_id": 475,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 15626,
+        "cdf_low": 2884,
+        "cdf_high": 2926
+      },
+      {
+        "index": 39,
+        "token_id": 1793,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 314,
+        "cdf_low": 3720,
+        "cdf_high": 3743
+      },
+      {
+        "index": 40,
+        "token_id": 4206,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 11,
+        "cdf_low": 670,
+        "cdf_high": 1033
+      },
+      {
+        "index": 41,
+        "token_id": 644,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 644,
+        "cdf_low": 0,
+        "cdf_high": 1069
+      },
+      {
+        "index": 42,
+        "token_id": 13,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 314,
+        "cdf_low": 2278,
+        "cdf_high": 2402
+      },
+      {
+        "index": 43,
+        "token_id": 314,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 314,
+        "cdf_low": 0,
+        "cdf_high": 1090
+      },
+      {
+        "index": 44,
+        "token_id": 423,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 716,
+        "cdf_low": 794,
+        "cdf_high": 1061
+      },
+      {
+        "index": 45,
+        "token_id": 587,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 587,
+        "cdf_low": 0,
+        "cdf_high": 398
+      },
+      {
+        "index": 46,
+        "token_id": 2045,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 994,
+        "cdf_low": 328,
+        "cdf_high": 560
+      },
+      {
+        "index": 47,
+        "token_id": 329,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 329,
+        "cdf_low": 0,
+        "cdf_high": 1652
+      },
+      {
+        "index": 48,
+        "token_id": 1793,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 345,
+        "cdf_low": 3715,
+        "cdf_high": 3743
+      },
+      {
+        "index": 49,
+        "token_id": 338,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 338,
+        "cdf_low": 0,
+        "cdf_high": 594
+      },
+      {
+        "index": 50,
+        "token_id": 26485,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1037,
+        "cdf_low": 3207,
+        "cdf_high": 3244
+      },
+      {
+        "index": 51,
+        "token_id": 329,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 11,
+        "cdf_low": 619,
+        "cdf_high": 1221
+      },
+      {
+        "index": 52,
+        "token_id": 281,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 257,
+        "cdf_low": 3455,
+        "cdf_high": 3485
+      },
+      {
+        "index": 53,
+        "token_id": 1711,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1711,
+        "cdf_low": 0,
+        "cdf_high": 2823
+      },
+      {
+        "index": 54,
+        "token_id": 11,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 11,
+        "cdf_low": 0,
+        "cdf_high": 970
+      },
+      {
+        "index": 55,
+        "token_id": 290,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 290,
+        "cdf_low": 0,
+        "cdf_high": 2768
+      },
+      {
+        "index": 56,
+        "token_id": 339,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 314,
+        "cdf_low": 2289,
+        "cdf_high": 2490
+      },
+      {
+        "index": 57,
+        "token_id": 468,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 468,
+        "cdf_low": 0,
+        "cdf_high": 1241
+      },
+      {
+        "index": 58,
+        "token_id": 925,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 407,
+        "cdf_low": 3289,
+        "cdf_high": 3329
+      },
+      {
+        "index": 59,
+        "token_id": 502,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 502,
+        "cdf_low": 0,
+        "cdf_high": 2081
+      },
+      {
+        "index": 60,
+        "token_id": 3285,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 257,
+        "cdf_low": 2973,
+        "cdf_high": 3020
+      },
+      {
+        "index": 61,
+        "token_id": 340,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 340,
+        "cdf_low": 0,
+        "cdf_high": 1590
+      },
+      {
+        "index": 62,
+        "token_id": 11,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 13,
+        "cdf_low": 2248,
+        "cdf_high": 2724
+      },
+      {
+        "index": 63,
+        "token_id": 290,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 290,
+        "cdf_low": 0,
+        "cdf_high": 2157
+      },
+      {
+        "index": 64,
+        "token_id": 468,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 314,
+        "cdf_low": 3410,
+        "cdf_high": 3444
+      },
+      {
+        "index": 65,
+        "token_id": 925,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 925,
+        "cdf_low": 0,
+        "cdf_high": 890
+      },
+      {
+        "index": 66,
+        "token_id": 502,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 502,
+        "cdf_low": 0,
+        "cdf_high": 3385
+      },
+      {
+        "index": 67,
+        "token_id": 1577,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1254,
+        "cdf_low": 3326,
+        "cdf_high": 3360
+      },
+      {
+        "index": 68,
+        "token_id": 503,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 340,
+        "cdf_low": 3923,
+        "cdf_high": 3933
+      },
+      {
+        "index": 69,
+        "token_id": 616,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 616,
+        "cdf_low": 0,
+        "cdf_high": 899
+      },
+      {
+        "index": 70,
+        "token_id": 1204,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1204,
+        "cdf_low": 0,
+        "cdf_high": 1091
+      },
+      {
+        "index": 71,
+        "token_id": 656,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 284,
+        "cdf_low": 3737,
+        "cdf_high": 3752
+      },
+      {
+        "index": 72,
+        "token_id": 262,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 262,
+        "cdf_low": 0,
+        "cdf_high": 1649
+      },
+      {
+        "index": 73,
+        "token_id": 995,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 2832,
+        "cdf_low": 864,
+        "cdf_high": 1694
+      },
+      {
+        "index": 74,
+        "token_id": 13,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 13,
+        "cdf_low": 0,
+        "cdf_high": 1316
+      },
+      {
+        "index": 75,
+        "token_id": 843,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 314,
+        "cdf_low": 1593,
+        "cdf_high": 1811
+      },
+      {
+        "index": 76,
+        "token_id": 783,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 314,
+        "cdf_low": 954,
+        "cdf_high": 1627
+      },
+      {
+        "index": 77,
+        "token_id": 11,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 314,
+        "cdf_low": 1293,
+        "cdf_high": 2516
+      },
+      {
+        "index": 78,
+        "token_id": 428,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 314,
+        "cdf_low": 2684,
+        "cdf_high": 2755
+      },
+      {
+        "index": 79,
+        "token_id": 640,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 318,
+        "cdf_low": 2330,
+        "cdf_high": 2519
+      },
+      {
+        "index": 80,
+        "token_id": 11,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 11,
+        "cdf_low": 0,
+        "cdf_high": 2750
+      },
+      {
+        "index": 81,
+        "token_id": 314,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 314,
+        "cdf_low": 0,
+        "cdf_high": 1896
+      },
+      {
+        "index": 82,
+        "token_id": 460,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 481,
+        "cdf_low": 2796,
+        "cdf_high": 2884
+      },
+      {
+        "index": 83,
+        "token_id": 1234,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 3285,
+        "cdf_low": 3627,
+        "cdf_high": 3647
+      },
+      {
+        "index": 84,
+        "token_id": 645,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 616,
+        "cdf_low": 3850,
+        "cdf_high": 3869
+      },
+      {
+        "index": 85,
+        "token_id": 517,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 517,
+        "cdf_low": 0,
+        "cdf_high": 1560
+      },
+      {
+        "index": 86,
+        "token_id": 3252,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 3252,
+        "cdf_low": 0,
+        "cdf_high": 1404
+      },
+      {
+        "index": 87,
+        "token_id": 656,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 287,
+        "cdf_low": 2365,
+        "cdf_high": 3361
+      },
+      {
+        "index": 88,
+        "token_id": 616,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 616,
+        "cdf_low": 0,
+        "cdf_high": 1676
+      },
+      {
+        "index": 89,
+        "token_id": 1204,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 2612,
+        "cdf_low": 3344,
+        "cdf_high": 3453
+      },
+      {
+        "index": 90,
+        "token_id": 11,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 11,
+        "cdf_low": 0,
+        "cdf_high": 1032
+      },
+      {
+        "index": 91,
+        "token_id": 4249,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 290,
+        "cdf_low": 2737,
+        "cdf_high": 2842
+      },
+      {
+        "index": 92,
+        "token_id": 466,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 466,
+        "cdf_low": 0,
+        "cdf_high": 520
+      },
+      {
+        "index": 93,
+        "token_id": 314,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 314,
+        "cdf_low": 0,
+        "cdf_high": 3554
+      },
+      {
+        "index": 94,
+        "token_id": 892,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 765,
+        "cdf_low": 1812,
+        "cdf_high": 2045
+      },
+      {
+        "index": 95,
+        "token_id": 11,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 286,
+        "cdf_low": 3155,
+        "cdf_high": 3232
+      },
+      {
+        "index": 96,
+        "token_id": 1867,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 326,
+        "cdf_low": 4011,
+        "cdf_high": 4024
+      },
+      {
+        "index": 97,
+        "token_id": 318,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 2236,
+        "cdf_low": 881,
+        "cdf_high": 1302
+      },
+      {
+        "index": 98,
+        "token_id": 262,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 428,
+        "cdf_low": 1594,
+        "cdf_high": 2263
+      },
+      {
+        "index": 99,
+        "token_id": 886,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 2300,
+        "cdf_low": 2398,
+        "cdf_high": 2491
+      },
+      {
+        "index": 100,
+        "token_id": 286,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 286,
+        "cdf_low": 0,
+        "cdf_high": 2534
+      },
+      {
+        "index": 101,
+        "token_id": 262,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 616,
+        "cdf_low": 1944,
+        "cdf_high": 2397
+      },
+      {
+        "index": 102,
+        "token_id": 995,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 995,
+        "cdf_low": 0,
+        "cdf_high": 3452
+      },
+      {
+        "index": 103,
+        "token_id": 1701,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 30,
+        "cdf_low": 1169,
+        "cdf_high": 1997
+      },
+      {
+        "index": 104,
+        "token_id": 887,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 198,
+        "cdf_low": 3031,
+        "cdf_high": 3124
+      },
+      {
+        "index": 105,
+        "token_id": 788,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 339,
+        "cdf_low": 2370,
+        "cdf_high": 2525
+      },
+      {
+        "index": 106,
+        "token_id": 339,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 339,
+        "cdf_low": 0,
+        "cdf_high": 1632
+      },
+      {
+        "index": 107,
+        "token_id": 3114,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 531,
+        "cdf_low": 969,
+        "cdf_high": 1315
+      },
+      {
+        "index": 108,
+        "token_id": 510,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 736,
+        "cdf_low": 1954,
+        "cdf_high": 2679
+      },
+      {
+        "index": 109,
+        "token_id": 11,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 11,
+        "cdf_low": 0,
+        "cdf_high": 1121
+      },
+      {
+        "index": 110,
+        "token_id": 290,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 290,
+        "cdf_low": 0,
+        "cdf_high": 3392
+      },
+      {
+        "index": 111,
+        "token_id": 6939,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 339,
+        "cdf_low": 3932,
+        "cdf_high": 3941
+      },
+      {
+        "index": 112,
+        "token_id": 465,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 326,
+        "cdf_low": 2991,
+        "cdf_high": 3119
+      },
+      {
+        "index": 113,
+        "token_id": 7457,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 7457,
+        "cdf_low": 0,
+        "cdf_high": 1040
+      },
+      {
+        "index": 114,
+        "token_id": 13,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 13,
+        "cdf_low": 0,
+        "cdf_high": 2188
+      },
+      {
+        "index": 115,
+        "token_id": 383,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 366,
+        "cdf_low": 2762,
+        "cdf_high": 2925
+      },
+      {
+        "index": 116,
+        "token_id": 734,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 3420,
+        "cdf_low": 2632,
+        "cdf_high": 2689
+      },
+      {
+        "index": 117,
+        "token_id": 1450,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 286,
+        "cdf_low": 1402,
+        "cdf_high": 2053
+      },
+      {
+        "index": 118,
+        "token_id": 287,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 547,
+        "cdf_low": 2570,
+        "cdf_high": 2629
+      },
+      {
+        "index": 119,
+        "token_id": 2166,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 262,
+        "cdf_low": 1609,
+        "cdf_high": 2475
+      },
+      {
+        "index": 120,
+        "token_id": 286,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 286,
+        "cdf_low": 0,
+        "cdf_high": 3702
+      },
+      {
+        "index": 121,
+        "token_id": 683,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 683,
+        "cdf_low": 0,
+        "cdf_high": 3665
+      },
+      {
+        "index": 122,
+        "token_id": 547,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 547,
+        "cdf_low": 0,
+        "cdf_high": 962
+      },
+      {
+        "index": 123,
+        "token_id": 12049,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 991,
+        "cdf_low": 3118,
+        "cdf_high": 3159
+      },
+      {
+        "index": 124,
+        "token_id": 287,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 287,
+        "cdf_low": 0,
+        "cdf_high": 2694
+      },
+      {
+        "index": 125,
+        "token_id": 2042,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 2042,
+        "cdf_low": 0,
+        "cdf_high": 847
+      },
+      {
+        "index": 126,
+        "token_id": 30720,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 11,
+        "cdf_low": 3445,
+        "cdf_high": 3506
+      },
+      {
+        "index": 127,
+        "token_id": 11,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 11,
+        "cdf_low": 0,
+        "cdf_high": 2248
+      },
+      {
+        "index": 128,
+        "token_id": 523,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 290,
+        "cdf_low": 3613,
+        "cdf_high": 3633
+      },
+      {
+        "index": 129,
+        "token_id": 484,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 326,
+        "cdf_low": 2144,
+        "cdf_high": 2628
+      },
+      {
+        "index": 130,
+        "token_id": 655,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 714,
+        "cdf_low": 4089,
+        "cdf_high": 4096
+      },
+      {
+        "index": 131,
+        "token_id": 3830,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 3114,
+        "cdf_low": 3357,
+        "cdf_high": 3390
+      },
+      {
+        "index": 132,
+        "token_id": 866,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 612,
+        "cdf_low": 2459,
+        "cdf_high": 2957
+      },
+      {
+        "index": 133,
+        "token_id": 13,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 319,
+        "cdf_low": 2189,
+        "cdf_high": 2725
+      },
+      {
+        "index": 134,
+        "token_id": 383,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 366,
+        "cdf_low": 556,
+        "cdf_high": 1000
+      },
+      {
+        "index": 135,
+        "token_id": 11503,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 582,
+        "cdf_low": 3976,
+        "cdf_high": 3997
+      },
+      {
+        "index": 136,
+        "token_id": 531,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 11,
+        "cdf_low": 743,
+        "cdf_high": 1064
+      },
+      {
+        "index": 137,
+        "token_id": 2147,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 25,
+        "cdf_low": 3731,
+        "cdf_high": 3772
+      },
+      {
+        "index": 138,
+        "token_id": 13,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 11,
+        "cdf_low": 1622,
+        "cdf_high": 2772
+      },
+      {
+        "index": 139,
+        "token_id": 843,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 383,
+        "cdf_low": 2871,
+        "cdf_high": 2975
+      },
+      {
+        "index": 140,
+        "token_id": 788,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 788,
+        "cdf_low": 0,
+        "cdf_high": 1170
+      },
+      {
+        "index": 141,
+        "token_id": 530,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 339,
+        "cdf_low": 3535,
+        "cdf_high": 3570
+      },
+      {
+        "index": 142,
+        "token_id": 286,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 286,
+        "cdf_low": 0,
+        "cdf_high": 2893
+      },
+      {
+        "index": 143,
+        "token_id": 262,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 606,
+        "cdf_low": 2259,
+        "cdf_high": 3846
+      },
+      {
+        "index": 144,
+        "token_id": 1450,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1450,
+        "cdf_low": 0,
+        "cdf_high": 1520
+      },
+      {
+        "index": 145,
+        "token_id": 1965,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 531,
+        "cdf_low": 2276,
+        "cdf_high": 2376
+      },
+      {
+        "index": 146,
+        "token_id": 25,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 25,
+        "cdf_low": 0,
+        "cdf_high": 1413
+      },
+      {
+        "index": 147,
+        "token_id": 366,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 366,
+        "cdf_low": 0,
+        "cdf_high": 3874
+      },
+      {
+        "index": 148,
+        "token_id": 2061,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 2061,
+        "cdf_low": 0,
+        "cdf_high": 974
+      },
+      {
+        "index": 149,
+        "token_id": 3446,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 318,
+        "cdf_low": 4023,
+        "cdf_high": 4029
+      },
+      {
+        "index": 150,
+        "token_id": 750,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 318,
+        "cdf_low": 2634,
+        "cdf_high": 2938
+      },
+      {
+        "index": 151,
+        "token_id": 345,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 345,
+        "cdf_low": 0,
+        "cdf_high": 2741
+      },
+      {
+        "index": 152,
+        "token_id": 466,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 466,
+        "cdf_low": 0,
+        "cdf_high": 1412
+      },
+      {
+        "index": 153,
+        "token_id": 287,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1701,
+        "cdf_low": 3093,
+        "cdf_high": 3201
+      },
+      {
+        "index": 154,
+        "token_id": 534,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 262,
+        "cdf_low": 2898,
+        "cdf_high": 3148
+      },
+      {
+        "index": 155,
+        "token_id": 938,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1204,
+        "cdf_low": 670,
+        "cdf_high": 984
+      },
+      {
+        "index": 156,
+        "token_id": 719,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 7188,
+        "cdf_low": 1622,
+        "cdf_high": 1853
+      },
+      {
+        "index": 157,
+        "token_id": 1701,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 286,
+        "cdf_low": 1726,
+        "cdf_high": 2800
+      },
+      {
+        "index": 158,
+        "token_id": 290,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 843,
+        "cdf_low": 2524,
+        "cdf_high": 2870
+      },
+      {
+        "index": 159,
+        "token_id": 262,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 262,
+        "cdf_low": 0,
+        "cdf_high": 2059
+      },
+      {
+        "index": 160,
+        "token_id": 1334,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 584,
+        "cdf_low": 3819,
+        "cdf_high": 3848
+      },
+      {
+        "index": 161,
+        "token_id": 7082,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 286,
+        "cdf_low": 3683,
+        "cdf_high": 3702
+      },
+      {
+        "index": 162,
+        "token_id": 25,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 25,
+        "cdf_low": 0,
+        "cdf_high": 2567
+      },
+      {
+        "index": 163,
+        "token_id": 366,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 366,
+        "cdf_low": 0,
+        "cdf_high": 3909
+      },
+      {
+        "index": 164,
+        "token_id": 40,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 40,
+        "cdf_low": 0,
+        "cdf_high": 1532
+      },
+      {
+        "index": 165,
+        "token_id": 550,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 750,
+        "cdf_low": 1088,
+        "cdf_high": 1297
+      },
+      {
+        "index": 166,
+        "token_id": 645,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 645,
+        "cdf_low": 0,
+        "cdf_high": 1012
+      },
+      {
+        "index": 167,
+        "token_id": 1176,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 3572,
+        "cdf_low": 2502,
+        "cdf_high": 2582
+      },
+      {
+        "index": 168,
+        "token_id": 284,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 284,
+        "cdf_low": 0,
+        "cdf_high": 1985
+      },
+      {
+        "index": 169,
+        "token_id": 466,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 466,
+        "cdf_low": 0,
+        "cdf_high": 905
+      },
+      {
+        "index": 170,
+        "token_id": 644,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1997,
+        "cdf_low": 3081,
+        "cdf_high": 3289
+      },
+      {
+        "index": 171,
+        "token_id": 345,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 314,
+        "cdf_low": 2486,
+        "cdf_high": 3305
+      },
+      {
+        "index": 172,
+        "token_id": 2227,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 750,
+        "cdf_low": 2969,
+        "cdf_high": 3117
+      },
+      {
+        "index": 173,
+        "token_id": 11,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 284,
+        "cdf_low": 2153,
+        "cdf_high": 2679
+      },
+      {
+        "index": 174,
+        "token_id": 290,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 475,
+        "cdf_low": 1167,
+        "cdf_high": 2035
+      },
+      {
+        "index": 175,
+        "token_id": 340,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 314,
+        "cdf_low": 1993,
+        "cdf_high": 2135
+      },
+      {
+        "index": 176,
+        "token_id": 338,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 373,
+        "cdf_low": 2586,
+        "cdf_high": 2732
+      },
+      {
+        "index": 177,
+        "token_id": 780,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 407,
+        "cdf_low": 1527,
+        "cdf_high": 1726
+      },
+      {
+        "index": 178,
+        "token_id": 314,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 314,
+        "cdf_low": 0,
+        "cdf_high": 1313
+      },
+      {
+        "index": 179,
+        "token_id": 716,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 373,
+        "cdf_low": 1243,
+        "cdf_high": 1544
+      },
+      {
+        "index": 180,
+        "token_id": 991,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 257,
+        "cdf_low": 3054,
+        "cdf_high": 3097
+      },
+      {
+        "index": 181,
+        "token_id": 351,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 6776,
+        "cdf_low": 2699,
+        "cdf_high": 2763
+      },
+      {
+        "index": 182,
+        "token_id": 345,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 345,
+        "cdf_low": 0,
+        "cdf_high": 2928
+      },
+      {
+        "index": 183,
+        "token_id": 257,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 526,
+        "cdf_low": 3890,
+        "cdf_high": 3899
+      },
+      {
+        "index": 184,
+        "token_id": 922,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1310,
+        "cdf_low": 3519,
+        "cdf_high": 3549
+      },
+      {
+        "index": 185,
+        "token_id": 29546,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 582,
+        "cdf_low": 3538,
+        "cdf_high": 3563
+      },
+      {
+        "index": 186,
+        "token_id": 526,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 526,
+        "cdf_low": 0,
+        "cdf_high": 1169
+      },
+      {
+        "index": 187,
+        "token_id": 198,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 843,
+        "cdf_low": 598,
+        "cdf_high": 1146
+      },
+      {
+        "index": 188,
+        "token_id": 366,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 464,
+        "cdf_low": 3529,
+        "cdf_high": 3564
+      },
+      {
+        "index": 189,
+        "token_id": 40,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 2061,
+        "cdf_low": 451,
+        "cdf_high": 809
+      },
+      {
+        "index": 190,
+        "token_id": 1101,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 716,
+        "cdf_low": 1454,
+        "cdf_high": 1617
+      },
+      {
+        "index": 191,
+        "token_id": 9675,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 7926,
+        "cdf_low": 2344,
+        "cdf_high": 2605
+      },
+      {
+        "index": 192,
+        "token_id": 339,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 345,
+        "cdf_low": 3525,
+        "cdf_high": 3579
+      },
+      {
+        "index": 193,
+        "token_id": 3181,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 338,
+        "cdf_low": 3420,
+        "cdf_high": 3449
+      },
+      {
+        "index": 194,
+        "token_id": 345,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 345,
+        "cdf_low": 0,
+        "cdf_high": 1143
+      },
+      {
+        "index": 195,
+        "token_id": 428,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 284,
+        "cdf_low": 3047,
+        "cdf_high": 3134
+      },
+      {
+        "index": 196,
+        "token_id": 1593,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 553,
+        "cdf_low": 4024,
+        "cdf_high": 4042
+      },
+      {
+        "index": 197,
+        "token_id": 16084,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 3275,
+        "cdf_low": 1917,
+        "cdf_high": 2079
+      },
+      {
+        "index": 198,
+        "token_id": 13,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 553,
+        "cdf_low": 2777,
+        "cdf_high": 3107
+      },
+      {
+        "index": 199,
+        "token_id": 843,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 314,
+        "cdf_low": 2415,
+        "cdf_high": 2529
+      },
+      {
+        "index": 200,
+        "token_id": 611,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 314,
+        "cdf_low": 1983,
+        "cdf_high": 2186
+      },
+      {
+        "index": 201,
+        "token_id": 345,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 345,
+        "cdf_low": 0,
+        "cdf_high": 1390
+      },
+      {
+        "index": 202,
+        "token_id": 765,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 836,
+        "cdf_low": 331,
+        "cdf_high": 611
+      },
+      {
+        "index": 203,
+        "token_id": 284,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 284,
+        "cdf_low": 0,
+        "cdf_high": 2725
+      },
+      {
+        "index": 204,
+        "token_id": 2107,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 760,
+        "cdf_low": 3104,
+        "cdf_high": 3161
+      },
+      {
+        "index": 205,
+        "token_id": 416,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 287,
+        "cdf_low": 2986,
+        "cdf_high": 3069
+      },
+      {
+        "index": 206,
+        "token_id": 262,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 340,
+        "cdf_low": 2012,
+        "cdf_high": 2482
+      },
+      {
+        "index": 207,
+        "token_id": 530,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 976,
+        "cdf_low": 3629,
+        "cdf_high": 3652
+      },
+      {
+        "index": 208,
+        "token_id": 3896,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 2081,
+        "cdf_low": 2962,
+        "cdf_high": 3059
+      },
+      {
+        "index": 209,
+        "token_id": 326,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 286,
+        "cdf_low": 1413,
+        "cdf_high": 1972
+      },
+      {
+        "index": 210,
+        "token_id": 314,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1793,
+        "cdf_low": 1159,
+        "cdf_high": 1600
+      },
+      {
+        "index": 211,
+        "token_id": 750,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 423,
+        "cdf_low": 3676,
+        "cdf_high": 3694
+      },
+      {
+        "index": 212,
+        "token_id": 287,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 11,
+        "cdf_low": 2579,
+        "cdf_high": 2744
+      },
+      {
+        "index": 213,
+        "token_id": 534,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 616,
+        "cdf_low": 2774,
+        "cdf_high": 3145
+      },
+      {
+        "index": 214,
+        "token_id": 938,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 938,
+        "cdf_low": 0,
+        "cdf_high": 3549
+      },
+      {
+        "index": 215,
+        "token_id": 719,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 719,
+        "cdf_low": 0,
+        "cdf_high": 3768
+      },
+      {
+        "index": 216,
+        "token_id": 11,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 11,
+        "cdf_low": 0,
+        "cdf_high": 3284
+      },
+      {
+        "index": 217,
+        "token_id": 345,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 345,
+        "cdf_low": 0,
+        "cdf_high": 805
+      },
+      {
+        "index": 218,
+        "token_id": 481,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1276,
+        "cdf_low": 2608,
+        "cdf_high": 2799
+      },
+      {
+        "index": 219,
+        "token_id": 1239,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 423,
+        "cdf_low": 3104,
+        "cdf_high": 3165
+      }
+    ],
+    "tokens_inspected": 220,
+    "matches_archived_token_ids": true
+  },
+  "natural": {
+    "text_sha256": "7b7263f92d4a604492e8d709d109ba90207587f5b7085d7a183353abfdd01ad5",
+    "visible_token_ids": [
+      612,
+      373,
+      257,
+      14540,
+      286,
+      17492,
+      8347,
+      13,
+      366,
+      1532,
+      356,
+      821,
+      1498,
+      284,
+      651,
+      994,
+      11512,
+      11,
+      340,
+      1183,
+      307,
+      772,
+      4785,
+      553,
+      509,
+      19231,
+      3972,
+      17293,
+      13,
+      198,
+      1,
+      5195,
+      389,
+      345,
+      4737,
+      502,
+      884,
+      257,
+      8531,
+      1808,
+      553,
+      314,
+      3767,
+      11,
+      366,
+      19052,
+      356,
+      460,
+      772,
+      651,
+      994,
+      1701,
+      198,
+      1,
+      1639,
+      821,
+      1107,
+      4737,
+      705,
+      22850,
+      8348,
+      1867,
+      338,
+      262,
+      4007,
+      286,
+      262,
+      8946,
+      1399,
+      1701,
+      198,
+      6653,
+      2951,
+      36405,
+      11,
+      29368,
+      5832,
+      1612,
+      326,
+      356,
+      11,
+      588,
+      9962,
+      198,
+      1,
+      3987,
+      470,
+      651,
+      502,
+      2642,
+      11,
+      356,
+      1053,
+      550,
+      428,
+      1561,
+      351,
+      530,
+      1048,
+      878,
+      13,
+      6674,
+      484,
+      466,
+      1243,
+      10338,
+      1399,
+      290,
+      3360,
+      484,
+      670,
+      1978,
+      351,
+      1123,
+      584,
+      393,
+      484,
+      460,
+      470,
+      1302,
+      257,
+      1218,
+      13,
+      887,
+      644,
+      611,
+      484,
+      750,
+      670,
+      1978,
+      11,
+      356,
+      714,
+      772,
+      2222,
+      1487,
+      11,
+      523,
+      1309,
+      338,
+      423,
+      257,
+      1365,
+      640,
+      526,
+      198,
+      1,
+      40,
+      4240,
+      644,
+      262,
+      2071,
+      318,
+      351,
+      345,
+      4585,
+      606,
+      257,
+      705,
+      6726,
+      30960,
+      383,
+      705,
+      6726,
+      6,
+      318,
+      674,
+      691,
+      2863,
+      286,
+      9441,
+      526,
+      198,
+      1,
+      3666,
+      4547,
+      5644,
+      326,
+      484,
+      423,
+      281,
+      2126,
+      286,
+      644,
+      338,
+      2081,
+      11,
+      543,
+      2925,
+      736,
+      284,
+      477,
+      484,
+      760,
+      13,
+      383,
+      749,
+      1593,
+      1517,
+      994,
+      318,
+      326,
+      645,
+      530,
+      481,
+      307,
+      4684,
+      284,
+      1975,
+      262,
+      3872,
+      4556,
+      612,
+      338,
+      1738,
+      284,
+      1975,
+      340,
+      526,
+      198
+    ],
+    "visible_tokens": 220,
+    "status": "unfinished_at_end",
+    "segment_endpoints": [
+      128
+    ],
+    "trace": [
+      {
+        "index": 0,
+        "token_id": 612,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 257,
+        "cdf_low": 1995,
+        "cdf_high": 2503
+      },
+      {
+        "index": 1,
+        "token_id": 373,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 373,
+        "cdf_low": 0,
+        "cdf_high": 2840
+      },
+      {
+        "index": 2,
+        "token_id": 257,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 257,
+        "cdf_low": 0,
+        "cdf_high": 3028
+      },
+      {
+        "index": 3,
+        "token_id": 14540,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1402,
+        "cdf_low": 3125,
+        "cdf_high": 3162
+      },
+      {
+        "index": 4,
+        "token_id": 286,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 286,
+        "cdf_low": 0,
+        "cdf_high": 3989
+      },
+      {
+        "index": 5,
+        "token_id": 17492,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 5667,
+        "cdf_low": 3256,
+        "cdf_high": 3292
+      },
+      {
+        "index": 6,
+        "token_id": 8347,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 290,
+        "cdf_low": 3897,
+        "cdf_high": 3907
+      },
+      {
+        "index": 7,
+        "token_id": 13,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 13,
+        "cdf_low": 0,
+        "cdf_high": 2426
+      },
+      {
+        "index": 8,
+        "token_id": 366,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 198,
+        "cdf_low": 2643,
+        "cdf_high": 2733
+      },
+      {
+        "index": 9,
+        "token_id": 1532,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 40,
+        "cdf_low": 2742,
+        "cdf_high": 2790
+      },
+      {
+        "index": 10,
+        "token_id": 356,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 345,
+        "cdf_low": 1957,
+        "cdf_high": 2401
+      },
+      {
+        "index": 11,
+        "token_id": 821,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 836,
+        "cdf_low": 1248,
+        "cdf_high": 1455
+      },
+      {
+        "index": 12,
+        "token_id": 1498,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1016,
+        "cdf_low": 3484,
+        "cdf_high": 3508
+      },
+      {
+        "index": 13,
+        "token_id": 284,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 284,
+        "cdf_low": 0,
+        "cdf_high": 4071
+      },
+      {
+        "index": 14,
+        "token_id": 651,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 651,
+        "cdf_low": 0,
+        "cdf_high": 940
+      },
+      {
+        "index": 15,
+        "token_id": 994,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 503,
+        "cdf_low": 2762,
+        "cdf_high": 2853
+      },
+      {
+        "index": 16,
+        "token_id": 11512,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 11,
+        "cdf_low": 2393,
+        "cdf_high": 2520
+      },
+      {
+        "index": 17,
+        "token_id": 11,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 11,
+        "cdf_low": 0,
+        "cdf_high": 2912
+      },
+      {
+        "index": 18,
+        "token_id": 340,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 356,
+        "cdf_low": 2815,
+        "cdf_high": 3058
+      },
+      {
+        "index": 19,
+        "token_id": 1183,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1183,
+        "cdf_low": 0,
+        "cdf_high": 1108
+      },
+      {
+        "index": 20,
+        "token_id": 307,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 307,
+        "cdf_low": 0,
+        "cdf_high": 2977
+      },
+      {
+        "index": 21,
+        "token_id": 772,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 257,
+        "cdf_low": 2829,
+        "cdf_high": 2890
+      },
+      {
+        "index": 22,
+        "token_id": 4785,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1365,
+        "cdf_low": 3395,
+        "cdf_high": 3505
+      },
+      {
+        "index": 23,
+        "token_id": 553,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 553,
+        "cdf_low": 0,
+        "cdf_high": 1180
+      },
+      {
+        "index": 24,
+        "token_id": 509,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 531,
+        "cdf_low": 3056,
+        "cdf_high": 3116
+      },
+      {
+        "index": 25,
+        "token_id": 19231,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 3276,
+        "cdf_low": 1304,
+        "cdf_high": 1397
+      },
+      {
+        "index": 26,
+        "token_id": 3972,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 3972,
+        "cdf_low": 0,
+        "cdf_high": 3402
+      },
+      {
+        "index": 27,
+        "token_id": 17293,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 531,
+        "cdf_low": 3623,
+        "cdf_high": 3644
+      },
+      {
+        "index": 28,
+        "token_id": 13,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 13,
+        "cdf_low": 0,
+        "cdf_high": 2027
+      },
+      {
+        "index": 29,
+        "token_id": 198,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 198,
+        "cdf_low": 0,
+        "cdf_high": 1842
+      },
+      {
+        "index": 30,
+        "token_id": 1,
+        "allows_encoding": false,
+        "total_frequency": 4096,
+        "top_token_id": 1,
+        "cdf_low": 0,
+        "cdf_high": 4096
+      },
+      {
+        "index": 31,
+        "token_id": 5195,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 40,
+        "cdf_low": 2815,
+        "cdf_high": 2872
+      },
+      {
+        "index": 32,
+        "token_id": 389,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 389,
+        "cdf_low": 0,
+        "cdf_high": 629
+      },
+      {
+        "index": 33,
+        "token_id": 345,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 345,
+        "cdf_low": 0,
+        "cdf_high": 2979
+      },
+      {
+        "index": 34,
+        "token_id": 4737,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 523,
+        "cdf_low": 1749,
+        "cdf_high": 1873
+      },
+      {
+        "index": 35,
+        "token_id": 502,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 502,
+        "cdf_low": 0,
+        "cdf_high": 912
+      },
+      {
+        "index": 36,
+        "token_id": 884,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 284,
+        "cdf_low": 2698,
+        "cdf_high": 2874
+      },
+      {
+        "index": 37,
+        "token_id": 257,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 257,
+        "cdf_low": 0,
+        "cdf_high": 2615
+      },
+      {
+        "index": 38,
+        "token_id": 8531,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1808,
+        "cdf_low": 1587,
+        "cdf_high": 2319
+      },
+      {
+        "index": 39,
+        "token_id": 1808,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1808,
+        "cdf_low": 0,
+        "cdf_high": 4010
+      },
+      {
+        "index": 40,
+        "token_id": 553,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1701,
+        "cdf_low": 3516,
+        "cdf_high": 3612
+      },
+      {
+        "index": 41,
+        "token_id": 314,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 262,
+        "cdf_low": 748,
+        "cdf_high": 989
+      },
+      {
+        "index": 42,
+        "token_id": 3767,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 531,
+        "cdf_low": 3928,
+        "cdf_high": 3940
+      },
+      {
+        "index": 43,
+        "token_id": 11,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 13,
+        "cdf_low": 2375,
+        "cdf_high": 3092
+      },
+      {
+        "index": 44,
+        "token_id": 366,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 366,
+        "cdf_low": 0,
+        "cdf_high": 1838
+      },
+      {
+        "index": 45,
+        "token_id": 19052,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 40,
+        "cdf_low": 3913,
+        "cdf_high": 3931
+      },
+      {
+        "index": 46,
+        "token_id": 356,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 345,
+        "cdf_low": 1145,
+        "cdf_high": 1966
+      },
+      {
+        "index": 47,
+        "token_id": 460,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 460,
+        "cdf_low": 0,
+        "cdf_high": 931
+      },
+      {
+        "index": 48,
+        "token_id": 772,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 772,
+        "cdf_low": 0,
+        "cdf_high": 839
+      },
+      {
+        "index": 49,
+        "token_id": 651,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 651,
+        "cdf_low": 0,
+        "cdf_high": 852
+      },
+      {
+        "index": 50,
+        "token_id": 994,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 284,
+        "cdf_low": 1327,
+        "cdf_high": 2368
+      },
+      {
+        "index": 51,
+        "token_id": 1701,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1701,
+        "cdf_low": 0,
+        "cdf_high": 2244
+      },
+      {
+        "index": 52,
+        "token_id": 198,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 198,
+        "cdf_low": 0,
+        "cdf_high": 3542
+      },
+      {
+        "index": 53,
+        "token_id": 1,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1,
+        "cdf_low": 0,
+        "cdf_high": 2748
+      },
+      {
+        "index": 54,
+        "token_id": 1639,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 40,
+        "cdf_low": 1073,
+        "cdf_high": 1349
+      },
+      {
+        "index": 55,
+        "token_id": 821,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 821,
+        "cdf_low": 0,
+        "cdf_high": 1357
+      },
+      {
+        "index": 56,
+        "token_id": 1107,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 4737,
+        "cdf_low": 2739,
+        "cdf_high": 2821
+      },
+      {
+        "index": 57,
+        "token_id": 4737,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 4737,
+        "cdf_low": 0,
+        "cdf_high": 543
+      },
+      {
+        "index": 58,
+        "token_id": 705,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 502,
+        "cdf_low": 4081,
+        "cdf_high": 4085
+      },
+      {
+        "index": 59,
+        "token_id": 22850,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 22850,
+        "cdf_low": 0,
+        "cdf_high": 2290
+      },
+      {
+        "index": 60,
+        "token_id": 8348,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 389,
+        "cdf_low": 1423,
+        "cdf_high": 2014
+      },
+      {
+        "index": 61,
+        "token_id": 1867,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 780,
+        "cdf_low": 2533,
+        "cdf_high": 2611
+      },
+      {
+        "index": 62,
+        "token_id": 338,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 466,
+        "cdf_low": 776,
+        "cdf_high": 1378
+      },
+      {
+        "index": 63,
+        "token_id": 262,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 262,
+        "cdf_low": 0,
+        "cdf_high": 1097
+      },
+      {
+        "index": 64,
+        "token_id": 4007,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 966,
+        "cdf_low": 3083,
+        "cdf_high": 3183
+      },
+      {
+        "index": 65,
+        "token_id": 286,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 286,
+        "cdf_low": 0,
+        "cdf_high": 3372
+      },
+      {
+        "index": 66,
+        "token_id": 262,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 428,
+        "cdf_low": 892,
+        "cdf_high": 1425
+      },
+      {
+        "index": 67,
+        "token_id": 8946,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 11376,
+        "cdf_low": 718,
+        "cdf_high": 971
+      },
+      {
+        "index": 68,
+        "token_id": 1399,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1701,
+        "cdf_low": 4051,
+        "cdf_high": 4056
+      },
+      {
+        "index": 69,
+        "token_id": 1701,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1701,
+        "cdf_low": 0,
+        "cdf_high": 1844
+      },
+      {
+        "index": 70,
+        "token_id": 198,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 198,
+        "cdf_low": 0,
+        "cdf_high": 2065
+      },
+      {
+        "index": 71,
+        "token_id": 6653,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1,
+        "cdf_low": 3491,
+        "cdf_high": 3524
+      },
+      {
+        "index": 72,
+        "token_id": 2951,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 2951,
+        "cdf_low": 0,
+        "cdf_high": 601
+      },
+      {
+        "index": 73,
+        "token_id": 36405,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 36405,
+        "cdf_low": 0,
+        "cdf_high": 1009
+      },
+      {
+        "index": 74,
+        "token_id": 11,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 13,
+        "cdf_low": 1747,
+        "cdf_high": 2440
+      },
+      {
+        "index": 75,
+        "token_id": 29368,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 290,
+        "cdf_low": 3812,
+        "cdf_high": 3823
+      },
+      {
+        "index": 76,
+        "token_id": 5832,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 270,
+        "cdf_low": 1999,
+        "cdf_high": 2121
+      },
+      {
+        "index": 77,
+        "token_id": 1612,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 821,
+        "cdf_low": 2215,
+        "cdf_high": 2376
+      },
+      {
+        "index": 78,
+        "token_id": 326,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 326,
+        "cdf_low": 0,
+        "cdf_high": 655
+      },
+      {
+        "index": 79,
+        "token_id": 356,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 262,
+        "cdf_low": 720,
+        "cdf_high": 1239
+      },
+      {
+        "index": 80,
+        "token_id": 11,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 821,
+        "cdf_low": 3992,
+        "cdf_high": 4000
+      },
+      {
+        "index": 81,
+        "token_id": 588,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 262,
+        "cdf_low": 2536,
+        "cdf_high": 2673
+      },
+      {
+        "index": 82,
+        "token_id": 9962,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 345,
+        "cdf_low": 3893,
+        "cdf_high": 3903
+      },
+      {
+        "index": 83,
+        "token_id": 198,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 198,
+        "cdf_low": 0,
+        "cdf_high": 2546
+      },
+      {
+        "index": 84,
+        "token_id": 1,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1,
+        "cdf_low": 0,
+        "cdf_high": 2318
+      },
+      {
+        "index": 85,
+        "token_id": 3987,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 40,
+        "cdf_low": 2945,
+        "cdf_high": 3000
+      },
+      {
+        "index": 86,
+        "token_id": 470,
+        "allows_encoding": false,
+        "total_frequency": 4096,
+        "top_token_id": 470,
+        "cdf_low": 0,
+        "cdf_high": 4096
+      },
+      {
+        "index": 87,
+        "token_id": 651,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 345,
+        "cdf_low": 2254,
+        "cdf_high": 2381
+      },
+      {
+        "index": 88,
+        "token_id": 502,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 502,
+        "cdf_low": 0,
+        "cdf_high": 1473
+      },
+      {
+        "index": 89,
+        "token_id": 2642,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 2642,
+        "cdf_low": 0,
+        "cdf_high": 4020
+      },
+      {
+        "index": 90,
+        "token_id": 11,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 11,
+        "cdf_low": 0,
+        "cdf_high": 2421
+      },
+      {
+        "index": 91,
+        "token_id": 356,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 314,
+        "cdf_low": 1744,
+        "cdf_high": 2166
+      },
+      {
+        "index": 92,
+        "token_id": 1053,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 821,
+        "cdf_low": 1828,
+        "cdf_high": 2057
+      },
+      {
+        "index": 93,
+        "token_id": 550,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 587,
+        "cdf_low": 2550,
+        "cdf_high": 2699
+      },
+      {
+        "index": 94,
+        "token_id": 428,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 257,
+        "cdf_low": 2524,
+        "cdf_high": 2648
+      },
+      {
+        "index": 95,
+        "token_id": 1561,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1917,
+        "cdf_low": 3269,
+        "cdf_high": 3306
+      },
+      {
+        "index": 96,
+        "token_id": 351,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 351,
+        "cdf_low": 0,
+        "cdf_high": 1333
+      },
+      {
+        "index": 97,
+        "token_id": 530,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 262,
+        "cdf_low": 3436,
+        "cdf_high": 3466
+      },
+      {
+        "index": 98,
+        "token_id": 1048,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1194,
+        "cdf_low": 3777,
+        "cdf_high": 3816
+      },
+      {
+        "index": 99,
+        "token_id": 878,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 878,
+        "cdf_low": 0,
+        "cdf_high": 930
+      },
+      {
+        "index": 100,
+        "token_id": 13,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 11,
+        "cdf_low": 1288,
+        "cdf_high": 2288
+      },
+      {
+        "index": 101,
+        "token_id": 6674,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 887,
+        "cdf_low": 3585,
+        "cdf_high": 3610
+      },
+      {
+        "index": 102,
+        "token_id": 484,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 340,
+        "cdf_low": 1917,
+        "cdf_high": 2176
+      },
+      {
+        "index": 103,
+        "token_id": 466,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 821,
+        "cdf_low": 4031,
+        "cdf_high": 4042
+      },
+      {
+        "index": 104,
+        "token_id": 1243,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 340,
+        "cdf_low": 2324,
+        "cdf_high": 2515
+      },
+      {
+        "index": 105,
+        "token_id": 10338,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 588,
+        "cdf_low": 2881,
+        "cdf_high": 2992
+      },
+      {
+        "index": 106,
+        "token_id": 1399,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 11,
+        "cdf_low": 2557,
+        "cdf_high": 2696
+      },
+      {
+        "index": 107,
+        "token_id": 290,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 4360,
+        "cdf_low": 2317,
+        "cdf_high": 2423
+      },
+      {
+        "index": 108,
+        "token_id": 3360,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 356,
+        "cdf_low": 3123,
+        "cdf_high": 3178
+      },
+      {
+        "index": 109,
+        "token_id": 484,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 484,
+        "cdf_low": 0,
+        "cdf_high": 1178
+      },
+      {
+        "index": 110,
+        "token_id": 670,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 821,
+        "cdf_low": 3236,
+        "cdf_high": 3276
+      },
+      {
+        "index": 111,
+        "token_id": 1978,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 503,
+        "cdf_low": 1618,
+        "cdf_high": 1845
+      },
+      {
+        "index": 112,
+        "token_id": 351,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 11,
+        "cdf_low": 2877,
+        "cdf_high": 2979
+      },
+      {
+        "index": 113,
+        "token_id": 1123,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 514,
+        "cdf_low": 1167,
+        "cdf_high": 1633
+      },
+      {
+        "index": 114,
+        "token_id": 584,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 584,
+        "cdf_low": 0,
+        "cdf_high": 4066
+      },
+      {
+        "index": 115,
+        "token_id": 393,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 13,
+        "cdf_low": 3470,
+        "cdf_high": 3508
+      },
+      {
+        "index": 116,
+        "token_id": 484,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1223,
+        "cdf_low": 1174,
+        "cdf_high": 1662
+      },
+      {
+        "index": 117,
+        "token_id": 460,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 836,
+        "cdf_low": 3167,
+        "cdf_high": 3213
+      },
+      {
+        "index": 118,
+        "token_id": 470,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 470,
+        "cdf_low": 0,
+        "cdf_high": 2315
+      },
+      {
+        "index": 119,
+        "token_id": 1302,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 13,
+        "cdf_low": 3259,
+        "cdf_high": 3304
+      },
+      {
+        "index": 120,
+        "token_id": 257,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1123,
+        "cdf_low": 3556,
+        "cdf_high": 3591
+      },
+      {
+        "index": 121,
+        "token_id": 1218,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 2060,
+        "cdf_low": 2352,
+        "cdf_high": 2425
+      },
+      {
+        "index": 122,
+        "token_id": 13,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1807,
+        "cdf_low": 2800,
+        "cdf_high": 2918
+      },
+      {
+        "index": 123,
+        "token_id": 887,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 887,
+        "cdf_low": 0,
+        "cdf_high": 1415
+      },
+      {
+        "index": 124,
+        "token_id": 644,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 356,
+        "cdf_low": 2673,
+        "cdf_high": 2777
+      },
+      {
+        "index": 125,
+        "token_id": 611,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 338,
+        "cdf_low": 1061,
+        "cdf_high": 1431
+      },
+      {
+        "index": 126,
+        "token_id": 484,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 356,
+        "cdf_low": 972,
+        "cdf_high": 1640
+      },
+      {
+        "index": 127,
+        "token_id": 750,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 821,
+        "cdf_low": 3193,
+        "cdf_high": 3236
+      },
+      {
+        "index": 128,
+        "token_id": 670,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1701,
+        "cdf_low": 1775,
+        "cdf_high": 2173
+      },
+      {
+        "index": 129,
+        "token_id": 1978,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1978,
+        "cdf_low": 0,
+        "cdf_high": 3809
+      },
+      {
+        "index": 130,
+        "token_id": 11,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 11,
+        "cdf_low": 0,
+        "cdf_high": 736
+      },
+      {
+        "index": 131,
+        "token_id": 356,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 290,
+        "cdf_low": 2903,
+        "cdf_high": 2954
+      },
+      {
+        "index": 132,
+        "token_id": 714,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 714,
+        "cdf_low": 0,
+        "cdf_high": 586
+      },
+      {
+        "index": 133,
+        "token_id": 772,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 423,
+        "cdf_low": 3349,
+        "cdf_high": 3384
+      },
+      {
+        "index": 134,
+        "token_id": 2222,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 651,
+        "cdf_low": 2417,
+        "cdf_high": 2489
+      },
+      {
+        "index": 135,
+        "token_id": 1487,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 606,
+        "cdf_low": 4015,
+        "cdf_high": 4023
+      },
+      {
+        "index": 136,
+        "token_id": 11,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 284,
+        "cdf_low": 2588,
+        "cdf_high": 2746
+      },
+      {
+        "index": 137,
+        "token_id": 523,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 290,
+        "cdf_low": 1657,
+        "cdf_high": 1846
+      },
+      {
+        "index": 138,
+        "token_id": 1309,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 356,
+        "cdf_low": 2234,
+        "cdf_high": 2394
+      },
+      {
+        "index": 139,
+        "token_id": 338,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 338,
+        "cdf_low": 0,
+        "cdf_high": 3930
+      },
+      {
+        "index": 140,
+        "token_id": 423,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 467,
+        "cdf_low": 2871,
+        "cdf_high": 2936
+      },
+      {
+        "index": 141,
+        "token_id": 257,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 257,
+        "cdf_low": 0,
+        "cdf_high": 1738
+      },
+      {
+        "index": 142,
+        "token_id": 1365,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 804,
+        "cdf_low": 3192,
+        "cdf_high": 3242
+      },
+      {
+        "index": 143,
+        "token_id": 640,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 640,
+        "cdf_low": 0,
+        "cdf_high": 932
+      },
+      {
+        "index": 144,
+        "token_id": 526,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 526,
+        "cdf_low": 0,
+        "cdf_high": 1071
+      },
+      {
+        "index": 145,
+        "token_id": 198,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 198,
+        "cdf_low": 0,
+        "cdf_high": 3361
+      },
+      {
+        "index": 146,
+        "token_id": 1,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1,
+        "cdf_low": 0,
+        "cdf_high": 1723
+      },
+      {
+        "index": 147,
+        "token_id": 40,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 40,
+        "cdf_low": 0,
+        "cdf_high": 462
+      },
+      {
+        "index": 148,
+        "token_id": 4240,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1101,
+        "cdf_low": 3666,
+        "cdf_high": 3689
+      },
+      {
+        "index": 149,
+        "token_id": 644,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 611,
+        "cdf_low": 1385,
+        "cdf_high": 2481
+      },
+      {
+        "index": 150,
+        "token_id": 262,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 345,
+        "cdf_low": 985,
+        "cdf_high": 1336
+      },
+      {
+        "index": 151,
+        "token_id": 2071,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 4007,
+        "cdf_low": 4041,
+        "cdf_high": 4052
+      },
+      {
+        "index": 152,
+        "token_id": 318,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 318,
+        "cdf_low": 0,
+        "cdf_high": 3246
+      },
+      {
+        "index": 153,
+        "token_id": 351,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 351,
+        "cdf_low": 0,
+        "cdf_high": 824
+      },
+      {
+        "index": 154,
+        "token_id": 345,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 345,
+        "cdf_low": 0,
+        "cdf_high": 748
+      },
+      {
+        "index": 155,
+        "token_id": 4585,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 11,
+        "cdf_low": 3655,
+        "cdf_high": 3676
+      },
+      {
+        "index": 156,
+        "token_id": 606,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 502,
+        "cdf_low": 3173,
+        "cdf_high": 3280
+      },
+      {
+        "index": 157,
+        "token_id": 257,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 705,
+        "cdf_low": 2127,
+        "cdf_high": 2307
+      },
+      {
+        "index": 158,
+        "token_id": 705,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 705,
+        "cdf_low": 0,
+        "cdf_high": 1577
+      },
+      {
+        "index": 159,
+        "token_id": 6726,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 6726,
+        "cdf_low": 0,
+        "cdf_high": 813
+      },
+      {
+        "index": 160,
+        "token_id": 30960,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 6,
+        "cdf_low": 1697,
+        "cdf_high": 2122
+      },
+      {
+        "index": 161,
+        "token_id": 383,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 314,
+        "cdf_low": 2318,
+        "cdf_high": 2411
+      },
+      {
+        "index": 162,
+        "token_id": 705,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 691,
+        "cdf_low": 2886,
+        "cdf_high": 2941
+      },
+      {
+        "index": 163,
+        "token_id": 6726,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 6726,
+        "cdf_low": 0,
+        "cdf_high": 3295
+      },
+      {
+        "index": 164,
+        "token_id": 6,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 6,
+        "cdf_low": 0,
+        "cdf_high": 3517
+      },
+      {
+        "index": 165,
+        "token_id": 318,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 318,
+        "cdf_low": 0,
+        "cdf_high": 1218
+      },
+      {
+        "index": 166,
+        "token_id": 674,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 257,
+        "cdf_low": 2987,
+        "cdf_high": 3032
+      },
+      {
+        "index": 167,
+        "token_id": 691,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1545,
+        "cdf_low": 1074,
+        "cdf_high": 1288
+      },
+      {
+        "index": 168,
+        "token_id": 2863,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1545,
+        "cdf_low": 2425,
+        "cdf_high": 2540
+      },
+      {
+        "index": 169,
+        "token_id": 286,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 284,
+        "cdf_low": 1840,
+        "cdf_high": 2372
+      },
+      {
+        "index": 170,
+        "token_id": 9441,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1972,
+        "cdf_low": 1092,
+        "cdf_high": 1703
+      },
+      {
+        "index": 171,
+        "token_id": 526,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 13,
+        "cdf_low": 1744,
+        "cdf_high": 2100
+      },
+      {
+        "index": 172,
+        "token_id": 198,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 198,
+        "cdf_low": 0,
+        "cdf_high": 3128
+      },
+      {
+        "index": 173,
+        "token_id": 1,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1,
+        "cdf_low": 0,
+        "cdf_high": 2306
+      },
+      {
+        "index": 174,
+        "token_id": 3666,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 40,
+        "cdf_low": 3790,
+        "cdf_high": 3812
+      },
+      {
+        "index": 175,
+        "token_id": 4547,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1545,
+        "cdf_low": 3709,
+        "cdf_high": 3733
+      },
+      {
+        "index": 176,
+        "token_id": 5644,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 318,
+        "cdf_low": 4078,
+        "cdf_high": 4080
+      },
+      {
+        "index": 177,
+        "token_id": 326,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 326,
+        "cdf_low": 0,
+        "cdf_high": 2790
+      },
+      {
+        "index": 178,
+        "token_id": 484,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 484,
+        "cdf_low": 0,
+        "cdf_high": 879
+      },
+      {
+        "index": 179,
+        "token_id": 423,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 821,
+        "cdf_low": 2050,
+        "cdf_high": 2229
+      },
+      {
+        "index": 180,
+        "token_id": 281,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 257,
+        "cdf_low": 2078,
+        "cdf_high": 2249
+      },
+      {
+        "index": 181,
+        "token_id": 2126,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 8666,
+        "cdf_low": 1467,
+        "cdf_high": 1636
+      },
+      {
+        "index": 182,
+        "token_id": 286,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 286,
+        "cdf_low": 0,
+        "cdf_high": 2156
+      },
+      {
+        "index": 183,
+        "token_id": 644,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 644,
+        "cdf_low": 0,
+        "cdf_high": 1863
+      },
+      {
+        "index": 184,
+        "token_id": 338,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 484,
+        "cdf_low": 751,
+        "cdf_high": 1287
+      },
+      {
+        "index": 185,
+        "token_id": 2081,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1266,
+        "cdf_low": 3675,
+        "cdf_high": 3692
+      },
+      {
+        "index": 186,
+        "token_id": 11,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 290,
+        "cdf_low": 1088,
+        "cdf_high": 1829
+      },
+      {
+        "index": 187,
+        "token_id": 543,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 290,
+        "cdf_low": 3137,
+        "cdf_high": 3208
+      },
+      {
+        "index": 188,
+        "token_id": 2925,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 318,
+        "cdf_low": 3990,
+        "cdf_high": 3997
+      },
+      {
+        "index": 189,
+        "token_id": 736,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1028,
+        "cdf_low": 1021,
+        "cdf_high": 1728
+      },
+      {
+        "index": 190,
+        "token_id": 284,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 284,
+        "cdf_low": 0,
+        "cdf_high": 2634
+      },
+      {
+        "index": 191,
+        "token_id": 477,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 262,
+        "cdf_low": 4042,
+        "cdf_high": 4048
+      },
+      {
+        "index": 192,
+        "token_id": 484,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 262,
+        "cdf_low": 3825,
+        "cdf_high": 3852
+      },
+      {
+        "index": 193,
+        "token_id": 760,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1053,
+        "cdf_low": 1712,
+        "cdf_high": 2039
+      },
+      {
+        "index": 194,
+        "token_id": 13,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 546,
+        "cdf_low": 1252,
+        "cdf_high": 2043
+      },
+      {
+        "index": 195,
+        "token_id": 383,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1119,
+        "cdf_low": 1612,
+        "cdf_high": 1835
+      },
+      {
+        "index": 196,
+        "token_id": 749,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 691,
+        "cdf_low": 2862,
+        "cdf_high": 2923
+      },
+      {
+        "index": 197,
+        "token_id": 1593,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1593,
+        "cdf_low": 0,
+        "cdf_high": 1428
+      },
+      {
+        "index": 198,
+        "token_id": 1517,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1517,
+        "cdf_low": 0,
+        "cdf_high": 3088
+      },
+      {
+        "index": 199,
+        "token_id": 994,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 318,
+        "cdf_low": 3574,
+        "cdf_high": 3623
+      },
+      {
+        "index": 200,
+        "token_id": 318,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 318,
+        "cdf_low": 0,
+        "cdf_high": 3380
+      },
+      {
+        "index": 201,
+        "token_id": 326,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 326,
+        "cdf_low": 0,
+        "cdf_high": 2170
+      },
+      {
+        "index": 202,
+        "token_id": 645,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 356,
+        "cdf_low": 3445,
+        "cdf_high": 3492
+      },
+      {
+        "index": 203,
+        "token_id": 530,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 2300,
+        "cdf_low": 1884,
+        "cdf_high": 3757
+      },
+      {
+        "index": 204,
+        "token_id": 481,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 460,
+        "cdf_low": 693,
+        "cdf_high": 1324
+      },
+      {
+        "index": 205,
+        "token_id": 307,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 307,
+        "cdf_low": 0,
+        "cdf_high": 769
+      },
+      {
+        "index": 206,
+        "token_id": 4684,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1498,
+        "cdf_low": 3429,
+        "cdf_high": 3459
+      },
+      {
+        "index": 207,
+        "token_id": 284,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 284,
+        "cdf_low": 0,
+        "cdf_high": 4008
+      },
+      {
+        "index": 208,
+        "token_id": 1975,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1577,
+        "cdf_low": 2763,
+        "cdf_high": 2822
+      },
+      {
+        "index": 209,
+        "token_id": 262,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 340,
+        "cdf_low": 2843,
+        "cdf_high": 2968
+      },
+      {
+        "index": 210,
+        "token_id": 3872,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 7363,
+        "cdf_low": 1035,
+        "cdf_high": 1323
+      },
+      {
+        "index": 211,
+        "token_id": 4556,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 13,
+        "cdf_low": 2840,
+        "cdf_high": 2959
+      },
+      {
+        "index": 212,
+        "token_id": 612,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 484,
+        "cdf_low": 3270,
+        "cdf_high": 3433
+      },
+      {
+        "index": 213,
+        "token_id": 338,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 338,
+        "cdf_low": 0,
+        "cdf_high": 2466
+      },
+      {
+        "index": 214,
+        "token_id": 1738,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 257,
+        "cdf_low": 3768,
+        "cdf_high": 3786
+      },
+      {
+        "index": 215,
+        "token_id": 284,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 284,
+        "cdf_low": 0,
+        "cdf_high": 2759
+      },
+      {
+        "index": 216,
+        "token_id": 1975,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 1975,
+        "cdf_low": 0,
+        "cdf_high": 3613
+      },
+      {
+        "index": 217,
+        "token_id": 340,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 340,
+        "cdf_low": 0,
+        "cdf_high": 3653
+      },
+      {
+        "index": 218,
+        "token_id": 526,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 13,
+        "cdf_low": 1835,
+        "cdf_high": 3071
+      },
+      {
+        "index": 219,
+        "token_id": 198,
+        "allows_encoding": true,
+        "total_frequency": 4096,
+        "top_token_id": 198,
+        "cdf_low": 0,
+        "cdf_high": 3488
+      }
+    ],
+    "tokens_inspected": 220,
+    "matches_archived_token_ids": true,
+    "selected_mass_mismatch_indices": []
+  },
+  "elapsed_seconds": 26.218643149128184
+}

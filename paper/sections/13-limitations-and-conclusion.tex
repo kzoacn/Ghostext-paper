@@ -1,44 +1,44 @@
 \section{Limitations and Implications}
 
 \paragraph{What is established}
-The exact counterexamples and binary-source separation are statements about
-specified algorithms and distributions. The guarded-prefix theorem controls
-integer-coding error relative to a stopping-matched processed sampler. The
-real-model studies demonstrate public stopping and admissibility signals
-against their specified processed sources. None of these statements equates successful authenticated
-recovery, small token-table error, and complete-text security.
+The stopping theorem covers three specified ideal mechanisms on finite-state
+Markov sources with positive varentropy and bounded token probabilities. The
+verified-rule proof uses exact reals and continuous rotations; its finite
+numerical implementation is tested separately. The current-upstream study is
+GPT-2 only. The earlier GPT-2/Qwen studies use a different, explicitly processed
+source and adapter. These complementary results do not constitute a theorem
+for arbitrary dependent language-model distributions.
 
-\paragraph{What remains conditional}
-The stopping detector knows $B$, the prompt, and the source. Unknown prompts,
-unknown-length mixtures, model mismatch, and dependent real-language sources
-require separate evaluation. The IID asymptotic theorem does not automatically
-apply to an LLM. The stopping studies have only five held-out topic families,
-and the historical bootstrap pilot has only 18 natural controls. Neither
-supports a low-false-positive deployment claim. Candidate filtering can fail,
-and conditioning analyses on completed pairs changes the estimand. The
-expanded-source follow-up reduces this selection in its measured cohort but
-changes the reference source and remains a post-hoc study.
+\paragraph{Observer and sample limits}
+The observer knows the prompt, source, and encoded length. Unknown prompts,
+unknown-length mixtures, model mismatch, and natural tails require separate
+evaluation. The upstream design has ten held-out prompt clusters, with nine
+represented in the eligible 512-bit stopping slice; the older controlled
+studies have five held-out topic families. Canonical-text selection is
+substantial in some cohorts. All outcomes remain available, but conditional
+AUCs are not unconditional transmitted-text security statements. The 128-bit
+upstream FPR of $0.200$ also shows why high AUC does not imply a low-FPR
+operating guarantee. Endpoint replay is a small post-hoc no-tail diagnostic,
+with known plaintext length and a structural true-positive property.
 
-The cryptographic packet is an engineering composition of standard primitives,
-not a proof that its entire fixed-length byte string is pseudorandom. A weak
-passphrase can be guessed. The configuration digest and pinned artifacts help
-replay, but do not prove cross-hardware determinism. Active edits can prevent
-recovery, while edits affecting only discarded guard randomness or an ignored
-tail need not be rejected. Authentication is not visible-text integrity.
+\paragraph{Coding and delivery assumptions}
+The guarded theorem assumes uniform payloads with independent guard bits and
+uses the same integer-state stopping reference. Authentication does not prove
+that the entire framed packet is pseudorandom. Public endpoint support can
+persist for arbitrary delivered packet bytes, even when that sampling premise
+is unavailable. Numerical replay requires more than matching weights: the
+retained thread-count mismatch changes integer frequencies. Cross-hardware
+identity is not claimed. Weak passphrases can be guessed, and active edits
+can prevent recovery; authentication is not visible-text integrity.
 
 \paragraph{Design implications}
-Random guard bits address a concrete finite-precision defect without requiring
-the receiver to recover the added randomness. They do not choose an honest
-cover length policy. A fixed exogenous token budget, or a content-dependent
-stopping rule genuinely shared with the reference source, changes that security
-question and introduces its own delivery-capacity tradeoff. Silently retrying
-until success also changes the transmitted law. These decisions belong in the
-protocol and in its reference sampler, not only in implementation footnotes.
-
-\paragraph{Conclusion}
-Ghostext provides an auditable setting for studying the gap between token-level
-sampling claims and finite transmitted texts. Exact external counterexamples,
-a public stopping likelihood, and a guarded-prefix coding bound expose distinct
-failure mechanisms and delimit what each repair proves. Complete-text security
-requires accounting for the message source, sampling state, failure selection,
-and endpoint together.
+Guard bits control a concrete precision defect while leaving the stopping
+policy observable. Reverse verification repairs a decoding failure but does
+not remove terminal-information concentration in the ideal rule or the
+measured signal in this upstream cohort. Exogenous endpoints decouple length
+from their own content, with a delivery cost that can be traded for extra
+independently budgeted tokens. Retrying until recovery changes that comparison.
+A content-dependent stopping rule shared with the declared natural source
+is another reference choice. The source law, failure population, and endpoint
+must therefore be specified together; token-table fidelity alone does not
+settle complete-text security.

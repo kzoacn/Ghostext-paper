@@ -1,0 +1,175 @@
+{
+  "schema": "upstream-raw-token-sensitivity-v1",
+  "analysis_sha256": "ff9b953d1114abef394d19abbd0d52425d6c546bdcb0bd817498a3f9312fb427",
+  "source_sha256": "15bbb53f26e61a2c731c21ca690a46e93f7979660a17abac93083d9f4700668a",
+  "scope": "Secondary raw-token comparison specified separately from primary visible text. Keeps serialization and receiver failures; only complete paired token paths enter scores. No recovery conditioning. Unchanged score, split, threshold rule and 5000 prompt-bootstrap draws with seed20261026. Not a text-channel result.",
+  "generation_and_control_complete": {
+    "unverified": 160,
+    "verified": 160,
+    "fixed_endpoint": 160
+  },
+  "results": {
+    "unverified": {
+      "128": {
+        "development_pairs": 40,
+        "test_pairs": 40,
+        "retained_noncanonical_test_outputs": 1,
+        "auc": 0.925625,
+        "auc_prompt_cluster_95": [
+          0.871875,
+          0.9725
+        ],
+        "length_only_auc": 0.5,
+        "threshold": -1.7194802449088513,
+        "test_tpr": 0.375,
+        "test_fpr": 0.0,
+        "test_prompt_ids": [
+          "c4_0052",
+          "c4_0203",
+          "c4_0295",
+          "c4_0401",
+          "c4_0455",
+          "c4_0629",
+          "c4_0672",
+          "c4_0723",
+          "c4_0798",
+          "c4_0857"
+        ]
+      },
+      "512": {
+        "development_pairs": 40,
+        "test_pairs": 40,
+        "retained_noncanonical_test_outputs": 11,
+        "auc": 0.995625,
+        "auc_prompt_cluster_95": [
+          0.985,
+          1.0
+        ],
+        "length_only_auc": 0.5,
+        "threshold": -5.567879902378479,
+        "test_tpr": 0.875,
+        "test_fpr": 0.0,
+        "test_prompt_ids": [
+          "c4_0052",
+          "c4_0203",
+          "c4_0295",
+          "c4_0401",
+          "c4_0455",
+          "c4_0629",
+          "c4_0672",
+          "c4_0723",
+          "c4_0798",
+          "c4_0857"
+        ]
+      }
+    },
+    "verified": {
+      "128": {
+        "development_pairs": 40,
+        "test_pairs": 40,
+        "retained_noncanonical_test_outputs": 1,
+        "auc": 0.925625,
+        "auc_prompt_cluster_95": [
+          0.871875,
+          0.9725
+        ],
+        "length_only_auc": 0.5,
+        "threshold": -1.7194802449088513,
+        "test_tpr": 0.35,
+        "test_fpr": 0.0,
+        "test_prompt_ids": [
+          "c4_0052",
+          "c4_0203",
+          "c4_0295",
+          "c4_0401",
+          "c4_0455",
+          "c4_0629",
+          "c4_0672",
+          "c4_0723",
+          "c4_0798",
+          "c4_0857"
+        ]
+      },
+      "512": {
+        "development_pairs": 40,
+        "test_pairs": 40,
+        "retained_noncanonical_test_outputs": 11,
+        "auc": 0.995625,
+        "auc_prompt_cluster_95": [
+          0.985,
+          1.0
+        ],
+        "length_only_auc": 0.5,
+        "threshold": -5.567879902378479,
+        "test_tpr": 0.875,
+        "test_fpr": 0.0,
+        "test_prompt_ids": [
+          "c4_0052",
+          "c4_0203",
+          "c4_0295",
+          "c4_0401",
+          "c4_0455",
+          "c4_0629",
+          "c4_0672",
+          "c4_0723",
+          "c4_0798",
+          "c4_0857"
+        ]
+      }
+    },
+    "fixed_endpoint": {
+      "128": {
+        "development_pairs": 40,
+        "test_pairs": 40,
+        "retained_noncanonical_test_outputs": 4,
+        "auc": 0.541875,
+        "auc_prompt_cluster_95": [
+          0.405625,
+          0.695625
+        ],
+        "length_only_auc": 0.5,
+        "threshold": -1.7194802449088513,
+        "test_tpr": 0.05,
+        "test_fpr": 0.0,
+        "test_prompt_ids": [
+          "c4_0052",
+          "c4_0203",
+          "c4_0295",
+          "c4_0401",
+          "c4_0455",
+          "c4_0629",
+          "c4_0672",
+          "c4_0723",
+          "c4_0798",
+          "c4_0857"
+        ]
+      },
+      "512": {
+        "development_pairs": 40,
+        "test_pairs": 40,
+        "retained_noncanonical_test_outputs": 6,
+        "auc": 0.534375,
+        "auc_prompt_cluster_95": [
+          0.41875,
+          0.66125
+        ],
+        "length_only_auc": 0.5,
+        "threshold": -5.567879902378479,
+        "test_tpr": 0.1,
+        "test_fpr": 0.0,
+        "test_prompt_ids": [
+          "c4_0052",
+          "c4_0203",
+          "c4_0295",
+          "c4_0401",
+          "c4_0455",
+          "c4_0629",
+          "c4_0672",
+          "c4_0723",
+          "c4_0798",
+          "c4_0857"
+        ]
+      }
+    }
+  }
+}

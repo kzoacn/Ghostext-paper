@@ -1,0 +1,1644 @@
+{
+  "prompt_id": "c4_0857",
+  "source_row": 857,
+  "prompt": "These Card Characters are a new range of LogoBugs that",
+  "selection_sha256": "041b590251ea2b76b3b30179cb5b2bfb24f4407df75eadfe0196fceda5ba2c17",
+  "split": "test",
+  "message_bits": 128,
+  "repeat": 3,
+  "case_id": "c4_0857_b128_r3",
+  "variants": {
+    "unverified": {
+      "status": "complete",
+      "error": null,
+      "token_ids": [
+        423,
+        587,
+        39144,
+        6819,
+        2087,
+        416,
+        3589,
+        290,
+        11,
+        36305,
+        832,
+        616,
+        3651,
+        290,
+        18681,
+        284,
+        5926,
+        1866,
+        11,
+        1912
+      ],
+      "tokens": 20,
+      "cover_text": "These Card Characters are a new range of LogoBugs that have been facetiously added by myself and, chiefly through my comments and explanations to Board members, based",
+      "text_sha256": "36c6642338fea4c11aeea5999e320894bffcef0dbb9716e1e0234b33399fea75",
+      "context_token_ids": [
+        4711,
+        5172,
+        26813,
+        389,
+        257,
+        649,
+        2837,
+        286,
+        42411,
+        33,
+        10339,
+        326
+      ],
+      "visible_token_ids": [
+        4711,
+        5172,
+        26813,
+        389,
+        257,
+        649,
+        2837,
+        286,
+        42411,
+        33,
+        10339,
+        326,
+        423,
+        587,
+        39144,
+        6819,
+        2087,
+        416,
+        3589,
+        290,
+        11,
+        36305,
+        832,
+        616,
+        3651,
+        290,
+        18681,
+        284,
+        5926,
+        1866,
+        11,
+        1912
+      ],
+      "visible_continuation_token_ids": [
+        423,
+        587,
+        39144,
+        6819,
+        2087,
+        416,
+        3589,
+        290,
+        11,
+        36305,
+        832,
+        616,
+        3651,
+        290,
+        18681,
+        284,
+        5926,
+        1866,
+        11,
+        1912
+      ],
+      "prompt_prefix_matches": true,
+      "canonical_text_roundtrip": true,
+      "chosen_probabilities": [
+        0.0570885748440394,
+        0.6721884981386296,
+        3.6887062515e-06,
+        0.3297052745756188,
+        0.09863263465337865,
+        0.0478991869895748,
+        0.0008727412480586,
+        0.48278802298805945,
+        0.0012968319456644,
+        3.83413934535e-05,
+        0.0037185196855659,
+        0.11484768457220423,
+        0.0014447879467882,
+        0.12521251436906747,
+        0.0007266884763468,
+        0.023700188578578,
+        0.0002968287706056,
+        0.01846452767137652,
+        0.34826161552298796,
+        0.0004485410941504
+      ],
+      "interval_observations": [
+        {
+          "token_id": 423,
+          "cdf_low": "0.2976897571564241",
+          "cdf_high": "0.3547783320004635",
+          "probability_decimal": "0.0570885748440394"
+        },
+        {
+          "token_id": 587,
+          "cdf_low": "0.0",
+          "cdf_high": "0.6721884981386296",
+          "probability_decimal": "0.6721884981386296"
+        },
+        {
+          "token_id": 39144,
+          "cdf_low": "0.9926015897407945",
+          "cdf_high": "0.992605278447046",
+          "probability_decimal": "0.0000036887062515"
+        },
+        {
+          "token_id": 6819,
+          "cdf_low": "0.5887685383221614",
+          "cdf_high": "0.9184738128977802",
+          "probability_decimal": "0.3297052745756188"
+        },
+        {
+          "token_id": 2087,
+          "cdf_low": "0.0",
+          "cdf_high": "0.09863263465337865",
+          "probability_decimal": "0.09863263465337865"
+        },
+        {
+          "token_id": 416,
+          "cdf_low": "0.6288287538527202",
+          "cdf_high": "0.676727940842295",
+          "probability_decimal": "0.0478991869895748"
+        },
+        {
+          "token_id": 3589,
+          "cdf_low": "0.548627086034794",
+          "cdf_high": "0.5494998272828526",
+          "probability_decimal": "0.0008727412480586"
+        },
+        {
+          "token_id": 290,
+          "cdf_low": "0.0",
+          "cdf_high": "0.48278802298805945",
+          "probability_decimal": "0.48278802298805945"
+        },
+        {
+          "token_id": 11,
+          "cdf_low": "0.7151812225311878",
+          "cdf_high": "0.7164780544768522",
+          "probability_decimal": "0.0012968319456644"
+        },
+        {
+          "token_id": 36305,
+          "cdf_low": "0.9687750684381354",
+          "cdf_high": "0.9688134098315889",
+          "probability_decimal": "0.0000383413934535"
+        },
+        {
+          "token_id": 832,
+          "cdf_low": "0.9376462491502832",
+          "cdf_high": "0.9413647688358491",
+          "probability_decimal": "0.0037185196855659"
+        },
+        {
+          "token_id": 616,
+          "cdf_low": "0.20457574773039736",
+          "cdf_high": "0.3194234323026016",
+          "probability_decimal": "0.11484768457220424"
+        },
+        {
+          "token_id": 3651,
+          "cdf_low": "0.4549627159756348",
+          "cdf_high": "0.456407503922423",
+          "probability_decimal": "0.0014447879467882"
+        },
+        {
+          "token_id": 290,
+          "cdf_low": "0.46486152643634304",
+          "cdf_high": "0.5900740408054105",
+          "probability_decimal": "0.12521251436906746"
+        },
+        {
+          "token_id": 18681,
+          "cdf_low": "0.6765587443813534",
+          "cdf_high": "0.6772854328577002",
+          "probability_decimal": "0.0007266884763468"
+        },
+        {
+          "token_id": 284,
+          "cdf_low": "0.7716523323265206",
+          "cdf_high": "0.7953525209050986",
+          "probability_decimal": "0.0237001885785780"
+        },
+        {
+          "token_id": 5926,
+          "cdf_low": "0.8127364153083287",
+          "cdf_high": "0.8130332440789343",
+          "probability_decimal": "0.0002968287706056"
+        },
+        {
+          "token_id": 1866,
+          "cdf_low": "0.45143560234631064",
+          "cdf_high": "0.46990013001768716",
+          "probability_decimal": "0.01846452767137652"
+        },
+        {
+          "token_id": 11,
+          "cdf_low": "0.0",
+          "cdf_high": "0.34826161552298796",
+          "probability_decimal": "0.34826161552298796"
+        },
+        {
+          "token_id": 1912,
+          "cdf_low": "0.7855856288265696",
+          "cdf_high": "0.78603416992072",
+          "probability_decimal": "0.0004485410941504"
+        }
+      ],
+      "surprisal_bits": 137.12527554042236,
+      "elapsed_seconds": 0.8646044200286269,
+      "context_trim_calls": 0,
+      "rejected_stop_count": 0,
+      "decimal_precision": 79
+    },
+    "verified": {
+      "status": "complete",
+      "error": null,
+      "token_ids": [
+        423,
+        587,
+        39144,
+        6819,
+        2087,
+        416,
+        3589,
+        290,
+        11,
+        36305,
+        832,
+        616,
+        3651,
+        290,
+        18681,
+        284,
+        5926,
+        1866,
+        11,
+        1912
+      ],
+      "tokens": 20,
+      "cover_text": "These Card Characters are a new range of LogoBugs that have been facetiously added by myself and, chiefly through my comments and explanations to Board members, based",
+      "text_sha256": "36c6642338fea4c11aeea5999e320894bffcef0dbb9716e1e0234b33399fea75",
+      "context_token_ids": [
+        4711,
+        5172,
+        26813,
+        389,
+        257,
+        649,
+        2837,
+        286,
+        42411,
+        33,
+        10339,
+        326
+      ],
+      "visible_token_ids": [
+        4711,
+        5172,
+        26813,
+        389,
+        257,
+        649,
+        2837,
+        286,
+        42411,
+        33,
+        10339,
+        326,
+        423,
+        587,
+        39144,
+        6819,
+        2087,
+        416,
+        3589,
+        290,
+        11,
+        36305,
+        832,
+        616,
+        3651,
+        290,
+        18681,
+        284,
+        5926,
+        1866,
+        11,
+        1912
+      ],
+      "visible_continuation_token_ids": [
+        423,
+        587,
+        39144,
+        6819,
+        2087,
+        416,
+        3589,
+        290,
+        11,
+        36305,
+        832,
+        616,
+        3651,
+        290,
+        18681,
+        284,
+        5926,
+        1866,
+        11,
+        1912
+      ],
+      "prompt_prefix_matches": true,
+      "canonical_text_roundtrip": true,
+      "chosen_probabilities": [
+        0.0570885748440394,
+        0.6721884981386296,
+        3.6887062515e-06,
+        0.3297052745756188,
+        0.09863263465337865,
+        0.0478991869895748,
+        0.0008727412480586,
+        0.48278802298805945,
+        0.0012968319456644,
+        3.83413934535e-05,
+        0.0037185196855659,
+        0.11484768457220423,
+        0.0014447879467882,
+        0.12521251436906747,
+        0.0007266884763468,
+        0.023700188578578,
+        0.0002968287706056,
+        0.01846452767137652,
+        0.34826161552298796,
+        0.0004485410941504
+      ],
+      "interval_observations": [
+        {
+          "token_id": 423,
+          "cdf_low": "0.2976897571564241",
+          "cdf_high": "0.3547783320004635",
+          "probability_decimal": "0.0570885748440394"
+        },
+        {
+          "token_id": 587,
+          "cdf_low": "0.0",
+          "cdf_high": "0.6721884981386296",
+          "probability_decimal": "0.6721884981386296"
+        },
+        {
+          "token_id": 39144,
+          "cdf_low": "0.9926015897407945",
+          "cdf_high": "0.992605278447046",
+          "probability_decimal": "0.0000036887062515"
+        },
+        {
+          "token_id": 6819,
+          "cdf_low": "0.5887685383221614",
+          "cdf_high": "0.9184738128977802",
+          "probability_decimal": "0.3297052745756188"
+        },
+        {
+          "token_id": 2087,
+          "cdf_low": "0.0",
+          "cdf_high": "0.09863263465337865",
+          "probability_decimal": "0.09863263465337865"
+        },
+        {
+          "token_id": 416,
+          "cdf_low": "0.6288287538527202",
+          "cdf_high": "0.676727940842295",
+          "probability_decimal": "0.0478991869895748"
+        },
+        {
+          "token_id": 3589,
+          "cdf_low": "0.548627086034794",
+          "cdf_high": "0.5494998272828526",
+          "probability_decimal": "0.0008727412480586"
+        },
+        {
+          "token_id": 290,
+          "cdf_low": "0.0",
+          "cdf_high": "0.48278802298805945",
+          "probability_decimal": "0.48278802298805945"
+        },
+        {
+          "token_id": 11,
+          "cdf_low": "0.7151812225311878",
+          "cdf_high": "0.7164780544768522",
+          "probability_decimal": "0.0012968319456644"
+        },
+        {
+          "token_id": 36305,
+          "cdf_low": "0.9687750684381354",
+          "cdf_high": "0.9688134098315889",
+          "probability_decimal": "0.0000383413934535"
+        },
+        {
+          "token_id": 832,
+          "cdf_low": "0.9376462491502832",
+          "cdf_high": "0.9413647688358491",
+          "probability_decimal": "0.0037185196855659"
+        },
+        {
+          "token_id": 616,
+          "cdf_low": "0.20457574773039736",
+          "cdf_high": "0.3194234323026016",
+          "probability_decimal": "0.11484768457220424"
+        },
+        {
+          "token_id": 3651,
+          "cdf_low": "0.4549627159756348",
+          "cdf_high": "0.456407503922423",
+          "probability_decimal": "0.0014447879467882"
+        },
+        {
+          "token_id": 290,
+          "cdf_low": "0.46486152643634304",
+          "cdf_high": "0.5900740408054105",
+          "probability_decimal": "0.12521251436906746"
+        },
+        {
+          "token_id": 18681,
+          "cdf_low": "0.6765587443813534",
+          "cdf_high": "0.6772854328577002",
+          "probability_decimal": "0.0007266884763468"
+        },
+        {
+          "token_id": 284,
+          "cdf_low": "0.7716523323265206",
+          "cdf_high": "0.7953525209050986",
+          "probability_decimal": "0.0237001885785780"
+        },
+        {
+          "token_id": 5926,
+          "cdf_low": "0.8127364153083287",
+          "cdf_high": "0.8130332440789343",
+          "probability_decimal": "0.0002968287706056"
+        },
+        {
+          "token_id": 1866,
+          "cdf_low": "0.45143560234631064",
+          "cdf_high": "0.46990013001768716",
+          "probability_decimal": "0.01846452767137652"
+        },
+        {
+          "token_id": 11,
+          "cdf_low": "0.0",
+          "cdf_high": "0.34826161552298796",
+          "probability_decimal": "0.34826161552298796"
+        },
+        {
+          "token_id": 1912,
+          "cdf_low": "0.7855856288265696",
+          "cdf_high": "0.78603416992072",
+          "probability_decimal": "0.0004485410941504"
+        }
+      ],
+      "surprisal_bits": 137.12527554042236,
+      "elapsed_seconds": 0.8502169961575419,
+      "context_trim_calls": 0,
+      "rejected_stop_count": 0,
+      "decimal_precision": 79
+    },
+    "fixed_endpoint": {
+      "status": "complete",
+      "error": null,
+      "token_ids": [
+        761,
+        284,
+        307,
+        5901,
+        503,
+        284,
+        2221,
+        2712,
+        290,
+        481,
+        307,
+        1695,
+        329,
+        257,
+        1643,
+        783,
+        13,
+        383,
+        1306,
+        8108
+      ],
+      "tokens": 20,
+      "cover_text": "These Card Characters are a new range of LogoBugs that need to be filled out to begin playing and will be available for a bit now. The next Community",
+      "text_sha256": "7f86b17e23906f17a9ee3518fd936f8f3cdb245b56be5f3d9923d207743ebda7",
+      "context_token_ids": [
+        4711,
+        5172,
+        26813,
+        389,
+        257,
+        649,
+        2837,
+        286,
+        42411,
+        33,
+        10339,
+        326
+      ],
+      "visible_token_ids": [
+        4711,
+        5172,
+        26813,
+        389,
+        257,
+        649,
+        2837,
+        286,
+        42411,
+        33,
+        10339,
+        326,
+        761,
+        284,
+        307,
+        5901,
+        503,
+        284,
+        2221,
+        2712,
+        290,
+        481,
+        307,
+        1695,
+        329,
+        257,
+        1643,
+        783,
+        13,
+        383,
+        1306,
+        8108
+      ],
+      "visible_continuation_token_ids": [
+        761,
+        284,
+        307,
+        5901,
+        503,
+        284,
+        2221,
+        2712,
+        290,
+        481,
+        307,
+        1695,
+        329,
+        257,
+        1643,
+        783,
+        13,
+        383,
+        1306,
+        8108
+      ],
+      "prompt_prefix_matches": true,
+      "canonical_text_roundtrip": true,
+      "chosen_probabilities": [
+        0.0011977963851618,
+        0.6131671617986031,
+        0.964600423229088,
+        0.0039860447902197,
+        0.3674998757931551,
+        0.1093980573827005,
+        0.0037126977471586,
+        0.1258539507588413,
+        0.0159641391059629,
+        0.05470265241042108,
+        0.3010789546804199,
+        0.16496589667895636,
+        0.20569839719400626,
+        0.0288684005811791,
+        0.0022955470476723,
+        0.0037127704063487,
+        0.6554619096997997,
+        0.05190989197069933,
+        0.00427985963237743,
+        0.0003205278776613
+      ],
+      "interval_observations": [
+        {
+          "token_id": 761,
+          "cdf_low": "0.7525636326603319",
+          "cdf_high": "0.7537614290454937",
+          "probability_decimal": "0.0011977963851618"
+        },
+        {
+          "token_id": 284,
+          "cdf_low": "0.0",
+          "cdf_high": "0.6131671617986031",
+          "probability_decimal": "0.6131671617986031"
+        },
+        {
+          "token_id": 307,
+          "cdf_low": "0.0",
+          "cdf_high": "0.964600423229088",
+          "probability_decimal": "0.964600423229088"
+        },
+        {
+          "token_id": 5901,
+          "cdf_low": "0.5633386344169091",
+          "cdf_high": "0.5673246792071288",
+          "probability_decimal": "0.0039860447902197"
+        },
+        {
+          "token_id": 503,
+          "cdf_low": "0.387198916400818",
+          "cdf_high": "0.7546987921939731",
+          "probability_decimal": "0.3674998757931551"
+        },
+        {
+          "token_id": 284,
+          "cdf_low": "0.3007225591130368",
+          "cdf_high": "0.4101206164957373",
+          "probability_decimal": "0.1093980573827005"
+        },
+        {
+          "token_id": 2221,
+          "cdf_low": "0.6726031089830481",
+          "cdf_high": "0.6763158067302067",
+          "probability_decimal": "0.0037126977471586"
+        },
+        {
+          "token_id": 2712,
+          "cdf_low": "0.320935828933046",
+          "cdf_high": "0.4467897796918873",
+          "probability_decimal": "0.1258539507588413"
+        },
+        {
+          "token_id": 290,
+          "cdf_low": "0.6253234428049355",
+          "cdf_high": "0.6412875819108984",
+          "probability_decimal": "0.0159641391059629"
+        },
+        {
+          "token_id": 481,
+          "cdf_low": "0.0",
+          "cdf_high": "0.05470265241042108",
+          "probability_decimal": "0.05470265241042108"
+        },
+        {
+          "token_id": 307,
+          "cdf_low": "0.0",
+          "cdf_high": "0.3010789546804199",
+          "probability_decimal": "0.3010789546804199"
+        },
+        {
+          "token_id": 1695,
+          "cdf_low": "0.0",
+          "cdf_high": "0.16496589667895636",
+          "probability_decimal": "0.16496589667895636"
+        },
+        {
+          "token_id": 329,
+          "cdf_low": "0.0",
+          "cdf_high": "0.20569839719400626",
+          "probability_decimal": "0.20569839719400626"
+        },
+        {
+          "token_id": 257,
+          "cdf_low": "0.4854889263864975",
+          "cdf_high": "0.5143573269676766",
+          "probability_decimal": "0.0288684005811791"
+        },
+        {
+          "token_id": 1643,
+          "cdf_low": "0.8398438085694049",
+          "cdf_high": "0.8421393556170772",
+          "probability_decimal": "0.0022955470476723"
+        },
+        {
+          "token_id": 783,
+          "cdf_low": "0.8773949081042696",
+          "cdf_high": "0.8811076785106183",
+          "probability_decimal": "0.0037127704063487"
+        },
+        {
+          "token_id": 13,
+          "cdf_low": "0.0",
+          "cdf_high": "0.6554619096997997",
+          "probability_decimal": "0.6554619096997997"
+        },
+        {
+          "token_id": 383,
+          "cdf_low": "0.2668009239060395",
+          "cdf_high": "0.31871081587673883",
+          "probability_decimal": "0.05190989197069933"
+        },
+        {
+          "token_id": 1306,
+          "cdf_low": "0.40743436683234263",
+          "cdf_high": "0.41171422646472006",
+          "probability_decimal": "0.00427985963237743"
+        },
+        {
+          "token_id": 8108,
+          "cdf_low": "0.7481804730267361",
+          "cdf_high": "0.7485010009043974",
+          "probability_decimal": "0.0003205278776613"
+        }
+      ],
+      "surprisal_bits": 97.21544815538063,
+      "elapsed_seconds": 0.8665616819635034,
+      "context_trim_calls": 0,
+      "rejected_stop_count": 0,
+      "decimal_precision": 548,
+      "requested_tokens": 20
+    }
+  },
+  "natural_controls": {
+    "unverified": {
+      "status": "complete",
+      "error": null,
+      "token_ids": [
+        3578,
+        2985,
+        284,
+        3853,
+        262,
+        29792,
+        47640,
+        845,
+        2952,
+        13,
+        1406,
+        345,
+        1839,
+        470,
+        307,
+        24435,
+        736,
+        379,
+        262,
+        2989
+      ],
+      "tokens": 20,
+      "cover_text": "These Card Characters are a new range of LogoBugs that allows users to choose the Colors voicing very quickly. So you won't be tapping back at the search",
+      "text_sha256": "10830cdab1c4008c4a42a2d2acdfd034c069eef179597a848db0d11725298ace",
+      "context_token_ids": [
+        4711,
+        5172,
+        26813,
+        389,
+        257,
+        649,
+        2837,
+        286,
+        42411,
+        33,
+        10339,
+        326
+      ],
+      "visible_token_ids": [
+        4711,
+        5172,
+        26813,
+        389,
+        257,
+        649,
+        2837,
+        286,
+        42411,
+        33,
+        10339,
+        326,
+        3578,
+        2985,
+        284,
+        3853,
+        262,
+        29792,
+        47640,
+        845,
+        2952,
+        13,
+        1406,
+        345,
+        1839,
+        470,
+        307,
+        24435,
+        736,
+        379,
+        262,
+        2989
+      ],
+      "visible_continuation_token_ids": [
+        3578,
+        2985,
+        284,
+        3853,
+        262,
+        29792,
+        47640,
+        845,
+        2952,
+        13,
+        1406,
+        345,
+        1839,
+        470,
+        307,
+        24435,
+        736,
+        379,
+        262,
+        2989
+      ],
+      "prompt_prefix_matches": true,
+      "canonical_text_roundtrip": true,
+      "chosen_probabilities": [
+        0.01174365162811617,
+        0.0227907893980484,
+        0.9509687784599314,
+        0.015903780258053,
+        0.09978497081744454,
+        0.0004820340740897,
+        2.651486083e-07,
+        7.5423671558e-05,
+        0.0600889278088955,
+        0.42078955272417734,
+        0.0031089488897153,
+        0.0777209023716061,
+        0.0245280636530689,
+        0.9989983681483211,
+        0.20971675959661207,
+        0.0005563005453499,
+        0.0098227410564722,
+        0.009393562677225,
+        0.32163758694254224,
+        0.0002628163059736
+      ],
+      "interval_observations": [
+        {
+          "token_id": 3578,
+          "cdf_low": "0.49455686881080213",
+          "cdf_high": "0.5063005204389183",
+          "probability_decimal": "0.01174365162811617"
+        },
+        {
+          "token_id": 2985,
+          "cdf_low": "0.7729359415482334",
+          "cdf_high": "0.7957267309462818",
+          "probability_decimal": "0.0227907893980484"
+        },
+        {
+          "token_id": 284,
+          "cdf_low": "0.0",
+          "cdf_high": "0.9509687784599314",
+          "probability_decimal": "0.9509687784599314"
+        },
+        {
+          "token_id": 3853,
+          "cdf_low": "0.2752967978483279",
+          "cdf_high": "0.2912005781063809",
+          "probability_decimal": "0.0159037802580530"
+        },
+        {
+          "token_id": 262,
+          "cdf_low": "0.27090341744366786",
+          "cdf_high": "0.3706883882611124",
+          "probability_decimal": "0.09978497081744454"
+        },
+        {
+          "token_id": 29792,
+          "cdf_low": "0.7067224818577584",
+          "cdf_high": "0.7072045159318481",
+          "probability_decimal": "0.0004820340740897"
+        },
+        {
+          "token_id": 47640,
+          "cdf_low": "0.998220541273786",
+          "cdf_high": "0.9982208064223943",
+          "probability_decimal": "2.651486083E-7"
+        },
+        {
+          "token_id": 845,
+          "cdf_low": "0.9096839992515773",
+          "cdf_high": "0.9097594229231353",
+          "probability_decimal": "0.0000754236715580"
+        },
+        {
+          "token_id": 2952,
+          "cdf_low": "0.3064405352979002",
+          "cdf_high": "0.3665294631067957",
+          "probability_decimal": "0.0600889278088955"
+        },
+        {
+          "token_id": 13,
+          "cdf_low": "0.0",
+          "cdf_high": "0.42078955272417734",
+          "probability_decimal": "0.42078955272417734"
+        },
+        {
+          "token_id": 1406,
+          "cdf_low": "0.714372823900442",
+          "cdf_high": "0.7174817727901573",
+          "probability_decimal": "0.0031089488897153"
+        },
+        {
+          "token_id": 345,
+          "cdf_low": "0.3289855819889596",
+          "cdf_high": "0.4067064843605657",
+          "probability_decimal": "0.0777209023716061"
+        },
+        {
+          "token_id": 1839,
+          "cdf_low": "0.7609136503006481",
+          "cdf_high": "0.785441713953717",
+          "probability_decimal": "0.0245280636530689"
+        },
+        {
+          "token_id": 470,
+          "cdf_low": "0.0",
+          "cdf_high": "0.9989983681483211",
+          "probability_decimal": "0.9989983681483211"
+        },
+        {
+          "token_id": 307,
+          "cdf_low": "0.289503804916042",
+          "cdf_high": "0.49922056451265406",
+          "probability_decimal": "0.20971675959661206"
+        },
+        {
+          "token_id": 24435,
+          "cdf_low": "0.8430017588212082",
+          "cdf_high": "0.8435580593665581",
+          "probability_decimal": "0.0005563005453499"
+        },
+        {
+          "token_id": 736,
+          "cdf_low": "0.6607786767532856",
+          "cdf_high": "0.6706014178097578",
+          "probability_decimal": "0.0098227410564722"
+        },
+        {
+          "token_id": 379,
+          "cdf_low": "0.7589777790991155",
+          "cdf_high": "0.7683713417763405",
+          "probability_decimal": "0.0093935626772250"
+        },
+        {
+          "token_id": 262,
+          "cdf_low": "0.0",
+          "cdf_high": "0.32163758694254224",
+          "probability_decimal": "0.32163758694254224"
+        },
+        {
+          "token_id": 2989,
+          "cdf_low": "0.7728736502095629",
+          "cdf_high": "0.7731364665155365",
+          "probability_decimal": "0.0002628163059736"
+        }
+      ],
+      "surprisal_bits": 130.46994616851381,
+      "elapsed_seconds": 0.8778817250858992,
+      "context_trim_calls": 0,
+      "rejected_stop_count": 0,
+      "decimal_precision": 79,
+      "requested_tokens": 20,
+      "elapsed_scope": "Time of the full shared natural stream, not this prefix",
+      "sampling_bits_per_token": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64
+      ]
+    },
+    "verified": {
+      "status": "complete",
+      "error": null,
+      "token_ids": [
+        3578,
+        2985,
+        284,
+        3853,
+        262,
+        29792,
+        47640,
+        845,
+        2952,
+        13,
+        1406,
+        345,
+        1839,
+        470,
+        307,
+        24435,
+        736,
+        379,
+        262,
+        2989
+      ],
+      "tokens": 20,
+      "cover_text": "These Card Characters are a new range of LogoBugs that allows users to choose the Colors voicing very quickly. So you won't be tapping back at the search",
+      "text_sha256": "10830cdab1c4008c4a42a2d2acdfd034c069eef179597a848db0d11725298ace",
+      "context_token_ids": [
+        4711,
+        5172,
+        26813,
+        389,
+        257,
+        649,
+        2837,
+        286,
+        42411,
+        33,
+        10339,
+        326
+      ],
+      "visible_token_ids": [
+        4711,
+        5172,
+        26813,
+        389,
+        257,
+        649,
+        2837,
+        286,
+        42411,
+        33,
+        10339,
+        326,
+        3578,
+        2985,
+        284,
+        3853,
+        262,
+        29792,
+        47640,
+        845,
+        2952,
+        13,
+        1406,
+        345,
+        1839,
+        470,
+        307,
+        24435,
+        736,
+        379,
+        262,
+        2989
+      ],
+      "visible_continuation_token_ids": [
+        3578,
+        2985,
+        284,
+        3853,
+        262,
+        29792,
+        47640,
+        845,
+        2952,
+        13,
+        1406,
+        345,
+        1839,
+        470,
+        307,
+        24435,
+        736,
+        379,
+        262,
+        2989
+      ],
+      "prompt_prefix_matches": true,
+      "canonical_text_roundtrip": true,
+      "chosen_probabilities": [
+        0.01174365162811617,
+        0.0227907893980484,
+        0.9509687784599314,
+        0.015903780258053,
+        0.09978497081744454,
+        0.0004820340740897,
+        2.651486083e-07,
+        7.5423671558e-05,
+        0.0600889278088955,
+        0.42078955272417734,
+        0.0031089488897153,
+        0.0777209023716061,
+        0.0245280636530689,
+        0.9989983681483211,
+        0.20971675959661207,
+        0.0005563005453499,
+        0.0098227410564722,
+        0.009393562677225,
+        0.32163758694254224,
+        0.0002628163059736
+      ],
+      "interval_observations": [
+        {
+          "token_id": 3578,
+          "cdf_low": "0.49455686881080213",
+          "cdf_high": "0.5063005204389183",
+          "probability_decimal": "0.01174365162811617"
+        },
+        {
+          "token_id": 2985,
+          "cdf_low": "0.7729359415482334",
+          "cdf_high": "0.7957267309462818",
+          "probability_decimal": "0.0227907893980484"
+        },
+        {
+          "token_id": 284,
+          "cdf_low": "0.0",
+          "cdf_high": "0.9509687784599314",
+          "probability_decimal": "0.9509687784599314"
+        },
+        {
+          "token_id": 3853,
+          "cdf_low": "0.2752967978483279",
+          "cdf_high": "0.2912005781063809",
+          "probability_decimal": "0.0159037802580530"
+        },
+        {
+          "token_id": 262,
+          "cdf_low": "0.27090341744366786",
+          "cdf_high": "0.3706883882611124",
+          "probability_decimal": "0.09978497081744454"
+        },
+        {
+          "token_id": 29792,
+          "cdf_low": "0.7067224818577584",
+          "cdf_high": "0.7072045159318481",
+          "probability_decimal": "0.0004820340740897"
+        },
+        {
+          "token_id": 47640,
+          "cdf_low": "0.998220541273786",
+          "cdf_high": "0.9982208064223943",
+          "probability_decimal": "2.651486083E-7"
+        },
+        {
+          "token_id": 845,
+          "cdf_low": "0.9096839992515773",
+          "cdf_high": "0.9097594229231353",
+          "probability_decimal": "0.0000754236715580"
+        },
+        {
+          "token_id": 2952,
+          "cdf_low": "0.3064405352979002",
+          "cdf_high": "0.3665294631067957",
+          "probability_decimal": "0.0600889278088955"
+        },
+        {
+          "token_id": 13,
+          "cdf_low": "0.0",
+          "cdf_high": "0.42078955272417734",
+          "probability_decimal": "0.42078955272417734"
+        },
+        {
+          "token_id": 1406,
+          "cdf_low": "0.714372823900442",
+          "cdf_high": "0.7174817727901573",
+          "probability_decimal": "0.0031089488897153"
+        },
+        {
+          "token_id": 345,
+          "cdf_low": "0.3289855819889596",
+          "cdf_high": "0.4067064843605657",
+          "probability_decimal": "0.0777209023716061"
+        },
+        {
+          "token_id": 1839,
+          "cdf_low": "0.7609136503006481",
+          "cdf_high": "0.785441713953717",
+          "probability_decimal": "0.0245280636530689"
+        },
+        {
+          "token_id": 470,
+          "cdf_low": "0.0",
+          "cdf_high": "0.9989983681483211",
+          "probability_decimal": "0.9989983681483211"
+        },
+        {
+          "token_id": 307,
+          "cdf_low": "0.289503804916042",
+          "cdf_high": "0.49922056451265406",
+          "probability_decimal": "0.20971675959661206"
+        },
+        {
+          "token_id": 24435,
+          "cdf_low": "0.8430017588212082",
+          "cdf_high": "0.8435580593665581",
+          "probability_decimal": "0.0005563005453499"
+        },
+        {
+          "token_id": 736,
+          "cdf_low": "0.6607786767532856",
+          "cdf_high": "0.6706014178097578",
+          "probability_decimal": "0.0098227410564722"
+        },
+        {
+          "token_id": 379,
+          "cdf_low": "0.7589777790991155",
+          "cdf_high": "0.7683713417763405",
+          "probability_decimal": "0.0093935626772250"
+        },
+        {
+          "token_id": 262,
+          "cdf_low": "0.0",
+          "cdf_high": "0.32163758694254224",
+          "probability_decimal": "0.32163758694254224"
+        },
+        {
+          "token_id": 2989,
+          "cdf_low": "0.7728736502095629",
+          "cdf_high": "0.7731364665155365",
+          "probability_decimal": "0.0002628163059736"
+        }
+      ],
+      "surprisal_bits": 130.46994616851381,
+      "elapsed_seconds": 0.8778817250858992,
+      "context_trim_calls": 0,
+      "rejected_stop_count": 0,
+      "decimal_precision": 79,
+      "requested_tokens": 20,
+      "elapsed_scope": "Time of the full shared natural stream, not this prefix",
+      "sampling_bits_per_token": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64
+      ]
+    },
+    "fixed_endpoint": {
+      "status": "complete",
+      "error": null,
+      "token_ids": [
+        3578,
+        2985,
+        284,
+        3853,
+        262,
+        29792,
+        47640,
+        845,
+        2952,
+        13,
+        1406,
+        345,
+        1839,
+        470,
+        307,
+        24435,
+        736,
+        379,
+        262,
+        2989
+      ],
+      "tokens": 20,
+      "cover_text": "These Card Characters are a new range of LogoBugs that allows users to choose the Colors voicing very quickly. So you won't be tapping back at the search",
+      "text_sha256": "10830cdab1c4008c4a42a2d2acdfd034c069eef179597a848db0d11725298ace",
+      "context_token_ids": [
+        4711,
+        5172,
+        26813,
+        389,
+        257,
+        649,
+        2837,
+        286,
+        42411,
+        33,
+        10339,
+        326
+      ],
+      "visible_token_ids": [
+        4711,
+        5172,
+        26813,
+        389,
+        257,
+        649,
+        2837,
+        286,
+        42411,
+        33,
+        10339,
+        326,
+        3578,
+        2985,
+        284,
+        3853,
+        262,
+        29792,
+        47640,
+        845,
+        2952,
+        13,
+        1406,
+        345,
+        1839,
+        470,
+        307,
+        24435,
+        736,
+        379,
+        262,
+        2989
+      ],
+      "visible_continuation_token_ids": [
+        3578,
+        2985,
+        284,
+        3853,
+        262,
+        29792,
+        47640,
+        845,
+        2952,
+        13,
+        1406,
+        345,
+        1839,
+        470,
+        307,
+        24435,
+        736,
+        379,
+        262,
+        2989
+      ],
+      "prompt_prefix_matches": true,
+      "canonical_text_roundtrip": true,
+      "chosen_probabilities": [
+        0.01174365162811617,
+        0.0227907893980484,
+        0.9509687784599314,
+        0.015903780258053,
+        0.09978497081744454,
+        0.0004820340740897,
+        2.651486083e-07,
+        7.5423671558e-05,
+        0.0600889278088955,
+        0.42078955272417734,
+        0.0031089488897153,
+        0.0777209023716061,
+        0.0245280636530689,
+        0.9989983681483211,
+        0.20971675959661207,
+        0.0005563005453499,
+        0.0098227410564722,
+        0.009393562677225,
+        0.32163758694254224,
+        0.0002628163059736
+      ],
+      "interval_observations": [
+        {
+          "token_id": 3578,
+          "cdf_low": "0.49455686881080213",
+          "cdf_high": "0.5063005204389183",
+          "probability_decimal": "0.01174365162811617"
+        },
+        {
+          "token_id": 2985,
+          "cdf_low": "0.7729359415482334",
+          "cdf_high": "0.7957267309462818",
+          "probability_decimal": "0.0227907893980484"
+        },
+        {
+          "token_id": 284,
+          "cdf_low": "0.0",
+          "cdf_high": "0.9509687784599314",
+          "probability_decimal": "0.9509687784599314"
+        },
+        {
+          "token_id": 3853,
+          "cdf_low": "0.2752967978483279",
+          "cdf_high": "0.2912005781063809",
+          "probability_decimal": "0.0159037802580530"
+        },
+        {
+          "token_id": 262,
+          "cdf_low": "0.27090341744366786",
+          "cdf_high": "0.3706883882611124",
+          "probability_decimal": "0.09978497081744454"
+        },
+        {
+          "token_id": 29792,
+          "cdf_low": "0.7067224818577584",
+          "cdf_high": "0.7072045159318481",
+          "probability_decimal": "0.0004820340740897"
+        },
+        {
+          "token_id": 47640,
+          "cdf_low": "0.998220541273786",
+          "cdf_high": "0.9982208064223943",
+          "probability_decimal": "2.651486083E-7"
+        },
+        {
+          "token_id": 845,
+          "cdf_low": "0.9096839992515773",
+          "cdf_high": "0.9097594229231353",
+          "probability_decimal": "0.0000754236715580"
+        },
+        {
+          "token_id": 2952,
+          "cdf_low": "0.3064405352979002",
+          "cdf_high": "0.3665294631067957",
+          "probability_decimal": "0.0600889278088955"
+        },
+        {
+          "token_id": 13,
+          "cdf_low": "0.0",
+          "cdf_high": "0.42078955272417734",
+          "probability_decimal": "0.42078955272417734"
+        },
+        {
+          "token_id": 1406,
+          "cdf_low": "0.714372823900442",
+          "cdf_high": "0.7174817727901573",
+          "probability_decimal": "0.0031089488897153"
+        },
+        {
+          "token_id": 345,
+          "cdf_low": "0.3289855819889596",
+          "cdf_high": "0.4067064843605657",
+          "probability_decimal": "0.0777209023716061"
+        },
+        {
+          "token_id": 1839,
+          "cdf_low": "0.7609136503006481",
+          "cdf_high": "0.785441713953717",
+          "probability_decimal": "0.0245280636530689"
+        },
+        {
+          "token_id": 470,
+          "cdf_low": "0.0",
+          "cdf_high": "0.9989983681483211",
+          "probability_decimal": "0.9989983681483211"
+        },
+        {
+          "token_id": 307,
+          "cdf_low": "0.289503804916042",
+          "cdf_high": "0.49922056451265406",
+          "probability_decimal": "0.20971675959661206"
+        },
+        {
+          "token_id": 24435,
+          "cdf_low": "0.8430017588212082",
+          "cdf_high": "0.8435580593665581",
+          "probability_decimal": "0.0005563005453499"
+        },
+        {
+          "token_id": 736,
+          "cdf_low": "0.6607786767532856",
+          "cdf_high": "0.6706014178097578",
+          "probability_decimal": "0.0098227410564722"
+        },
+        {
+          "token_id": 379,
+          "cdf_low": "0.7589777790991155",
+          "cdf_high": "0.7683713417763405",
+          "probability_decimal": "0.0093935626772250"
+        },
+        {
+          "token_id": 262,
+          "cdf_low": "0.0",
+          "cdf_high": "0.32163758694254224",
+          "probability_decimal": "0.32163758694254224"
+        },
+        {
+          "token_id": 2989,
+          "cdf_low": "0.7728736502095629",
+          "cdf_high": "0.7731364665155365",
+          "probability_decimal": "0.0002628163059736"
+        }
+      ],
+      "surprisal_bits": 130.46994616851381,
+      "elapsed_seconds": 0.8778817250858992,
+      "context_trim_calls": 0,
+      "rejected_stop_count": 0,
+      "decimal_precision": 79,
+      "requested_tokens": 20,
+      "elapsed_scope": "Time of the full shared natural stream, not this prefix",
+      "sampling_bits_per_token": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64
+      ]
+    }
+  },
+  "receivers": {
+    "unverified": {
+      "ids": {
+        "status": "complete",
+        "recovery_match": true,
+        "public_probabilities_match_sender": true,
+        "public_surprisal_bits": 137.12527554042236,
+        "elapsed_seconds": 0.8794795030262321,
+        "execution": "fresh upstream receiver and model stepper"
+      },
+      "text": {
+        "status": "complete",
+        "recovery_match": true,
+        "public_probabilities_match_sender": true,
+        "public_surprisal_bits": 137.12527554042236,
+        "elapsed_seconds": 0.8794795030262321,
+        "execution": "same verified receiver input as ids"
+      }
+    },
+    "verified": {
+      "ids": {
+        "status": "complete",
+        "recovery_match": true,
+        "public_probabilities_match_sender": true,
+        "public_surprisal_bits": 137.12527554042236,
+        "elapsed_seconds": 0.8609459588769823,
+        "execution": "fresh upstream receiver and model stepper"
+      },
+      "text": {
+        "status": "complete",
+        "recovery_match": true,
+        "public_probabilities_match_sender": true,
+        "public_surprisal_bits": 137.12527554042236,
+        "elapsed_seconds": 0.8609459588769823,
+        "execution": "same verified receiver input as ids"
+      }
+    },
+    "fixed_endpoint": {
+      "ids": {
+        "status": "complete",
+        "recovery_match": false,
+        "public_probabilities_match_sender": true,
+        "public_surprisal_bits": 97.21544815538063,
+        "elapsed_seconds": 0.8871580369304866,
+        "execution": "fresh upstream receiver and model stepper"
+      },
+      "text": {
+        "status": "complete",
+        "recovery_match": false,
+        "public_probabilities_match_sender": true,
+        "public_surprisal_bits": 97.21544815538063,
+        "elapsed_seconds": 0.8871580369304866,
+        "execution": "same verified receiver input as ids"
+      }
+    }
+  },
+  "manifest_sha256": "e961f33f864bb12d39e24a1beaa9289556bc777c5f94f070076e12457c5df95c"
+}

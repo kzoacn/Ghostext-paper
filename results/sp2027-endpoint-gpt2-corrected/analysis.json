@@ -1,0 +1,418 @@
+{
+  "schema": "public-endpoint-analysis-v1",
+  "backend": "gpt2",
+  "manifest_sha256": "27ebb8b07ed129083a1985bae837dee015a7a5014dedfe0eaf73ba1f1c3f9d72",
+  "cases_sha256": {
+    "01_en_corner_cafe_r0_g128.json": "0e3772b402403424d8618a5493b4bf63d44db2e913cf7c578840c093649acd33",
+    "01_en_corner_cafe_r1_g128.json": "dfe48ff1f4d7adcee02cc5ab421274ee873615c286b96c9489074cd54d7dd212",
+    "02_en_library_r0_g128.json": "1717716c676a9311d387b29b6eb7ac42850f1efa5c4d5a5cfbed11ced4d7e140",
+    "02_en_library_r1_g128.json": "c37b530d3d21ea6be4c32ddeb5203fd579eec167a80b68ab876472977e37cd25",
+    "03_en_garden_r0_g128.json": "c5bfa9ad0e1ba5b3677939544af9589f2c44ea53962a023b39c02480f6080b8f",
+    "03_en_garden_r1_g128.json": "a82eb55d0b0cd1b32a9337bc18c0c782c4961a53a1eb9791e29c503c1aa39ff6",
+    "04_en_market_r1_g128.json": "3da1f602523684676f2cdfd8eefe09a5f56218d2884171d2910e3807fc5c2cac",
+    "05_en_train_r0_g128.json": "772cfad554db99304730563eafb3acf9cb8ad2efbef2e80610be441fd163a7a3",
+    "06_en_science_r0_g128.json": "2be4c6ecc56283af26ab0e084ec6b78bdaa281fc7077793f400f92dc4f26010c",
+    "06_en_science_r1_g128.json": "9ca4c9724f0201755d5c41aa29db07d92b73c4ba18503bbdad8771c2f9eb5c7b",
+    "08_en_mountain_r1_g128.json": "57de6a01627f0c84c12e9db0e230951214ca5d92d1b4a09b3126354730b5e10a",
+    "09_en_workshop_r0_g128.json": "fc4a3f0258a7394758a9b241a2a0ffdb70d5a0767200cbf61d03a07f1214fd0b",
+    "09_en_workshop_r1_g128.json": "bacc00f4aef112909b3a27b646266780daec2a8578229faf9cc162fadbeca1ba"
+  },
+  "analysis_source_sha256": "03739afa689ba5b82bcfda63d04576ba2278bd4ee3140da3a0b29962a2d5e635",
+  "pairs": 13,
+  "families": 8,
+  "by_family": {
+    "corner_cafe": {
+      "pairs": 2,
+      "stego": 2,
+      "natural": 0
+    },
+    "garden": {
+      "pairs": 2,
+      "stego": 2,
+      "natural": 0
+    },
+    "library": {
+      "pairs": 2,
+      "stego": 2,
+      "natural": 0
+    },
+    "market": {
+      "pairs": 1,
+      "stego": 1,
+      "natural": 0
+    },
+    "mountain": {
+      "pairs": 1,
+      "stego": 1,
+      "natural": 0
+    },
+    "science": {
+      "pairs": 2,
+      "stego": 2,
+      "natural": 0
+    },
+    "train": {
+      "pairs": 1,
+      "stego": 1,
+      "natural": 0
+    },
+    "workshop": {
+      "pairs": 2,
+      "stego": 2,
+      "natural": 0
+    }
+  },
+  "same_thread_count_as_generation": true,
+  "all_archived_token_ids_match": true,
+  "natural_selected_mass_mismatch_count": 0,
+  "natural_inspected_mass_count": 2876,
+  "stego_reconstructed_packet_hash_matches": 13,
+  "outcomes": {
+    "stego": {
+      "endpoint_at_end": 13
+    },
+    "natural": {
+      "unfinished_at_end": 5,
+      "endpoint_before_end": 8
+    }
+  },
+  "rates": {
+    "stego": {
+      "hits": 13,
+      "denominator": 13,
+      "rate": 1.0,
+      "family_bootstrap_percentile_95": [
+        1.0,
+        1.0
+      ],
+      "nominal_wilson_95": [
+        0.7718981569447083,
+        1.0
+      ]
+    },
+    "natural": {
+      "hits": 0,
+      "denominator": 13,
+      "rate": 0.0,
+      "family_bootstrap_percentile_95": [
+        0.0,
+        0.0
+      ],
+      "nominal_wilson_95": [
+        0.0,
+        0.22810184305529166
+      ]
+    }
+  },
+  "per_pair": [
+    {
+      "case_id": "01_en_corner_cafe:r0:g128",
+      "family": "corner_cafe",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 226,
+        "tokens_inspected": 226,
+        "segment_endpoints": [
+          121,
+          226
+        ]
+      },
+      "natural": {
+        "status": "unfinished_at_end",
+        "visible_tokens": 226,
+        "tokens_inspected": 226,
+        "segment_endpoints": [
+          141
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "01_en_corner_cafe:r1:g128",
+      "family": "corner_cafe",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 224,
+        "tokens_inspected": 224,
+        "segment_endpoints": [
+          132,
+          224
+        ]
+      },
+      "natural": {
+        "status": "endpoint_before_end",
+        "visible_tokens": 224,
+        "tokens_inspected": 223,
+        "segment_endpoints": [
+          129,
+          223
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "02_en_library:r0:g128",
+      "family": "library",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 243,
+        "tokens_inspected": 243,
+        "segment_endpoints": [
+          137,
+          243
+        ]
+      },
+      "natural": {
+        "status": "endpoint_before_end",
+        "visible_tokens": 243,
+        "tokens_inspected": 218,
+        "segment_endpoints": [
+          122,
+          218
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "02_en_library:r1:g128",
+      "family": "library",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 209,
+        "tokens_inspected": 209,
+        "segment_endpoints": [
+          117,
+          209
+        ]
+      },
+      "natural": {
+        "status": "unfinished_at_end",
+        "visible_tokens": 209,
+        "tokens_inspected": 209,
+        "segment_endpoints": [
+          120
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "03_en_garden:r0:g128",
+      "family": "garden",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 236,
+        "tokens_inspected": 236,
+        "segment_endpoints": [
+          131,
+          236
+        ]
+      },
+      "natural": {
+        "status": "endpoint_before_end",
+        "visible_tokens": 236,
+        "tokens_inspected": 214,
+        "segment_endpoints": [
+          125,
+          214
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "03_en_garden:r1:g128",
+      "family": "garden",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 220,
+        "tokens_inspected": 220,
+        "segment_endpoints": [
+          129,
+          220
+        ]
+      },
+      "natural": {
+        "status": "unfinished_at_end",
+        "visible_tokens": 220,
+        "tokens_inspected": 220,
+        "segment_endpoints": [
+          128
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "04_en_market:r1:g128",
+      "family": "market",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 225,
+        "tokens_inspected": 225,
+        "segment_endpoints": [
+          129,
+          225
+        ]
+      },
+      "natural": {
+        "status": "unfinished_at_end",
+        "visible_tokens": 225,
+        "tokens_inspected": 225,
+        "segment_endpoints": [
+          143
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "05_en_train:r0:g128",
+      "family": "train",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 228,
+        "tokens_inspected": 228,
+        "segment_endpoints": [
+          132,
+          228
+        ]
+      },
+      "natural": {
+        "status": "endpoint_before_end",
+        "visible_tokens": 228,
+        "tokens_inspected": 222,
+        "segment_endpoints": [
+          128,
+          222
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "06_en_science:r0:g128",
+      "family": "science",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 277,
+        "tokens_inspected": 277,
+        "segment_endpoints": [
+          158,
+          277
+        ]
+      },
+      "natural": {
+        "status": "endpoint_before_end",
+        "visible_tokens": 277,
+        "tokens_inspected": 225,
+        "segment_endpoints": [
+          135,
+          225
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "06_en_science:r1:g128",
+      "family": "science",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 260,
+        "tokens_inspected": 260,
+        "segment_endpoints": [
+          125,
+          260
+        ]
+      },
+      "natural": {
+        "status": "endpoint_before_end",
+        "visible_tokens": 260,
+        "tokens_inspected": 233,
+        "segment_endpoints": [
+          137,
+          233
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "08_en_mountain:r1:g128",
+      "family": "mountain",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 211,
+        "tokens_inspected": 211,
+        "segment_endpoints": [
+          121,
+          211
+        ]
+      },
+      "natural": {
+        "status": "unfinished_at_end",
+        "visible_tokens": 211,
+        "tokens_inspected": 211,
+        "segment_endpoints": [
+          141
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "09_en_workshop:r0:g128",
+      "family": "workshop",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 237,
+        "tokens_inspected": 237,
+        "segment_endpoints": [
+          129,
+          237
+        ]
+      },
+      "natural": {
+        "status": "endpoint_before_end",
+        "visible_tokens": 237,
+        "tokens_inspected": 222,
+        "segment_endpoints": [
+          120,
+          222
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    },
+    {
+      "case_id": "09_en_workshop:r1:g128",
+      "family": "workshop",
+      "stego": {
+        "status": "endpoint_at_end",
+        "visible_tokens": 251,
+        "tokens_inspected": 251,
+        "segment_endpoints": [
+          154,
+          251
+        ]
+      },
+      "natural": {
+        "status": "endpoint_before_end",
+        "visible_tokens": 251,
+        "tokens_inspected": 228,
+        "segment_endpoints": [
+          130,
+          228
+        ]
+      },
+      "stego_packet_hash_matches": true,
+      "natural_mass_mismatch_indices": []
+    }
+  ],
+  "scope": "Post-hoc first-prefix-resolution support test on the unchanged eligible no-tail delivery slice. Known plaintext length is an additional public assumption. Rates are conditional on earlier complete canonical controls; all replay failures are retained. Family bootstrap resamples the saved families (5000 draws, seed 20261028), not unseen deployment conditions. An all-zero or all-one sample has a degenerate percentile interval, which provides no calibrated bound on an unseen error probability. Wilson intervals are nominal and ignore within-family dependence.",
+  "source_replay_check_passed": true
+}

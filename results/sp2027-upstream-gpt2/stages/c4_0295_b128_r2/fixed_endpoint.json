@@ -1,0 +1,217 @@
+{
+  "status": "complete",
+  "error": null,
+  "token_ids": [
+    383,
+    402,
+    19,
+    22287,
+    2125,
+    470,
+    3573,
+    9314,
+    618,
+    340,
+    2058,
+    284,
+    9103,
+    2854,
+    11,
+    290,
+    12716
+  ],
+  "tokens": 17,
+  "cover_text": "system requires only 12 seconds to open or close. The G4 Savage isn't particularly reliable when it comes to peak performance, and unfortunately",
+  "text_sha256": "fd3de4f872b7037efb3484da9d38610bd371761dc5b8f4dc3f861fd5a4a729b1",
+  "context_token_ids": [
+    10057,
+    4433,
+    691,
+    1105,
+    4201,
+    284,
+    1280,
+    393,
+    1969,
+    13
+  ],
+  "visible_token_ids": [
+    10057,
+    4433,
+    691,
+    1105,
+    4201,
+    284,
+    1280,
+    393,
+    1969,
+    13,
+    383,
+    402,
+    19,
+    22287,
+    2125,
+    470,
+    3573,
+    9314,
+    618,
+    340,
+    2058,
+    284,
+    9103,
+    2854,
+    11,
+    290,
+    12716
+  ],
+  "visible_continuation_token_ids": [
+    383,
+    402,
+    19,
+    22287,
+    2125,
+    470,
+    3573,
+    9314,
+    618,
+    340,
+    2058,
+    284,
+    9103,
+    2854,
+    11,
+    290,
+    12716
+  ],
+  "prompt_prefix_matches": true,
+  "canonical_text_roundtrip": true,
+  "chosen_probabilities": [
+    0.0677806921435669,
+    0.0004926221577109,
+    0.01204274315112372,
+    2.78862962625e-05,
+    0.0011900312978166,
+    0.9995414655459366,
+    0.0159225266789765,
+    0.00893352188178036,
+    0.0644058740544084,
+    0.30473288459532083,
+    0.8992548081825044,
+    0.9891397404719176,
+    0.0001479827375295,
+    0.5086150218880291,
+    0.4279396856943645,
+    0.1382927423977234,
+    0.0010853544847
+  ],
+  "interval_observations": [
+    {
+      "token_id": 383,
+      "cdf_low": "0.3011712530920587",
+      "cdf_high": "0.3689519452356256",
+      "probability_decimal": "0.0677806921435669"
+    },
+    {
+      "token_id": 402,
+      "cdf_low": "0.5404821988465092",
+      "cdf_high": "0.5409748210042201",
+      "probability_decimal": "0.0004926221577109"
+    },
+    {
+      "token_id": 19,
+      "cdf_low": "0.2105513095260495",
+      "cdf_high": "0.22259405267717322",
+      "probability_decimal": "0.01204274315112372"
+    },
+    {
+      "token_id": 22287,
+      "cdf_low": "0.9047046748290841",
+      "cdf_high": "0.9047325611253466",
+      "probability_decimal": "0.0000278862962625"
+    },
+    {
+      "token_id": 2125,
+      "cdf_low": "0.5345469684055506",
+      "cdf_high": "0.5357369997033672",
+      "probability_decimal": "0.0011900312978166"
+    },
+    {
+      "token_id": 470,
+      "cdf_low": "0.0",
+      "cdf_high": "0.9995414655459366",
+      "probability_decimal": "0.9995414655459366"
+    },
+    {
+      "token_id": 3573,
+      "cdf_low": "0.3651023333147821",
+      "cdf_high": "0.3810248599937586",
+      "probability_decimal": "0.0159225266789765"
+    },
+    {
+      "token_id": 9314,
+      "cdf_low": "0.4318299298972655",
+      "cdf_high": "0.44076345177904586",
+      "probability_decimal": "0.00893352188178036"
+    },
+    {
+      "token_id": 618,
+      "cdf_low": "0.3851311703290026",
+      "cdf_high": "0.449537044383411",
+      "probability_decimal": "0.0644058740544084"
+    },
+    {
+      "token_id": 340,
+      "cdf_low": "0.0",
+      "cdf_high": "0.30473288459532083",
+      "probability_decimal": "0.30473288459532083"
+    },
+    {
+      "token_id": 2058,
+      "cdf_low": "0.0",
+      "cdf_high": "0.8992548081825044",
+      "probability_decimal": "0.8992548081825044"
+    },
+    {
+      "token_id": 284,
+      "cdf_low": "0.0",
+      "cdf_high": "0.9891397404719176",
+      "probability_decimal": "0.9891397404719176"
+    },
+    {
+      "token_id": 9103,
+      "cdf_low": "0.8124219697802102",
+      "cdf_high": "0.8125699525177397",
+      "probability_decimal": "0.0001479827375295"
+    },
+    {
+      "token_id": 2854,
+      "cdf_low": "0.0",
+      "cdf_high": "0.5086150218880291",
+      "probability_decimal": "0.5086150218880291"
+    },
+    {
+      "token_id": 11,
+      "cdf_low": "0.0",
+      "cdf_high": "0.4279396856943645",
+      "probability_decimal": "0.4279396856943645"
+    },
+    {
+      "token_id": 290,
+      "cdf_low": "0.4914963066399219",
+      "cdf_high": "0.6297890490376453",
+      "probability_decimal": "0.1382927423977234"
+    },
+    {
+      "token_id": 12716,
+      "cdf_low": "0.7939366684061738",
+      "cdf_high": "0.7950220228908738",
+      "probability_decimal": "0.0010853544847000"
+    }
+  ],
+  "surprisal_bits": 92.33475497697718,
+  "elapsed_seconds": 0.7823653649538755,
+  "context_trim_calls": 0,
+  "rejected_stop_count": 0,
+  "decimal_precision": 482,
+  "requested_tokens": 17
+}

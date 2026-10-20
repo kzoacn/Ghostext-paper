@@ -11,7 +11,7 @@ an indistinguishability claim.
 
 \subsection{Exact Coding and Stopping Audits}
 
-The original NLS result and the RRC stopped-law table in
+The original NLS result and the RRC stopped-law example in
 Sections~\ref{sec:audit}--\ref{sec:stopping} are exhaustively reproducible.
 The former executes pinned original code on all 256 one-byte inputs. The latter
 uses exact rational probabilities, including natural strings absent from the
@@ -50,34 +50,26 @@ payload blocks. Nonuniform tables retain finite rounding error. These are
 coding-law measurements under a uniform source, not measurements of ciphertext
 pseudorandomness or of ordinary natural-language security.
 
+Additional proof-support checks verify 19,200 safe-interval interior points
+and 98,304 exact reverse-error identities. They detect replacing a half-open
+safe interval by a closed one. Six complete prefix-tree enumerations check
+Eq.~\eqref{eq:endpoint-identity} at a public cap of eight tokens, retaining
+unresolved cap outcomes, and fixed-depth enumerations check
+Eq.~\eqref{eq:fixed-endpoint-failure}. These finite checks supplement the
+proofs; they do not establish an asymptotic claim by simulation.
+
 \subsection{Stopping with an Identical Length Histogram}
 
 We simulate the published ideal RRC stopping law for the fixed binary source
 $p=0.75$, using 20,000 outputs per class at each $B$. The natural control receives
 a permutation of the stego lengths and independent fresh content, so the two
 empirical length histograms are exactly equal. We fix the detector score before
-sampling to $-|S(y)-B|$; there is no trained text model or fitted threshold.
-Table~\ref{tab:stopping-simulation} also reports the event
-$B-8\le S(y)\le B+2$, whose stopped-law probability is at least $0.984375$ by
-the hazard bound. Complete simulation outputs and seeds are retained.
+sampling to $-|I(y)-B|$; there is no trained text model or fitted threshold.
+We also measure the fixed event
+$B-8\le I(y)\le B+2$, whose stopped-law probability is at least $0.984375$ by
+the hazard bound. The AUC rises from $0.666$ at eight bits to $0.969$ at 2048 bits; at 2048 bits the stopped and control band rates are $0.994$ and $0.082$. Complete outputs and seeds are retained.
 
-\begin{table}[t]
-\centering
-\caption{IID stopping simulation with exactly matched empirical length
-histograms. Band rates use the fixed event $B-8\le S\le B+2$.}
-\label{tab:stopping-simulation}
-\begin{tabular}{rrrr}
-\toprule
-$B$ (bits) & Gap-score AUC & Stego band rate & Control band rate \\
-\midrule
-8 & 0.666 & 1.000 & 0.878 \\
-32 & 0.778 & 0.993 & 0.585 \\
-128 & 0.880 & 0.993 & 0.322 \\
-512 & 0.940 & 0.993 & 0.158 \\
-2048 & 0.969 & 0.994 & 0.082 \\
-\bottomrule
-\end{tabular}
-\end{table}
+
 
 The growing gap is consistent with Theorem~\ref{thm:stopping}, but the theorem
 is established by its proof rather than these simulations. The uniform binary
@@ -106,69 +98,108 @@ Count-and-length TV is a projection of complete-transcript TV.}
 \label{fig:finite-effects}
 \end{figure*}
 
-\subsection{Reanalysis of the Archived Delivery Grid}
+\subsection{Current Upstream Code and an Endpoint Control}
+\label{sec:upstream-study}
 
-The archive contains a fixed $10\times10$ grid: five English and five Chinese
-prompts crossed with ten public messages. We verify unique pair identifiers,
-cover-text hashes, packet sizes, token accounting, and the reported rate
-calculation directly from the 100 records. All records report matching decoded
-plaintext, but only 81 deliveries succeed on their first attempt; the 100
-deliveries require 140 attempts. Failed-attempt prefixes were not retained in
-that archive, so their detailed causes cannot be reconstructed from its success
-summaries alone.
+We separately execute RRC commit \texttt{dae3262} (September 2026)~\cite{rrc2026code}, including its
+unchanged \texttt{embed\_message} and \texttt{extract\_message} functions. This
+study uses the upstream full GPT-2 vocabulary and Decimal-converted CDFs;
+there is no Ghostext truncation, frequency quantization, or stability filter.
+The public information score uses differences of the actual cumulative
+boundaries, which need not equal the separately reported softmax values.
 
-\begin{table*}[t]
+A frozen hash ordering of the released C4 prompt rows chooses 20 distinct
+clusters: ten development and ten test prompts, with four tapes at each of
+128 and 512 bits, totaling 160 secret instances. The unverified and verified
+arms share a secret and rotation tape. A separate fixed-endpoint control uses
+independent secrets and rotations, stopping at the verified arm's length,
+which is independent of its own content. A fresh natural stream is sampled
+from the same boundary-defined source using lazy unbiased-bit comparisons;
+its prefixes provide exactly paired token lengths. Experimental random tapes
+remain seeded PRNG streams. Each complete output receives a fresh upstream
+receiver replay. The context window is 900 tokens and the cap is $2B$.
+
+The fixed-endpoint arm is a separately written control using upstream active
+primitives, not an unchanged encoder. An excluded four-case harness pilot
+found one precision-exhaustion failure when this control continued past
+payload completion. Before confirmatory generation, its Decimal reserve was
+increased as a fixed function of the prescribed endpoint and vocabulary size;
+the stopping arms retained the upstream 40-digit margin. Both pilot versions,
+including that failure, are retained. No prompts, scores, or sample counts
+were adjusted using confirmatory outcomes.
+
+All 160 instances complete in all three arms and their natural controls, with
+no context trimming. On token IDs, the unverified receiver recovers 159/160
+messages; verification vetoes one candidate stop, adds one token, and gives
+160/160 recovery. Upstream serialization decodes the prompt plus continuation
+while skipping special tokens. Only 130 generated texts per arm and 132
+natural texts preserve their tokenization. This leaves 110 eligible matched
+pairs for either stopping arm and 107 for the independent-endpoint control.
+Visible-text recovery is 129/160 unverified and 130/160 verified. These losses
+are retained, not attributed to the stopping theorem or silently filtered from
+reliability counts.
+
+\input{tables/upstream-results}
+
+The prespecified score remains $-|I(y)-B|$, with the higher development-control
+95th percentile and a strict-greater decision. Both stopping arms have held-out
+AUCs $0.938/0.998$ at 128/512 bits (Table~\ref{tab:upstream-results}). The eligible
+slices contain ten and nine test prompt clusters, respectively. At 128 bits,
+the observed FPR is $0.200$; the zero FPR at 512 bits is only $0/21$ controls.
+Neither result establishes a calibrated low-FPR deployment operating point.
+Requiring successful text recovery changes unverified 128-bit AUC to $0.934$
+and leaves the verified results unchanged. A separate raw-token sensitivity
+retains all 160 instances, including serialization failures: verified AUCs are
+$0.926/0.996$, versus $0.542/0.534$ for the fixed-endpoint control. This is a
+raw-token comparison, not a visible-text result.
+
+The fixed-endpoint AUCs are $0.533/0.586$, with intervals that include $0.5$.
+These are a pipeline control, not empirical proof of equality. Its delivery
+cost is substantial at these independently chosen budgets: only 74/160
+messages recover from IDs and 61/160 from rendered text. The primary control
+analysis keeps these failures. Figure~\ref{fig:upstream-endpoints} shows the
+information-gap distributions. The ideal fixed-endpoint sampling argument,
+not a nonsignificant test, explains why decoupling the endpoint removes the
+particular stopping mechanism. Larger independently chosen budgets can improve
+recovery at a rate cost.
+
+\begin{figure*}[t]
 \centering
-\caption{Historical Qwen delivery grid, reanalyzed without changing its raw
-records. Net rate counts plaintext; gross rate counts the entire packet. Rates
-include all transmitted tokens. Timings are historical measurements.}
-\label{tab:grid-benchmark}
-\begin{tabular}{lrrrrrr}
-\toprule
-Slice & Trials & Recorded deliveries & Net bits/token & Gross bits/token & Encode median (s) & Decode median (s) \\
-\midrule
-Overall & 100 & 100/100 & 1.172 & 2.619 & 37.74 & 34.47 \\
-English prompts & 50 & 50/50 & 1.203 & 2.686 & 35.04 & 34.21 \\
-Chinese prompts & 50 & 50/50 & 1.142 & 2.552 & 38.90 & 37.09 \\
-Short messages & 40 & 40/40 & 0.874 & 2.645 & 27.90 & 26.45 \\
-Medium messages & 40 & 40/40 & 1.248 & 2.594 & 42.31 & 37.43 \\
-Long messages & 20 & 20/20 & 1.619 & 2.615 & 60.22 & 58.11 \\
-\bottomrule
-\end{tabular}
-\end{table*}
+\includegraphics[width=\textwidth]{figures/upstream-endpoint-control.pdf}
+\caption{Current upstream GPT-2 study: absolute information gaps on eligible
+held-out visible texts. Each panel has identical generated/control length
+histograms. The fixed-endpoint arm retains recovery failures. Axes are linear
+below one bit and logarithmic above it; all outlying gaps remain included.
+Canonical-text selection differs between arms and is quantified in
+Table~\ref{tab:upstream-results}.}
+\label{fig:upstream-endpoints}
+\end{figure*}
 
-The fixed 88-byte framing cost is substantial for 31--147-byte plaintexts.
-The mean per-text net rate is 1.172 bits/token, while aggregate plaintext bits
-divided by aggregate tokens is 1.210; the two estimands differ. A prompt-cluster
-bootstrap over this fixed set gives a 95\% interval of [1.127,1.215] for the
-mean net rate. It describes variation over these ten prompt clusters, not
-arbitrary deployment prompts. The nominal Wilson interval for 100/100 recorded
-deliveries is [0.963,1], but shared grid inputs and one observation per cell limit
-an independent-Bernoulli interpretation.
+A public-feature replay selects the first eligible held-out case per bit length
+and arm. Scoring uses only visible text, public prompt, model, and $B$, with no
+secret or rotation tape. All twelve arm/control records reproduce their saved
+token IDs and every selected CDF boundary; identical inputs shared across arms
+reduce this to nine distinct model replays. The upstream empirical result
+therefore concerns the current numerical implementation separately from the
+continuous verified-rule theorem.
 
-\subsection{Keyless Bootstrap Probe on Real Text}
+\subsection{Archived Delivery Evidence}
 
-We replay all 118 archived stego texts: the 100 grid records and an earlier
-18-run cohort. All satisfy the legacy public bootstrap interval. For a paired
-pilot, the earlier cohort also provides 18 independently sampled controls with
-the same prompts and matched visible token lengths. Their historical sampler
-draws from the filtered floating-point probabilities, rather than integer
-frequencies $f/F$. It also emits an unfiltered raw argmax if the stable set is
-empty: three such fallbacks occur across three of the 18 texts. Their positions
-were not recorded. Thus this pilot does not isolate the codec against the
-strict quantized source $Q$ used in the fresh experiments, and it is not an
-ordinary-model-output comparison.
+The historical Qwen archive has 100 deliveries from a fixed bilingual
+$10\times10$ prompt/message grid, requiring 140 attempts; 81 succeed first
+try. Reanalysis verifies identifiers, text hashes, sizes, and token accounting.
+Its mean plaintext rate is 1.172 bits/token, versus gross packet rate 2.619;
+88-byte framing explains the difference. Failed-attempt prefixes were not
+retained, so this archive cannot establish their detailed causes.
 
-The legacy check accepts 18/18 stego texts and 7/18 controls; all 11 rejected
-controls choose a zero-width subinterval. Thus the paired pilot has TPR 1 and
-FPR 0.389, with nominal Wilson 95\% intervals [0.824,1] and [0.203,0.614],
-respectively. These wide intervals and the small number of prompt families
-preclude a low-FPR claim. Replaying the same texts with $g=128$ instead makes
-all 36 prefixes admissible, illustrating that an interval-validity rule depends
-on its precise codec state. This replay does not measure newly generated
-repaired traffic.
+A separate 18-pair historical bootstrap pilot accepts all stego prefixes but
+only seven controls under the legacy interval rule. The controls used filtered
+floating probabilities and three unfiltered-argmax fallbacks, not the strict
+quantized source of the fresh experiments. Its small, partially controlled
+sample is supporting context only. The artifact retains all records, exact
+rate reanalysis, and the distinct pilot provenance.
 
-\subsection{Fresh Model Protocol}
+\subsection{Controlled Model Protocol}
 
 The fresh stopping study uses ten topic families, with English contexts for
 GPT-2 and paired English/Chinese contexts for Qwen. Five families are reserved
@@ -188,7 +219,7 @@ pipeline with per-trial attempt traces. Their purpose is to distinguish
 coding repair from the separate stopping and retry effects, not to claim that
 the repaired prototype is detector-resistant.
 
-\subsection{Fresh Stopping Results and Selection}
+\subsection{Controlled Stopping Results and Selection}
 
 The strict-source study completes all 160 planned GPT-2 pairs and 320 planned
 Qwen pairs. Table~\ref{tab:stopping-outcomes} keeps attempted generation separate
@@ -200,7 +231,7 @@ turn a conditional detector result into an unconditional transmitted-text law.
 
 \input{tables/stopping-outcomes}
 
-We fix the score to $-|S(y)-B|$ and fit a threshold at the 95th percentile of
+We fix the score to $-|I(y)-B|$ and fit a threshold at the 95th percentile of
 development-control scores, using the higher observed quantile and a strict
 greater-than decision. No test scores tune the rule. Table~\ref{tab:stopping-llm}
 reports held-out topic results and 5000-resample topic-cluster intervals.
@@ -218,16 +249,7 @@ sender-side reverse check. Requiring reverse success leaves strict-source
 held-out AUCs of $0.861/0.934$ for GPT-2 and $0.948/0.970$ for Qwen. This
 sensitivity analysis remains conditional; it does not erase recovery failures.
 
-\begin{figure*}[t]
-\centering
-\includegraphics[width=\textwidth]{figures/stopping-llm-gap.pdf}
-\caption{Public surprisal gaps on complete matched held-out pairs from the
-strict candidate source. Both classes have identical empirical length
-histograms. Horizontal axes are linear below one bit and logarithmic above it;
-outlying control gaps remain included. The plotted inclusion rule and sample
-sizes are conditional on the outcomes in Table~\ref{tab:stopping-outcomes}.}
-\label{fig:llm-gaps}
-\end{figure*}
+
 
 A separate replay reads only visible text and public model inputs for the
 first eligible held-out case in each bit-length/language group. All twelve
@@ -307,19 +329,46 @@ assumption.
 Independent replays from twelve held-out texts across the two models reproduce
 the cached bootstrap outcomes and stopping positions.
 
-\subsection{Checking the Later Stopping Modification}
+\subsection{The Endpoint Signal after Coding Repair}
+\label{sec:endpoint-replay}
 
-A separately labelled 40-case GPT-2 ablation enables reverse verification
-before accepting a stop, using the original experimental tapes. It rejects
-zero candidate stops, so it is only an unchanged-path check and supplies no
-evidence of a real-model recovery repair. The exact finite-tape control in the
-artifact does exercise the veto and also exhibits token-budget exhaustion.
+We specify this additional replay after the delivery study and the endpoint
+analysis, making it a post-hoc diagnostic. It uses every previously eligible
+guard-128 pair: thirteen GPT-2 and 37 Qwen pairs, with the same interrupted-case
+exclusion. The observer additionally knows the 16-byte plaintext length,
+giving public segment sizes of 60 and 44 bytes. The classifier takes only
+visible text, prompt, and public source parameters. It retokenizes, advances
+the two integer intervals, and accepts precisely when the second segment first resolves
+at the visible endpoint. It does not use a key or decrypt a header, and checks
+prefix resolution rather than all encoder abort predicates.
 
-For a targeted diagnostic, we separately replay every completed reverse-failure
-case from the full GPT-2 cohort. All three original token/probability sequences
-reproduce exactly. Verification adds one, two, and two tokens, respectively.
-An independent decoder then rebuilds intervals from visible text and the
-experimental rotation tape: it fails to recover the original message before
-the modification and succeeds afterward in these three cases. This selected
-diagnostic establishes the behavior of our adapter on those examples, not a
-general recovery rate or a security result for the current upstream software.
+\input{tables/endpoint-replay}
+
+All fifty delivered texts satisfy the endpoint condition
+(Table~\ref{tab:endpoint-replay}). No GPT-2 control does; one Qwen control does.
+Among the other controls, eight GPT-2 and nineteen Qwen texts resolve earlier,
+while five and seventeen remain unresolved. Thus the guarded bootstrap probe's
+acceptance of both classes does not remove this separate endpoint signal.
+True-positive acceptance is structural for correctly replayed no-tail
+deliveries; it is not learned generalization. The observed FPRs are conditional
+on the original complete-control slice. Nominal 95\% Wilson intervals are
+$[0,0.228]$ for GPT-2 and $[0.005,0.138]$ for Qwen, ignoring within-family
+dependence. The small cohort does not establish a deployment-wide low FPR.
+
+An independent integer-only analysis reproduces every decision from saved CDF
+boundaries. After classification, all fifty reconstructed packet hashes match
+the original successful attempts, and all 13,813 inspected natural selected
+masses match their archived values. An initial single-thread GPT-2 replay kept
+token IDs but changed some frequencies and failed packet fidelity; its complete
+records are retained solely as a runtime-mismatch diagnostic. Final replays
+use the original two-thread configuration. These checks support faithful public
+replay, without claiming that every historical CDF boundary was saved or that
+the packet distribution satisfies the ideal endpoint identity.
+
+\paragraph{Earlier verification diagnostics}
+A separate 40-case GPT-2 adapter ablation vetoed no stops and is only an
+unchanged-path check. A targeted replay of all three completed reverse failures
+from the original adapter cohort adds one, two, and two tokens; fresh text
+receivers then recover each message. The exact finite-tape audit also exercises
+a veto and budget exhaustion. These diagnostics concern the adapter;
+Section~\ref{sec:upstream-study} provides the separate unchanged-upstream result.

@@ -19,6 +19,10 @@ FULL_COHORTS = [
     ("sp2027-stopping-qwen-expanded", "pairs.jsonl"),
     ("sp2027-repair-gpt2", "runs.jsonl"), ("sp2027-repair-qwen", "runs.jsonl"),
 ]
+CASE_COHORTS = [
+    "sp2027-upstream-gpt2", "sp2027-upstream-gpt2-pilot", "sp2027-upstream-gpt2-pilot-v2",
+    "sp2027-endpoint-gpt2", "sp2027-endpoint-gpt2-corrected", "sp2027-endpoint-qwen",
+]
 EXCLUDED_SCRIPTS = {"merge_aligned_baselines.py", "merge_real_backend_baseline.py",
                     "run_aligned_baselines.py", "run_hmin_sweep.py"}
 
@@ -83,7 +87,10 @@ def scientific_fields(value):
     """Extract observation fields whose values must survive the export exactly."""
     keys = {"cover_text", "prefix_text", "prompt", "message", "token_ids",
             "chosen_probabilities", "surprisal_bits", "status", "recovery_match",
-            "attempts_used", "elapsed_seconds", "net_bpt", "gross_bpt"}
+            "attempts_used", "elapsed_seconds", "net_bpt", "gross_bpt",
+            "interval_observations", "cdf_low", "cdf_high", "probability_decimal",
+            "visible_token_ids", "visible_continuation_token_ids", "context_token_ids",
+            "trace", "segment_endpoints", "packet_sha256", "text_sha256"}
     if isinstance(value, dict):
         return {k: v if k in keys or isinstance(v, (int, float, bool)) else scientific_fields(v)
                 for k, v in value.items()
@@ -105,6 +112,18 @@ def main():
             {r["case_id"] for r in rows} == {r["case_id"] for r in manifest["tasks"]}
         if not args.draft and (not complete or not (directory / "analysis.json").exists()):
             raise ValueError(f"Incomplete/unanalysed cohort: {name}")
+    for name in CASE_COHORTS:
+        directory = ROOT / "results" / name
+        manifest = json.loads((directory / "manifest.json").read_text())
+        rows = [json.loads(p.read_text()) for p in (directory / "cases").glob("*.json")]
+        complete = (len(rows) == len(manifest["tasks"]) and
+                    {r["case_id"] for r in rows} == {r["case_id"] for r in manifest["tasks"]})
+        if not args.draft and (not complete or not (directory / "analysis.json").exists()):
+            raise ValueError(f"Incomplete/unanalysed case cohort: {name}")
+    if not args.draft:
+        public_replay = json.loads(
+            (ROOT / "results/sp2027-upstream-public-features/summary.json").read_text())
+        assert public_replay["all_public_features_match"] and public_replay["pairs"] == 6
     tokens = identity_tokens()
     source_files = {}
     paper_files = {ROOT / "paper/main.tex", ROOT / "paper/refs.bib", ROOT / "paper/main.pdf"}
@@ -124,6 +143,19 @@ def main():
                     pending.append(path)
     for path in paper_files:
         source_files["Ghostext-paper/" + str(path.relative_to(ROOT))] = path
+    # Retain generated supporting figures even when a shorter manuscript
+    # no longer includes them; their provenance manifests still reference them.
+    for name in ["sp2027-figures", "sp2027-tables", "sp2027-accept-figures", "sp2027-accept-tables"]:
+        manifest_path = ROOT / "results" / name / "manifest.json"
+        if not manifest_path.exists():
+            continue
+        render_manifest = json.loads(manifest_path.read_text())
+        for category in ["outputs", "tables"]:
+            for relative, expected in render_manifest.get(category, {}).items():
+                source = ROOT / relative
+                assert source.resolve().is_relative_to(ROOT.resolve())
+                assert sha(source.read_bytes()) == expected
+                source_files["Ghostext-paper/" + relative] = source
     for path in (ROOT / "scripts").glob("*.py"):
         if path.name not in EXCLUDED_SCRIPTS:
             source_files["Ghostext-paper/scripts/" + path.name] = path
@@ -140,6 +172,15 @@ def main():
                      "results/sp2027-validation/core-pytest.txt",
                      "REPRODUCIBILITY.md", "requirements-analysis.txt", "requirements-revision.txt"]:
         source_files["Ghostext-paper/" + relative] = ROOT / relative
+    source_map = json.loads((ROOT / "results/sp2027-source-map/index.json").read_text())
+    for profile in source_map["profiles"].values():
+        for relative, expected in profile.get("data_inputs", {}).items():
+            source = ROOT.parent / relative
+            assert source.resolve().is_relative_to(ROOT.parent.resolve())
+            assert sha(source.read_bytes()) == expected
+            source_files[relative] = source
+    source_files["Ghostext-paper/notes/sp2027-accept-study-plan.md"] = (
+        ROOT / "notes/sp2027-accept-study-plan.md")
     for directory in ["src", "tests"]:
         for path in (ROOT.parent / "Ghostext" / directory).rglob("*.py"):
             source_files["Ghostext/" + str(path.relative_to(ROOT.parent / "Ghostext"))] = path

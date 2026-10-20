@@ -67,6 +67,32 @@ def main():
                          "--out-dir", "<NEW_OUTPUT_DIRECTORY>", "--include-grid"]
             details = {"public_bootstrap_bytes": 60, "probe_horizon": 2048, "guards": [0, 128],
                        "historical_control": "floating probabilities plus three raw-argmax fallbacks"}
+        elif schema == "upstream-rrc-v1":
+            entry = "run_upstream_rrc.py"
+            arguments = ["--model-path", model, "--out-dir", "<NEW_OUTPUT_DIRECTORY>"]
+            if manifest["pilot"]:
+                arguments.append("--pilot")
+            details = {
+                **manifest["parameters"], "upstream": manifest["upstream"],
+                "study_plan_sha256": manifest["study_plan_sha256"],
+                "scope": "Excluded harness pilot" if manifest["pilot"]
+                         else "Frozen current-upstream confirmatory cohort",
+                "external_fetch": "Immutable RRC inputs are fetched and hash checked by the entry point.",
+            }
+        elif schema == "public-endpoint-replay-v1":
+            entry = "run_public_endpoint_replay.py"
+            arguments = ["--backend", backend, "--model-path", model,
+                         "--threads", str(manifest["parameters"]["threads"]),
+                         "--out-dir", "<NEW_OUTPUT_DIRECTORY>"]
+            details = {**manifest["parameters"], "scope": manifest["scope"]}
+            if name == "sp2027-endpoint-gpt2":
+                details["interpretation"] = (
+                    "Retained one-thread runtime-mismatch diagnostic, excluded from the same-source result.")
+        elif schema == "upstream-public-replay-v1":
+            entry = "replay_upstream_public_features.py"
+            arguments = ["--model-path", model, "--out-dir", "<NEW_OUTPUT_DIRECTORY>"]
+            details = {"selection": manifest["selection"], "scope": manifest["scope"],
+                       "upstream": manifest["upstream"]}
         elif "selected_case_ids" in manifest:
             entry = "replay_reverse_failures.py"
             original = f"Ghostext-paper/results/sp2027-stopping-{backend}"
@@ -89,6 +115,7 @@ def main():
             "working_directory": "root of the materialized profile",
             "arguments": arguments, "policy": details,
             "staged_input_files": profile.get("data_inputs", {}),
+            "staged_input_aliases": profile.get("input_aliases", {}),
             "recorded_cpu_affinity": manifest.get("parameters", {}).get("cpu_affinity"),
             "package_environment": "results/sp2027-environment/python-packages.json",
         }

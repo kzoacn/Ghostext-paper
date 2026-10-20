@@ -1,0 +1,202 @@
+{
+  "status": "complete",
+  "error": null,
+  "token_ids": [
+    3012,
+    547,
+    5545,
+    379,
+    257,
+    4495,
+    379,
+    262,
+    9072,
+    329,
+    38018,
+    23555,
+    1215
+  ],
+  "tokens": 13,
+  "cover_text": "The results of the NOMAD crowd-sourced data analytics competition with Google were presented at a conference at the Centre for Regulatory Solutions Ad",
+  "text_sha256": "f96dcae3b36a3c0dace6e92a0e28b7648279b59247e8aaba87006e6a78cc7a96",
+  "context_token_ids": [
+    464,
+    2482,
+    286,
+    262,
+    399,
+    2662,
+    2885,
+    4315,
+    12,
+    82,
+    30555,
+    1366,
+    23696,
+    5449,
+    351
+  ],
+  "visible_token_ids": [
+    464,
+    2482,
+    286,
+    262,
+    399,
+    2662,
+    2885,
+    4315,
+    12,
+    82,
+    30555,
+    1366,
+    23696,
+    5449,
+    351,
+    3012,
+    547,
+    5545,
+    379,
+    257,
+    4495,
+    379,
+    262,
+    9072,
+    329,
+    38018,
+    23555,
+    1215
+  ],
+  "visible_continuation_token_ids": [
+    3012,
+    547,
+    5545,
+    379,
+    257,
+    4495,
+    379,
+    262,
+    9072,
+    329,
+    38018,
+    23555,
+    1215
+  ],
+  "prompt_prefix_matches": true,
+  "canonical_text_roundtrip": true,
+  "chosen_probabilities": [
+    0.02501940287796893,
+    0.03446199505920228,
+    0.0639203577887042,
+    0.4031628618291686,
+    0.11085417747159387,
+    0.19006250556555457,
+    0.0416452677276331,
+    0.3439143509205575,
+    0.0004730265617909,
+    0.7271089083806208,
+    8.6831836989e-05,
+    0.0064301673976307,
+    1.24878763024e-05
+  ],
+  "interval_observations": [
+    {
+      "token_id": 3012,
+      "cdf_low": "0.1682026019986904",
+      "cdf_high": "0.19322200487665933",
+      "probability_decimal": "0.02501940287796893"
+    },
+    {
+      "token_id": 547,
+      "cdf_low": "0.41024054801696735",
+      "cdf_high": "0.44470254307616963",
+      "probability_decimal": "0.03446199505920228"
+    },
+    {
+      "token_id": 5545,
+      "cdf_low": "0.1982623683972411",
+      "cdf_high": "0.2621827261859453",
+      "probability_decimal": "0.0639203577887042"
+    },
+    {
+      "token_id": 379,
+      "cdf_low": "0.0",
+      "cdf_high": "0.4031628618291686",
+      "probability_decimal": "0.4031628618291686"
+    },
+    {
+      "token_id": 257,
+      "cdf_low": "0.49577269112678013",
+      "cdf_high": "0.606626868598374",
+      "probability_decimal": "0.11085417747159387"
+    },
+    {
+      "token_id": 4495,
+      "cdf_low": "0.0",
+      "cdf_high": "0.19006250556555457",
+      "probability_decimal": "0.19006250556555457"
+    },
+    {
+      "token_id": 379,
+      "cdf_low": "0.5460257820418842",
+      "cdf_high": "0.5876710497695173",
+      "probability_decimal": "0.0416452677276331"
+    },
+    {
+      "token_id": 262,
+      "cdf_low": "0.0",
+      "cdf_high": "0.3439143509205575",
+      "probability_decimal": "0.3439143509205575"
+    },
+    {
+      "token_id": 9072,
+      "cdf_low": "0.7110871545833609",
+      "cdf_high": "0.7115601811451518",
+      "probability_decimal": "0.0004730265617909"
+    },
+    {
+      "token_id": 329,
+      "cdf_low": "0.0",
+      "cdf_high": "0.7271089083806208",
+      "probability_decimal": "0.7271089083806208"
+    },
+    {
+      "token_id": 38018,
+      "cdf_low": "0.9245603615265341",
+      "cdf_high": "0.9246471933635231",
+      "probability_decimal": "0.0000868318369890"
+    },
+    {
+      "token_id": 23555,
+      "cdf_low": "0.7077551513774932",
+      "cdf_high": "0.7141853187751239",
+      "probability_decimal": "0.0064301673976307"
+    },
+    {
+      "token_id": 1215,
+      "cdf_low": "0.9787733432794937",
+      "cdf_high": "0.9787858311557961",
+      "probability_decimal": "0.0000124878763024"
+    }
+  ],
+  "surprisal_bits": 75.71911083381897,
+  "elapsed_seconds": 0.49742742092348635,
+  "context_trim_calls": 0,
+  "rejected_stop_count": 0,
+  "decimal_precision": 79,
+  "requested_tokens": 13,
+  "sampling_bits_per_token": [
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64
+  ]
+}

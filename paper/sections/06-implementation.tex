@@ -1,72 +1,44 @@
 \section{Implementation and Measurement}
 \label{sec:implementation}
 
-The implementation separates packet crypto, candidate policy, quantization,
-integer codec, model backend, and the encode/decode pipeline. The guarded codec
-uses arbitrary-precision Python integers and operating-system randomness for
-its suffixes. An explicit zero-guard option retains the legacy codec for
-controlled comparisons. Protocol tests cover integer invertibility, bilingual
-text recovery, wrong credentials and mismatched settings, empty messages, and
-failure on impossible token paths. Exhaustive tests additionally verify the
-uniform-64 support counterexample and recovery for every byte under
-context-dependent candidate tables.
+Ghostext separates packet crypto, candidate policy, quantization, integer codec,
+model backend, and the encode/decode pipeline. The guarded codec uses Python
+integers and operating-system suffix randomness. An explicit zero-guard option
+retains the legacy codec. Tests cover bilingual recovery, wrong credentials,
+configuration mismatch, impossible paths, empty messages, and exhaustive
+one-byte recovery under context-dependent tables. An optional callback records
+every completed encoding attempt, including failed prefixes, packet hashes,
+and elapsed time; normal library use emits none of this telemetry.
 
-\paragraph{Observation without changing the wire format}
-An optional attempt callback records success or failure, elapsed time, packet
-hash and length, and the generated prefix for each completed encoding attempt. Normal
-library use emits none of this telemetry. Completed research records preserve
-failed attempts as well as the final cover. A separate keyless probe
-accepts text, public configuration, and bootstrap length; its interface does not
-accept a passphrase. It records distinct rejection reasons and can be replayed
-on natural controls.
+\paragraph{Model and numerical environments}
+The experiments use GPT-2 through Transformers and Qwen3.5-2B in a third-party
+Q4\_K\_S GGUF through \texttt{llama-cpp-python} 0.3.20, packaged llama.cpp build
+\texttt{f49e917}. The host has an AMD Ryzen 7 7800X3D CPU and 31\,GiB available
+RAM. Original controlled stopping runs use two GPT-2 and four Qwen inference
+threads; authenticated delivery and its final replays use two. The upstream
+RRC study follows its single-thread CPU path. Source and model bytes,
+parameters, task lists, and CPU allocations are recorded; cross-hardware
+bitwise replay is not claimed. Instrumented delivery decoding repeats candidate
+auditing, so its latency is not a production benchmark.
 
-\paragraph{Model environments}
-The archived measurements use Qwen3.5-2B, a third-party Q4\_K\_S GGUF, and
-\texttt{llama-cpp-python} 0.3.20 with packaged llama.cpp build
-\texttt{f49e917}. The fresh experiments also use a local GPT-2 adapter through
-Transformers, with raw continuation prompts rather than Qwen's chat template.
-Weight files, tokenizer files, source modules, and execution parameters are
-hashed in each fresh run manifest. These are CPU experiments; cross-hardware
-bitwise replay is not claimed.
-The host has an AMD Ryzen 7 7800X3D CPU and 31\,GiB of available RAM.
-Stopping experiments use four inference threads for Qwen and two for GPT-2;
-delivery comparisons use two.
-Concurrent jobs have separate recorded CPU affinities. Instrumented delivery
-replay repeats candidate auditing, so its latency is not a production benchmark
-and is not directly compared with historical four-thread timings.
+\paragraph{Distinct executed algorithms}
+The original controlled RRC adapter uses rational arithmetic, 192-bit
+pseudorandom rotations, and Ghostext's explicitly processed integer source
+$Q$. Its $2B$-token cap follows the April implementation's harness. Its logged
+reverse check reuses sender intervals and offsets. The later upstream study
+instead executes pinned, unchanged sender and receiver functions with their
+full-vocabulary source, Decimal arithmetic, nominal 53-bit rotations, and
+independently initialized receiver steppers. The two experiments therefore
+test different numerical and source conditions. Appendix~\ref{app:rotation-grid}
+only bounds the former unverified public token/stop process under independent
+uniform grid draws. Public experimental PRNG tapes are not cryptographic keys.
 
-\paragraph{Independent checks}
-The exact codec experiment enumerates both complete coded paths and invalid
-reference branches using rational arithmetic. Its reference law is recomputed
-from token frequencies rather than inferred from the encoder's reported KL.
-The NLS harness fetches a pinned original revision and executes selected
-function definitions unchanged, with synthetic logits supplied by a small
-model stub. The RRC one-bit example independently enumerates its stopped law
-and every string in the length-matched control. These checks address different
-assumptions from ordinary round-trip tests.
-
-\paragraph{Stopping experiments}
-Our real-model RRC adapter implements the published rotation and midpoint rule
-with rational arithmetic and 192-bit pseudorandom rotation draws. It operates
-over the same explicitly masked, truncated, stable, quantized source $Q$ used
-by its natural control. This is a controlled algorithm study, not a reproduction
-of the publication's original model setup. Later verification-before-stop code
-is not silently substituted for the published rule. Real-model runs have a
-$2B$-token cap, following the pinned April implementation's harness; the ideal
-law and asymptotic theorem are uncapped. Budget exhaustion is a separate outcome
-and is never silently replaced. Each record retains the visible text, token IDs,
-selected probabilities, stopping status, canonical
-retokenization check, and sender-side reverse-recovery result. This latter
-check reuses the recorded intervals and offsets; it is not an independent
-receiver run. Public seeds are for
-repeatability; the evaluation does not claim cryptographic secrecy of test data.
-Appendix~\ref{app:rotation-grid} bounds the finite-grid approximation under
-independent uniform draws and states which logged quantities that bound excludes.
-
-\paragraph{Failure and resume discipline}
-Experiments save each completed record before starting the next case. Resuming
-requires matching source and model hashes and the complete configuration.
-Source or parameter changes require a new result directory. An interrupted run,
-a single smoke test, and a completed evaluation cohort are kept distinct.
-All comparisons must state whether they concern attempted generation,
-successful delivery, or conditioning on successful matched pairs.
+\paragraph{Independent observations and persistence}
+Exact audits recompute path laws independently of reported KL. Keyless replay
+functions take visible text and public parameters; saved IDs, intervals, and
+packet hashes are used only afterward for fidelity checks. Cohorts retain
+source failures, serialization changes, and recovery failures. Resuming a run
+requires its frozen sources and matching manifest; completed observations are
+not replaced. Upstream experiments persist every variant and receiver stage
+before advancing. Saved-data analyses state whether they use all attempts,
+canonical matched outputs, or successful deliveries.

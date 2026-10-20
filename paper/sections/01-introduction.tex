@@ -35,28 +35,35 @@ padding restricts the final token to four of 64 possibilities, despite a reporte
 KL of zero. The mechanisms differ, so we do not attribute Ghostext's interval
 implementation to NLS.
 
-We also analyze the published rotation range-coding (RRC) algorithm of Yan and
-Murawaki~\cite{yan2026rrc}. Fresh rotation preserves the next-token law during
-active generation. Its message-dependent stopping rule nevertheless introduces
-a public likelihood factor. We construct an exact finite counterexample and
-prove an asymptotic separation from a natural sampler with the \emph{same entire
-marginal length distribution}. This addresses the published stopping argument,
-not the security of its random-number generator. The later implementation adds
-verification before stopping; our exact formula is explicitly scoped to the
-published rule.
+Our main result concerns a broader termination problem. If an encoder finishes
+in a narrow band of cumulative source information, while independently sampled
+texts spread their information over a wider range, the endpoint exposes a
+public signal. We prove this concentration for arithmetic-prefix recovery and
+for both the published and reverse-verified rotation range-coding (RRC)
+midpoint rules~\cite{yan2026rrc}. On fixed Markov sources with positive
+varentropy, all three ideal mechanisms become asymptotically distinguishable
+even after matching the \emph{entire marginal length distribution}. A dependent zero-varentropy source gives exact equality instead. A fixed
+exogenous endpoint avoids the termination dependence but introduces a
+quantifiable recovery-failure probability.
+
+The distinction also reaches actual implementations. We execute unchanged
+current RRC sender and receiver functions over their full-vocabulary GPT-2
+source, with fresh development and test prompt clusters and an independent
+endpoint control. A separate public replay of Ghostext's authenticated delivery
+texts checks whether their first prefix-resolution endpoint remains visible
+after the integer-coding repair. These experiments keep numerical failures,
+serialization changes, and delivery conditioning explicit.
 
 \input{figures/intro-steganography}
 
 \paragraph{Contributions}
-First, we give reproducible, implementation-grounded audits separating padding,
-integer rounding, and stopping leakage. Second, we derive a keyless stopping
-likelihood and prove that, for a fixed nonuniform binary IID source, stopped RRC
-outputs become asymptotically distinguishable from independently
-length-matched natural samples. Third, we implement and analyze a guarded-prefix
-codec inside an authenticated text-channel protocol. Its explicit coding bound
-is complemented by raw-result reanalysis, a real-model bootstrap probe, and
-controlled experiments whose reference sampling and failure handling are
-specified separately.
+First, we establish a stopped-transcript separation for three termination
+mechanisms, including a new concentration argument for reverse verification
+and an explicit dependent-source bound. Second, exact external-code and
+finite-integer audits distinguish padding error from rounding and endpoint
+effects, with a scoped guarded-prefix repair. Third, unchanged upstream-code
+experiments and keyless text replays test the protocol consequences, alongside
+controlled two-model studies and complete failure records.
 
 \paragraph{Scope}
 Our results do not show that all arithmetic-coding schemes share these defects.

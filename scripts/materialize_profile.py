@@ -36,11 +36,24 @@ def main():
         target = destination / name
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_bytes(data)
+        # Replay entry points can themselves materialize the original codec
+        # from the generation manifest, so preserve these named objects too.
+        cached_target = destination / "Ghostext-paper/source-snapshots" / (expected + ".py")
+        cached_target.parent.mkdir(parents=True, exist_ok=True)
+        cached_target.write_bytes(data)
     for name, expected in profile.get("data_inputs", {}).items():
         source = ROOT.parent / name
         assert source.resolve().is_relative_to(ROOT.parent.resolve())
         data = source.read_bytes()
         assert hashlib.sha256(data).hexdigest() == expected
+        target = destination / name
+        assert target.resolve().is_relative_to(destination)
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_bytes(data)
+    for name, entry in profile.get("input_aliases", {}).items():
+        source = destination / entry["source"]
+        data = source.read_bytes()
+        assert hashlib.sha256(data).hexdigest() == entry["sha256"]
         target = destination / name
         assert target.resolve().is_relative_to(destination)
         target.parent.mkdir(parents=True, exist_ok=True)

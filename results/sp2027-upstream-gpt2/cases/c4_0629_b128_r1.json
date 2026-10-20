@@ -1,0 +1,1390 @@
+{
+  "prompt_id": "c4_0629",
+  "source_row": 629,
+  "prompt": "John Cohen will be the producer of Rovios self financed",
+  "selection_sha256": "0547e3aa49857e4fc6cafd63514a87e0a6f1515ab54a55819ecf736486480475",
+  "split": "test",
+  "message_bits": 128,
+  "repeat": 1,
+  "case_id": "c4_0629_b128_r1",
+  "variants": {
+    "unverified": {
+      "status": "complete",
+      "error": null,
+      "token_ids": [
+        4097,
+        649,
+        3876,
+        2442,
+        13,
+        1073,
+        13,
+        2724,
+        351,
+        45518,
+        5972,
+        494,
+        376,
+        20935,
+        11,
+        290
+      ],
+      "tokens": 16,
+      "cover_text": "John Cohen will be the producer of Rovios self financed band newmarris.co.uk with Heidi Logie Funn, and",
+      "text_sha256": "0f494aa2a61536d8b587a3a75fa415fd12d5a6b48e6326d127e85c23b392bb0a",
+      "context_token_ids": [
+        7554,
+        17154,
+        481,
+        307,
+        262,
+        9920,
+        286,
+        371,
+        709,
+        4267,
+        2116,
+        29768
+      ],
+      "visible_token_ids": [
+        7554,
+        17154,
+        481,
+        307,
+        262,
+        9920,
+        286,
+        371,
+        709,
+        4267,
+        2116,
+        29768,
+        4097,
+        649,
+        3876,
+        2442,
+        13,
+        1073,
+        13,
+        2724,
+        351,
+        45518,
+        5972,
+        494,
+        11138,
+        77,
+        11,
+        290
+      ],
+      "visible_continuation_token_ids": [
+        4097,
+        649,
+        3876,
+        2442,
+        13,
+        1073,
+        13,
+        2724,
+        351,
+        45518,
+        5972,
+        494,
+        11138,
+        77,
+        11,
+        290
+      ],
+      "prompt_prefix_matches": true,
+      "canonical_text_roundtrip": false,
+      "chosen_probabilities": [
+        0.0006659458669804,
+        0.0001661460881774,
+        0.000268183705619,
+        0.0011346948134366,
+        0.1939857575958262,
+        0.02906143621799575,
+        0.2872816366577973,
+        0.7888360969364291,
+        0.0214393546853779,
+        9.90030860044e-05,
+        5.240558775e-05,
+        0.0204938309680736,
+        8.95472884677e-05,
+        4.87951539253e-05,
+        0.1666184049851574,
+        0.02926133790481245
+      ],
+      "interval_observations": [
+        {
+          "token_id": 4097,
+          "cdf_low": "0.7175985181301776",
+          "cdf_high": "0.718264463997158",
+          "probability_decimal": "0.0006659458669804"
+        },
+        {
+          "token_id": 649,
+          "cdf_low": "0.6887413745595456",
+          "cdf_high": "0.688907520647723",
+          "probability_decimal": "0.0001661460881774"
+        },
+        {
+          "token_id": 3876,
+          "cdf_low": "0.7143819613622376",
+          "cdf_high": "0.7146501450678566",
+          "probability_decimal": "0.0002681837056190"
+        },
+        {
+          "token_id": 2442,
+          "cdf_low": "0.6648156229704684",
+          "cdf_high": "0.665950317783905",
+          "probability_decimal": "0.0011346948134366"
+        },
+        {
+          "token_id": 13,
+          "cdf_low": "0.0",
+          "cdf_high": "0.1939857575958262",
+          "probability_decimal": "0.1939857575958262"
+        },
+        {
+          "token_id": 1073,
+          "cdf_low": "0.39315981962179475",
+          "cdf_high": "0.4222212558397905",
+          "probability_decimal": "0.02906143621799575"
+        },
+        {
+          "token_id": 13,
+          "cdf_low": "0.0",
+          "cdf_high": "0.2872816366577973",
+          "probability_decimal": "0.2872816366577973"
+        },
+        {
+          "token_id": 2724,
+          "cdf_low": "0.0",
+          "cdf_high": "0.7888360969364291",
+          "probability_decimal": "0.7888360969364291"
+        },
+        {
+          "token_id": 351,
+          "cdf_low": "0.5897097926748001",
+          "cdf_high": "0.611149147360178",
+          "probability_decimal": "0.0214393546853779"
+        },
+        {
+          "token_id": 45518,
+          "cdf_low": "0.7933008714110944",
+          "cdf_high": "0.7933998744970988",
+          "probability_decimal": "0.0000990030860044"
+        },
+        {
+          "token_id": 5972,
+          "cdf_low": "0.9197310439524413",
+          "cdf_high": "0.9197834495401913",
+          "probability_decimal": "0.0000524055877500"
+        },
+        {
+          "token_id": 494,
+          "cdf_low": "0.5537339715799858",
+          "cdf_high": "0.5742278025480594",
+          "probability_decimal": "0.0204938309680736"
+        },
+        {
+          "token_id": 376,
+          "cdf_low": "0.9013764443768223",
+          "cdf_high": "0.90146599166529",
+          "probability_decimal": "0.0000895472884677"
+        },
+        {
+          "token_id": 20935,
+          "cdf_low": "0.9413500255711669",
+          "cdf_high": "0.9413988207250922",
+          "probability_decimal": "0.0000487951539253"
+        },
+        {
+          "token_id": 11,
+          "cdf_low": "0.412138333968775",
+          "cdf_high": "0.5787567389539324",
+          "probability_decimal": "0.1666184049851574"
+        },
+        {
+          "token_id": 290,
+          "cdf_low": "0.04918105322406729",
+          "cdf_high": "0.07844239112887974",
+          "probability_decimal": "0.02926133790481245"
+        }
+      ],
+      "surprisal_bits": 128.49241278187992,
+      "elapsed_seconds": 0.7160657879430801,
+      "context_trim_calls": 0,
+      "rejected_stop_count": 0,
+      "decimal_precision": 79
+    },
+    "verified": {
+      "status": "complete",
+      "error": null,
+      "token_ids": [
+        4097,
+        649,
+        3876,
+        2442,
+        13,
+        1073,
+        13,
+        2724,
+        351,
+        45518,
+        5972,
+        494,
+        376,
+        20935,
+        11,
+        290
+      ],
+      "tokens": 16,
+      "cover_text": "John Cohen will be the producer of Rovios self financed band newmarris.co.uk with Heidi Logie Funn, and",
+      "text_sha256": "0f494aa2a61536d8b587a3a75fa415fd12d5a6b48e6326d127e85c23b392bb0a",
+      "context_token_ids": [
+        7554,
+        17154,
+        481,
+        307,
+        262,
+        9920,
+        286,
+        371,
+        709,
+        4267,
+        2116,
+        29768
+      ],
+      "visible_token_ids": [
+        7554,
+        17154,
+        481,
+        307,
+        262,
+        9920,
+        286,
+        371,
+        709,
+        4267,
+        2116,
+        29768,
+        4097,
+        649,
+        3876,
+        2442,
+        13,
+        1073,
+        13,
+        2724,
+        351,
+        45518,
+        5972,
+        494,
+        11138,
+        77,
+        11,
+        290
+      ],
+      "visible_continuation_token_ids": [
+        4097,
+        649,
+        3876,
+        2442,
+        13,
+        1073,
+        13,
+        2724,
+        351,
+        45518,
+        5972,
+        494,
+        11138,
+        77,
+        11,
+        290
+      ],
+      "prompt_prefix_matches": true,
+      "canonical_text_roundtrip": false,
+      "chosen_probabilities": [
+        0.0006659458669804,
+        0.0001661460881774,
+        0.000268183705619,
+        0.0011346948134366,
+        0.1939857575958262,
+        0.02906143621799575,
+        0.2872816366577973,
+        0.7888360969364291,
+        0.0214393546853779,
+        9.90030860044e-05,
+        5.240558775e-05,
+        0.0204938309680736,
+        8.95472884677e-05,
+        4.87951539253e-05,
+        0.1666184049851574,
+        0.02926133790481245
+      ],
+      "interval_observations": [
+        {
+          "token_id": 4097,
+          "cdf_low": "0.7175985181301776",
+          "cdf_high": "0.718264463997158",
+          "probability_decimal": "0.0006659458669804"
+        },
+        {
+          "token_id": 649,
+          "cdf_low": "0.6887413745595456",
+          "cdf_high": "0.688907520647723",
+          "probability_decimal": "0.0001661460881774"
+        },
+        {
+          "token_id": 3876,
+          "cdf_low": "0.7143819613622376",
+          "cdf_high": "0.7146501450678566",
+          "probability_decimal": "0.0002681837056190"
+        },
+        {
+          "token_id": 2442,
+          "cdf_low": "0.6648156229704684",
+          "cdf_high": "0.665950317783905",
+          "probability_decimal": "0.0011346948134366"
+        },
+        {
+          "token_id": 13,
+          "cdf_low": "0.0",
+          "cdf_high": "0.1939857575958262",
+          "probability_decimal": "0.1939857575958262"
+        },
+        {
+          "token_id": 1073,
+          "cdf_low": "0.39315981962179475",
+          "cdf_high": "0.4222212558397905",
+          "probability_decimal": "0.02906143621799575"
+        },
+        {
+          "token_id": 13,
+          "cdf_low": "0.0",
+          "cdf_high": "0.2872816366577973",
+          "probability_decimal": "0.2872816366577973"
+        },
+        {
+          "token_id": 2724,
+          "cdf_low": "0.0",
+          "cdf_high": "0.7888360969364291",
+          "probability_decimal": "0.7888360969364291"
+        },
+        {
+          "token_id": 351,
+          "cdf_low": "0.5897097926748001",
+          "cdf_high": "0.611149147360178",
+          "probability_decimal": "0.0214393546853779"
+        },
+        {
+          "token_id": 45518,
+          "cdf_low": "0.7933008714110944",
+          "cdf_high": "0.7933998744970988",
+          "probability_decimal": "0.0000990030860044"
+        },
+        {
+          "token_id": 5972,
+          "cdf_low": "0.9197310439524413",
+          "cdf_high": "0.9197834495401913",
+          "probability_decimal": "0.0000524055877500"
+        },
+        {
+          "token_id": 494,
+          "cdf_low": "0.5537339715799858",
+          "cdf_high": "0.5742278025480594",
+          "probability_decimal": "0.0204938309680736"
+        },
+        {
+          "token_id": 376,
+          "cdf_low": "0.9013764443768223",
+          "cdf_high": "0.90146599166529",
+          "probability_decimal": "0.0000895472884677"
+        },
+        {
+          "token_id": 20935,
+          "cdf_low": "0.9413500255711669",
+          "cdf_high": "0.9413988207250922",
+          "probability_decimal": "0.0000487951539253"
+        },
+        {
+          "token_id": 11,
+          "cdf_low": "0.412138333968775",
+          "cdf_high": "0.5787567389539324",
+          "probability_decimal": "0.1666184049851574"
+        },
+        {
+          "token_id": 290,
+          "cdf_low": "0.04918105322406729",
+          "cdf_high": "0.07844239112887974",
+          "probability_decimal": "0.02926133790481245"
+        }
+      ],
+      "surprisal_bits": 128.49241278187992,
+      "elapsed_seconds": 0.7050714509095997,
+      "context_trim_calls": 0,
+      "rejected_stop_count": 0,
+      "decimal_precision": 79
+    },
+    "fixed_endpoint": {
+      "status": "complete",
+      "error": null,
+      "token_ids": [
+        1981,
+        905,
+        785,
+        11,
+        9897,
+        286,
+        18104,
+        428,
+        2693,
+        10185,
+        2080,
+        5780,
+        26039,
+        290,
+        509,
+        2290
+      ],
+      "tokens": 16,
+      "cover_text": "John Cohen will be the producer of Rovios self financed individual showcom, Ghost of Duty this September!!! With Martin Schneider and Klu",
+      "text_sha256": "9d2e82a0d9b0dcf19540115f0860d38a9ee317ded7e53956731cdf35e9ddcc31",
+      "context_token_ids": [
+        7554,
+        17154,
+        481,
+        307,
+        262,
+        9920,
+        286,
+        371,
+        709,
+        4267,
+        2116,
+        29768
+      ],
+      "visible_token_ids": [
+        7554,
+        17154,
+        481,
+        307,
+        262,
+        9920,
+        286,
+        371,
+        709,
+        4267,
+        2116,
+        29768,
+        1981,
+        905,
+        785,
+        11,
+        9897,
+        286,
+        18104,
+        428,
+        2693,
+        10185,
+        2080,
+        5780,
+        26039,
+        290,
+        41269
+      ],
+      "visible_continuation_token_ids": [
+        1981,
+        905,
+        785,
+        11,
+        9897,
+        286,
+        18104,
+        428,
+        2693,
+        10185,
+        2080,
+        5780,
+        26039,
+        290,
+        41269
+      ],
+      "prompt_prefix_matches": true,
+      "canonical_text_roundtrip": false,
+      "chosen_probabilities": [
+        0.0001009971560572,
+        0.00864369416687704,
+        0.0003563647927628,
+        0.0509630752664178,
+        0.0002146615728223,
+        0.0240353186155258,
+        7.57420285859e-05,
+        0.0007572321411295,
+        0.0184152215201355,
+        0.0016069196870069,
+        0.0026474582863268,
+        0.0001100185502227,
+        0.0005924292884767,
+        0.17145598188969124,
+        0.00282983745160334,
+        3.70059045403e-05
+      ],
+      "interval_observations": [
+        {
+          "token_id": 1981,
+          "cdf_low": "0.8645996078535749",
+          "cdf_high": "0.8647006050096321",
+          "probability_decimal": "0.0001009971560572"
+        },
+        {
+          "token_id": 905,
+          "cdf_low": "0.36608911411891126",
+          "cdf_high": "0.3747328082857883",
+          "probability_decimal": "0.00864369416687704"
+        },
+        {
+          "token_id": 785,
+          "cdf_low": "0.7076220478558354",
+          "cdf_high": "0.7079784126485982",
+          "probability_decimal": "0.0003563647927628"
+        },
+        {
+          "token_id": 11,
+          "cdf_low": "0.5118038025065201",
+          "cdf_high": "0.5627668777729379",
+          "probability_decimal": "0.0509630752664178"
+        },
+        {
+          "token_id": 9897,
+          "cdf_low": "0.6537835649493355",
+          "cdf_high": "0.6539982265221578",
+          "probability_decimal": "0.0002146615728223"
+        },
+        {
+          "token_id": 286,
+          "cdf_low": "0.2259594503956609",
+          "cdf_high": "0.2499947690111867",
+          "probability_decimal": "0.0240353186155258"
+        },
+        {
+          "token_id": 18104,
+          "cdf_low": "0.8424550782328741",
+          "cdf_high": "0.84253082026146",
+          "probability_decimal": "0.0000757420285859"
+        },
+        {
+          "token_id": 428,
+          "cdf_low": "0.8475965597979135",
+          "cdf_high": "0.848353791939043",
+          "probability_decimal": "0.0007572321411295"
+        },
+        {
+          "token_id": 2693,
+          "cdf_low": "0.7176936375407188",
+          "cdf_high": "0.7361088590608543",
+          "probability_decimal": "0.0184152215201355"
+        },
+        {
+          "token_id": 10185,
+          "cdf_low": "0.9106678318536015",
+          "cdf_high": "0.9122747515406084",
+          "probability_decimal": "0.0016069196870069"
+        },
+        {
+          "token_id": 2080,
+          "cdf_low": "0.6756703183505888",
+          "cdf_high": "0.6783177766369156",
+          "probability_decimal": "0.0026474582863268"
+        },
+        {
+          "token_id": 5780,
+          "cdf_low": "0.81893114669164",
+          "cdf_high": "0.8190411652418627",
+          "probability_decimal": "0.0001100185502227"
+        },
+        {
+          "token_id": 26039,
+          "cdf_low": "0.6224151032790727",
+          "cdf_high": "0.6230075325675494",
+          "probability_decimal": "0.0005924292884767"
+        },
+        {
+          "token_id": 290,
+          "cdf_low": "0.21135513546978002",
+          "cdf_high": "0.38281111735947126",
+          "probability_decimal": "0.17145598188969124"
+        },
+        {
+          "token_id": 509,
+          "cdf_low": "0.3743605516410605",
+          "cdf_high": "0.37719038909266384",
+          "probability_decimal": "0.00282983745160334"
+        },
+        {
+          "token_id": 2290,
+          "cdf_low": "0.9445698742657062",
+          "cdf_high": "0.9446068801702465",
+          "probability_decimal": "0.0000370059045403"
+        }
+      ],
+      "surprisal_bits": 150.7038623931022,
+      "elapsed_seconds": 0.7216885930392891,
+      "context_trim_calls": 0,
+      "rejected_stop_count": 0,
+      "decimal_precision": 460,
+      "requested_tokens": 16
+    }
+  },
+  "natural_controls": {
+    "unverified": {
+      "status": "complete",
+      "error": null,
+      "token_ids": [
+        10512,
+        17352,
+        5437,
+        11,
+        2930,
+        5689,
+        9375,
+        1134,
+        7235,
+        290,
+        318,
+        900,
+        284,
+        711,
+        5811,
+        6031
+      ],
+      "tokens": 16,
+      "cover_text": "John Cohen will be the producer of Rovios self financed drama Jessica Jones, Ser Joe Karik Blood and is set to play Bob Di",
+      "text_sha256": "c4d111e7992f7f550ecfd9c9ab9858d4e90d1e37427886bc4d0e52f343c268a8",
+      "context_token_ids": [
+        7554,
+        17154,
+        481,
+        307,
+        262,
+        9920,
+        286,
+        371,
+        709,
+        4267,
+        2116,
+        29768
+      ],
+      "visible_token_ids": [
+        7554,
+        17154,
+        481,
+        307,
+        262,
+        9920,
+        286,
+        371,
+        709,
+        4267,
+        2116,
+        29768,
+        10512,
+        17352,
+        5437,
+        11,
+        2930,
+        5689,
+        9375,
+        1134,
+        7235,
+        290,
+        318,
+        900,
+        284,
+        711,
+        5811,
+        6031
+      ],
+      "visible_continuation_token_ids": [
+        10512,
+        17352,
+        5437,
+        11,
+        2930,
+        5689,
+        9375,
+        1134,
+        7235,
+        290,
+        318,
+        900,
+        284,
+        711,
+        5811,
+        6031
+      ],
+      "prompt_prefix_matches": true,
+      "canonical_text_roundtrip": true,
+      "chosen_probabilities": [
+        0.01943849333146436,
+        0.0001152255290743,
+        0.3541838306081271,
+        0.19238326622956609,
+        8.78809065734e-05,
+        0.0002964719540527,
+        0.0007366588002839,
+        0.0001402644860195,
+        2.96846857e-05,
+        0.14738760692913033,
+        0.00716828886097667,
+        0.0546416127651264,
+        0.8561483464024262,
+        0.06590055159059435,
+        0.0007182180114944,
+        0.0006643156622378
+      ],
+      "interval_observations": [
+        {
+          "token_id": 10512,
+          "cdf_low": "0.2805756213623225",
+          "cdf_high": "0.30001411469378686",
+          "probability_decimal": "0.01943849333146436"
+        },
+        {
+          "token_id": 17352,
+          "cdf_low": "0.779373159848199",
+          "cdf_high": "0.7794883853772733",
+          "probability_decimal": "0.0001152255290743"
+        },
+        {
+          "token_id": 5437,
+          "cdf_low": "0.0",
+          "cdf_high": "0.3541838306081271",
+          "probability_decimal": "0.3541838306081271"
+        },
+        {
+          "token_id": 11,
+          "cdf_low": "0.24817542670851644",
+          "cdf_high": "0.44055869293808253",
+          "probability_decimal": "0.19238326622956609"
+        },
+        {
+          "token_id": 2930,
+          "cdf_low": "0.8554289427604319",
+          "cdf_high": "0.8555168236670053",
+          "probability_decimal": "0.0000878809065734"
+        },
+        {
+          "token_id": 5689,
+          "cdf_low": "0.8604881176914901",
+          "cdf_high": "0.8607845896455428",
+          "probability_decimal": "0.0002964719540527"
+        },
+        {
+          "token_id": 9375,
+          "cdf_low": "0.6192800443607048",
+          "cdf_high": "0.6200167031609887",
+          "probability_decimal": "0.0007366588002839"
+        },
+        {
+          "token_id": 1134,
+          "cdf_low": "0.9438346454351455",
+          "cdf_high": "0.943974909921165",
+          "probability_decimal": "0.0001402644860195"
+        },
+        {
+          "token_id": 7235,
+          "cdf_low": "0.9382128648824556",
+          "cdf_high": "0.9382425495681556",
+          "probability_decimal": "0.0000296846857000"
+        },
+        {
+          "token_id": 290,
+          "cdf_low": "0.22561456414326667",
+          "cdf_high": "0.373002171072397",
+          "probability_decimal": "0.14738760692913033"
+        },
+        {
+          "token_id": 318,
+          "cdf_low": "0.16088801735136535",
+          "cdf_high": "0.16805630621234202",
+          "probability_decimal": "0.00716828886097667"
+        },
+        {
+          "token_id": 900,
+          "cdf_low": "0.2822502804499902",
+          "cdf_high": "0.3368918932151166",
+          "probability_decimal": "0.0546416127651264"
+        },
+        {
+          "token_id": 284,
+          "cdf_low": "0.0",
+          "cdf_high": "0.8561483464024262",
+          "probability_decimal": "0.8561483464024262"
+        },
+        {
+          "token_id": 711,
+          "cdf_low": "0.3651638332858134",
+          "cdf_high": "0.43106438487640775",
+          "probability_decimal": "0.06590055159059435"
+        },
+        {
+          "token_id": 5811,
+          "cdf_low": "0.5729956717234821",
+          "cdf_high": "0.5737138897349765",
+          "probability_decimal": "0.0007182180114944"
+        },
+        {
+          "token_id": 6031,
+          "cdf_low": "0.6552755037929324",
+          "cdf_high": "0.6559398194551702",
+          "probability_decimal": "0.0006643156622378"
+        }
+      ],
+      "surprisal_bits": 125.3107652810056,
+      "elapsed_seconds": 0.7215293350163847,
+      "context_trim_calls": 0,
+      "rejected_stop_count": 0,
+      "decimal_precision": 79,
+      "requested_tokens": 16,
+      "elapsed_scope": "Time of the full shared natural stream, not this prefix",
+      "sampling_bits_per_token": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64
+      ]
+    },
+    "verified": {
+      "status": "complete",
+      "error": null,
+      "token_ids": [
+        10512,
+        17352,
+        5437,
+        11,
+        2930,
+        5689,
+        9375,
+        1134,
+        7235,
+        290,
+        318,
+        900,
+        284,
+        711,
+        5811,
+        6031
+      ],
+      "tokens": 16,
+      "cover_text": "John Cohen will be the producer of Rovios self financed drama Jessica Jones, Ser Joe Karik Blood and is set to play Bob Di",
+      "text_sha256": "c4d111e7992f7f550ecfd9c9ab9858d4e90d1e37427886bc4d0e52f343c268a8",
+      "context_token_ids": [
+        7554,
+        17154,
+        481,
+        307,
+        262,
+        9920,
+        286,
+        371,
+        709,
+        4267,
+        2116,
+        29768
+      ],
+      "visible_token_ids": [
+        7554,
+        17154,
+        481,
+        307,
+        262,
+        9920,
+        286,
+        371,
+        709,
+        4267,
+        2116,
+        29768,
+        10512,
+        17352,
+        5437,
+        11,
+        2930,
+        5689,
+        9375,
+        1134,
+        7235,
+        290,
+        318,
+        900,
+        284,
+        711,
+        5811,
+        6031
+      ],
+      "visible_continuation_token_ids": [
+        10512,
+        17352,
+        5437,
+        11,
+        2930,
+        5689,
+        9375,
+        1134,
+        7235,
+        290,
+        318,
+        900,
+        284,
+        711,
+        5811,
+        6031
+      ],
+      "prompt_prefix_matches": true,
+      "canonical_text_roundtrip": true,
+      "chosen_probabilities": [
+        0.01943849333146436,
+        0.0001152255290743,
+        0.3541838306081271,
+        0.19238326622956609,
+        8.78809065734e-05,
+        0.0002964719540527,
+        0.0007366588002839,
+        0.0001402644860195,
+        2.96846857e-05,
+        0.14738760692913033,
+        0.00716828886097667,
+        0.0546416127651264,
+        0.8561483464024262,
+        0.06590055159059435,
+        0.0007182180114944,
+        0.0006643156622378
+      ],
+      "interval_observations": [
+        {
+          "token_id": 10512,
+          "cdf_low": "0.2805756213623225",
+          "cdf_high": "0.30001411469378686",
+          "probability_decimal": "0.01943849333146436"
+        },
+        {
+          "token_id": 17352,
+          "cdf_low": "0.779373159848199",
+          "cdf_high": "0.7794883853772733",
+          "probability_decimal": "0.0001152255290743"
+        },
+        {
+          "token_id": 5437,
+          "cdf_low": "0.0",
+          "cdf_high": "0.3541838306081271",
+          "probability_decimal": "0.3541838306081271"
+        },
+        {
+          "token_id": 11,
+          "cdf_low": "0.24817542670851644",
+          "cdf_high": "0.44055869293808253",
+          "probability_decimal": "0.19238326622956609"
+        },
+        {
+          "token_id": 2930,
+          "cdf_low": "0.8554289427604319",
+          "cdf_high": "0.8555168236670053",
+          "probability_decimal": "0.0000878809065734"
+        },
+        {
+          "token_id": 5689,
+          "cdf_low": "0.8604881176914901",
+          "cdf_high": "0.8607845896455428",
+          "probability_decimal": "0.0002964719540527"
+        },
+        {
+          "token_id": 9375,
+          "cdf_low": "0.6192800443607048",
+          "cdf_high": "0.6200167031609887",
+          "probability_decimal": "0.0007366588002839"
+        },
+        {
+          "token_id": 1134,
+          "cdf_low": "0.9438346454351455",
+          "cdf_high": "0.943974909921165",
+          "probability_decimal": "0.0001402644860195"
+        },
+        {
+          "token_id": 7235,
+          "cdf_low": "0.9382128648824556",
+          "cdf_high": "0.9382425495681556",
+          "probability_decimal": "0.0000296846857000"
+        },
+        {
+          "token_id": 290,
+          "cdf_low": "0.22561456414326667",
+          "cdf_high": "0.373002171072397",
+          "probability_decimal": "0.14738760692913033"
+        },
+        {
+          "token_id": 318,
+          "cdf_low": "0.16088801735136535",
+          "cdf_high": "0.16805630621234202",
+          "probability_decimal": "0.00716828886097667"
+        },
+        {
+          "token_id": 900,
+          "cdf_low": "0.2822502804499902",
+          "cdf_high": "0.3368918932151166",
+          "probability_decimal": "0.0546416127651264"
+        },
+        {
+          "token_id": 284,
+          "cdf_low": "0.0",
+          "cdf_high": "0.8561483464024262",
+          "probability_decimal": "0.8561483464024262"
+        },
+        {
+          "token_id": 711,
+          "cdf_low": "0.3651638332858134",
+          "cdf_high": "0.43106438487640775",
+          "probability_decimal": "0.06590055159059435"
+        },
+        {
+          "token_id": 5811,
+          "cdf_low": "0.5729956717234821",
+          "cdf_high": "0.5737138897349765",
+          "probability_decimal": "0.0007182180114944"
+        },
+        {
+          "token_id": 6031,
+          "cdf_low": "0.6552755037929324",
+          "cdf_high": "0.6559398194551702",
+          "probability_decimal": "0.0006643156622378"
+        }
+      ],
+      "surprisal_bits": 125.3107652810056,
+      "elapsed_seconds": 0.7215293350163847,
+      "context_trim_calls": 0,
+      "rejected_stop_count": 0,
+      "decimal_precision": 79,
+      "requested_tokens": 16,
+      "elapsed_scope": "Time of the full shared natural stream, not this prefix",
+      "sampling_bits_per_token": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64
+      ]
+    },
+    "fixed_endpoint": {
+      "status": "complete",
+      "error": null,
+      "token_ids": [
+        10512,
+        17352,
+        5437,
+        11,
+        2930,
+        5689,
+        9375,
+        1134,
+        7235,
+        290,
+        318,
+        900,
+        284,
+        711,
+        5811,
+        6031
+      ],
+      "tokens": 16,
+      "cover_text": "John Cohen will be the producer of Rovios self financed drama Jessica Jones, Ser Joe Karik Blood and is set to play Bob Di",
+      "text_sha256": "c4d111e7992f7f550ecfd9c9ab9858d4e90d1e37427886bc4d0e52f343c268a8",
+      "context_token_ids": [
+        7554,
+        17154,
+        481,
+        307,
+        262,
+        9920,
+        286,
+        371,
+        709,
+        4267,
+        2116,
+        29768
+      ],
+      "visible_token_ids": [
+        7554,
+        17154,
+        481,
+        307,
+        262,
+        9920,
+        286,
+        371,
+        709,
+        4267,
+        2116,
+        29768,
+        10512,
+        17352,
+        5437,
+        11,
+        2930,
+        5689,
+        9375,
+        1134,
+        7235,
+        290,
+        318,
+        900,
+        284,
+        711,
+        5811,
+        6031
+      ],
+      "visible_continuation_token_ids": [
+        10512,
+        17352,
+        5437,
+        11,
+        2930,
+        5689,
+        9375,
+        1134,
+        7235,
+        290,
+        318,
+        900,
+        284,
+        711,
+        5811,
+        6031
+      ],
+      "prompt_prefix_matches": true,
+      "canonical_text_roundtrip": true,
+      "chosen_probabilities": [
+        0.01943849333146436,
+        0.0001152255290743,
+        0.3541838306081271,
+        0.19238326622956609,
+        8.78809065734e-05,
+        0.0002964719540527,
+        0.0007366588002839,
+        0.0001402644860195,
+        2.96846857e-05,
+        0.14738760692913033,
+        0.00716828886097667,
+        0.0546416127651264,
+        0.8561483464024262,
+        0.06590055159059435,
+        0.0007182180114944,
+        0.0006643156622378
+      ],
+      "interval_observations": [
+        {
+          "token_id": 10512,
+          "cdf_low": "0.2805756213623225",
+          "cdf_high": "0.30001411469378686",
+          "probability_decimal": "0.01943849333146436"
+        },
+        {
+          "token_id": 17352,
+          "cdf_low": "0.779373159848199",
+          "cdf_high": "0.7794883853772733",
+          "probability_decimal": "0.0001152255290743"
+        },
+        {
+          "token_id": 5437,
+          "cdf_low": "0.0",
+          "cdf_high": "0.3541838306081271",
+          "probability_decimal": "0.3541838306081271"
+        },
+        {
+          "token_id": 11,
+          "cdf_low": "0.24817542670851644",
+          "cdf_high": "0.44055869293808253",
+          "probability_decimal": "0.19238326622956609"
+        },
+        {
+          "token_id": 2930,
+          "cdf_low": "0.8554289427604319",
+          "cdf_high": "0.8555168236670053",
+          "probability_decimal": "0.0000878809065734"
+        },
+        {
+          "token_id": 5689,
+          "cdf_low": "0.8604881176914901",
+          "cdf_high": "0.8607845896455428",
+          "probability_decimal": "0.0002964719540527"
+        },
+        {
+          "token_id": 9375,
+          "cdf_low": "0.6192800443607048",
+          "cdf_high": "0.6200167031609887",
+          "probability_decimal": "0.0007366588002839"
+        },
+        {
+          "token_id": 1134,
+          "cdf_low": "0.9438346454351455",
+          "cdf_high": "0.943974909921165",
+          "probability_decimal": "0.0001402644860195"
+        },
+        {
+          "token_id": 7235,
+          "cdf_low": "0.9382128648824556",
+          "cdf_high": "0.9382425495681556",
+          "probability_decimal": "0.0000296846857000"
+        },
+        {
+          "token_id": 290,
+          "cdf_low": "0.22561456414326667",
+          "cdf_high": "0.373002171072397",
+          "probability_decimal": "0.14738760692913033"
+        },
+        {
+          "token_id": 318,
+          "cdf_low": "0.16088801735136535",
+          "cdf_high": "0.16805630621234202",
+          "probability_decimal": "0.00716828886097667"
+        },
+        {
+          "token_id": 900,
+          "cdf_low": "0.2822502804499902",
+          "cdf_high": "0.3368918932151166",
+          "probability_decimal": "0.0546416127651264"
+        },
+        {
+          "token_id": 284,
+          "cdf_low": "0.0",
+          "cdf_high": "0.8561483464024262",
+          "probability_decimal": "0.8561483464024262"
+        },
+        {
+          "token_id": 711,
+          "cdf_low": "0.3651638332858134",
+          "cdf_high": "0.43106438487640775",
+          "probability_decimal": "0.06590055159059435"
+        },
+        {
+          "token_id": 5811,
+          "cdf_low": "0.5729956717234821",
+          "cdf_high": "0.5737138897349765",
+          "probability_decimal": "0.0007182180114944"
+        },
+        {
+          "token_id": 6031,
+          "cdf_low": "0.6552755037929324",
+          "cdf_high": "0.6559398194551702",
+          "probability_decimal": "0.0006643156622378"
+        }
+      ],
+      "surprisal_bits": 125.3107652810056,
+      "elapsed_seconds": 0.7215293350163847,
+      "context_trim_calls": 0,
+      "rejected_stop_count": 0,
+      "decimal_precision": 79,
+      "requested_tokens": 16,
+      "elapsed_scope": "Time of the full shared natural stream, not this prefix",
+      "sampling_bits_per_token": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64
+      ]
+    }
+  },
+  "receivers": {
+    "unverified": {
+      "ids": {
+        "status": "complete",
+        "recovery_match": true,
+        "public_probabilities_match_sender": true,
+        "public_surprisal_bits": 128.49241278187992,
+        "elapsed_seconds": 0.7174756180029362,
+        "execution": "fresh upstream receiver and model stepper"
+      },
+      "text": {
+        "status": "complete",
+        "recovery_match": false,
+        "public_probabilities_match_sender": false,
+        "public_surprisal_bits": 123.31452426506151,
+        "elapsed_seconds": 0.6543767368420959,
+        "execution": "fresh upstream receiver and model stepper"
+      }
+    },
+    "verified": {
+      "ids": {
+        "status": "complete",
+        "recovery_match": true,
+        "public_probabilities_match_sender": true,
+        "public_surprisal_bits": 128.49241278187992,
+        "elapsed_seconds": 0.665522308088839,
+        "execution": "fresh upstream receiver and model stepper"
+      },
+      "text": {
+        "status": "complete",
+        "recovery_match": false,
+        "public_probabilities_match_sender": false,
+        "public_surprisal_bits": 123.31452426506151,
+        "elapsed_seconds": 0.721291609108448,
+        "execution": "fresh upstream receiver and model stepper"
+      }
+    },
+    "fixed_endpoint": {
+      "ids": {
+        "status": "complete",
+        "recovery_match": true,
+        "public_probabilities_match_sender": true,
+        "public_surprisal_bits": 150.7038623931022,
+        "elapsed_seconds": 0.679547606036067,
+        "execution": "fresh upstream receiver and model stepper"
+      },
+      "text": {
+        "status": "complete",
+        "recovery_match": false,
+        "public_probabilities_match_sender": false,
+        "public_surprisal_bits": 148.08671624258,
+        "elapsed_seconds": 0.66081751906313,
+        "execution": "fresh upstream receiver and model stepper"
+      }
+    }
+  },
+  "manifest_sha256": "e961f33f864bb12d39e24a1beaa9289556bc777c5f94f070076e12457c5df95c"
+}

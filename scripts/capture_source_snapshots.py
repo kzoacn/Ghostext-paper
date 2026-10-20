@@ -82,11 +82,19 @@ def main():
             resolve(name, expected)
         supplemental = supplemental_dependencies(sources, current)
         data_inputs = {}
+        input_aliases = {}
         for name, expected in manifest.get("inputs", {}).items():
             data_path = ROOT / name
             assert data_path.resolve().is_relative_to(ROOT.resolve())
             assert hashlib.sha256(data_path.read_bytes()).hexdigest() == expected
             data_inputs["Ghostext-paper/" + name] = expected
+        if "study_plan_sha256" in manifest:
+            expected = manifest["study_plan_sha256"]
+            name = f"Ghostext-paper/results/sp2027-accept-protocol/{expected}.md"
+            assert hashlib.sha256((ROOT.parent / name).read_bytes()).hexdigest() == expected
+            data_inputs[name] = expected
+            input_aliases["Ghostext-paper/notes/sp2027-accept-study-plan.md"] = {
+                "source": name, "sha256": expected}
         if "selected_case_ids" in manifest and "input_sha256" in manifest:
             matches = [
                 p for p in (ROOT / "results").glob("sp2027-*/pairs.jsonl")
@@ -102,6 +110,8 @@ def main():
             "manifest_sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
             "sources": sources, "supplemental_helpers": supplemental,
             "data_inputs": data_inputs,
+            "input_aliases": input_aliases,
+            "external_inputs": manifest.get("upstream"),
             "supplement_note": (
                 "Local imported modules omitted from older manifests are explicitly pinned "
                 "at artifact freeze. This supplements dependencies without retroactively "

@@ -1,0 +1,10 @@
+{
+  "scope": "Supplementary launch-command record; not an in-worker affinity measurement.",
+  "commands": [
+    "taskset -c 0 python3 scripts/run_upstream_rrc.py --model-path ../models/gpt2 --out-dir results/sp2027-upstream-gpt2 --shard-count 2 --shard-index 0",
+    "taskset -c 1 python3 scripts/run_upstream_rrc.py --model-path ../models/gpt2 --out-dir results/sp2027-upstream-gpt2 --shard-count 2 --shard-index 1"
+  ],
+  "worker_threads": 1,
+  "pid_scope": "Recorded PIDs are local to each execution namespace. Cross-session /proc lookup cannot establish worker identity or affinity.",
+  "measurement_note": "An attempted cross-session PID lookup was discarded because it addressed the inspecting namespace, not the generating workers."
+}

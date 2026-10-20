@@ -56,23 +56,6 @@ $r$. With $g=0$, this is the legacy width-one codec. With $g>0$, recovery can
 finish while many possible suffixes remain. Guard bits are random precision,
 not extra authenticated application bytes that the receiver must deliver.
 
-\begin{algorithm}[t]
-\caption{Guarded segment encoding and mirrored decoding}
-\label{alg:guard}
-\begin{algorithmic}[1]
-\REQUIRE segment length $B$, guard precision $g$, shared candidate source
-\STATE Sender only: $r\gets U(\{0,\ldots,2^g-1\})$; $z\gets2^g m+r$
-\STATE Both: $L\gets0$; $H\gets2^{B+g}$
-\WHILE{$\lfloor L/2^g\rfloor\ne\lfloor(H-1)/2^g\rfloor$}
-  \STATE Recreate the next quantized CDF from the shared prefix
-  \STATE Sender selects the token whose integer subinterval contains $z$
-  \STATE Receiver observes that token and rejects an empty subinterval
-  \STATE Both replace $[L,H)$ with the selected subinterval
-\ENDWHILE
-\STATE Receiver returns $\lfloor L/2^g\rfloor$ as exactly $B$ bits
-\end{algorithmic}
-\end{algorithm}
-
 The full implementation also enforces token budgets and deterministic no-payload
 steps. Empty segments resolve immediately. The codec identifier and $g$ enter
 the configuration digest; incompatible endpoints must not silently mix variants.
@@ -110,3 +93,12 @@ steganographic security.'' Frequency quantization, source pseudorandomness,
 filtering, retry conditioning, and the choice of stopping reference remain
 outside this bound. In particular, Theorem~\ref{thm:guard} does not repair the
 separate comparison in Theorem~\ref{thm:stopping}.
+
+Equation~\eqref{eq:guard-stop} is itself public given the segment sizes. With no
+natural tail, every successful packet ends at its first final-segment
+resolution, even for nonuniform packet bytes and after retries. Thus removing
+zero-width interval rejections leaves a different endpoint support test.
+Section~\ref{sec:public-endpoint} gives the exact identity for an ideal public
+stopped source; Appendix~\ref{app:proofs} states the separate support-only bound
+for arbitrary delivered packet laws. Our real-text replay tests this latter
+property without assuming ciphertext uniformity.

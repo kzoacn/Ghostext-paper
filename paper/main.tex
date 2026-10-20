@@ -23,29 +23,26 @@
 \maketitle
 
 \begin{abstract}
-Language-model steganography often evaluates security through next-token
-probabilities, although an observer receives a finite text with an endpoint.
-We study three ways in which these objects differ: deterministic padding of
-finite input bits, rounding inside a shrinking integer interval, and
-content-dependent termination. Executing the original Neural Linguistic
-Steganography encoder on an exhaustive synthetic example yields terminal-token
-total variation $15/16$ while its reported average KL is zero. For the published
-rotation range-coding algorithm, we derive a public stopping likelihood and
-an exact counterexample even when the natural control has the same marginal
-length distribution. On every fixed nonuniform binary IID source, the distance
-between these two stopped-text laws tends to one as message length grows.
-We then implement a guarded-prefix repair in Ghostext, retaining authenticated
-packet recovery while bounding integer-coding error against an explicitly
-specified stopping-matched reference. An audit of archived Qwen outputs
-and fresh authenticated-delivery trials test a password-free bootstrap probe.
-In controlled GPT-2 and bilingual Qwen stopping experiments, 386 of 480
-attempted pairs yield complete, canonical, length-matched outputs. A public
-surprisal score achieves held-out AUCs of 0.865--0.973 within these eligible
-slices, while length alone has AUC 0.5. All stopping-study outcomes are retained.
-These results separate codec
-correctness, conditional sampling accuracy, and complete-text security;
-the guarded codec alone does not establish indistinguishability from ordinary
-language-model generation.
+Language-model steganography often evaluates next-token probabilities, although
+an observer receives a finite text with an endpoint. We show how termination
+can expose content--length dependence even when the entire marginal length
+distribution is matched. A terminal-information criterion yields asymptotic
+total variation one on specified finite-state Markov sources with positive
+varentropy. We establish its concentration premise for three ideal mechanisms:
+arithmetic-prefix recovery, published rotation range coding, and its later
+reverse-verified midpoint rule. A dependent zero-varentropy source gives exact
+equality instead; fixed exogenous endpoints have an explicit delivery-failure
+tradeoff. Separately, executing the original Neural Linguistic Steganography
+encoder on an exhaustive finite-input example gives terminal TV $15/16$ while
+reported KL is zero. A guarded-prefix repair bounds Ghostext's integer-coding
+error against a stopping-matched reference, while leaving a public endpoint
+predicate. We execute unchanged current rotation range-coding code on 160 GPT-2
+secret instances. Among 110 canonical length-matched pairs, a prespecified
+public score obtains held-out AUCs $0.938/0.998$ at 128/512 bits. An independent
+fixed-endpoint control obtains $0.533/0.586$, but recovers only 74/160 messages
+from token IDs. Controlled two-model studies and authenticated-text endpoint
+replays provide separate implementation evidence. The results distinguish
+sampling accuracy, reliable recovery, and security of complete transmitted texts.
 \end{abstract}
 
 \input{sections/01-introduction}
