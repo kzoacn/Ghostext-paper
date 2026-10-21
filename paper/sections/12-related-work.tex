@@ -30,6 +30,17 @@ prevent transferring that specific counterexample indiscriminately.
 This padding observation does not establish security for every finite-output
 stopping policy.
 
+Cao et al.~\cite{cao2026lpv} study low-probability vanishing caused by
+finite-precision interval scaling. Their RRNs-HT detector randomizes within
+reconstructed token-CDF intervals and tests for missing tail mass under
+matched model, tokenizer, precision, and decoding settings. This precedes
+our use of public sampling diagnostics and controlled reference sources.
+Our finite-input audit isolates deterministic padding in the original
+encoder. The main stopping separation holds in exact arithmetic after
+matching the entire marginal length law, including reverse-verified
+termination. Precision-induced support loss and endpoint selection therefore
+require separate analyses.
+
 RRC~\cite{yan2026rrc} recognizes small-interval distortion and replaces the
 sampling point through fresh rotation. Our analysis agrees with its active
 next-token argument and examines the separate stopping step. The exact
