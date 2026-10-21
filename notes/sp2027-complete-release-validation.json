@@ -1,0 +1,91 @@
+{
+  "checked_utc": "2026-10-21T00:17:25.391268+00:00",
+  "scientific_freeze_commit": "50bb7156ae6d0145af3a5f63d5991ec37286cca6",
+  "core_commit": "624bae9",
+  "pdf": {
+    "path": "output/pdf/ghostext-sp2027.pdf",
+    "sha256": "47726fb28c94c5c09db316a520ea6ad65d61a18b984cd94ecdf5c73993f4f4b7",
+    "main_pages": 13,
+    "total_pages": 18,
+    "all_pages_visually_inspected": true,
+    "style": "Unmodified IEEEtran 1.8b conference,compsoc; US Letter; all fonts embedded; no overfull boxes or unresolved references"
+  },
+  "artifact": {
+    "path": "output/ghostext-sp2027-artifact.zip",
+    "sha256": "a12e3c40c2d36870a63e144ecd1fda46515909ae727ef486138be047b440a6b1",
+    "indexed_files": 8626,
+    "profiles": 26,
+    "file_index_sha256": "bba2ff4662ba41dfd80997e1b4af7abb6b9bb668a827dd740a0f32adf14a5417",
+    "separate_final_extraction_verified": true,
+    "verification_command": [
+      "python3",
+      "scripts/verify_artifact.py",
+      "<SEPARATE_FINAL_EXTRACTION>"
+    ],
+    "verification_returncode": 0
+  },
+  "saved_data_reproduction": {
+    "checks": 19,
+    "byte_identical_outputs": 48,
+    "all_passed": true,
+    "receipt": "results/sp2027-validation/followup-artifact-reproduction.json",
+    "final_export_receipt_sha256": "4bbd7ae788c618001a01e16e5093b087722fec7c000bd9eb80c7c0b17dc4e624",
+    "all_output_hashes_rechecked_in_final_extraction": true
+  },
+  "profile_materialization": {
+    "profiles": 26,
+    "actual_prepare_only_commands": 9,
+    "all_passed": true,
+    "receipt": "results/sp2027-validation/followup-profile-preflight.json",
+    "final_export_receipt_sha256": "86499575d8fc1dbafbaf7ef08c1e7dc50f451b22a5df81195a7e5a4572c430b9"
+  },
+  "prerelease_correspondence": {
+    "prerelease_archive_sha256": "4db29efd219ee8aa568426364fd806570ea8c8e138cae65d5df5d5c629c0a2d0",
+    "final_stage_file_index_sha256": "bba2ff4662ba41dfd80997e1b4af7abb6b9bb668a827dd740a0f32adf14a5417",
+    "files_unchanged": 8616,
+    "changed_files": [
+      "Ghostext-paper/REPRODUCIBILITY.md",
+      "Ghostext-paper/paper/main.pdf",
+      "Ghostext-paper/paper/refs.bib",
+      "Ghostext-paper/paper/sections/01-introduction.tex",
+      "Ghostext-paper/paper/sections/12-related-work.tex",
+      "Ghostext-paper/results/sp2027-format/validation.json",
+      "Ghostext-paper/results/sp2027-format/visual-review.json",
+      "Ghostext-paper/results/sp2027-validation/followup-profile-preflight.json",
+      "README.md"
+    ],
+    "added_files": [
+      "Ghostext-paper/results/sp2027-validation/followup-artifact-reproduction.json"
+    ],
+    "removed_files": [],
+    "all_experiment_code_data_analyses_and_generated_materials_unchanged": true
+  },
+  "independent_research_review": {
+    "status": "complete",
+    "recommendation": "Accept",
+    "confidence": 4,
+    "confidence_scale": 5,
+    "substantive_blockers": [],
+    "report": "notes/reviews/2026-10-21-final-research-review.md",
+    "report_sha256": "16008ef2365f07791cd2808d04589708c632d3027ad0cdc7d0313c8a7d2d34ae",
+    "reviewed_pdf_sha256": "47726fb28c94c5c09db316a520ea6ad65d61a18b984cd94ecdf5c73993f4f4b7",
+    "reviewed_archive_sha256": "a12e3c40c2d36870a63e144ecd1fda46515909ae727ef486138be047b440a6b1",
+    "assessment_scope": "Independent internal research review of the stated claims; not a conference acceptance decision",
+    "reviewer_checks": {
+      "full_manuscript_and_proof_appendices_read": true,
+      "rendered_pages_inspected": 18,
+      "primary_references_checked": true,
+      "final_archive_strict_verifier_passed": true,
+      "final_archive_crc_and_file_hashes_checked": true,
+      "core_tests_passed": 59,
+      "optional_integration_tests_skipped": 1,
+      "subtests_passed": 5,
+      "byte_identical_regenerated_audit_and_analysis_files": 13,
+      "complete_512_bit_certificate_recomputed": true,
+      "complete_2048_bit_dp_scan_recomputed": false,
+      "2048_bit_candidate_maximum_and_final_bound_arithmetic_recomputed": true,
+      "headline_auc_recomputed_directly_from_final_extraction": true,
+      "language_model_inference_performed": false
+    }
+  }
+}

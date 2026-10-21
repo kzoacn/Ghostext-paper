@@ -52,8 +52,14 @@ on page 13. All eighteen pages passed individual visual inspection, and the
 mechanical format checks pass. The current source index contains 26 profiles.
 
 Earlier independent reviews and frozen releases remain archived; their
-recommendations apply to their named PDF and ZIP hashes. The complete
-two-model revision is undergoing a new independent research review.
+recommendations apply to their named PDF and ZIP hashes. The
+[final independent research review](notes/reviews/2026-10-21-final-research-review.md)
+recommends **Accept, confidence 4/5**, for the complete two-model revision,
+with no unresolved substantive blocker for its stated claims. This is an
+independent internal assessment, not a conference acceptance decision.
+The [final release validation](notes/sp2027-complete-release-validation.json)
+binds that assessment to the exact PDF and anonymous archive, whose 8,626
+indexed files and 26 source profiles pass the strict verifier.
 [Separate-extraction reproduction](results/sp2027-validation/followup-artifact-reproduction.json)
 passes 19 checks with 48 byte-identical outputs, including the finite
 certificates, analyses, and generated materials.

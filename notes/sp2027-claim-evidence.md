@@ -1,17 +1,25 @@
 # S&P 2027 claim and evidence ledger
 
 This ledger supersedes the distribution-preservation positioning in the older
-CCS notes. The baseline independent review was **strong reject**. A fresh
-independent review on 2026-10-20 recommended **weak accept** for the narrow
-stopping-law analysis and implementation audit. The
+CCS notes. The [final independent research review](reviews/2026-10-21-final-research-review.md)
+recommends **Accept, confidence 4/5**, for the complete two-model revision,
+with no unresolved substantive blocker for the stated claims. The
+[complete release validation](sp2027-complete-release-validation.json)
+records the exact reviewed PDF and archive hashes, 13 main-content pages and
+18 total pages, and successful verification of 8,626 indexed files and
+26 source profiles. This is an independent internal assessment, not a
+conference acceptance decision.
+
+The baseline independent review was **strong reject**. An earlier independent
+review on 2026-10-20 recommended **weak accept** for the narrow stopping-law
+analysis and implementation audit. Its
 [final independent addendum](reviews/2026-10-21-final-independent-addendum.md),
 dated 2026-10-21 in Asia/Shanghai, maintains that recommendation with moderate
 confidence and finds no remaining blocking defect for those claims.
 That archived release's artifact checks are recorded in the
-[release validation](sp2027-release-validation.json); the recommendation does
-not imply conference acceptance.
+[release validation](sp2027-release-validation.json).
 
-The theory and unchanged-upstream revision below was independently assessed
+The preceding theory and unchanged-upstream revision was independently assessed
 in the [fresh review](reviews/2026-10-21-fresh-sp-review.md). Its recommendation
 is **Weak Accept, confidence 4/5**, with no confirmed scientific or artifact
 blocker. The assessed PDF and archive remain unchanged under
@@ -30,9 +38,10 @@ curve and two-model presentation are complete, and the separate budget
 data review passes with its explicit offline text-replay limits. From a separate
 complete anonymous extraction, 19 reproduction checks regenerate 48 outputs
 byte-for-byte, and all 26 profiles materialize correctly. The final export
-and new overall research review remain pending.
+passes strict verification, and the final research review above assesses the
+complete revision against the exact exported PDF and archive.
 Separate exact finite certificates strengthen the verified-rule result.
-These component audits do not revise the overall acceptance recommendation.
+The earlier component audits retain their original scopes and recommendations.
 
 | Claim | Evidence | Scope and limitation |
 |---|---|---|
